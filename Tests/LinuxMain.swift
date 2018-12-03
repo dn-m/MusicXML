@@ -3,5 +3,6 @@ import XCTest
 import MusicXMLTests
 
 var tests = [XCTestCaseEntry]()
-tests += MusicXMLTests.allTests()
+tests += MusicXMLTests.__allTests()
+
 XCTMain(tests)
