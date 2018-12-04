@@ -1,5 +1,9 @@
 # MusicXML
 
+![Swift Version](https://img.shields.io/badge/Swift-4.2-orange.svg)
+![Platforms](https://img.shields.io/badge/platform-macOS%20%7C%20Linux-lightgrey.svg)
+[![Build Status](https://travis-ci.org/dn-m/MusicXML.svg?branch=latest)](https://travis-ci.org/dn-m/MusicXML)
+
 A **work-in-progress** implementation of the [musicXML](https://www.musicxml.com) specification in Swift.
 
 The goal of this project is to allow Swift users to read, manipulate, and write musicXML files in a richly-typed manner on any platform supported by Swift.
