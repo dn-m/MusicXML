@@ -170,9 +170,9 @@ extension MusicXML {
         }
 
         let sign: Sign
-        let line: Int
+        let line: Int?
 
-        public init(sign: Sign, line: Int) {
+        public init(sign: Sign, line: Int?) {
             self.sign = sign
             self.line = line
         }
