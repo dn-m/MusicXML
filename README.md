@@ -60,3 +60,4 @@ If you use the Xcode IDE, use the Swift Package Manager to generate an `.xcodepr
 swift package generate-xcodeproj
 ```
 
+See the [MusicXML Document Type Definition (DTD)](https://www.musicxml.com/for-developers/musicxml-dtd/) for more information about how musicXML is structured.
