@@ -1,12 +1,6 @@
 import XCTest
 
-extension MusicXMLTests {
-    static let __allTests = [
-        ("testExample", testExample),
-    ]
-}
-
-extension ParserTests {
+extension HelloWorldTests {
     static let __allTests = [
         ("testHelloWorld", testHelloWorld),
     ]
@@ -15,8 +9,7 @@ extension ParserTests {
 #if !os(macOS)
 public func __allTests() -> [XCTestCaseEntry] {
     return [
-        testCase(MusicXMLTests.__allTests),
-        testCase(ParserTests.__allTests),
+        testCase(HelloWorldTests.__allTests),
     ]
 }
 #endif
