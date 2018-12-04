@@ -248,7 +248,6 @@ extension MusicXML {
     //
     // TODO: Composite Time
     // TODO: Interchangeable
-    // TODO:
     public struct Time: Equatable {
 
         public enum Kind: Equatable {
