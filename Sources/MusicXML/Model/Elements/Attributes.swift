@@ -22,81 +22,95 @@
 //  and its children, such as key and time signatures.
 extension MusicXML {
 
-    // Traditional key signatures are represented by the number
-    // of flats and sharps, plus an optional mode for major/
-    // minor/mode distinctions. Negative numbers are used for
-    // flats and positive numbers for sharps, reflecting the
-    // key's placement within the circle of fifths (hence the
-    // element name). A cancel element indicates that the old
-    // key signature should be cancelled before the new one
-    // appears. This will always happen when changing to C major
-    // or A minor and need not be specified then. The cancel
-    // value matches the fifths value of the cancelled key
-    // signature (e.g., a cancel of -2 will provide an explicit
-    // cancellation for changing from B flat major to F major).
-    // The optional location attribute indicates where a key
-    // signature cancellation appears relative to a new key
-    // signature: to the left, to the right, or before the barline
-    // and to the left. It is left by default. For mid-measure key
-    // elements, a cancel location of before-barline should be
-    // treated like a cancel location of left.
+    // > Musical notation duration is commonly represented as
+    // > fractions. The divisions element indicates how many
+    // > divisions per quarter note are used to indicate a note's
+    // > duration. For example, if duration = 1 and divisions = 2,
+    // > this is an eighth note duration. Duration and divisions
+    // > are used directly for generating sound output, so they
+    // > must be chosen to take tuplets into account. Using a
+    // > divisions element lets us use just one number to
+    // > represent a duration for each note in the score, while
+    // > retaining the full power of a fractional representation.
+    // > For maximum compatibility with Standard MIDI Files, the
+    // > divisions value should not exceed 16383.
+    public typealias Divisions = Int
+
+    // > Traditional key signatures are represented by the number
+    // > of flats and sharps, plus an optional mode for major/
+    // > minor/mode distinctions. Negative numbers are used for
+    // > flats and positive numbers for sharps, reflecting the
+    // > key's placement within the circle of fifths (hence the
+    // > element name). A cancel element indicates that the old
+    // > key signature should be cancelled before the new one
+    // > appears. This will always happen when changing to C major
+    // > or A minor and need not be specified then. The cancel
+    // > value matches the fifths value of the cancelled key
+    // > signature (e.g., a cancel of -2 will provide an explicit
+    // > cancellation for changing from B flat major to F major).
+    // > The optional location attribute indicates where a key
+    // > signature cancellation appears relative to a new key
+    // > signature: to the left, to the right, or before the barline
+    // > and to the left. It is left by default. For mid-measure key
+    // > elements, a cancel location of before-barline should be
+    // > treated like a cancel location of left.
     //
-    // Non-traditional key signatures can be represented using
-    // the Humdrum/Scot concept of a list of altered tones.
-    // The key-step and key-alter elements are represented the
-    // same way as the step and alter elements are in the pitch
-    // element in the note.mod file. The optional key-accidental
-    // element is represented the same way as the accidental
-    // element in the note.mod file. It is used for disambiguating
-    // microtonal accidentals. The different element names
-    // indicate the different meaning of altering notes in a scale
-    // versus altering a sounding pitch.
+    // > Non-traditional key signatures can be represented using
+    // > the Humdrum/Scot concept of a list of altered tones.
+    // > The key-step and key-alter elements are represented the
+    // > same way as the step and alter elements are in the pitch
+    // > element in the note.mod file. The optional key-accidental
+    // > element is represented the same way as the accidental
+    // > element in the note.mod file. It is used for disambiguating
+    // > microtonal accidentals. The different element names
+    // > indicate the different meaning of altering notes in a scale
+    // > versus altering a sounding pitch.
     //
-    // Valid mode values include major, minor, dorian, phrygian,
-    // lydian, mixolydian, aeolian, ionian, locrian, and none.
-    // The optional number attribute refers to staff numbers,
-    // from top to bottom on the system. If absent, the key
-    // signature applies to all staves in the part.
-    // The optional list of key-octave elements is used to specify
-    // in which octave each element of the key signature appears.
-    // The content specifies the octave value using the same
-    // values as the display-octave element. The number attribute
-    // is a positive integer that refers to the key signature
-    // element in left-to-right order. If the cancel attribute is
-    // set to yes, then this number refers to the canceling key
-    // signature specified by the cancel element in the parent key
-    // element. The cancel attribute cannot be set to yes if there is
-    // no corresponding cancel element within the parent key element.
-    // It is no by default.
-    // Key signatures appear at the start of each system unless
-    // the print-object attribute has been set to "no".
+    // > Valid mode values include major, minor, dorian, phrygian,
+    // > lydian, mixolydian, aeolian, ionian, locrian, and none.
+    // > The optional number attribute refers to staff numbers,
+    // > from top to bottom on the system. If absent, the key
+    // > signature applies to all staves in the part.
+    // > The optional list of key-octave elements is used to specify
+    // > in which octave each element of the key signature appears.
+    // > The content specifies the octave value using the same
+    // > values as the display-octave element. The number attribute
+    // > is a positive integer that refers to the key signature
+    // > element in left-to-right order. If the cancel attribute is
+    // > set to yes, then this number refers to the canceling key
+    // > signature specified by the cancel element in the parent key
+    // > element. The cancel attribute cannot be set to yes if there is
+    // > no corresponding cancel element within the parent key element.
+    // > It is no by default.
+    // > Key signatures appear at the start of each system unless
+    // > the print-object attribute has been set to "no".
     //
     //
-    // <!ELEMENT key (((cancel?, fifths, mode?) |
-    //     ((key-step, key-alter, key-accidental?)*)), key-octave*)>
-    // <!ATTLIST key
-    //     number CDATA #IMPLIED
-    //     %print-style;
-    //     %print-object;
-    //     %optional-unique-id;
-    // >
-    // <!ELEMENT cancel (#PCDATA)>
-    // <!ATTLIST cancel
-    //     location (left | right | before-barline) #IMPLIED
-    // >
-    // <!ELEMENT fifths (#PCDATA)>
-    // <!ELEMENT mode (#PCDATA)>
-    // <!ELEMENT key-step (#PCDATA)>
-    // <!ELEMENT key-alter (#PCDATA)>
-    // <!ELEMENT key-accidental (#PCDATA)>
-    // <!ATTLIST key-accidental
-    //     %smufl;
-    // >
-    // <!ELEMENT key-octave (#PCDATA)>
-    // <!ATTLIST key-octave
-    //     number NMTOKEN #REQUIRED
-    //     cancel %yes-no; #IMPLIED
-    // >
+    // > <!ELEMENT key (((cancel?, fifths, mode?) |
+    // >     ((key-step, key-alter, key-accidental?)*)), key-octave*)>
+    // > <!ATTLIST key
+    // >     number CDATA #IMPLIED
+    // >     %print-style;
+    // >     %print-object;
+    // >     %optional-unique-id;
+    // > >
+    // > <!ELEMENT cancel (#PCDATA)>
+    // > <!ATTLIST cancel
+    // >     location (left | right | before-barline) #IMPLIED
+    // > >
+    // > <!ELEMENT fifths (#PCDATA)>
+    // > <!ELEMENT mode (#PCDATA)>
+    // > <!ELEMENT key-step (#PCDATA)>
+    // > <!ELEMENT key-alter (#PCDATA)>
+    // > <!ELEMENT key-accidental (#PCDATA)>
+    // > <!ATTLIST key-accidental
+    // >     %smufl;
+    // > >
+    // > <!ELEMENT key-octave (#PCDATA)>
+    // > <!ATTLIST key-octave
+    // >     number NMTOKEN #REQUIRED
+    // >     cancel %yes-no; #IMPLIED
+    // > >
     public struct Key: Equatable {
         let fifths: Int
         public init(fifths: Int) {
@@ -177,6 +191,163 @@ extension MusicXML {
             self.line = line
         }
     }
+
+    // > Time signatures are represented by two elements. The
+    // > beats element indicates the number of beats, as found in
+    // > the numerator of a time signature. The beat-type element
+    // > indicates the beat unit, as found in the denominator of
+    // > a time signature.
+    //
+    // > Multiple pairs of beats and beat-type elements are used for
+    // > composite time signatures with multiple denominators, such
+    // > as 2/4 + 3/8. A composite such as 3+2/8 requires only one
+    // > beats/beat-type pair.
+    //
+    // > The interchangeable element is used to represent the second
+    // > in a pair of interchangeable dual time signatures, such as
+    // > the 6/8 in 3/4 (6/8). A separate symbol attribute value is
+    // > available compared to the time element's symbol attribute,
+    // > which applies to the first of the dual time signatures.
+    //
+    // > The time-relation element indicates the symbol used to
+    // > represent the interchangeable aspect of the time signature.
+    //
+    // > Valid values are parentheses, bracket, equals, slash, space,
+    // > and hyphen.
+    //
+    // > A senza-misura element explicitly indicates that no time
+    // > signature is present. The optional element content
+    // > indicates the symbol to be used, if any, such as an X.
+    // > The time element's symbol attribute is not used when a
+    // > senza-misura element is present.
+    //
+    // > The print-object attribute allows a time signature to be
+    // > specified but not printed, as is the case for excerpts
+    // > from the middle of a score. The value is "yes" if
+    // > not present.
+    //
+    // <!ELEMENT time
+    //     (((beats, beat-type)+, interchangeable?) | senza-misura)>
+    // <!ATTLIST time
+    //     number CDATA #IMPLIED
+    //     %time-symbol;
+    //     %time-separator;
+    //     %print-style-align;
+    //     %print-object;
+    //     %optional-unique-id;
+    // >
+    // <!ELEMENT interchangeable (time-relation?, (beats, beat-type)+)>
+    // <!ATTLIST interchangeable
+    //     %time-symbol;
+    //     %time-separator;
+    // >
+    // <!ELEMENT beats (#PCDATA)>
+    // <!ELEMENT beat-type (#PCDATA)>
+    // <!ELEMENT senza-misura (#PCDATA)>
+    // <!ELEMENT time-relation (#PCDATA)>
+    //
+    // TODO: Composite Time
+    // TODO: Interchangeable
+    // TODO:
+    public struct Time: Equatable {
+
+        public enum Kind: Equatable {
+            case measured(beats: Int, type: Int)
+            // "senza-misura"
+            case unmeasured
+        }
+
+        // The optional number attribute refers to staff
+        // > numbers within the part, from top to bottom on the system.
+        // > If absent, the time signature applies to all staves in the
+        // > part.
+        let id: Int?
+        let kind: Kind
+
+        public init(id: Int?, kind: Kind) {
+            self.id = id
+            self.kind = kind
+        }
+    }
+
+    // > The time-symbol entity indicates how to display a time
+    // > signature. The normal value is the usual fractional display,
+    // > and is the implied symbol type if none is specified. Other
+    // > options are the common and cut time symbols, as well as a
+    // > single number with an implied denominator. The note symbol
+    // > indicates that the beat-type should be represented with
+    // > the corresponding downstem note rather than a number. The
+    // > dotted-note symbol indicates that the beat-type should be
+    // > represented with a dotted downstem note that corresponds to
+    // > three times the beat-type value, and a numerator that is
+    // > one third the beats value.
+    //
+    // <!ENTITY % time-symbol
+    //    "symbol (common | cut | single-number |
+    //             note | dotted-note | normal) #IMPLIED">
+    public enum TimeSymbol: String {
+        case common = "common"
+        case cut = "cut"
+        case singleNumber = "single-number"
+        case note = "note"
+        case dottedNote = "dotted-note"
+        // fractional
+        case normal = "normal"
+    }
+
+    // > If the part is being encoded for a transposing instrument
+    // > in written vs. concert pitch, the transposition must be
+    // > encoded in the transpose element.
+    //
+    // <!ELEMENT transpose
+    //    (diatonic?, chromatic, octave-change?, double?)>
+    // <!ATTLIST transpose
+    //    number CDATA #IMPLIED
+    //    %optional-unique-id;
+    // >
+    // <!ELEMENT diatonic (#PCDATA)>
+    // <!ELEMENT chromatic (#PCDATA)>
+    // <!ELEMENT octave-change (#PCDATA)>
+    // <!ELEMENT double EMPTY>
+    public struct Transpose {
+
+        // > The optional number attribute refers to staff numbers,
+        // > from top to bottom on the system. If absent, the
+        // > transposition applies to all staves in the part. Per-staff
+        // > transposition is most often used in parts that represent
+        // > multiple instruments.
+        let id: Int?
+
+        // The transpose element
+        // > represents what must be added to the written pitch to get
+        // > the correct sounding pitch.
+        let chromatic: Int
+
+        // The diatonic element is also numeric and allows
+        // > for correct spelling of enharmonic transpositions.
+        let diatonic: Int?
+
+        // Amount of octave transposition.
+        let octave: Int
+
+        // Doubling an octave down
+        let doubleDown: Bool
+
+        public init(
+            id: Int?,
+            chromatic: Int,
+            diatonic: Int = 0,
+            octave: Int = 0,
+            doubleDown: Bool = false
+        )
+        {
+            self.id = id
+            self.chromatic = chromatic
+            self.diatonic = diatonic
+            self.octave = octave
+            self.doubleDown = doubleDown
+        }
+    }
 }
 
 // MARK: TODO
@@ -199,22 +370,6 @@ extension MusicXML {
 //    "separator (none | horizontal | diagonal |
 //        vertical | adjacent) #IMPLIED">
 //
-//<!--
-//    The time-symbol entity indicates how to display a time
-//    signature. The normal value is the usual fractional display,
-//    and is the implied symbol type if none is specified. Other
-//    options are the common and cut time symbols, as well as a
-//    single number with an implied denominator. The note symbol
-//    indicates that the beat-type should be represented with
-//    the corresponding downstem note rather than a number. The
-//    dotted-note symbol indicates that the beat-type should be
-//    represented with a dotted downstem note that corresponds to
-//    three times the beat-type value, and a numerator that is
-//    one third the beats value.
-//-->
-//<!ENTITY % time-symbol
-//    "symbol (common | cut | single-number |
-//             note | dotted-note | normal) #IMPLIED">
 //
 //<!-- Elements -->
 //
@@ -228,74 +383,6 @@ extension MusicXML {
 //<!ELEMENT attributes (%editorial;, divisions?, key*, time*,
 //    staves?, part-symbol?, instruments?, clef*, staff-details*,
 //    transpose*, directive*, measure-style*)>
-//
-//<!--
-//    Musical notation duration is commonly represented as
-//    fractions. The divisions element indicates how many
-//    divisions per quarter note are used to indicate a note's
-//    duration. For example, if duration = 1 and divisions = 2,
-//    this is an eighth note duration. Duration and divisions
-//    are used directly for generating sound output, so they
-//    must be chosen to take tuplets into account. Using a
-//    divisions element lets us use just one number to
-//    represent a duration for each note in the score, while
-//    retaining the full power of a fractional representation.
-//    For maximum compatibility with Standard MIDI Files, the
-//    divisions value should not exceed 16383.
-//-->
-//<!ELEMENT divisions (#PCDATA)>
-//
-//<!--
-//    Time signatures are represented by two elements. The
-//    beats element indicates the number of beats, as found in
-//    the numerator of a time signature. The beat-type element
-//    indicates the beat unit, as found in the denominator of
-//    a time signature.
-//    Multiple pairs of beats and beat-type elements are used for
-//    composite time signatures with multiple denominators, such
-//    as 2/4 + 3/8. A composite such as 3+2/8 requires only one
-//    beats/beat-type pair.
-//    The interchangeable element is used to represent the second
-//    in a pair of interchangeable dual time signatures, such as
-//    the 6/8 in 3/4 (6/8). A separate symbol attribute value is
-//    available compared to the time element's symbol attribute,
-//    which applies to the first of the dual time signatures.
-//    The time-relation element indicates the symbol used to
-//    represent the interchangeable aspect of the time signature.
-//    Valid values are parentheses, bracket, equals, slash, space,
-//    and hyphen.
-//    A senza-misura element explicitly indicates that no time
-//    signature is present. The optional element content
-//    indicates the symbol to be used, if any, such as an X.
-//    The time element's symbol attribute is not used when a
-//    senza-misura element is present.
-//    The print-object attribute allows a time signature to be
-//    specified but not printed, as is the case for excerpts
-//    from the middle of a score. The value is "yes" if
-//    not present. The optional number attribute refers to staff
-//    numbers within the part, from top to bottom on the system.
-//    If absent, the time signature applies to all staves in the
-//    part.
-//-->
-//<!ELEMENT time
-//    (((beats, beat-type)+, interchangeable?) | senza-misura)>
-//<!ATTLIST time
-//    number CDATA #IMPLIED
-//    %time-symbol;
-//    %time-separator;
-//    %print-style-align;
-//    %print-object;
-//    %optional-unique-id;
-//>
-//<!ELEMENT interchangeable (time-relation?, (beats, beat-type)+)>
-//<!ATTLIST interchangeable
-//    %time-symbol;
-//    %time-separator;
-//>
-//<!ELEMENT beats (#PCDATA)>
-//<!ELEMENT beat-type (#PCDATA)>
-//<!ELEMENT senza-misura (#PCDATA)>
-//<!ELEMENT time-relation (#PCDATA)>
 //
 //<!--
 //    Staves are used if there is more than one staff
@@ -400,35 +487,6 @@ extension MusicXML {
 //-->
 //<!ELEMENT staff-size (#PCDATA)>
 //
-//<!--
-//    If the part is being encoded for a transposing instrument
-//    in written vs. concert pitch, the transposition must be
-//    encoded in the transpose element. The transpose element
-//    represents what must be added to the written pitch to get
-//    the correct sounding pitch.
-//    The transposition is represented by chromatic steps
-//    (required) and three optional elements: diatonic pitch
-//    steps, octave changes, and doubling an octave down. The
-//    chromatic and octave-change elements are numeric values
-//    added to the encoded pitch data to create the sounding
-//    pitch. The diatonic element is also numeric and allows
-//    for correct spelling of enharmonic transpositions.
-//    The optional number attribute refers to staff numbers,
-//    from top to bottom on the system. If absent, the
-//    transposition applies to all staves in the part. Per-staff
-//    transposition is most often used in parts that represent
-//    multiple instruments.
-//-->
-//<!ELEMENT transpose
-//    (diatonic?, chromatic, octave-change?, double?)>
-//<!ATTLIST transpose
-//    number CDATA #IMPLIED
-//    %optional-unique-id;
-//>
-//<!ELEMENT diatonic (#PCDATA)>
-//<!ELEMENT chromatic (#PCDATA)>
-//<!ELEMENT octave-change (#PCDATA)>
-//<!ELEMENT double EMPTY>
 //
 //<!--
 //    Directives are like directions, but can be grouped together
@@ -553,3 +611,14 @@ extension MusicXML {
 //    use-dots %yes-no; #IMPLIED
 //    use-stems %yes-no; #IMPLIED
 //>
+
+struct Pair <T> {
+    let a: T
+    let b: T
+    init(_ a: T, _ b: T) {
+        self.a = a
+        self.b = b
+    }
+}
+
+extension Pair: Equatable where T: Equatable { }
