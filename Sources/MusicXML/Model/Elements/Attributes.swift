@@ -85,7 +85,6 @@ extension MusicXML {
     // > Key signatures appear at the start of each system unless
     // > the print-object attribute has been set to "no".
     //
-    //
     // > <!ELEMENT key (((cancel?, fifths, mode?) |
     // >     ((key-step, key-alter, key-accidental?)*)), key-octave*)>
     // > <!ATTLIST key
