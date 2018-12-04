@@ -27,7 +27,7 @@ extension MusicXML {
     static func deserializeMeasure(_ measureIndexer: XMLIndexer) throws -> Measure {
         return Measure(
             number: try deserializeMeasureNumber(measureIndexer),
-            attributes: deserializeMeasureAttributes(measureIndexer),
+            attributes: deserializeAttributes(measureIndexer),
             notes: try deserializeMeasureNotes(measureIndexer)
         )
     }
@@ -38,7 +38,7 @@ extension MusicXML {
 
     // MARK: Measure Attributes
 
-    static func deserializeMeasureAttributes(_ measureIndexer: XMLIndexer) -> [Measure.Attribute] {
+    static func deserializeAttributes(_ measureIndexer: XMLIndexer) -> [Measure.Attribute] {
         let attributesIndexer = measureIndexer["attributes"]
 
         // FIXME: For optional attributes, discriminate values which don't exist, and those which
@@ -46,10 +46,10 @@ extension MusicXML {
         //
         // TODO: Refactor `Measure` so that each optional attribute is an `Optional` value, rather
         // than built on top of an array of `Attribute` (`enum`) values.
-        let maybeDivisions = try? deserializeMeasureDivisions(attributesIndexer)
-        let maybeKey = try? deserializeMeasureKey(attributesIndexer)
+        let maybeDivisions = try? deserializeDivisions(attributesIndexer)
+        let maybeKey = try? deserializeKey(attributesIndexer)
         let maybeTime = try? deserializeMeasureTime(attributesIndexer)
-        let maybeClef = try? deserializeMeasureClef(attributesIndexer)
+        let maybeClef = try? deserializeClef(attributesIndexer)
         var result: [Measure.Attribute] = []
         if let divisions = maybeDivisions { result.append(.divisions(divisions)) }
         if let key = maybeKey { result.append(.key(key)) }
@@ -58,15 +58,15 @@ extension MusicXML {
         return result
     }
 
-    static func deserializeMeasureDivisions(_ attributesIndexer: XMLIndexer) throws -> Int {
+    static func deserializeDivisions(_ attributesIndexer: XMLIndexer) throws -> Int {
         return try attributesIndexer["divisions"].value()
     }
 
-    static func deserializeMeasureKey(_ attributesIndexer: XMLIndexer) throws -> Key {
+    static func deserializeKey(_ attributesIndexer: XMLIndexer) throws -> Key {
         return Key(fifths: try attributesIndexer["key"]["fifths"].value())
     }
 
-    static func deserializeMeasureClef(_ attributesIndexer: XMLIndexer) throws -> Clef {
+    static func deserializeClef(_ attributesIndexer: XMLIndexer) throws -> Clef {
         guard let sign = Clef.Sign(rawValue: try attributesIndexer["clef"]["sign"].value()) else {
             throw Error.invalidClef(attributesIndexer)
         }
