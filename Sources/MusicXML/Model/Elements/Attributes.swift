@@ -105,17 +105,24 @@ extension MusicXML {
     }
 
     // Clefs are represented by the sign, line, and
-    // clef-octave-change elements. Sign values include G, F, C,
-    // percussion, TAB, jianpu, and none. Line numbers are
+    // clef-octave-change elements.
+    //
+    // Sign values include G, F, C, percussion, TAB, jianpu, and none.
+    //
+    // Line numbers are
     // counted from the bottom of the staff. Standard values are
     // 2 for the G sign (treble clef), 4 for the F sign (bass clef),
     // 3 for the C sign (alto clef) and 5 for TAB (on a 6-line
-    // staff). The clef-octave-change element is used for
+    // staff).
+    //
+    // The clef-octave-change element is used for
     // transposing clefs (e.g., a treble clef for tenors would
     // have a clef-octave-change value of -1). The optional
     // number attribute refers to staff numbers within the part,
-    // from top to bottom on the system. A value of 1 is
+    // from top to bottom on the system.
+    // A value of 1 is
     // assumed if not present.
+    //
     // The jianpu sign indicates that the music that follows
     // should be in jianpu numbered notation, just as the TAB
     // sign indicates that the music that follows should be in
@@ -151,9 +158,21 @@ extension MusicXML {
     // <!ELEMENT line (#PCDATA)>
     // <!ELEMENT clef-octave-change (#PCDATA)>
     public struct Clef: Equatable {
-        let sign: String
+
+        public enum Sign: String {
+            case G
+            case F
+            case C
+            case percussion
+            case TAB
+            case jianpu
+            case none
+        }
+
+        let sign: Sign
         let line: Int
-        public init(sign: String, line: Int) {
+
+        public init(sign: Sign, line: Int) {
             self.sign = sign
             self.line = line
         }

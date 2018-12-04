@@ -67,8 +67,11 @@ extension MusicXML {
     }
 
     static func deserializeMeasureClef(_ attributesIndexer: XMLIndexer) throws -> Clef {
+        guard let sign = Clef.Sign(rawValue: try attributesIndexer["clef"]["sign"].value()) else {
+            throw Error.invalidClef(attributesIndexer)
+        }
         return Clef(
-            sign: try attributesIndexer["clef"]["sign"].value(),
+            sign: sign,
             line: try attributesIndexer["clef"]["line"].value()
         )
     }
