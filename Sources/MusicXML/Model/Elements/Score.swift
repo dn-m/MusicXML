@@ -93,6 +93,15 @@ extension MusicXML {
         }
     }
 
+    // Here is the basic musical data that is either associated
+    // with a part or a measure, depending on whether partwise
+    // or timewise hierarchy is used.
+    //
+    // <!ENTITY % music-data
+    //    "(note | backup | forward | direction | attributes |
+    //      harmony | figured-bass | print | sound | barline |
+    //      grouping | link | bookmark)*">
+    //
     // The implicit attribute is set to "yes" for measures where
     // the measure number should never appear, such as pickup
     // measures and the last half of mid-measure repeats. The
@@ -447,16 +456,6 @@ extension MusicXML {
 //    ordering within a MusicXML score or opus.
 //-->
 //<!ELEMENT group (#PCDATA)>
-//
-//<!--
-//    Here is the basic musical data that is either associated
-//    with a part or a measure, depending on whether partwise
-//    or timewise hierarchy is used.
-//-->
-//<!ENTITY % music-data
-//    "(note | backup | forward | direction | attributes |
-//      harmony | figured-bass | print | sound | barline |
-//      grouping | link | bookmark)*">
 //
 //<!--
 //    The score-header entity contains basic score metadata
