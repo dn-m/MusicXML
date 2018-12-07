@@ -346,6 +346,36 @@ extension MusicXML {
         }
     }
 
+    //    The beat-repeat element is used to indicate that a single
+    //    beat (but possibly many notes) is repeated. Both the start
+    //    and stop of the beat being repeated should be specified.
+    //    The slashes attribute specifies the number of slashes to
+    //    use in the symbol. The use-dots attribute indicates whether
+    //    or not to use dots as well (for instance, with mixed rhythm
+    //    patterns). By default, the value for slashes is 1 and the
+    //    value for use-dots is no.
+    //
+    //<!ELEMENT beat-repeat ((slash-type, slash-dot*)?, except-voice*)>
+    //<!ATTLIST beat-repeat
+    //    type %start-stop; #REQUIRED
+    //    slashes NMTOKEN #IMPLIED
+    //    use-dots %yes-no; #IMPLIED
+    // TODO: except-voice
+    public struct BeatRepeat {
+        public enum Kind: String {
+            case start
+            case stop
+        }
+        let kind: Kind
+        let slashes: Int
+        let useDots: Bool
+        public init(kind: Kind, slashes: Int, useDots: Bool) {
+            self.kind = kind
+            self.slashes = slashes
+            self.useDots = useDots
+        }
+    }
+
     // > The slash element is used to indicate that slash notation
     // > is to be used. If the slash is on every beat, use-stems is
     // > no (the default). To indicate rhythms but not pitches,
@@ -354,12 +384,13 @@ extension MusicXML {
     // > style. The use-dots attribute works as for the beat-repeat
     // > element, and only has effect if use-stems is no.
     //
-    // <!ELEMENT slash ((slash-type, slash-dot*)?, except-voice*)>
-    // <!ATTLIST slash
-    //     type %start-stop; #REQUIRED
-    //     use-dots %yes-no; #IMPLIED
-    //     use-stems %yes-no; #IMPLIED
-    // >
+    //<!ELEMENT slash ((slash-type, slash-dot*)?, except-voice*)>
+    //<!ATTLIST slash
+    //    type %start-stop; #REQUIRED
+    //    use-dots %yes-no; #IMPLIED
+    //    use-stems %yes-no; #IMPLIED
+    //>
+    // TODO: except-voice
     public struct Slash {
         public enum Kind: String {
             case start
@@ -603,23 +634,6 @@ extension MusicXML {
 //<!ATTLIST measure-repeat
 //    type %start-stop; #REQUIRED
 //    slashes NMTOKEN #IMPLIED
-//>
-//
-//<!--
-//    The beat-repeat element is used to indicate that a single
-//    beat (but possibly many notes) is repeated. Both the start
-//    and stop of the beat being repeated should be specified.
-//    The slashes attribute specifies the number of slashes to
-//    use in the symbol. The use-dots attribute indicates whether
-//    or not to use dots as well (for instance, with mixed rhythm
-//    patterns). By default, the value for slashes is 1 and the
-//    value for use-dots is no.
-//-->
-//<!ELEMENT beat-repeat ((slash-type, slash-dot*)?, except-voice*)>
-//<!ATTLIST beat-repeat
-//    type %start-stop; #REQUIRED
-//    slashes NMTOKEN #IMPLIED
-//    use-dots %yes-no; #IMPLIED
 //>
 
 struct Pair <T> {
