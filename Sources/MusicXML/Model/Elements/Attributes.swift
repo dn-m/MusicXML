@@ -346,6 +346,78 @@ extension MusicXML {
         }
     }
 
+    // > The tuning-step, tuning-alter, and tuning-octave
+    // > elements are defined in the common.mod file. Staff
+    // > lines are numbered from bottom to top.
+    //
+    //<!ELEMENT staff-tuning
+    //    (tuning-step, tuning-alter?, tuning-octave)>
+    //<!ATTLIST staff-tuning
+    //    line CDATA #REQUIRED
+    //>
+    //
+    public struct StaffTuning {
+        let step: Int
+        let alter: Double
+        let octave: Int
+        let line: Int
+        public init(step: Int, alter: Double, octave: Int, line: Int) {
+            self.step = step
+            self.alter = alter
+            self.octave = octave
+            self.line = line
+        }
+    }
+
+    // > The staff-details element is used to indicate different
+    // > types of staves. The staff-type element can be ossia,
+    // > cue, editorial, regular, or alternate. An alternate staff
+    // > indicates one that shares the same musical data as the
+    // > prior staff, but displayed differently (e.g., treble and
+    // > bass clef, standard notation and tab). The staff-lines
+    // > element specifies the number of lines for a non 5-line
+    // > staff. The staff-tuning and capo elements are used to
+    // > specify tuning when using tablature notation. The optional
+    // > number attribute specifies the staff number from top to
+    // > bottom on the system, as with clef. The optional show-frets
+    // > attribute indicates whether to show tablature frets as
+    // > numbers (0, 1, 2) or letters (a, b, c). The default choice
+    // > is numbers. The print-object attribute is used to indicate
+    // > when a staff is not printed in a part, usually in large
+    // > scores where empty parts are omitted. It is yes by default.
+    // > If print-spacing is yes while print-object is no, the score
+    // > is printed in cutaway format where vertical space is left
+    // > for the empty part.
+    //
+    //<!ELEMENT staff-details (staff-type?, staff-lines?,
+    //    staff-tuning*, capo?, staff-size?)>
+    //<!ATTLIST staff-details
+    //    number         CDATA                #IMPLIED
+    //    show-frets     (numbers | letters)  #IMPLIED
+    //    %print-object;
+    //    %print-spacing;
+    //>
+    //<!ELEMENT staff-type (#PCDATA)>
+    //<!ELEMENT staff-lines (#PCDATA)>
+    public struct StaffDetails {
+        public enum Kind: String {
+            case ossia
+            case cue
+            case editorial
+            case regular
+            case alternate
+        }
+        let kind: Kind
+        let staffLines: Int
+        let staffTuning: StaffTuning
+
+        public init(kind: Kind, staffLines: Int = 5, staffTuning: StaffTuning) {
+            self.kind = kind
+            self.staffLines = staffLines
+            self.staffTuning = staffTuning
+        }
+    }
+
     // > The capo element indicates at which fret a capo should
     // > be placed on a fretted instrument. This changes the
     // > open tuning of the strings specified by staff-tuning
@@ -632,49 +704,7 @@ extension MusicXML {
 //-->
 //<!ELEMENT instruments (#PCDATA)>
 //
-//<!--
-//    The staff-details element is used to indicate different
-//    types of staves. The staff-type element can be ossia,
-//    cue, editorial, regular, or alternate. An alternate staff
-//    indicates one that shares the same musical data as the
-//    prior staff, but displayed differently (e.g., treble and
-//    bass clef, standard notation and tab). The staff-lines
-//    element specifies the number of lines for a non 5-line
-//    staff. The staff-tuning and capo elements are used to
-//    specify tuning when using tablature notation. The optional
-//    number attribute specifies the staff number from top to
-//    bottom on the system, as with clef. The optional show-frets
-//    attribute indicates whether to show tablature frets as
-//    numbers (0, 1, 2) or letters (a, b, c). The default choice
-//    is numbers. The print-object attribute is used to indicate
-//    when a staff is not printed in a part, usually in large
-//    scores where empty parts are omitted. It is yes by default.
-//    If print-spacing is yes while print-object is no, the score
-//    is printed in cutaway format where vertical space is left
-//    for the empty part.
-//-->
-//<!ELEMENT staff-details (staff-type?, staff-lines?,
-//    staff-tuning*, capo?, staff-size?)>
-//<!ATTLIST staff-details
-//    number         CDATA                #IMPLIED
-//    show-frets     (numbers | letters)  #IMPLIED
-//    %print-object;
-//    %print-spacing;
-//>
-//<!ELEMENT staff-type (#PCDATA)>
-//<!ELEMENT staff-lines (#PCDATA)>
-//
-//<!--
-//    The tuning-step, tuning-alter, and tuning-octave
-//    elements are defined in the common.mod file. Staff
-//    lines are numbered from bottom to top.
-//-->
-//<!ELEMENT staff-tuning
-//    (tuning-step, tuning-alter?, tuning-octave)>
-//<!ATTLIST staff-tuning
-//    line CDATA #REQUIRED
-//>
-//
+
 
 
 // MARK: Deprecated (Version 2.0)
@@ -694,8 +724,6 @@ extension MusicXML {
 //    xml:lang NMTOKEN #IMPLIED
 //>
 //
-
-
 
 struct Pair <T> {
     let a: T
