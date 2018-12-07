@@ -22,13 +22,12 @@
 //  and its children, such as key and time signatures.
 extension MusicXML {
 
-    //<!--
-    //    The attributes element contains musical information that
-    //    typically changes on measure boundaries. This includes
-    //    key and time signatures, clefs, transpositions, and staving.
-    //    When attributes are changed mid-measure, it affects the
-    //    music in score order, not in MusicXML document order.
-    //-->
+    // > The attributes element contains musical information that
+    // > typically changes on measure boundaries. This includes
+    // > key and time signatures, clefs, transpositions, and staving.
+    // > When attributes are changed mid-measure, it affects the
+    // > music in score order, not in MusicXML document order.
+    //
     //<!ELEMENT attributes (%editorial;, divisions?, key*, time*,
     //    staves?, part-symbol?, instruments?, clef*, staff-details*,
     //    transpose*, directive*, measure-style*)>
