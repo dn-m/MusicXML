@@ -46,7 +46,7 @@ extension MusicXML {
                                     Note(
                                         pitch: Pitch(step: "C", octave: 4),
                                         duration: 4,
-                                        type: .whole
+                                        durationType: DurationType(kind: .whole)
                                     )
                                 ]
                             )

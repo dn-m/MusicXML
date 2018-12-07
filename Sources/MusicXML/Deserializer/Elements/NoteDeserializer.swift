@@ -13,7 +13,7 @@ extension MusicXML {
         return Note(
             pitch: try deserializePitch(noteIndexer),
             duration: try deserializeDuration(noteIndexer),
-            type: try deserializeDurationType(noteIndexer)
+            durationType: try deserializeDurationType(noteIndexer)
         )
     }
 
@@ -29,9 +29,11 @@ extension MusicXML {
     }
 
     static func deserializeDurationType(_ noteIndexer: XMLIndexer) throws -> DurationType {
-        guard let type = DurationType(rawValue: try noteIndexer["type"].value()) else {
+        guard let kind = DurationType.Kind(rawValue: try noteIndexer["type"].value()) else {
             throw Error.invalidDurationType(noteIndexer)
         }
-        return type
+        let size = (try? noteIndexer["type"].value(ofAttribute: "size"))
+            .flatMap { DurationType.Size(rawValue: $0) }
+        return DurationType(kind: kind, size: size ?? .full)
     }
 }
