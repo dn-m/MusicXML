@@ -40,7 +40,7 @@ extension MusicXML {
                                     .divisions(1),
                                     .key(Key(fifths: 0)),
                                     .time(4,4),
-                                    .clef(Clef(sign: .G, line: 2)) // treble clef
+                                    .clef(Clef(sign: .g, line: 2)) // treble clef
                                 ],
                                 notes: [
                                     Note(

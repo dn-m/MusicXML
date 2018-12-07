@@ -173,13 +173,13 @@ extension MusicXML {
     public struct Clef: Equatable {
 
         public enum Sign: String {
-            case G
-            case F
-            case C
-            case percussion
-            case TAB
-            case jianpu
-            case none
+            case g = "G"
+            case f = "F"
+            case c = "C"
+            case percussion = "percussion"
+            case TAB = "TAB"
+            case jianpu = "jianpu"
+            case none = "none"
         }
 
         let sign: Sign
