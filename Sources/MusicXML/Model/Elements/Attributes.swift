@@ -315,12 +315,12 @@ extension MusicXML {
         // > multiple instruments.
         let id: Int?
 
-        // The transpose element
+        // > The transpose element
         // > represents what must be added to the written pitch to get
         // > the correct sounding pitch.
         let chromatic: Int
 
-        // The diatonic element is also numeric and allows
+        // > The diatonic element is also numeric and allows
         // > for correct spelling of enharmonic transpositions.
         let diatonic: Int?
 
@@ -343,6 +343,41 @@ extension MusicXML {
             self.diatonic = diatonic
             self.octave = octave
             self.doubleDown = doubleDown
+        }
+    }
+
+    // > A measure-style indicates a special way to print partial
+    // > to multiple measures within a part. This includes multiple
+    // > rests over several measures, repeats of beats, single, or
+    // > multiple measures, and use of slash notation.
+    //
+    // > The multiple-rest and measure-repeat symbols indicate the
+    // > number of measures covered in the element content. The
+    // > beat-repeat and slash elements can cover partial measures.
+    // > All but the multiple-rest element use a type attribute to
+    // > indicate starting and stopping the use of the style. The
+    // > optional number attribute specifies the staff number from
+    // > top to bottom on the system, as with clef.
+    //
+    //<!ELEMENT measure-style (multiple-rest |
+    //    measure-repeat | beat-repeat | slash)>
+    //<!ATTLIST measure-style
+    //    number CDATA #IMPLIED
+    //    %font;
+    //    %color;
+    //    %optional-unique-id;
+    //>
+    // TODO: (multiple-rest | measure-repeat | beat-repeat | slash)
+    public struct MeasureStyle {
+        let number: Int
+        let font: String
+        let color: String
+        let id: String?
+        public init(number: Int, font: String, color: String, id: String?) {
+            self.number = number
+            self.font = font
+            self.color = color
+            self.id = id
         }
     }
 
@@ -646,28 +681,7 @@ extension MusicXML {
 //    xml:lang NMTOKEN #IMPLIED
 //>
 //
-//<!--
-//    A measure-style indicates a special way to print partial
-//    to multiple measures within a part. This includes multiple
-//    rests over several measures, repeats of beats, single, or
-//    multiple measures, and use of slash notation.
-//
-//    The multiple-rest and measure-repeat symbols indicate the
-//    number of measures covered in the element content. The
-//    beat-repeat and slash elements can cover partial measures.
-//    All but the multiple-rest element use a type attribute to
-//    indicate starting and stopping the use of the style. The
-//    optional number attribute specifies the staff number from
-//    top to bottom on the system, as with clef.
-//-->
-//<!ELEMENT measure-style (multiple-rest |
-//    measure-repeat | beat-repeat | slash)>
-//<!ATTLIST measure-style
-//    number CDATA #IMPLIED
-//    %font;
-//    %color;
-//    %optional-unique-id;
-//>
+
 
 
 struct Pair <T> {
