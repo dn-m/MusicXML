@@ -346,6 +346,25 @@ extension MusicXML {
         }
     }
 
+    // > The staff-size element indicates how large a staff
+    // > space is on this staff, expressed as a percentage of
+    // > the work's default scaling. Values less than 100 make
+    // > the staff space smaller while values over 100 make the
+    // > staff space larger. A staff-type of cue, ossia, or
+    // > editorial implies a staff-size of less than 100, but
+    // > the exact value is implementation-dependent unless
+    // > specified here. Staff size affects staff height only,
+    // > not the relationship of the staff to the left and
+    // > right margins.
+    //
+    //<!ELEMENT staff-size (#PCDATA)>
+    public struct StaffSize {
+        let value: Double
+        public init(value: Double) {
+            self.value = value
+        }
+    }
+
     // > A measure-style indicates a special way to print partial
     // > to multiple measures within a part. This includes multiple
     // > rests over several measures, repeats of beats, single, or
@@ -651,20 +670,8 @@ extension MusicXML {
 //-->
 //<!ELEMENT capo (#PCDATA)>
 //
-//<!--
-//    The staff-size element indicates how large a staff
-//    space is on this staff, expressed as a percentage of
-//    the work's default scaling. Values less than 100 make
-//    the staff space smaller while values over 100 make the
-//    staff space larger. A staff-type of cue, ossia, or
-//    editorial implies a staff-size of less than 100, but
-//    the exact value is implementation-dependent unless
-//    specified here. Staff size affects staff height only,
-//    not the relationship of the staff to the left and
-//    right margins.
-//-->
-//<!ELEMENT staff-size (#PCDATA)>
-//
+
+// MARK: Deprecated (Version 2.0)
 //
 //<!--
 //    Directives are like directions, but can be grouped together
