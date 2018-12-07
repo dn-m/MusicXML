@@ -346,6 +346,28 @@ extension MusicXML {
         }
     }
 
+    // > The slash-type and slash-dot elements are optional children
+    // > of the beat-repeat and slash elements. They have the same
+    // > values as the type and dot elements, and define what the
+    // > beat is for the display of repetition marks. If not present,
+    // > the beat is based on the current time signature.
+    //
+    //<!ELEMENT slash-type (#PCDATA)>
+    public struct SlashType {
+        // TODO: Don't entirely understand this one yet.
+    }
+
+    // > The slash-type and slash-dot elements are optional children
+    // > of the beat-repeat and slash elements. They have the same
+    // > values as the type and dot elements, and define what the
+    // > beat is for the display of repetition marks. If not present,
+    // > the beat is based on the current time signature.
+    //
+    //<!ELEMENT slash-dot EMPTY>
+    public struct SlashDot {
+        // TODO: Don't entirely understand this one yet.
+    }
+
     // > The except-voice element is used to specify a combination
     // > of slash notation and regular notation. Any note elements
     // > that are in voices specified by the except-voice elements
@@ -646,16 +668,6 @@ extension MusicXML {
 //    %color;
 //    %optional-unique-id;
 //>
-//
-//<!--
-//    The slash-type and slash-dot elements are optional children
-//    of the beat-repeat and slash elements. They have the same
-//    values as the type and dot elements, and define what the
-//    beat is for the display of repetition marks. If not present,
-//    the beat is based on the current time signature.
-//-->
-//<!ELEMENT slash-type (#PCDATA)>
-//<!ELEMENT slash-dot EMPTY>
 
 
 struct Pair <T> {
