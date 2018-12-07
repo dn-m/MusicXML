@@ -346,6 +346,68 @@ extension MusicXML {
         }
     }
 
+    // > The part-symbol element indicates how a symbol for a
+    // > multi-staff part is indicated in the score. Values include
+    // > none, brace, line, bracket, and square; brace is the default.
+    // > The top-staff and bottom-staff elements are used when the
+    // > brace does not extend across the entire part. For example, in
+    // > a 3-staff organ part, the top-staff will typically be 1 for
+    // > the right hand, while the bottom-staff will typically be 2
+    // > for the left hand. Staff 3 for the pedals is usually outside
+    // > the brace. By default, the presence of a part-symbol element
+    // > that does not extend across the entire part also indicates a
+    // > corresponding change in the common barlines within a part.
+    //
+    //<!ELEMENT part-symbol (#PCDATA)>
+    //<!ATTLIST part-symbol
+    //    top-staff CDATA #IMPLIED
+    //    bottom-staff CDATA #IMPLIED
+    //    %position;
+    //    %color;
+    //>
+    public struct PartSymbol {
+        public enum Kind {
+            case none
+            case brace
+            case line
+            case bracket
+            case square
+        }
+        let kind: Kind
+        let topStaff: Int // should this be a name or id?
+        let bottomStaff: Int // should this be a name or id?
+        let position: Double
+        let color: String
+        public init(
+            kind: Kind = .brace,
+            topStaff: Int,
+            bottomStaff: Int,
+            position: Double,
+            color: String
+        )
+        {
+            self.kind = kind
+            self.topStaff = topStaff
+            self.bottomStaff = bottomStaff
+            self.position = position
+            self.color = color
+        }
+    }
+
+    // > Instruments are only used if more than one instrument is
+    // > represented in the part (e.g., oboe I and II where they
+    // > play together most of the time). If absent, a value of 1
+    // > is assumed.
+    //
+    //<!ELEMENT instruments (#PCDATA)>
+    public struct Instruments {
+        // FIXME: Do we store names / ids here?
+        let count: Int
+        public init(count: Int) {
+            self.count = count
+        }
+    }
+
     // > The tuning-step, tuning-alter, and tuning-octave
     // > elements are defined in the common.mod file. Staff
     // > lines are numbered from bottom to top.
@@ -366,20 +428,6 @@ extension MusicXML {
             self.alter = alter
             self.octave = octave
             self.line = line
-        }
-    }
-
-    // > Instruments are only used if more than one instrument is
-    // > represented in the part (e.g., oboe I and II where they
-    // > play together most of the time). If absent, a value of 1
-    // > is assumed.
-    //
-    //<!ELEMENT instruments (#PCDATA)>
-    public struct Instruments {
-        // FIXME: Do we store names / ids here?
-        let count: Int
-        public init(count: Int) {
-            self.count = count
         }
     }
 
@@ -689,26 +737,6 @@ extension MusicXML {
 //-->
 //<!ELEMENT staves (#PCDATA)>
 //
-//<!--
-//    The part-symbol element indicates how a symbol for a
-//    multi-staff part is indicated in the score. Values include
-//    none, brace, line, bracket, and square; brace is the default.
-//    The top-staff and bottom-staff elements are used when the
-//    brace does not extend across the entire part. For example, in
-//    a 3-staff organ part, the top-staff will typically be 1 for
-//    the right hand, while the bottom-staff will typically be 2
-//    for the left hand. Staff 3 for the pedals is usually outside
-//    the brace. By default, the presence of a part-symbol element
-//    that does not extend across the entire part also indicates a
-//    corresponding change in the common barlines within a part.
-// -->
-//<!ELEMENT part-symbol (#PCDATA)>
-//<!ATTLIST part-symbol
-//    top-staff CDATA #IMPLIED
-//    bottom-staff CDATA #IMPLIED
-//    %position;
-//    %color;
-//>
 
 
 
