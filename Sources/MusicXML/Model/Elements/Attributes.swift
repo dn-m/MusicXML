@@ -346,6 +346,25 @@ extension MusicXML {
         }
     }
 
+    // > The text of the multiple-rest element indicates the number
+    // > of measures in the multiple rest. Multiple rests may use
+    // > the 1-bar / 2-bar / 4-bar rest symbols, or a single shape.
+    // > The use-symbols attribute indicates which to use; it is no
+    // > if not specified.
+    //
+    //<!ELEMENT multiple-rest (#PCDATA)>
+    //<!ATTLIST multiple-rest
+    //    use-symbols %yes-no; #IMPLIED
+    //>
+    public struct MultipleRest {
+        let count: Int
+        let useSymbols: Bool
+        public init(count: Int, useSymbols: Bool) {
+            self.count = count
+            self.useSymbols = useSymbols
+        }
+    }
+
     // > The measure-repeat and beat-repeat element specify a
     // > notation style for repetitions. The actual music being
     // > repeated needs to be repeated within the MusicXML file.
@@ -365,7 +384,7 @@ extension MusicXML {
     //    slashes NMTOKEN #IMPLIED
     //>
     // TODO: Factor out enum `StartOrStop`
-    struct MeasureRepeat {
+    public struct MeasureRepeat {
         public enum Kind: String {
             case start
             case stop
@@ -635,18 +654,6 @@ extension MusicXML {
 //    notation that is always displayed.
 //-->
 //<!ELEMENT except-voice (#PCDATA)>
-//
-//<!--
-//    The text of the multiple-rest element indicates the number
-//    of measures in the multiple rest. Multiple rests may use
-//    the 1-bar / 2-bar / 4-bar rest symbols, or a single shape.
-//    The use-symbols attribute indicates which to use; it is no
-//    if not specified.
-//-->
-//<!ELEMENT multiple-rest (#PCDATA)>
-//<!ATTLIST multiple-rest
-//    use-symbols %yes-no; #IMPLIED
-//>
 
 struct Pair <T> {
     let a: T
