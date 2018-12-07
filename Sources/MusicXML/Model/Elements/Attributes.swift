@@ -346,6 +346,22 @@ extension MusicXML {
         }
     }
 
+    // > Staves are used if there is more than one staff
+    // > represented in the given part (e.g., 2 staves for
+    // > typical piano parts). If absent, a value of 1 is assumed.
+    // > Staves are ordered from top to bottom in a part in
+    // > numerical order, with staff 1 above staff 2.
+    //
+    //<!ELEMENT staves (#PCDATA)>
+    //
+    public struct Staves {
+        // FIXME: Do we store names / ids here?
+        let count: Int
+        public init(count: Int) {
+            self.count = count
+        }
+    }
+
     // > The part-symbol element indicates how a symbol for a
     // > multi-staff part is indicated in the score. Values include
     // > none, brace, line, bracket, and square; brace is the default.
@@ -727,15 +743,6 @@ extension MusicXML {
 //<!ELEMENT attributes (%editorial;, divisions?, key*, time*,
 //    staves?, part-symbol?, instruments?, clef*, staff-details*,
 //    transpose*, directive*, measure-style*)>
-//
-//<!--
-//    Staves are used if there is more than one staff
-//    represented in the given part (e.g., 2 staves for
-//    typical piano parts). If absent, a value of 1 is assumed.
-//    Staves are ordered from top to bottom in a part in
-//    numerical order, with staff 1 above staff 2.
-//-->
-//<!ELEMENT staves (#PCDATA)>
 //
 
 
