@@ -346,21 +346,20 @@ extension MusicXML {
         }
     }
 
-    //<!--
-    //    The slash element is used to indicate that slash notation
-    //    is to be used. If the slash is on every beat, use-stems is
-    //    no (the default). To indicate rhythms but not pitches,
-    //    use-stems is set to yes. The type attribute indicates
-    //    whether this is the start or stop of a slash notation
-    //    style. The use-dots attribute works as for the beat-repeat
-    //    element, and only has effect if use-stems is no.
-    //-->
-    //<!ELEMENT slash ((slash-type, slash-dot*)?, except-voice*)>
-    //<!ATTLIST slash
-    //    type %start-stop; #REQUIRED
-    //    use-dots %yes-no; #IMPLIED
-    //    use-stems %yes-no; #IMPLIED
-    //>
+    // > The slash element is used to indicate that slash notation
+    // > is to be used. If the slash is on every beat, use-stems is
+    // > no (the default). To indicate rhythms but not pitches,
+    // > use-stems is set to yes. The type attribute indicates
+    // > whether this is the start or stop of a slash notation
+    // > style. The use-dots attribute works as for the beat-repeat
+    // > element, and only has effect if use-stems is no.
+    //
+    // <!ELEMENT slash ((slash-type, slash-dot*)?, except-voice*)>
+    // <!ATTLIST slash
+    //     type %start-stop; #REQUIRED
+    //     use-dots %yes-no; #IMPLIED
+    //     use-stems %yes-no; #IMPLIED
+    // >
     public struct Slash {
         public enum Kind: String {
             case start
