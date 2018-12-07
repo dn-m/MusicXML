@@ -369,6 +369,20 @@ extension MusicXML {
         }
     }
 
+    // > Instruments are only used if more than one instrument is
+    // > represented in the part (e.g., oboe I and II where they
+    // > play together most of the time). If absent, a value of 1
+    // > is assumed.
+    //
+    //<!ELEMENT instruments (#PCDATA)>
+    public struct Instruments {
+        // FIXME: Do we store names / ids here?
+        let count: Int
+        public init(count: Int) {
+            self.count = count
+        }
+    }
+
     // > The staff-details element is used to indicate different
     // > types of staves. The staff-type element can be ossia,
     // > cue, editorial, regular, or alternate. An alternate staff
@@ -695,15 +709,6 @@ extension MusicXML {
 //    %position;
 //    %color;
 //>
-//
-//<!--
-//    Instruments are only used if more than one instrument is
-//    represented in the part (e.g., oboe I and II where they
-//    play together most of the time). If absent, a value of 1
-//    is assumed.
-//-->
-//<!ELEMENT instruments (#PCDATA)>
-//
 
 
 
