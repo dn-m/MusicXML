@@ -346,14 +346,46 @@ extension MusicXML {
         }
     }
 
-    //    The beat-repeat element is used to indicate that a single
-    //    beat (but possibly many notes) is repeated. Both the start
-    //    and stop of the beat being repeated should be specified.
-    //    The slashes attribute specifies the number of slashes to
-    //    use in the symbol. The use-dots attribute indicates whether
-    //    or not to use dots as well (for instance, with mixed rhythm
-    //    patterns). By default, the value for slashes is 1 and the
-    //    value for use-dots is no.
+    // > The measure-repeat and beat-repeat element specify a
+    // > notation style for repetitions. The actual music being
+    // > repeated needs to be repeated within the MusicXML file.
+    // > These elements specify the notation that indicates the
+    // > repeat.
+
+    // > The measure-repeat element is used for both single and
+    // > multiple measure repeats. The text of the element indicates
+    // > the number of measures to be repeated in a single pattern.
+    // > The slashes attribute specifies the number of slashes to
+    // > use in the repeat sign. It is 1 if not specified. Both the
+    // > start and the stop of the measure-repeat must be specified.
+    //
+    //<!ELEMENT measure-repeat (#PCDATA)>
+    //<!ATTLIST measure-repeat
+    //    type %start-stop; #REQUIRED
+    //    slashes NMTOKEN #IMPLIED
+    //>
+    // TODO: Factor out enum `StartOrStop`
+    struct MeasureRepeat {
+        public enum Kind: String {
+            case start
+            case stop
+        }
+        let kind: Kind
+        let slashes: Int
+        public init(kind: Kind, slashes: Int) {
+            self.kind = kind
+            self.slashes = slashes
+        }
+    }
+
+    // > The beat-repeat element is used to indicate that a single
+    // > beat (but possibly many notes) is repeated. Both the start
+    // > and stop of the beat being repeated should be specified.
+    // > The slashes attribute specifies the number of slashes to
+    // > use in the symbol. The use-dots attribute indicates whether
+    // > or not to use dots as well (for instance, with mixed rhythm
+    // > patterns). By default, the value for slashes is 1 and the
+    // > value for use-dots is no.
     //
     //<!ELEMENT beat-repeat ((slash-type, slash-dot*)?, except-voice*)>
     //<!ATTLIST beat-repeat
@@ -361,6 +393,7 @@ extension MusicXML {
     //    slashes NMTOKEN #IMPLIED
     //    use-dots %yes-no; #IMPLIED
     // TODO: except-voice
+    // TODO: Factor out enum `StartOrStop`
     public struct BeatRepeat {
         public enum Kind: String {
             case start
@@ -391,6 +424,7 @@ extension MusicXML {
     //    use-stems %yes-no; #IMPLIED
     //>
     // TODO: except-voice
+    // TODO: Factor out enum `StartOrStop`
     public struct Slash {
         public enum Kind: String {
             case start
@@ -612,28 +646,6 @@ extension MusicXML {
 //<!ELEMENT multiple-rest (#PCDATA)>
 //<!ATTLIST multiple-rest
 //    use-symbols %yes-no; #IMPLIED
-//>
-//
-//<!--
-//    The measure-repeat and beat-repeat element specify a
-//    notation style for repetitions. The actual music being
-//    repeated needs to be repeated within the MusicXML file.
-//    These elements specify the notation that indicates the
-//    repeat.
-//-->
-//
-//<!--
-//    The measure-repeat element is used for both single and
-//    multiple measure repeats. The text of the element indicates
-//    the number of measures to be repeated in a single pattern.
-//    The slashes attribute specifies the number of slashes to
-//    use in the repeat sign. It is 1 if not specified. Both the
-//    start and the stop of the measure-repeat must be specified.
-//-->
-//<!ELEMENT measure-repeat (#PCDATA)>
-//<!ATTLIST measure-repeat
-//    type %start-stop; #REQUIRED
-//    slashes NMTOKEN #IMPLIED
 //>
 
 struct Pair <T> {
