@@ -346,6 +346,17 @@ extension MusicXML {
         }
     }
 
+    // > The except-voice element is used to specify a combination
+    // > of slash notation and regular notation. Any note elements
+    // > that are in voices specified by the except-voice elements
+    // > are displayed in normal notation, in addition to the slash
+    // > notation that is always displayed.
+    //
+    //<!ELEMENT except-voice (#PCDATA)>
+    public struct ExceptVoice {
+        // TODO: Don't entirely understand this one yet.
+    }
+
     // > The text of the multiple-rest element indicates the number
     // > of measures in the multiple rest. Multiple rests may use
     // > the 1-bar / 2-bar / 4-bar rest symbols, or a single shape.
@@ -645,15 +656,7 @@ extension MusicXML {
 //-->
 //<!ELEMENT slash-type (#PCDATA)>
 //<!ELEMENT slash-dot EMPTY>
-//
-//<!--
-//    The except-voice element is used to specify a combination
-//    of slash notation and regular notation. Any note elements
-//    that are in voices specified by the except-voice elements
-//    are displayed in normal notation, in addition to the slash
-//    notation that is always displayed.
-//-->
-//<!ELEMENT except-voice (#PCDATA)>
+
 
 struct Pair <T> {
     let a: T
