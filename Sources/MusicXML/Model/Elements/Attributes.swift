@@ -140,45 +140,45 @@ extension MusicXML {
         }
     }
 
-    // Clefs are represented by the sign, line, and
-    // clef-octave-change elements.
-    //
-    // Sign values include G, F, C, percussion, TAB, jianpu, and none.
-    //
-    // Line numbers are
-    // counted from the bottom of the staff. Standard values are
-    // 2 for the G sign (treble clef), 4 for the F sign (bass clef),
-    // 3 for the C sign (alto clef) and 5 for TAB (on a 6-line
-    // staff).
-    //
-    // The clef-octave-change element is used for
-    // transposing clefs (e.g., a treble clef for tenors would
-    // have a clef-octave-change value of -1). The optional
-    // number attribute refers to staff numbers within the part,
-    // from top to bottom on the system.
-    // A value of 1 is
-    // assumed if not present.
-    //
-    // The jianpu sign indicates that the music that follows
-    // should be in jianpu numbered notation, just as the TAB
-    // sign indicates that the music that follows should be in
-    // tablature notation. Unlike TAB, a jianpu sign does not
-    // correspond to a visual clef notation.
-    // Sometimes clefs are added to the staff in non-standard
-    // line positions, either to indicate cue passages, or when
-    // there are multiple clefs present simultaneously on one
-    // staff. In this situation, the additional attribute is set to
-    // "yes" and the line value is ignored. The size attribute
-    // is used for clefs where the additional attribute is "yes".
-    // It is typically used to indicate cue clefs.
-    // Sometimes clefs at the start of a measure need to appear
-    // after the barline rather than before, as for cues or for
-    // use after a repeated section. The after-barline attribute
-    // is set to "yes" in this situation. The attribute is ignored
-    // for mid-measure clefs.
-    // Clefs appear at the start of each system unless the
-    // print-object attribute has been set to "no" or the
-    // additional attribute has been set to "yes".
+    // > Clefs are represented by the sign, line, and
+    // > clef-octave-change elements.
+    // >
+    // > Sign values include G, F, C, percussion, TAB, jianpu, and none.
+    // >
+    // > Line numbers are
+    // > counted from the bottom of the staff. Standard values are
+    // > 2 for the G sign (treble clef), 4 for the F sign (bass clef),
+    // > 3 for the C sign (alto clef) and 5 for TAB (on a 6-line
+    // > staff).
+    // >
+    // > The clef-octave-change element is used for
+    // > transposing clefs (e.g., a treble clef for tenors would
+    // > have a clef-octave-change value of -1). The optional
+    // > number attribute refers to staff numbers within the part,
+    // > from top to bottom on the system.
+    // > A value of 1 is
+    // > assumed if not present.
+    // >
+    // > The jianpu sign indicates that the music that follows
+    // > should be in jianpu numbered notation, just as the TAB
+    // > sign indicates that the music that follows should be in
+    // > tablature notation. Unlike TAB, a jianpu sign does not
+    // > correspond to a visual clef notation.
+    // > Sometimes clefs are added to the staff in non-standard
+    // > line positions, either to indicate cue passages, or when
+    // > there are multiple clefs present simultaneously on one
+    // > staff. In this situation, the additional attribute is set to
+    // > "yes" and the line value is ignored. The size attribute
+    // > is used for clefs where the additional attribute is "yes".
+    // > It is typically used to indicate cue clefs.
+    // > Sometimes clefs at the start of a measure need to appear
+    // > after the barline rather than before, as for cues or for
+    // > use after a repeated section. The after-barline attribute
+    // > is set to "yes" in this situation. The attribute is ignored
+    // > for mid-measure clefs.
+    // > Clefs appear at the start of each system unless the
+    // > print-object attribute has been set to "no" or the
+    // > additional attribute has been set to "yes".
     //
     // <!ELEMENT clef (sign, line?, clef-octave-change?)>
     // <!ATTLIST clef
@@ -302,7 +302,7 @@ extension MusicXML {
     // > The adjacent value represents no separator with the beats and
     // > beat-type arranged horizontally.
     //
-    //<!ENTITY % time-separator
+    // <!ENTITY % time-separator
     //    "separator (none | horizontal | diagonal |
     //        vertical | adjacent) #IMPLIED">
     public enum TimeSeparator: String {
@@ -397,8 +397,7 @@ extension MusicXML {
     // > Staves are ordered from top to bottom in a part in
     // > numerical order, with staff 1 above staff 2.
     //
-    //<!ELEMENT staves (#PCDATA)>
-    //
+    // <!ELEMENT staves (#PCDATA)>
     public struct Staves {
         // FIXME: Do we store names / ids here?
         let count: Int
@@ -419,13 +418,13 @@ extension MusicXML {
     // > that does not extend across the entire part also indicates a
     // > corresponding change in the common barlines within a part.
     //
-    //<!ELEMENT part-symbol (#PCDATA)>
-    //<!ATTLIST part-symbol
+    // <!ELEMENT part-symbol (#PCDATA)>
+    // <!ATTLIST part-symbol
     //    top-staff CDATA #IMPLIED
     //    bottom-staff CDATA #IMPLIED
     //    %position;
     //    %color;
-    //>
+    // >
     public struct PartSymbol {
         public enum Kind {
             case none
@@ -460,7 +459,7 @@ extension MusicXML {
     // > play together most of the time). If absent, a value of 1
     // > is assumed.
     //
-    //<!ELEMENT instruments (#PCDATA)>
+    // <!ELEMENT instruments (#PCDATA)>
     public struct Instruments {
         // FIXME: Do we store names / ids here?
         let count: Int
@@ -473,11 +472,11 @@ extension MusicXML {
     // > elements are defined in the common.mod file. Staff
     // > lines are numbered from bottom to top.
     //
-    //<!ELEMENT staff-tuning
+    // <!ELEMENT staff-tuning
     //    (tuning-step, tuning-alter?, tuning-octave)>
-    //<!ATTLIST staff-tuning
+    // <!ATTLIST staff-tuning
     //    line CDATA #REQUIRED
-    //>
+    // >
     //
     public struct StaffTuning {
         let step: Int
@@ -512,16 +511,16 @@ extension MusicXML {
     // > is printed in cutaway format where vertical space is left
     // > for the empty part.
     //
-    //<!ELEMENT staff-details (staff-type?, staff-lines?,
+    // <!ELEMENT staff-details (staff-type?, staff-lines?,
     //    staff-tuning*, capo?, staff-size?)>
-    //<!ATTLIST staff-details
+    // <!ATTLIST staff-details
     //    number         CDATA                #IMPLIED
     //    show-frets     (numbers | letters)  #IMPLIED
     //    %print-object;
     //    %print-spacing;
-    //>
-    //<!ELEMENT staff-type (#PCDATA)>
-    //<!ELEMENT staff-lines (#PCDATA)>
+    // >
+    // <!ELEMENT staff-type (#PCDATA)>
+    // <!ELEMENT staff-lines (#PCDATA)>
     public struct StaffDetails {
         public enum Kind: String {
             case ossia
@@ -533,7 +532,6 @@ extension MusicXML {
         let kind: Kind
         let staffLines: Int
         let staffTuning: StaffTuning
-
         public init(kind: Kind, staffLines: Int = 5, staffTuning: StaffTuning) {
             self.kind = kind
             self.staffLines = staffLines
@@ -546,7 +544,7 @@ extension MusicXML {
     // > open tuning of the strings specified by staff-tuning
     // > by the specified number of half-steps.
     //
-    //<!ELEMENT capo (#PCDATA)>
+    // <!ELEMENT capo (#PCDATA)>
     public struct Capo {
         let fret: Int
         public init(fret: Int) {
@@ -565,7 +563,7 @@ extension MusicXML {
     // > not the relationship of the staff to the left and
     // > right margins.
     //
-    //<!ELEMENT staff-size (#PCDATA)>
+    // <!ELEMENT staff-size (#PCDATA)>
     public struct StaffSize {
         let value: Double
         public init(value: Double) {
@@ -586,14 +584,14 @@ extension MusicXML {
     // > optional number attribute specifies the staff number from
     // > top to bottom on the system, as with clef.
     //
-    //<!ELEMENT measure-style (multiple-rest |
+    // <!ELEMENT measure-style (multiple-rest |
     //    measure-repeat | beat-repeat | slash)>
-    //<!ATTLIST measure-style
+    // <!ATTLIST measure-style
     //    number CDATA #IMPLIED
     //    %font;
     //    %color;
     //    %optional-unique-id;
-    //>
+    // >
     // TODO: (multiple-rest | measure-repeat | beat-repeat | slash)
     public struct MeasureStyle {
         let number: Int
@@ -614,7 +612,7 @@ extension MusicXML {
     // > beat is for the display of repetition marks. If not present,
     // > the beat is based on the current time signature.
     //
-    //<!ELEMENT slash-type (#PCDATA)>
+    // <!ELEMENT slash-type (#PCDATA)>
     public struct SlashType {
         // TODO: Don't entirely understand this one yet.
     }
@@ -625,7 +623,7 @@ extension MusicXML {
     // > beat is for the display of repetition marks. If not present,
     // > the beat is based on the current time signature.
     //
-    //<!ELEMENT slash-dot EMPTY>
+    // <!ELEMENT slash-dot EMPTY>
     public struct SlashDot {
         // TODO: Don't entirely understand this one yet.
     }
@@ -636,7 +634,7 @@ extension MusicXML {
     // > are displayed in normal notation, in addition to the slash
     // > notation that is always displayed.
     //
-    //<!ELEMENT except-voice (#PCDATA)>
+    // <!ELEMENT except-voice (#PCDATA)>
     public struct ExceptVoice {
         // TODO: Don't entirely understand this one yet.
     }
@@ -647,10 +645,10 @@ extension MusicXML {
     // > The use-symbols attribute indicates which to use; it is no
     // > if not specified.
     //
-    //<!ELEMENT multiple-rest (#PCDATA)>
-    //<!ATTLIST multiple-rest
+    // <!ELEMENT multiple-rest (#PCDATA)>
+    // <!ATTLIST multiple-rest
     //    use-symbols %yes-no; #IMPLIED
-    //>
+    // >
     public struct MultipleRest {
         let count: Int
         let useSymbols: Bool
@@ -673,11 +671,11 @@ extension MusicXML {
     // > use in the repeat sign. It is 1 if not specified. Both the
     // > start and the stop of the measure-repeat must be specified.
     //
-    //<!ELEMENT measure-repeat (#PCDATA)>
-    //<!ATTLIST measure-repeat
+    // <!ELEMENT measure-repeat (#PCDATA)>
+    // <!ATTLIST measure-repeat
     //    type %start-stop; #REQUIRED
     //    slashes NMTOKEN #IMPLIED
-    //>
+    // >
     // TODO: Factor out enum `StartOrStop`
     public struct MeasureRepeat {
         public enum Kind: String {
@@ -701,11 +699,12 @@ extension MusicXML {
     // > patterns). By default, the value for slashes is 1 and the
     // > value for use-dots is no.
     //
-    //<!ELEMENT beat-repeat ((slash-type, slash-dot*)?, except-voice*)>
-    //<!ATTLIST beat-repeat
+    // <!ELEMENT beat-repeat ((slash-type, slash-dot*)?, except-voice*)>
+    // <!ATTLIST beat-repeat
     //    type %start-stop; #REQUIRED
     //    slashes NMTOKEN #IMPLIED
     //    use-dots %yes-no; #IMPLIED
+    // >
     // TODO: except-voice
     // TODO: Factor out enum `StartOrStop`
     public struct BeatRepeat {
@@ -731,12 +730,12 @@ extension MusicXML {
     // > style. The use-dots attribute works as for the beat-repeat
     // > element, and only has effect if use-stems is no.
     //
-    //<!ELEMENT slash ((slash-type, slash-dot*)?, except-voice*)>
-    //<!ATTLIST slash
+    // <!ELEMENT slash ((slash-type, slash-dot*)?, except-voice*)>
+    // <!ATTLIST slash
     //    type %start-stop; #REQUIRED
     //    use-dots %yes-no; #IMPLIED
     //    use-stems %yes-no; #IMPLIED
-    //>
+    // >
     // TODO: except-voice
     // TODO: Factor out enum `StartOrStop`
     public struct Slash {
@@ -764,11 +763,11 @@ extension MusicXML {
     // > names come from ISO 639, with optional country subcodes
     // > from ISO 3166.
     //
-    //<!ELEMENT directive (#PCDATA)>
-    //<!ATTLIST directive
+    // <!ELEMENT directive (#PCDATA)>
+    // <!ATTLIST directive
     //    %print-style;
     //    xml:lang NMTOKEN #IMPLIED
-    //>
+    // >
     //
     // FIXME: The types (`String`) for `printStyle` and `language` are guesses at this point.
     public struct Directive {
