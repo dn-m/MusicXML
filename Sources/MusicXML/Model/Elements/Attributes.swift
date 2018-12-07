@@ -289,8 +289,7 @@ extension MusicXML {
         case singleNumber = "single-number"
         case note = "note"
         case dottedNote = "dotted-note"
-        // fractional
-        case normal = "normal"
+        case normal = "normal" // fractional
     }
 
     // > If the part is being encoded for a transposing instrument
@@ -344,6 +343,36 @@ extension MusicXML {
             self.diatonic = diatonic
             self.octave = octave
             self.doubleDown = doubleDown
+        }
+    }
+
+    //<!--
+    //    The slash element is used to indicate that slash notation
+    //    is to be used. If the slash is on every beat, use-stems is
+    //    no (the default). To indicate rhythms but not pitches,
+    //    use-stems is set to yes. The type attribute indicates
+    //    whether this is the start or stop of a slash notation
+    //    style. The use-dots attribute works as for the beat-repeat
+    //    element, and only has effect if use-stems is no.
+    //-->
+    //<!ELEMENT slash ((slash-type, slash-dot*)?, except-voice*)>
+    //<!ATTLIST slash
+    //    type %start-stop; #REQUIRED
+    //    use-dots %yes-no; #IMPLIED
+    //    use-stems %yes-no; #IMPLIED
+    //>
+    public struct Slash {
+        public enum Kind: String {
+            case start
+            case stop
+        }
+        let kind: Kind
+        let useDots: Bool
+        let useStems: Bool
+        public init(kind: Kind, useDots: Bool, useStems: Bool) {
+            self.kind = kind
+            self.useDots = useDots
+            self.useStems = useStems
         }
     }
 }
@@ -592,22 +621,6 @@ extension MusicXML {
 //    type %start-stop; #REQUIRED
 //    slashes NMTOKEN #IMPLIED
 //    use-dots %yes-no; #IMPLIED
-//>
-//
-//<!--
-//    The slash element is used to indicate that slash notation
-//    is to be used. If the slash is on every beat, use-stems is
-//    no (the default). To indicate rhythms but not pitches,
-//    use-stems is set to yes. The type attribute indicates
-//    whether this is the start or stop of a slash notation
-//    style. The use-dots attribute works as for the beat-repeat
-//    element, and only has effect if use-stems is no.
-//-->
-//<!ELEMENT slash ((slash-type, slash-dot*)?, except-voice*)>
-//<!ATTLIST slash
-//    type %start-stop; #REQUIRED
-//    use-dots %yes-no; #IMPLIED
-//    use-stems %yes-no; #IMPLIED
 //>
 
 struct Pair <T> {
