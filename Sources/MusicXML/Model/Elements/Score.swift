@@ -42,7 +42,9 @@ extension MusicXML {
     // The part-abbreviation indicates the abbreviated version of
     // the name of the musical part. The part-name will often
     // precede the first system, while the part-abbreviation will
-    // precede the other systems. The formatting attributes for
+    // precede the other systems.
+    //
+    // The formatting attributes for
     // these elements are deprecated in Version 2.0 in favor of
     // the new part-name-display and part-abbreviation-display
     // elements. These are defined in the common.mod file as they

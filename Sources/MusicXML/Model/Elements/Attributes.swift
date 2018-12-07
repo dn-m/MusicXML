@@ -346,6 +346,19 @@ extension MusicXML {
         }
     }
 
+    // > The capo element indicates at which fret a capo should
+    // > be placed on a fretted instrument. This changes the
+    // > open tuning of the strings specified by staff-tuning
+    // > by the specified number of half-steps.
+    //
+    //<!ELEMENT capo (#PCDATA)>
+    public struct Capo {
+        let fret: Int
+        public init(fret: Int) {
+            self.fret = fret
+        }
+    }
+
     // > The staff-size element indicates how large a staff
     // > space is on this staff, expressed as a percentage of
     // > the work's default scaling. Values less than 100 make
@@ -662,14 +675,7 @@ extension MusicXML {
 //    line CDATA #REQUIRED
 //>
 //
-//<!--
-//    The capo element indicates at which fret a capo should
-//    be placed on a fretted instrument. This changes the
-//    open tuning of the strings specified by staff-tuning
-//    by the specified number of half-steps.
-//-->
-//<!ELEMENT capo (#PCDATA)>
-//
+
 
 // MARK: Deprecated (Version 2.0)
 //
