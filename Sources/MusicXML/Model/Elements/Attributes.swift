@@ -22,6 +22,30 @@
 //  and its children, such as key and time signatures.
 extension MusicXML {
 
+    //<!--
+    //    The attributes element contains musical information that
+    //    typically changes on measure boundaries. This includes
+    //    key and time signatures, clefs, transpositions, and staving.
+    //    When attributes are changed mid-measure, it affects the
+    //    music in score order, not in MusicXML document order.
+    //-->
+    //<!ELEMENT attributes (%editorial;, divisions?, key*, time*,
+    //    staves?, part-symbol?, instruments?, clef*, staff-details*,
+    //    transpose*, directive*, measure-style*)>
+    //
+    public enum Attribute {
+        case divisions(Divisions)
+        case key(Key)
+        case time(Time)
+        case staves(Staves)
+        case partSymbol(PartSymbol)
+        case instruments(Instruments)
+        case staffDetails(StaffDetails)
+        case transpose(Transpose)
+        case directive(Directive)
+        case measureStyle(MeasureStyle)
+    }
+
     // > Musical notation duration is commonly represented as
     // > fractions. The divisions element indicates how many
     // > divisions per quarter note are used to indicate a note's
@@ -266,6 +290,28 @@ extension MusicXML {
             self.id = id
             self.kind = kind
         }
+    }
+
+    // > The time-separator entity indicates how to display the
+    // > arrangement between the beats and beat-type values in a
+    // > time signature. The default value is none. The horizontal,
+    // > diagonal, and vertical values represent horizontal, diagonal
+    // > lower-left to upper-right, and vertical lines respectively.
+    // > For these values, the beats and beat-type values are arranged
+    // > on either side of the separator line. The none value represents
+    // > no separator with the beats and beat-type arranged vertically.
+    // > The adjacent value represents no separator with the beats and
+    // > beat-type arranged horizontally.
+    //
+    //<!ENTITY % time-separator
+    //    "separator (none | horizontal | diagonal |
+    //        vertical | adjacent) #IMPLIED">
+    public enum TimeSeparator: String {
+        case none
+        case horizontal
+        case diagonal
+        case vertical
+        case adjacent
     }
 
     // > The time-symbol entity indicates how to display a time
@@ -708,70 +754,30 @@ extension MusicXML {
             self.useStems = useStems
         }
     }
-}
 
-// MARK: TODO
-//
-//<!-- Entities -->
-//
-//<!--
-//    The time-separator entity indicates how to display the
-//    arrangement between the beats and beat-type values in a
-//    time signature. The default value is none. The horizontal,
-//    diagonal, and vertical values represent horizontal, diagonal
-//    lower-left to upper-right, and vertical lines respectively.
-//    For these values, the beats and beat-type values are arranged
-//    on either side of the separator line. The none value represents
-//    no separator with the beats and beat-type arranged vertically.
-//    The adjacent value represents no separator with the beats and
-//    beat-type arranged horizontally.
-//-->
-//<!ENTITY % time-separator
-//    "separator (none | horizontal | diagonal |
-//        vertical | adjacent) #IMPLIED">
-//
-//
-//<!-- Elements -->
-//
-//<!--
-//    The attributes element contains musical information that
-//    typically changes on measure boundaries. This includes
-//    key and time signatures, clefs, transpositions, and staving.
-//    When attributes are changed mid-measure, it affects the
-//    music in score order, not in MusicXML document order.
-//-->
-//<!ELEMENT attributes (%editorial;, divisions?, key*, time*,
-//    staves?, part-symbol?, instruments?, clef*, staff-details*,
-//    transpose*, directive*, measure-style*)>
-//
-
-
-
-// MARK: Deprecated (Version 2.0)
-//
-//<!--
-//    Directives are like directions, but can be grouped together
-//    with attributes for convenience. This is typically used for
-//    tempo markings at the beginning of a piece of music. This
-//    element has been deprecated in Version 2.0 in favor of
-//    the directive attribute for direction elements. Language
-//    names come from ISO 639, with optional country subcodes
-//    from ISO 3166.
-//-->
-//<!ELEMENT directive (#PCDATA)>
-//<!ATTLIST directive
-//    %print-style;
-//    xml:lang NMTOKEN #IMPLIED
-//>
-//
-
-struct Pair <T> {
-    let a: T
-    let b: T
-    init(_ a: T, _ b: T) {
-        self.a = a
-        self.b = b
+    // MARK: Deprecated (Version 2.0)
+    //
+    // > Directives are like directions, but can be grouped together
+    // > with attributes for convenience. This is typically used for
+    // > tempo markings at the beginning of a piece of music. This
+    // > element has been deprecated in Version 2.0 in favor of
+    // > the directive attribute for direction elements. Language
+    // > names come from ISO 639, with optional country subcodes
+    // > from ISO 3166.
+    //
+    //<!ELEMENT directive (#PCDATA)>
+    //<!ATTLIST directive
+    //    %print-style;
+    //    xml:lang NMTOKEN #IMPLIED
+    //>
+    //
+    // FIXME: The types (`String`) for `printStyle` and `language` are guesses at this point.
+    public struct Directive {
+        let printStyle: String
+        let language: String
+        public init(printStyle: String, language: String) {
+            self.printStyle = printStyle
+            self.language = language
+        }
     }
 }
-
-extension Pair: Equatable where T: Equatable { }
