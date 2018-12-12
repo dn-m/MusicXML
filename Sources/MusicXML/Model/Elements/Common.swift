@@ -29,7 +29,8 @@
 //    here are common across both notes and measures.
 //-->
 //
-//<!-- Entities -->
+
+extension MusicXML {
 //
 //<!--
 //    If greater ASCII compatibility is desired, entity references
@@ -71,45 +72,74 @@
 //<!ENTITY % tenths "CDATA">
 //<!ENTITY % layout-tenths "(#PCDATA)">
 //
-//<!--
-//    The start-stop and start-stop-continue entities are used
-//    for musical elements that can either start or stop, such
-//    as slurs, tuplets, and wedges. The start-stop-continue
-//    entity is used when there is a need to refer to an
-//    intermediate point in the symbol, as for complex slurs
-//    or for specifying formatting of symbols across system
-//    breaks.
-//    The start-stop-single entity is used when the same element
-//    is used for multi-note and single-note notations, as for
-//    groupings. The tremolo-type entity is used to distinguish
-//    multi-note, single-note, and unmeasured tremolos.
-//    The values of start, stop, and continue refer to how an
-//    element appears in musical score order, not in MusicXML
-//    document order. An element with a stop attribute may
-//    precede the corresponding element with a start attribute
-//    within a MusicXML document. This is particularly common
-//    in multi-staff music. For example, the stopping point for
-//    a slur may appear in staff 1 before the starting point for
-//    the slur appears in staff 2 later in the document.
-//    The tied-type entity is used as an attribute of the tied
-//    element to specify where the visual representation of a
-//    tie begins and ends. A tied element which joins two notes
-//    can be specified with tied-type start on the first note and
-//    tied-type stop on the second note. To indicate a note
-//    should be undamped, use a single tied element with
-//    tied-type let-ring. For other ties that are visually
-//    attached to a single note, such as a tie leading into or
-//    out of a repeated section or coda, use two tied elements on
-//    the same note, one start and one stop.
-//    In start-stop cases, ties can add more elements using a
-//    continue type. This is typically used to specify the
-//    formatting of cross-system ties.
-//-->
-//<!ENTITY % start-stop "(start | stop)">
-//<!ENTITY % start-stop-continue "(start | stop | continue)">
-//<!ENTITY % start-stop-single "(start | stop | single)">
-//<!ENTITY % tied-type "(start | stop | continue | let-ring)">
-//<!ENTITY % tremolo-type "(start | stop | single | unmeasured)">
+
+    //    The start-stop and start-stop-continue entities are used
+    //    for musical elements that can either start or stop, such
+    //    as slurs, tuplets, and wedges. The start-stop-continue
+    //    entity is used when there is a need to refer to an
+    //    intermediate point in the symbol, as for complex slurs
+    //    or for specifying formatting of symbols across system
+    //    breaks.
+    //    The start-stop-single entity is used when the same element
+    //    is used for multi-note and single-note notations, as for
+    //    groupings. The tremolo-type entity is used to distinguish
+    //    multi-note, single-note, and unmeasured tremolos.
+    //    The values of start, stop, and continue refer to how an
+    //    element appears in musical score order, not in MusicXML
+    //    document order. An element with a stop attribute may
+    //    precede the corresponding element with a start attribute
+    //    within a MusicXML document. This is particularly common
+    //    in multi-staff music. For example, the stopping point for
+    //    a slur may appear in staff 1 before the starting point for
+    //    the slur appears in staff 2 later in the document.
+    //    The tied-type entity is used as an attribute of the tied
+    //    element to specify where the visual representation of a
+    //    tie begins and ends. A tied element which joins two notes
+    //    can be specified with tied-type start on the first note and
+    //    tied-type stop on the second note. To indicate a note
+    //    should be undamped, use a single tied element with
+    //    tied-type let-ring. For other ties that are visually
+    //    attached to a single note, such as a tie leading into or
+    //    out of a repeated section or coda, use two tied elements on
+    //    the same note, one start and one stop.
+    //    In start-stop cases, ties can add more elements using a
+    //    continue type. This is typically used to specify the
+    //    formatting of cross-system ties.
+    //-->
+    //<!ENTITY % start-stop "(start | stop)">
+    //<!ENTITY % start-stop-continue "(start | stop | continue)">
+    //<!ENTITY % start-stop-single "(start | stop | single)">
+    //<!ENTITY % tied-type "(start | stop | continue | let-ring)">
+    //<!ENTITY % tremolo-type "(start | stop | single | unmeasured)">
+    public enum StartStop: String {
+        case start
+        case stop
+    }
+
+    public enum StartStopContinue: String {
+        case start
+        case stop
+        case `continue`
+    }
+
+    public enum StartStopSingle: String {
+        case start
+        case stop
+        case single
+    }
+
+    public enum TiedType: String {
+        case start = "start"
+        case stop = "stop"
+        case letRight = "let-ring"
+    }
+
+    public enum TremoloType: String {
+        case start
+        case stop
+        case single
+        case unmeasured
+    }
 //
 //<!--
 //    The yes-no entity is used for boolean-like attributes.
@@ -172,18 +202,26 @@
 //      hexagon | heptagon | octagon | nonagon |
 //      decagon | none)">
 //
-//<!--
-//    Slurs, tuplets, and many other features can be
-//    concurrent and overlapping within a single musical
-//    part. The number-level attribute distinguishes up to
-//    six concurrent objects of the same type. A reading
-//    program should be prepared to handle cases where
-//    the number-levels stop in an arbitrary order.
-//    Different numbers are needed when the features
-//    overlap in MusicXML document order. When a number-level
-//    value is implied, the value is 1 by default.
-//-->
-//<!ENTITY % number-level "(1 | 2 | 3 | 4 | 5 | 6)">
+
+    //    Slurs, tuplets, and many other features can be
+    //    concurrent and overlapping within a single musical
+    //    part. The number-level attribute distinguishes up to
+    //    six concurrent objects of the same type. A reading
+    //    program should be prepared to handle cases where
+    //    the number-levels stop in an arbitrary order.
+    //    Different numbers are needed when the features
+    //    overlap in MusicXML document order. When a number-level
+    //    value is implied, the value is 1 by default.
+    //-->
+    //<!ENTITY % number-level "(1 | 2 | 3 | 4 | 5 | 6)">
+    public enum NumberLevel: String {
+        case one = "1"
+        case two = "2"
+        case three = "3"
+        case four = "4"
+        case five = "5"
+        case six = "six"
+    }
 //
 //<!--
 //    The MusicXML format supports eight levels of beaming, up
@@ -195,101 +233,116 @@
 //-->
 //<!ENTITY % beam-level "(1 | 2 | 3 | 4 | 5 | 6 | 7 | 8)">
 //
-//<!--
-//    The smufl-glyph-name entity is used for attributes that
-//    reference a specific Standard Music Font Layout (SMuFL)
-//    character. The value is a SMuFL canonical glyph name,
-//    not a code point. For instance, the value for a standard
-//    piano pedal mark would be keyboardPedalPed, not U+E650.
-//-->
-//<!ENTITY % smufl-glyph-name "NMTOKEN">
-//
-//<!--
-//    Common structures for formatting attribute definitions.
-//-->
-//
-//<!--
-//    The position attributes are based on MuseData print
-//    suggestions. For most elements, any program will compute
-//    a default x and y position. The position attributes let
-//    this be changed two ways.
-//    The default-x and default-y attributes change the
-//    computation of the default position. For most elements,
-//    the origin is changed relative to the left-hand side of
-//    the note or the musical position within the bar (x) and
-//    the top line of the staff (y).
-//    For the following elements, the default-x value changes
-//    the origin relative to the start of the current measure:
-//        - note
-//        - figured-bass
-//        - harmony
-//        - link
-//        - directive
-//        - measure-numbering
-//        - all descendants of the part-list element
-//        - all children of the direction-type element
-//    This origin is from the start of the entire measure,
-//    at either the left barline or the start of the system.
-//    When the default-x attribute is used within a child element
-//    of the part-name-display, part-abbreviation-display,
-//    group-name-display, or group-abbreviation-display elements,
-//    it changes the origin relative to the start of the first
-//    measure on the system. These values are used when the current
-//    measure or a succeeding measure starts a new system. The same
-//    change of origin is used for the group-symbol element.
-//    For the note, figured-bass, and harmony elements, the
-//    default-x value is considered to have adjusted the musical
-//    position within the bar for its descendant elements.
-//    Since the credit-words and credit-image elements are not
-//    related to a measure, in these cases the default-x and
-//    default-y attributes adjust the origin relative to the
-//    bottom left-hand corner of the specified page.
-//    The relative-x and relative-y attributes change the position
-//    relative to the default position, either as computed by the
-//    individual program, or as overridden by the default-x and
-//    default-y attributes.
-//
-//    Positive x is right, negative x is left; positive y is up,
-//    negative y is down. All units are in tenths of interline
-//    space. For stems, positive relative-y lengthens a stem
-//    while negative relative-y shortens it.
-//    The default-x and default-y position attributes provide
-//    higher-resolution positioning data than related features
-//    such as the placement attribute and the offset element.
-//    Applications reading a MusicXML file that can understand
-//    both features should generally rely on the default-x and
-//    default-y attributes for their greater accuracy. For the
-//    relative-x and relative-y attributes, the offset element,
-//    placement attribute, and directive attribute provide
-//    context for the relative position information, so the two
-//    features should be interpreted together.
-//    As elsewhere in the MusicXML format, tenths are the global
-//    tenths defined by the scaling element, not the local tenths
-//    of a staff resized by the staff-size element.
-//-->
-//<!ENTITY % position
-//    "default-x     %tenths;    #IMPLIED
-//     default-y     %tenths;    #IMPLIED
-//     relative-x    %tenths;    #IMPLIED
-//     relative-y    %tenths;    #IMPLIED">
-//
-//<!--
-//    The placement attribute indicates whether something is
-//    above or below another element, such as a note or a
-//    notation.
-//-->
-//<!ENTITY % placement
-//    "placement %above-below; #IMPLIED">
-//
-//<!--
-//    The orientation attribute indicates whether slurs and
-//    ties are overhand (tips down) or underhand (tips up).
-//    This is distinct from the placement entity used by any
-//    notation type.
-//-->
-//<!ENTITY % orientation
-//    "orientation (over | under) #IMPLIED">
-//
+
+    // > The smufl-glyph-name entity is used for attributes that
+    // > reference a specific Standard Music Font Layout (SMuFL)
+    // > character. The value is a SMuFL canonical glyph name,
+    // > not a code point. For instance, the value for a standard
+    // > piano pedal mark would be keyboardPedalPed, not U+E650.
+    //
+    // <!ENTITY % smufl-glyph-name "NMTOKEN">
+    public struct SMuFLGlyph {
+        let name: String
+    }
+
+    //<!--
+    //    Common structures for formatting attribute definitions.
+    //-->
+
+    //    The position attributes are based on MuseData print
+    //    suggestions. For most elements, any program will compute
+    //    a default x and y position. The position attributes let
+    //    this be changed two ways.
+    //    The default-x and default-y attributes change the
+    //    computation of the default position. For most elements,
+    //    the origin is changed relative to the left-hand side of
+    //    the note or the musical position within the bar (x) and
+    //    the top line of the staff (y).
+    //    For the following elements, the default-x value changes
+    //    the origin relative to the start of the current measure:
+    //        - note
+    //        - figured-bass
+    //        - harmony
+    //        - link
+    //        - directive
+    //        - measure-numbering
+    //        - all descendants of the part-list element
+    //        - all children of the direction-type element
+    //    This origin is from the start of the entire measure,
+    //    at either the left barline or the start of the system.
+    //    When the default-x attribute is used within a child element
+    //    of the part-name-display, part-abbreviation-display,
+    //    group-name-display, or group-abbreviation-display elements,
+    //    it changes the origin relative to the start of the first
+    //    measure on the system. These values are used when the current
+    //    measure or a succeeding measure starts a new system. The same
+    //    change of origin is used for the group-symbol element.
+    //    For the note, figured-bass, and harmony elements, the
+    //    default-x value is considered to have adjusted the musical
+    //    position within the bar for its descendant elements.
+    //    Since the credit-words and credit-image elements are not
+    //    related to a measure, in these cases the default-x and
+    //    default-y attributes adjust the origin relative to the
+    //    bottom left-hand corner of the specified page.
+    //    The relative-x and relative-y attributes change the position
+    //    relative to the default position, either as computed by the
+    //    individual program, or as overridden by the default-x and
+    //    default-y attributes.
+    //
+    //    Positive x is right, negative x is left; positive y is up,
+    //    negative y is down. All units are in tenths of interline
+    //    space. For stems, positive relative-y lengthens a stem
+    //    while negative relative-y shortens it.
+    //    The default-x and default-y position attributes provide
+    //    higher-resolution positioning data than related features
+    //    such as the placement attribute and the offset element.
+    //    Applications reading a MusicXML file that can understand
+    //    both features should generally rely on the default-x and
+    //    default-y attributes for their greater accuracy. For the
+    //    relative-x and relative-y attributes, the offset element,
+    //    placement attribute, and directive attribute provide
+    //    context for the relative position information, so the two
+    //    features should be interpreted together.
+    //    As elsewhere in the MusicXML format, tenths are the global
+    //    tenths defined by the scaling element, not the local tenths
+    //    of a staff resized by the staff-size element.
+    //-->
+    //<!ENTITY % position
+    //    "default-x     %tenths;    #IMPLIED
+    //     default-y     %tenths;    #IMPLIED
+    //     relative-x    %tenths;    #IMPLIED
+    //     relative-y    %tenths;    #IMPLIED">
+    public struct Position {
+        let defaultX: Int // tenths
+        let defaultY: Int // tenths
+        let relativeX: Int // tenths
+        let relativeY: Int // tenths
+    }
+
+    // > The placement attribute indicates whether something is
+    // > above or below another element, such as a note or a
+    // > notation.
+    //
+    //<!ENTITY % placement
+    //    "placement %above-below; #IMPLIED">
+    //
+    public enum Placement {
+        case above
+        case below
+    }
+
+    // > The orientation attribute indicates whether slurs and
+    // > ties are overhand (tips down) or underhand (tips up).
+    // > This is distinct from the placement entity used by any
+    // > notation type.
+    //
+    //<!ENTITY % orientation
+    //    "orientation (over | under) #IMPLIED">
+    public enum Orientation {
+        case over
+        case under
+    }
+
 //<!--
 //    The directive entity changes the default-x position
 //    of a direction. It indicates that the left-hand side of the
@@ -343,94 +396,146 @@
 //     bezier-offset  CDATA     #IMPLIED
 //     bezier-offset2 CDATA     #IMPLIED">
 //
-//<!--
-//    The font entity gathers together attributes for
-//    determining the font within a directive or direction.
-//    They are based on the text styles for Cascading
-//    Style Sheets. The font-family is a comma-separated list
-//    of font names. These can be specific font styles such
-//    as Maestro or Opus, or one of several generic font styles:
-//    music, engraved, handwritten, text, serif, sans-serif,
-//    handwritten, cursive, fantasy, and monospace. The music,
-//    engraved, and handwritten values refer to music fonts;
-//    the rest refer to text fonts. The fantasy style refers to
-//    decorative text such as found in older German-style
-//    printing. The font-style can be normal or italic. The
-//    font-size can be one of the CSS sizes (xx-small, x-small,
-//    small, medium, large, x-large, xx-large) or a numeric
-//    point size. The font-weight can be normal or bold. The
-//    default is application-dependent, but is a text font vs.
-//    a music font.
-//-->
-//<!ENTITY % font
-//    "font-family  CDATA  #IMPLIED
-//     font-style   CDATA  #IMPLIED
-//     font-size    CDATA  #IMPLIED
-//     font-weight  CDATA  #IMPLIED">
-//
-//<!--
-//    The color entity indicates the color of an element.
-//    Color may be represented as hexadecimal RGB triples,
-//    as in HTML, or as hexadecimal ARGB tuples, with the
-//    A indicating alpha of transparency. An alpha value
-//    of 00 is totally transparent; FF is totally opaque.
-//    If RGB is used, the A value is assumed to be FF.
-//    For instance, the RGB value "#800080" represents
-//    purple. An ARGB value of "#40800080" would be a
-//    transparent purple.
-//    As in SVG 1.1, colors are defined in terms of the
-//    sRGB color space (IEC 61966).
-//-->
-//<!ENTITY % color
-//    "color CDATA #IMPLIED">
-//
-//<!--
-//    The text-decoration entity is based on the similar
-//    feature in XHTML and CSS. It allows for text to
-//    be underlined, overlined, or struck-through. It
-//    extends the CSS version by allow double or
-//    triple lines instead of just being on or off.
-//-->
-//<!ENTITY % text-decoration
-//    "underline  %number-of-lines;  #IMPLIED
-//     overline  %number-of-lines;   #IMPLIED
-//     line-through  %number-of-lines;   #IMPLIED">
-//
-//<!--
-//    The justify entity is used to indicate left, center, or
-//    right justification. The default value varies for different
-//    elements. For elements where the justify attribute is present
-//    but the halign attribute is not, the justify attribute
-//    indicates horizontal alignment as well as justification.
-//-->
-//<!ENTITY % justify
-//    "justify (left | center | right) #IMPLIED">
-//
-//<!--
-//    In cases where text extends over more than one line,
-//    horizontal alignment and justify values can be different.
-//    The most typical case is for credits, such as:
-//        Words and music by
-//          Pat Songwriter
-//    Typically this type of credit is aligned to the right,
-//    so that the position information refers to the right-
-//    most part of the text. But in this example, the text
-//    is center-justified, not right-justified.
-//    The halign attribute is used in these situations. If it
-//    is not present, its value is the same as for the justify
-//    attribute.
-//-->
-//<!ENTITY % halign
-//    "halign (left | center | right) #IMPLIED">
-//
-//<!--
-//    The valign entity is used to indicate vertical
-//    alignment to the top, middle, bottom, or baseline
-//    of the text. Defaults are implementation-dependent.
-//-->
-//<!ENTITY % valign
-//    "valign (top | middle | bottom | baseline) #IMPLIED">
-//
+    //<!--
+    //    The font entity gathers together attributes for
+    //    determining the font within a directive or direction.
+    //    They are based on the text styles for Cascading
+    //    Style Sheets. The font-family is a comma-separated list
+    //    of font names. These can be specific font styles such
+    //    as Maestro or Opus, or one of several generic font styles:
+    //    music, engraved, handwritten, text, serif, sans-serif,
+    //    handwritten, cursive, fantasy, and monospace. The music,
+    //    engraved, and handwritten values refer to music fonts;
+    //    the rest refer to text fonts. The fantasy style refers to
+    //    decorative text such as found in older German-style
+    //    printing. The font-style can be normal or italic. The
+    //    font-size can be one of the CSS sizes (xx-small, x-small,
+    //    small, medium, large, x-large, xx-large) or a numeric
+    //    point size. The font-weight can be normal or bold. The
+    //    default is application-dependent, but is a text font vs.
+    //    a music font.
+    //-->
+    //<!ENTITY % font
+    //    "font-family  CDATA  #IMPLIED
+    //     font-style   CDATA  #IMPLIED
+    //     font-size    CDATA  #IMPLIED
+    //     font-weight  CDATA  #IMPLIED">
+    //
+    public struct Font {
+
+        enum Style: String {
+            case normal
+            case italic
+        }
+
+        enum Size: String {
+            case extraExtraSmall = "xx-small"
+            case extraSmall = "x-small"
+            case small = "small"
+            case medium = "medium"
+            case large = "large"
+            case extraLarge = "x-large"
+            case extraExtraLarge = "xx-large"
+        }
+
+        enum Weight {
+            case normal
+            case bold
+        }
+
+        let family: String
+        let style: Style
+        let size: Size
+        let weight: Weight
+    }
+
+    //    The color entity indicates the color of an element.
+    //    Color may be represented as hexadecimal RGB triples,
+    //    as in HTML, or as hexadecimal ARGB tuples, with the
+    //    A indicating alpha of transparency. An alpha value
+    //    of 00 is totally transparent; FF is totally opaque.
+    //    If RGB is used, the A value is assumed to be FF.
+    //    For instance, the RGB value "#800080" represents
+    //    purple. An ARGB value of "#40800080" would be a
+    //    transparent purple.
+    //    As in SVG 1.1, colors are defined in terms of the
+    //    sRGB color space (IEC 61966).
+    //-->
+    //<!ENTITY % color
+    //    "color CDATA #IMPLIED">
+    public struct Color {
+        let alpha: Int = 1
+        let red: Int
+        let green: Int
+        let blue: Int
+    }
+
+    //    The text-decoration entity is based on the similar
+    //    feature in XHTML and CSS. It allows for text to
+    //    be underlined, overlined, or struck-through. It
+    //    extends the CSS version by allow double or
+    //    triple lines instead of just being on or off.
+    //-->
+    //<!ENTITY % text-decoration
+    //    "underline  %number-of-lines;  #IMPLIED
+    //     overline  %number-of-lines;   #IMPLIED
+    //     line-through  %number-of-lines;   #IMPLIED">
+    //
+    public struct TextDecoration {
+        let underline: Int = 0
+        let overline: Int = 0
+        let lineThrough: Int = 0
+    }
+
+    //    The justify entity is used to indicate left, center, or
+    //    right justification. The default value varies for different
+    //    elements. For elements where the justify attribute is present
+    //    but the halign attribute is not, the justify attribute
+    //    indicates horizontal alignment as well as justification.
+    //
+    //<!ENTITY % justify
+    //    "justify (left | center | right) #IMPLIED">
+    public enum Justify: String {
+        case left
+        case center
+        case right
+    }
+
+    //<!--
+    //    In cases where text extends over more than one line,
+    //    horizontal alignment and justify values can be different.
+    //    The most typical case is for credits, such as:
+    //        Words and music by
+    //          Pat Songwriter
+    //    Typically this type of credit is aligned to the right,
+    //    so that the position information refers to the right-
+    //    most part of the text. But in this example, the text
+    //    is center-justified, not right-justified.
+    //    The halign attribute is used in these situations. If it
+    //    is not present, its value is the same as for the justify
+    //    attribute.
+    //-->
+    //<!ENTITY % halign
+    //    "halign (left | center | right) #IMPLIED">
+    public enum HorizonalAlign: String {
+        case left
+        case center
+        case right
+    }
+
+    //    The valign entity is used to indicate vertical
+    //    alignment to the top, middle, bottom, or baseline
+    //    of the text. Defaults are implementation-dependent.
+    //
+    //<!ENTITY % valign
+    //    "valign (top | middle | bottom | baseline) #IMPLIED">
+    public enum VerticalAlignment {
+        case top
+        case middle
+        case bottom
+        case baseline
+    }
+
 //<!--
 //    The valign-image entity is used to indicate vertical
 //    alignment for images and graphics, so it removes the
@@ -439,55 +544,71 @@
 //<!ENTITY % valign-image
 //    "valign (top | middle | bottom) #IMPLIED">
 //
-//<!--
-//    The letter-spacing entity specifies text tracking.
-//    Values are either "normal" or a number representing
-//    the number of ems to add between each letter. The
-//    number may be negative in order to subtract space.
-//    The default is normal, which allows flexibility of
-//    letter-spacing for purposes of text justification.
-//-->
-//<!ENTITY % letter-spacing
-//    "letter-spacing CDATA #IMPLIED">
-//
-//<!--
-//    The line-height entity specified text leading. Values
-//    are either "normal" or a number representing the
-//    percentage of the current font height  to use for
-//    leading. The default is "normal". The exact normal
-//    value is implementation-dependent, but values
-//    between 100 and 120 are recommended.
-//-->
-//<!ENTITY % line-height
-//    "line-height CDATA #IMPLIED">
-//
-//<!--
-//    The text-direction entity is used to adjust and override
-//    the Unicode bidirectional text algorithm, similar to the
-//    W3C Internationalization Tag Set recommendation. Values
-//    are ltr (left-to-right embed), rtl (right-to-left embed),
-//    lro (left-to-right bidi-override), and rlo (right-to-left
-//    bidi-override). The default value is ltr. This entity
-//    is typically used by applications that store text in
-//    left-to-right visual order rather than logical order.
-//    Such applications can use the lro value to better
-//    communicate with other applications that more fully
-//    support bidirectional text.
-//-->
-//<!ENTITY % text-direction
-//    "dir (ltr | rtl | lro | rlo) #IMPLIED">
-//
-//<!--
-//    The text-rotation entity is used to rotate text
-//    around the alignment point specified by the
-//    halign and valign entities. The value is a number
-//    ranging from -180 to 180. Positive values are
-//    clockwise rotations, while negative values are
-//    counter-clockwise rotations.
-//-->
-//<!ENTITY % text-rotation
-//    "rotation CDATA #IMPLIED">
-//
+
+    //    The letter-spacing entity specifies text tracking.
+    //    Values are either "normal" or a number representing
+    //    the number of ems to add between each letter. The
+    //    number may be negative in order to subtract space.
+    //    The default is normal, which allows flexibility of
+    //    letter-spacing for purposes of text justification.
+    //-->
+    //<!ENTITY % letter-spacing
+    //    "letter-spacing CDATA #IMPLIED">
+    public enum LetterSpacing {
+        case normal
+        case adjusted(Int)
+    }
+
+    //    The line-height entity specified text leading. Values
+    //    are either "normal" or a number representing the
+    //    percentage of the current font height  to use for
+    //    leading. The default is "normal". The exact normal
+    //    value is implementation-dependent, but values
+    //    between 100 and 120 are recommended.
+    //
+    // <!ENTITY % line-height
+    //    "line-height CDATA #IMPLIED">
+    public enum LineHeight {
+        case normal
+        case adjusted(Int)
+    }
+
+    //    The text-direction entity is used to adjust and override
+    //    the Unicode bidirectional text algorithm, similar to the
+    //    W3C Internationalization Tag Set recommendation. Values
+    //    are ltr (left-to-right embed), rtl (right-to-left embed),
+    //    lro (left-to-right bidi-override), and rlo (right-to-left
+    //    bidi-override). The default value is ltr.
+    //
+    //    This entity
+    //    is typically used by applications that store text in
+    //    left-to-right visual order rather than logical order.
+    //    Such applications can use the lro value to better
+    //    communicate with other applications that more fully
+    //    support bidirectional text.
+    //-->
+    //<!ENTITY % text-direction
+    //    "dir (ltr | rtl | lro | rlo) #IMPLIED">
+    public enum TextDirection: String {
+        case leftToRightEmbed = "ltr"
+        case rightToLeftEmbed = "rtl"
+        case leftToRightOverride = "lro"
+        case rightToLeftOverride = "rlo"
+    }
+
+    //    The text-rotation entity is used to rotate text
+    //    around the alignment point specified by the
+    //    halign and valign entities. The value is a number
+    //    ranging from -180 to 180. Positive values are
+    //    clockwise rotations, while negative values are
+    //    counter-clockwise rotations.
+    //-->
+    //<!ENTITY % text-rotation
+    //    "rotation CDATA #IMPLIED">
+    public struct TextRotation {
+        let degrees: Double
+    }
+
 //<!--
 //    The enclosure entity is used to specify the
 //    formatting of an enclosure around text or symbols.
@@ -495,15 +616,21 @@
 //<!ENTITY % enclosure
 //    "enclosure %enclosure-shape; #IMPLIED">
 //
-//<!--
-//    The print-style entity groups together the most popular
-//    combination of printing attributes: position, font, and
-//    color.
-//-->
-//<!ENTITY % print-style
-//    "%position;
-//     %font;
-//     %color;">
+
+    // > The print-style entity groups together the most popular
+    // > combination of printing attributes: position, font, and
+    // > color.
+    //
+    // <!ENTITY % print-style
+    //    "%position;
+    //     %font;
+    //     %color;">
+    public struct PrintStyle {
+        let position: Position
+        let font: Font
+        let color: Color
+    }
+
 //
 //<!--
 //    The print-style-align entity adds the halign and valign
@@ -514,78 +641,107 @@
 //     %halign;
 //     %valign;">
 //
-//<!--
-//    The line-shape entity is used to distinguish between
-//    straight and curved lines. The line-type entity
-//    distinguishes between solid, dashed, dotted, and
-//    wavy lines. The line-length entity distinguishes
-//    between different line lengths for doit, falloff,
-//    plop, and scoop articulations.
-//-->
-//<!ENTITY % line-shape
-//    "line-shape (straight | curved) #IMPLIED">
-//
-//<!ENTITY % line-type
-//    "line-type (solid | dashed | dotted | wavy) #IMPLIED">
-//
-//<!ENTITY % line-length
-//    "line-length (short | medium | long) #IMPLIED">
-//
-//<!--
-//    The dashed-formatting entity represents the length of
-//    dashes and spaces in a dashed line. Both the dash-length
-//    and space-length attributes are represented in tenths.
-//    These attributes are ignored if the corresponding
-//    line-type attribute is not dashed.
-//-->
-//<!ENTITY % dashed-formatting
-//    "dash-length   %tenths;  #IMPLIED
-//     space-length  %tenths;  #IMPLIED">
-//
-//<!--
-//    The printout entity is based on MuseData print
-//    suggestions. They allow a way to specify not to print
-//    print an object (e.g. note or rest), its augmentation
-//    dots, or its lyrics. This is especially useful for notes
-//    that overlap in different voices, or for chord sheets
-//    that contain lyrics and chords but no melody. For wholly
-//    invisible notes, such as those providing sound-only data,
-//    the attribute for print-spacing may be set to no so that
-//    no space is left for this note. The print-spacing value
-//    is only used if no note, dot, or lyric is being printed.
-//    By default, all these attributes are set to yes. If
-//    print-object is set to no, print-dot and print-lyric are
-//    interpreted to also be set to no if they are not present.
-//-->
-//<!ENTITY % print-object
-//    "print-object  %yes-no;  #IMPLIED">
-//
-//<!ENTITY % print-spacing
-//    "print-spacing %yes-no;  #IMPLIED">
-//
-//<!ENTITY % printout
-//    "%print-object;
-//     print-dot     %yes-no;  #IMPLIED
-//     %print-spacing;
-//     print-lyric   %yes-no;  #IMPLIED">
-//
-//<!--
-//    The text-formatting entity contains the common formatting
-//    attributes for text elements. Default values may differ
-//    across the elements that use this entity.
-//-->
-//<!ENTITY % text-formatting
-//    "%justify;
-//     %print-style-align;
-//     %text-decoration;
-//     %text-rotation;
-//     %letter-spacing;
-//     %line-height;
-//     xml:lang NMTOKEN #IMPLIED
-//     xml:space (default | preserve) #IMPLIED
-//     %text-direction;
-//     %enclosure;">
-//
+
+    // > The line-shape entity is used to distinguish between
+    // > straight and curved lines. The line-type entity
+    // > distinguishes between solid, dashed, dotted, and
+    // > wavy lines. The line-length entity distinguishes
+    // > between different line lengths for doit, falloff,
+    // > plop, and scoop articulations.
+    //
+    // <!ENTITY % line-shape
+    //    "line-shape (straight | curved) #IMPLIED">
+    public enum LineShape {
+        case straight
+        case curved
+    }
+
+    // <!ENTITY % line-type
+    //    "line-type (solid | dashed | dotted | wavy) #IMPLIED">
+    //
+    public enum LineType {
+        case solid
+        case dashed
+        case dotted
+        case wavy
+    }
+
+    // <!ENTITY % line-length
+    //    "line-length (short | medium | long) #IMPLIED">
+    //
+    public enum LineLength {
+        case short
+        case medium
+        case long
+    }
+
+    // > The dashed-formatting entity represents the length of
+    // > dashes and spaces in a dashed line. Both the dash-length
+    // > and space-length attributes are represented in tenths.
+    // > These attributes are ignored if the corresponding
+    // > line-type attribute is not dashed.
+    //
+    // <!ENTITY % dashed-formatting
+    //    "dash-length   %tenths;  #IMPLIED
+    //     space-length  %tenths;  #IMPLIED">
+    public struct DashedFormatting {
+        let dashLength: Int // Tenths
+        let spaceLength: Int // Tenths
+    }
+
+    // > The printout entity is based on MuseData print
+    // > suggestions. They allow a way to specify not to print
+    // > print an object (e.g. note or rest), its augmentation
+    // > dots, or its lyrics. This is especially useful for notes
+    // > that overlap in different voices, or for chord sheets
+    // > that contain lyrics and chords but no melody. For wholly
+    // > invisible notes, such as those providing sound-only data,
+    // > the attribute for print-spacing may be set to no so that
+    // > no space is left for this note. The print-spacing value
+    // > is only used if no note, dot, or lyric is being printed.
+    // > By default, all these attributes are set to yes. If
+    // > print-object is set to no, print-dot and print-lyric are
+    // > interpreted to also be set to no if they are not present.
+    //
+    // <!ENTITY % print-object
+    //    "print-object  %yes-no;  #IMPLIED">
+    //
+    // <!ENTITY % print-spacing
+    //    "print-spacing %yes-no;  #IMPLIED">
+    //
+    // <!ENTITY % printout
+    //    "%print-object;
+    //     print-dot     %yes-no;  #IMPLIED
+    //     %print-spacing;
+    //     print-lyric   %yes-no;  #IMPLIED">
+    public struct Printout {
+        let printObject: Bool
+        let printDot: Bool
+        let printSpacing: Bool
+        let printLyric: Bool
+    }
+
+    // > The text-formatting entity contains the common formatting
+    // > attributes for text elements. Default values may differ
+    // > across the elements that use this entity.
+    //
+    // <!ENTITY % text-formatting
+    //    "%justify;
+    //     %print-style-align;
+    //     %text-decoration;
+    //     %text-rotation;
+    //     %letter-spacing;
+    //     %line-height;
+    //     xml:lang NMTOKEN #IMPLIED
+    //     xml:space (default | preserve) #IMPLIED
+    //     %text-direction;
+    //     %enclosure;">
+    public struct TextFormatting {
+        let justify: Justify
+
+    }
+
+
 //<!--
 //    The symbol-formatting entity contains the common formatting
 //    attributes for musical symbols. Default values may differ
@@ -650,25 +806,31 @@
 //     second-beat   CDATA    #IMPLIED
 //     last-beat     CDATA    #IMPLIED">
 //
-//<!--
-//    The bend-sound entity is used for bend and slide elements,
-//    and is similar to the trill-sound. Here the beats element
-//    refers to the number of discrete elements (like MIDI pitch
-//    bends) used to represent a continuous bend or slide. The
-//    first-beat indicates the percentage of the direction for
-//    starting a bend; the last-beat the percentage for ending it.
-//    The default choices are:
-//
-//        accelerate = "no"
-//        beats = "4" (minimum of "2")
-//        first-beat = "25"
-//        last-beat = "75"
-//-->
-//<!ENTITY % bend-sound
-//    "accelerate    %yes-no; #IMPLIED
-//     beats         CDATA    #IMPLIED
-//     first-beat    CDATA    #IMPLIED
-//     last-beat     CDATA    #IMPLIED">
+
+    //    The bend-sound entity is used for bend and slide elements,
+    //    and is similar to the trill-sound. Here the beats element
+    //    refers to the number of discrete elements (like MIDI pitch
+    //    bends) used to represent a continuous bend or slide. The
+    //    first-beat indicates the percentage of the direction for
+    //    starting a bend; the last-beat the percentage for ending it.
+    //    The default choices are:
+    //
+    //        accelerate = "no"
+    //        beats = "4" (minimum of "2")
+    //        first-beat = "25"
+    //        last-beat = "75"
+    //-->
+    //<!ENTITY % bend-sound
+    //    "accelerate    %yes-no; #IMPLIED
+    //     beats         CDATA    #IMPLIED
+    //     first-beat    CDATA    #IMPLIED
+    //     last-beat     CDATA    #IMPLIED">
+    public struct BendSound {
+        let accelerate: Bool = false
+        let beats: Int = 4
+        let firstBeat: Int = 25
+        let lastBeat: Int = 75
+    }
 //
 //<!--
 //    The time-only entity is used to indicate that a particular
@@ -709,15 +871,19 @@
 //<!ENTITY % optional-unique-id
 //    "id ID #IMPLIED">
 //
-//<!--
-//    The smufl entity is used to indicate a particular Standard
-//    Music Font Layout (SMuFL) character. Sometimes this is a
-//    formatting choice, and sometimes this is a refinement of
-//    the semantic meaning of an element.
-//-->
-//<!ENTITY % smufl
-//    "smufl %smufl-glyph-name; #IMPLIED">
-//
+    //<!--
+    //    The smufl entity is used to indicate a particular Standard
+    //    Music Font Layout (SMuFL) character. Sometimes this is a
+    //    formatting choice, and sometimes this is a refinement of
+    //    the semantic meaning of an element.
+    //-->
+    //<!ENTITY % smufl
+    //    "smufl %smufl-glyph-name; #IMPLIED">
+    public struct SMuFL {
+        // TODO: Consider nesting Glyph in here.
+        let glyph: SMuFLGlyph
+    }
+
 //<!--
 //    Common structures for element definitions.
 //-->
@@ -1114,3 +1280,5 @@
 //<!ATTLIST other-play
 //    type CDATA #REQUIRED
 //>
+
+}
