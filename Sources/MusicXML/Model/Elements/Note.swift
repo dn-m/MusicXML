@@ -88,11 +88,11 @@ extension MusicXML {
     public struct Note: Equatable {
         let pitch: Pitch
         let duration: Int // amount of "divisions"
-        let type: DurationType
-        public init(pitch: Pitch, duration: Int, type: DurationType) {
+        let durationType: DurationType
+        public init(pitch: Pitch, duration: Int, durationType: DurationType) {
             self.pitch = pitch
             self.duration = duration
-            self.type = type
+            self.durationType = durationType
         }
     }
 
@@ -124,7 +124,9 @@ extension MusicXML {
     // Type indicates the graphic note type, Valid values (from
     // shortest to longest) are 1024th, 512th, 256th, 128th,
     // 64th, 32nd, 16th, eighth, quarter, half, whole, breve,
-    // long, and maxima. The size attribute indicates full, cue,
+    // long, and maxima.
+    //
+    // The size attribute indicates full, cue,
     // grace-cue, or large size. The default is full for regular
     // notes, grace-cue for notes that contain both grace and cue
     // elements, and cue for notes that contain either a cue or a
@@ -138,8 +140,35 @@ extension MusicXML {
     // Note: This type "type" must be called something other than `Type`, for the reason that it is
     // totally ambiguous as to what type of type we are talking about, and that it conflicts with
     // the swift `Type` (Metatype) static value present on all types.
-    public enum DurationType: String {
-        case whole
+    public struct DurationType: Equatable {
+        public enum Kind: String {
+            case maxima = "maxima"
+            case long = "long"
+            case breve = "breve"
+            case whole = "whole"
+            case half = "half"
+            case quarter = "quarter"
+            case eighth = "eighth"
+            case sixteenth = "16th"
+            case thirysecond = "32nd"
+            case sixtyfourth = "64th"
+            case onehundredtwentyeighth = "128th"
+            case twohundredfiftysixth = "256th"
+            case fivehundredtwelfth = "512th"
+            case onethousandtwentyfourth = "1024th"
+        }
+        public enum Size: String {
+            case full = "full"
+            case cue = "cue"
+            case graceCue = "grace-cue"
+            case large = "large"
+        }
+        let kind: Kind
+        let size: Size
+        public init(kind: Kind, size: Size = .full) {
+            self.kind = kind
+            self.size = size
+        }
     }
 }
 

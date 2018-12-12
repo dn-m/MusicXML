@@ -38,15 +38,28 @@ extension MusicXML {
                                 number: 1,
                                 attributes: [
                                     .divisions(1),
-                                    .key(Key(fifths: 0)),
+                                    .key(
+                                        Key(
+                                            kind: .traditional(
+                                                Key.Kind.Traditional(
+                                                    fifths: 0,
+                                                    cancel: nil,
+                                                    mode: nil
+                                                )
+                                            ),
+                                            number: nil,
+                                            octaves: nil,
+                                            id: nil
+                                        )
+                                    ),
                                     .time(4,4),
-                                    .clef(Clef(sign: "G", line: 2)) // treble clef
+                                    .clef(Clef(sign: .g, line: 2)) // treble clef
                                 ],
                                 notes: [
                                     Note(
                                         pitch: Pitch(step: "C", octave: 4),
                                         duration: 4,
-                                        type: .whole
+                                        durationType: DurationType(kind: .whole)
                                     )
                                 ]
                             )

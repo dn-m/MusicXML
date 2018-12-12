@@ -42,7 +42,9 @@ extension MusicXML {
     // The part-abbreviation indicates the abbreviated version of
     // the name of the musical part. The part-name will often
     // precede the first system, while the part-abbreviation will
-    // precede the other systems. The formatting attributes for
+    // precede the other systems.
+    //
+    // The formatting attributes for
     // these elements are deprecated in Version 2.0 in favor of
     // the new part-name-display and part-abbreviation-display
     // elements. These are defined in the common.mod file as they
@@ -93,6 +95,15 @@ extension MusicXML {
         }
     }
 
+    // Here is the basic musical data that is either associated
+    // with a part or a measure, depending on whether partwise
+    // or timewise hierarchy is used.
+    //
+    // <!ENTITY % music-data
+    //    "(note | backup | forward | direction | attributes |
+    //      harmony | figured-bass | print | sound | barline |
+    //      grouping | link | bookmark)*">
+    //
     // The implicit attribute is set to "yes" for measures where
     // the measure number should never appear, such as pickup
     // measures and the last half of mid-measure repeats. The
@@ -447,16 +458,6 @@ extension MusicXML {
 //    ordering within a MusicXML score or opus.
 //-->
 //<!ELEMENT group (#PCDATA)>
-//
-//<!--
-//    Here is the basic musical data that is either associated
-//    with a part or a measure, depending on whether partwise
-//    or timewise hierarchy is used.
-//-->
-//<!ENTITY % music-data
-//    "(note | backup | forward | direction | attributes |
-//      harmony | figured-bass | print | sound | barline |
-//      grouping | link | bookmark)*">
 //
 //<!--
 //    The score-header entity contains basic score metadata

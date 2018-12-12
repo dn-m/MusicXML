@@ -12,6 +12,7 @@ extension MusicXML {
     // TODO: Create a different `Error` type for each `file` and `elements` subtask.
     enum Error: Swift.Error {
         case invalidDurationType(XMLIndexer)
+        case invalidClef(XMLIndexer)
     }
 
     // TODO: Implement `traverseTimewise(...)`. This implementation only works for
