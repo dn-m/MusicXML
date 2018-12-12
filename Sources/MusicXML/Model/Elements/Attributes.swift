@@ -276,35 +276,6 @@ extension MusicXML {
         }
     }
 
-    // > Time signatures are represented by two elements. The
-    // > beats element indicates the number of beats, as found in
-    // > the numerator of a time signature. The beat-type element
-    // > indicates the beat unit, as found in the denominator of
-    // > a time signature.
-    //
-    // > Multiple pairs of beats and beat-type elements are used for
-    // > composite time signatures with multiple denominators, such
-    // > as 2/4 + 3/8. A composite such as 3+2/8 requires only one
-    // > beats/beat-type pair.
-    //
-    // > The interchangeable element is used to represent the second
-    // > in a pair of interchangeable dual time signatures, such as
-    // > the 6/8 in 3/4 (6/8). A separate symbol attribute value is
-    // > available compared to the time element's symbol attribute,
-    // > which applies to the first of the dual time signatures.
-    //
-    // > The time-relation element indicates the symbol used to
-    // > represent the interchangeable aspect of the time signature.
-    //
-    // > Valid values are parentheses, bracket, equals, slash, space,
-    // > and hyphen.
-    //
-    // > A senza-misura element explicitly indicates that no time
-    // > signature is present. The optional element content
-    // > indicates the symbol to be used, if any, such as an X.
-    // > The time element's symbol attribute is not used when a
-    // > senza-misura element is present.
-    //
     // > The print-object attribute allows a time signature to be
     // > specified but not printed, as is the case for excerpts
     // > from the middle of a score. The value is "yes" if
@@ -329,74 +300,128 @@ extension MusicXML {
     // <!ELEMENT beat-type (#PCDATA)>
     // <!ELEMENT senza-misura (#PCDATA)>
     // <!ELEMENT time-relation (#PCDATA)>
-    //
-    // TODO: Composite Time
-    // TODO: Interchangeable
     public struct Time: Equatable {
 
-        public enum Kind: Equatable {
-            case measured(beats: Int, type: Int)
-            // "senza-misura"
-            case unmeasured
+        // > The time-separator entity indicates how to display the
+        // > arrangement between the beats and beat-type values in a
+        // > time signature. The default value is none. The horizontal,
+        // > diagonal, and vertical values represent horizontal, diagonal
+        // > lower-left to upper-right, and vertical lines respectively.
+        // > For these values, the beats and beat-type values are arranged
+        // > on either side of the separator line. The none value represents
+        // > no separator with the beats and beat-type arranged vertically.
+        // > The adjacent value represents no separator with the beats and
+        // > beat-type arranged horizontally.
+        //
+        // <!ENTITY % time-separator
+        //    "separator (none | horizontal | diagonal |
+        //        vertical | adjacent) #IMPLIED">
+        public enum Separator: String {
+            case none
+            case horizontal
+            case diagonal
+            case vertical
+            case adjacent
         }
+
+        // > The time-symbol entity indicates how to display a time
+        // > signature. The normal value is the usual fractional display,
+        // > and is the implied symbol type if none is specified. Other
+        // > options are the common and cut time symbols, as well as a
+        // > single number with an implied denominator. The note symbol
+        // > indicates that the beat-type should be represented with
+        // > the corresponding downstem note rather than a number. The
+        // > dotted-note symbol indicates that the beat-type should be
+        // > represented with a dotted downstem note that corresponds to
+        // > three times the beat-type value, and a numerator that is
+        // > one third the beats value.
+        //
+        // <!ENTITY % time-symbol
+        //    "symbol (common | cut | single-number |
+        //             note | dotted-note | normal) #IMPLIED">
+        public enum Symbol: String {
+            case common = "common"
+            case cut = "cut"
+            case singleNumber = "single-number"
+            case note = "note"
+            case dottedNote = "dotted-note"
+            case normal = "normal"
+        }
+
+        // > The time-relation element indicates the symbol used to
+        // > represent the interchangeable aspect of the time signature.
+        //
+        // > Valid values are parentheses, bracket, equals, slash, space,
+        // > and hyphen.
+        public enum Relation {
+            case parentheses
+            case bracket
+            case equals
+            case slash
+            case space
+            case hyphen
+        }
+
+        public enum Kind: Equatable {
+
+            // > Time signatures are represented by two elements. The
+            // > beats element indicates the number of beats, as found in
+            // > the numerator of a time signature. The beat-type element
+            // > indicates the beat unit, as found in the denominator of
+            // > a time signature.
+            //
+            // > Multiple pairs of beats and beat-type elements are used for
+            // > composite time signatures with multiple denominators, such
+            // > as 2/4 + 3/8. A composite such as 3+2/8 requires only one
+            // > beats/beat-type pair.
+            //
+            // > The interchangeable element is used to represent the second
+            // > in a pair of interchangeable dual time signatures, such as
+            // > the 6/8 in 3/4 (6/8). A separate symbol attribute value is
+            // > available compared to the time element's symbol attribute,
+            // > which applies to the first of the dual time signatures.
+            public struct Measured: Equatable {
+
+                public struct Interchangeable: Equatable {
+                    let symbol: Symbol
+                    let separator: Separator
+                }
+
+                struct Signature: Equatable {
+                    let beats: Int
+                    let beatType: Int
+                }
+
+                // TODO: Ensure NonEmpty
+                let signatures: [Signature]
+                let interchangeable: Interchangeable
+            }
+
+            // > A senza-misura element explicitly indicates that no time
+            // > signature is present. The optional element content
+            // > indicates the symbol to be used, if any, such as an X.
+            // > The time element's symbol attribute is not used when a
+            // > senza-misura element is present.
+            public struct Unmeasured: Equatable {
+                let symbol: String?
+            }
+
+            case measured(Measured)
+            case unmeasured(Unmeasured)
+        }
+
+        let kind: Kind
 
         // The optional number attribute refers to staff
         // > numbers within the part, from top to bottom on the system.
         // > If absent, the time signature applies to all staves in the
         // > part.
         let id: Int?
-        let kind: Kind
 
-        public init(id: Int?, kind: Kind) {
+        public init(kind: Kind, id: Int?) {
             self.id = id
             self.kind = kind
         }
-    }
-
-    // > The time-separator entity indicates how to display the
-    // > arrangement between the beats and beat-type values in a
-    // > time signature. The default value is none. The horizontal,
-    // > diagonal, and vertical values represent horizontal, diagonal
-    // > lower-left to upper-right, and vertical lines respectively.
-    // > For these values, the beats and beat-type values are arranged
-    // > on either side of the separator line. The none value represents
-    // > no separator with the beats and beat-type arranged vertically.
-    // > The adjacent value represents no separator with the beats and
-    // > beat-type arranged horizontally.
-    //
-    // <!ENTITY % time-separator
-    //    "separator (none | horizontal | diagonal |
-    //        vertical | adjacent) #IMPLIED">
-    public enum TimeSeparator: String {
-        case none
-        case horizontal
-        case diagonal
-        case vertical
-        case adjacent
-    }
-
-    // > The time-symbol entity indicates how to display a time
-    // > signature. The normal value is the usual fractional display,
-    // > and is the implied symbol type if none is specified. Other
-    // > options are the common and cut time symbols, as well as a
-    // > single number with an implied denominator. The note symbol
-    // > indicates that the beat-type should be represented with
-    // > the corresponding downstem note rather than a number. The
-    // > dotted-note symbol indicates that the beat-type should be
-    // > represented with a dotted downstem note that corresponds to
-    // > three times the beat-type value, and a numerator that is
-    // > one third the beats value.
-    //
-    // <!ENTITY % time-symbol
-    //    "symbol (common | cut | single-number |
-    //             note | dotted-note | normal) #IMPLIED">
-    public enum TimeSymbol: String {
-        case common = "common"
-        case cut = "cut"
-        case singleNumber = "single-number"
-        case note = "note"
-        case dottedNote = "dotted-note"
-        case normal = "normal" // fractional
     }
 
     // > If the part is being encoded for a transposing instrument
