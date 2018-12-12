@@ -89,12 +89,17 @@ extension MusicXML {
     // > <!ATTLIST key-accidental
     // >     %smufl;
     // > >
-    // > <!ELEMENT key-octave (#PCDATA)>
-    // > <!ATTLIST key-octave
-    // >     number NMTOKEN #REQUIRED
-    // >     cancel %yes-no; #IMPLIED
-    // > >
     public struct Key: Equatable {
+
+        // > <!ELEMENT key-octave (#PCDATA)>
+        // > <!ATTLIST key-octave
+        // >     number NMTOKEN #REQUIRED
+        // >     cancel %yes-no; #IMPLIED
+        // > >
+        public struct Octave: Equatable {
+            let number: Int
+            let cancel: Bool
+        }
 
         public enum Kind: Equatable {
 
@@ -185,10 +190,10 @@ extension MusicXML {
         // > values as the display-octave element. The number attribute
         // > is a positive integer that refers to the key signature
         // > element in left-to-right order.
-        let octaves: [Int]?
+        let octaves: [Octave]?
 
         /// Creates a `Key` with the given `kind`, `number`, and `keyO
-        public init(kind: Kind, number: Int?, octaves: [Int]?) {
+        public init(kind: Kind, number: Int?, octaves: [Octave]?) {
             self.kind = kind
             self.number = number
             self.octaves = octaves
