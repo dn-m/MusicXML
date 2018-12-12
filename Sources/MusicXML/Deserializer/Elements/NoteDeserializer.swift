@@ -11,7 +11,7 @@ extension MusicXML {
 
     static func deserializeNote(_ noteIndexer: XMLIndexer) throws -> Note {
         return Note(
-            pitch: try deserializePitch(noteIndexer),
+            pitch: try deserializePitch(noteIndexer["pitch"]),
             duration: try deserializeDuration(noteIndexer),
             durationType: try deserializeDurationType(noteIndexer)
         )
@@ -19,8 +19,8 @@ extension MusicXML {
 
     static func deserializePitch(_ noteIndexer: XMLIndexer) throws -> Pitch {
         return Pitch(
-            step: try noteIndexer["pitch"]["step"].value(),
-            octave: try noteIndexer["pitch"]["octave"].value()
+            step: try noteIndexer["step"].value(),
+            octave: try noteIndexer["octave"].value()
         )
     }
 
