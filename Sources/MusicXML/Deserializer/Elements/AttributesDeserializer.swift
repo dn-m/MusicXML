@@ -34,7 +34,17 @@ extension MusicXML {
     }
 
     static func deserializeKey(_ attributesIndexer: XMLIndexer) throws -> Key {
-        return Key(fifths: try attributesIndexer["key"]["fifths"].value())
+        return Key(kind:
+            .traditional(
+                Key.Kind.Traditional(
+                    fifths: try attributesIndexer["key"]["fifths"].value(),
+                    cancel: nil,
+                    mode: nil
+                )
+            ),
+            number: nil,
+            octaves: nil
+        )
     }
 
     static func deserializeClef(_ attributesIndexer: XMLIndexer) throws -> Clef {

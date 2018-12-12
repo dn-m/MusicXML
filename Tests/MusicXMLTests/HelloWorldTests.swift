@@ -38,7 +38,19 @@ extension MusicXML {
                                 number: 1,
                                 attributes: [
                                     .divisions(1),
-                                    .key(Key(fifths: 0)),
+                                    .key(
+                                        Key(
+                                            kind: .traditional(
+                                                Key.Kind.Traditional(
+                                                    fifths: 0,
+                                                    cancel: nil,
+                                                    mode: nil
+                                                )
+                                            ),
+                                            number: nil,
+                                            octaves: nil
+                                        )
+                                    ),
                                     .time(4,4),
                                     .clef(Clef(sign: .g, line: 2)) // treble clef
                                 ],
