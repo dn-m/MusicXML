@@ -43,7 +43,8 @@ extension MusicXML {
                 )
             ),
             number: nil,
-            octaves: nil
+            octaves: nil,
+            id: nil
         )
     }
 

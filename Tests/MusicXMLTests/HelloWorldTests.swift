@@ -48,7 +48,8 @@ extension MusicXML {
                                                 )
                                             ),
                                             number: nil,
-                                            octaves: nil
+                                            octaves: nil,
+                                            id: nil
                                         )
                                     ),
                                     .time(4,4),

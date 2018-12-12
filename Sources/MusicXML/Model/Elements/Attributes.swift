@@ -58,8 +58,6 @@ extension MusicXML {
     // > divisions value should not exceed 16383.
     public typealias Divisions = Int
 
-
-
     // > If the cancel attribute is
     // > set to yes, then this number refers to the canceling key
     // > signature specified by the cancel element in the parent key
@@ -76,10 +74,6 @@ extension MusicXML {
     // >     %print-style;
     // >     %print-object;
     // >     %optional-unique-id;
-    // > >
-    // > <!ELEMENT cancel (#PCDATA)>
-    // > <!ATTLIST cancel
-    // >     location (left | right | before-barline) #IMPLIED
     // > >
     // > <!ELEMENT fifths (#PCDATA)>
     // > <!ELEMENT mode (#PCDATA)>
@@ -105,10 +99,7 @@ extension MusicXML {
 
             // > Traditional key signatures are represented by the number
             // > of flats and sharps, plus an optional mode for major/
-            // > minor/mode distinctions. Negative numbers are used for
-            // > flats and positive numbers for sharps, reflecting the
-            // > key's placement within the circle of fifths (hence the
-            // > element name).
+            // > minor/mode distinctions.
             public struct Traditional: Equatable {
 
                 // > A cancel element indicates that the old
@@ -125,6 +116,10 @@ extension MusicXML {
                 // > elements, a cancel location of before-barline should be
                 // > treated like a cancel location of left.
                 //
+                // > <!ELEMENT cancel (#PCDATA)>
+                // > <!ATTLIST cancel
+                // >     location (left | right | before-barline) #IMPLIED
+                // > >
                 public enum Cancel: String {
                     case left = "left"
                     case right = "right"
@@ -146,6 +141,10 @@ extension MusicXML {
                     case none
                 }
 
+                // > Negative numbers are used for
+                // > flats and positive numbers for sharps, reflecting the
+                // > key's placement within the circle of fifths (hence the
+                // > element name).
                 let fifths: Int
                 let cancel: Cancel?
                 let mode: Mode?
@@ -192,11 +191,14 @@ extension MusicXML {
         // > element in left-to-right order.
         let octaves: [Octave]?
 
+        let id: String?
+
         /// Creates a `Key` with the given `kind`, `number`, and `keyO
-        public init(kind: Kind, number: Int?, octaves: [Octave]?) {
+        public init(kind: Kind, number: Int?, octaves: [Octave]?, id: String?) {
             self.kind = kind
             self.number = number
             self.octaves = octaves
+            self.id = id
         }
     }
 
