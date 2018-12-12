@@ -411,6 +411,8 @@ extension MusicXML {
         }
 
         let kind: Kind
+        let symbol: Symbol
+        let separator: Separator
 
         // The optional number attribute refers to staff
         // > numbers within the part, from top to bottom on the system.
@@ -418,9 +420,11 @@ extension MusicXML {
         // > part.
         let id: Int?
 
-        public init(kind: Kind, id: Int?) {
-            self.id = id
+        public init(kind: Kind, symbol: Symbol, separator: Separator, id: Int?) {
             self.kind = kind
+            self.symbol = symbol
+            self.separator = separator
+            self.id = id
         }
     }
 
