@@ -1323,7 +1323,7 @@ extension MusicXML {
         // > verse/chorus/section specification).
         let number: String
         let name: String
-        let justify: Justify
+        let justify: Justification
         let position: Position
         let placement: Placement
         let printObject: Bool
