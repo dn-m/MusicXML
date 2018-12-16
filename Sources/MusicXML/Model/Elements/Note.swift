@@ -86,6 +86,9 @@ extension MusicXML {
     //     %optional-unique-id;
     // >
     public struct Note: Equatable {
+
+
+
         let pitch: Pitch
         let duration: Int // amount of "divisions"
         let durationType: DurationType
@@ -142,13 +145,13 @@ extension MusicXML {
     // the swift `Type` (Metatype) static value present on all types.
     public struct DurationType: Equatable {
         public enum Kind: String {
-            case maxima = "maxima"
-            case long = "long"
-            case breve = "breve"
-            case whole = "whole"
-            case half = "half"
-            case quarter = "quarter"
-            case eighth = "eighth"
+            case maxima
+            case long
+            case breve
+            case whole
+            case half
+            case quarter
+            case eighth
             case sixteenth = "16th"
             case thirysecond = "32nd"
             case sixtyfourth = "64th"
@@ -269,6 +272,9 @@ extension MusicXML {
     // <!ATTLIST ornaments
     //    %optional-unique-id;
     // >
+    public struct Ornaments {
+        #warning("TODO: Ornaments")
+    }
     // <!ELEMENT trill-mark EMPTY>
     // <!ATTLIST trill-mark
     //    %print-style;
@@ -450,6 +456,9 @@ extension MusicXML {
     //    %smufl;
     //    %optional-unique-id;
     //>
+    public struct AccidentalMark {
+        #warning("TODO: AccidentalMark")
+    }
     //
     //<!--
     //    Technical indications give performance information for
@@ -466,6 +475,10 @@ extension MusicXML {
     //<!ATTLIST technical
     //    %optional-unique-id;
     //>
+    public struct Technical {
+        #warning("TODO: Technical")
+    }
+
     //
     //<!--
     //    The up-bow element represents the symbol that is used both
@@ -938,7 +951,7 @@ extension MusicXML {
     //<!ATTLIST articulations
     //    %optional-unique-id;
     //>
-    public struct Articulation {
+    public struct Articulations {
 
         //
         //<!ELEMENT accent EMPTY>
@@ -1475,21 +1488,21 @@ extension MusicXML {
         let duration: Int
         let staff: Int?
     }
-}
+
 
 // MARK: TODO
-//
-//<!-- Structures -->
-//
-//<!--
-//    The common note elements between cue/grace notes and
-//    regular (full) notes: pitch, chord, and rest information,
-//    but not duration (cue and grace notes do not have
-//    duration encoded here). Unpitched elements are used for
-//    unpitched percussion, speaking voice, and other musical
-//    elements lacking determinate pitch.
-//-->
-//<!ENTITY % full-note "(chord?, (pitch | unpitched | rest))">
+
+    //    The common note elements between cue/grace notes and
+    //    regular (full) notes: pitch, chord, and rest information,
+    //    but not duration (cue and grace notes do not have
+    //    duration encoded here). Unpitched elements are used for
+    //    unpitched percussion, speaking voice, and other musical
+    //    elements lacking determinate pitch.
+    //
+    //<!ENTITY % full-note "(chord?, (pitch | unpitched | rest))">
+    public struct FullNote {
+        #warning("TODO")
+    }
 //
 //<!-- Elements -->
 //
@@ -1646,249 +1659,444 @@ extension MusicXML {
 //    %smufl;
 //>
 //
-//<!--
-//    Time modification indicates tuplets, double-note tremolos,
-//    and other durational changes. A time-modification element
-//    shows how the cumulative, sounding effect of tuplets and
-//    double-note tremolos compare to the written note type
-//    represented by the type and dot elements. The child elements
-//    are defined in the common.mod file. Nested tuplets and other
-//    notations that use more detailed information need both the
-//    time-modification and tuplet elements to be represented
-//    accurately.
-//-->
-//<!ELEMENT time-modification
-//    (actual-notes, normal-notes, (normal-type, normal-dot*)?)>
-//
-//<!--
-//    Stems can be down, up, none, or double. For down and up
-//    stems, the position attributes can be used to specify
-//    stem length. The relative values specify the end of the
-//    stem relative to the program default. Default values
-//    specify an absolute end stem position. Negative values of
-//    relative-y that would flip a stem instead of shortening
-//    it are ignored. A stem element associated with a rest
-//    refers to a stemlet.
-//-->
-//<!ELEMENT stem (#PCDATA)>
-//<!ATTLIST stem
-//    %position;
-//    %color;
-//>
-//
-//<!--
-//    The notehead element indicates shapes other than the open
-//    and closed ovals associated with note durations. The element
-//    value can be slash, triangle, diamond, square, cross, x,
-//    circle-x, inverted triangle, arrow down, arrow up, circled,
-//    slashed, back slashed, normal, cluster, circle dot,
-//    left triangle, rectangle, other, or none.
-//    For shape note music, the element values do, re, mi, fa,
-//    fa up, so, la, and ti are also used, corresponding to Aikin's
-//    7-shape system. The fa up shape is typically used with upstems;
-//    the fa shape is typically used with downstems or no stems.
-//    The arrow shapes differ from triangle and inverted triangle
-//    by being centered on the stem. Slashed and back slashed
-//    notes include both the normal notehead and a slash. The
-//    triangle shape has the tip of the triangle pointing up;
-//    the inverted triangle shape has the tip of the triangle
-//    pointing down. The left triangle shape is a right triangle
-//    with the hypotenuse facing up and to the left.
-//    The other notehead covers noteheads other than those listed
-//    here. It is usually used in combination with the smufl
-//    attribute to specify a particular SMuFL notehead. The
-//    smufl attribute may be used with any notehead value to
-//    help specify the appearance of symbols that share the same
-//    MusicXML semantics. Its value is a SMuFL canonical glyph
-//    name. Noteheads in the SMuFL "Note name noteheads" range
-//    (U+E150–U+E1AF) should not use the smufl attribute or the
-//    "other" value, but instead use the notehead-text element.
-//    For the enclosed shapes, the default is to be hollow for
-//    half notes and longer, and filled otherwise. The filled
-//    attribute can be set to change this if needed.
-//    If the parentheses attribute is set to yes, the notehead
-//    is parenthesized. It is no by default.
-//    The notehead-text element indicates text that is displayed
-//    inside a notehead, as is done in some educational music.
-//    It is not needed for the numbers used in tablature or jianpu
-//    notation. The presence of a TAB or jianpu clefs is sufficient
-//    to indicate that numbers are used. The display-text and
-//    accidental-text elements allow display of fully formatted
-//    text and accidentals.
-//-->
-//<!ELEMENT notehead (#PCDATA)>
-//<!ATTLIST notehead
-//    filled %yes-no; #IMPLIED
-//    parentheses %yes-no; #IMPLIED
-//    %font;
-//    %color;
-//    %smufl;
-//>
-//<!ELEMENT notehead-text
-//    ((display-text | accidental-text)+)>
-//
-//<!--
-//    Beam types include begin, continue, end, forward hook, and
-//    backward hook. Up to eight concurrent beams are available to
-//    cover up to 1024th notes, using an enumerated type defined
-//    in the common.mod file. Each beam in a note is represented
-//    with a separate beam element, starting with the eighth note
-//    beam using a number attribute of 1.
-//    Note that the beam number does not distinguish sets of
-//    beams that overlap, as it does for slur and other elements.
-//    Beaming groups are distinguished by being in different
-//    voices and/or the presence or absence of grace and cue
-//    elements.
-//    Beams that have a begin value can also have a fan attribute to
-//    indicate accelerandos and ritardandos using fanned beams. The
-//    fan attribute may also be used with a continue value if the
-//    fanning direction changes on that note. The value is "none"
-//    if not specified.
-//    The repeater attribute has been deprecated in MusicXML 3.0.
-//    Formerly used for tremolos, it needs to be specified with a
-//    "yes" value for each beam using it.
-//-->
-//<!ELEMENT beam (#PCDATA)>
-//<!ATTLIST beam
-//    number %beam-level; "1"
-//    repeater %yes-no; #IMPLIED
-//    fan (accel | rit | none) #IMPLIED
-//    %color;
-//    %optional-unique-id;
-//>
-//
-//<!--
-//    Notations are musical notations, not XML notations. Multiple
-//    notations are allowed in order to represent multiple editorial
-//    levels. The print-object attribute, added in Version 3.0,
-//    allows notations to represent details of performance technique,
-//    such as fingerings, without having them appear in the score.
-//-->
-//<!ELEMENT notations
-//    (%editorial;,
-//     (tied | slur | tuplet | glissando | slide |
-//      ornaments | technical | articulations | dynamics |
-//      fermata | arpeggiate | non-arpeggiate |
-//      accidental-mark | other-notation)*)>
-//<!ATTLIST notations
-//    %print-object;
-//    %optional-unique-id;
-//>
-//
-//<!--
-//    The tied element represents the notated tie. The tie element
-//    represents the tie sound.
-//    The number attribute is rarely needed to disambiguate ties,
-//    since note pitches will usually suffice. The attribute is
-//    implied rather than defaulting to 1 as with most elements. It is
-//    available for use in more complex tied notation situations.
-//    Ties that join two notes of the same pitch together should be
-//    represented with a tied element on the first note with
-//    type="start" and a tied element on the second note with
-//    type="stop".  This can also be done if the two notes being tied
-//    are enharmonically equivalent, but have different step values. It
-//    is not recommended to use tied elements to join two notes with
-//    enharmonically inequivalent pitches.
-//    Ties that indicate that an instrument should be undamped are
-//    specified with a single tied element with type="let-ring".
-//    Ties that are visually attached to only one note, other than
-//    undamped ties, should be specified with two tied elements on the
-//    same note, first type="start" then type="stop". This can be used
-//    to represent ties into or out of repeated sections or codas.
-//-->
-//<!ELEMENT tied EMPTY>
-//<!ATTLIST tied
-//    type %tied-type; #REQUIRED
-//    number %number-level; #IMPLIED
-//    %line-type;
-//    %dashed-formatting;
-//    %position;
-//    %placement;
-//    %orientation;
-//    %bezier;
-//    %color;
-//    %optional-unique-id;
-//>
-//
-//<!--
-//    Slur elements are empty. Most slurs are represented with
-//    two elements: one with a start type, and one with a stop
-//    type. Slurs can add more elements using a continue type.
-//    This is typically used to specify the formatting of cross-
-//    system slurs, or to specify the shape of very complex slurs.
-//-->
-//<!ELEMENT slur EMPTY>
-//<!ATTLIST slur
-//    type %start-stop-continue; #REQUIRED
-//    number %number-level; "1"
-//    %line-type;
-//    %dashed-formatting;
-//    %position;
-//    %placement;
-//    %orientation;
-//    %bezier;
-//    %color;
-//    %optional-unique-id;
-//>
-//
-//<!--
-//    A tuplet element is present when a tuplet is to be displayed
-//    graphically, in addition to the sound data provided by the
-//    time-modification elements. The number attribute is used to
-//    distinguish nested tuplets. The bracket attribute is used
-//    to indicate the presence of a bracket. If unspecified, the
-//    results are implementation-dependent. The line-shape
-//    attribute is used to specify whether the bracket is straight
-//    or in the older curved or slurred style. It is straight by
-//    default.
-//    Whereas a time-modification element shows how the cumulative,
-//    sounding effect of tuplets and double-note tremolos compare to
-//    the written note type, the tuplet element describes how this
-//    is displayed. The tuplet element also provides more detailed
-//    representation information than the time-modification element,
-//    and is needed to represent nested tuplets and other complex
-//    tuplets accurately. The tuplet-actual and tuplet-normal
-//    elements provide optional full control over tuplet
-//    specifications. Each allows the number and note type
-//    (including dots) describing a single tuplet. If any of
-//    these elements are absent, their values are based on the
-//    time-modification element.
-//    The show-number attribute is used to display either the
-//    number of actual notes, the number of both actual and
-//    normal notes, or neither. It is actual by default. The
-//    show-type attribute is used to display either the actual
-//    type, both the actual and normal types, or neither. It is
-//    none by default.
-//-->
-//<!ELEMENT tuplet (tuplet-actual?, tuplet-normal?)>
-//<!ATTLIST tuplet
-//    type %start-stop; #REQUIRED
-//    number %number-level; #IMPLIED
-//    bracket %yes-no; #IMPLIED
-//    show-number (actual | both | none) #IMPLIED
-//    show-type (actual | both | none) #IMPLIED
-//    %line-shape;
-//    %position;
-//    %placement;
-//    %optional-unique-id;
-//>
-//<!ELEMENT tuplet-actual (tuplet-number?,
-//    tuplet-type?, tuplet-dot*)>
-//<!ELEMENT tuplet-normal (tuplet-number?,
-//    tuplet-type?, tuplet-dot*)>
-//<!ELEMENT tuplet-number (#PCDATA)>
-//<!ATTLIST tuplet-number
-//    %font;
-//    %color;
-//>
-//<!ELEMENT tuplet-type (#PCDATA)>
-//<!ATTLIST tuplet-type
-//    %font;
-//    %color;
-//>
-//<!ELEMENT tuplet-dot EMPTY>
-//<!ATTLIST tuplet-dot
-//    %font;
-//    %color;
-//>
-//
+
+    // > Time modification indicates tuplets, double-note tremolos,
+    // > and other durational changes. A time-modification element
+    // > shows how the cumulative, sounding effect of tuplets and
+    // > double-note tremolos compare to the written note type
+    // > represented by the type and dot elements. The child elements
+    // > are defined in the common.mod file. Nested tuplets and other
+    // > notations that use more detailed information need both the
+    // > time-modification and tuplet elements to be represented
+    // > accurately.
+    //
+    // <!ELEMENT time-modification
+    //    (actual-notes, normal-notes, (normal-type, normal-dot*)?)>
+    //
+    public struct TimeModification {
+
+    }
+
+    // > Stems can be down, up, none, or double. For down and up
+    // > stems, the position attributes can be used to specify
+    // > stem length. The relative values specify the end of the
+    // > stem relative to the program default. Default values
+    // > specify an absolute end stem position. Negative values of
+    // > relative-y that would flip a stem instead of shortening
+    // > it are ignored. A stem element associated with a rest
+    // > refers to a stemlet.
+    //
+    // <!ELEMENT stem (#PCDATA)>
+    // <!ATTLIST stem
+    //    %position;
+    //    %color;
+    // >
+    public struct Stem {
+        public enum Kind {
+            case down
+            case up
+            case none
+            case double
+        }
+        let kind: Kind
+        let position: Position
+        let color: Color
+    }
+
+    // > The notehead element indicates shapes other than the open
+    // > and closed ovals associated with note durations.  The fa up shape is typically used with upstems;
+    // > the fa shape is typically used with downstems or no stems.
+    // > The arrow shapes differ from triangle and inverted triangle
+    // > by being centered on the stem. Slashed and back slashed
+    // > notes include both the normal notehead and a slash. The
+    // > triangle shape has the tip of the triangle pointing up;
+    // > the inverted triangle shape has the tip of the triangle
+    // > pointing down. The left triangle shape is a right triangle
+    // > with the hypotenuse facing up and to the left.
+    // > The other notehead covers noteheads other than those listed
+    // > here. It is usually used in combination with the smufl
+    // > attribute to specify a particular SMuFL notehead. The
+    // > smufl attribute may be used with any notehead value to
+    // > help specify the appearance of symbols that share the same
+    // > MusicXML semantics. Its value is a SMuFL canonical glyph
+    // > name. Noteheads in the SMuFL "Note name noteheads" range
+    // > (U+E150–U+E1AF) should not use the smufl attribute or the
+    // > "other" value, but instead use the notehead-text element.
+    // > For the enclosed shapes, the default is to be hollow for
+    // > half notes and longer, and filled otherwise. The filled
+    // > attribute can be set to change this if needed.
+    // > If the parentheses attribute is set to yes, the notehead
+    // > is parenthesized. It is no by default.
+    // > The notehead-text element indicates text that is displayed
+    // > inside a notehead, as is done in some educational music.
+    // > It is not needed for the numbers used in tablature or jianpu
+    // > notation. The presence of a TAB or jianpu clefs is sufficient
+    // > to indicate that numbers are used. The display-text and
+    // > accidental-text elements allow display of fully formatted
+    // > text and accidentals.
+    //
+    // <!ELEMENT notehead (#PCDATA)>
+    // <!ATTLIST notehead
+    //    filled %yes-no; #IMPLIED
+    //    parentheses %yes-no; #IMPLIED
+    //    %font;
+    //    %color;
+    //    %smufl;
+    // >
+    public struct Notehead {
+
+        // > The element
+        // > value can be slash, triangle, diamond, square, cross, x,
+        // > circle-x, inverted triangle, arrow down, arrow up, circled,
+        // > slashed, back slashed, normal, cluster, circle dot,
+        // > left triangle, rectangle, other, or none.
+        // > For shape note music, the element values do, re, mi, fa,
+        // > fa up, so, la, and ti are also used, corresponding to Aikin's
+        // > 7-shape system.
+        public enum Kind: String {
+            case slash
+            case triangle
+            case diamond
+            case square
+            case cross
+            case x
+            case circleX = "circle-x"
+            case invertedTriangle = "inverted triangle"
+            case arrowDown = "arrow down"
+            case arrowUp = "arrow up"
+            case circled
+            case slashed
+            case backSlashed = "back slashed"
+            case normal
+            case cluster
+            case circleDot = "circle dot"
+            case leftTriangle = "left triangle"
+            case rectangle
+            case other
+            case none
+            case `do`
+            case re
+            case mi
+            case fa
+            case faUp = "fa up"
+            case so
+            case la
+            case ti
+        }
+
+        let kind: Kind
+        let filled: Bool
+        let parentheses: Bool
+        let font: Font
+        let color: Color
+        let smufl: SMuFL
+    }
+
+    // <!ELEMENT notehead-text
+    //    ((display-text | accidental-text)+)>
+    public struct NoteheadText {
+        enum Kind {
+            case displayText(DisplayText)
+            case accidentalText(AccidentalText)
+        }
+        // TODO: Use `NonEmpty`
+        let values: [Kind]
+    }
+
+    // > Beam types include begin, continue, end, forward hook, and
+    // > backward hook. Up to eight concurrent beams are available to
+    // > cover up to 1024th notes, using an enumerated type defined
+    // > in the common.mod file. Each beam in a note is represented
+    // > with a separate beam element, starting with the eighth note
+    // > beam using a number attribute of 1.
+    // > Note that the beam number does not distinguish sets of
+    // > beams that overlap, as it does for slur and other elements.
+    // > Beaming groups are distinguished by being in different
+    // > voices and/or the presence or absence of grace and cue
+    // > elements.
+    //
+    // > Beams that have a begin value can also have a fan attribute to
+    // > indicate accelerandos and ritardandos using fanned beams. The
+    // > fan attribute may also be used with a continue value if the
+    // > fanning direction changes on that note. The value is "none"
+    // > if not specified.
+    // > The repeater attribute has been deprecated in MusicXML 3.0.
+    // > Formerly used for tremolos, it needs to be specified with a
+    // > "yes" value for each beam using it.
+    //
+    // <!ELEMENT beam (#PCDATA)>
+    // <!ATTLIST beam
+    //    number %beam-level; "1"
+    //    repeater %yes-no; #IMPLIED
+    //    fan (accel | rit | none) #IMPLIED
+    //    %color;
+    //    %optional-unique-id;
+    //>
+    public struct Beam {
+        public enum Kind: String {
+            case begin
+            case `continue`
+            case end
+            case forwardHook = "forward hook"
+            case backwardHook = "backward hook"
+        }
+
+        public enum Fan: String {
+            case accelerando = "accel"
+            case ritardando = "rit"
+            case none
+        }
+
+        // MARK: - Attributes
+
+        let kind: Kind
+        let number: BeamLevel = .one
+        let repeater: Bool
+        let fan: Fan
+        let color: Color
+        let id: Int?
+    }
+
+    // > Notations are musical notations, not XML notations. Multiple
+    // > notations are allowed in order to represent multiple editorial
+    // > levels. The print-object attribute, added in Version 3.0,
+    // > allows notations to represent details of performance technique,
+    // > such as fingerings, without having them appear in the score.
+    //
+    // <!ELEMENT notations
+    //    (%editorial;,
+    //     (tied | slur | tuplet | glissando | slide |
+    //      ornaments | technical | articulations | dynamics |
+    //      fermata | arpeggiate | non-arpeggiate |
+    //      accidental-mark | other-notation)*)>
+    // <!ATTLIST notations
+    //    %print-object;
+    //    %optional-unique-id;
+    // >
+    public struct Notations {
+
+        public enum Notation {
+            case tied(Tied)
+            case slur(Slur)
+            case tuplet(Tuplet)
+            case glissando(Glissando)
+            case slide(Slide)
+            case ornaments(Ornaments)
+            case technical(Technical)
+            case articulations(Articulations)
+            case dynamics(Dynamics)
+            case fermata(Fermata)
+            case arpeggiate(Arpeggiate)
+            case nonArpeggiate(NonArpeggiate)
+            case accidentalMark(AccidentalMark)
+            case other(OtherNotation)
+        }
+
+        // MARK: Attributes
+
+        let editorial: Editorial
+        let values: [Notation]
+        let printObject: Bool
+        let id: Int?
+    }
+
+    // > The tied element represents the notated tie. The tie element
+    // > represents the tie sound.
+    // > The number attribute is rarely needed to disambiguate ties,
+    // > since note pitches will usually suffice. The attribute is
+    // > implied rather than defaulting to 1 as with most elements. It is
+    // > available for use in more complex tied notation situations.
+    // > Ties that join two notes of the same pitch together should be
+    // > represented with a tied element on the first note with
+    // > type="start" and a tied element on the second note with
+    // > type="stop".  This can also be done if the two notes being tied
+    // > are enharmonically equivalent, but have different step values. It
+    // > is not recommended to use tied elements to join two notes with
+    // > enharmonically inequivalent pitches.
+    // > Ties that indicate that an instrument should be undamped are
+    // > specified with a single tied element with type="let-ring".
+    // > Ties that are visually attached to only one note, other than
+    // > undamped ties, should be specified with two tied elements on the
+    // > same note, first type="start" then type="stop". This can be used
+    // > to represent ties into or out of repeated sections or codas.
+    //
+    // <!ELEMENT tied EMPTY>
+    // <!ATTLIST tied
+    //    type %tied-type; #REQUIRED
+    //    number %number-level; #IMPLIED
+    //    %line-type;
+    //    %dashed-formatting;
+    //    %position;
+    //    %placement;
+    //    %orientation;
+    //    %bezier;
+    //    %color;
+    //    %optional-unique-id;
+    //>
+    public struct Tied {
+
+        // MARK: - Attributes
+
+        // FIXME: Nest as `Kind`
+        let type: TiedType
+        let number: NumberLevel
+        let lineType: LineType
+        let dashedFormatting: DashedFormatting
+        let position: Position
+        let placement: Placement
+        let orientation: Orientation
+        let bezier: Bezier
+        let color: Color
+        let id: Int?
+    }
+
+    // > Slur elements are empty. Most slurs are represented with
+    // > two elements: one with a start type, and one with a stop
+    // > type. Slurs can add more elements using a continue type.
+    // > This is typically used to specify the formatting of cross-
+    // > system slurs, or to specify the shape of very complex slurs.
+    //
+    //<!ELEMENT slur EMPTY>
+    //<!ATTLIST slur
+    //    type %start-stop-continue; #REQUIRED
+    //    number %number-level; "1"
+    //    %line-type;
+    //    %dashed-formatting;
+    //    %position;
+    //    %placement;
+    //    %orientation;
+    //    %bezier;
+    //    %color;
+    //    %optional-unique-id;
+    //>
+    public struct Slur {
+
+        // MARK: - Attributes
+
+        let type: StartStopContinue
+        let number: NumberLevel = .one
+        let lineType: LineType
+        let dashedFormatting: DashedFormatting
+        let position: Position
+        let placement: Placement
+        let orientation: Orientation
+        let bezier: Bezier
+        let color: Color
+        let id: Int?
+    }
+
+    // > A tuplet element is present when a tuplet is to be displayed
+    // > graphically, in addition to the sound data provided by the
+    // > time-modification elements. The number attribute is used to
+    // > distinguish nested tuplets. The bracket attribute is used
+    // > to indicate the presence of a bracket. If unspecified, the
+    // > results are implementation-dependent. The line-shape
+    // > attribute is used to specify whether the bracket is straight
+    // > or in the older curved or slurred style. It is straight by
+    // > default.
+    // > Whereas a time-modification element shows how the cumulative,
+    // > sounding effect of tuplets and double-note tremolos compare to
+    // > the written note type, the tuplet element describes how this
+    // > is displayed. The tuplet element also provides more detailed
+    // > representation information than the time-modification element,
+    // > and is needed to represent nested tuplets and other complex
+    // > tuplets accurately. The tuplet-actual and tuplet-normal
+    // > elements provide optional full control over tuplet
+    // > specifications. Each allows the number and note type
+    // > (including dots) describing a single tuplet. If any of
+    // > these elements are absent, their values are based on the
+    // > time-modification element.
+    // > The show-number attribute is used to display either the
+    // > number of actual notes, the number of both actual and
+    // > normal notes, or neither. It is actual by default. The
+    // > show-type attribute is used to display either the actual
+    // > type, both the actual and normal types, or neither. It is
+    // > none by default.
+    //
+    // <!ELEMENT tuplet (tuplet-actual?, tuplet-normal?)>
+    // <!ATTLIST tuplet
+    //    type %start-stop; #REQUIRED
+    //    number %number-level; #IMPLIED
+    //    bracket %yes-no; #IMPLIED
+    //    show-number (actual | both | none) #IMPLIED
+    //    show-type (actual | both | none) #IMPLIED
+    //    %line-shape;
+    //    %position;
+    //    %placement;
+    //    %optional-unique-id;
+    // >
+    public struct Tuplet {
+
+        public enum ShowNumber: String {
+            case actual
+            case both
+            case none
+        }
+
+        public enum ShowType {
+            case actual
+            case both
+            case none
+        }
+
+        // MARK: - Attributes
+
+        let actual: TupletActual?
+        let normal: TupletNormal?
+        let type: StartStop
+        let level: NumberLevel?
+        let showNumber: ShowNumber = .none
+        let showType: ShowNumber = .none
+        let lineShape: LineShape
+        let position: Position
+        let placement: Placement
+        let id: Int?
+    }
+
+    // <!ELEMENT tuplet-actual (tuplet-number?,
+    //    tuplet-type?, tuplet-dot*)>
+    public struct TupletActual {
+        let number: TupletNumber?
+        let type: TupletType?
+        let dot: [TupletDot]
+    }
+
+    // <!ELEMENT tuplet-normal (tuplet-number?,
+    //    tuplet-type?, tuplet-dot*)>
+    public struct TupletNormal {
+        let number: TupletNumber?
+        let type: TupletType?
+        let dot: [TupletDot]
+    }
+
+    // <!ELEMENT tuplet-number (#PCDATA)>
+    // <!ATTLIST tuplet-number
+    //    %font;
+    //    %color;
+    // >
+    public struct TupletNumber {
+        let value: Int
+        let font: Font
+        let color: Color
+    }
+
+    // <!ELEMENT tuplet-type (#PCDATA)>
+    // <!ATTLIST tuplet-type
+    //    %font;
+    //    %color;
+    // >
+    public struct TupletType {
+        let font: Font
+        let color: Color
+    }
+
+    // <!ELEMENT tuplet-dot EMPTY>
+    // <!ATTLIST tuplet-dot
+    //    %font;
+    //    %color;
+    // >
+    public struct TupletDot {
+        let font: Font
+        let color: Color
+    }
+}
