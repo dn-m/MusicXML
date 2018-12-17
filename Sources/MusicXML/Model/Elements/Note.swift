@@ -123,11 +123,10 @@ extension MusicXML {
             case g = "G"
         }
 
-        // TODO: Use `dn-m/LetterName` enum
         let step: Step
         let alter: Double?
         let octave: Int
-        // TODO: let alter: Double = 0
+        
         public init(step: Step, alter: Double?, octave: Int) {
             self.step = step
             self.alter = alter
