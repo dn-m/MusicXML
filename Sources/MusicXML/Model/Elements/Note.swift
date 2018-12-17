@@ -85,12 +85,19 @@ extension MusicXML {
     //     pizzicato %yes-no; #IMPLIED
     //     %optional-unique-id;
     // >
-    public struct Note: Equatable {
+    public struct Note: Decodable, Equatable {
+
+        public enum CodingKeys: String, CodingKey {
+            case pitch
+            case duration
+            case durationType = "type"
+        }
 
         let pitch: Pitch
         let duration: Int // amount of "divisions"
-        let durationType: DurationType
-        public init(pitch: Pitch, duration: Int, durationType: DurationType) {
+        let durationType: String
+
+        public init(pitch: Pitch, duration: Int, durationType: String) {
             self.pitch = pitch
             self.duration = duration
             self.durationType = durationType
@@ -126,7 +133,7 @@ extension MusicXML {
         let step: Step
         let alter: Double?
         let octave: Int
-        
+
         public init(step: Step, alter: Double?, octave: Int) {
             self.step = step
             self.alter = alter
@@ -153,8 +160,14 @@ extension MusicXML {
     // Note: This type "type" must be called something other than `Type`, for the reason that it is
     // totally ambiguous as to what type of type we are talking about, and that it conflicts with
     // the swift `Type` (Metatype) static value present on all types.
-    public struct DurationType: Equatable {
-        public enum Kind: String {
+    public struct DurationType: Decodable, Equatable {
+
+        public enum CodingKeys: String, CodingKey {
+            case kind = "type"
+            case size
+        }
+
+        public enum Kind: String, Decodable {
             case maxima
             case long
             case breve
@@ -170,15 +183,18 @@ extension MusicXML {
             case fivehundredtwelfth = "512th"
             case onethousandtwentyfourth = "1024th"
         }
-        public enum Size: String {
+
+        public enum Size: String, Decodable {
             case full = "full"
             case cue = "cue"
             case graceCue = "grace-cue"
             case large = "large"
         }
+
         let kind: Kind
-        let size: Size
-        public init(kind: Kind, size: Size = .full) {
+        let size: Size?
+
+        public init(kind: Kind, size: Size?) {
             self.kind = kind
             self.size = size
         }

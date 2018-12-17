@@ -18,7 +18,7 @@ class DecoderTests: XCTestCase {
           <octave>4</octave>
         </pitch>
         """
-        let _ = try! XMLDecoder().decode(Pitch.self, from: xml.data(using: .utf8)!)
+        let _ = try! XMLDecoder().decode(MusicXML.Pitch.self, from: xml.data(using: .utf8)!)
     }
 
     func testNote() {
@@ -111,8 +111,8 @@ class DecoderTests: XCTestCase {
                         <sign>G</sign>
                         <line>2</line>
                     </clef>
-                    </attributes>
-                    <note>
+                </attributes>
+                <note>
                     <pitch>
                         <step>C</step>
                         <octave>4</octave>
@@ -181,12 +181,7 @@ class DecoderTests: XCTestCase {
     }
 }
 
-struct Note: Decodable {
-    let pitch: Pitch
-    let duration: Int
-    let type: String
-}
-
+typealias Note = MusicXML.Note
 typealias Pitch = MusicXML.Pitch
 
 struct Measure: Decodable {
