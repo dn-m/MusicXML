@@ -1,6 +1,6 @@
 os:
   - osx
-  - linux
+  # - linux
 language: generic
 sudo: required
 dist: trusty

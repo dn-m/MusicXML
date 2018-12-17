@@ -21,14 +21,6 @@
 //
 extension MusicXML {
 
-    public struct Partwise: Equatable {
-        let partList: [ScorePart]
-        let parts: [Part]
-        public init(partList: [ScorePart], parts: [Part]) {
-            self.partList = partList
-            self.parts = parts
-        }
-    }
 }
 
 // MARK: TODO

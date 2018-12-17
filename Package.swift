@@ -12,14 +12,12 @@ let package = Package(
             targets: ["MusicXML"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/drmohundro/SWXMLHash", from: "4.7.5")
+        .package(url: "https://github.com/MaxDesiatov/XMLCoder", from: "0.2.1")
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "MusicXML",
-            dependencies: ["SWXMLHash"]),
+            dependencies: ["XMLCoder"]),
         .testTarget(
             name: "MusicXMLTests",
             dependencies: ["MusicXML"]),
