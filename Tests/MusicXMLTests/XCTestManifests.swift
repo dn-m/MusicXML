@@ -1,23 +1,41 @@
 import XCTest
 
-extension DecoderTests {
+extension AttributesDecoderTests {
     static let __allTests = [
         ("testClef", testClef),
-        ("testHelloWorld", testHelloWorld),
         ("testKey", testKey),
-        ("testMeasure", testMeasure),
+        ("testTime", testTime),
+    ]
+}
+
+extension HelloWorldDecoderTests {
+    static let __allTests = [
+        ("testHelloWorld", testHelloWorld),
+    ]
+}
+
+extension NoteDecoderTests {
+    static let __allTests = [
         ("testNote", testNote),
+        ("testPitch", testPitch),
+    ]
+}
+
+extension ScoreDecoderTests {
+    static let __allTests = [
+        ("testMeasure", testMeasure),
         ("testPart", testPart),
         ("testPartList", testPartList),
-        ("testPitch", testPitch),
-        ("testTime", testTime),
     ]
 }
 
 #if !os(macOS)
 public func __allTests() -> [XCTestCaseEntry] {
     return [
-        testCase(DecoderTests.__allTests),
+        testCase(AttributesDecoderTests.__allTests),
+        testCase(HelloWorldDecoderTests.__allTests),
+        testCase(NoteDecoderTests.__allTests),
+        testCase(ScoreDecoderTests.__allTests),
     ]
 }
 #endif
