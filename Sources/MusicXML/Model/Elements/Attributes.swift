@@ -255,9 +255,9 @@ extension MusicXML {
     // <!ELEMENT sign (#PCDATA)>
     // <!ELEMENT line (#PCDATA)>
     // <!ELEMENT clef-octave-change (#PCDATA)>
-    public struct Clef: Equatable {
+    public struct Clef: Codable, Equatable {
 
-        public enum Sign: String {
+        public enum Sign: String, Codable {
             case g = "G"
             case f = "F"
             case c = "C"

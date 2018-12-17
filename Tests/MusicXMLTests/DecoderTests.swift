@@ -212,10 +212,7 @@ struct Key: Decodable {
     let fifths: Int
 }
 
-struct Clef: Decodable {
-    let sign: String
-    let line: Int
-}
+typealias Clef = MusicXML.Clef
 
 struct Attributes: Decodable {
     let key: Key
