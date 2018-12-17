@@ -83,24 +83,24 @@ extension MusicXML {
     // > <!ATTLIST key-accidental
     // >     %smufl;
     // > >
-    public struct Key: Equatable {
+    public struct Key: Decodable, Equatable {
 
         // > <!ELEMENT key-octave (#PCDATA)>
         // > <!ATTLIST key-octave
         // >     number NMTOKEN #REQUIRED
         // >     cancel %yes-no; #IMPLIED
         // > >
-        public struct Octave: Equatable {
+        public struct Octave: Decodable, Equatable {
             let number: Int
             let cancel: Bool
         }
 
-        public enum Kind: Equatable {
+        public enum Kind: Decodable, Equatable {
 
             // > Traditional key signatures are represented by the number
             // > of flats and sharps, plus an optional mode for major/
             // > minor/mode distinctions.
-            public struct Traditional: Equatable {
+            public struct Traditional: Decodable, Equatable {
 
                 // > A cancel element indicates that the old
                 // > key signature should be cancelled before the new one
@@ -120,7 +120,7 @@ extension MusicXML {
                 // > <!ATTLIST cancel
                 // >     location (left | right | before-barline) #IMPLIED
                 // > >
-                public enum Cancel: String {
+                public enum Cancel: String, Decodable {
                     case left = "left"
                     case right = "right"
                     case beforeBarline = "before-barline"
@@ -128,7 +128,7 @@ extension MusicXML {
 
                 // > Valid mode values include major, minor, dorian, phrygian,
                 // > lydian, mixolydian, aeolian, ionian, locrian, and none.
-                public enum Mode: Equatable {
+                public enum Mode: String, Decodable {
                     case major
                     case minor
                     case dorian
@@ -166,7 +166,7 @@ extension MusicXML {
             // > microtonal accidentals. The different element names
             // > indicate the different meaning of altering notes in a scale
             // > versus altering a sounding pitch.
-            public struct NonTraditional: Equatable {
+            public struct NonTraditional: Decodable, Equatable {
                 let step: Int
                 let alter: Double
                 let accidental: String
@@ -174,6 +174,15 @@ extension MusicXML {
 
             case traditional(Traditional)
             case nonTraditional(NonTraditional)
+
+            public init(from decoder: Decoder) throws {
+                var container = try decoder.unkeyedContainer()
+                do {
+                    self = .traditional(try container.decode(Traditional.self))
+                } catch {
+                    self = .nonTraditional(try container.decode(NonTraditional.self))
+                }
+            }
         }
 
         let kind: Kind
@@ -199,6 +208,15 @@ extension MusicXML {
             self.number = number
             self.octaves = octaves
             self.id = id
+        }
+
+        #warning("TODO: Handle MusicXML.Key attributes number, octaves, id, etc.")
+        public init(from decoder: Decoder) throws {
+            var container = try decoder.unkeyedContainer()
+            self.kind = try container.decode(Kind.self)
+            self.number = nil
+            self.octaves = nil
+            self.id = nil
         }
     }
 

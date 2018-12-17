@@ -177,7 +177,8 @@ class DecoderTests: XCTestCase {
           </part>
         </score-partwise>
         """
-        let _ = try! XMLDecoder().decode(ScorePartWise.self, from: xml.data(using: .utf8)!)
+        let scorePartwise = try! XMLDecoder().decode(ScorePartWise.self, from: xml.data(using: .utf8)!)
+        dump(scorePartwise)
     }
 }
 
@@ -208,9 +209,7 @@ struct Time: Decodable {
     }
 }
 
-struct Key: Decodable {
-    let fifths: Int
-}
+typealias Key = MusicXML.Key
 
 typealias Clef = MusicXML.Clef
 
