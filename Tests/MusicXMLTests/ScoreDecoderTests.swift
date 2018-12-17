@@ -70,7 +70,7 @@ class ScoreDecoderTests: XCTestCase {
             </measure>
         </part>
         """
-        let _ = try! XMLDecoder().decode(MusicXML.PartPartwise.self, from: xml.data(using: .utf8)!)
+        let _ = try! XMLDecoder().decode(MusicXML.Part.Partwise.self, from: xml.data(using: .utf8)!)
     }
 
     func testPartList() {

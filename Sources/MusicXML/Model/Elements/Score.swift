@@ -36,7 +36,7 @@ extension MusicXML {
             // TODO: score-header
             // TODO: Use NonEmpty
             let partList: PartList
-            let parts: [PartPartwise]
+            let parts: [Part.Partwise]
         }
 
         public struct Timewise: Decodable, Equatable {
@@ -120,30 +120,52 @@ extension MusicXML {
         }
     }
 
+    public struct Part: Decodable, Equatable {
 
+        // In either format, the part element has an id attribute that
+        // is an IDREF back to a score-part in the part-list. Measures
+        // have a required number attribute (going from partwise to
+        // timewise, measures are grouped via the number).
+        //
+        // <!ATTLIST part
+        //    id IDREF #REQUIRED
+        // >
+        public struct Partwise: Decodable, Equatable {
 
-    // In either format, the part element has an id attribute that
-    // is an IDREF back to a score-part in the part-list. Measures
-    // have a required number attribute (going from partwise to
-    // timewise, measures are grouped via the number).
-    //
-    // <!ATTLIST part
-    //    id IDREF #REQUIRED
-    // >
-    public struct PartPartwise: Decodable, Equatable {
+            enum CodingKeys: String, CodingKey {
+                case id
+                case measures = "measure"
+            }
 
-        enum CodingKeys: String, CodingKey {
-            case id
-            case measures = "measure"
+            let id: String // TODO: Make typesafe
+            let measures: [MeasurePartwise]
         }
 
-        let id: String // TODO: Make typesafe
-        let measures: [MeasurePartwise]
-    }
+        #warning("TODO: Build out PartTimewise")
+        public struct Timewise: Decodable, Equatable {
+            // TODO: music-data
+        }
 
-    #warning("TODO: Build out PartTimewise")
-    public struct PartTimewise: Decodable, Equatable {
-        // TODO: music-data
+        enum Traversal: Decodable, Equatable {
+            case partwise(Partwise)
+            case timewise(Timewise)
+
+            init(from decoder: Decoder) throws {
+                var container = try decoder.unkeyedContainer()
+                do {
+                    self = .partwise(try container.decode(Partwise.self))
+                } catch {
+                    self = .timewise(try container.decode(Timewise.self))
+                }
+            }
+        }
+
+        let traversal: Traversal
+
+        public init(from decoder: Decoder) throws {
+            var container = try decoder.unkeyedContainer()
+            self.traversal = try container.decode(Traversal.self)
+        }
     }
 
     // Here is the basic musical data that is either associated
@@ -210,7 +232,7 @@ extension MusicXML {
     #warning("TODO: Build out MeasureTimewise")
     public struct MeasureTimewise: Decodable, Equatable {
         let number: Int
-        let parts: [PartTimewise]
+        let parts: [Part.Timewise]
     }
 
 
