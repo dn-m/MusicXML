@@ -7,6 +7,7 @@
 
 import XCTest
 import XMLCoder
+import MusicXML
 
 class DecoderTests: XCTestCase {
 
@@ -186,10 +187,7 @@ struct Note: Decodable {
     let type: String
 }
 
-struct Pitch: Decodable {
-    let step: String
-    let octave: Int
-}
+typealias Pitch = MusicXML.Pitch
 
 struct Measure: Decodable {
 
