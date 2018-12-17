@@ -35,8 +35,6 @@ extension MusicXML {
         }
     }
 
-
-
     // <!ATTLIST score-part
     //    id ID #REQUIRED
     //
@@ -90,7 +88,7 @@ extension MusicXML {
             case parts = "part"
         }
 
-        // score-header
+        // TODO: score-header
         // TODO: Use NonEmpty
         let partList: PartList
         let parts: [PartPartwise]
