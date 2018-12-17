@@ -177,12 +177,8 @@ class DecoderTests: XCTestCase {
           </part>
         </score-partwise>
         """
-        do {
-            let scorePartwise = try XMLDecoder().decode(ScorePartWise.self, from: xml.data(using: .utf8)!)
-            dump(scorePartwise)
-        } catch {
-            print(error)
-        }
+        let scorePartwise = try! XMLDecoder().decode(ScorePartwise.self, from: xml.data(using: .utf8)!)
+        dump(scorePartwise)
 
     }
 }
@@ -220,13 +216,4 @@ struct Part: Decodable {
     let measures: [Measure]
 }
 
-struct ScorePartWise: Decodable {
-
-    enum CodingKeys: String, CodingKey {
-        case partList = "part-list"
-        case parts = "part"
-    }
-
-    let partList: PartList
-    let parts: [Part]
-}
+typealias ScorePartwise = MusicXML.ScorePartwise
