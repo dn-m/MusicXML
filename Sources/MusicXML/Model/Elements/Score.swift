@@ -177,7 +177,7 @@ extension MusicXML {
             self.notes = notes
         }
     }
-}
+
 
 // MARK: TODO
 //
@@ -296,39 +296,45 @@ extension MusicXML {
 //    %optional-unique-id;
 //>
 //
-//<!--
-//    The part-list identifies the different musical parts in
-//    this movement. Each part has an ID that is used later
-//    within the musical data. Since parts may be encoded
-//    separately and combined later, identification elements
-//    are present at both the score and score-part levels.
-//    There must be at least one score-part, combined as
-//    desired with part-group elements that indicate braces
-//    and brackets. Parts are ordered from top to bottom in
-//    a score based on the order in which they appear in the
-//    part-list.
-//
-//    Each MusicXML part corresponds to a track in a Standard
-//    MIDI Format 1 file. The score-instrument elements are
-//    used when there are multiple instruments per track.
-//    The midi-device element is used to make a MIDI device
-//    or port assignment for the given track or specific MIDI
-//    instruments. Initial midi-instrument assignments may be
-//    made here as well.
-//    The part-name-display and part-abbreviation-display
-//    elements are defined in the common.mod file, as they can
-//    be used within both the score-part and print elements.
-//-->
-//<!ELEMENT part-list (part-group*, score-part,
-//    (part-group | score-part)*)>
-//<!ELEMENT score-part (identification?,
-//    part-name, part-name-display?,
-//    part-abbreviation?, part-abbreviation-display?,
-//    group*, score-instrument*,
-//    (midi-device?, midi-instrument?)*)>
 
-//>
-//
+    //    The part-list identifies the different musical parts in
+    //    this movement. Each part has an ID that is used later
+    //    within the musical data. Since parts may be encoded
+    //    separately and combined later, identification elements
+    //    are present at both the score and score-part levels.
+    //    There must be at least one score-part, combined as
+    //    desired with part-group elements that indicate braces
+    //    and brackets. Parts are ordered from top to bottom in
+    //    a score based on the order in which they appear in the
+    //    part-list.
+    //
+    //    Each MusicXML part corresponds to a track in a Standard
+    //    MIDI Format 1 file. The score-instrument elements are
+    //    used when there are multiple instruments per track.
+    //    The midi-device element is used to make a MIDI device
+    //    or port assignment for the given track or specific MIDI
+    //    instruments. Initial midi-instrument assignments may be
+    //    made here as well.
+    //    The part-name-display and part-abbreviation-display
+    //    elements are defined in the common.mod file, as they can
+    //    be used within both the score-part and print elements.
+    //
+    // <!ELEMENT part-list (part-group*, score-part,
+    //    (part-group | score-part)*)>
+    // <!ELEMENT score-part (identification?,
+    //    part-name, part-name-display?,
+    //    part-abbreviation?, part-abbreviation-display?,
+    //    group*, score-instrument*,
+    //    (midi-device?, midi-instrument?)*)>
+    #warning("TODO: Build out MusicXML.PartList")
+    public struct PartList: Decodable, Equatable {
+
+        enum CodingKeys: String, CodingKey {
+            case parts = "score-part"
+        }
+
+        let parts: [ScorePart]
+    }
 
 //<!--
 //    The part-group element indicates groupings of parts in the
@@ -504,3 +510,5 @@ extension MusicXML {
 //<!ELEMENT measure (part+)>
 //<!ELEMENT part (%music-data;)>
 //]]>
+
+}
