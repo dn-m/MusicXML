@@ -32,7 +32,7 @@ class DecoderTests: XCTestCase {
             <type>whole</type>
         </note>
         """
-        let _ = try! XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
+        let _ = try! XMLDecoder().decode(MusicXML.Note.self, from: xml.data(using: .utf8)!)
     }
 
     func testTime() {
@@ -42,7 +42,7 @@ class DecoderTests: XCTestCase {
             <beat-type>4</beat-type>
         </time>
         """
-        let _ = try! XMLDecoder().decode(Time.self, from: xml.data(using: .utf8)!)
+        let _ = try! XMLDecoder().decode(MusicXML.Attributes.Time.self, from: xml.data(using: .utf8)!)
     }
 
     func testKey() {
@@ -51,7 +51,7 @@ class DecoderTests: XCTestCase {
             <fifths>0</fifths>
         </key>
         """
-        let _ = try! XMLDecoder().decode(Key.self, from: xml.data(using: .utf8)!)
+        let _ = try! XMLDecoder().decode(MusicXML.Attributes.Key.self, from: xml.data(using: .utf8)!)
     }
 
     func testClef() {
@@ -61,7 +61,7 @@ class DecoderTests: XCTestCase {
             <line>2</line>
         </clef>
         """
-        let _ = try! XMLDecoder().decode(Clef.self, from: xml.data(using:. utf8)!)
+        let _ = try! XMLDecoder().decode(MusicXML.Attributes.Clef.self, from: xml.data(using:. utf8)!)
     }
 
     func testMeasure() {
@@ -91,7 +91,7 @@ class DecoderTests: XCTestCase {
             </note>
         </measure>
         """
-        let _ = try! XMLDecoder().decode(Measure.self, from: xml.data(using: .utf8)!)
+        let _ = try! XMLDecoder().decode(MusicXML.MeasurePartwise.self, from: xml.data(using: .utf8)!)
     }
 
     func testPart() {
@@ -123,7 +123,7 @@ class DecoderTests: XCTestCase {
             </measure>
         </part>
         """
-        let _ = try! XMLDecoder().decode(Part.self, from: xml.data(using: .utf8)!)
+        let _ = try! XMLDecoder().decode(MusicXML.PartPartwise.self, from: xml.data(using: .utf8)!)
     }
 
     func testPartList() {
@@ -134,7 +134,7 @@ class DecoderTests: XCTestCase {
             </score-part>
         </part-list>
         """
-        let _ = try! XMLDecoder().decode(PartList.self, from: xml.data(using: .utf8)!)
+        let _ = try! XMLDecoder().decode(MusicXML.PartList.self, from: xml.data(using: .utf8)!)
     }
 
     func testHelloWorld() {
@@ -177,43 +177,8 @@ class DecoderTests: XCTestCase {
           </part>
         </score-partwise>
         """
-        let scorePartwise = try! XMLDecoder().decode(ScorePartwise.self, from: xml.data(using: .utf8)!)
+        let scorePartwise = try! XMLDecoder().decode(MusicXML.ScorePartwise.self, from: xml.data(using: .utf8)!)
         dump(scorePartwise)
 
     }
 }
-
-typealias ScorePart = MusicXML.ScorePart
-typealias PartList = MusicXML.PartList
-typealias Note = MusicXML.Note
-typealias Pitch = MusicXML.Pitch
-typealias Time = MusicXML.Attributes.Time
-typealias Key = MusicXML.Attributes.Key
-typealias Clef = MusicXML.Attributes.Clef
-typealias Attributes = MusicXML.Attributes
-
-struct Measure: Decodable {
-
-    enum CodingKeys: String, CodingKey {
-        case notes = "note"
-        case attributes
-        case number
-    }
-
-    let number: Int
-    let attributes: [Attributes]
-    let notes: [Note]
-}
-
-struct Part: Decodable {
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case measures = "measure"
-    }
-
-    let id: String
-    let measures: [Measure]
-}
-
-typealias ScorePartwise = MusicXML.ScorePartwise
