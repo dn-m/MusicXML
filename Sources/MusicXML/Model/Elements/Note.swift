@@ -87,8 +87,6 @@ extension MusicXML {
     // >
     public struct Note: Equatable {
 
-
-
         let pitch: Pitch
         let duration: Int // amount of "divisions"
         let durationType: DurationType
@@ -99,15 +97,15 @@ extension MusicXML {
         }
     }
 
-    // Pitch is represented as a combination of the step of the
-    // diatonic scale, the chromatic alteration, and the octave.
-    // The step element uses the English letters A through G.
-    // The alter element represents chromatic alteration in
-    // number of semitones (e.g., -1 for flat, 1 for sharp).
-    // Decimal values like 0.5 (quarter tone sharp) are
-    // used for microtones. The octave element is represented
-    // by the numbers 0 to 9, where 4 indicates the octave
-    // started by middle C.
+    // > Pitch is represented as a combination of the step of the
+    // > diatonic scale, the chromatic alteration, and the octave.
+    // > The step element uses the English letters A through G.
+    // > The alter element represents chromatic alteration in
+    // > number of semitones (e.g., -1 for flat, 1 for sharp).
+    // > Decimal values like 0.5 (quarter tone sharp) are
+    // > used for microtones. The octave element is represented
+    // > by the numbers 0 to 9, where 4 indicates the octave
+    // > started by middle C.
     //
     // <!ELEMENT pitch (step, alter?, octave)>
     // <!ELEMENT step (#PCDATA)>
