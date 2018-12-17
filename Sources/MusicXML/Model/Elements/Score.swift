@@ -158,20 +158,20 @@ extension MusicXML {
     // TODO: Implement part-wise and time-wise variants.
     public struct Measure: Equatable {
 
-        // FIXME: Refactor this out so that each attribute is just stored as an optional value.
-        public enum Attribute: Equatable {
-            case divisions(Int)
-            case key(Key)
-            case time(Int,Int) // beats, subdivision
-            case clef(Clef)
-        }
+//        // FIXME: Refactor this out so that each attribute is just stored as an optional value.
+//        public enum Attribute: Equatable {
+//            case divisions(Int)
+//            case key(Key)
+//            case time(Int,Int) // beats, subdivision
+//            case clef(Clef)
+//        }
 
         let number: Int
-        let attributes: [Attribute]
+        let attributes: Attributes
         let notes: [Note]
 
         // FIXME: Refactor to store all optional attributes instead of array.
-        public init(number: Int, attributes: [Attribute], notes: [Note]) {
+        public init(number: Int, attributes: Attributes, notes: [Note]) {
             self.number = number
             self.attributes = attributes
             self.notes = notes

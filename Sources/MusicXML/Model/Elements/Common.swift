@@ -147,7 +147,7 @@ extension MusicXML {
     // > full, cue sized, grace cue sized, and oversized symbols.
     //
     // <!ENTITY % symbol-size "(full | cue | grace-cue | large)">
-    public enum SymbolSize: String {
+    public enum SymbolSize: String, Decodable {
         case full
         case cue
         case graceCue = "grace-cue"
@@ -492,7 +492,7 @@ extension MusicXML {
     //
     // <!ENTITY % justify
     //    "justify (left | center | right) #IMPLIED">
-    public enum Justification: String {
+    public enum Justification: String, Decodable {
         case left
         case center
         case right
@@ -763,9 +763,8 @@ extension MusicXML {
     //     xml:space (default | preserve) #IMPLIED
     //     %text-direction;
     //     %enclosure;">
-    public struct TextFormatting {
+    public struct TextFormatting: Decodable, Equatable {
         let justify: Justification
-
     }
 
     // > The symbol-formatting entity contains the common formatting
@@ -803,7 +802,7 @@ extension MusicXML {
     //    "parentheses %yes-no;       #IMPLIED
     //     bracket     %yes-no;       #IMPLIED
     //     size        %symbol-size;  #IMPLIED">
-    public struct LevelDisplay {
+    public struct LevelDisplay: Decodable, Equatable {
         let parentheses: Bool
         let bracket: Bool
         let size: SymbolSize
@@ -956,7 +955,7 @@ extension MusicXML {
     // > across all the different component DTD modules.
     //
     // <!ENTITY % editorial "(footnote?, level?)">
-    public struct Editorial {
+    public struct Editorial: Decodable, Equatable {
         let footnote: Footnote?
         let level: Level?
     }
@@ -983,7 +982,7 @@ extension MusicXML {
     // <!ATTLIST footnote
     //    %text-formatting;
     // >
-    public struct Footnote {
+    public struct Footnote: Decodable, Equatable {
         let text: String
         let formatting: TextFormatting
     }
@@ -993,7 +992,7 @@ extension MusicXML {
     //    reference %yes-no; #IMPLIED
     //    %level-display;
     // >
-    public struct Level {
+    public struct Level: Decodable, Equatable {
         let reference: Bool
         let levelDisplay: LevelDisplay
     }
