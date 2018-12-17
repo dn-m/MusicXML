@@ -198,19 +198,8 @@ struct Measure: Decodable {
     let notes: [Note]
 }
 
-struct Time: Decodable {
-
-    let beats: Int
-    let type: Int
-
-    enum CodingKeys: String, CodingKey {
-        case beats
-        case type = "beat-type"
-    }
-}
-
+typealias Time = MusicXML.Time
 typealias Key = MusicXML.Key
-
 typealias Clef = MusicXML.Clef
 
 struct Attributes: Decodable {

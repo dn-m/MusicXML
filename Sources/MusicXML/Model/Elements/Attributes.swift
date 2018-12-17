@@ -318,7 +318,7 @@ extension MusicXML {
     // <!ELEMENT beat-type (#PCDATA)>
     // <!ELEMENT senza-misura (#PCDATA)>
     // <!ELEMENT time-relation (#PCDATA)>
-    public struct Time: Equatable {
+    public struct Time: Decodable, Equatable {
 
         // > The time-separator entity indicates how to display the
         // > arrangement between the beats and beat-type values in a
@@ -334,7 +334,7 @@ extension MusicXML {
         // <!ENTITY % time-separator
         //    "separator (none | horizontal | diagonal |
         //        vertical | adjacent) #IMPLIED">
-        public enum Separator: String {
+        public enum Separator: String, Decodable {
             case none
             case horizontal
             case diagonal
@@ -357,7 +357,7 @@ extension MusicXML {
         // <!ENTITY % time-symbol
         //    "symbol (common | cut | single-number |
         //             note | dotted-note | normal) #IMPLIED">
-        public enum Symbol: String {
+        public enum Symbol: String, Decodable {
             case common = "common"
             case cut = "cut"
             case singleNumber = "single-number"
@@ -371,7 +371,7 @@ extension MusicXML {
         //
         // > Valid values are parentheses, bracket, equals, slash, space,
         // > and hyphen.
-        public enum Relation {
+        public enum Relation: String, Decodable {
             case parentheses
             case bracket
             case equals
@@ -380,7 +380,7 @@ extension MusicXML {
             case hyphen
         }
 
-        public enum Kind: Equatable {
+        public enum Kind: Decodable, Equatable {
 
             // > Time signatures are represented by two elements. The
             // > beats element indicates the number of beats, as found in
@@ -398,21 +398,33 @@ extension MusicXML {
             // > the 6/8 in 3/4 (6/8). A separate symbol attribute value is
             // > available compared to the time element's symbol attribute,
             // > which applies to the first of the dual time signatures.
-            public struct Measured: Equatable {
+            public struct Measured: Decodable, Equatable {
 
-                public struct Interchangeable: Equatable {
+                public struct Interchangeable: Decodable, Equatable {
                     let symbol: Symbol
                     let separator: Separator
                 }
 
-                struct Signature: Equatable {
+                struct Signature: Decodable, Equatable {
+
+                    enum CodingKeys: String, CodingKey {
+                        case beats
+                        case beatType = "beat-type"
+                    }
+
                     let beats: Int
                     let beatType: Int
                 }
 
                 // TODO: Ensure NonEmpty
                 let signatures: [Signature]
-                let interchangeable: Interchangeable
+                let interchangeable: Interchangeable?
+
+                public init(from decoder: Decoder) throws {
+                    var container = try decoder.unkeyedContainer()
+                    self.signatures = try container.decode([Signature].self)
+                    self.interchangeable = nil
+                }
             }
 
             // > A senza-misura element explicitly indicates that no time
@@ -420,12 +432,21 @@ extension MusicXML {
             // > indicates the symbol to be used, if any, such as an X.
             // > The time element's symbol attribute is not used when a
             // > senza-misura element is present.
-            public struct Unmeasured: Equatable {
+            public struct Unmeasured: Decodable, Equatable {
                 let symbol: String?
             }
 
             case measured(Measured)
             case unmeasured(Unmeasured)
+
+            public init(from decoder: Decoder) throws {
+                var container = try decoder.unkeyedContainer()
+                do {
+                    self = .measured(try container.decode(Measured.self))
+                } catch {
+                    self = .unmeasured(try container.decode(Unmeasured.self))
+                }
+            }
         }
 
         let kind: Kind
@@ -443,6 +464,15 @@ extension MusicXML {
             self.symbol = symbol
             self.separator = separator
             self.id = id
+        }
+
+        #warning("TODO: Handle MusicXML.Time attributes symbol, separator, id, etc.")
+        public init(from decoder: Decoder) throws {
+            var container = try decoder.unkeyedContainer()
+            self.kind = try container.decode(Kind.self)
+            self.symbol = .common
+            self.separator = .horizontal
+            self.id = nil
         }
     }
 
