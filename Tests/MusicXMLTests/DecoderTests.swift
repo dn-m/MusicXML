@@ -182,8 +182,13 @@ class DecoderTests: XCTestCase {
     }
 }
 
+typealias ScorePart = MusicXML.ScorePart
+typealias PartList = MusicXML.PartList
 typealias Note = MusicXML.Note
 typealias Pitch = MusicXML.Pitch
+typealias Time = MusicXML.Time
+typealias Key = MusicXML.Key
+typealias Clef = MusicXML.Clef
 
 struct Measure: Decodable {
 
@@ -198,9 +203,7 @@ struct Measure: Decodable {
     let notes: [Note]
 }
 
-typealias Time = MusicXML.Time
-typealias Key = MusicXML.Key
-typealias Clef = MusicXML.Clef
+
 
 struct Attributes: Decodable {
     let key: Key
@@ -220,8 +223,7 @@ struct Part: Decodable {
     let measures: [Measure]
 }
 
-typealias ScorePart = MusicXML.ScorePart
-typealias PartList = MusicXML.PartList
+
 
 struct ScorePartWise: Decodable {
 
