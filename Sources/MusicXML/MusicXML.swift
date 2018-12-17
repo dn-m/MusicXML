@@ -5,5 +5,9 @@
 //  Created by James Bean on 12/3/18.
 //
 
-/// Namespace for `MusicXML` types.
-public struct MusicXML { }
+/// A MusicXML document.
+public struct MusicXML {
+
+    /// The MusicXML.Score which is contained within a MusicXML document.
+    let score: Score
+}

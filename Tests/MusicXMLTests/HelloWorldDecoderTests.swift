@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import XMLCoder
 import MusicXML
 
 class HelloWorldDecoderTests: XCTestCase {
@@ -51,7 +50,7 @@ class HelloWorldDecoderTests: XCTestCase {
           </part>
         </score-partwise>
         """
-        let score = try! XMLDecoder().decode(MusicXML.Score.self, from: xml.data(using: .utf8)!)
-        dump(score)
+        let musicXML = try! MusicXML(string: xml)
+        dump(musicXML)
     }
 }
