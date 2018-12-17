@@ -6,4 +6,4 @@
 //
 
 /// Namespace for `MusicXML` types.
-public enum MusicXML { }
+public struct MusicXML { }
