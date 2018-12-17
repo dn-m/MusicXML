@@ -1,19 +1,15 @@
 //
-//  DecoderTests.swift
+//  HelloWorldDecoderTests.swift
 //  MusicXMLTests
 //
-//  Created by James Bean on 12/16/18.
+//  Created by James Bean on 12/17/18.
 //
 
 import XCTest
 import XMLCoder
 import MusicXML
 
-class DecoderTests: XCTestCase {
-
-    
-
-    
+class HelloWorldDecoderTests: XCTestCase {
 
     func testHelloWorld() {
         let xml = """
@@ -55,7 +51,6 @@ class DecoderTests: XCTestCase {
           </part>
         </score-partwise>
         """
-        let scorePartwise = try! XMLDecoder().decode(MusicXML.ScorePartwise.self, from: xml.data(using: .utf8)!)
-        dump(scorePartwise)
+        let _ = try! XMLDecoder().decode(MusicXML.ScorePartwise.self, from: xml.data(using: .utf8)!)
     }
 }
