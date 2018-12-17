@@ -203,8 +203,6 @@ struct Measure: Decodable {
     let notes: [Note]
 }
 
-
-
 struct Attributes: Decodable {
     let key: Key
     let clef: Clef
