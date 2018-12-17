@@ -179,6 +179,5 @@ class DecoderTests: XCTestCase {
         """
         let scorePartwise = try! XMLDecoder().decode(MusicXML.ScorePartwise.self, from: xml.data(using: .utf8)!)
         dump(scorePartwise)
-
     }
 }
