@@ -51,6 +51,7 @@ class HelloWorldDecoderTests: XCTestCase {
           </part>
         </score-partwise>
         """
-        let _ = try! XMLDecoder().decode(MusicXML.Score.self, from: xml.data(using: .utf8)!)
+        let score = try! XMLDecoder().decode(MusicXML.Score.self, from: xml.data(using: .utf8)!)
+        dump(score)
     }
 }

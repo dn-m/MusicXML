@@ -38,7 +38,7 @@ class ScoreDecoderTests: XCTestCase {
             </note>
         </measure>
         """
-        let _ = try! XMLDecoder().decode(MusicXML.MeasurePartwise.self, from: xml.data(using: .utf8)!)
+        let _ = try! XMLDecoder().decode(MusicXML.Measure.Partwise.self, from: xml.data(using: .utf8)!)
     }
 
     func testPart() {
