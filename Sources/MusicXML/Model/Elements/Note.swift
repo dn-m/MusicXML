@@ -111,13 +111,26 @@ extension MusicXML {
     // <!ELEMENT step (#PCDATA)>
     // <!ELEMENT alter (#PCDATA)>
     // <!ELEMENT octave (#PCDATA)>
-    public struct Pitch: Equatable {
+    public struct Pitch: Decodable, Equatable {
+
+        public enum Step: String, Decodable {
+            case a = "A"
+            case b = "B"
+            case c = "C"
+            case d = "D"
+            case e = "E"
+            case f = "F"
+            case g = "G"
+        }
+
         // TODO: Use `dn-m/LetterName` enum
-        let step: String
+        let step: Step
+        let alter: Double?
         let octave: Int
         // TODO: let alter: Double = 0
-        public init(step: String, octave: Int) {
+        public init(step: Step, alter: Double?, octave: Int) {
             self.step = step
+            self.alter = alter
             self.octave = octave
         }
     }
