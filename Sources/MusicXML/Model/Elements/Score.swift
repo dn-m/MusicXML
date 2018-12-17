@@ -24,6 +24,56 @@
 //  into a collection.
 extension MusicXML {
 
+    public struct Score: Decodable {
+
+        public struct Partwise: Decodable, Equatable {
+
+            enum CodingKeys: String, CodingKey {
+                case partList = "part-list"
+                case parts = "part"
+            }
+
+            // TODO: score-header
+            // TODO: Use NonEmpty
+            let partList: PartList
+            let parts: [PartPartwise]
+        }
+
+        public struct Timewise: Decodable, Equatable {
+
+            enum CodingKeys: String, CodingKey {
+                case partList = "part-list"
+                case measures = "measure"
+            }
+
+            // TODO: score-header
+            // TODO: Use NonEmpty
+            let partList: PartList
+            let measures: [MeasureTimewise]
+        }
+
+        enum Traversal: Decodable {
+            case partwise(Partwise)
+            case timewise(Timewise)
+
+            init(from decoder: Decoder) throws {
+                var container = try decoder.unkeyedContainer()
+                do {
+                    self = .partwise(try container.decode(Partwise.self))
+                } catch {
+                    self = .timewise(try container.decode(Timewise.self))
+                }
+            }
+        }
+
+        let traversal: Traversal
+
+        public init(from decoder: Decoder) throws {
+            var container = try decoder.unkeyedContainer()
+            self.traversal = try container.decode(Traversal.self)
+        }
+    }
+
     // <!ATTLIST score-part
     //    id ID #REQUIRED
     //
@@ -70,18 +120,7 @@ extension MusicXML {
         }
     }
 
-    public struct ScorePartwise: Decodable {
 
-        enum CodingKeys: String, CodingKey {
-            case partList = "part-list"
-            case parts = "part"
-        }
-
-        // TODO: score-header
-        // TODO: Use NonEmpty
-        let partList: PartList
-        let parts: [PartPartwise]
-    }
 
     // In either format, the part element has an id attribute that
     // is an IDREF back to a score-part in the part-list. Measures
@@ -91,7 +130,7 @@ extension MusicXML {
     // <!ATTLIST part
     //    id IDREF #REQUIRED
     // >
-    public struct PartPartwise: Decodable {
+    public struct PartPartwise: Decodable, Equatable {
 
         enum CodingKeys: String, CodingKey {
             case id
@@ -100,6 +139,11 @@ extension MusicXML {
 
         let id: String // TODO: Make typesafe
         let measures: [MeasurePartwise]
+    }
+
+    #warning("TODO: Build out PartTimewise")
+    public struct PartTimewise: Decodable, Equatable {
+        // TODO: music-data
     }
 
     // Here is the basic musical data that is either associated
@@ -153,7 +197,7 @@ extension MusicXML {
     //     width %tenths; #IMPLIED
     //     %optional-unique-id;
     // >
-    public struct MeasurePartwise: Decodable {
+    public struct MeasurePartwise: Decodable, Equatable {
         let number: Int
         let attributes: [Attributes]?
         let text: String?
@@ -161,6 +205,12 @@ extension MusicXML {
         let nonControlling: Bool?
         let width: Int? // Tenths
         let optionalUniqueID: Int?
+    }
+
+    #warning("TODO: Build out MeasureTimewise")
+    public struct MeasureTimewise: Decodable, Equatable {
+        let number: Int
+        let parts: [PartTimewise]
     }
 
 
