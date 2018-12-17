@@ -187,7 +187,6 @@ struct Note: Decodable {
 }
 
 struct Pitch: Decodable {
-    let id: Int?
     let step: String
     let octave: Int
 }
