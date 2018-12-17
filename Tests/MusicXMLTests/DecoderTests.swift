@@ -221,8 +221,6 @@ struct Part: Decodable {
     let measures: [Measure]
 }
 
-
-
 struct ScorePartWise: Decodable {
 
     enum CodingKeys: String, CodingKey {
