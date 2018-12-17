@@ -220,16 +220,7 @@ struct Part: Decodable {
     let measures: [Measure]
 }
 
-struct ScorePart: Decodable {
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name = "part-name"
-    }
-
-    let id: String
-    let name: String
-}
+typealias ScorePart = MusicXML.ScorePart
 
 struct PartList: Decodable {
 

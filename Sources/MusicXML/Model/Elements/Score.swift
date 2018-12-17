@@ -64,9 +64,17 @@ extension MusicXML {
     //     %print-object;
     //     %justify;
     // >
-    public struct ScorePart: Equatable {
+    public struct ScorePart: Decodable, Equatable {
+
+        enum CodingKeys: String, CodingKey {
+            case id
+            case name = "part-name"
+        }
+
         let id: String
         let name: String
+
+        #warning("TODO: Support MusicXML.ScorePart attributes print-style, print-object, justify")
         public init(id: String, name: String) {
             self.id = id
             self.name = name
