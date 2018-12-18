@@ -95,9 +95,9 @@ extension MusicXML {
 
         let pitch: Pitch
         let duration: Int // amount of "divisions"
-        let durationType: String
+        let durationType: DurationType
 
-        public init(pitch: Pitch, duration: Int, durationType: String) {
+        public init(pitch: Pitch, duration: Int, durationType: DurationType) {
             self.pitch = pitch
             self.duration = duration
             self.durationType = durationType
@@ -197,6 +197,13 @@ extension MusicXML {
         public init(kind: Kind, size: Size?) {
             self.kind = kind
             self.size = size
+        }
+
+        #warning("TODO: Handle DurationType.size decoding")
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            self.kind = try container.decode(Kind.self)
+            self.size = nil
         }
     }
 
