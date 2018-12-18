@@ -961,7 +961,7 @@ extension MusicXML {
     }
 
     // <!ENTITY % editorial-voice "(footnote?, level?, voice?)">
-    public struct EditorialVoice {
+    public struct EditorialVoice: Decodable, Equatable {
         let footnote: Footnote?
         let level: Level?
         let voice: Voice?
@@ -998,7 +998,7 @@ extension MusicXML {
     }
 
     // <!ELEMENT voice (#PCDATA)>
-    public struct Voice {
+    public struct Voice: Decodable, Equatable {
         let value: Int
     }
 
@@ -1069,7 +1069,7 @@ extension MusicXML {
     // > in a part.
     //
     // <!ELEMENT staff (#PCDATA)>
-    public struct Staff {
+    public struct Staff: Decodable, Equatable {
         let value: Int
     }
 

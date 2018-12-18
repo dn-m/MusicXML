@@ -1,3 +1,5 @@
+import XMLCoder
+
 //
 //  Score.swift
 //  MusicXML
@@ -24,16 +26,43 @@
 //  into a collection.
 extension MusicXML {
 
-    public struct Score: Decodable {
+    // > The score is the root element for the DTD. It includes
+    // > the score-header entity, followed either by a series of
+    // > parts with measures inside (score-partwise) or a series
+    // > of measures with parts inside (score-timewise). Having
+    // > distinct top-level elements for partwise and timewise
+    // > scores makes it easy to ensure that an XSLT stylesheet
+    // > does not try to transform a document already in the
+    // > desired format. The document-attributes entity includes the
+    // > version attribute and is defined in the common.mod file.
+    //
+    // <![ %partwise; [
+    // <!ELEMENT score-partwise (%score-header;, part+)>
+    // <!ATTLIST score-partwise
+    //    %document-attributes;
+    // >
+    #warning("TODO: Document attributes")
+    public struct Score: Decodable, Equatable {
 
         public struct Partwise: Decodable, Equatable {
 
             enum CodingKeys: String, CodingKey {
+                case work
+                case movement
                 case partList = "part-list"
                 case parts = "part"
             }
 
-            // TODO: score-header
+            //    The score-header entity contains basic score metadata
+            //    about the work and movement, score-wide defaults for
+            //    layout and fonts, credits that appear on the first page,
+            //    and the part list.
+            let work: Work?
+            let movement: Movement?
+            // TODO: identification
+            // TODO: defaults
+            // TODO: credit *
+
             // TODO: Use NonEmpty
             let partList: PartList
             let parts: [Part.Partwise]
@@ -52,7 +81,7 @@ extension MusicXML {
             let measures: [Measure.Timewise]
         }
 
-        enum Traversal: Decodable {
+        enum Traversal: Decodable, Equatable {
             
             case partwise(Partwise)
             case timewise(Timewise)
@@ -140,6 +169,12 @@ extension MusicXML {
 
             let id: String // TODO: Make typesafe
             let measures: [Measure.Partwise]
+
+            public init(from decoder: Decoder) throws {
+                let keyed = try decoder.container(keyedBy: CodingKeys.self)
+                self.id = try keyed.decode(String.self, forKey: .id)
+                self.measures = try keyed.decode([Measure.Partwise].self, forKey: .measures)
+            }
         }
 
         #warning("TODO: Build out PartTimewise")
@@ -148,6 +183,7 @@ extension MusicXML {
         }
 
         enum Traversal: Decodable, Equatable {
+
             case partwise(Partwise)
             case timewise(Timewise)
 
@@ -169,17 +205,42 @@ extension MusicXML {
         }
     }
 
+    // Here is the basic musical data that is either associated
+    // with a part or a measure, depending on whether partwise
+    // or timewise hierarchy is used.
+    //
+    // <!ENTITY % music-data
+    //    "(note | backup | forward | direction | attributes |
+    //      harmony | figured-bass | print | sound | barline |
+    //      grouping | link | bookmark)*">
+    //
+    public struct MusicData: Decodable, Equatable {
+
+        let values: [MusicDatum]
+
+        public init(from decoder: Decoder) throws {
+            print("attempting to decode music data along: \(decoder.codingPath)")
+            var container = try decoder.unkeyedContainer()
+            self.values = try container.decode([MusicDatum].self)
+        }
+    }
+
+    public enum MusicDatum: Decodable, Equatable {
+
+        enum CodingKeys: String, CodingKey {
+            case note
+        }
+
+        case note(Note)
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self = .note(try container.decode(Note.self, forKey: .note))
+        }
+    }
+
     public struct Measure {
 
-        // Here is the basic musical data that is either associated
-        // with a part or a measure, depending on whether partwise
-        // or timewise hierarchy is used.
-        //
-        // <!ENTITY % music-data
-        //    "(note | backup | forward | direction | attributes |
-        //      harmony | figured-bass | print | sound | barline |
-        //      grouping | link | bookmark)*">
-        //
         // The implicit attribute is set to "yes" for measures where
         // the measure number should never appear, such as pickup
         // measures and the last half of mid-measure repeats. The
@@ -223,6 +284,18 @@ extension MusicXML {
         //     %optional-unique-id;
         // >
         public struct Partwise: Decodable, Equatable {
+
+            enum CodingKeys: String, CodingKey {
+                case number
+                case attributes
+                case text
+                case implicit
+                case nonControlling = "non-controlling"
+                case width
+                case optionalUniqueID = "optional-unique-id"
+                case notes = "note"
+            }
+
             let number: Int
             let attributes: [Attributes]?
             let text: String?
@@ -230,6 +303,30 @@ extension MusicXML {
             let nonControlling: Bool?
             let width: Int? // Tenths
             let optionalUniqueID: Int?
+
+            let notes: [Note]?
+
+//            public init(from decoder: Decoder) throws {
+//                print("attempt to decode measure.partwise")
+//                let keyed = try decoder.container(keyedBy: CodingKeys.self)
+//                var unkeyed = try decoder.unkeyedContainer()
+//                self.number = try keyed.decode(Int.self, forKey: .number)
+//                print("number ok")
+//                self.attributes = try keyed.decodeIfPresent([Attributes].self, forKey: .attributes)
+//                print("attributes ok")
+//                self.text = try keyed.decodeIfPresent(String.self, forKey: .text)
+//                print("text ok")
+//                self.implicit = try keyed.decodeIfPresent(Bool.self, forKey: .implicit)
+//                print("implicit ok")
+//                self.nonControlling = try keyed.decodeIfPresent(Bool.self, forKey: .nonControlling)
+//                print("non controlling ok")
+//                self.width = try keyed.decodeIfPresent(Int.self, forKey: .width)
+//                print("width ok")
+//                self.optionalUniqueID = try keyed.decodeIfPresent(Int.self, forKey: .optionalUniqueID)
+//                print("unique id ok")
+//                self.notes = try unkeyed.decodeIfPresent([MusicDatum].self)
+//                print("notes ok")
+//            }
         }
 
         #warning("TODO: Build out MeasureTimewise")
@@ -262,21 +359,30 @@ extension MusicXML {
         }
     }
 
+    // <!ELEMENT work (work-number?, work-title?, opus?)>
+    // <!ELEMENT work-number (#PCDATA)>
+    // <!ELEMENT work-title (#PCDATA)>
+    public struct Work: Decodable, Equatable {
+        let number: String
+        let title: String
+        let opus: Opus
+    }
 
-// MARK: TODO
-//
-//<!ELEMENT work (work-number?, work-title?, opus?)>
-//<!ELEMENT work-number (#PCDATA)>
-//<!ELEMENT work-title (#PCDATA)>
-//
-//<!ELEMENT opus EMPTY>
-//<!ATTLIST opus
-//    %link-attributes;
-//>
-//
-//<!ELEMENT movement-number (#PCDATA)>
-//<!ELEMENT movement-title (#PCDATA)>
-//
+    // <!ELEMENT opus EMPTY>
+    // <!ATTLIST opus
+    //    %link-attributes;
+    // >
+    public struct Opus: Decodable, Equatable {
+        //let linkAttributes: LinkAttributes
+    }
+
+    // <!ELEMENT movement-number (#PCDATA)>
+    // <!ELEMENT movement-title (#PCDATA)>
+    public struct Movement: Decodable, Equatable {
+        let number: String?
+        let title: String?
+    }
+
 //<!--
 //    Collect score-wide defaults. This includes scaling
 //    and layout, defined in layout.mod, and default values
@@ -557,32 +663,7 @@ extension MusicXML {
 //-->
 //<!ELEMENT group (#PCDATA)>
 //
-//<!--
-//    The score-header entity contains basic score metadata
-//    about the work and movement, score-wide defaults for
-//    layout and fonts, credits that appear on the first page,
-//    and the part list.
-//-->
-//<!ENTITY % score-header
-//    "(work?, movement-number?, movement-title?,
-//      identification?, defaults?, credit*, part-list)">
-//
-//<!--
-//    The score is the root element for the DTD. It includes
-//    the score-header entity, followed either by a series of
-//    parts with measures inside (score-partwise) or a series
-//    of measures with parts inside (score-timewise). Having
-//    distinct top-level elements for partwise and timewise
-//    scores makes it easy to ensure that an XSLT stylesheet
-//    does not try to transform a document already in the
-//    desired format. The document-attributes entity includes the
-//    version attribute and is defined in the common.mod file.
-//-->
-//<![ %partwise; [
-//<!ELEMENT score-partwise (%score-header;, part+)>
-//<!ATTLIST score-partwise
-//    %document-attributes;
-//>
+
 //<!ELEMENT part (measure+)>
 //<!ELEMENT measure (%music-data;)>
 //]]>

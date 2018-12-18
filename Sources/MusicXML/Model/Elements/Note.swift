@@ -1504,17 +1504,18 @@ extension MusicXML {
     // > boundaries or mid-measure changes in the divisions value.
     //
     // <!ELEMENT backup (duration, %editorial;)>
-    public struct Backup {
+    public struct Backup: Decodable, Equatable {
         let duration: Int
+        let editorial: Editorial
     }
 
     // <!ELEMENT forward
     //    (duration, %editorial-voice;, staff?)>
-    public struct Forward {
+    public struct Forward: Decodable, Equatable {
         let duration: Int
-        let staff: Int?
+        let editorialVoice: EditorialVoice?
+        let staff: Staff?
     }
-
 
 // MARK: TODO
 

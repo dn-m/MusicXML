@@ -10,4 +10,6 @@ public struct MusicXML {
 
     /// The MusicXML.Score which is contained within a MusicXML document.
     let score: Score
+
+    // TODO: Version
 }

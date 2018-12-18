@@ -34,4 +34,19 @@ class NoteDecoderTests: XCTestCase {
         """
         let _ = try! XMLDecoder().decode(MusicXML.Note.self, from: xml.data(using: .utf8)!)
     }
+
+    func testMusicData() {
+        let xml = """
+        <note>
+            <pitch>
+                <step>C</step>
+                <octave>3</octave>
+            </pitch>
+            <duration>1</duration>
+            <voice>1</voice>
+            <type>quarter</type>
+        </note>
+        """
+        XCTAssertNoThrow(try XMLDecoder().decode([MusicXML.MusicDatum].self, from: xml.data(using: .utf8)!))
+    }
 }
