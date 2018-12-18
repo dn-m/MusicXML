@@ -44,28 +44,55 @@ extension MusicXML {
     #warning("TODO: Document attributes")
     public struct Score: Decodable, Equatable {
 
-        public struct Partwise: Decodable, Equatable {
+        // > The score-header entity contains basic score metadata
+        // > about the work and movement, score-wide defaults for
+        // > layout and fonts, credits that appear on the first page,
+        // > and the part list.
+        //
+        // <!ENTITY % score-header
+        // "(work?, movement-number?, movement-title?,
+        // identification?, defaults?, credit*, part-list)">
+        public struct Header: Decodable, Equatable {
 
             enum CodingKeys: String, CodingKey {
                 case work
-                case movement
+                case movementNumber = "movement-number"
+                case movementTitle = "movement-title"
                 case partList = "part-list"
-                case parts = "part"
+
+                // identification
+                // defaults
+                // credits = "credit"
             }
 
-            //    The score-header entity contains basic score metadata
-            //    about the work and movement, score-wide defaults for
-            //    layout and fonts, credits that appear on the first page,
-            //    and the part list.
             let work: Work?
-            let movement: Movement?
+
+            // TODO: Use Movement struct
+            let movementNumber: String?
+            let movementTitle: String?
             // TODO: identification
             // TODO: defaults
             // TODO: credit *
 
             // TODO: Use NonEmpty
             let partList: PartList
+        }
+
+        public struct Partwise: Decodable, Equatable {
+
+            enum CodingKeys: String, CodingKey {
+                case parts = "part"
+            }
+
+            let header: Header
             let parts: [Part.Partwise]
+
+            public init(from decoder: Decoder) throws {
+                var unkeyed = try decoder.unkeyedContainer()
+                let keyed = try decoder.container(keyedBy: CodingKeys.self)
+                self.header = try unkeyed.decode(Header.self)
+                self.parts = try keyed.decode([Part.Partwise].self, forKey: .parts)
+            }
         }
 
         public struct Timewise: Decodable, Equatable {
@@ -321,13 +348,6 @@ extension MusicXML {
     // >
     public struct Opus: Decodable, Equatable {
         //let linkAttributes: LinkAttributes
-    }
-
-    // <!ELEMENT movement-number (#PCDATA)>
-    // <!ELEMENT movement-title (#PCDATA)>
-    public struct Movement: Decodable, Equatable {
-        let number: String?
-        let title: String?
     }
 
     #warning("TODO: Build out MusicDatum")
