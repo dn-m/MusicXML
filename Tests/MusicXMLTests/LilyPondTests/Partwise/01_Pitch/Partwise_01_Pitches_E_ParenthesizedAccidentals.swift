@@ -1,12 +1,12 @@
 //
-//  F_ParenthesizedMicrotonalAccidentals.swift
+//  Partwise_01_Pitches_E_ParenthesizedAccidentals.swift
 //  MusicXMLTests
 //
 //  Created by James Bean on 12/17/18.
 //
 
-extension Timewise_01_Pitches {
-    var F_ParenthesizedMicrotonalAccidentals: String {
+extension Partwise_01_Pitches {
+    var E_ParenthesizedAccidentals: String {
         return """
         <?xml version="1.0" encoding="UTF-8" standalone="no"?>
         <!DOCTYPE score-timewise
@@ -14,10 +14,9 @@ extension Timewise_01_Pitches {
         <score-timewise>
            <identification>
               <miscellaneous>
-                 <miscellaneous-field name="description">Microtone accidentals can be
-                  cautionary or editorial. Each measure has a normal accidental,
-                  an editorial, a cautionary and an editioal and cautionary
-                  accidental.</miscellaneous-field>
+                 <miscellaneous-field name="description">Accidentals can be cautionary
+                  or editorial. Each measure has a normal accidental, an editorial,
+                  a cautionary and an editioal and cautionary accidental.</miscellaneous-field>
               </miscellaneous>
           </identification>
            <part-list>
@@ -45,46 +44,46 @@ extension Timewise_01_Pitches {
                  <note>
                     <pitch>
                        <step>D</step>
-                       <alter>-0.5</alter>
+                       <alter>-1</alter>
                        <octave>4</octave>
                     </pitch>
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
-                    <accidental>quarter-flat</accidental>
+                    <accidental>flat</accidental>
                  </note>
                  <note>
                     <pitch>
                        <step>D</step>
-                       <alter>-0.5</alter>
+                       <alter>-1</alter>
                        <octave>4</octave>
                     </pitch>
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
-                    <accidental editorial="yes">quarter-flat</accidental>
+                    <accidental editorial="yes">flat</accidental>
                  </note>
                  <note>
                     <pitch>
                        <step>D</step>
-                       <alter>-0.5</alter>
+                       <alter>-1</alter>
                        <octave>4</octave>
                     </pitch>
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
-                    <accidental cautionary="yes">quarter-flat</accidental>
+                    <accidental cautionary="yes">flat</accidental>
                  </note>
                  <note>
                     <pitch>
                        <step>D</step>
-                       <alter>-0.5</alter>
+                       <alter>-1</alter>
                        <octave>4</octave>
                     </pitch>
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
-                    <accidental editorial="yes" cautionary="yes">quarter-flat</accidental>
+                    <accidental editorial="yes" cautionary="yes">flat</accidental>
                  </note>
               </part>
            </measure>
@@ -141,46 +140,46 @@ extension Timewise_01_Pitches {
                  <note>
                     <pitch>
                        <step>D</step>
-                       <alter>-1.5</alter>
+                       <alter>-2</alter>
                        <octave>4</octave>
                     </pitch>
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
-                    <accidental>three-quarters-flat</accidental>
+                    <accidental>double-flat</accidental>
                  </note>
                  <note>
                     <pitch>
                        <step>D</step>
-                       <alter>-1.5</alter>
+                       <alter>-2</alter>
                        <octave>4</octave>
                     </pitch>
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
-                    <accidental editorial="yes">three-quarters-flat</accidental>
+                    <accidental editorial="yes">double-flat</accidental>
                  </note>
                  <note>
                     <pitch>
                        <step>D</step>
-                       <alter>-1.5</alter>
+                       <alter>-2</alter>
                        <octave>4</octave>
                     </pitch>
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
-                    <accidental cautionary="yes">three-quarters-flat</accidental>
+                    <accidental cautionary="yes">double-flat</accidental>
                  </note>
                  <note>
                     <pitch>
                        <step>D</step>
-                       <alter>-1.5</alter>
+                       <alter>-2</alter>
                        <octave>4</octave>
                     </pitch>
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
-                    <accidental editorial="yes" cautionary="yes">three-quarters-flat</accidental>
+                    <accidental editorial="yes" cautionary="yes">double-flat</accidental>
                  </note>
               </part>
            </measure>
@@ -189,46 +188,46 @@ extension Timewise_01_Pitches {
                  <note>
                     <pitch>
                        <step>C</step>
-                       <alter>1.5</alter>
+                       <alter>2</alter>
                        <octave>4</octave>
                     </pitch>
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
-                    <accidental>three-quarters-sharp</accidental>
+                    <accidental>double-sharp</accidental>
                  </note>
                  <note>
                     <pitch>
                        <step>C</step>
-                       <alter>1.5</alter>
+                       <alter>2</alter>
                        <octave>4</octave>
                     </pitch>
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
-                    <accidental editorial="yes">three-quarters-sharp</accidental>
+                    <accidental editorial="yes">double-sharp</accidental>
                  </note>
                  <note>
                     <pitch>
                        <step>C</step>
-                       <alter>1.5</alter>
+                       <alter>2</alter>
                        <octave>4</octave>
                     </pitch>
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
-                    <accidental cautionary="yes">three-quarters-sharp</accidental>
+                    <accidental cautionary="yes">double-sharp</accidental>
                  </note>
                  <note>
                     <pitch>
                        <step>C</step>
-                       <alter>1.5</alter>
+                       <alter>2</alter>
                        <octave>4</octave>
                     </pitch>
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
-                    <accidental editorial="yes" cautionary="yes">three-quarters-sharp</accidental>
+                    <accidental editorial="yes" cautionary="yes">double-sharp</accidental>
                  </note>
               </part>
            </measure>

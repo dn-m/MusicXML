@@ -1,5 +1,5 @@
 //
-//  Timewise_01_Pitches.swift
+//  Partwise_01_Pitches.swift
 //  MusicXMLTests
 //
 //  Created by James Bean on 12/17/18.
@@ -8,7 +8,7 @@
 import XCTest
 import MusicXML
 
-class Timewise_01_Pitches: XCTestCase {
+class Partwise_01_Pitches: XCTestCase {
 
     func testA_Pitches() {
         XCTAssertNoThrow(try MusicXML(string: A_Pitches))

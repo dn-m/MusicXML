@@ -1,22 +1,24 @@
 //
-//  B_Intervals.swift
+//  Timewise_01_Pitches_A_Pitches.swift
 //  MusicXMLTests
 //
 //  Created by James Bean on 12/17/18.
 //
 
 extension Timewise_01_Pitches {
-    var B_Intervals: String {
+    var A_Pitches: String {
         return """
         <?xml version="1.0" encoding="UTF-8" standalone="no"?>
         <!DOCTYPE score-timewise
           PUBLIC "-//Recordare//DTD MusicXML 2.0 Timewise//EN" "http://www.musicxml.org/dtds/timewise.dtd">
         <score-timewise>
-           <movement-title>Various piches and interval sizes</movement-title>
+           <movement-title>Pitches and accidentals</movement-title>
            <identification>
               <miscellaneous>
-                 <miscellaneous-field name="description">All pitch intervals in ascending
-                  jump size.</miscellaneous-field>
+                 <miscellaneous-field name="description">All pitches from G to c'''' in
+                  ascending steps; First without accidentals, then with a sharp and then
+                  with a flat accidental. Double alterations and cautionary accidentals
+                  are tested at the end.</miscellaneous-field>
               </miscellaneous>
           </identification>
            <part-list>
@@ -33,7 +35,7 @@ extension Timewise_01_Pitches {
                        <mode>major</mode>
                     </key>
                     <time symbol="common">
-                       <beats>2</beats>
+                       <beats>4</beats>
                        <beat-type>4</beat-type>
                     </time>
                     <clef>
@@ -43,105 +45,8 @@ extension Timewise_01_Pitches {
                  </attributes>
                  <note>
                     <pitch>
-                       <step>C</step>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <alter>1</alter>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <alter>-1</alter>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>D</step>
-                       <alter>-1</alter>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>B</step>
-                       <alter>1</alter>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>D</step>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>B</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>D</step>
-                       <alter>1</alter>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>B</step>
-                       <alter>-1</alter>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>E</step>
-                       <alter>-1</alter>
-                       <octave>5</octave>
+                       <step>G</step>
+                       <octave>2</octave>
                     </pitch>
                     <duration>1</duration>
                     <voice>1</voice>
@@ -150,220 +55,7 @@ extension Timewise_01_Pitches {
                  <note>
                     <pitch>
                        <step>A</step>
-                       <alter>1</alter>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>E</step>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>A</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>E</step>
-                       <alter>1</alter>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>A</step>
-                       <alter>-1</alter>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>F</step>
-                       <alter>-1</alter>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>G</step>
-                       <alter>1</alter>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>F</step>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>G</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>F</step>
-                       <alter>1</alter>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>G</step>
-                       <alter>-1</alter>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>G</step>
-                       <alter>-1</alter>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>F</step>
-                       <alter>1</alter>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>G</step>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>F</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>G</step>
-                       <alter>1</alter>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>F</step>
-                       <alter>-1</alter>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>A</step>
-                       <alter>-1</alter>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>E</step>
-                       <alter>1</alter>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>A</step>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>E</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>A</step>
-                       <alter>1</alter>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>E</step>
-                       <alter>-1</alter>
-                       <octave>4</octave>
+                       <octave>2</octave>
                     </pitch>
                     <duration>1</duration>
                     <voice>1</voice>
@@ -372,8 +64,7 @@ extension Timewise_01_Pitches {
                  <note>
                     <pitch>
                        <step>B</step>
-                       <alter>-1</alter>
-                       <octave>5</octave>
+                       <octave>2</octave>
                     </pitch>
                     <duration>1</duration>
                     <voice>1</voice>
@@ -381,9 +72,61 @@ extension Timewise_01_Pitches {
                  </note>
                  <note>
                     <pitch>
+                       <step>C</step>
+                       <octave>3</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+              </part>
+           </measure>
+           <measure number="2">
+              <part id="P1">
+                 <note>
+                    <pitch>
                        <step>D</step>
-                       <alter>1</alter>
-                       <octave>4</octave>
+                       <octave>3</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>E</step>
+                       <octave>3</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>F</step>
+                       <octave>3</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>G</step>
+                       <octave>3</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+              </part>
+           </measure>
+           <measure number="3">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>A</step>
+                       <octave>3</octave>
                     </pitch>
                     <duration>1</duration>
                     <voice>1</voice>
@@ -392,65 +135,7 @@ extension Timewise_01_Pitches {
                  <note>
                     <pitch>
                        <step>B</step>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>D</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>B</step>
-                       <alter>1</alter>
-                       <octave>5</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>D</step>
-                       <alter>-1</alter>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <alter>-1</alter>
-                       <octave>6</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <alter>1</alter>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>6</octave>
+                       <octave>3</octave>
                     </pitch>
                     <duration>1</duration>
                     <voice>1</voice>
@@ -467,6 +152,507 @@ extension Timewise_01_Pitches {
                  </note>
                  <note>
                     <pitch>
+                       <step>D</step>
+                       <octave>4</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+              </part>
+           </measure>
+           <measure number="4">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>E</step>
+                       <octave>4</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>F</step>
+                       <octave>4</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>G</step>
+                       <octave>4</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>A</step>
+                       <octave>4</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+              </part>
+           </measure>
+           <measure number="5">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>B</step>
+                       <octave>4</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>C</step>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>D</step>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>E</step>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+              </part>
+           </measure>
+           <measure number="6">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>F</step>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>G</step>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>A</step>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>B</step>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+              </part>
+           </measure>
+           <measure number="7">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>C</step>
+                       <octave>6</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>D</step>
+                       <octave>6</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>E</step>
+                       <octave>6</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>F</step>
+                       <octave>6</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+              </part>
+           </measure>
+           <measure number="8">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>G</step>
+                       <octave>6</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>A</step>
+                       <octave>6</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>B</step>
+                       <octave>6</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>C</step>
+                       <octave>7</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                 </note>
+              </part>
+           </measure>
+           <measure number="9">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>G</step>
+                       <alter>1</alter>
+                       <octave>2</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>A</step>
+                       <alter>1</alter>
+                       <octave>2</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>B</step>
+                       <alter>1</alter>
+                       <octave>2</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>C</step>
+                       <alter>1</alter>
+                       <octave>3</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+              </part>
+           </measure>
+           <measure number="10">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>D</step>
+                       <alter>1</alter>
+                       <octave>3</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>E</step>
+                       <alter>1</alter>
+                       <octave>3</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>F</step>
+                       <alter>1</alter>
+                       <octave>3</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>G</step>
+                       <alter>1</alter>
+                       <octave>3</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+              </part>
+           </measure>
+           <measure number="11">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>A</step>
+                       <alter>1</alter>
+                       <octave>3</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>B</step>
+                       <alter>1</alter>
+                       <octave>3</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>C</step>
+                       <alter>1</alter>
+                       <octave>4</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>D</step>
+                       <alter>1</alter>
+                       <octave>4</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+              </part>
+           </measure>
+           <measure number="12">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>E</step>
+                       <alter>1</alter>
+                       <octave>4</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>F</step>
+                       <alter>1</alter>
+                       <octave>4</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>G</step>
+                       <alter>1</alter>
+                       <octave>4</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>A</step>
+                       <alter>1</alter>
+                       <octave>4</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+              </part>
+           </measure>
+           <measure number="13">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>B</step>
+                       <alter>1</alter>
+                       <octave>4</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>C</step>
+                       <alter>1</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>D</step>
+                       <alter>1</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>E</step>
+                       <alter>1</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+              </part>
+           </measure>
+           <measure number="14">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>F</step>
+                       <alter>1</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>G</step>
+                       <alter>1</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>A</step>
+                       <alter>1</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>B</step>
+                       <alter>1</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+              </part>
+           </measure>
+           <measure number="15">
+              <part id="P1">
+                 <note>
+                    <pitch>
                        <step>C</step>
                        <alter>1</alter>
                        <octave>6</octave>
@@ -474,6 +660,210 @@ extension Timewise_01_Pitches {
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>D</step>
+                       <alter>1</alter>
+                       <octave>6</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>E</step>
+                       <alter>1</alter>
+                       <octave>6</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>F</step>
+                       <alter>1</alter>
+                       <octave>6</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+              </part>
+           </measure>
+           <measure number="16">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>G</step>
+                       <alter>1</alter>
+                       <octave>6</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>A</step>
+                       <alter>1</alter>
+                       <octave>6</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>B</step>
+                       <alter>1</alter>
+                       <octave>6</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>C</step>
+                       <alter>1</alter>
+                       <octave>7</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+              </part>
+           </measure>
+           <measure number="17">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>G</step>
+                       <alter>-1</alter>
+                       <octave>2</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>A</step>
+                       <alter>-1</alter>
+                       <octave>2</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>B</step>
+                       <alter>-1</alter>
+                       <octave>2</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>C</step>
+                       <alter>-1</alter>
+                       <octave>3</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+              </part>
+           </measure>
+           <measure number="18">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>D</step>
+                       <alter>-1</alter>
+                       <octave>3</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>E</step>
+                       <alter>-1</alter>
+                       <octave>3</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>F</step>
+                       <alter>-1</alter>
+                       <octave>3</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>G</step>
+                       <alter>-1</alter>
+                       <octave>3</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+              </part>
+           </measure>
+           <measure number="19">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>A</step>
+                       <alter>-1</alter>
+                       <octave>3</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>B</step>
+                       <alter>-1</alter>
+                       <octave>3</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
                  </note>
                  <note>
                     <pitch>
@@ -484,6 +874,177 @@ extension Timewise_01_Pitches {
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>D</step>
+                       <alter>-1</alter>
+                       <octave>4</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+              </part>
+           </measure>
+           <measure number="20">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>E</step>
+                       <alter>-1</alter>
+                       <octave>4</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>F</step>
+                       <alter>-1</alter>
+                       <octave>4</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>G</step>
+                       <alter>-1</alter>
+                       <octave>4</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>A</step>
+                       <alter>-1</alter>
+                       <octave>4</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+              </part>
+           </measure>
+           <measure number="21">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>B</step>
+                       <alter>-1</alter>
+                       <octave>4</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>C</step>
+                       <alter>-1</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>D</step>
+                       <alter>-1</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>E</step>
+                       <alter>-1</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+              </part>
+           </measure>
+           <measure number="22">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>F</step>
+                       <alter>-1</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>G</step>
+                       <alter>-1</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>A</step>
+                       <alter>-1</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>B</step>
+                       <alter>-1</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
+                 </note>
+              </part>
+           </measure>
+           <measure number="23">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>C</step>
+                       <alter>-1</alter>
+                       <octave>6</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat</accidental>
                  </note>
                  <note>
                     <pitch>
@@ -494,54 +1055,7 @@ extension Timewise_01_Pitches {
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>B</step>
-                       <alter>1</alter>
-                       <octave>3</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>D</step>
-                       <octave>6</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>B</step>
-                       <octave>3</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>D</step>
-                       <alter>1</alter>
-                       <octave>6</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>B</step>
-                       <alter>-1</alter>
-                       <octave>3</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
+                    <accidental>flat</accidental>
                  </note>
                  <note>
                     <pitch>
@@ -552,54 +1066,7 @@ extension Timewise_01_Pitches {
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>A</step>
-                       <alter>1</alter>
-                       <octave>3</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>E</step>
-                       <octave>6</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>A</step>
-                       <octave>3</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>E</step>
-                       <alter>1</alter>
-                       <octave>6</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>A</step>
-                       <alter>-1</alter>
-                       <octave>3</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
+                    <accidental>flat</accidental>
                  </note>
                  <note>
                     <pitch>
@@ -610,55 +1077,12 @@ extension Timewise_01_Pitches {
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
+                    <accidental>flat</accidental>
                  </note>
-                 <note>
-                    <pitch>
-                       <step>G</step>
-                       <alter>1</alter>
-                       <octave>3</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>F</step>
-                       <octave>6</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>G</step>
-                       <octave>3</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>F</step>
-                       <alter>1</alter>
-                       <octave>6</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>G</step>
-                       <alter>-1</alter>
-                       <octave>3</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
+              </part>
+           </measure>
+           <measure number="24">
+              <part id="P1">
                  <note>
                     <pitch>
                        <step>G</step>
@@ -668,54 +1092,7 @@ extension Timewise_01_Pitches {
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>F</step>
-                       <alter>1</alter>
-                       <octave>3</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>G</step>
-                       <octave>6</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>F</step>
-                       <octave>3</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>G</step>
-                       <alter>1</alter>
-                       <octave>6</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>F</step>
-                       <alter>-1</alter>
-                       <octave>3</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
+                    <accidental>flat</accidental>
                  </note>
                  <note>
                     <pitch>
@@ -726,54 +1103,7 @@ extension Timewise_01_Pitches {
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>E</step>
-                       <alter>1</alter>
-                       <octave>3</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>A</step>
-                       <octave>6</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>E</step>
-                       <octave>3</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>A</step>
-                       <alter>1</alter>
-                       <octave>6</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>E</step>
-                       <alter>-1</alter>
-                       <octave>3</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
+                    <accidental>flat</accidental>
                  </note>
                  <note>
                     <pitch>
@@ -784,55 +1114,96 @@ extension Timewise_01_Pitches {
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
+                    <accidental>flat</accidental>
                  </note>
                  <note>
                     <pitch>
-                       <step>D</step>
-                       <alter>1</alter>
-                       <octave>3</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>B</step>
-                       <octave>6</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>D</step>
-                       <octave>3</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>B</step>
-                       <alter>1</alter>
-                       <octave>6</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>D</step>
+                       <step>C</step>
                        <alter>-1</alter>
-                       <octave>3</octave>
+                       <octave>7</octave>
                     </pitch>
                     <duration>1</duration>
                     <voice>1</voice>
                     <type>quarter</type>
+                    <accidental>flat</accidental>
                  </note>
+              </part>
+           </measure>
+           <measure number="31">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>C</step>
+                       <alter>2</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>double-sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>C</step>
+                       <alter>-2</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>flat-flat</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>C</step>
+                       <alter>1</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>C</step>
+                       <alter>1</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+              </part>
+           </measure>
+           <measure number="32">
+              <part id="P1">
+                 <note>
+                    <pitch>
+                       <step>C</step>
+                       <alter>1</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental>sharp</accidental>
+                 </note>
+                 <note>
+                    <pitch>
+                       <step>C</step>
+                       <alter>1</alter>
+                       <octave>5</octave>
+                    </pitch>
+                    <duration>1</duration>
+                    <voice>1</voice>
+                    <type>quarter</type>
+                    <accidental editorial="yes">sharp</accidental>
+                 </note>
+                 <barline location="right">
+                    <bar-style>light-heavy</bar-style>
+                 </barline>
               </part>
            </measure>
         </score-timewise>
