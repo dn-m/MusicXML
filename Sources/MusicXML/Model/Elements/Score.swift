@@ -167,7 +167,8 @@ extension MusicXML {
                 case measures = "measure"
             }
 
-            let id: String // TODO: Make typesafe
+            // TODO: Make typesafe
+            let id: String
             let measures: [Measure.Partwise]
 
             public init(from decoder: Decoder) throws {
@@ -179,7 +180,9 @@ extension MusicXML {
 
         #warning("TODO: Build out PartTimewise")
         public struct Timewise: Decodable, Equatable {
-            // TODO: music-data
+
+            let id: String
+            let musicData: [MusicDatum]
         }
 
         enum Traversal: Decodable, Equatable {
@@ -205,75 +208,41 @@ extension MusicXML {
         }
     }
 
-    // Here is the basic musical data that is either associated
-    // with a part or a measure, depending on whether partwise
-    // or timewise hierarchy is used.
-    //
-    // <!ENTITY % music-data
-    //    "(note | backup | forward | direction | attributes |
-    //      harmony | figured-bass | print | sound | barline |
-    //      grouping | link | bookmark)*">
-    //
-    public struct MusicData: Decodable, Equatable {
-
-        let values: [MusicDatum]
-
-        public init(from decoder: Decoder) throws {
-            print("attempting to decode music data along: \(decoder.codingPath)")
-            var container = try decoder.unkeyedContainer()
-            self.values = try container.decode([MusicDatum].self)
-        }
-    }
-
-    public enum MusicDatum: Decodable, Equatable {
-
-        enum CodingKeys: String, CodingKey {
-            case note
-        }
-
-        case note(Note)
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.singleValueContainer()
-            self = .note(try container.decode(Note.self))
-        }
-    }
-
     public struct Measure {
 
-        // The implicit attribute is set to "yes" for measures where
-        // the measure number should never appear, such as pickup
-        // measures and the last half of mid-measure repeats. The
-        // value is "no" if not specified.
+        // > The implicit attribute is set to "yes" for measures where
+        // > the measure number should never appear, such as pickup
+        // > measures and the last half of mid-measure repeats. The
+        // > value is "no" if not specified.
         //
-        // The non-controlling attribute is intended for use in
-        // multimetric music like the Don Giovanni minuet. If set
-        // to "yes", the left barline in this measure does not
-        // coincide with the left barline of measures in other
-        // parts. The value is "no" if not specified.
-        // In partwise files, the number attribute should be the same
-        // for measures in different parts that share the same left
-        // barline. While the number attribute is often numeric, it
-        // does not have to be. Non-numeric values are typically used
-        // together with the implicit or non-controlling attributes
-        // being set to "yes". For a pickup measure, the number
-        // attribute is typically set to "0" and the implicit attribute
-        // is typically set to "yes".
-        // If measure numbers are not unique within a part, this can
-        // cause problems for conversions between partwise and timewise
-        // formats. The text attribute allows specification of displayed
-        // measure numbers that are different than what is used in the
-        // number attribute. This attribute is ignored for measures
-        // where the implicit attribute is set to "yes". The text
-        // attribute for a measure element has at least one character.
-        // Further details about measure numbering can be specified
-        // using the measure-numbering element defined in the
-        // direction.mod file.
-        // Measure width is specified in tenths. These are the
-        // global tenths specified in the scaling element, not
-        // local tenths as modified by the staff-size element.
-        // The width covers the entire measure from barline
-        // or system start to barline or system end.
+        // > The non-controlling attribute is intended for use in
+        // > multimetric music like the Don Giovanni minuet. If set
+        // > to "yes", the left barline in this measure does not
+        // > coincide with the left barline of measures in other
+        // > parts. The value is "no" if not specified.
+        // > In partwise files, the number attribute should be the same
+        // > for measures in different parts that share the same left
+        // > barline. While the number attribute is often numeric, it
+        // > does not have to be. Non-numeric values are typically used
+        // > together with the implicit or non-controlling attributes
+        // > being set to "yes". For a pickup measure, the number
+        // > attribute is typically set to "0" and the implicit attribute
+        // > is typically set to "yes".
+        // > If measure numbers are not unique within a part, this can
+        // > cause problems for conversions between partwise and timewise
+        // > formats. The text attribute allows specification of displayed
+        // > measure numbers that are different than what is used in the
+        // > number attribute. This attribute is ignored for measures
+        // > where the implicit attribute is set to "yes". The text
+        // > attribute for a measure element has at least one character.
+        // > Further details about measure numbering can be specified
+        // > using the measure-numbering element defined in the
+        // > direction.mod file.
+        // > Measure width is specified in tenths. These are the
+        // > global tenths specified in the scaling element, not
+        // > local tenths as modified by the staff-size element.
+        // > The width covers the entire measure from barline
+        // > or system start to barline or system end.
         //
         // <!ATTLIST measure
         //     number CDATA #REQUIRED
@@ -307,7 +276,7 @@ extension MusicXML {
             let musicData: [MusicDatum]?
         }
 
-        #warning("TODO: Build out MeasureTimewise")
+        #warning("TODO: Build out Measure.Timewise")
         public struct Timewise: Decodable, Equatable {
             let number: Int
             let parts: [Part.Timewise]
@@ -359,6 +328,21 @@ extension MusicXML {
     public struct Movement: Decodable, Equatable {
         let number: String?
         let title: String?
+    }
+
+    #warning("TODO: Build out MusicDatum")
+    public enum MusicDatum: Decodable, Equatable {
+
+        enum CodingKeys: String, CodingKey {
+            case note
+        }
+
+        case note(Note)
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            self = .note(try container.decode(Note.self))
+        }
     }
 
 //<!--
