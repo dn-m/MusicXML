@@ -234,8 +234,8 @@ extension MusicXML {
         case note(Note)
 
         public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            self = .note(try container.decode(Note.self, forKey: .note))
+            let container = try decoder.singleValueContainer()
+            self = .note(try container.decode(Note.self))
         }
     }
 
@@ -293,7 +293,7 @@ extension MusicXML {
                 case nonControlling = "non-controlling"
                 case width
                 case optionalUniqueID = "optional-unique-id"
-                case notes = "note"
+                case musicData = "note"
             }
 
             let number: Int
@@ -304,29 +304,7 @@ extension MusicXML {
             let width: Int? // Tenths
             let optionalUniqueID: Int?
 
-            let notes: [Note]?
-
-//            public init(from decoder: Decoder) throws {
-//                print("attempt to decode measure.partwise")
-//                let keyed = try decoder.container(keyedBy: CodingKeys.self)
-//                var unkeyed = try decoder.unkeyedContainer()
-//                self.number = try keyed.decode(Int.self, forKey: .number)
-//                print("number ok")
-//                self.attributes = try keyed.decodeIfPresent([Attributes].self, forKey: .attributes)
-//                print("attributes ok")
-//                self.text = try keyed.decodeIfPresent(String.self, forKey: .text)
-//                print("text ok")
-//                self.implicit = try keyed.decodeIfPresent(Bool.self, forKey: .implicit)
-//                print("implicit ok")
-//                self.nonControlling = try keyed.decodeIfPresent(Bool.self, forKey: .nonControlling)
-//                print("non controlling ok")
-//                self.width = try keyed.decodeIfPresent(Int.self, forKey: .width)
-//                print("width ok")
-//                self.optionalUniqueID = try keyed.decodeIfPresent(Int.self, forKey: .optionalUniqueID)
-//                print("unique id ok")
-//                self.notes = try unkeyed.decodeIfPresent([MusicDatum].self)
-//                print("notes ok")
-//            }
+            let musicData: [MusicDatum]?
         }
 
         #warning("TODO: Build out MeasureTimewise")
