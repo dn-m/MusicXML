@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import XMLCoder
 import MusicXML
 
 class HelloWorldDecoderTests: XCTestCase {
@@ -50,7 +51,39 @@ class HelloWorldDecoderTests: XCTestCase {
           </part>
         </score-partwise>
         """
-        let musicXML = try! MusicXML(string: xml)
-        dump(musicXML)
+        XCTAssertNoThrow(try MusicXML(string: xml))
+    }
+
+    func testMusicData() {
+        let xml = """
+        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+        <measure number="1">
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>4</duration>
+                <type>whole</type>
+            </note>
+            <barline location="right">
+                <bar-style>light-heavy</bar-style>
+            </barline>
+            <note>
+                <pitch>
+                    <step>C</step>
+                    <octave>4</octave>
+                </pitch>
+                <duration>4</duration>
+                <type>whole</type>
+            </note>
+        </measure>
+        """
+        do {
+            let musicData = try XMLDecoder().decode(MusicXML.Score.Measure.Partwise.self, from: xml.data(using: .utf8)!)
+            dump(musicData)
+        } catch {
+            print(error)
+        }
     }
 }

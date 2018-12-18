@@ -119,6 +119,21 @@ extension MusicXML {
         let duration: Int // amount of "divisions"
         let durationType: DurationType
         let accidental: Accidental?
+//
+//        public init(from decoder: Decoder) throws {
+//            print("attempt to decode note")
+//            var container = try decoder.unkeyedContainer()
+//            var nested = try container.nestedContainer(keyedBy: CodingKeys.self)
+//
+//            print("container is good")
+//            self.pitch = try nested.decode(Pitch.self, forKey: .pitch)
+//            print("p is good")
+//            self.duration = try nested.decode(Int.self, forKey: .duration)
+//            print("d is good")
+//            self.durationType = try nested.decode(DurationType.self, forKey: .durationType)
+//            print("we made it this far... to d type")
+//            self.accidental = nil
+//        }
     }
 
     // > Pitch is represented as a combination of the step of the
