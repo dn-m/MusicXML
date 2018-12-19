@@ -44,24 +44,13 @@ extension MusicXML {
     #warning("TODO: Document attributes")
     public struct Score: Equatable {
 
-        enum Traversal: Decodable, Equatable {
+        enum Traversal: Equatable {
 
-            enum CodingKeys: String, CodingKey {
-                case partwise = "score-partwise"
-                case timewise = "score-timewise"
-            }
 
             case partwise(Partwise)
             case timewise(Timewise)
 
-            init(from decoder: Decoder) throws {
-                let container = try decoder.singleValueContainer()
-                do {
-                    self = .partwise(try container.decode(Partwise.self))
-                } catch {
-                    self = .timewise(try container.decode(Timewise.self))
-                }
-            }
+
         }
 
         let header: Header
@@ -359,5 +348,22 @@ extension MusicXML.Score: Decodable {
         let container = try decoder.singleValueContainer()
         self.header  = try container.decode(Header.self)
         self.traversal = try container.decode(Traversal.self)
+    }
+}
+
+extension MusicXML.Score.Traversal: Decodable {
+
+    enum CodingKeys: String, CodingKey {
+        case partwise = "score-partwise"
+        case timewise = "score-timewise"
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        do {
+            self = .partwise(try container.decode(MusicXML.Score.Partwise.self))
+        } catch {
+            self = .timewise(try container.decode(MusicXML.Score.Timewise.self))
+        }
     }
 }
