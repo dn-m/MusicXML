@@ -42,7 +42,7 @@ extension MusicXML {
     //    %document-attributes;
     // >
     #warning("TODO: Document attributes")
-    public struct Score: Decodable, Equatable {
+    public struct Score: Equatable {
 
         enum Traversal: Decodable, Equatable {
 
@@ -66,12 +66,6 @@ extension MusicXML {
 
         let header: Header
         let traversal: Traversal
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.singleValueContainer()
-            self.header  = try container.decode(Header.self)
-            self.traversal = try container.decode(Traversal.self)
-        }
     }
 
     public struct MusicData: Decodable, Equatable {
@@ -358,4 +352,12 @@ extension MusicXML {
 //<!ELEMENT part (%music-data;)>
 //]]>
 
+}
+
+extension MusicXML.Score: Decodable {
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.header  = try container.decode(Header.self)
+        self.traversal = try container.decode(Traversal.self)
+    }
 }
