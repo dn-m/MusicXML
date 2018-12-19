@@ -87,21 +87,34 @@ extension MusicXML {
     // >
     public struct Note: Decodable, Equatable {
 
+        // (
+        //   (
+        //      (
+        //          grace,
+        //          (
+        //              (%full-note;, (tie, tie?)?) | (cue, %full-note;)
+        //          )
+        //      )
+        //   |
+        //   (cue, %full-note;, duration)
+        //   |
+        //   (
+        //      %full-note;, duration, (tie, tie?)?
+        //   )
+        // )
+        // TODO: Kind
+
         public enum CodingKeys: String, CodingKey {
             case pitch
             case duration
             case durationType = "type"
+            case accidental
         }
 
         let pitch: Pitch
         let duration: Int // amount of "divisions"
-        let durationType: String
-
-        public init(pitch: Pitch, duration: Int, durationType: String) {
-            self.pitch = pitch
-            self.duration = duration
-            self.durationType = durationType
-        }
+        let durationType: DurationType
+        let accidental: Accidental?
     }
 
     // > Pitch is represented as a combination of the step of the
@@ -197,6 +210,13 @@ extension MusicXML {
         public init(kind: Kind, size: Size?) {
             self.kind = kind
             self.size = size
+        }
+
+        #warning("TODO: Handle DurationType.size decoding")
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            self.kind = try container.decode(Kind.self)
+            self.size = nil
         }
     }
 
@@ -1504,19 +1524,18 @@ extension MusicXML {
     // > boundaries or mid-measure changes in the divisions value.
     //
     // <!ELEMENT backup (duration, %editorial;)>
-    public struct Backup {
+    public struct Backup: Decodable, Equatable {
         let duration: Int
+        let editorial: Editorial
     }
 
     // <!ELEMENT forward
     //    (duration, %editorial-voice;, staff?)>
-    public struct Forward {
+    public struct Forward: Decodable, Equatable {
         let duration: Int
-        let staff: Int?
+        let editorialVoice: EditorialVoice?
+        let staff: Staff?
     }
-
-
-// MARK: TODO
 
     //    The common note elements between cue/grace notes and
     //    regular (full) notes: pitch, chord, and rest information,
@@ -1527,7 +1546,15 @@ extension MusicXML {
     //
     //<!ENTITY % full-note "(chord?, (pitch | unpitched | rest))">
     public struct FullNote {
-        #warning("TODO")
+
+        enum Kind {
+            case pitch(Pitch)
+            case unpitched(Unpitched)
+            case rest(Rest)
+        }
+
+        let kind: Kind
+        let chord: Bool
     }
 //
 //<!-- Elements -->
@@ -1571,32 +1598,40 @@ extension MusicXML {
 //-->
 //<!ELEMENT chord EMPTY>
 //
-//<!--
-//    The unpitched element indicates musical elements that are
-//    notated on the staff but lack definite pitch, such as
-//    unpitched percussion and speaking voice. Like notes, it
-//    uses step and octave elements to indicate placement on the
-//    staff, following the current clef. If percussion clef is
-//    used, the display-step and display-octave elements are
-//    interpreted as if in treble clef, with a G in octave 4 on
-//    line 2. If not present, the note is placed on the middle
-//    line of the staff, generally used for a one-line staff.
-//-->
-//<!ELEMENT unpitched ((display-step, display-octave)?)>
-//<!ELEMENT display-step (#PCDATA)>
-//<!ELEMENT display-octave (#PCDATA)>
-//
-//<!--
-//    The rest element indicates notated rests or silences. Rest
-//    elements are usually empty, but placement on the staff can
-//    be specified using display-step and display-octave
-//    elements. If the measure attribute is set to yes, it
-//    indicates this is a complete measure rest.
-//-->
-//<!ELEMENT rest ((display-step, display-octave)?)>
-//<!ATTLIST rest
-//    measure %yes-no; #IMPLIED
-//>
+
+    //    The unpitched element indicates musical elements that are
+    //    notated on the staff but lack definite pitch, such as
+    //    unpitched percussion and speaking voice. Like notes, it
+    //    uses step and octave elements to indicate placement on the
+    //    staff, following the current clef. If percussion clef is
+    //    used, the display-step and display-octave elements are
+    //    interpreted as if in treble clef, with a G in octave 4 on
+    //    line 2. If not present, the note is placed on the middle
+    //    line of the staff, generally used for a one-line staff.
+    //
+    // <!ELEMENT unpitched ((display-step, display-octave)?)>
+    // <!ELEMENT display-step (#PCDATA)>
+    // <!ELEMENT display-octave (#PCDATA)>
+    public struct Unpitched: Decodable, Equatable {
+        let displayStep: Int
+        let displayOctave: Int
+    }
+
+    //    The rest element indicates notated rests or silences. Rest
+    //    elements are usually empty, but placement on the staff can
+    //    be specified using display-step and display-octave
+    //    elements. If the measure attribute is set to yes, it
+    //    indicates this is a complete measure rest.
+    //
+    // <!ELEMENT rest ((display-step, display-octave)?)>
+    // <!ATTLIST rest
+    //    measure %yes-no; #IMPLIED
+    // >
+    public struct Rest: Decodable, Equatable {
+        let displayStep: Int?
+        let displayOctave: Int?
+        let measure: Bool
+    }
 //
 //<!--
 //    Duration is a positive number specified in division units.
@@ -1643,48 +1678,113 @@ extension MusicXML {
 //    %placement;
 //>
 //
-//<!--
-//    Actual notated accidentals. Valid values include: sharp,
-//    natural, flat, double-sharp, sharp-sharp, flat-flat,
-//    natural-sharp, natural-flat, quarter-flat, quarter-sharp,
-//    three-quarters-flat, three-quarters-sharp, sharp-down,
-//    sharp-up, natural-down, natural-up, flat-down, flat-up,
-//    double-sharp-down, double-sharp-up, flat-flat-down,
-//    flat-flat-up, arrow-down, arrow-up, triple-sharp,
-//    triple-flat, slash-quarter-sharp, slash-sharp, slash-flat,
-//    double-slash-flat, sharp-1, sharp-2, sharp-3, sharp-5,
-//    flat-1, flat-2, flat-3, flat-4, sori, koron, and other.
-//    The quarter- and three-quarters- accidentals are
-//    Tartini-style quarter-tone accidentals. The -down and -up
-//    accidentals are quarter-tone accidentals that include
-//    arrows pointing down or up. The slash- accidentals
-//    are used in Turkish classical music. The numbered
-//    sharp and flat accidentals are superscripted versions
-//    of the accidental signs, used in Turkish folk music.
-//    The sori and koron accidentals are microtonal sharp and
-//    flat accidentals used in Iranian and Persian music. The
-//    other accidental covers accidentals other than those listed
-//    here. It is usually used in combination with the smufl
-//    attribute to specify a particular SMuFL accidental. The
-//    smufl attribute may be used with any accidental value to
-//    help specify the appearance of symbols that share the same
-//    MusicXML semantics. The attribute value is a SMuFL canonical
-//    glyph name that starts with acc.
-//    Editorial and cautionary indications are indicated
-//    by attributes. Values for these attributes are "no" if not
-//    present. Specific graphic display such as parentheses,
-//    brackets, and size are controlled by the level-display
-//    entity defined in the common.mod file.
-//-->
-//<!ELEMENT accidental (#PCDATA)>
-//<!ATTLIST accidental
-//    cautionary %yes-no; #IMPLIED
-//    editorial %yes-no; #IMPLIED
-//    %level-display;
-//    %print-style;
-//    %smufl;
-//>
-//
+    // > Actual notated accidentals. The attribute value is a SMuFL canonical
+    // > glyph name that starts with acc.
+    // > Editorial and cautionary indications are indicated
+    // > by attributes. Values for these attributes are "no" if not
+    // > present. Specific graphic display such as parentheses,
+    // > brackets, and size are controlled by the level-display
+    // > entity defined in the common.mod file.
+    //
+    // <!ELEMENT accidental (#PCDATA)>
+    // <!ATTLIST accidental
+    //    cautionary %yes-no; #IMPLIED
+    //    editorial %yes-no; #IMPLIED
+    //    %level-display;
+    //    %print-style;
+    //    %smufl;
+    // >
+    #warning("TODO: Add support for Accidental level-display, print-style, and smufl")
+    public struct Accidental: Decodable, Equatable {
+
+        // > Valid values include: sharp,
+        // > natural, flat, double-sharp, sharp-sharp, flat-flat,
+        // > natural-sharp, natural-flat, quarter-flat, quarter-sharp,
+        // > three-quarters-flat, three-quarters-sharp, sharp-down,
+        // > sharp-up, natural-down, natural-up, flat-down, flat-up,
+        // > double-sharp-down, double-sharp-up, flat-flat-down,
+        // > flat-flat-up, arrow-down, arrow-up, triple-sharp,
+        // > triple-flat, slash-quarter-sharp, slash-sharp, slash-flat,
+        // > double-slash-flat, sharp-1, sharp-2, sharp-3, sharp-5,
+        // > flat-1, flat-2, flat-3, flat-4, sori, koron, and other.
+        // > The quarter- and three-quarters- accidentals are
+        // > Tartini-style quarter-tone accidentals. The -down and -up
+        // > accidentals are quarter-tone accidentals that include
+        // > arrows pointing down or up. The slash- accidentals
+        // > are used in Turkish classical music. The numbered
+        // > sharp and flat accidentals are superscripted versions
+        // > of the accidental signs, used in Turkish folk music.
+        // > The sori and koron accidentals are microtonal sharp and
+        // > flat accidentals used in Iranian and Persian music. The
+        // > other accidental covers accidentals other than those listed
+        // > here. It is usually used in combination with the smufl
+        // > attribute to specify a particular SMuFL accidental. The
+        // > smufl attribute may be used with any accidental value to
+        // > help specify the appearance of symbols that share the same
+        // > MusicXML semantics.
+
+        public enum Kind: String, Decodable, Equatable {
+            case sharp
+            case natural
+            case flat
+            case doubleSharp = "double-sharp"
+            case sharpSharp = "sharp-sharp"
+            case flatFlat = "flat-flat"
+            case doubleFlat = "double-flat"
+            case naturalSharp = "natural-sharp"
+            case naturalFlat = "natural-flat"
+            case quarterFlat = "quarter-flat"
+            case quarterSharp = "quarter-sharp"
+            case threeQuartersFlat = "three-quarters-flat"
+            case threeQuartersSharp = "three-quarters-sharp"
+            case sharpDown = "sharp-down"
+            case sharpUp = "sharp-up"
+            case naturalDown = "natural-down"
+            case naturalUp = "natural-up"
+            case flatDown = "flat-down"
+            case flatUp = "flat-up"
+            case doubleSharpDown = "double-sharp-down"
+            case doubleSharpUp = "double-sharp-up"
+            case flatFlatDown = "flat-flat-down"
+            case flatFlatUp = "flat-flat-up"
+            case arrowDown = "arrow-down"
+            case arrowUp = "arrow-up"
+            case tripleSharp = "triple-sharp"
+            case tripleFlat = "triple-flat"
+            case slashQuarterSharp = "slash-quarter-sharp"
+            case slashSharp = "slash-sharp"
+            case slashFlat = "slash-flat"
+            case doubleSlashFlat = "double-slash-flat"
+            case sharp1 = "sharp-1"
+            case sharp2 = "sharp-2"
+            case sharp3 = "sharp-3"
+            case sharp5 = "sharp-5"
+            case flat1 = "flat-1"
+            case flat2 = "flat-2"
+            case flat3 = "flat-3"
+            case flat4 = "flat-4"
+            case sori
+            case koron
+            case other
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case editorial
+            case cautionary
+        }
+
+        let kind: Kind
+        let cautionary: Bool
+        let editorial: Bool
+
+        public init(from decoder: Decoder) throws {
+            let singleValue = try decoder.singleValueContainer()
+            self.kind = try singleValue.decode(Kind.self)
+            #warning("TODO: Add support for Accidental cautionary and editorial")
+            self.cautionary = false
+            self.editorial = false
+        }
+    }
 
     // > Time modification indicates tuplets, double-note tremolos,
     // > and other durational changes. A time-modification element
