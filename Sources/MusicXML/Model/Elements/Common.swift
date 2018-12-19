@@ -317,7 +317,7 @@ extension MusicXML {
     //     default-y     %tenths;    #IMPLIED
     //     relative-x    %tenths;    #IMPLIED
     //     relative-y    %tenths;    #IMPLIED">
-    public struct Position {
+    public struct Position: Decodable, Equatable {
         let defaultX: Int // tenths
         let defaultY: Int // tenths
         let relativeX: Int // tenths
@@ -513,7 +513,7 @@ extension MusicXML {
     //
     // <!ENTITY % halign
     //    "halign (left | center | right) #IMPLIED">
-    public enum HorizonalAlignment: String {
+    public enum HorizonalAlignment: String, Decodable, Equatable {
         case left
         case center
         case right
@@ -525,7 +525,7 @@ extension MusicXML {
     //
     // <!ENTITY % valign
     //    "valign (top | middle | bottom | baseline) #IMPLIED">
-    public enum VerticalAlignment {
+    public enum VerticalAlignment: String, Decodable, Equatable {
         case top
         case middle
         case bottom
@@ -538,7 +538,7 @@ extension MusicXML {
     //
     // <!ENTITY % valign-image
     //    "valign (top | middle | bottom) #IMPLIED">
-    public enum VerticalImageAlignment {
+    public enum VerticalImageAlignment: String, Decodable, Equatable {
         case top
         case middle
         case bottom
