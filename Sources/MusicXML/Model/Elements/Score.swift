@@ -57,7 +57,7 @@ extension MusicXML.Score {
         let work: Work?
         let movementNumber: String?
         let movementTitle: String?
-        let identification: MusicXML.Identity.Identification?
+        let identification: MusicXML.Identification?
         // TODO: defaults
         // TODO: credit *
         let partList: PartList

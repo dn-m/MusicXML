@@ -4,40 +4,29 @@
 //
 //  Created by James Bean on 12/3/18.
 //
+// MusicXML identity.mod module
+//
+// Version 3.1
+//
+// Copyright © 2004-2017 the Contributors to the MusicXML
+// Specification, published by the W3C Music Notation Community
+// Group under the W3C Community Final Specification Agreement
+// (FSA):
+//
+//    https://www.w3.org/community/about/agreements/final/
+//
+// A human-readable summary is available:
+//
+//    https://www.w3.org/community/about/agreements/fsa-deed/
+//
+// The identify DTD module contains the identification
+// element and its children, containing metadata about a
+// score.
+//
 
 import Foundation
 
 extension MusicXML {
-    public enum Identity { }
-}
-
-extension MusicXML.Identity {
-
-//
-//<!--
-//    MusicXML identity.mod module
-//
-//    Version 3.1
-//
-//    Copyright © 2004-2017 the Contributors to the MusicXML
-//    Specification, published by the W3C Music Notation Community
-//    Group under the W3C Community Final Specification Agreement
-//    (FSA):
-//
-//       https://www.w3.org/community/about/agreements/final/
-//
-//    A human-readable summary is available:
-//
-//       https://www.w3.org/community/about/agreements/fsa-deed/
-//-->
-//
-//<!--
-//    The identify DTD module contains the identification
-//    element and its children, containing metadata about a
-//    score.
-//-->
-//
-    // MARK: - Elements
 
     // > Identification contains basic metadata about the score.
     // > It includes the information in MuseData headers that
@@ -160,11 +149,17 @@ extension MusicXML.Identity {
         //    name CDATA #REQUIRED
         // >
         public struct Miscellaneous: Decodable, Equatable {
-            let field: [String]
+
+            public struct Field: Decodable, Equatable {
+                let value: String
+                let name: String
+            }
+
+            let fields: [Field]?
         }
 
-        let creators: [Creator]
-        let rights: [Rights]
+        let creators: [Creator]?
+        let rights: [Rights]?
         let encoding: Encoding?
 
         // > The source for the music that is encoded. This is similar
@@ -172,7 +167,7 @@ extension MusicXML.Identity {
         //
         // <!ELEMENT source (#PCDATA)>
         let source: String?
-        let relation: [Relation]
+        let relation: [Relation]?
         let miscellaneous: Miscellaneous?
     }
 }
