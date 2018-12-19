@@ -419,14 +419,14 @@ extension MusicXML {
     //     font-style   CDATA  #IMPLIED
     //     font-size    CDATA  #IMPLIED
     //     font-weight  CDATA  #IMPLIED">
-    public struct Font {
+    public struct Font: Decodable, Equatable {
 
-        enum Style: String {
+        enum Style: String, Decodable, Equatable {
             case normal
             case italic
         }
 
-        enum Size: String {
+        enum Size: String, Decodable, Equatable {
             case extraExtraSmall = "xx-small"
             case extraSmall = "x-small"
             case small = "small"
@@ -436,7 +436,7 @@ extension MusicXML {
             case extraExtraLarge = "xx-large"
         }
 
-        enum Weight {
+        enum Weight: String, Decodable, Equatable {
             case normal
             case bold
         }
@@ -461,7 +461,7 @@ extension MusicXML {
     //
     // <!ENTITY % color
     //    "color CDATA #IMPLIED">
-    public struct Color {
+    public struct Color: Decodable, Equatable {
         let alpha: Int = 1
         let red: Int
         let green: Int
@@ -478,7 +478,7 @@ extension MusicXML {
     //    "underline  %number-of-lines;  #IMPLIED
     //     overline  %number-of-lines;   #IMPLIED
     //     line-through  %number-of-lines;   #IMPLIED">
-    public struct TextDecoration {
+    public struct TextDecoration: Decodable, Equatable {
         let underline: Int = 0
         let overline: Int = 0
         let lineThrough: Int = 0
@@ -553,9 +553,24 @@ extension MusicXML {
     //
     // <!ENTITY % letter-spacing
     //    "letter-spacing CDATA #IMPLIED">
-    public enum LetterSpacing {
+    public enum LetterSpacing: Decodable, Equatable {
+
         case normal
         case adjusted(Int)
+
+        enum CodingKeys: String, CodingKey {
+            case normal
+            case adjusted
+        }
+
+        public init(from decoder: Decoder) throws {
+            let keyed = try decoder.container(keyedBy: CodingKeys.self)
+            do {
+                self = .adjusted(try keyed.decode(Int.self, forKey: .adjusted))
+            } catch {
+                self = .normal
+            }
+        }
     }
 
     // > The line-height entity specified text leading. Values
@@ -567,9 +582,21 @@ extension MusicXML {
     //
     // <!ENTITY % line-height
     //    "line-height CDATA #IMPLIED">
-    public enum LineHeight {
+    public enum LineHeight: Decodable, Equatable {
         case normal
         case adjusted(Int)
+        enum CodingKeys: String, CodingKey {
+            case normal
+            case adjusted
+        }
+        public init(from decoder: Decoder) throws {
+            let keyed = try decoder.container(keyedBy: CodingKeys.self)
+            do {
+                self = .adjusted(try keyed.decode(Int.self, forKey: .adjusted))
+            } catch {
+                self = .normal
+            }
+        }
     }
 
     // > The text-direction entity is used to adjust and override
@@ -588,7 +615,7 @@ extension MusicXML {
     //
     // <!ENTITY % text-direction
     //    "dir (ltr | rtl | lro | rlo) #IMPLIED">
-    public enum TextDirection: String {
+    public enum TextDirection: String, Decodable, Equatable {
         case leftToRightEmbed = "ltr"
         case rightToLeftEmbed = "rtl"
         case leftToRightOverride = "lro"
@@ -604,7 +631,7 @@ extension MusicXML {
     //
     // <!ENTITY % text-rotation
     //    "rotation CDATA #IMPLIED">
-    public struct TextRotation {
+    public struct TextRotation: Decodable, Equatable {
         let degrees: Double
     }
 
@@ -613,7 +640,7 @@ extension MusicXML {
     //
     // <!ENTITY % enclosure
     //    "enclosure %enclosure-shape; #IMPLIED">
-    public struct Enclosure {
+    public struct Enclosure: Decodable, Equatable {
         // > The enclosure-shape entity describes the shape and
         // > presence / absence of an enclosure around text. A bracket
         // > enclosure is similar to a rectangle with the bottom line
@@ -624,7 +651,7 @@ extension MusicXML {
         //      bracket | triangle | diamond | pentagon |
         //      hexagon | heptagon | octagon | nonagon |
         //      decagon | none)">
-        public enum Shape: String {
+        public enum Shape: String, Decodable, Equatable {
             case rectangle
             case square
             case oval
@@ -651,7 +678,7 @@ extension MusicXML {
     //    "%position;
     //     %font;
     //     %color;">
-    public struct PrintStyle {
+    public struct PrintStyle: Decodable, Equatable {
         let position: Position
         let font: Font
         let color: Color
@@ -664,7 +691,7 @@ extension MusicXML {
     //    "%print-style;
     //     %halign;
     //     %valign;">
-    public struct PrintStyleAlignment {
+    public struct PrintStyleAlignment: Decodable, Equatable {
         let printStyle: PrintStyle
         let horizontalAlignment: HorizonalAlignment
         let verticalAlignment: VerticalAlignment
@@ -780,7 +807,7 @@ extension MusicXML {
     //     %line-height;
     //     %text-direction;
     //     %enclosure;">
-    public struct SymbolFormatting {
+    public struct SymbolFormatting: Decodable, Equatable {
         let justify: Justification
         let printStyleAlignment: PrintStyleAlignment
         let decoration: TextDecoration

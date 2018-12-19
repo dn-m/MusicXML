@@ -409,15 +409,20 @@ extension MusicXML.Score.Header {
     //    %optional-unique-id;
     // >
     //
-    //    The credit-symbol element specifies a musical symbol
-    //    using a canonical SMuFL glyph name.
+    // > The credit-symbol element specifies a musical symbol
+    // > using a canonical SMuFL glyph name.
     //
     // <!ELEMENT credit-symbol (#PCDATA)>
     // <!ATTLIST credit-symbol
     //    %symbol-formatting;
     //    %optional-unique-id;
     // >
-    //
+    public struct CreditSymbol: Decodable, Equatable {
+        let name: String
+        let symbolFormatting: MusicXML.SymbolFormatting?
+        let optionalUniqueID: String?
+    }
+
     // <!ELEMENT credit-image EMPTY>
     // <!ATTLIST credit-image
     //    source CDATA #REQUIRED
@@ -437,7 +442,7 @@ extension MusicXML.Score.Header {
         let position: MusicXML.Position?
         let horizontalAlignment: MusicXML.HorizonalAlignment?
         let verticalAlignment: MusicXML.VerticalAlignment?
-        let optionalUniqueID: Int?
+        let optionalUniqueID: String?
     }
 }
 
