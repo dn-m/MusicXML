@@ -151,10 +151,11 @@ extension MusicXML {
         public struct Miscellaneous: Decodable, Equatable {
 
             public struct Field: Decodable, Equatable {
-                let value: String
                 let name: String
+                let value: String?
             }
 
+            #warning("FIXME: Decodability of miscellaneous-field is blocked by XMLDecder limitation")
             let fields: [Field]?
         }
 
