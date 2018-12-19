@@ -5,7 +5,13 @@
 //  Created by James Bean on 12/3/18.
 //
 
-// MARK: TODO
+extension MusicXML {
+    public enum Identity { }
+}
+
+extension MusicXML.Identity {
+
+
 //
 //<!--
 //    MusicXML identity.mod module
@@ -30,17 +36,25 @@
 //    score.
 //-->
 //
-//<!-- Elements -->
-//
-//<!--
-//    Identification contains basic metadata about the score.
-//    It includes the information in MuseData headers that
-//    may apply at a score-wide, movement-wide, or part-wide
-//    level. The creator, rights, source, and relation elements
-//    are based on Dublin Core.
-//-->
-//<!ELEMENT identification (creator*, rights*, encoding?,
-//    source?, relation*, miscellaneous?)>
+    // MARK: - Elements
+
+    // > Identification contains basic metadata about the score.
+    // > It includes the information in MuseData headers that
+    // > may apply at a score-wide, movement-wide, or part-wide
+    // > level. The creator, rights, source, and relation elements
+    // > are based on Dublin Core.
+    //
+    // <!ELEMENT identification (creator*, rights*, encoding?,
+    //    source?, relation*, miscellaneous?)>
+    public struct Identification {
+        let creators: [String]
+        let rights: [String]
+        let encoding: String?
+        let source: String?
+        let relation: [String]
+        let miscellaneous: String?
+    }
+
 //
 //<!--
 //    The creator element is borrowed from Dublin Core. It is
@@ -136,3 +150,5 @@
 //<!ATTLIST miscellaneous-field
 //    name CDATA #REQUIRED
 //>
+
+}
