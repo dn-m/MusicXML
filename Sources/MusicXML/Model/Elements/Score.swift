@@ -385,11 +385,6 @@ extension MusicXML.Score.Header {
     // > by default. Since credits occur before the music, these page
     // > numbers do not refer to the page numbering specified by the
     // > print element's page-number attribute.
-    // > The credit-type element indicates the purpose behind a
-    // > credit. Multiple types of data may be combined in a single
-    // > credit, so multiple elements may be used. Standard values
-    // > include page number, title, subtitle, composer, arranger,
-    // > lyricist, and rights.
     //
     // <!ELEMENT credit
     //    (credit-type*, link*, bookmark*,
@@ -400,8 +395,15 @@ extension MusicXML.Score.Header {
     //    page NMTOKEN #IMPLIED
     //    %optional-unique-id;
     // >
-    //
+    
+
+    // > The credit-type element indicates the purpose behind a
+    // > credit. Multiple types of data may be combined in a single
+    // > credit, so multiple elements may be used. Standard values
+    // > include page number, title, subtitle, composer, arranger,
+    // > lyricist, and rights.
     // <!ELEMENT credit-type (#PCDATA)>
+
     //
     // <!ELEMENT credit-words (#PCDATA)>
     // <!ATTLIST credit-words
