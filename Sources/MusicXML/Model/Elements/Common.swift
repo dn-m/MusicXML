@@ -923,7 +923,7 @@ extension MusicXML {
     //
     // <!ENTITY % document-attributes
     //    "version  CDATA  '1.0'">
-    public struct DocumentAttributes {
+    public struct DocumentAttributes: Decodable {
         let version: String
     }
 
