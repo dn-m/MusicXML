@@ -41,18 +41,8 @@ extension MusicXML {
     // <!ATTLIST score-partwise
     //    %document-attributes;
     // >
-    #warning("TODO: Document attributes")
+    #warning("TODO: Support Score document-attributes")
     public struct Score: Equatable {
-
-        enum Traversal: Equatable {
-
-
-            case partwise(Partwise)
-            case timewise(Timewise)
-
-
-        }
-
         let header: Header
         let traversal: Traversal
     }
@@ -343,7 +333,20 @@ extension MusicXML {
 
 }
 
+extension MusicXML.Score {
+
+    // MARK: - Nested Types
+
+    enum Traversal: Equatable {
+        case partwise(Partwise)
+        case timewise(Timewise)
+    }
+}
+
 extension MusicXML.Score: Decodable {
+
+    // MARK: - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         self.header  = try container.decode(Header.self)
@@ -352,6 +355,8 @@ extension MusicXML.Score: Decodable {
 }
 
 extension MusicXML.Score.Traversal: Decodable {
+
+    // MARK: - Decodable
 
     enum CodingKeys: String, CodingKey {
         case partwise = "score-partwise"
