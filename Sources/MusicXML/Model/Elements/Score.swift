@@ -379,12 +379,6 @@ extension MusicXML.Score.Header {
     // > elements within a single credit element follow one another
     // > in sequence visually. Non-positional formatting attributes
     // > are carried over from the previous element by default.
-    // > The page attribute for the credit element specifies the page
-    // > number where the credit should appear. This is an integer
-    // > value that starts with 1 for the first page. Its value is 1
-    // > by default. Since credits occur before the music, these page
-    // > numbers do not refer to the page numbering specified by the
-    // > print element's page-number attribute.
     //
     // <!ELEMENT credit
     //    (credit-type*, link*, bookmark*,
@@ -395,7 +389,21 @@ extension MusicXML.Score.Header {
     //    page NMTOKEN #IMPLIED
     //    %optional-unique-id;
     // >
-    
+    #warning("TODO: Get head around Credit definition 🤯")
+    public struct Credit {
+        let types: [String]?
+        let links: [MusicXML.Link]?
+        let bookmarks: [MusicXML.Bookmark]?
+
+        // > The page attribute for the credit element specifies the page
+        // > number where the credit should appear. This is an integer
+        // > value that starts with 1 for the first page. Its value is 1
+        // > by default. Since credits occur before the music, these page
+        // > numbers do not refer to the page numbering specified by the
+        // > print element's page-number attribute.
+        let page: Int?
+        let optionalUniqueID: String?
+    }
 
     // > The credit-type element indicates the purpose behind a
     // > credit. Multiple types of data may be combined in a single
