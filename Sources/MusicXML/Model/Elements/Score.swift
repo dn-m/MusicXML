@@ -391,6 +391,60 @@ extension MusicXML.Score.Header {
     // >
     #warning("TODO: Get head around Credit definition 🤯")
     public struct Credit: Decodable, Equatable {
+
+        // <!ELEMENT credit-words (#PCDATA)>
+        // <!ATTLIST credit-words
+        //    %text-formatting;
+        //    %optional-unique-id;
+        // >
+        public struct Words: Decodable, Equatable {
+            let text: String
+            let formatting: MusicXML.TextFormatting
+            let optionalUniqueID: String?
+        }
+
+        // > The credit-symbol element specifies a musical symbol
+        // > using a canonical SMuFL glyph name.
+        //
+        // <!ELEMENT credit-symbol (#PCDATA)>
+        // <!ATTLIST credit-symbol
+        //    %symbol-formatting;
+        //    %optional-unique-id;
+        // >
+        public struct Symbol: Decodable, Equatable {
+            let name: String
+            let symbolFormatting: MusicXML.SymbolFormatting?
+            let optionalUniqueID: String?
+        }
+
+        // <!ELEMENT credit-image EMPTY>
+        // <!ATTLIST credit-image
+        //    source CDATA #REQUIRED
+        //    type CDATA #REQUIRED
+        //    height %tenths; #IMPLIED
+        //    width %tenths; #IMPLIED
+        //    %position;
+        //    %halign;
+        //    %valign-image;
+        //    %optional-unique-id;
+        // >
+        public struct Image: Decodable, Equatable {
+            let source: String
+            let type: String
+            let height: Int?
+            let width: Int?
+            let position: MusicXML.Position?
+            let horizontalAlignment: MusicXML.HorizonalAlignment?
+            let verticalAlignment: MusicXML.VerticalAlignment?
+            let optionalUniqueID: String?
+        }
+
+        // > The credit-type element indicates the purpose behind a
+        // > credit. Multiple types of data may be combined in a single
+        // > credit, so multiple elements may be used. Standard values
+        // > include page number, title, subtitle, composer, arranger,
+        // > lyricist, and rights.
+        // <!ELEMENT credit-type (#PCDATA)>
         let types: [String]?
         let links: [MusicXML.Link]?
         let bookmarks: [MusicXML.Bookmark]?
@@ -402,61 +456,6 @@ extension MusicXML.Score.Header {
         // > numbers do not refer to the page numbering specified by the
         // > print element's page-number attribute.
         let page: Int?
-        let optionalUniqueID: String?
-    }
-
-    // > The credit-type element indicates the purpose behind a
-    // > credit. Multiple types of data may be combined in a single
-    // > credit, so multiple elements may be used. Standard values
-    // > include page number, title, subtitle, composer, arranger,
-    // > lyricist, and rights.
-    // <!ELEMENT credit-type (#PCDATA)>
-
-    //
-    // <!ELEMENT credit-words (#PCDATA)>
-    // <!ATTLIST credit-words
-    //    %text-formatting;
-    //    %optional-unique-id;
-    // >
-    public struct CreditWords: Decodable, Equatable {
-        let text: String
-        let formatting: MusicXML.TextFormatting
-        let optionalUniqueID: String?
-    }
-
-    // > The credit-symbol element specifies a musical symbol
-    // > using a canonical SMuFL glyph name.
-    //
-    // <!ELEMENT credit-symbol (#PCDATA)>
-    // <!ATTLIST credit-symbol
-    //    %symbol-formatting;
-    //    %optional-unique-id;
-    // >
-    public struct CreditSymbol: Decodable, Equatable {
-        let name: String
-        let symbolFormatting: MusicXML.SymbolFormatting?
-        let optionalUniqueID: String?
-    }
-
-    // <!ELEMENT credit-image EMPTY>
-    // <!ATTLIST credit-image
-    //    source CDATA #REQUIRED
-    //    type CDATA #REQUIRED
-    //    height %tenths; #IMPLIED
-    //    width %tenths; #IMPLIED
-    //    %position;
-    //    %halign;
-    //    %valign-image;
-    //    %optional-unique-id;
-    // >
-    public struct CreditImage: Decodable, Equatable {
-        let source: String
-        let type: String
-        let height: Int?
-        let width: Int?
-        let position: MusicXML.Position?
-        let horizontalAlignment: MusicXML.HorizonalAlignment?
-        let verticalAlignment: MusicXML.VerticalAlignment?
         let optionalUniqueID: String?
     }
 }
