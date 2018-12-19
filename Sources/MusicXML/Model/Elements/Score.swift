@@ -59,7 +59,7 @@ extension MusicXML.Score {
         let movementTitle: String?
         let identification: MusicXML.Identification?
         // TODO: defaults
-        // TODO: credit *
+        let credits: [Credit]?
         let partList: PartList
     }
 }
@@ -390,7 +390,7 @@ extension MusicXML.Score.Header {
     //    %optional-unique-id;
     // >
     #warning("TODO: Get head around Credit definition 🤯")
-    public struct Credit {
+    public struct Credit: Decodable, Equatable {
         let types: [String]?
         let links: [MusicXML.Link]?
         let bookmarks: [MusicXML.Bookmark]?
@@ -612,8 +612,8 @@ extension MusicXML.Score.Header: Decodable {
         case movementTitle = "movement-title"
         case partList = "part-list"
         case identification
+        case credits = "credit"
         // TODO: defaults
-        // TODO: credits = "credit"
     }
 }
 
