@@ -408,7 +408,12 @@ extension MusicXML.Score.Header {
     //    %text-formatting;
     //    %optional-unique-id;
     // >
-    //
+    public struct CreditWords: Decodable, Equatable {
+        let text: String
+        let formatting: MusicXML.TextFormatting
+        let optionalUniqueID: String?
+    }
+
     // > The credit-symbol element specifies a musical symbol
     // > using a canonical SMuFL glyph name.
     //
