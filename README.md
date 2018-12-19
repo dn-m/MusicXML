@@ -34,8 +34,14 @@ Then, import the `MusicXML` module into a file which uses it:
 
 ```Swift
 import MusicXML
-let musicXML = "..."
-let score = MusicXML.deserialize(musicXML) //=> MusicXML.Score
+```
+
+You can decode a `MusicXML` structure in a variety of ways:
+
+```Swift
+let fromData: MusicXML = try MusicXML(data: data)
+let fromString: MusicXML = try MusicXML(string: string)
+let fromURL: MusicXML = try MusicXML(url: url)
 ```
 
 ### Development
