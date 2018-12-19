@@ -45,12 +45,17 @@ extension MusicXML {
     public struct Score: Decodable, Equatable {
 
         enum Traversal: Decodable, Equatable {
-            
+
+            enum CodingKeys: String, CodingKey {
+                case partwise = "score-partwise"
+                case timewise = "score-timewise"
+            }
+
             case partwise(Partwise)
             case timewise(Timewise)
 
             init(from decoder: Decoder) throws {
-                var container = try decoder.unkeyedContainer()
+                let container = try decoder.singleValueContainer()
                 do {
                     self = .partwise(try container.decode(Partwise.self))
                 } catch {
@@ -59,10 +64,12 @@ extension MusicXML {
             }
         }
 
+        let header: Header
         let traversal: Traversal
 
         public init(from decoder: Decoder) throws {
-            var container = try decoder.unkeyedContainer()
+            let container = try decoder.singleValueContainer()
+            self.header  = try container.decode(Header.self)
             self.traversal = try container.decode(Traversal.self)
         }
     }
@@ -200,8 +207,6 @@ extension MusicXML {
 //    %optional-unique-id;
 //>
 //
-
-
 
 //<!--
 //    The part-group element indicates groupings of parts in the
@@ -353,44 +358,4 @@ extension MusicXML {
 //<!ELEMENT part (%music-data;)>
 //]]>
 
-}
-
-extension MusicXML.Score {
-
-    // MARK: - Traversal
-
-    public struct Timewise: Decodable, Equatable {
-
-        enum CodingKeys: String, CodingKey {
-            case measures = "measure"
-        }
-
-        // TODO: Use NonEmpty
-        let header: MusicXML.Score.Header
-        let measures: [MusicXML.Score.Measure.Timewise]
-
-        public init(from decoder: Decoder) throws {
-            var unkeyed = try decoder.unkeyedContainer()
-            let keyed = try decoder.container(keyedBy: CodingKeys.self)
-            self.header = try unkeyed.decode(Header.self)
-            self.measures = try keyed.decode([MusicXML.Score.Measure.Timewise].self, forKey: .measures)
-        }
-    }
-
-    public struct Partwise: Decodable, Equatable {
-
-        enum CodingKeys: String, CodingKey {
-            case parts = "part"
-        }
-
-        let header: Header
-        let parts: [Part.Partwise]
-
-        public init(from decoder: Decoder) throws {
-            var unkeyed = try decoder.unkeyedContainer()
-            let keyed = try decoder.container(keyedBy: CodingKeys.self)
-            self.header = try unkeyed.decode(Header.self)
-            self.parts = try keyed.decode([Part.Partwise].self, forKey: .parts)
-        }
-    }
 }

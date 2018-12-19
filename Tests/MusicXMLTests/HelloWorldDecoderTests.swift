@@ -80,7 +80,7 @@ class HelloWorldDecoderTests: XCTestCase {
         </measure>
         """
         do {
-            let musicData = try XMLDecoder().decode(MusicXML.Score.Measure.Partwise.self, from: xml.data(using: .utf8)!)
+            let musicData = try XMLDecoder().decode(MusicXML.Score.Partwise.Measure.self, from: xml.data(using: .utf8)!)
             dump(musicData)
         } catch {
             print(error)
