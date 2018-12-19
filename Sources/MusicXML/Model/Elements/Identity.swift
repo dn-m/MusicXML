@@ -155,7 +155,7 @@ extension MusicXML {
                 let value: String?
             }
 
-            #warning("FIXME: Decodability of miscellaneous-field is blocked by XMLDecder limitation")
+            #warning("FIXME: Decodability of miscellaneous-field is blocked by XMLDecoder limitation")
             let fields: [Field]?
         }
 
