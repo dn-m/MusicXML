@@ -476,8 +476,8 @@ extension MusicXML.Score.Header {
     //    system-layout?, staff-layout*, appearance?,
     //    music-font?, word-font?, lyric-font*, lyric-language*)>
     public struct Defaults: Decodable, Equatable {
-        let scaling: Int? // TODO: Scaling
-        let pageLayout: Int? // TODO: PageLayout
+        let scaling: MusicXML.Scaling?
+        let pageLayout: MusicXML.PageLayout? 
         let systemLayout: Int? // TODO: SystemLayout
         let appearance: Int? // TODO: Appearance
         let musicFont: MusicXML.Font?
