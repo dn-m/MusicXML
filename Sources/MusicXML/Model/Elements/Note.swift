@@ -1461,7 +1461,7 @@ extension MusicXML {
     //    parentheses %yes-no; #IMPLIED
     //    %optional-unique-id;
     // >
-    public struct FiguredBass {
+    public struct FiguredBass: Equatable {
 
         // <!ELEMENT figure
         //    (prefix?, figure-number?, suffix?, extend?, %editorial;)>
@@ -1469,12 +1469,12 @@ extension MusicXML {
         // <!ATTLIST prefix
         //    %print-style;
         // >
-        public struct Figure {
+        public struct Figure: Decodable, Equatable {
 
             // > Values for prefix and suffix include plus and
             // > the accidental values sharp, flat, natural, double-sharp,
             // > flat-flat, and sharp-sharp.
-            public enum Prefix: String {
+            public enum Prefix: String, Decodable, Equatable {
                 case plus = "plus"
                 case sharp = "sharp"
                 case flat = "flat"
@@ -1489,7 +1489,7 @@ extension MusicXML {
             // > the figure number. The suffix values slash, back-slash, and
             // > vertical are used for slashed numbers indicating chromatic
             // > alteration.
-            public enum Suffix: String {
+            public enum Suffix: String, Decodable, Equatable {
                 case slash = "slash"
                 case backSlash = "back-slash"
                 case vertical = "vertical"
@@ -2225,4 +2225,8 @@ extension MusicXML {
         let font: Font
         let color: Color
     }
+}
+
+extension MusicXML.FiguredBass: Decodable {
+
 }

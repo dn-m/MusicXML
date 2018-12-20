@@ -768,7 +768,7 @@ extension MusicXML {
     //     print-dot     %yes-no;  #IMPLIED
     //     %print-spacing;
     //     print-lyric   %yes-no;  #IMPLIED">
-    public struct Printout {
+    public struct Printout: Decodable, Equatable {
         let printObject: Bool
         let printDot: Bool
         let printSpacing: Bool
