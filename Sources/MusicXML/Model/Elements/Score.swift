@@ -278,6 +278,7 @@ extension MusicXML {
                 case forward
                 case direction
                 case attributes
+                case harmony
             }
 
             case note(Note)
@@ -285,6 +286,7 @@ extension MusicXML {
             case forward(Forward)
             case attributes(Attributes)
             case direction(Direction)
+            case harmony(Harmony)
             case other
 
             public init(from decoder: Decoder) throws {
@@ -306,7 +308,11 @@ extension MusicXML {
                                 do {
                                     self = .direction(try container.decode(Direction.self, forKey: .direction))
                                 } catch {
-                                    self = .other
+                                    do {
+                                        self = .harmony(try container.decode(Harmony.self, forKey: .harmony))
+                                    } catch {
+                                        self = .other
+                                    }
                                 }
                             }
                         }

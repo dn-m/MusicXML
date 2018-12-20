@@ -700,7 +700,7 @@ extension MusicXML {
     //    %placement;
     //    %optional-unique-id;
     //>
-    public struct Harmony {
+    public struct Harmony: Equatable {
         #warning("Build out Harmony")
     }
 //
@@ -1177,5 +1177,5 @@ extension MusicXML.Direction: Decodable {
 }
 
 extension MusicXML.Harmony: Decodable {
-    
+
 }
