@@ -47,6 +47,6 @@ class NoteDecoderTests: XCTestCase {
             <type>quarter</type>
         </note>
         """
-        XCTAssertNoThrow(try XMLDecoder().decode([MusicXML.MusicDatum].self, from: xml.data(using: .utf8)!))
+        XCTAssertNoThrow(try XMLDecoder().decode([MusicXML.MusicData.Datum].self, from: xml.data(using: .utf8)!))
     }
 }

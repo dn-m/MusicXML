@@ -270,37 +270,45 @@ extension MusicXML {
     //     grouping | link | bookmark)*">
     public struct MusicData: Decodable, Equatable {
 
-        let values: [MusicDatum]
+        // > Here is the basic musical data that is either associated
+        // > with a part or a measure, depending on whether partwise
+        // > or timewise hierarchy is used.
+        // >
+        // <!ENTITY % music-data
+        //   "(note | backup | forward | direction | attributes |
+        //     harmony | figured-bass | print | sound | barline |
+        //     grouping | link | bookmark)*">
+        #warning("TODO: Build out MusicDatum")
+        public enum Datum: Decodable, Equatable {
+
+            enum CodingKeys: String, CodingKey {
+                case note
+                case attributes
+            }
+
+            case attributes(Attributes)
+            case note(Note)
+            case other
+
+            public init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                do {
+                    self = .note(try container.decode(Note.self, forKey: .note))
+                } catch {
+                    do {
+                        self = .attributes(try container.decode(Attributes.self, forKey: .attributes))
+                    } catch {
+                        self = .other
+                    }
+                }
+            }
+        }
+
+        let values: [Datum]
 
         public init(from decoder: Decoder) throws {
             var container = try decoder.unkeyedContainer()
-            self.values = try container.decode([MusicDatum].self)
-        }
-    }
-
-    #warning("TODO: Build out MusicDatum")
-    public enum MusicDatum: Decodable, Equatable {
-
-        enum CodingKeys: String, CodingKey {
-            case note
-            case attributes
-        }
-
-        case attributes(Attributes)
-        case note(Note)
-        case other
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            do {
-                self = .note(try container.decode(Note.self, forKey: .note))
-            } catch {
-                do {
-                    self = .attributes(try container.decode(Attributes.self, forKey: .attributes))
-                } catch {
-                    self = .other
-                }
-            }
+            self.values = try container.decode([Datum].self)
         }
     }
 }
