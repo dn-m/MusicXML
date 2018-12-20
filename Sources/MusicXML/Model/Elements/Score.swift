@@ -283,8 +283,10 @@ extension MusicXML {
 
         enum CodingKeys: String, CodingKey {
             case note
+            case attributes
         }
 
+        case attributes(Attributes)
         case note(Note)
         case other
 
