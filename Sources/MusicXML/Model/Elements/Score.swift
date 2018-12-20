@@ -289,6 +289,7 @@ extension MusicXML {
             case direction(Direction)
             case harmony(Harmony)
             case figuredBass(FiguredBass)
+            case print(Print)
             case other
 
             public init(from decoder: Decoder) throws {
