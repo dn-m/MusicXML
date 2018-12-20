@@ -155,7 +155,7 @@ extension MusicXML.Score.Partwise {
         let nonControlling: Bool?
         let width: Int? // Tenths
         let optionalUniqueID: Int?
-        let musicData: MusicXML.MusicData
+        let musicData: MusicXML.MusicData?
     }
 }
 
@@ -285,6 +285,7 @@ extension MusicXML {
                 case barline
                 case grouping
                 case link
+                case bookmark
             }
 
             case note(Note)
@@ -299,7 +300,7 @@ extension MusicXML {
             case barline(Barline)
             case grouping(Grouping)
             case link(Link)
-            case other
+            case bookmark(Bookmark)
 
             public init(from decoder: Decoder) throws {
 
@@ -346,7 +347,7 @@ extension MusicXML {
                                                             do {
                                                                 self = .link(try decode(.link))
                                                             } catch {
-                                                                self = .other
+                                                                self = .bookmark(try decode(.bookmark))
                                                             }
                                                         }
                                                     }
@@ -385,7 +386,7 @@ extension MusicXML.Score.Timewise {
     // >
     public struct Part: Equatable {
         let id: String
-        let musicData: MusicXML.MusicData
+        let musicData: MusicXML.MusicData?
     }
 
     // > The implicit attribute is set to "yes" for measures where
@@ -432,7 +433,6 @@ extension MusicXML.Score.Timewise {
     // >
     public struct Measure: Equatable {
         let number: Int
-//        let attributes: [MusicXML.Attributes]?
         let text: String?
         let implicit: Bool?
         let nonControlling: Bool?

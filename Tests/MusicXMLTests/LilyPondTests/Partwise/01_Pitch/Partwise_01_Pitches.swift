@@ -5,15 +5,12 @@
 //  Created by James Bean on 12/17/18.
 //
 
-import Foundation
 import XCTest
 import MusicXML
 
 class Partwise_01_Pitches: XCTestCase {
 
     func testA_Pitches() {
-        let musicXML = try! MusicXML(string: A_Pitches)
-        dump(musicXML)
         XCTAssertNoThrow(try MusicXML(string: A_Pitches))
     }
 
@@ -30,8 +27,6 @@ class Partwise_01_Pitches: XCTestCase {
     }
 
     func testE_ParenthesizedAccidentals() {
-        let musicXML = try! MusicXML(string: E_ParenthesizedAccidentals)
-        dump(musicXML)
         XCTAssertNoThrow(try MusicXML(string: E_ParenthesizedAccidentals))
     }
 
