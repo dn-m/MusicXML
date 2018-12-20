@@ -333,7 +333,11 @@ extension MusicXML {
                                                 do {
                                                     self = .sound(try decode(.sound))
                                                 } catch {
-                                                    self = .other
+                                                    do {
+                                                        self = .barline(try decode(.barline))
+                                                    } catch {
+                                                        self = .other
+                                                    }
                                                 }
                                             }
                                         }
