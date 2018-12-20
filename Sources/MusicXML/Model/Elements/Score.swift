@@ -282,6 +282,7 @@ extension MusicXML {
                 case figuredBass = "figured-bass"
                 case print
                 case sound
+                case barline
             }
 
             case note(Note)
@@ -293,6 +294,7 @@ extension MusicXML {
             case figuredBass(FiguredBass)
             case print(Print)
             case sound(Sound)
+            case barline(Barline)
             case other
 
             public init(from decoder: Decoder) throws {
