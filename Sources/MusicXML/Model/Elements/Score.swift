@@ -150,7 +150,6 @@ extension MusicXML.Score.Partwise {
     // >
     public struct Measure: Equatable {
         let number: Int
-        let attributes: [MusicXML.Attributes]?
         let text: String?
         let implicit: Bool?
         let nonControlling: Bool?
@@ -361,7 +360,7 @@ extension MusicXML.Score.Timewise {
     // >
     public struct Measure: Equatable {
         let number: Int
-        let attributes: [MusicXML.Attributes]?
+//        let attributes: [MusicXML.Attributes]?
         let text: String?
         let implicit: Bool?
         let nonControlling: Bool?
@@ -563,7 +562,6 @@ extension MusicXML.Score.Timewise.Measure: Decodable {
     enum CodingKeys: String, CodingKey {
         case parts = "part"
         case number
-        case attributes
         case text
         case implicit
         case nonControlling = "non-controlling"
@@ -609,7 +607,6 @@ extension MusicXML.Score.Partwise.Measure: Decodable {
         let keyed = try decoder.container(keyedBy: CodingKeys.self)
         var unkeyed = try decoder.unkeyedContainer()
         self.number = try keyed.decode(Int.self, forKey: .number)
-        self.attributes = try keyed.decodeIfPresent([MusicXML.Attributes].self, forKey: .attributes)
         self.text = try keyed.decodeIfPresent(String.self, forKey: .text)
         self.implicit = try keyed.decodeIfPresent(Bool.self, forKey: .implicit)
         self.nonControlling = try keyed.decodeIfPresent(Bool.self, forKey: .nonControlling)
