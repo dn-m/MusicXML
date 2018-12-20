@@ -58,7 +58,7 @@ extension MusicXML.Score {
         let movementNumber: String?
         let movementTitle: String?
         let identification: MusicXML.Identification?
-        // TODO: defaults
+        let defaults: Defaults?
         let credits: [Credit]?
         let partList: PartList
     }
@@ -672,8 +672,8 @@ extension MusicXML.Score.Header: Decodable {
         case movementTitle = "movement-title"
         case partList = "part-list"
         case identification
+        case defaults
         case credits = "credit"
-        // TODO: defaults
     }
 }
 
