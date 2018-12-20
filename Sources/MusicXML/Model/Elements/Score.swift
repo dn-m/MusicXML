@@ -283,6 +283,7 @@ extension MusicXML {
                 case print
                 case sound
                 case barline
+                case grouping
             }
 
             case note(Note)
@@ -295,6 +296,7 @@ extension MusicXML {
             case print(Print)
             case sound(Sound)
             case barline(Barline)
+            case grouping(Grouping)
             case other
 
             public init(from decoder: Decoder) throws {
@@ -336,7 +338,11 @@ extension MusicXML {
                                                     do {
                                                         self = .barline(try decode(.barline))
                                                     } catch {
-                                                        self = .other
+                                                        do {
+                                                            self = .grouping(try decode(.grouping))
+                                                        } catch {
+                                                            self = .other
+                                                        }
                                                     }
                                                 }
                                             }
