@@ -5,7 +5,73 @@
 //  Created by James Bean on 12/3/18.
 //
 
-// MARK: TODO
+extension MusicXML {
+
+    // > Margins, page sizes, and distances are all measured in
+    // > tenths to keep MusicXML data in a consistent coordinate
+    // > system as much as possible. The translation to absolute
+    // > units is done in the scaling element, which specifies
+    // > how many millimeters are equal to how many tenths. For
+    // > a staff height of 7 mm, millimeters would be set to 7
+    // > while tenths is set to 40. The ability to set a formula
+    // > rather than a single scaling factor helps avoid roundoff
+    // > errors.
+    //
+    // <!ELEMENT scaling (millimeters, tenths)>
+    // <!ELEMENT millimeters (#PCDATA)>
+    // <!ELEMENT tenths %layout-tenths;>
+    public struct Scaling: Decodable, Equatable {
+        let millimeters: Int
+        let tenths: Int
+    }
+
+    // > Page layout can be defined both in score-wide defaults
+    // > and in the print element. Page margins are specified either
+    // > for both even and odd pages, or via separate odd and even
+    // > page number values. The type is not needed when used as
+    // > part of a print element. If omitted when used in the
+    // > defaults element, "both" is the default.
+    //
+    // <!ELEMENT page-layout ((page-height, page-width)?,
+    //    (page-margins, page-margins?)?)>
+    public struct PageLayout: Decodable, Equatable {
+
+        public struct Size: Decodable, Equatable {
+            // <!ELEMENT page-height %layout-tenths;>
+            let height: Int // tenths
+            // <!ELEMENT page-width %layout-tenths;>
+            let width: Int // tenths
+        }
+
+        #warning("FIXME: Refactor Margins a little better to encode logic")
+        public struct Margins: Decodable, Equatable {
+            let even: PageMargins
+            let odd: PageMargins?
+        }
+
+        let size: Size?
+        let margins: Margins?
+    }
+
+    // <!ELEMENT page-margins (left-margin, right-margin,
+    //    top-margin, bottom-margin)>
+    // <!ATTLIST page-margins
+    //    type (odd | even | both) #IMPLIED
+    // >
+    public struct PageMargins: Decodable, Equatable {
+        public enum Kind: String, Decodable, Equatable {
+            case odd
+            case even
+            case both
+        }
+        let kind: Kind
+        let left: Int // tenths
+        let right: Int // tenths
+        let top: Int // tenths
+        let bottom: Int // tenths
+    }
+}
+
 //
 //<!--
 //    MusicXML layout.mod module
@@ -41,20 +107,7 @@
 //
 //<!-- Elements -->
 //
-//<!--
-//    Margins, page sizes, and distances are all measured in
-//    tenths to keep MusicXML data in a consistent coordinate
-//    system as much as possible. The translation to absolute
-//    units is done in the scaling element, which specifies
-//    how many millimeters are equal to how many tenths. For
-//    a staff height of 7 mm, millimeters would be set to 7
-//    while tenths is set to 40. The ability to set a formula
-//    rather than a single scaling factor helps avoid roundoff
-//    errors.
-//-->
-//<!ELEMENT scaling (millimeters, tenths)>
-//<!ELEMENT millimeters (#PCDATA)>
-//<!ELEMENT tenths %layout-tenths;>
+
 //
 //<!--
 //    Margin elements are included within many of the larger
@@ -65,23 +118,7 @@
 //<!ELEMENT top-margin %layout-tenths;>
 //<!ELEMENT bottom-margin %layout-tenths;>
 //
-//<!--
-//    Page layout can be defined both in score-wide defaults
-//    and in the print element. Page margins are specified either
-//    for both even and odd pages, or via separate odd and even
-//    page number values. The type is not needed when used as
-//    part of a print element. If omitted when used in the
-//    defaults element, "both" is the default.
-//-->
-//<!ELEMENT page-layout ((page-height, page-width)?,
-//    (page-margins, page-margins?)?)>
-//<!ELEMENT page-height %layout-tenths;>
-//<!ELEMENT page-width %layout-tenths;>
-//<!ELEMENT page-margins (left-margin, right-margin,
-//    top-margin, bottom-margin)>
-//<!ATTLIST page-margins
-//    type (odd | even | both) #IMPLIED
-//>
+
 //
 //<!--
 //    A system is a group of staves that are read and played
