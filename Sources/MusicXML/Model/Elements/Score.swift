@@ -52,7 +52,6 @@ extension MusicXML.Score {
     // <!ENTITY % score-header
     // "(work?, movement-number?, movement-title?,
     // identification?, defaults?, credit*, part-list)">
-    #warning("TODO: Add Header identification, defaults, credits")
     public struct Header: Equatable {
         let work: Work?
         let movementNumber: String?
