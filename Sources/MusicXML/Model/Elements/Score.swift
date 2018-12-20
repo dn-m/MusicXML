@@ -263,17 +263,8 @@ extension MusicXML {
     // > Here is the basic musical data that is either associated
     // > with a part or a measure, depending on whether partwise
     // > or timewise hierarchy is used.
-    // >
-    // <!ENTITY % music-data
-    //   "(note | backup | forward | direction | attributes |
-    //     harmony | figured-bass | print | sound | barline |
-    //     grouping | link | bookmark)*">
     public struct MusicData: Decodable, Equatable {
 
-        // > Here is the basic musical data that is either associated
-        // > with a part or a measure, depending on whether partwise
-        // > or timewise hierarchy is used.
-        // >
         // <!ENTITY % music-data
         //   "(note | backup | forward | direction | attributes |
         //     harmony | figured-bass | print | sound | barline |
