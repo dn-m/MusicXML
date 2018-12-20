@@ -284,6 +284,7 @@ extension MusicXML {
                 case sound
                 case barline
                 case grouping
+                case link
             }
 
             case note(Note)
@@ -297,6 +298,7 @@ extension MusicXML {
             case sound(Sound)
             case barline(Barline)
             case grouping(Grouping)
+            case link(Link)
             case other
 
             public init(from decoder: Decoder) throws {
