@@ -274,22 +274,36 @@ extension MusicXML {
 
             enum CodingKeys: String, CodingKey {
                 case note
+                case backup
+                case forward
                 case attributes
             }
 
-            case attributes(Attributes)
             case note(Note)
+            case backup(Backup)
+            case forward(Forward)
+            case attributes(Attributes)
             case other
 
             public init(from decoder: Decoder) throws {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
+
+                // FIXME: Attempt to escape do-catch hell
                 do {
                     self = .note(try container.decode(Note.self, forKey: .note))
                 } catch {
                     do {
-                        self = .attributes(try container.decode(Attributes.self, forKey: .attributes))
+                        self = .backup(try container.decode(Backup.self, forKey: .backup))
                     } catch {
-                        self = .other
+                        do {
+                            self = .forward(try container.decode(Forward.self, forKey: .forward))
+                        } catch {
+                            do {
+                                self = .attributes(try container.decode(Attributes.self, forKey: .attributes))
+                            } catch {
+                                self = .other
+                            }
+                        }
                     }
                 }
             }
