@@ -280,6 +280,8 @@ extension MusicXML {
                 case attributes
                 case harmony
                 case figuredBass = "figured-bass"
+                case print
+                case sound
             }
 
             case note(Note)
@@ -290,34 +292,48 @@ extension MusicXML {
             case harmony(Harmony)
             case figuredBass(FiguredBass)
             case print(Print)
+            case sound(Sound)
             case other
 
             public init(from decoder: Decoder) throws {
+
                 let container = try decoder.container(keyedBy: CodingKeys.self)
+
+                func decode <T> (_ key: CodingKeys) throws -> T where T: Decodable {
+                    return try container.decode(T.self, forKey: key)
+                }
 
                 // FIXME: Attempt to escape do-catch hell
                 do {
-                    self = .note(try container.decode(Note.self, forKey: .note))
+                    self = .note(try decode(.note))
                 } catch {
                     do {
-                        self = .backup(try container.decode(Backup.self, forKey: .backup))
+                        self = .backup(try decode(.backup))
                     } catch {
                         do {
-                            self = .forward(try container.decode(Forward.self, forKey: .forward))
+                            self = .forward(try decode(.forward))
                         } catch {
                             do {
-                                self = .attributes(try container.decode(Attributes.self, forKey: .attributes))
+                                self = .attributes(try decode(.attributes))
                             } catch {
                                 do {
-                                    self = .direction(try container.decode(Direction.self, forKey: .direction))
+                                    self = .direction(try decode(.direction))
                                 } catch {
                                     do {
-                                        self = .harmony(try container.decode(Harmony.self, forKey: .harmony))
+                                        self = .harmony(try decode(.harmony))
                                     } catch {
                                         do {
-                                            self = .figuredBass(try container.decode(FiguredBass.self, forKey: .figuredBass))
+                                            self = .figuredBass(try decode(.figuredBass))
                                         } catch {
-                                            self = .other
+                                            do {
+                                                self = .print(try decode(.print))
+                                            } catch {
+                                                do {
+                                                    self = .sound(try decode(.sound))
+                                                } catch {
+                                                    self = .other
+                                                }
+                                            }
                                         }
                                     }
                                 }
