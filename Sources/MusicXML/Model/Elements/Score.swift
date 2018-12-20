@@ -343,7 +343,11 @@ extension MusicXML {
                                                         do {
                                                             self = .grouping(try decode(.grouping))
                                                         } catch {
-                                                            self = .other
+                                                            do {
+                                                                self = .link(try decode(.link))
+                                                            } catch {
+                                                                self = .other
+                                                            }
                                                         }
                                                     }
                                                 }
