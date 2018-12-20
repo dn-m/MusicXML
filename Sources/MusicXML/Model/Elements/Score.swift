@@ -291,11 +291,15 @@ extension MusicXML {
         case other
 
         public init(from decoder: Decoder) throws {
-            var container = try decoder.container(keyedBy: CodingKeys.self)
+            let container = try decoder.container(keyedBy: CodingKeys.self)
             do {
                 self = .note(try container.decode(Note.self, forKey: .note))
             } catch {
-                self = .other
+                do {
+                    self = .attributes(try container.decode(Attributes.self, forKey: .attributes))
+                } catch {
+                    self = .other
+                }
             }
         }
     }
