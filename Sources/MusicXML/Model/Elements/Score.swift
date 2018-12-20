@@ -150,7 +150,6 @@ extension MusicXML.Score.Partwise {
     // >
     public struct Measure: Equatable {
         let number: Int
-        let attributes: [MusicXML.Attributes]?
         let text: String?
         let implicit: Bool?
         let nonControlling: Bool?
@@ -261,6 +260,14 @@ extension MusicXML.Score.Header {
 
 extension MusicXML {
 
+    // > Here is the basic musical data that is either associated
+    // > with a part or a measure, depending on whether partwise
+    // > or timewise hierarchy is used.
+    // >
+    // <!ENTITY % music-data
+    //   "(note | backup | forward | direction | attributes |
+    //     harmony | figured-bass | print | sound | barline |
+    //     grouping | link | bookmark)*">
     public struct MusicData: Decodable, Equatable {
 
         let values: [MusicDatum]
@@ -276,17 +283,23 @@ extension MusicXML {
 
         enum CodingKeys: String, CodingKey {
             case note
+            case attributes
         }
 
+        case attributes(Attributes)
         case note(Note)
         case other
 
         public init(from decoder: Decoder) throws {
-            var container = try decoder.container(keyedBy: CodingKeys.self)
+            let container = try decoder.container(keyedBy: CodingKeys.self)
             do {
                 self = .note(try container.decode(Note.self, forKey: .note))
             } catch {
-                self = .other
+                do {
+                    self = .attributes(try container.decode(Attributes.self, forKey: .attributes))
+                } catch {
+                    self = .other
+                }
             }
         }
     }
@@ -353,7 +366,7 @@ extension MusicXML.Score.Timewise {
     // >
     public struct Measure: Equatable {
         let number: Int
-        let attributes: [MusicXML.Attributes]?
+//        let attributes: [MusicXML.Attributes]?
         let text: String?
         let implicit: Bool?
         let nonControlling: Bool?
@@ -555,7 +568,6 @@ extension MusicXML.Score.Timewise.Measure: Decodable {
     enum CodingKeys: String, CodingKey {
         case parts = "part"
         case number
-        case attributes
         case text
         case implicit
         case nonControlling = "non-controlling"
@@ -601,7 +613,6 @@ extension MusicXML.Score.Partwise.Measure: Decodable {
         let keyed = try decoder.container(keyedBy: CodingKeys.self)
         var unkeyed = try decoder.unkeyedContainer()
         self.number = try keyed.decode(Int.self, forKey: .number)
-        self.attributes = try keyed.decodeIfPresent([MusicXML.Attributes].self, forKey: .attributes)
         self.text = try keyed.decodeIfPresent(String.self, forKey: .text)
         self.implicit = try keyed.decodeIfPresent(Bool.self, forKey: .implicit)
         self.nonControlling = try keyed.decodeIfPresent(Bool.self, forKey: .nonControlling)
