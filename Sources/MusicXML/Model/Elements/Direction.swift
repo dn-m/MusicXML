@@ -641,25 +641,29 @@ extension MusicXML {
 //    %optional-unique-id;
 //>
 //
-//<!--
-//    An offset is represented in terms of divisions, and
-//    indicates where the direction will appear relative to
-//    the current musical location. This affects the visual
-//    appearance of the direction. If the sound attribute is
-//    "yes", then the offset affects playback too. If the sound
-//    attribute is "no", then any sound associated with the
-//    direction takes effect at the current location. The sound
-//    attribute is "no" by default for compatibility with earlier
-//    versions of the MusicXML format. If an element within a
-//    direction includes a default-x attribute, the offset value
-//    will be ignored when determining the appearance of that
-//    element.
-//-->
-//<!ELEMENT offset (#PCDATA)>
-//<!ATTLIST offset
-//    sound %yes-no; #IMPLIED
-//>
-//
+
+    // > An offset is represented in terms of divisions, and
+    // > indicates where the direction will appear relative to
+    // > the current musical location. This affects the visual
+    // > appearance of the direction. If the sound attribute is
+    // > "yes", then the offset affects playback too. If the sound
+    // > attribute is "no", then any sound associated with the
+    // > direction takes effect at the current location. The sound
+    // > attribute is "no" by default for compatibility with earlier
+    // > versions of the MusicXML format. If an element within a
+    // > direction includes a default-x attribute, the offset value
+    // > will be ignored when determining the appearance of that
+    // > element.
+    //
+    // <!ELEMENT offset (#PCDATA)>
+    // <!ATTLIST offset
+    //    sound %yes-no; #IMPLIED
+    // >
+    public struct Offset: Decodable, Equatable {
+        let value: Int
+        let sound: Bool
+    }
+
     // MARK: - Harmony
 
     // > The harmony elements are based on Humdrum's **harm
@@ -689,7 +693,10 @@ extension MusicXML {
     //
     // <!ENTITY % harmony-chord "((root | function), kind,
     //    inversion?, bass?, degree*)">
-    //
+    public struct HarmonyChord: Decodable, Equatable {
+        #warning("Build out HarmonyChord")
+    }
+
     // <!ELEMENT harmony ((%harmony-chord;)+, frame?,
     //    offset?, %editorial;, staff?)>
     // <!ATTLIST harmony
@@ -701,7 +708,22 @@ extension MusicXML {
     //    %optional-unique-id;
     //>
     public struct Harmony: Equatable {
-        #warning("Build out Harmony")
+        public enum Kind: String, Decodable {
+            case explicit
+            case implied
+            case alternate
+        }
+        let chord: [Harmony] // TODO: Make NonEmpty
+        let frame: Frame?
+        let offset: Offset?
+        let editorial: Editorial?
+        let staff: Staff?
+        let type: Kind
+        let printObject: Bool
+        let printFrame: Bool?
+        let printStyle: PrintStyle?
+        let placement: Placement?
+        let optionalUniqueID: String?
     }
 //
 //<!--
@@ -915,33 +937,39 @@ extension MusicXML {
 //    %print-style;
 //>
 //
-//<!--
-//    The frame element represents a frame or fretboard diagram
-//    used together with a chord symbol. The representation is
-//    based on the NIFF guitar grid with additional information.
-//    The frame-strings and frame-frets elements give the
-//    overall size of the frame in vertical lines (strings) and
-//    horizontal spaces (frets).
-//    The frame element's unplayed attribute indicates what to
-//    display above a string that has no associated frame-note
-//    element. Typical values are x and the empty string. If the
-//    attribute is not present, the display of the unplayed
-//    string is application-defined.
-//-->
-//<!ELEMENT frame
-//    (frame-strings, frame-frets, first-fret?, frame-note+)>
-//<!ATTLIST frame
-//    %position;
-//    %color;
-//    %halign;
-//    %valign-image;
-//    height  %tenths;  #IMPLIED
-//    width   %tenths;  #IMPLIED
-//    unplayed CDATA    #IMPLIED
-//    %optional-unique-id;
-//>
-//<!ELEMENT frame-strings (#PCDATA)>
-//<!ELEMENT frame-frets (#PCDATA)>
+
+    // > The frame element represents a frame or fretboard diagram
+    // > used together with a chord symbol. The representation is
+    // > based on the NIFF guitar grid with additional information.
+    // > The frame-strings and frame-frets elements give the
+    // > overall size of the frame in vertical lines (strings) and
+    // > horizontal spaces (frets).
+    // > The frame element's unplayed attribute indicates what to
+    // > display above a string that has no associated frame-note
+    // > element. Typical values are x and the empty string. If the
+    // > attribute is not present, the display of the unplayed
+    // > string is application-defined.
+    //
+    // <!ELEMENT frame
+    //    (frame-strings, frame-frets, first-fret?, frame-note+)>
+    // <!ATTLIST frame
+    //    %position;
+    //    %color;
+    //    %halign;
+    //    %valign-image;
+    //    height  %tenths;  #IMPLIED
+    //    width   %tenths;  #IMPLIED
+    //    unplayed CDATA    #IMPLIED
+    //    %optional-unique-id;
+    // >
+    // <!ELEMENT frame-strings (#PCDATA)>
+    // <!ELEMENT frame-frets (#PCDATA)>
+    public struct Frame: Decodable, Equatable {
+        public struct Strings: Decodable, Equatable { }
+        public struct Frets: Decodable, Equatable { }
+        #warning("Build out Frame & friends")
+    }
+
 //
 //<!--
 //    The first-fret indicates which fret is shown in the top
