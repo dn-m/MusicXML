@@ -130,15 +130,8 @@ extension Score: Decodable {
     }
 }
 
-
-
 extension Work: Decodable { }
 
-// MARK: - TODO
-
-
-//
-//<!--
 //    The score-instrument element allows for multiple
 //    instruments per score-part. As with the score-part
 //    element, each score-instrument has a required ID
