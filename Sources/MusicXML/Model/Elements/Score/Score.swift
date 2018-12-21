@@ -189,13 +189,4 @@ extension Work: Decodable { }
 //<!ELEMENT virtual-library (#PCDATA)>
 //<!ELEMENT virtual-name (#PCDATA)>
 //
-//<!--
-//    The group element allows the use of different versions of
-//    the part for different purposes. Typical values include
-//    score, parts, sound, and data. Ordering information that is
-//    directly encoded in MuseData can be derived from the
-//    ordering within a MusicXML score or opus.
-//-->
-//<!ELEMENT group (#PCDATA)>
-//
 

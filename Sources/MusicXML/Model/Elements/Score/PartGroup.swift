@@ -5,6 +5,17 @@
 //  Created by James Bean on 12/21/18.
 //
 
+// > The group element allows the use of different versions of
+// > the part for different purposes. Typical values include
+// > score, parts, sound, and data. Ordering information that is
+// > directly encoded in MuseData can be derived from the
+// > ordering within a MusicXML score or opus.
+//
+// <!ELEMENT group (#PCDATA)>
+public struct Group {
+    let value: String
+}
+
 // > The part-group element indicates groupings of parts in the
 // > score, usually indicated by braces and brackets. Braces
 // > that are used for multi-staff parts should be defined in
