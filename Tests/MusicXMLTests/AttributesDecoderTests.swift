@@ -18,7 +18,9 @@ class AttributesDecoderTests: XCTestCase {
             <beat-type>4</beat-type>
         </time>
         """
-        let _ = try! XMLDecoder().decode(MusicXML.Attributes.Time.self, from: xml.data(using: .utf8)!)
+        XCTAssertNoThrow(
+            try XMLDecoder().decode(MusicXML.Attributes.Time.self, from: xml.data(using: .utf8)!)
+        )
     }
 
     func testKey() {
@@ -27,7 +29,9 @@ class AttributesDecoderTests: XCTestCase {
             <fifths>0</fifths>
         </key>
         """
-        let _ = try! XMLDecoder().decode(MusicXML.Attributes.Key.self, from: xml.data(using: .utf8)!)
+        XCTAssertNoThrow(
+            try XMLDecoder().decode(MusicXML.Attributes.Key.self, from: xml.data(using: .utf8)!)
+        )
     }
 
     func testClef() {
@@ -37,6 +41,8 @@ class AttributesDecoderTests: XCTestCase {
             <line>2</line>
         </clef>
         """
-        let _ = try! XMLDecoder().decode(MusicXML.Attributes.Clef.self, from: xml.data(using:. utf8)!)
+        XCTAssertNoThrow(
+            try XMLDecoder().decode(MusicXML.Attributes.Clef.self, from: xml.data(using:. utf8)!)
+        )
     }
 }
