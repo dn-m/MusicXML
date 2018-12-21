@@ -1,5 +1,5 @@
 //
-//  PartGroup.swift
+//  Group.swift
 //  MusicXML
 //
 //  Created by James Bean on 12/21/18.

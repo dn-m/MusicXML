@@ -189,4 +189,3 @@ extension Work: Decodable { }
 //<!ELEMENT virtual-library (#PCDATA)>
 //<!ELEMENT virtual-name (#PCDATA)>
 //
-
