@@ -30,7 +30,7 @@
 // <!ELEMENT attributes (%editorial;, divisions?, key*, time*,
 //    staves?, part-symbol?, instruments?, clef*, staff-details*,
 //    transpose*, directive*, measure-style*)>
-public struct Attributes: Decodable, Equatable {
+public struct Attributes: Equatable {
 
     // > Musical notation duration is commonly represented as
     // > fractions. The divisions element indicates how many
@@ -730,21 +730,6 @@ public struct Attributes: Decodable, Equatable {
         }
     }
 
-    enum CodingKeys: String, CodingKey {
-        case editorial
-        case divisions
-        case keys = "key"
-        case time
-        case staves
-        case partSymbol = "part-symbol"
-        case instruments
-        case clefs = "clef"
-        case staffDetails = "staff-details"
-        case transpose
-        case directive
-        case measureStyles = "measure-style"
-    }
-
     let editorial: Editorial?
     let divisions: Divisions?
     let keys: [Key]?
@@ -929,5 +914,25 @@ public struct Directive: Decodable, Equatable {
     public init(printStyle: String, language: String) {
         self.printStyle = printStyle
         self.language = language
+    }
+}
+
+extension Attributes: Decodable {
+
+    // MARK: Decodable
+
+    enum CodingKeys: String, CodingKey {
+        case editorial
+        case divisions
+        case keys = "key"
+        case time
+        case staves
+        case partSymbol = "part-symbol"
+        case instruments
+        case clefs = "clef"
+        case staffDetails = "staff-details"
+        case transpose
+        case directive
+        case measureStyles = "measure-style"
     }
 }
