@@ -8,7 +8,7 @@
 // > Here is the basic musical data that is either associated
 // > with a part or a measure, depending on whether partwise
 // > or timewise hierarchy is used.
-public struct MusicData: Decodable, Equatable {
+public struct MusicData: Equatable {
 
     // <!ENTITY % music-data
     //   "(note | backup | forward | direction | attributes |
@@ -31,6 +31,11 @@ public struct MusicData: Decodable, Equatable {
     }
 
     let values: [Datum]
+}
+
+extension MusicData: Decodable {
+
+    // MARK: - Decodable
 
     public init(from decoder: Decoder) throws {
         var container = try decoder.unkeyedContainer()
@@ -66,7 +71,7 @@ extension MusicData.Datum: Decodable {
             return try container.decode(T.self, forKey: key)
         }
 
-        // FIXME: Attempt to escape do-catch hell
+        // FIXME: Attempt to escape do-try-catch hell
         do {
             self = .note(try decode(.note))
         } catch {
