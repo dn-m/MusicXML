@@ -338,7 +338,7 @@ public struct Transpose: Decodable, Equatable {
         diatonic: Int = 0,
         octave: Int = 0,
         doubleDown: Bool = false
-        )
+    )
     {
         self.id = id
         self.chromatic = chromatic
