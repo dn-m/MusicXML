@@ -29,17 +29,24 @@
 //
 // <!ELEMENT part-list (part-group*, score-part,
 //    (part-group | score-part)*)>
-#warning("TODO: Build out PartList")
 public struct PartList: Equatable {
-
-    enum Kind {
-        case group(Int) // PartGroup
+    public enum Element: Decodable, Equatable {
+        case group(PartGroup) // PartGroup
         case part(ScorePart)
+        enum CodingKeys: String, CodingKey {
+            case group
+            case part
+        }
+        public init(from decoder: Decoder) throws {
+            let keyed = try decoder.container(keyedBy: CodingKeys.self)
+            do {
+                self = .group(try keyed.decode(PartGroup.self, forKey: .group))
+            } catch {
+                self = .part(try keyed.decode(ScorePart.self, forKey: .part))
+            }
+        }
     }
-
-    // TODO: groups: [PartGroup]
-    // TODO: firstPart: ScorePart (semantic?)
-    let parts: [ScorePart] // TODO: [Kind]
+    let elements: [Element]
 }
 
 extension PartList {
@@ -124,5 +131,10 @@ extension PartList: Decodable {
 
     enum CodingKeys: String, CodingKey {
         case parts = "score-part"
+    }
+
+    public init(from decoder: Decoder) throws {
+        var unkeyed = try decoder.unkeyedContainer()
+        self.elements = try unkeyed.decode([Element].self)
     }
 }
