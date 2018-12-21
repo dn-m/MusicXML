@@ -53,26 +53,39 @@ public struct PartList: Equatable {
     // are used in both the part-list and print elements. They
     // provide more complete formatting control for how part names
     // and abbreviations appear in a score.
-    //
-    // <!ELEMENT part-name (#PCDATA)>
-    // <!ATTLIST part-name
-    //     %print-style;
-    //     %print-object;
-    //     %justify;
-    // >
-    // <!ELEMENT part-abbreviation (#PCDATA)>
-    // <!ATTLIST part-abbreviation
-    //     %print-style;
-    //     %print-object;
-    //     %justify;
-    // >
     #warning("TODO: Add support for ScorePart print-style, print-object, and justify")
     public struct ScorePart: Equatable {
 
-        let id: String
-        let name: String
+        // <!ELEMENT part-name (#PCDATA)>
+        // <!ATTLIST part-name
+        //     %print-style;
+        //     %print-object;
+        //     %justify;
+        // >
+        public struct Name: Decodable, Equatable {
+            let value: String
+            let printStyle: PrintStyle?
+            let printObject: Bool?
+            let justification: Justification?
+        }
 
-        public init(id: String, name: String) {
+        // <!ELEMENT part-abbreviation (#PCDATA)>
+        // <!ATTLIST part-abbreviation
+        //     %print-style;
+        //     %print-object;
+        //     %justify;
+        // >
+        public struct Abbreviation: Decodable, Equatable {
+            let value: String
+            let printStyle: PrintStyle?
+            let printObject: Bool?
+            let justification: Justification?
+        }
+
+        let id: String
+        let name: Name
+
+        public init(id: String, name: Name) {
             self.id = id
             self.name = name
         }
