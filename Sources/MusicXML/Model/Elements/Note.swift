@@ -212,7 +212,7 @@ extension MusicXML {
             self.size = size
         }
 
-        #warning("TODO: Handle DurationType.size decoding")
+        #warning("FIXME: Handle DurationType.size decoding, which is blocked by XMLCoder limitation")
         public init(from decoder: Decoder) throws {
             let container = try decoder.singleValueContainer()
             self.kind = try container.decode(Kind.self)
