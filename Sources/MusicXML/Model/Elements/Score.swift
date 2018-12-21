@@ -269,24 +269,7 @@ extension MusicXML {
         //     harmony | figured-bass | print | sound | barline |
         //     grouping | link | bookmark)*">
         #warning("TODO: Build out MusicDatum")
-        public enum Datum: Decodable, Equatable {
-
-            enum CodingKeys: String, CodingKey {
-                case note
-                case backup
-                case forward
-                case direction
-                case attributes
-                case harmony
-                case figuredBass = "figured-bass"
-                case print
-                case sound
-                case barline
-                case grouping
-                case link
-                case bookmark
-            }
-
+        public enum Datum: Equatable {
             case note(Note)
             case backup(Backup)
             case forward(Forward)
@@ -300,66 +283,6 @@ extension MusicXML {
             case grouping(Grouping)
             case link(Link)
             case bookmark(Bookmark)
-
-            public init(from decoder: Decoder) throws {
-
-                let container = try decoder.container(keyedBy: CodingKeys.self)
-
-                func decode <T> (_ key: CodingKeys) throws -> T where T: Decodable {
-                    return try container.decode(T.self, forKey: key)
-                }
-
-                // FIXME: Attempt to escape do-catch hell
-                do {
-                    self = .note(try decode(.note))
-                } catch {
-                    do {
-                        self = .backup(try decode(.backup))
-                    } catch {
-                        do {
-                            self = .forward(try decode(.forward))
-                        } catch {
-                            do {
-                                self = .attributes(try decode(.attributes))
-                            } catch {
-                                do {
-                                    self = .direction(try decode(.direction))
-                                } catch {
-                                    do {
-                                        self = .harmony(try decode(.harmony))
-                                    } catch {
-                                        do {
-                                            self = .figuredBass(try decode(.figuredBass))
-                                        } catch {
-                                            do {
-                                                self = .print(try decode(.print))
-                                            } catch {
-                                                do {
-                                                    self = .sound(try decode(.sound))
-                                                } catch {
-                                                    do {
-                                                        self = .barline(try decode(.barline))
-                                                    } catch {
-                                                        do {
-                                                            self = .grouping(try decode(.grouping))
-                                                        } catch {
-                                                            do {
-                                                                self = .link(try decode(.link))
-                                                            } catch {
-                                                                self = .bookmark(try decode(.bookmark))
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         }
 
         let values: [Datum]
@@ -892,3 +815,84 @@ extension MusicXML.Score.Header: Decodable {
 //-->
 //<!ELEMENT group (#PCDATA)>
 //
+
+extension MusicXML.MusicData.Datum: Decodable {
+
+    // MARK: - Decodable
+
+    enum CodingKeys: String, CodingKey {
+        case note
+        case backup
+        case forward
+        case direction
+        case attributes
+        case harmony
+        case figuredBass = "figured-bass"
+        case print
+        case sound
+        case barline
+        case grouping
+        case link
+        case bookmark
+    }
+
+    public init(from decoder: Decoder) throws {
+
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        func decode <T> (_ key: CodingKeys) throws -> T where T: Decodable {
+            return try container.decode(T.self, forKey: key)
+        }
+
+        // FIXME: Attempt to escape do-catch hell
+        do {
+            self = .note(try decode(.note))
+        } catch {
+            do {
+                self = .backup(try decode(.backup))
+            } catch {
+                do {
+                    self = .forward(try decode(.forward))
+                } catch {
+                    do {
+                        self = .attributes(try decode(.attributes))
+                    } catch {
+                        do {
+                            self = .direction(try decode(.direction))
+                        } catch {
+                            do {
+                                self = .harmony(try decode(.harmony))
+                            } catch {
+                                do {
+                                    self = .figuredBass(try decode(.figuredBass))
+                                } catch {
+                                    do {
+                                        self = .print(try decode(.print))
+                                    } catch {
+                                        do {
+                                            self = .sound(try decode(.sound))
+                                        } catch {
+                                            do {
+                                                self = .barline(try decode(.barline))
+                                            } catch {
+                                                do {
+                                                    self = .grouping(try decode(.grouping))
+                                                } catch {
+                                                    do {
+                                                        self = .link(try decode(.link))
+                                                    } catch {
+                                                        self = .bookmark(try decode(.bookmark))
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
