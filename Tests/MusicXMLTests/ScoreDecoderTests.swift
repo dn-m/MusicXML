@@ -39,7 +39,7 @@ class ScoreDecoderTests: XCTestCase {
         </measure>
         """
         XCTAssertNoThrow(
-            try XMLDecoder().decode(MusicXML.Score.Partwise.Measure.self, from: xml.data(using: .utf8)!)
+            try XMLDecoder().decode(Score.Partwise.Measure.self, from: xml.data(using: .utf8)!)
         )
     }
 
@@ -73,7 +73,7 @@ class ScoreDecoderTests: XCTestCase {
         </part>
         """
         XCTAssertNoThrow(
-            try XMLDecoder().decode(MusicXML.Score.Partwise.Part.self, from: xml.data(using: .utf8)!)
+            try XMLDecoder().decode(Score.Partwise.Part.self, from: xml.data(using: .utf8)!)
         )
     }
 
@@ -86,7 +86,7 @@ class ScoreDecoderTests: XCTestCase {
         </part-list>
         """
         XCTAssertNoThrow(
-            try XMLDecoder().decode(MusicXML.Score.Header.PartList.self, from: xml.data(using: .utf8)!)
+            try XMLDecoder().decode(Score.Header.PartList.self, from: xml.data(using: .utf8)!)
         )
     }
 }

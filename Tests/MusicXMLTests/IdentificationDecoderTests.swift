@@ -32,7 +32,7 @@ class IdentificationDecoderTests: XCTestCase {
         </identification>
         """
         XCTAssertNoThrow(
-            try XMLDecoder().decode(MusicXML.Identification.self, from: xml.data(using: .utf8)!)
+            try XMLDecoder().decode(Identification.self, from: xml.data(using: .utf8)!)
         )
     }
 }

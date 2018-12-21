@@ -19,7 +19,7 @@ class AttributesDecoderTests: XCTestCase {
         </time>
         """
         XCTAssertNoThrow(
-            try XMLDecoder().decode(MusicXML.Attributes.Time.self, from: xml.data(using: .utf8)!)
+            try XMLDecoder().decode(Attributes.Time.self, from: xml.data(using: .utf8)!)
         )
     }
 
@@ -30,7 +30,7 @@ class AttributesDecoderTests: XCTestCase {
         </key>
         """
         XCTAssertNoThrow(
-            try XMLDecoder().decode(MusicXML.Attributes.Key.self, from: xml.data(using: .utf8)!)
+            try XMLDecoder().decode(Attributes.Key.self, from: xml.data(using: .utf8)!)
         )
     }
 
@@ -42,7 +42,7 @@ class AttributesDecoderTests: XCTestCase {
         </clef>
         """
         XCTAssertNoThrow(
-            try XMLDecoder().decode(MusicXML.Attributes.Clef.self, from: xml.data(using:. utf8)!)
+            try XMLDecoder().decode(Attributes.Clef.self, from: xml.data(using:. utf8)!)
         )
     }
 }

@@ -18,31 +18,29 @@
 //
 //     https://www.w3.org/community/about/agreements/fsa-deed/
 //
-extension MusicXML {
 
-    // > The score is the root element for the DTD. It includes
-    // > the score-header entity, followed either by a series of
-    // > parts with measures inside (score-partwise) or a series
-    // > of measures with parts inside (score-timewise). Having
-    // > distinct top-level elements for partwise and timewise
-    // > scores makes it easy to ensure that an XSLT stylesheet
-    // > does not try to transform a document already in the
-    // > desired format. The document-attributes entity includes the
-    // > version attribute and is defined in the common.mod file.
-    //
-    // <![ %partwise; [
-    // <!ELEMENT score-partwise (%score-header;, part+)>
-    // <!ATTLIST score-partwise
-    //    %document-attributes;
-    // >
-    #warning("TODO: Support Score document-attributes")
-    public struct Score: Equatable {
-        let header: Header
-        let traversal: Traversal
-    }
+// > The score is the root element for the DTD. It includes
+// > the score-header entity, followed either by a series of
+// > parts with measures inside (score-partwise) or a series
+// > of measures with parts inside (score-timewise). Having
+// > distinct top-level elements for partwise and timewise
+// > scores makes it easy to ensure that an XSLT stylesheet
+// > does not try to transform a document already in the
+// > desired format. The document-attributes entity includes the
+// > version attribute and is defined in the common.mod file.
+//
+// <![ %partwise; [
+// <!ELEMENT score-partwise (%score-header;, part+)>
+// <!ATTLIST score-partwise
+//    %document-attributes;
+// >
+#warning("TODO: Support Score document-attributes")
+public struct Score: Equatable {
+    let header: Header
+    let traversal: Traversal
 }
 
-extension MusicXML.Score {
+extension Score {
 
     // > The score-header entity contains basic score metadata
     // > about the work and movement, score-wide defaults for
@@ -56,14 +54,14 @@ extension MusicXML.Score {
         let work: Work?
         let movementNumber: String?
         let movementTitle: String?
-        let identification: MusicXML.Identification?
+        let identification: Identification?
         let defaults: Defaults?
         let credits: [Credit]?
         let partList: PartList
     }
 }
 
-extension MusicXML.Score {
+extension Score {
 
     // MARK: - Score Traversal
 
@@ -88,7 +86,7 @@ extension MusicXML.Score {
     }
 }
 
-extension MusicXML.Score.Partwise {
+extension Score.Partwise {
 
     // MARK: - Nested Types
 
@@ -154,11 +152,11 @@ extension MusicXML.Score.Partwise {
         let nonControlling: Bool?
         let width: Int? // Tenths
         let optionalUniqueID: Int?
-        let musicData: MusicXML.MusicData?
+        let musicData: MusicData?
     }
 }
 
-extension MusicXML.Score.Header {
+extension Score.Header {
 
     // MARK: - Nested Types
 
@@ -209,7 +207,7 @@ extension MusicXML.Score.Header {
     //    part-abbreviation?, part-abbreviation-display?,
     //    group*, score-instrument*,
     //    (midi-device?, midi-instrument?)*)>
-    #warning("TODO: Build out MusicXML.PartList")
+    #warning("TODO: Build out PartList")
     public struct PartList: Equatable {
 
         // <!ATTLIST score-part
@@ -257,43 +255,40 @@ extension MusicXML.Score.Header {
     }
 }
 
-extension MusicXML {
+// > Here is the basic musical data that is either associated
+// > with a part or a measure, depending on whether partwise
+// > or timewise hierarchy is used.
+public struct MusicData: Decodable, Equatable {
 
-    // > Here is the basic musical data that is either associated
-    // > with a part or a measure, depending on whether partwise
-    // > or timewise hierarchy is used.
-    public struct MusicData: Decodable, Equatable {
+    // <!ENTITY % music-data
+    //   "(note | backup | forward | direction | attributes |
+    //     harmony | figured-bass | print | sound | barline |
+    //     grouping | link | bookmark)*">
+    public enum Datum: Equatable {
+        case note(Note)
+        case backup(Backup)
+        case forward(Forward)
+        case attributes(Attributes)
+        case direction(Direction)
+        case harmony(Harmony)
+        case figuredBass(FiguredBass)
+        case print(Print)
+        case sound(Sound)
+        case barline(Barline)
+        case grouping(Grouping)
+        case link(Link)
+        case bookmark(Bookmark)
+    }
 
-        // <!ENTITY % music-data
-        //   "(note | backup | forward | direction | attributes |
-        //     harmony | figured-bass | print | sound | barline |
-        //     grouping | link | bookmark)*">
-        public enum Datum: Equatable {
-            case note(Note)
-            case backup(Backup)
-            case forward(Forward)
-            case attributes(Attributes)
-            case direction(Direction)
-            case harmony(Harmony)
-            case figuredBass(FiguredBass)
-            case print(Print)
-            case sound(Sound)
-            case barline(Barline)
-            case grouping(Grouping)
-            case link(Link)
-            case bookmark(Bookmark)
-        }
+    let values: [Datum]
 
-        let values: [Datum]
-
-        public init(from decoder: Decoder) throws {
-            var container = try decoder.unkeyedContainer()
-            self.values = try container.decode([Datum].self)
-        }
+    public init(from decoder: Decoder) throws {
+        var container = try decoder.unkeyedContainer()
+        self.values = try container.decode([Datum].self)
     }
 }
 
-extension MusicXML.Score.Timewise {
+extension Score.Timewise {
 
     // MARK: - Nested Types
 
@@ -307,7 +302,7 @@ extension MusicXML.Score.Timewise {
     // >
     public struct Part: Equatable {
         let id: String
-        let musicData: MusicXML.MusicData?
+        let musicData: MusicData?
     }
 
     // > The implicit attribute is set to "yes" for measures where
@@ -363,7 +358,7 @@ extension MusicXML.Score.Timewise {
     }
 }
 
-extension MusicXML.Score.Header {
+extension Score.Header {
 
     // > Credit elements refer to the title, composer, arranger,
     // > lyricist, copyright, dedication, and other text, symbols,
@@ -399,7 +394,7 @@ extension MusicXML.Score.Header {
         // >
         public struct Words: Decodable, Equatable {
             let text: String
-            let formatting: MusicXML.TextFormatting
+            let formatting: TextFormatting
             let optionalUniqueID: String?
         }
 
@@ -413,7 +408,7 @@ extension MusicXML.Score.Header {
         // >
         public struct Symbol: Decodable, Equatable {
             let name: String
-            let symbolFormatting: MusicXML.SymbolFormatting?
+            let symbolFormatting: SymbolFormatting?
             let optionalUniqueID: String?
         }
 
@@ -433,9 +428,9 @@ extension MusicXML.Score.Header {
             let type: String
             let height: Int?
             let width: Int?
-            let position: MusicXML.Position?
-            let horizontalAlignment: MusicXML.HorizonalAlignment?
-            let verticalAlignment: MusicXML.VerticalAlignment?
+            let position: Position?
+            let horizontalAlignment: HorizonalAlignment?
+            let verticalAlignment: VerticalAlignment?
             let optionalUniqueID: String?
         }
 
@@ -446,8 +441,8 @@ extension MusicXML.Score.Header {
         // > lyricist, and rights.
         // <!ELEMENT credit-type (#PCDATA)>
         let types: [String]?
-        let links: [MusicXML.Link]?
-        let bookmarks: [MusicXML.Bookmark]?
+        let links: [Link]?
+        let bookmarks: [Bookmark]?
 
         // > The page attribute for the credit element specifies the page
         // > number where the credit should appear. This is an integer
@@ -460,7 +455,7 @@ extension MusicXML.Score.Header {
     }
 }
 
-extension MusicXML.Score.Header {
+extension Score.Header {
 
     // > Collect score-wide defaults. This includes scaling
     // > and layout, defined in layout.mod, and default values
@@ -476,12 +471,12 @@ extension MusicXML.Score.Header {
     //    system-layout?, staff-layout*, appearance?,
     //    music-font?, word-font?, lyric-font*, lyric-language*)>
     public struct Defaults: Decodable, Equatable {
-        let scaling: MusicXML.Scaling?
-        let pageLayout: MusicXML.PageLayout? 
+        let scaling: Scaling?
+        let pageLayout: PageLayout?
         let systemLayout: Int? // TODO: SystemLayout
         let appearance: Int? // TODO: Appearance
-        let musicFont: MusicXML.Font?
-        let wordFont: MusicXML.Font?
+        let musicFont: Font?
+        let wordFont: Font?
         let lyricFonts: [LyricFont]?
         let lyricLanguages: [LyricLanguage]?
     }
@@ -504,7 +499,7 @@ extension MusicXML.Score.Header {
     public struct LyricFont: Decodable, Equatable {
         let number: Int?
         let name: String?
-        let font: MusicXML.Font
+        let font: Font
     }
 
     // <!ELEMENT lyric-language EMPTY>
@@ -523,7 +518,7 @@ extension MusicXML.Score.Header {
 
 // MARK: - Decoding
 
-extension MusicXML.Score.Timewise: Decodable {
+extension Score.Timewise: Decodable {
 
     // MARK: - Decodable
 
@@ -532,7 +527,7 @@ extension MusicXML.Score.Timewise: Decodable {
     }
 }
 
-extension MusicXML.Score.Timewise.Part: Decodable {
+extension Score.Timewise.Part: Decodable {
 
     // MARK: - Decodable
 
@@ -544,11 +539,11 @@ extension MusicXML.Score.Timewise.Part: Decodable {
         let keyed = try decoder.container(keyedBy: CodingKeys.self)
         var unkeyed = try decoder.unkeyedContainer()
         self.id = try keyed.decode(String.self, forKey: .id)
-        self.musicData = try unkeyed.decode(MusicXML.MusicData.self)
+        self.musicData = try unkeyed.decode(MusicData.self)
     }
 }
 
-extension MusicXML.Score.Timewise.Measure: Decodable {
+extension Score.Timewise.Measure: Decodable {
 
     // MARK: - Decodable
 
@@ -563,7 +558,7 @@ extension MusicXML.Score.Timewise.Measure: Decodable {
     }
 }
 
-extension MusicXML.Score.Partwise: Decodable {
+extension Score.Partwise: Decodable {
 
     // MARK: - Decodable
 
@@ -572,7 +567,7 @@ extension MusicXML.Score.Partwise: Decodable {
     }
 }
 
-extension MusicXML.Score.Partwise.Part: Decodable {
+extension Score.Partwise.Part: Decodable {
 
     // MARK: - Decodable
 
@@ -582,7 +577,7 @@ extension MusicXML.Score.Partwise.Part: Decodable {
     }
 }
 
-extension MusicXML.Score.Partwise.Measure: Decodable {
+extension Score.Partwise.Measure: Decodable {
 
     // MARK: - Decodable
 
@@ -605,11 +600,11 @@ extension MusicXML.Score.Partwise.Measure: Decodable {
         self.nonControlling = try keyed.decodeIfPresent(Bool.self, forKey: .nonControlling)
         self.width = try keyed.decodeIfPresent(Int.self, forKey: .width)
         self.optionalUniqueID = try keyed.decodeIfPresent(Int.self, forKey: .optionalUniqueID)
-        self.musicData = try unkeyed.decode(MusicXML.MusicData.self)
+        self.musicData = try unkeyed.decode(MusicData.self)
     }
 }
 
-extension MusicXML.Score: Decodable {
+extension Score: Decodable {
 
     // MARK: - Decodable
 
@@ -620,7 +615,7 @@ extension MusicXML.Score: Decodable {
     }
 }
 
-extension MusicXML.Score.Traversal: Decodable {
+extension Score.Traversal: Decodable {
 
     // MARK: - Decodable
 
@@ -632,14 +627,14 @@ extension MusicXML.Score.Traversal: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         do {
-            self = .partwise(try container.decode(MusicXML.Score.Partwise.self))
+            self = .partwise(try container.decode(Score.Partwise.self))
         } catch {
-            self = .timewise(try container.decode(MusicXML.Score.Timewise.self))
+            self = .timewise(try container.decode(Score.Timewise.self))
         }
     }
 }
 
-extension MusicXML.Score.Header.PartList.ScorePart: Decodable {
+extension Score.Header.PartList.ScorePart: Decodable {
 
     // MARK: - Decodable
 
@@ -649,7 +644,7 @@ extension MusicXML.Score.Header.PartList.ScorePart: Decodable {
     }
 }
 
-extension MusicXML.Score.Header.PartList: Decodable {
+extension Score.Header.PartList: Decodable {
 
     // MARK: - Decodable
 
@@ -658,9 +653,9 @@ extension MusicXML.Score.Header.PartList: Decodable {
     }
 }
 
-extension MusicXML.Score.Header.Work: Decodable { }
+extension Score.Header.Work: Decodable { }
 
-extension MusicXML.Score.Header: Decodable {
+extension Score.Header: Decodable {
 
     // MARK: - Decodable
 
@@ -815,7 +810,7 @@ extension MusicXML.Score.Header: Decodable {
 //<!ELEMENT group (#PCDATA)>
 //
 
-extension MusicXML.MusicData.Datum: Decodable {
+extension MusicData.Datum: Decodable {
 
     // MARK: - Decodable
 
