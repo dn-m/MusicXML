@@ -692,7 +692,6 @@ public struct Offset: Decodable, Equatable {
 // <!ENTITY % harmony-chord "((root | function), kind,
 //    inversion?, bass?, degree*)">
 public struct HarmonyChord: Decodable, Equatable {
-    #warning("Build out HarmonyChord")
     public enum RootOrFunction: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case root

@@ -29,33 +29,47 @@
 //
 // <!ELEMENT part-list (part-group*, score-part,
 //    (part-group | score-part)*)>
-// <!ELEMENT score-part (identification?,
-//    part-name, part-name-display?,
-//    part-abbreviation?, part-abbreviation-display?,
-//    group*, score-instrument*,
-//    (midi-device?, midi-instrument?)*)>
 #warning("TODO: Build out PartList")
 public struct PartList: Equatable {
 
+    enum Kind {
+        case group(Int) // PartGroup
+        case part(ScorePart)
+    }
+
+    // TODO: groups: [PartGroup]
+    // TODO: firstPart: ScorePart (semantic?)
+    let parts: [ScorePart] // TODO: [Kind]
+}
+
+extension PartList {
+
+    // MARK: Nested Types
+
+    // <!ELEMENT score-part (identification?,
+    //    part-name, part-name-display?,
+    //    part-abbreviation?, part-abbreviation-display?,
+    //    group*, score-instrument*,
+    //    (midi-device?, midi-instrument?)*)>
     // <!ATTLIST score-part
     //    id ID #REQUIRED
     //
-    // The part-name indicates the full name of the musical part.
-    // The part-abbreviation indicates the abbreviated version of
-    // the name of the musical part. The part-name will often
-    // precede the first system, while the part-abbreviation will
-    // precede the other systems.
+    // > The part-name will often
+    // > precede the first system, while the part-abbreviation will
+    // > precede the other systems.
     //
-    // The formatting attributes for
-    // these elements are deprecated in Version 2.0 in favor of
-    // the new part-name-display and part-abbreviation-display
-    // elements. These are defined in the common.mod file as they
-    // are used in both the part-list and print elements. They
-    // provide more complete formatting control for how part names
-    // and abbreviations appear in a score.
+    // > The formatting attributes for
+    // > these elements are deprecated in Version 2.0 in favor of
+    // > the new part-name-display and part-abbreviation-display
+    // > elements. These are defined in the common.mod file as they
+    // > are used in both the part-list and print elements. They
+    // > provide more complete formatting control for how part names
+    // > and abbreviations appear in a score.
     #warning("TODO: Add support for ScorePart print-style, print-object, and justify")
     public struct ScorePart: Equatable {
 
+        // > The part-name indicates the full name of the musical part.
+        //
         // <!ELEMENT part-name (#PCDATA)>
         // <!ATTLIST part-name
         //     %print-style;
@@ -69,6 +83,9 @@ public struct PartList: Equatable {
             let justification: Justification?
         }
 
+        // > The part-abbreviation indicates the abbreviated version of
+        // > the name of the musical part.
+        //
         // <!ELEMENT part-abbreviation (#PCDATA)>
         // <!ATTLIST part-abbreviation
         //     %print-style;
@@ -83,15 +100,10 @@ public struct PartList: Equatable {
         }
 
         let id: String
+        let identification: Identification?
         let name: Name
-
-        public init(id: String, name: Name) {
-            self.id = id
-            self.name = name
-        }
+        let nameDisplay: PartNameDisplay?
     }
-
-    let parts: [ScorePart]
 }
 
 extension PartList.ScorePart: Decodable {
@@ -100,7 +112,9 @@ extension PartList.ScorePart: Decodable {
 
     enum CodingKeys: String, CodingKey {
         case id
+        case identification
         case name = "part-name"
+        case nameDisplay = "part-name-display"
     }
 }
 
