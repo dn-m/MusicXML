@@ -86,7 +86,7 @@ class ScoreDecoderTests: XCTestCase {
         </part-list>
         """
         XCTAssertNoThrow(
-            try XMLDecoder().decode(Score.Header.PartList.self, from: xml.data(using: .utf8)!)
+            try XMLDecoder().decode(PartList.self, from: xml.data(using: .utf8)!)
         )
     }
 }
