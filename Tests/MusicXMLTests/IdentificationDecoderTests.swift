@@ -11,6 +11,8 @@ import MusicXML
 
 class IdentificationDecoderTests: XCTestCase {
 
+    // FIXME: Add assert on contents
+    // The fields are currently not decoding properly because of XMLCoder implementation.
     func testIdentificationMiscellaneousField() {
         let xml = """
         <?xml version="1.0" encoding="UTF-8"?>

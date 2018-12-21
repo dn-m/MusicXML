@@ -1800,7 +1800,7 @@ extension MusicXML {
     //    (actual-notes, normal-notes, (normal-type, normal-dot*)?)>
     //
     public struct TimeModification {
-
+        #warning("Build out TimeModification")
     }
 
     // > Stems can be down, up, none, or double. For down and up
