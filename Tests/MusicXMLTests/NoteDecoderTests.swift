@@ -18,7 +18,7 @@ class NoteDecoderTests: XCTestCase {
           <octave>4</octave>
         </pitch>
         """
-        let _ = try! XMLDecoder().decode(MusicXML.Pitch.self, from: xml.data(using: .utf8)!)
+        XCTAssertNoThrow(try XMLDecoder().decode(MusicXML.Pitch.self, from: xml.data(using: .utf8)!))
     }
 
     func testNote() {
@@ -32,7 +32,7 @@ class NoteDecoderTests: XCTestCase {
             <type>whole</type>
         </note>
         """
-        let _ = try! XMLDecoder().decode(MusicXML.Note.self, from: xml.data(using: .utf8)!)
+        XCTAssertNoThrow(try XMLDecoder().decode(MusicXML.Note.self, from: xml.data(using: .utf8)!))
     }
 
     func testMusicData() {
@@ -47,6 +47,8 @@ class NoteDecoderTests: XCTestCase {
             <type>quarter</type>
         </note>
         """
-        XCTAssertNoThrow(try XMLDecoder().decode([MusicXML.MusicDatum].self, from: xml.data(using: .utf8)!))
+        XCTAssertNoThrow(
+            try XMLDecoder().decode([MusicXML.MusicData.Datum].self, from: xml.data(using: .utf8)!)
+        )
     }
 }

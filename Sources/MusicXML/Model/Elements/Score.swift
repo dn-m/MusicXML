@@ -52,7 +52,6 @@ extension MusicXML.Score {
     // <!ENTITY % score-header
     // "(work?, movement-number?, movement-title?,
     // identification?, defaults?, credit*, part-list)">
-    #warning("TODO: Add Header identification, defaults, credits")
     public struct Header: Equatable {
         let work: Work?
         let movementNumber: String?
@@ -155,7 +154,7 @@ extension MusicXML.Score.Partwise {
         let nonControlling: Bool?
         let width: Int? // Tenths
         let optionalUniqueID: Int?
-        let musicData: MusicXML.MusicData
+        let musicData: MusicXML.MusicData?
     }
 }
 
@@ -263,44 +262,33 @@ extension MusicXML {
     // > Here is the basic musical data that is either associated
     // > with a part or a measure, depending on whether partwise
     // > or timewise hierarchy is used.
-    // >
-    // <!ENTITY % music-data
-    //   "(note | backup | forward | direction | attributes |
-    //     harmony | figured-bass | print | sound | barline |
-    //     grouping | link | bookmark)*">
     public struct MusicData: Decodable, Equatable {
 
-        let values: [MusicDatum]
+        // <!ENTITY % music-data
+        //   "(note | backup | forward | direction | attributes |
+        //     harmony | figured-bass | print | sound | barline |
+        //     grouping | link | bookmark)*">
+        public enum Datum: Equatable {
+            case note(Note)
+            case backup(Backup)
+            case forward(Forward)
+            case attributes(Attributes)
+            case direction(Direction)
+            case harmony(Harmony)
+            case figuredBass(FiguredBass)
+            case print(Print)
+            case sound(Sound)
+            case barline(Barline)
+            case grouping(Grouping)
+            case link(Link)
+            case bookmark(Bookmark)
+        }
+
+        let values: [Datum]
 
         public init(from decoder: Decoder) throws {
             var container = try decoder.unkeyedContainer()
-            self.values = try container.decode([MusicDatum].self)
-        }
-    }
-
-    #warning("TODO: Build out MusicDatum")
-    public enum MusicDatum: Decodable, Equatable {
-
-        enum CodingKeys: String, CodingKey {
-            case note
-            case attributes
-        }
-
-        case attributes(Attributes)
-        case note(Note)
-        case other
-
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            do {
-                self = .note(try container.decode(Note.self, forKey: .note))
-            } catch {
-                do {
-                    self = .attributes(try container.decode(Attributes.self, forKey: .attributes))
-                } catch {
-                    self = .other
-                }
-            }
+            self.values = try container.decode([Datum].self)
         }
     }
 }
@@ -319,7 +307,7 @@ extension MusicXML.Score.Timewise {
     // >
     public struct Part: Equatable {
         let id: String
-        let musicData: MusicXML.MusicData
+        let musicData: MusicXML.MusicData?
     }
 
     // > The implicit attribute is set to "yes" for measures where
@@ -366,7 +354,6 @@ extension MusicXML.Score.Timewise {
     // >
     public struct Measure: Equatable {
         let number: Int
-//        let attributes: [MusicXML.Attributes]?
         let text: String?
         let implicit: Bool?
         let nonControlling: Bool?
@@ -827,3 +814,84 @@ extension MusicXML.Score.Header: Decodable {
 //-->
 //<!ELEMENT group (#PCDATA)>
 //
+
+extension MusicXML.MusicData.Datum: Decodable {
+
+    // MARK: - Decodable
+
+    enum CodingKeys: String, CodingKey {
+        case note
+        case backup
+        case forward
+        case direction
+        case attributes
+        case harmony
+        case figuredBass = "figured-bass"
+        case print
+        case sound
+        case barline
+        case grouping
+        case link
+        case bookmark
+    }
+
+    public init(from decoder: Decoder) throws {
+
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        func decode <T> (_ key: CodingKeys) throws -> T where T: Decodable {
+            return try container.decode(T.self, forKey: key)
+        }
+
+        // FIXME: Attempt to escape do-catch hell
+        do {
+            self = .note(try decode(.note))
+        } catch {
+            do {
+                self = .backup(try decode(.backup))
+            } catch {
+                do {
+                    self = .forward(try decode(.forward))
+                } catch {
+                    do {
+                        self = .attributes(try decode(.attributes))
+                    } catch {
+                        do {
+                            self = .direction(try decode(.direction))
+                        } catch {
+                            do {
+                                self = .harmony(try decode(.harmony))
+                            } catch {
+                                do {
+                                    self = .figuredBass(try decode(.figuredBass))
+                                } catch {
+                                    do {
+                                        self = .print(try decode(.print))
+                                    } catch {
+                                        do {
+                                            self = .sound(try decode(.sound))
+                                        } catch {
+                                            do {
+                                                self = .barline(try decode(.barline))
+                                            } catch {
+                                                do {
+                                                    self = .grouping(try decode(.grouping))
+                                                } catch {
+                                                    do {
+                                                        self = .link(try decode(.link))
+                                                    } catch {
+                                                        self = .bookmark(try decode(.bookmark))
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

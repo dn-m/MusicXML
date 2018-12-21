@@ -66,9 +66,6 @@ class HelloWorldDecoderTests: XCTestCase {
                 <duration>4</duration>
                 <type>whole</type>
             </note>
-            <barline location="right">
-                <bar-style>light-heavy</bar-style>
-            </barline>
             <note>
                 <pitch>
                     <step>C</step>
@@ -77,13 +74,14 @@ class HelloWorldDecoderTests: XCTestCase {
                 <duration>4</duration>
                 <type>whole</type>
             </note>
+            <barline location="right">
+                <bar-style>light-heavy</bar-style>
+            </barline>
         </measure>
         """
-        do {
-            let musicData = try XMLDecoder().decode(MusicXML.Score.Partwise.Measure.self, from: xml.data(using: .utf8)!)
-            dump(musicData)
-        } catch {
-            print(error)
-        }
+
+        XCTAssertNoThrow(
+            try XMLDecoder().decode(MusicXML.Score.Partwise.Measure.self, from: xml.data(using: .utf8)!)
+        )
     }
 }

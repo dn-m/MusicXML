@@ -11,11 +11,19 @@ extension AttributesDecoderTests {
 extension HelloWorldDecoderTests {
     static let __allTests = [
         ("testHelloWorld", testHelloWorld),
+        ("testMusicData", testMusicData),
+    ]
+}
+
+extension IdentificationDecoderTests {
+    static let __allTests = [
+        ("testIdentificationMiscellaneousField", testIdentificationMiscellaneousField),
     ]
 }
 
 extension NoteDecoderTests {
     static let __allTests = [
+        ("testMusicData", testMusicData),
         ("testNote", testNote),
         ("testPitch", testPitch),
     ]
@@ -56,6 +64,7 @@ public func __allTests() -> [XCTestCaseEntry] {
     return [
         testCase(AttributesDecoderTests.__allTests),
         testCase(HelloWorldDecoderTests.__allTests),
+        testCase(IdentificationDecoderTests.__allTests),
         testCase(NoteDecoderTests.__allTests),
         testCase(Partwise_01_Pitches.__allTests),
         testCase(ScoreDecoderTests.__allTests),

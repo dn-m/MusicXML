@@ -212,7 +212,7 @@ extension MusicXML {
             self.size = size
         }
 
-        #warning("TODO: Handle DurationType.size decoding")
+        #warning("FIXME: Handle DurationType.size decoding, which is blocked by XMLCoder limitation")
         public init(from decoder: Decoder) throws {
             let container = try decoder.singleValueContainer()
             self.kind = try container.decode(Kind.self)
@@ -1461,7 +1461,7 @@ extension MusicXML {
     //    parentheses %yes-no; #IMPLIED
     //    %optional-unique-id;
     // >
-    public struct FiguredBass {
+    public struct FiguredBass: Equatable {
 
         // <!ELEMENT figure
         //    (prefix?, figure-number?, suffix?, extend?, %editorial;)>
@@ -1469,12 +1469,12 @@ extension MusicXML {
         // <!ATTLIST prefix
         //    %print-style;
         // >
-        public struct Figure {
+        public struct Figure: Decodable, Equatable {
 
             // > Values for prefix and suffix include plus and
             // > the accidental values sharp, flat, natural, double-sharp,
             // > flat-flat, and sharp-sharp.
-            public enum Prefix: String {
+            public enum Prefix: String, Decodable, Equatable {
                 case plus = "plus"
                 case sharp = "sharp"
                 case flat = "flat"
@@ -1489,7 +1489,7 @@ extension MusicXML {
             // > the figure number. The suffix values slash, back-slash, and
             // > vertical are used for slashed numbers indicating chromatic
             // > alteration.
-            public enum Suffix: String {
+            public enum Suffix: String, Decodable, Equatable {
                 case slash = "slash"
                 case backSlash = "back-slash"
                 case vertical = "vertical"
@@ -1800,7 +1800,7 @@ extension MusicXML {
     //    (actual-notes, normal-notes, (normal-type, normal-dot*)?)>
     //
     public struct TimeModification {
-
+        #warning("Build out TimeModification")
     }
 
     // > Stems can be down, up, none, or double. For down and up
@@ -2225,4 +2225,8 @@ extension MusicXML {
         let font: Font
         let color: Color
     }
+}
+
+extension MusicXML.FiguredBass: Decodable {
+
 }

@@ -4,35 +4,55 @@
 //
 //  Created by James Bean on 12/3/18.
 //
+//  MusicXML direction.mod module
+//  Version 3.1
+//
+//  Copyright © 2004-2017 the Contributors to the MusicXML
+//  Specification, published by the W3C Music Notation Community
+//  Group under the W3C Community Final Specification Agreement
+//  (FSA):
+//
+//     https://www.w3.org/community/about/agreements/final/
+//
+//  A human-readable summary is available:
+//
+//     https://www.w3.org/community/about/agreements/fsa-deed/
+//
+//  This direction DTD module contains the direction element
+//  and its children. Directions are generally not note-specific,
+//  but instead are associated with a part or the overall score.
+//
+//  Harmony indications and general print and sound
+//  suggestions are likewise not necessarily attached to
+//  particular note elements, and are included here as well.
 
-// MARK: TODO
-//
-//<!--
-//    MusicXML direction.mod module
-//    Version 3.1
-//
-//    Copyright © 2004-2017 the Contributors to the MusicXML
-//    Specification, published by the W3C Music Notation Community
-//    Group under the W3C Community Final Specification Agreement
-//    (FSA):
-//
-//       https://www.w3.org/community/about/agreements/final/
-//
-//    A human-readable summary is available:
-//
-//       https://www.w3.org/community/about/agreements/fsa-deed/
-//-->
-//
-//<!--
-//    This direction DTD module contains the direction element
-//    and its children. Directions are generally not note-specific,
-//    but instead are associated with a part or the overall score.
-//
-//    Harmony indications and general print and sound
-//    suggestions are likewise not necessarily attached to
-//    particular note elements, and are included here as well.
-//-->
-//
+extension MusicXML {
+
+    // > A direction is a musical indication that is not necessarily
+    // > attached to a specific note. Two or more may be combined to
+    // > indicate starts and stops of wedges, dashes, etc. For
+    // > applications where a specific direction is indeed attached
+    // > to a specific note, the direction element can be associated
+    // > with the note element that follows it in score order that
+    // > is not in a different voice.
+    // > By default, a series of direction-type elements and a
+    // > series of child elements of a direction-type within a
+    // > single direction element follow one another in sequence
+    // > visually. For a series of direction-type children, non-
+    // > positional formatting attributes are carried over from
+    // > the previous element by default.
+    //
+    // <!ELEMENT direction (direction-type+, offset?,
+    //    %editorial-voice;, staff?, sound?)>
+    // <!ATTLIST direction
+    //    %placement;
+    //    %directive;
+    //    %optional-unique-id;
+    // >
+    public struct Direction: Equatable {
+        #warning("Build out Direction")
+    }
+
 //<!-- Entities -->
 //
 //<!--
@@ -46,28 +66,7 @@
 //
 //<!-- Elements -->
 //
-//<!--
-//    A direction is a musical indication that is not necessarily
-//    attached to a specific note. Two or more may be combined to
-//    indicate starts and stops of wedges, dashes, etc. For
-//    applications where a specific direction is indeed attached
-//    to a specific note, the direction element can be associated
-//    with the note element that follows it in score order that
-//    is not in a different voice.
-//    By default, a series of direction-type elements and a
-//    series of child elements of a direction-type within a
-//    single direction element follow one another in sequence
-//    visually. For a series of direction-type children, non-
-//    positional formatting attributes are carried over from
-//    the previous element by default.
-//-->
-//<!ELEMENT direction (direction-type+, offset?,
-//    %editorial-voice;, staff?, sound?)>
-//<!ATTLIST direction
-//    %placement;
-//    %directive;
-//    %optional-unique-id;
-//>
+
 //
 //<!--
 //    Textual direction types may have more than 1 component
@@ -642,305 +641,496 @@
 //    %optional-unique-id;
 //>
 //
-//<!--
-//    An offset is represented in terms of divisions, and
-//    indicates where the direction will appear relative to
-//    the current musical location. This affects the visual
-//    appearance of the direction. If the sound attribute is
-//    "yes", then the offset affects playback too. If the sound
-//    attribute is "no", then any sound associated with the
-//    direction takes effect at the current location. The sound
-//    attribute is "no" by default for compatibility with earlier
-//    versions of the MusicXML format. If an element within a
-//    direction includes a default-x attribute, the offset value
-//    will be ignored when determining the appearance of that
-//    element.
-//-->
-//<!ELEMENT offset (#PCDATA)>
-//<!ATTLIST offset
-//    sound %yes-no; #IMPLIED
-//>
-//
-//<!-- Harmony -->
-//
-//<!--
-//    The harmony elements are based on Humdrum's **harm
-//    encoding, extended to support chord symbols in popular
-//    music as well as functional harmony analysis in classical
-//    music.
-//
-//    If there are alternate harmonies possible, this can be
-//    specified using multiple harmony elements differentiated
-//    by type. Explicit harmonies have all note present in the
-//    music; implied have some notes missing but implied;
-//    alternate represents alternate analyses.
-//
-//    The harmony object may be used for analysis or for
-//    chord symbols. The print-object attribute controls
-//    whether or not anything is printed due to the harmony
-//    element. The print-frame attribute controls printing
-//    of a frame or fretboard diagram. The print-style entity
-//    sets the default for the harmony, but individual elements
-//    can override this with their own print-style values.
-//
-//    A harmony element can contain many stacked chords (e.g.
-//    V of II). A sequence of harmony-chord entities is used
-//    for this type of secondary function, where V of II would
-//    be represented by a harmony-chord with a V function
-//    followed by a harmony-chord with a II function.
-//-->
-//<!ENTITY % harmony-chord "((root | function), kind,
-//    inversion?, bass?, degree*)">
-//
-//<!ELEMENT harmony ((%harmony-chord;)+, frame?,
-//    offset?, %editorial;, staff?)>
-//<!ATTLIST harmony
-//    type (explicit | implied | alternate) #IMPLIED
-//    %print-object;
-//    print-frame  %yes-no; #IMPLIED
-//    %print-style;
-//    %placement;
-//    %optional-unique-id;
-//>
-//
-//<!--
-//    A root is a pitch name like C, D, E, where a function
-//    is an indication like I, II, III. Root is generally
-//    used with pop chord symbols, function with classical
-//    functional harmony. It is an either/or choice to avoid
-//    data inconsistency. Function requires that the key be
-//    specified in the encoding.
-//    The root element has a root-step and optional root-alter
-//    similar to the step and alter elements in a pitch, but
-//    renamed to distinguish the different musical meanings.
-//    The root-step text element indicates how the root should
-//    appear in a score if not using the element contents.
-//    In some chord styles, this will include the root-alter
-//    information as well. In that case, the print-object
-//    attribute of the root-alter element can be set to no.
-//    The root-alter location attribute indicates whether
-//    the alteration should appear to the left or the right
-//    of the root-step; it is right by default.
-//-->
-//<!ELEMENT root (root-step, root-alter?)>
-//<!ELEMENT root-step (#PCDATA)>
-//<!ATTLIST root-step
-//    text CDATA #IMPLIED
-//    %print-style;
-//>
-//<!ELEMENT root-alter (#PCDATA)>
-//<!ATTLIST root-alter
-//    %print-object;
-//    %print-style;
-//    location %left-right; #IMPLIED
-//>
-//<!ELEMENT function (#PCDATA)>
-//<!ATTLIST function
-//    %print-style;
-//>
-//
-//<!--
-//    Kind indicates the type of chord. Degree elements
-//    can then add, subtract, or alter from these
-//    starting points. Values include:
-//
-//    Triads:
-//        major (major third, perfect fifth)
-//        minor (minor third, perfect fifth)
-//        augmented (major third, augmented fifth)
-//        diminished (minor third, diminished fifth)
-//    Sevenths:
-//        dominant (major triad, minor seventh)
-//        major-seventh (major triad, major seventh)
-//        minor-seventh (minor triad, minor seventh)
-//        diminished-seventh
-//            (diminished triad, diminished seventh)
-//        augmented-seventh
-//            (augmented triad, minor seventh)
-//        half-diminished
-//            (diminished triad, minor seventh)
-//        major-minor
-//            (minor triad, major seventh)
-//    Sixths:
-//        major-sixth (major triad, added sixth)
-//        minor-sixth (minor triad, added sixth)
-//    Ninths:
-//        dominant-ninth (dominant-seventh, major ninth)
-//        major-ninth (major-seventh, major ninth)
-//        minor-ninth (minor-seventh, major ninth)
-//    11ths (usually as the basis for alteration):
-//        dominant-11th (dominant-ninth, perfect 11th)
-//        major-11th (major-ninth, perfect 11th)
-//        minor-11th (minor-ninth, perfect 11th)
-//    13ths (usually as the basis for alteration):
-//        dominant-13th (dominant-11th, major 13th)
-//        major-13th (major-11th, major 13th)
-//        minor-13th (minor-11th, major 13th)
-//    Suspended:
-//        suspended-second (major second, perfect fifth)
-//        suspended-fourth (perfect fourth, perfect fifth)
-//    Functional sixths:
-//        Neapolitan
-//        Italian
-//        French
-//        German
-//    Other:
-//        pedal (pedal-point bass)
-//        power (perfect fifth)
-//        Tristan
-//
-//    The "other" kind is used when the harmony is entirely
-//    composed of add elements. The "none" kind is used to
-//    explicitly encode absence of chords or functional
-//    harmony.
-//    The attributes are used to indicate the formatting
-//    of the symbol. Since the kind element is the constant
-//    in all the harmony-chord entities that can make up
-//    a polychord, many formatting attributes are here.
-//    The use-symbols attribute is yes if the kind should be
-//    represented when possible with harmony symbols rather
-//    than letters and numbers. These symbols include:
-//        major: a triangle, like Unicode 25B3
-//        minor: -, like Unicode 002D
-//        augmented: +, like Unicode 002B
-//        diminished: °, like Unicode 00B0
-//        half-diminished: ø, like Unicode 00F8
-//    For the major-minor kind, only the minor symbol is used when
-//    use-symbols is yes. The major symbol is set using the symbol
-//    attribute in the degree-value element. The corresponding
-//    degree-alter value will usually be 0 in this case.
-//    The text attribute describes how the kind should be spelled
-//    in a score. If use-symbols is yes, the value of the text
-//    attribute follows the symbol. The stack-degrees attribute
-//    is yes if the degree elements should be stacked above each
-//    other. The parentheses-degrees attribute is yes if all the
-//    degrees should be in parentheses. The bracket-degrees
-//    attribute is yes if all the degrees should be in a bracket.
-//    If not specified, these values are implementation-specific.
-//    The alignment attributes are for the entire harmony-chord
-//    entity of which this kind element is a part.
-//-->
-//<!ELEMENT kind (#PCDATA)>
-//<!ATTLIST kind
-//    use-symbols          %yes-no;   #IMPLIED
-//    text                 CDATA      #IMPLIED
-//    stack-degrees        %yes-no;   #IMPLIED
-//    parentheses-degrees  %yes-no;   #IMPLIED
-//    bracket-degrees      %yes-no;   #IMPLIED
-//    %print-style;
-//    %halign;
-//    %valign;
-//>
-//
-//<!--
-//    Inversion is a number indicating which inversion is used:
-//    0 for root position, 1 for first inversion, etc.
-//-->
-//<!ELEMENT inversion (#PCDATA)>
-//<!ATTLIST inversion
-//    %print-style;
-//>
-//
-//<!--
-//    Bass is used to indicate a bass note in popular music
-//    chord symbols, e.g. G/C. It is generally not used in
-//    functional harmony, as inversion is generally not used
-//    in pop chord symbols. As with root, it is divided into
-//    step and alter elements, similar to pitches. The attributes
-//    for bass-step and bass-alter work the same way as
-//    the corresponding attributes for root-step and root-alter.
-//-->
-//<!ELEMENT bass (bass-step, bass-alter?)>
-//<!ELEMENT bass-step (#PCDATA)>
-//<!ATTLIST bass-step
-//    text CDATA #IMPLIED
-//    %print-style;
-//>
-//<!ELEMENT bass-alter (#PCDATA)>
-//<!ATTLIST bass-alter
-//    %print-object;
-//    %print-style;
-//    location (left | right) #IMPLIED
-//>
-//
-//<!--
-//    The degree element is used to add, alter, or subtract
-//    individual notes in the chord. The degree-value element
-//    is a number indicating the degree of the chord (1 for
-//    the root, 3 for third, etc). The degree-alter element
-//    is like the alter element in notes: 1 for sharp, -1 for
-//    flat, etc. The degree-type element can be add, alter, or
-//    subtract. If the degree-type is alter or subtract, the
-//    degree-alter is relative to the degree already in the
-//    chord based on its kind element. If the degree-type is
-//    add, the degree-alter is relative to a dominant chord
-//    (major and perfect intervals except for a minor
-//    seventh). The print-object attribute can be used to
-//    keep the degree from printing separately when it has
-//    already taken into account in the text attribute of
-//    the kind element. The plus-minus attribute is used to
-//    indicate if plus and minus symbols should be used
-//    instead of sharp and flat symbols to display the degree
-//    alteration; it is no by default.
-//    The degree-value and degree-type text attributes specify
-//    how the value and type of the degree should be displayed
-//    in a score. The degree-value symbol attribute indicates
-//    that a symbol should be used in specifying the degree.
-//    If the symbol attribute is present, the value of the text
-//    attribute follows the symbol.
-//
-//    A harmony of kind "other" can be spelled explicitly by
-//    using a series of degree elements together with a root.
-//-->
-//<!ELEMENT degree (degree-value, degree-alter, degree-type)>
-//<!ATTLIST degree
-//    %print-object;
-//>
-//<!ELEMENT degree-value (#PCDATA)>
-//<!ATTLIST degree-value
-//    symbol (major | minor | augmented |
-//        diminished | half-diminished) #IMPLIED
-//    text CDATA #IMPLIED
-//    %print-style;
-//>
-//<!ELEMENT degree-alter (#PCDATA)>
-//<!ATTLIST degree-alter
-//    %print-style;
-//    plus-minus %yes-no; #IMPLIED
-//>
-//<!ELEMENT degree-type (#PCDATA)>
-//<!ATTLIST degree-type
-//    text CDATA #IMPLIED
-//    %print-style;
-//>
-//
-//<!--
-//    The frame element represents a frame or fretboard diagram
-//    used together with a chord symbol. The representation is
-//    based on the NIFF guitar grid with additional information.
-//    The frame-strings and frame-frets elements give the
-//    overall size of the frame in vertical lines (strings) and
-//    horizontal spaces (frets).
-//    The frame element's unplayed attribute indicates what to
-//    display above a string that has no associated frame-note
-//    element. Typical values are x and the empty string. If the
-//    attribute is not present, the display of the unplayed
-//    string is application-defined.
-//-->
-//<!ELEMENT frame
-//    (frame-strings, frame-frets, first-fret?, frame-note+)>
-//<!ATTLIST frame
-//    %position;
-//    %color;
-//    %halign;
-//    %valign-image;
-//    height  %tenths;  #IMPLIED
-//    width   %tenths;  #IMPLIED
-//    unplayed CDATA    #IMPLIED
-//    %optional-unique-id;
-//>
-//<!ELEMENT frame-strings (#PCDATA)>
-//<!ELEMENT frame-frets (#PCDATA)>
+
+    // > An offset is represented in terms of divisions, and
+    // > indicates where the direction will appear relative to
+    // > the current musical location. This affects the visual
+    // > appearance of the direction. If the sound attribute is
+    // > "yes", then the offset affects playback too. If the sound
+    // > attribute is "no", then any sound associated with the
+    // > direction takes effect at the current location. The sound
+    // > attribute is "no" by default for compatibility with earlier
+    // > versions of the MusicXML format. If an element within a
+    // > direction includes a default-x attribute, the offset value
+    // > will be ignored when determining the appearance of that
+    // > element.
+    //
+    // <!ELEMENT offset (#PCDATA)>
+    // <!ATTLIST offset
+    //    sound %yes-no; #IMPLIED
+    // >
+    public struct Offset: Decodable, Equatable {
+        let value: Int
+        let sound: Bool
+    }
+
+    // MARK: - Harmony
+
+    // > The harmony elements are based on Humdrum's **harm
+    // > encoding, extended to support chord symbols in popular
+    // > music as well as functional harmony analysis in classical
+    // > music.
+    //
+    // > If there are alternate harmonies possible, this can be
+    // > specified using multiple harmony elements differentiated
+    // > by type. Explicit harmonies have all note present in the
+    // > music; implied have some notes missing but implied;
+    // > alternate represents alternate analyses.
+    //
+    // > The harmony object may be used for analysis or for
+    // > chord symbols. The print-object attribute controls
+    // > whether or not anything is printed due to the harmony
+    // > element. The print-frame attribute controls printing
+    // > of a frame or fretboard diagram. The print-style entity
+    // > sets the default for the harmony, but individual elements
+    // > can override this with their own print-style values.
+    //
+    // > A harmony element can contain many stacked chords (e.g.
+    // > V of II). A sequence of harmony-chord entities is used
+    // > for this type of secondary function, where V of II would
+    // > be represented by a harmony-chord with a V function
+    // > followed by a harmony-chord with a II function.
+    //
+    // <!ENTITY % harmony-chord "((root | function), kind,
+    //    inversion?, bass?, degree*)">
+    public struct HarmonyChord: Decodable, Equatable {
+        #warning("Build out HarmonyChord")
+        public enum RootOrFunction: Decodable, Equatable {
+            enum CodingKeys: String, CodingKey {
+                case root
+                case function
+            }
+            case root(Root)
+            case function(Function)
+            public init(from decoder: Decoder) throws {
+                let keyed = try decoder.container(keyedBy: CodingKeys.self)
+                do {
+                    self = .root(try keyed.decode(Root.self, forKey: .root))
+                } catch {
+                    self = .function(try keyed.decode(Function.self, forKey: .function))
+                }
+            }
+        }
+        let rootOrFunction: RootOrFunction
+        let kind: Kind
+        let inversion: Inversion?
+        let bass: Bass?
+        let degree: [Degree] // TODO: Make `NonEmpty`
+    }
+
+    // <!ELEMENT harmony ((%harmony-chord;)+, frame?,
+    //    offset?, %editorial;, staff?)>
+    // <!ATTLIST harmony
+    //    type (explicit | implied | alternate) #IMPLIED
+    //    %print-object;
+    //    print-frame  %yes-no; #IMPLIED
+    //    %print-style;
+    //    %placement;
+    //    %optional-unique-id;
+    //>
+    public struct Harmony: Equatable {
+        public enum Kind: String, Decodable {
+            case explicit
+            case implied
+            case alternate
+        }
+        let chord: [HarmonyChord] // TODO: Make NonEmpty
+        let frame: Frame?
+        let offset: Offset?
+        let editorial: Editorial?
+        let staff: Staff?
+        let type: Kind
+        let printObject: Bool
+        let printFrame: Bool?
+        let printStyle: PrintStyle?
+        let placement: Placement?
+        let optionalUniqueID: String?
+    }
+
+    // > A root is a pitch name like C, D, E, where a function
+    // > is an indication like I, II, III. Root is generally
+    // > used with pop chord symbols, function with classical
+    // > functional harmony. It is an either/or choice to avoid
+    // > data inconsistency. Function requires that the key be
+    // > specified in the encoding.
+    // > The root element has a root-step and optional root-alter
+    // > similar to the step and alter elements in a pitch, but
+    // > renamed to distinguish the different musical meanings.
+    // > The root-step text element indicates how the root should
+    // > appear in a score if not using the element contents.
+    // > In some chord styles, this will include the root-alter
+    // > information as well. In that case, the print-object
+    // > attribute of the root-alter element can be set to no.
+    // > The root-alter location attribute indicates whether
+    // > the alteration should appear to the left or the right
+    // > of the root-step; it is right by default.
+    //
+    // <!ELEMENT root (root-step, root-alter?)>
+    public struct Root: Decodable, Equatable {
+
+        // <!ELEMENT root-step (#PCDATA)>
+        // <!ATTLIST root-step
+        //    text CDATA #IMPLIED
+        //    %print-style;
+        // >
+        public struct Step: Decodable, Equatable {
+            // TODO: Use more general step value (e.g., `LetterName`)
+            let value: String
+            let text: String
+            let printStyle: PrintStyle
+        }
+
+        // <!ELEMENT root-alter (#PCDATA)>
+        // <!ATTLIST root-alter
+        //    %print-object;
+        //    %print-style;
+        //    location %left-right; #IMPLIED
+        // >
+        public struct Alter: Decodable, Equatable {
+            public enum Location: String, Decodable {
+                case left
+                case right
+            }
+            let value: Double?
+            let printObject: Bool?
+            let printStyle: PrintStyle?
+            let location: Location?
+        }
+
+        let step: String
+        let alter: Alter?
+    }
+
+    // > A function is an indication like I, II, III.
+    // > Function requires that the key be
+    // > specified in the encoding.
+    //
+    // <!ELEMENT function (#PCDATA)>
+    // <!ATTLIST function
+    //    %print-style;
+    // >
+    public struct Function: Decodable, Equatable {
+        let value: String
+        let printStyle: PrintStyle?
+    }
+
+    // > The attributes are used to indicate the formatting
+    // > of the symbol. Since the kind element is the constant
+    // > in all the harmony-chord entities that can make up
+    // > a polychord, many formatting attributes are here.
+    // > The use-symbols attribute is yes if the kind should be
+    // > represented when possible with harmony symbols rather
+    // > than letters and numbers. These symbols include:
+    // >     major: a triangle, like Unicode 25B3
+    // >     minor: -, like Unicode 002D
+    // >     augmented: +, like Unicode 002B
+    // >     diminished: °, like Unicode 00B0
+    // >     half-diminished: ø, like Unicode 00F8
+    // > For the major-minor kind, only the minor symbol is used when
+    // > use-symbols is yes. The major symbol is set using the symbol
+    // > attribute in the degree-value element. The corresponding
+    // > degree-alter value will usually be 0 in this case.
+    // > The text attribute describes how the kind should be spelled
+    // > in a score. If use-symbols is yes, the value of the text
+    // > attribute follows the symbol. The stack-degrees attribute
+    // > is yes if the degree elements should be stacked above each
+    // > other. The parentheses-degrees attribute is yes if all the
+    // > degrees should be in parentheses. The bracket-degrees
+    // > attribute is yes if all the degrees should be in a bracket.
+    // > If not specified, these values are implementation-specific.
+    // > The alignment attributes are for the entire harmony-chord
+    // > entity of which this kind element is a part.
+    //-->
+    //<!ELEMENT kind (#PCDATA)>
+    //<!ATTLIST kind
+    //    use-symbols          %yes-no;   #IMPLIED
+    //    text                 CDATA      #IMPLIED
+    //    stack-degrees        %yes-no;   #IMPLIED
+    //    parentheses-degrees  %yes-no;   #IMPLIED
+    //    bracket-degrees      %yes-no;   #IMPLIED
+    //    %print-style;
+    //    %halign;
+    //    %valign;
+    //>
+    public struct Kind: Decodable, Equatable {
+
+        // > Kind indicates the type of chord. Degree elements
+        // > can then add, subtract, or alter from these
+        // > starting points. Values include:
+        //
+        // > Triads:
+        // >     major (major third, perfect fifth)
+        // >     minor (minor third, perfect fifth)
+        // >     augmented (major third, augmented fifth)
+        // >     diminished (minor third, diminished fifth)
+        // > Sevenths:
+        // >     dominant (major triad, minor seventh)
+        // >     major-seventh (major triad, major seventh)
+        // >     minor-seventh (minor triad, minor seventh)
+        // >     diminished-seventh
+        // >         (diminished triad, diminished seventh)
+        // >     augmented-seventh
+        // >         (augmented triad, minor seventh)
+        // >     half-diminished
+        // >         (diminished triad, minor seventh)
+        // >     major-minor
+        // >         (minor triad, major seventh)
+        // > Sixths:
+        // >     major-sixth (major triad, added sixth)
+        // >     minor-sixth (minor triad, added sixth)
+        // > Ninths:
+        // >     dominant-ninth (dominant-seventh, major ninth)
+        // >     major-ninth (major-seventh, major ninth)
+        // >     minor-ninth (minor-seventh, major ninth)
+        // > 11ths (usually as the basis for alteration):
+        // >     dominant-11th (dominant-ninth, perfect 11th)
+        // >     major-11th (major-ninth, perfect 11th)
+        // >     minor-11th (minor-ninth, perfect 11th)
+        // > 13ths (usually as the basis for alteration):
+        // >     dominant-13th (dominant-11th, major 13th)
+        // >     major-13th (major-11th, major 13th)
+        // >     minor-13th (minor-11th, major 13th)
+        // > Suspended:
+        // >     suspended-second (major second, perfect fifth)
+        // >     suspended-fourth (perfect fourth, perfect fifth)
+        // > Functional sixths:
+        // >     Neapolitan
+        // >     Italian
+        // >     French
+        // >     German
+        // > Other:
+        // >     pedal (pedal-point bass)
+        // >     power (perfect fifth)
+        // >     Tristan
+        //
+        // > The "other" kind is used when the harmony is entirely
+        // > composed of add elements. The "none" kind is used to
+        // > explicitly encode absence of chords or functional
+        // > harmony.
+        public enum Value: String, Decodable {
+            case major
+            case minor
+            case augmented
+            case diminished
+            case dominant
+            case majorSeventh = "majorSeventh"
+            case minorSeventh = "minorSeventh"
+            case diminishedSeventh = "diminished-seventh"
+            case augmentedSeventh = "augmented-seventh"
+            case halfDiminished = "half-diminished"
+            case minorMajor = "minor-major"
+            case majorSixth = "major-sixth"
+            case minorSixth = "minor-sixth"
+            case dominantNinth = "dominant-ninght"
+            case majorNinth = "major-ninth"
+            case minorNinth = "minor-ninth"
+            case dominantEleventh = "dominant-11th"
+            case majorEleventh = "major-11th"
+            case minorEleventh = "minor-11th"
+            case dominantThirteenth = "dominant-13th"
+            case majorThirteenth = "major-13th"
+            case minorThirteenth = "minor-13th"
+            case suspendedSecond = "suspended-second"
+            case suspendedFourth = "suspended-fourth"
+            case neapolitan = "Neopolitan"
+            case italian = "Italian"
+            case french = "French"
+            case german = "German"
+            case pedalPointBass = "pedal-point-bass"
+            case power
+            case tristan
+            case other
+            case none
+        }
+        let value: Value
+        let useSymbols: Bool?
+        let text: String?
+        let stackDegrees: Bool?
+        let parenthesesDegrees: Bool?
+        let bracketDegrees: Bool?
+        let printStyle: PrintStyle?
+        let horizontalAlignment: HorizonalAlignment?
+        let verticalAlignment: VerticalAlignment?
+    }
+
+    // > Inversion is a number indicating which inversion is used:
+    // > 0 for root position, 1 for first inversion, etc.
+    //
+    // <!ELEMENT inversion (#PCDATA)>
+    // <!ATTLIST inversion
+    //    %print-style;
+    // >
+    public struct Inversion: Decodable, Equatable {
+        let value: Int
+        let printStyle: PrintStyle
+    }
+
+    // > Bass is used to indicate a bass note in popular music
+    // > chord symbols, e.g. G/C. It is generally not used in
+    // > functional harmony, as inversion is generally not used
+    // > in pop chord symbols. As with root, it is divided into
+    // > step and alter elements, similar to pitches. The attributes
+    // > for bass-step and bass-alter work the same way as
+    // > the corresponding attributes for root-step and root-alter.
+    //
+    // <!ELEMENT bass (bass-step, bass-alter?)>
+    public struct Bass: Decodable, Equatable {
+
+        // <!ELEMENT bass-step (#PCDATA)>
+        // <!ATTLIST bass-step
+        //    text CDATA #IMPLIED
+        //    %print-style;
+        // >
+        public struct Step: Decodable, Equatable {
+            let value: String
+            let text: String?
+            let printStyle: PrintStyle?
+        }
+
+        // <!ELEMENT bass-alter (#PCDATA)>
+        // <!ATTLIST bass-alter
+        //    %print-object;
+        //    %print-style;
+        //    location (left | right) #IMPLIED
+        // >
+        public struct Alter: Decodable, Equatable {
+            public enum Location: String, Decodable {
+                case left
+                case right
+            }
+            let value: Double
+            let printObject: Bool
+            let printStyle: PrintStyle?
+            let location: Location?
+        }
+    }
+
+    // > The degree element is used to add, alter, or subtract
+    // > individual notes in the chord. If the degree-type is alter or subtract, the
+    // > degree-alter is relative to the degree already in the
+    // > chord based on its kind element. If the degree-type is
+    // > add, the degree-alter is relative to a dominant chord
+    // > (major and perfect intervals except for a minor
+    // > seventh). The print-object attribute can be used to
+    // > keep the degree from printing separately when it has
+    // > already taken into account in the text attribute of
+    // > the kind element. The plus-minus attribute is used to
+    // > indicate if plus and minus symbols should be used
+    // > instead of sharp and flat symbols to display the degree
+    // > alteration; it is no by default.
+    // > The degree-value and degree-type text attributes specify
+    // > how the value and type of the degree should be displayed
+    // > in a score. The degree-value symbol attribute indicates
+    // > that a symbol should be used in specifying the degree.
+    // > If the symbol attribute is present, the value of the text
+    // > attribute follows the symbol.
+    //
+    // > A harmony of kind "other" can be spelled explicitly by
+    // > using a series of degree elements together with a root.
+    //
+    // <!ELEMENT degree (degree-value, degree-alter, degree-type)>
+    // <!ATTLIST degree
+    //    %print-object;
+    // >
+    public struct Degree: Decodable, Equatable {
+
+        // > The degree-value element
+        // > is a number indicating the degree of the chord (1 for
+        // > the root, 3 for third, etc).
+        //
+        // <!ELEMENT degree-value (#PCDATA)>
+        // <!ATTLIST degree-value
+        //    symbol (major | minor | augmented |
+        //        diminished | half-diminished) #IMPLIED
+        //    text CDATA #IMPLIED
+        //    %print-style;
+        // >
+        public struct Value: Decodable, Equatable {
+            public enum Symbol: String, Decodable {
+                case major
+                case minor
+                case augmented
+                case diminished
+                case halfDiminished = "half-diminished"
+            }
+            let value: Int
+            let symbol: Symbol?
+            let text: String?
+            let printStyle: PrintStyle?
+        }
+
+        // > The degree-alter element
+        // > is like the alter element in notes: 1 for sharp, -1 for
+        // > flat, etc.
+        //
+        // <!ELEMENT degree-alter (#PCDATA)>
+        // <!ATTLIST degree-alter
+        //    %print-style;
+        //    plus-minus %yes-no; #IMPLIED
+        // >
+        public struct Alter: Decodable, Equatable {
+            let value: Int
+            let printStyle: PrintStyle?
+            let plusMinus: Bool? // ?
+        }
+
+        // > The degree-type element can be add, alter, or
+        // > subtract.
+        //
+        // <!ELEMENT degree-type (#PCDATA)>
+        // <!ATTLIST degree-type
+        //    text CDATA #IMPLIED
+        //    %print-style;
+        // >
+        public struct `Type`: Decodable, Equatable {
+            public enum Kind: String, Decodable {
+                case add
+                case alter
+                case subtract
+            }
+            let kind: Kind
+            let text: String?
+            let printStyle: PrintStyle?
+        }
+
+        let value: Value
+        let alter: Alter
+        let type: Type
+        let printObject: Bool
+    }
+
+    // > The frame element represents a frame or fretboard diagram
+    // > used together with a chord symbol. The representation is
+    // > based on the NIFF guitar grid with additional information.
+    // > The frame-strings and frame-frets elements give the
+    // > overall size of the frame in vertical lines (strings) and
+    // > horizontal spaces (frets).
+    // > The frame element's unplayed attribute indicates what to
+    // > display above a string that has no associated frame-note
+    // > element. Typical values are x and the empty string. If the
+    // > attribute is not present, the display of the unplayed
+    // > string is application-defined.
+    //
+    // <!ELEMENT frame
+    //    (frame-strings, frame-frets, first-fret?, frame-note+)>
+    // <!ATTLIST frame
+    //    %position;
+    //    %color;
+    //    %halign;
+    //    %valign-image;
+    //    height  %tenths;  #IMPLIED
+    //    width   %tenths;  #IMPLIED
+    //    unplayed CDATA    #IMPLIED
+    //    %optional-unique-id;
+    // >
+    // <!ELEMENT frame-strings (#PCDATA)>
+    // <!ELEMENT frame-frets (#PCDATA)>
+    public struct Frame: Decodable, Equatable {
+        public struct Strings: Decodable, Equatable { }
+        public struct Frets: Decodable, Equatable { }
+        #warning("Build out Frame & friends")
+    }
+
 //
 //<!--
 //    The first-fret indicates which fret is shown in the top
@@ -978,93 +1168,128 @@
 //    %color;
 //>
 //
-//<!--
-//    The grouping element is used for musical analysis. When
-//    the element type is "start" or "single", it usually contains
-//    one or more feature elements. The number attribute is used
-//    for distinguishing between overlapping and hierarchical
-//    groupings. The member-of attribute allows for easy
-//    distinguishing of what grouping elements are in what
-//    hierarchy. Feature elements contained within a "stop"
-//    type of grouping may be ignored.
-//
-//    This element is flexible to allow for non-standard analyses.
-//    Future versions of the MusicXML format may add elements
-//    that can represent more standardized categories of analysis
-//    data, allowing for easier data sharing.
-//-->
-//<!ELEMENT grouping ((feature)*)>
-//<!ATTLIST grouping
-//    type %start-stop-single; #REQUIRED
-//    number CDATA "1"
-//    member-of CDATA #IMPLIED
-//    %optional-unique-id;
-//>
-//<!ELEMENT feature (#PCDATA)>
-//<!ATTLIST feature
-//    type CDATA #IMPLIED
-//>
-//
-//<!--
-//    The print element contains general printing parameters,
-//    including the layout elements defined in the layout.mod
-//    file. The part-name-display and part-abbreviation-display
-//    elements used in the score.mod file may also be used here
-//    to change how a part name or abbreviation is displayed over
-//    the course of a piece. They take effect when the current
-//    measure or a succeeding measure starts a new system.
-//
-//    The new-system and new-page attributes indicate whether
-//    to force a system or page break, or to force the current
-//    music onto the same system or page as the preceding music.
-//    Normally this is the first music data within a measure.
-//    If used in multi-part music, they should be placed in the
-//    same positions within each part, or the results are
-//    undefined. The page-number attribute sets the number of a
-//    new page; it is ignored if new-page is not "yes". Version
-//    2.0 adds a blank-page attribute. This is a positive integer
-//    value that specifies the number of blank pages to insert
-//    before the current measure. It is ignored if new-page is
-//    not "yes". These blank pages have no music, but may have
-//    text or images specified by the credit element. This is
-//    used to allow a combination of pages that are all text,
-//    or all text and images, together with pages of music.
-//    Staff spacing between multiple staves is measured in
-//    tenths of staff lines (e.g. 100 = 10 staff lines). This is
-//    deprecated as of Version 1.1; the staff-layout element
-//    should be used instead. If both are present, the
-//    staff-layout values take priority.
-//    Layout elements in a print statement only apply to the
-//    current page, system, staff, or measure. Music that
-//    follows continues to take the default values from the
-//    layout included in the defaults element.
-//-->
-//<!ELEMENT print (page-layout?, system-layout?, staff-layout*,
-//    measure-layout?, measure-numbering?, part-name-display?,
-//    part-abbreviation-display?)>
-//<!ATTLIST print
-//    staff-spacing %tenths; #IMPLIED
-//    new-system %yes-no; #IMPLIED
-//    new-page %yes-no; #IMPLIED
-//    blank-page NMTOKEN #IMPLIED
-//    page-number CDATA #IMPLIED
-//    %optional-unique-id;
-//>
-//
-//<!--
-//    The measure-numbering element describes how measure
-//    numbers are displayed on this part. Values may be none,
-//    measure, or system. The number attribute from the measure
-//    element is used for printing. Measures with an implicit
-//    attribute set to "yes" never display a measure number,
-//    regardless of the measure-numbering setting.
-//-->
-//<!ELEMENT measure-numbering (#PCDATA)>
-//<!ATTLIST measure-numbering
-//    %print-style-align;
-//>
-//
-//<!--
+
+    // > The grouping element is used for musical analysis. When
+    // > the element type is "start" or "single", it usually contains
+    // > one or more feature elements.The member-of attribute allows for easy
+    // > distinguishing of what grouping elements are in what
+    // > hierarchy. Feature elements contained within a "stop"
+    // > type of grouping may be ignored.
+    //
+    // > This element is flexible to allow for non-standard analyses.
+    // > Future versions of the MusicXML format may add elements
+    // > that can represent more standardized categories of analysis
+    // > data, allowing for easier data sharing.
+    //
+    // <!ELEMENT grouping ((feature)*)>
+    // <!ATTLIST grouping
+    //    type %start-stop-single; #REQUIRED
+    //    number CDATA "1"
+    //    member-of CDATA #IMPLIED
+    //    %optional-unique-id;
+    // >
+    public struct Grouping: Decodable, Equatable {
+
+        // TODO: Make NonEmpty
+        let value: [Feature]
+        let type: StartStopSingle
+        // > The number attribute is used
+        // > for distinguishing between overlapping and hierarchical
+        // > groupings.
+        let number: Int = 1
+        let memeberOf: String
+        let optionalUniqueID: String?
+    }
+
+    // <!ELEMENT feature (#PCDATA)>
+    // <!ATTLIST feature
+    //    type CDATA #IMPLIED
+    // >
+    public struct Feature: Decodable, Equatable {
+        let value: String
+        let type: String?
+    }
+
+    // > The print element contains general printing parameters,
+    // > including the layout elements defined in the layout.mod
+    // > file. The part-name-display and part-abbreviation-display
+    // > elements used in the score.mod file may also be used here
+    // > to change how a part name or abbreviation is displayed over
+    // > the course of a piece. They take effect when the current
+    // > measure or a succeeding measure starts a new system.
+    //
+    // > The new-system and new-page attributes indicate whether
+    // > to force a system or page break, or to force the current
+    // > music onto the same system or page as the preceding music.
+    // > Normally this is the first music data within a measure.
+    // > If used in multi-part music, they should be placed in the
+    // > same positions within each part, or the results are
+    // > undefined. The page-number attribute sets the number of a
+    // > new page; it is ignored if new-page is not "yes". Version
+    // > 2.0 adds a blank-page attribute. This is a positive integer
+    // > value that specifies the number of blank pages to insert
+    // > before the current measure. It is ignored if new-page is
+    // > not "yes". These blank pages have no music, but may have
+    // > text or images specified by the credit element. This is
+    // > used to allow a combination of pages that are all text,
+    // > or all text and images, together with pages of music.
+    // > Staff spacing between multiple staves is measured in
+    // > tenths of staff lines (e.g. 100 = 10 staff lines). This is
+    // > deprecated as of Version 1.1; the staff-layout element
+    // > should be used instead. If both are present, the
+    // > staff-layout values take priority.
+    // > Layout elements in a print statement only apply to the
+    // > current page, system, staff, or measure. Music that
+    // > follows continues to take the default values from the
+    // > layout included in the defaults element.
+    //
+    // <!ELEMENT print (page-layout?, system-layout?, staff-layout*,
+    //    measure-layout?, measure-numbering?, part-name-display?,
+    //    part-abbreviation-display?)>
+    // <!ATTLIST print
+    //    staff-spacing %tenths; #IMPLIED
+    //    new-system %yes-no; #IMPLIED
+    //    new-page %yes-no; #IMPLIED
+    //    blank-page NMTOKEN #IMPLIED
+    //    page-number CDATA #IMPLIED
+    //    %optional-unique-id;
+    // >
+    public struct Print: Decodable, Equatable {
+        let pageLayout: PageLayout?
+        let systemLayout: SystemLayout?
+        let measureLayout: MeasureLayout?
+        let measureNumbeing: MeasureNumbering?
+        let partNameDisplay: PartNameDisplay?
+        let partAbbreviationDisplay: PartAbbreviationDisplay?
+        let staffSpacing: Int? // tenths
+        let newSystem: Bool?
+        let newPage: Bool?
+        let blankPage: Bool?
+        let pageNumber: Bool?
+        let optionalUniqueID: String
+    }
+
+    // > The measure-numbering element describes how measure
+    // > numbers are displayed on this part. Values may be none,
+    // > measure, or system. The number attribute from the measure
+    // > element is used for printing. Measures with an implicit
+    // > attribute set to "yes" never display a measure number,
+    // > regardless of the measure-numbering setting.
+    //
+    // <!ELEMENT measure-numbering (#PCDATA)>
+    // <!ATTLIST measure-numbering
+    //    %print-style-align;
+    // >
+    public struct MeasureNumbering: Decodable, Equatable {
+        public enum Value: String, Decodable {
+            case none
+            case measure
+            case system
+        }
+        let value: Value
+        let printStyleAlignment: PrintStyleAlignment
+    }
+
 //    The sound element contains general playback parameters.
 //    They can stand alone within a part/measure, or be a
 //    component element within a direction.
@@ -1167,3 +1392,14 @@
 //    sostenuto-pedal %yes-no-number; #IMPLIED
 //    %optional-unique-id;
 //>
+}
+
+// MARK: Decodable
+
+extension MusicXML.Direction: Decodable {
+
+}
+
+extension MusicXML.Harmony: Decodable {
+
+}
