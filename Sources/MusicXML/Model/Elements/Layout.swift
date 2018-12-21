@@ -103,7 +103,7 @@ extension MusicXML {
 //    When a MusicXML element or attribute refers to tenths,
 //    it means the global tenths defined by the scaling element,
 //    not the local tenths as adjusted by the staff-size element.
-    
+
     // MARK: - Elements
 
     //    Margin elements are included within many of the larger
@@ -212,15 +212,19 @@ extension MusicXML {
 //<!ATTLIST staff-layout
 //    number CDATA #IMPLIED
 //>
-//<!--
-//    Measure layout includes the horizontal distance from the
-//    previous measure. This value is only used for systems
-//    where there is horizontal whitespace in the middle of a
-//    system, as in systems with codas. To specify the measure
-//    width, use the width attribute of the measure element.
-//-->
-//<!ELEMENT measure-layout (measure-distance?)>
-//<!ELEMENT measure-distance %layout-tenths;>
+
+    // > Measure layout includes the horizontal distance from the
+    // > previous measure. This value is only used for systems
+    // > where there is horizontal whitespace in the middle of a
+    // > system, as in systems with codas. To specify the measure
+    // > width, use the width attribute of the measure element.
+    //
+    //<!ELEMENT measure-layout (measure-distance?)>
+    //<!ELEMENT measure-distance %layout-tenths;>
+    public struct MeasureLayout: Decodable, Equatable {
+        let distance: Int // layout-tenths
+    }
+
 //<!--
 //    The appearance element controls general graphical
 //    settings for the music's final form appearance on a

@@ -1068,22 +1068,39 @@ extension MusicXML {
     public struct Print: Decodable, Equatable {
         let pageLayout: PageLayout?
         let systemLayout: SystemLayout?
+        let measureLayout: MeasureLayout?
+        let measureNumbeing: MeasureNumbering?
+        let partNameDisplay: PartNameDisplay?
+        let partAbbreviationDisplay: PartAbbreviationDisplay?
+        let staffSpacing: Int? // tenths
+        let newSystem: Bool?
+        let newPage: Bool?
+        let blankPage: Bool?
+        let pageNumber: Bool?
+        let optionalUniqueID: String
     }
-//
-//<!--
-//    The measure-numbering element describes how measure
-//    numbers are displayed on this part. Values may be none,
-//    measure, or system. The number attribute from the measure
-//    element is used for printing. Measures with an implicit
-//    attribute set to "yes" never display a measure number,
-//    regardless of the measure-numbering setting.
-//-->
-//<!ELEMENT measure-numbering (#PCDATA)>
-//<!ATTLIST measure-numbering
-//    %print-style-align;
-//>
-//
-//<!--
+
+    // > The measure-numbering element describes how measure
+    // > numbers are displayed on this part. Values may be none,
+    // > measure, or system. The number attribute from the measure
+    // > element is used for printing. Measures with an implicit
+    // > attribute set to "yes" never display a measure number,
+    // > regardless of the measure-numbering setting.
+    //
+    // <!ELEMENT measure-numbering (#PCDATA)>
+    // <!ATTLIST measure-numbering
+    //    %print-style-align;
+    // >
+    public struct MeasureNumbering: Decodable, Equatable {
+        public enum Value: String, Decodable {
+            case none
+            case measure
+            case system
+        }
+        let value: Value
+        let printStyleAlignment: PrintStyleAlignment
+    }
+
 //    The sound element contains general playback parameters.
 //    They can stand alone within a part/measure, or be a
 //    component element within a direction.

@@ -1324,7 +1324,7 @@ extension MusicXML {
     // <!ATTLIST display-text
     //    %text-formatting;
     // >
-    public struct DisplayText {
+    public struct DisplayText: Decodable, Equatable {
         let value: String
         let formatting: TextFormatting
     }
@@ -1339,14 +1339,29 @@ extension MusicXML {
     //    %text-formatting;
     //    %smufl;
     // >
-    public struct AccidentalText {
+    public struct AccidentalText: Decodable, Equatable {
         let smufl: SMuFL
         let formatting: TextFormatting
     }
 
-    public enum DisplayTextOrAccidentalText {
-        case display(DisplayText)
+    public enum DisplayTextOrAccidentalText: Decodable, Equatable {
+
+        enum CodingKeys: String, CodingKey {
+            case displayText
+            case accidentalText
+        }
+
+        case displayText(DisplayText)
         case accidentalText(AccidentalText)
+
+        public init(from decoder: Decoder) throws {
+            let keyed = try decoder.container(keyedBy: CodingKeys.self)
+            do {
+                self = .displayText(try keyed.decode(DisplayText.self, forKey: .displayText))
+            } catch {
+                self = .accidentalText(try keyed.decode(AccidentalText.self, forKey: .accidentalText))
+            }
+        }
     }
 
     // > The part-name-display and part-abbreviation-display
@@ -1365,7 +1380,7 @@ extension MusicXML {
     // <!ATTLIST part-name-display
     //    %print-object;
     // >
-    public struct PartNameDisplay {
+    public struct PartNameDisplay: Decodable, Equatable {
         let metadata: [DisplayTextOrAccidentalText]
         let printObject: Bool
     }
@@ -1375,7 +1390,7 @@ extension MusicXML {
     // <!ATTLIST part-abbreviation-display
     //    %print-object;
     // >
-    public struct PartAbbreviationDisplay {
+    public struct PartAbbreviationDisplay: Decodable, Equatable {
         let metadata: [DisplayTextOrAccidentalText]
         let printObject: Bool
     }
