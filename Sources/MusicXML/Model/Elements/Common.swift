@@ -102,30 +102,30 @@ extension MusicXML {
     // <!ENTITY % start-stop-single "(start | stop | single)">
     // <!ENTITY % tied-type "(start | stop | continue | let-ring)">
     // <!ENTITY % tremolo-type "(start | stop | single | unmeasured)">
-    public enum StartStop: String {
+    public enum StartStop: String, Decodable{
         case start
         case stop
     }
 
-    public enum StartStopContinue: String {
+    public enum StartStopContinue: String, Decodable {
         case start
         case stop
         case `continue`
     }
 
-    public enum StartStopSingle: String {
+    public enum StartStopSingle: String, Decodable {
         case start
         case stop
         case single
     }
 
-    public enum TiedType: String {
+    public enum TiedType: String, Decodable {
         case start = "start"
         case stop = "stop"
         case letRight = "let-ring"
     }
 
-    public enum TremoloType: String {
+    public enum TremoloType: String, Decodable {
         case start
         case stop
         case single
@@ -213,7 +213,7 @@ extension MusicXML {
     // > value is implied, the value is 1 by default.
     //
     // <!ENTITY % number-level "(1 | 2 | 3 | 4 | 5 | 6)">
-    public enum NumberLevel: String {
+    public enum NumberLevel: String, Decodable {
         case one = "1"
         case two = "2"
         case three = "3"
@@ -248,7 +248,7 @@ extension MusicXML {
     // > piano pedal mark would be keyboardPedalPed, not U+E650.
     //
     // <!ENTITY % smufl-glyph-name "NMTOKEN">
-    public struct SMuFLGlyph {
+    public struct SMuFLGlyph: Decodable, Equatable {
         let name: String
     }
 
@@ -331,7 +331,7 @@ extension MusicXML {
     //<!ENTITY % placement
     //    "placement %above-below; #IMPLIED">
     //
-    public enum Placement {
+    public enum Placement: String, Decodable {
         case above
         case below
     }
@@ -343,7 +343,7 @@ extension MusicXML {
     //
     //<!ENTITY % orientation
     //    "orientation (over | under) #IMPLIED">
-    public enum Orientation {
+    public enum Orientation: String, Decodable {
         case over
         case under
     }
@@ -867,21 +867,21 @@ extension MusicXML {
     //     beats         CDATA    #IMPLIED
     //     second-beat   CDATA    #IMPLIED
     //     last-beat     CDATA    #IMPLIED">
-    public struct TrillSound {
+    public struct TrillSound: Decodable, Equatable {
 
-        public enum StartNote {
+        public enum StartNote: String, Decodable {
             case upper
             case main
             case below
         }
 
-        public enum TrillStep {
+        public enum TrillStep: String, Decodable {
             case whole
             case half
             case unison
         }
 
-        public enum TwoNoteTurn {
+        public enum TwoNoteTurn: String, Decodable {
             case whole
             case half
             case none
@@ -970,7 +970,7 @@ extension MusicXML {
     //
     // <!ENTITY % smufl
     //    "smufl %smufl-glyph-name; #IMPLIED">
-    public struct SMuFL {
+    public struct SMuFL: Decodable, Equatable {
         // TODO: Consider nesting Glyph in here.
         let glyph: SMuFLGlyph
     }
@@ -1041,24 +1041,24 @@ extension MusicXML {
     //    %print-style;
     //    %optional-unique-id;
     // >
-    public struct Fermata {
+    public struct Fermata: Decodable, Equatable {
 
         // > The fermata text content represents the shape of the
         // > fermata sign and may be normal, angled, square,
         // > double-angled, double-square, double-dot, half-curve,
         // > curlew, or an empty string.
-        public enum Shape {
+        public enum Shape: String, Decodable {
             case normal
             case angled
             case square
-            case doubleAngled
-            case doubleSquare
+            case doubleAngled = "double-angled"
+            case doubleSquare = "double-square"
             case doubleDot
             case halfCurve
             case curlew
         }
 
-        public enum Kind: String {
+        public enum Kind: String, Decodable {
             case upright
             case inverted
         }
@@ -1081,7 +1081,7 @@ extension MusicXML {
     //    %color;
     //    %trill-sound;
     // >
-    public struct WavyLine {
+    public struct WavyLine: Decodable, Equatable {
         let type: StartStopContinue
         let number: NumberLevel
         let position: Position
@@ -1113,7 +1113,7 @@ extension MusicXML {
     //    %optional-unique-id;
     //    %smufl;
     // >
-    public struct Segno {
+    public struct Segno: Decodable, Equatable {
         let printStyleAlignment: PrintStyleAlignment
         let smufl: SMuFL
         let id: Int?
@@ -1125,7 +1125,7 @@ extension MusicXML {
     //    %optional-unique-id;
     //    %smufl;
     //>
-    public struct Code {
+    public struct Coda: Decodable, Equatable {
         let printStyleAlignment: PrintStyleAlignment
         let smufl: SMuFL
         let id: Int?

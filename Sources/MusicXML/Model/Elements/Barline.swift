@@ -59,81 +59,178 @@ extension MusicXML {
     //    divisions CDATA #IMPLIED
     //    %optional-unique-id;
     //>
-    public struct Barline: Decodable, Equatable {
-        #warning("Build out Barline")
+    public struct Barline: Equatable {
+
+        public struct Fermatas: Decodable, Equatable {
+            let above: Fermata?
+            let below: Fermata?
+        }
+
+        public enum Location: String, Decodable, Equatable {
+            case right
+            case left
+            case middle
+        }
+
+        let location: Location
+        let barStyle: BarStyle?
+        let editorial: Editorial
+        let wavyLine: WavyLine?
+        let segno: Segno?
+        let coda: Coda?
+        let fermatas: Fermatas?
+        let ending: Ending?
+        let `repeat`: Repeat?
+        let divisions: Int?
+        let optionalUniqueID: String?
     }
 
-//
-//<!--
-//    Bar-style contains style information. Choices are
-//    regular, dotted, dashed, heavy, light-light,
-//    light-heavy, heavy-light, heavy-heavy, tick (a
-//    short stroke through the top line), short (a partial
-//    barline between the 2nd and 4th lines), and none.
-//-->
-//<!ELEMENT bar-style (#PCDATA)>
-//<!ATTLIST bar-style
-//    %color;
-//>
-//
-//<!--
-//    The editorial entity and the wavy-line, segno, and fermata
-//    elements are defined in the common.mod file. They can
-//    apply to both notes and barlines.
-//-->
-//
-//<!--
-//    Endings refers to multiple (e.g. first and second) endings.
-//    Typically, the start type is associated with the left
-//    barline of the first measure in an ending. The stop and
-//    discontinue types are associated with the right barline of
-//    the last measure in an ending. Stop is used when the ending
-//    mark concludes with a downward jog, as is typical for first
-//    endings. Discontinue is used when there is no downward jog,
-//    as is typical for second endings that do not conclude a
-//    piece. The length of the jog can be specified using the
-//    end-length attribute. The text-x and text-y attributes
-//    are offsets that specify where the baseline of the start
-//    of the ending text appears, relative to the start of the
-//    ending line.
-//
-//    The number attribute reflects the numeric values of what
-//    is under the ending line. Single endings such as "1" or
-//    comma-separated multiple endings such as "1, 2" may be
-//    used. The ending element text is used when the text
-//    displayed in the ending is different than what appears in
-//    the number attribute. The print-object element is used to
-//    indicate when an ending is present but not printed, as is
-//    often the case for many parts in a full score.
-//-->
-//<!ELEMENT ending (#PCDATA)>
-//<!ATTLIST ending
-//    number CDATA #REQUIRED
-//    type (start | stop | discontinue) #REQUIRED
-//    %print-object;
-//    %print-style;
-//    end-length %tenths; #IMPLIED
-//    text-x %tenths; #IMPLIED
-//    text-y %tenths; #IMPLIED
-//>
-//
-//<!--
-//    Repeat marks. The start of the repeat has a forward direction
-//    while the end of the repeat has a backward direction. Backward
-//    repeats that are not part of an ending can use the times
-//    attribute to indicate the number of times the repeated section
-//    is played. The winged attribute indicates whether the repeat
-//    has winged extensions that appear above and below the barline.
-//    The straight and curved values represent single wings, while
-//    the double-straight and double-curved values represent double
-//    wings. The none value indicates no wings and is the default.
-//-->
-//<!ELEMENT repeat EMPTY>
-//<!ATTLIST repeat
-//    direction (backward | forward) #REQUIRED
-//    times CDATA #IMPLIED
-//    winged (none | straight | curved |
-//        double-straight | double-curved) #IMPLIED
-//>
+    // > Bar-style contains style information. Choices are
+    // > regular, dotted, dashed, heavy, light-light,
+    // > light-heavy, heavy-light, heavy-heavy, tick (a
+    // > short stroke through the top line), short (a partial
+    // > barline between the 2nd and 4th lines), and none.
+    //
+    // <!ELEMENT bar-style (#PCDATA)>
+    // <!ATTLIST bar-style
+    //    %color;
+    // >
+    public struct BarStyle: Decodable, Equatable {
+        public enum Kind: String, Decodable, Equatable {
+            case regular
+            case dotted
+            case dashed
+            case heavy
+            case lightLight = "light-light"
+            case lightHeavy = "light-heavy"
+            case heavyLight = "heavy-light"
+            case heavyHeavy = "heavy-heavy"
+            case tick
+            case short
+            case none
+        }
+        let kind: Kind
+        let color: Color
+    }
 
+    // > The editorial entity and the wavy-line, segno, and fermata
+    // > elements are defined in the common.mod file. They can
+    // > apply to both notes and barlines.
+    //
+    // > Endings refers to multiple (e.g. first and second) endings.
+    // > Typically, the start type is associated with the left
+    // > barline of the first measure in an ending. The stop and
+    // > discontinue types are associated with the right barline of
+    // > the last measure in an ending. Stop is used when the ending
+    // > mark concludes with a downward jog, as is typical for first
+    // > endings. Discontinue is used when there is no downward jog,
+    // > as is typical for second endings that do not conclude a
+    // > piece. The length of the jog can be specified using the
+    // > end-length attribute. The text-x and text-y attributes
+    // > are offsets that specify where the baseline of the start
+    // > of the ending text appears, relative to the start of the
+    // > ending line.
+    //
+    // > The number attribute reflects the numeric values of what
+    // > is under the ending line. Single endings such as "1" or
+    // > comma-separated multiple endings such as "1, 2" may be
+    // > used. The ending element text is used when the text
+    // > displayed in the ending is different than what appears in
+    // > the number attribute. The print-object element is used to
+    // > indicate when an ending is present but not printed, as is
+    // > often the case for many parts in a full score.
+    //
+    // <!ELEMENT ending (#PCDATA)>
+    // <!ATTLIST ending
+    //    number CDATA #REQUIRED
+    //    type (start | stop | discontinue) #REQUIRED
+    //    %print-object;
+    //    %print-style;
+    //    end-length %tenths; #IMPLIED
+    //    text-x %tenths; #IMPLIED
+    //    text-y %tenths; #IMPLIED
+    // >
+    public struct Ending: Equatable {
+
+        public enum Kind: String, Decodable {
+            case start
+            case stop
+            case discontinue
+        }
+
+        let value: String // e.g., 1., 2.
+        let number: [Int]
+        let type: Kind
+        let printObject: Bool?
+        let printStyle: PrintStyle?
+        let endLength: Int? // tenths
+        let textX: Int? // tenths
+        let textY: Int? // tenths
+    }
+
+    //    Repeat marks. The start of the repeat has a forward direction
+    //    while the end of the repeat has a backward direction. Backward
+    //    repeats that are not part of an ending can use the times
+    //    attribute to indicate the number of times the repeated section
+    //    is played. The winged attribute indicates whether the repeat
+    //    has winged extensions that appear above and below the barline.
+    //    The straight and curved values represent single wings, while
+    //    the double-straight and double-curved values represent double
+    //    wings. The none value indicates no wings and is the default.
+    //
+    // <!ELEMENT repeat EMPTY>
+    // <!ATTLIST repeat
+    //    direction (backward | forward) #REQUIRED
+    //    times CDATA #IMPLIED
+    //    winged (none | straight | curved |
+    //        double-straight | double-curved) #IMPLIED
+    // >
+    public struct Repeat: Decodable, Equatable {
+
+        public enum Direction: String, Decodable {
+            case backward
+            case forward
+        }
+
+        public enum Winged: String, Decodable {
+            case none
+            case straight
+            case curved
+            case doubleString = "double-straight"
+            case doubleCurved = "double-curved"
+        }
+
+        let direction: Direction
+        let times: Int
+        let winged: Winged
+    }
+}
+
+extension MusicXML.Ending: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case value
+        case number
+        case type
+        case printObject = "print-object"
+        case printStyle = "print-style"
+        case endLength = "end-length"
+        case textX = "text-x"
+        case textY = "text-y"
+    }
+}
+
+extension MusicXML.Barline: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case location
+        case barStyle = "bar-style"
+        case editorial
+        case wavyLine = "wavy-line"
+        case segno
+        case coda
+        case fermatas
+        case ending
+        case `repeat`
+        case divisions
+        case optionalUniqueID = "optional-unique-id"
+    }
 }
