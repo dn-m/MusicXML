@@ -268,7 +268,6 @@ extension MusicXML {
         //   "(note | backup | forward | direction | attributes |
         //     harmony | figured-bass | print | sound | barline |
         //     grouping | link | bookmark)*">
-        #warning("TODO: Build out MusicDatum")
         public enum Datum: Equatable {
             case note(Note)
             case backup(Backup)
