@@ -18,9 +18,7 @@ class AttributesDecoderTests: XCTestCase {
             <beat-type>4</beat-type>
         </time>
         """
-        XCTAssertNoThrow(
-            try XMLDecoder().decode(Attributes.Time.self, from: xml.data(using: .utf8)!)
-        )
+        XCTAssertNoThrow(try XMLDecoder().decode(Time.self, from: xml.data(using: .utf8)!))
     }
 
     func testKey() {
@@ -29,9 +27,7 @@ class AttributesDecoderTests: XCTestCase {
             <fifths>0</fifths>
         </key>
         """
-        XCTAssertNoThrow(
-            try XMLDecoder().decode(Attributes.Key.self, from: xml.data(using: .utf8)!)
-        )
+        XCTAssertNoThrow(try XMLDecoder().decode(Key.self, from: xml.data(using: .utf8)!))
     }
 
     func testClef() {
@@ -41,8 +37,6 @@ class AttributesDecoderTests: XCTestCase {
             <line>2</line>
         </clef>
         """
-        XCTAssertNoThrow(
-            try XMLDecoder().decode(Attributes.Clef.self, from: xml.data(using:. utf8)!)
-        )
+        XCTAssertNoThrow(try XMLDecoder().decode(Clef.self, from: xml.data(using:. utf8)!))
     }
 }
