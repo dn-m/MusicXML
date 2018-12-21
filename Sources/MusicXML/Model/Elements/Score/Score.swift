@@ -76,20 +76,21 @@ public struct Defaults: Decodable, Equatable {
     let pageLayout: PageLayout?
     let systemLayout: Int? // TODO: SystemLayout
     let appearance: Int? // TODO: Appearance
+
+    // <!ELEMENT music-font EMPTY>
+    // <!ATTLIST music-font
+    //    %font;
+    // >
     let musicFont: Font?
+
+    // <!ELEMENT word-font EMPTY>
+    // <!ATTLIST word-font
+    //    %font;
+    // >
     let wordFont: Font?
     let lyricFonts: [LyricFont]?
     let lyricLanguages: [LyricLanguage]?
 }
-
-// <!ELEMENT music-font EMPTY>
-// <!ATTLIST music-font
-//    %font;
-// >
-// <!ELEMENT word-font EMPTY>
-// <!ATTLIST word-font
-//    %font;
-// >
 
 // <!ELEMENT lyric-font EMPTY>
 // <!ATTLIST lyric-font
