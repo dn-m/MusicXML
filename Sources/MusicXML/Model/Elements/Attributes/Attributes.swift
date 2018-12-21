@@ -292,8 +292,6 @@ public struct Clef: Decodable, Equatable {
     }
 }
 
-
-
 // > If the part is being encoded for a transposing instrument
 // > in written vs. concert pitch, the transposition must be
 // > encoded in the transpose element.
