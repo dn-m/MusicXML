@@ -452,65 +452,62 @@ extension Score.Header {
     }
 }
 
-extension Score.Header {
+// > Collect score-wide defaults. This includes scaling
+// > and layout, defined in layout.mod, and default values
+// > for the music font, word font, lyric font, and
+// > lyric language. The number and name attributes in
+// > lyric-font and lyric-language elements are typically
+// > used when lyrics are provided in multiple languages.
+// > If the number and name attributes are omitted, the
+// > lyric-font and lyric-language values apply to all
+// > numbers and names.
+//
+// <!ELEMENT defaults (scaling?, page-layout?,
+//    system-layout?, staff-layout*, appearance?,
+//    music-font?, word-font?, lyric-font*, lyric-language*)>
+public struct Defaults: Decodable, Equatable {
+    let scaling: Scaling?
+    let pageLayout: PageLayout?
+    let systemLayout: Int? // TODO: SystemLayout
+    let appearance: Int? // TODO: Appearance
+    let musicFont: Font?
+    let wordFont: Font?
+    let lyricFonts: [LyricFont]?
+    let lyricLanguages: [LyricLanguage]?
+}
 
-    // > Collect score-wide defaults. This includes scaling
-    // > and layout, defined in layout.mod, and default values
-    // > for the music font, word font, lyric font, and
-    // > lyric language. The number and name attributes in
-    // > lyric-font and lyric-language elements are typically
-    // > used when lyrics are provided in multiple languages.
-    // > If the number and name attributes are omitted, the
-    // > lyric-font and lyric-language values apply to all
-    // > numbers and names.
-    //
-    // <!ELEMENT defaults (scaling?, page-layout?,
-    //    system-layout?, staff-layout*, appearance?,
-    //    music-font?, word-font?, lyric-font*, lyric-language*)>
-    public struct Defaults: Decodable, Equatable {
-        let scaling: Scaling?
-        let pageLayout: PageLayout?
-        let systemLayout: Int? // TODO: SystemLayout
-        let appearance: Int? // TODO: Appearance
-        let musicFont: Font?
-        let wordFont: Font?
-        let lyricFonts: [LyricFont]?
-        let lyricLanguages: [LyricLanguage]?
-    }
+// <!ELEMENT music-font EMPTY>
+// <!ATTLIST music-font
+//    %font;
+// >
+// <!ELEMENT word-font EMPTY>
+// <!ATTLIST word-font
+//    %font;
+// >
 
-    // <!ELEMENT music-font EMPTY>
-    // <!ATTLIST music-font
-    //    %font;
-    // >
-    // <!ELEMENT word-font EMPTY>
-    // <!ATTLIST word-font
-    //    %font;
-    // >
+// <!ELEMENT lyric-font EMPTY>
+// <!ATTLIST lyric-font
+//    number NMTOKEN #IMPLIED
+//    name CDATA #IMPLIED
+//    %font;
+// >
+public struct LyricFont: Decodable, Equatable {
+    let number: Int?
+    let name: String?
+    let font: Font
+}
 
-    // <!ELEMENT lyric-font EMPTY>
-    // <!ATTLIST lyric-font
-    //    number NMTOKEN #IMPLIED
-    //    name CDATA #IMPLIED
-    //    %font;
-    // >
-    public struct LyricFont: Decodable, Equatable {
-        let number: Int?
-        let name: String?
-        let font: Font
-    }
-
-    // <!ELEMENT lyric-language EMPTY>
-    // <!ATTLIST lyric-language
-    //    number NMTOKEN #IMPLIED
-    //    name CDATA #IMPLIED
-    //    xml:lang NMTOKEN #REQUIRED
-    // >
-    //
-    public struct LyricLanguage: Decodable, Equatable {
-        let number: Int?
-        let name: String?
-        let language: String
-    }
+// <!ELEMENT lyric-language EMPTY>
+// <!ATTLIST lyric-language
+//    number NMTOKEN #IMPLIED
+//    name CDATA #IMPLIED
+//    xml:lang NMTOKEN #REQUIRED
+// >
+//
+public struct LyricLanguage: Decodable, Equatable {
+    let number: Int?
+    let name: String?
+    let language: String
 }
 
 // MARK: - Decoding
