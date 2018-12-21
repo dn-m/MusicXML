@@ -399,7 +399,7 @@ public struct PartSymbol: Decodable, Equatable {
         bottomStaff: Int,
         position: Double,
         color: String
-        )
+    )
     {
         self.kind = kind
         self.topStaff = topStaff
