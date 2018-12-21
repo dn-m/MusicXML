@@ -70,7 +70,7 @@ extension MusicXML {
         let top: Int // tenths
         let bottom: Int // tenths
     }
-}
+
 
 //
 //<!--
@@ -103,84 +103,100 @@ extension MusicXML {
 //    When a MusicXML element or attribute refers to tenths,
 //    it means the global tenths defined by the scaling element,
 //    not the local tenths as adjusted by the staff-size element.
-//-->
-//
-//<!-- Elements -->
-//
+    
+    // MARK: - Elements
 
-//
-//<!--
-//    Margin elements are included within many of the larger
-//    layout elements.
-//-->
-//<!ELEMENT left-margin %layout-tenths;>
-//<!ELEMENT right-margin %layout-tenths;>
-//<!ELEMENT top-margin %layout-tenths;>
-//<!ELEMENT bottom-margin %layout-tenths;>
-//
+    //    Margin elements are included within many of the larger
+    //    layout elements.
+    //
+    //<!ELEMENT left-margin %layout-tenths;>
+    //<!ELEMENT right-margin %layout-tenths;>
+    //<!ELEMENT top-margin %layout-tenths;>
+    //<!ELEMENT bottom-margin %layout-tenths;>
 
-//
-//<!--
-//    A system is a group of staves that are read and played
-//    simultaneously. System layout includes left and right
-//    margins, the vertical distance from the previous system,
-//    and the presence or absence of system dividers.
-//
-//    Margins are relative to the page margins. Positive values
-//    indent and negative values reduce the margin size. The
-//    system distance is measured from the bottom line of the
-//    previous system to the top line of the current system.
-//    It is ignored for the first system on a page. The top
-//    system distance is measured from the page's top margin to
-//    the top line of the first system. It is ignored for all
-//    but the first system on a page.
-//    Sometimes the sum of measure widths in a system may not
-//    equal the system width specified by the layout elements due
-//    to roundoff or other errors. The behavior when reading
-//    MusicXML files in these cases is application-dependent.
-//    For instance, applications may find that the system layout
-//    data is more reliable than the sum of the measure widths,
-//    and adjust the measure widths accordingly.
-//    When used in the layout element, the system-layout element
-//    defines a default appearance for all systems in the score.
-//    When used in the print element, the system layout element
-//    affects the appearance of the current system only. All
-//    other systems use the default values provided in the
-//    defaults element. If any child elements are missing from
-//    the system-layout element in a print element, the values
-//    from the defaults element are used there as well.
-//-->
-//<!ELEMENT system-layout
-//    (system-margins?, system-distance?,
-//     top-system-distance?, system-dividers?)>
-//<!ELEMENT system-margins (left-margin, right-margin)>
-//<!ELEMENT system-distance %layout-tenths;>
-//<!ELEMENT top-system-distance %layout-tenths;>
-//<!--
-//    The system-dividers element indicates the presence or
-//    absence of system dividers (also known as system separation
-//    marks) between systems displayed on the same page. Dividers
-//    on the left and right side of the page are controlled by
-//    the left-divider and right-divider elements respectively.
-//    The default vertical position is half the system-distance
-//    value from the top of the system that is below the divider.
-//    The default horizontal position is the left and right
-//    system margin, respectively.
-//    When used in the print element, the system-dividers element
-//    affects the dividers that would appear between the current
-//    system and the previous system.
-//-->
-//<!ELEMENT system-dividers (left-divider, right-divider)>
-//<!ELEMENT left-divider EMPTY>
-//<!ATTLIST left-divider
-//    %print-object;
-//    %print-style-align;
-//>
-//<!ELEMENT right-divider EMPTY>
-//<!ATTLIST right-divider
-//    %print-object;
-//    %print-style-align;
-//>
+
+    // > A system is a group of staves that are read and played
+    // > simultaneously. System layout includes left and right
+    // > margins, the vertical distance from the previous system,
+    // > and the presence or absence of system dividers.
+    //
+    // > Margins are relative to the page margins. Positive values
+    // > indent and negative values reduce the margin size. The
+    // > system distance is measured from the bottom line of the
+    // > previous system to the top line of the current system.
+    // > It is ignored for the first system on a page. The top
+    // > system distance is measured from the page's top margin to
+    // > the top line of the first system. It is ignored for all
+    // > but the first system on a page.
+    // > Sometimes the sum of measure widths in a system may not
+    // > equal the system width specified by the layout elements due
+    // > to roundoff or other errors. The behavior when reading
+    // > MusicXML files in these cases is application-dependent.
+    // > For instance, applications may find that the system layout
+    // > data is more reliable than the sum of the measure widths,
+    // > and adjust the measure widths accordingly.
+    // > When used in the layout element, the system-layout element
+    // > defines a default appearance for all systems in the score.
+    // > When used in the print element, the system layout element
+    // > affects the appearance of the current system only. All
+    // > other systems use the default values provided in the
+    // > defaults element. If any child elements are missing from
+    // > the system-layout element in a print element, the values
+    // > from the defaults element are used there as well.
+    //
+    // <!ELEMENT system-layout
+    //    (system-margins?, system-distance?,
+    //     top-system-distance?, system-dividers?)>
+
+    public struct SystemLayout: Decodable, Equatable {
+        let systemMargins: SystemMargins?
+        let systemDistance: Int // tenths
+        let topSystemDistance: Int?
+        let systemDividers: SystemDividers?
+    }
+
+    // <!ELEMENT system-margins (left-margin, right-margin)>
+    // <!ELEMENT system-distance %layout-tenths;>
+    // <!ELEMENT top-system-distance %layout-tenths;>
+    public struct SystemMargins: Decodable, Equatable {
+        let left: Int // tenths
+        let right: Int // tenths
+    }
+
+    //    The system-dividers element indicates the presence or
+    //    absence of system dividers (also known as system separation
+    //    marks) between systems displayed on the same page. Dividers
+    //    on the left and right side of the page are controlled by
+    //    the left-divider and right-divider elements respectively.
+    //    The default vertical position is half the system-distance
+    //    value from the top of the system that is below the divider.
+    //    The default horizontal position is the left and right
+    //    system margin, respectively.
+    //    When used in the print element, the system-dividers element
+    //    affects the dividers that would appear between the current
+    //    system and the previous system.
+    //
+    // <!ELEMENT system-dividers (left-divider, right-divider)>
+    public struct SystemDividers: Decodable, Equatable {
+        let left: Divider
+        let right: Divider
+    }
+
+    // <!ELEMENT left-divider EMPTY>
+    // <!ATTLIST left-divider
+    //    %print-object;
+    //    %print-style-align;
+    // >
+    // <!ELEMENT right-divider EMPTY>
+    // <!ATTLIST right-divider
+    //    %print-object;
+    //    %print-style-align;
+    // >
+    public struct Divider: Decodable, Equatable {
+        let printObject: Bool?
+        let printStyleAlignment: PrintStyleAlignment?
+    }
+
 //<!--
 //    Staff layout includes the vertical distance from the bottom
 //    line of the previous staff in this system to the top line
@@ -297,3 +313,5 @@ extension MusicXML {
 //<!ATTLIST other-appearance
 //    type CDATA #REQUIRED
 //>
+
+}

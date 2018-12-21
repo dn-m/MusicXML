@@ -1066,7 +1066,8 @@ extension MusicXML {
     //    %optional-unique-id;
     // >
     public struct Print: Decodable, Equatable {
-        #warning("Build out Print")
+        let pageLayout: PageLayout?
+        let systemLayout: SystemLayout?
     }
 //
 //<!--
