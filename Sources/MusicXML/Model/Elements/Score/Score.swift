@@ -18,7 +18,6 @@
 //
 //     https://www.w3.org/community/about/agreements/fsa-deed/
 //
-
 // > The score is the root element for the DTD. It includes
 // > the score-header entity, followed either by a series of
 // > parts with measures inside (score-partwise) or a series
@@ -53,9 +52,9 @@ public struct Work: Equatable {
 // <!ATTLIST opus
 //    %link-attributes;
 // >
-#warning("TODO: Implement Opus")
+#warning("TODO: Implement Opus (LinkAttributes)")
 public struct Opus: Decodable, Equatable {
-    //let linkAttributes: LinkAttributes
+//    let linkAttributes: LinkAttributes
 }
 
 // > Collect score-wide defaults. This includes scaling
