@@ -168,15 +168,15 @@ extension MusicXML {
         let textY: Int? // tenths
     }
 
-    //    Repeat marks. The start of the repeat has a forward direction
-    //    while the end of the repeat has a backward direction. Backward
-    //    repeats that are not part of an ending can use the times
-    //    attribute to indicate the number of times the repeated section
-    //    is played. The winged attribute indicates whether the repeat
-    //    has winged extensions that appear above and below the barline.
-    //    The straight and curved values represent single wings, while
-    //    the double-straight and double-curved values represent double
-    //    wings. The none value indicates no wings and is the default.
+    // > Repeat marks. The start of the repeat has a forward direction
+    // > while the end of the repeat has a backward direction. Backward
+    // > repeats that are not part of an ending can use the times
+    // > attribute to indicate the number of times the repeated section
+    // > is played. The winged attribute indicates whether the repeat
+    // > has winged extensions that appear above and below the barline.
+    // > The straight and curved values represent single wings, while
+    // > the double-straight and double-curved values represent double
+    // > wings. The none value indicates no wings and is the default.
     //
     // <!ELEMENT repeat EMPTY>
     // <!ATTLIST repeat
