@@ -81,7 +81,7 @@ class HelloWorldDecoderTests: XCTestCase {
         """
 
         XCTAssertNoThrow(
-            try XMLDecoder().decode(MusicXML.Score.Partwise.Measure.self, from: xml.data(using: .utf8)!)
+            try XMLDecoder().decode(Score.Partwise.Measure.self, from: xml.data(using: .utf8)!)
         )
     }
 }

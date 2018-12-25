@@ -28,54 +28,52 @@
 //    a compressed MusicXML file, the link is relative to the
 //    root folder of the zip file.
 //
-extension MusicXML {
 
-    // <!ELEMENT bookmark EMPTY>
-    // <!ATTLIST bookmark
-    //    id    ID     #REQUIRED
-    //    name  CDATA  #IMPLIED
-    //    element  NMTOKEN #IMPLIED
-    //    position NMTOKEN #IMPLIED
-    // >
-    public struct Bookmark: Decodable, Equatable {
-        let id: String
-        let name: String?
-        let element: String?
-        let position: String?
-    }
+// <!ELEMENT bookmark EMPTY>
+// <!ATTLIST bookmark
+//    id    ID     #REQUIRED
+//    name  CDATA  #IMPLIED
+//    element  NMTOKEN #IMPLIED
+//    position NMTOKEN #IMPLIED
+// >
+public struct Bookmark: Decodable, Equatable {
+    let id: String
+    let name: String?
+    let element: String?
+    let position: String?
+}
 
-    // <!ELEMENT link EMPTY>
-    // <!ATTLIST link
-    //    %link-attributes;
-    //    name  CDATA  #IMPLIED
-    //    element  NMTOKEN #IMPLIED
-    //    position NMTOKEN #IMPLIED
-    //    %position;
-    // >
-    public struct Link: Decodable, Equatable {
+// <!ELEMENT link EMPTY>
+// <!ATTLIST link
+//    %link-attributes;
+//    name  CDATA  #IMPLIED
+//    element  NMTOKEN #IMPLIED
+//    position NMTOKEN #IMPLIED
+//    %position;
+// >
+public struct Link: Decodable, Equatable {
 
-        // TODO: LinkAttributes
+    // TODO: LinkAttributes
 
-        let name: String?
+    let name: String?
 
-        // > The element attribute specifies an
-        // > element type for a descendant of the next sibling element
-        // > that is not a link or bookmark.
-        let element: String
+    // > The element attribute specifies an
+    // > element type for a descendant of the next sibling element
+    // > that is not a link or bookmark.
+    let element: String
 
-        // The position attribute
-        //    specifies the position of this descendant element, where
-        //    the first position is 1. The position attribute is ignored
-        //    if the element attribute is not present. For instance, an
-        //    element value of "beam"  and a position value of "2" defines
-        //    the link or bookmark to refer to the second beam descendant
-        //    of the next sibling element that is not a link or bookmark.
-        //    This is equivalent to an XPath test of [.//beam[2]] done
-        //    in the context of the sibling element.
-        let position: String
+    // The position attribute
+    //    specifies the position of this descendant element, where
+    //    the first position is 1. The position attribute is ignored
+    //    if the element attribute is not present. For instance, an
+    //    element value of "beam"  and a position value of "2" defines
+    //    the link or bookmark to refer to the second beam descendant
+    //    of the next sibling element that is not a link or bookmark.
+    //    This is equivalent to an XPath test of [.//beam[2]] done
+    //    in the context of the sibling element.
+    let position: String
 
-        // TODO: position: Position?
-    }
+    // TODO: position: Position?
 }
 
 //<!-- Entities -->
