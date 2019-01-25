@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "SWXMLHash",
+        "repositoryURL": "https://github.com/drmohundro/SWXMLHash",
+        "state": {
+          "branch": null,
+          "revision": "9ba116841126f6c63435beef21a4cd247c32d2e7",
+          "version": "4.7.6"
+        }
+      },
+      {
         "package": "XMLCoder",
         "repositoryURL": "https://github.com/MaxDesiatov/XMLCoder",
         "state": {
