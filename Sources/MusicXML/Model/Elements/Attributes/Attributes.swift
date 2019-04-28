@@ -44,37 +44,6 @@ public struct Attributes: Equatable {
     let transpose: [Transpose]?
     let directive: [Directive]?
     let measureStyles: [MeasureStyle]?
-
-    // MARK: - Initializers
-
-//    public init(
-//        editorial: Editorial? = nil,
-//        divisions: Divisions? = nil,
-//        keys: [Key]? = nil,
-//        time: [Time]? = nil,
-//        staves: Staves? = nil,
-//        partSymbol: PartSymbol? = nil,
-//        instruments: Instruments? = nil,
-//        clefs: [Clef]? = nil,
-//        staffDetails: [StaffDetails]? = nil,
-//        transpose: [Transpose]? = nil,
-//        directive: [Directive]? = nil,
-//        measureStyles: [MeasureStyle]? = nil
-//    )
-//    {
-//        self.editorial = editorial
-//        self.divisions = divisions
-//        self.keys = keys
-//        self.time = time
-//        self.staves = staves
-//        self.partSymbol = partSymbol
-//        self.instruments = instruments
-//        self.clefs = clefs
-//        self.staffDetails = staffDetails
-//        self.transpose = transpose
-//        self.directive = directive
-//        self.measureStyles = measureStyles
-//    }
 }
 
 // > Musical notation duration is commonly represented as
