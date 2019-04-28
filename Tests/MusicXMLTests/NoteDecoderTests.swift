@@ -7,7 +7,7 @@
 
 import XCTest
 import XMLCoder
-import MusicXML
+@testable import MusicXML
 
 class NoteDecoderTests: XCTestCase {
 
@@ -18,10 +18,12 @@ class NoteDecoderTests: XCTestCase {
           <octave>4</octave>
         </pitch>
         """
-        XCTAssertNoThrow(try XMLDecoder().decode(Pitch.self, from: xml.data(using: .utf8)!))
+        let expected = Pitch(step: .c, alter: nil, octave: 4)
+        let pitch = try! XMLDecoder().decode(Pitch.self, from: xml.data(using: .utf8)!)
+        XCTAssertEqual(pitch, expected)
     }
 
-    func testNote() {
+    func testNoteThin() {
         let xml = """
         <note>
             <pitch>
@@ -32,23 +34,56 @@ class NoteDecoderTests: XCTestCase {
             <type>whole</type>
         </note>
         """
-        XCTAssertNoThrow(try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!))
+        let expected = Note(
+            pitch: Pitch(step: .c, alter: nil, octave: 4),
+            duration: 4,
+            durationType: .init(kind: .whole, size: nil),
+            accidental: nil
+        )
+        let note = try! XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
+        XCTAssertEqual(note, expected)
     }
 
-    func testMusicData() {
+    func testNoteFull() {
         let xml = """
-        <note>
+        <note default-x="83">
             <pitch>
-                <step>C</step>
-                <octave>3</octave>
+                <step>A</step>
+                <alter>1</alter>
+                <octave>4</octave>
             </pitch>
-            <duration>1</duration>
+            <duration>2</duration>
             <voice>1</voice>
             <type>quarter</type>
+            <accidental>sharp</accidental>
+            <stem default-y="10.5">up</stem>
         </note>
         """
-        XCTAssertNoThrow(
-            try XMLDecoder().decode([MusicData.Datum].self, from: xml.data(using: .utf8)!)
+        let expected = Note(
+            pitch: Pitch(step: .a, alter: 1, octave: 4),
+            duration: 2,
+            durationType: .init(kind: .quarter, size: nil),
+            accidental: Accidental(.sharp)
         )
+        let note = try! XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
+        XCTAssertEqual(expected, note)
+    }
+
+    func testAccidental() {
+        let xml = """
+        <accidental>sharp</accidental>
+        """
+        let expected = Accidental(.sharp)
+        let accidental = try! XMLDecoder().decode(Accidental.self, from: xml.data(using: .utf8)!)
+        XCTAssertEqual(accidental, expected)
+    }
+
+    func testAccidentalParenthetical() {
+        let xml = """
+        <accidental parentheses="yes">natural</accidental>
+        """
+        let expected = Accidental(.natural, parentheses: true)
+        let accidental = try! XMLDecoder().decode(Accidental.self, from: xml.data(using: .utf8)!)
+        XCTAssertEqual(accidental, expected)
     }
 }

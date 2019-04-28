@@ -2,6 +2,7 @@ import XCTest
 
 extension AttributesDecoderTests {
     static let __allTests = [
+        ("testAttributes", testAttributes),
         ("testClef", testClef),
         ("testKey", testKey),
         ("testTime", testTime),
@@ -23,8 +24,9 @@ extension IdentificationDecoderTests {
 
 extension NoteDecoderTests {
     static let __allTests = [
-        ("testMusicData", testMusicData),
-        ("testNote", testNote),
+        ("testAccidental", testAccidental),
+        ("testNoteFull", testNoteFull),
+        ("testNoteThin", testNoteThin),
         ("testPitch", testPitch),
     ]
 }

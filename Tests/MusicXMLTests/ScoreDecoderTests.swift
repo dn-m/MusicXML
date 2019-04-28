@@ -75,6 +75,8 @@ class ScoreDecoderTests: XCTestCase {
         XCTAssertNoThrow(
             try XMLDecoder().decode(Score.Partwise.Part.self, from: xml.data(using: .utf8)!)
         )
+        let part = try! XMLDecoder().decode(Score.Partwise.Part.self, from: xml.data(using: .utf8)!)
+        dump(part)
     }
 
     func testPartList() {

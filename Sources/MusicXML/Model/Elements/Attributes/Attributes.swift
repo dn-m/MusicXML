@@ -31,6 +31,7 @@
 //    staves?, part-symbol?, instruments?, clef*, staff-details*,
 //    transpose*, directive*, measure-style*)>
 public struct Attributes: Equatable {
+
     let editorial: Editorial?
     let divisions: Divisions?
     let keys: [Key]?
