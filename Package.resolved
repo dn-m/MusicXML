@@ -2,21 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "SWXMLHash",
-        "repositoryURL": "https://github.com/drmohundro/SWXMLHash",
-        "state": {
-          "branch": null,
-          "revision": "9ba116841126f6c63435beef21a4cd247c32d2e7",
-          "version": "4.7.6"
-        }
-      },
-      {
         "package": "XMLCoder",
         "repositoryURL": "https://github.com/MaxDesiatov/XMLCoder",
         "state": {
           "branch": null,
-          "revision": "81d07bb58a38080d91241df920fdd00108f1c2b5",
-          "version": "0.2.1"
+          "revision": "5cd2ebbafe71e4d08c7f8e75f3c9591087cd2ff3",
+          "version": "0.4.1"
         }
       }
     ]

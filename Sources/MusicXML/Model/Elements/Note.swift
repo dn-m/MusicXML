@@ -23,6 +23,8 @@
 //  the MusicXML format. It contains the note element, all its
 //  children elements, and related entities.
 
+import XMLCoder
+
 // Notes are the most common type of MusicXML data. The
 // MusicXML format keeps the MuseData distinction between
 // elements used for sound information and elements used for
@@ -1630,6 +1632,7 @@ public struct Rest: Decodable, Equatable {
     let displayOctave: Int?
     let measure: Bool
 }
+
 //
 //<!--
 //    Duration is a positive number specified in division units.
@@ -1769,18 +1772,52 @@ public struct Accidental: Decodable, Equatable {
     enum CodingKeys: String, CodingKey {
         case editorial
         case cautionary
+        case parentheses
+        case bracket
+        case value
     }
 
-    let kind: Kind
+    let value: Kind
+    let parentheses: Bool
+    let bracket: Bool
     let cautionary: Bool
     let editorial: Bool
 
+    public init(
+        _ value: Kind,
+        parentheses: Bool = false,
+        bracket: Bool = false,
+        cautionary: Bool = false,
+        editorial: Bool = false
+    )
+    {
+        self.value = value
+        self.parentheses = parentheses
+        self.bracket = bracket
+        self.cautionary = cautionary
+        self.editorial = editorial
+    }
+
     public init(from decoder: Decoder) throws {
-        let singleValue = try decoder.singleValueContainer()
-        self.kind = try singleValue.decode(Kind.self)
-        #warning("TODO: Add support for Accidental cautionary and editorial")
-        self.cautionary = false
-        self.editorial = false
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.value = try container.decode(Kind.self, forKey: .value)
+        self.parentheses = try container.decodeIfPresent(Bool.self, forKey: .parentheses) ?? false
+        self.bracket = try container.decodeIfPresent(Bool.self, forKey: .bracket) ?? false
+        self.cautionary = try container.decodeIfPresent(Bool.self, forKey: .cautionary) ?? false
+        self.editorial = try container.decodeIfPresent(Bool.self, forKey: .editorial) ?? false
+    }
+}
+
+extension Accidental: DynamicNodeDecoding {
+
+    /// - Returns: The proper `XMLDecoder.NodeDecoding` for the given `key`.
+    public static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
+        switch key {
+        case Accidental.CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }
 
