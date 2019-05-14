@@ -152,15 +152,6 @@ public enum SymbolSize: String, Decodable {
     case large
 }
 
-// > The above-below type is used to indicate whether one
-// > element appears above or below another element.
-//
-// <!ENTITY % above-below "(above | below)">
-public enum AboveBelow {
-    case above
-    case below
-}
-
 // > The up-down entity is used for arrow direction,
 // > indicating which way the tip is pointing.
 //
