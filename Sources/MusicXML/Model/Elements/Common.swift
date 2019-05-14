@@ -170,16 +170,6 @@ public enum TopBottom {
     case bottom
 }
 
-// > The left-right entity is used to indicate whether one
-// > element appears to the left or the right of another
-// > element.
-//
-// <!ENTITY % left-right "(left | right)">
-public enum LeftRight {
-    case left
-    case right
-}
-
 // > The number-of-lines entity is used to specify the
 // > number of lines in text decoration attributes.
 //
@@ -597,30 +587,6 @@ public struct PrintStyleAlignment: Decodable, Equatable {
     let printStyle: PrintStyle
     let horizontalAlignment: HorizonalAlignment
     let verticalAlignment: VerticalAlignment
-}
-
-// > The line-shape entity is used to distinguish between
-// > straight and curved lines. The line-type entity
-// > distinguishes between solid, dashed, dotted, and
-// > wavy lines. The line-length entity distinguishes
-// > between different line lengths for doit, falloff,
-// > plop, and scoop articulations.
-//
-// <!ENTITY % line-shape
-//    "line-shape (straight | curved) #IMPLIED">
-public enum LineShape {
-    case straight
-    case curved
-}
-
-// <!ENTITY % line-type
-//    "line-type (solid | dashed | dotted | wavy) #IMPLIED">
-//
-public enum LineType {
-    case solid
-    case dashed
-    case dotted
-    case wavy
 }
 
 // <!ENTITY % line-length
@@ -1400,32 +1366,6 @@ public struct Play {
         // >
         public struct Other {
             let type: String
-        }
-
-        // > The mute element represents muting for different instruments,
-        // > including brass, winds, and strings. The on and off values
-        // > are used for undifferentiated mutes. The remaining values
-        // > represent specific mutes: straight, cup, harmon-no-stem,
-        // > harmon-stem, bucket, plunger, hat, solotone, practice,
-        // > stop-mute, stop-hand, echo, and palm.
-        //
-        // <!ELEMENT mute (#PCDATA)>
-        public enum Mute {
-            case on
-            case off
-            case straight
-            case cup
-            case harmonNoStem
-            case harmonStem
-            case bucket
-            case plunger
-            case hat
-            case solotone
-            case practice
-            case stopMute
-            case stopHand
-            case echo
-            case palm
         }
 
         // > The semi-pitched element represents categories of indefinite

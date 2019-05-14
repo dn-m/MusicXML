@@ -49,20 +49,7 @@ public struct Key: Decodable, Equatable {
         // > minor/mode distinctions.
         public struct Traditional: Decodable, Equatable {
 
-            // > Valid mode values include major, minor, dorian, phrygian,
-            // > lydian, mixolydian, aeolian, ionian, locrian, and none.
-            public enum Mode: String, Decodable {
-                case major
-                case minor
-                case dorian
-                case phrygian
-                case lydian
-                case mixolydian
-                case aeolian
-                case ionian
-                case locrian
-                case none
-            }
+
 
             // > Negative numbers are used for
             // > flats and positive numbers for sharps, reflecting the
