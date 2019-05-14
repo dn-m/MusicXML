@@ -1905,11 +1905,7 @@ public struct Beam {
         case backwardHook = "backward hook"
     }
 
-    public enum Fan: String {
-        case accelerando = "accel"
-        case ritardando = "rit"
-        case none
-    }
+
 
     // MARK: - Attributes
 

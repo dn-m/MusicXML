@@ -390,31 +390,10 @@ public struct Bezier {
 //     font-size    CDATA  #IMPLIED
 //     font-weight  CDATA  #IMPLIED">
 public struct Font: Decodable, Equatable {
-
-    enum Style: String, Decodable, Equatable {
-        case normal
-        case italic
-    }
-
-    enum Size: String, Decodable, Equatable {
-        case extraExtraSmall = "xx-small"
-        case extraSmall = "x-small"
-        case small = "small"
-        case medium = "medium"
-        case large = "large"
-        case extraLarge = "x-large"
-        case extraExtraLarge = "xx-large"
-    }
-
-    enum Weight: String, Decodable, Equatable {
-        case normal
-        case bold
-    }
-
     let family: String
-    let style: Style
-    let size: Size
-    let weight: Weight
+    let style: FontStyle
+    let size: FontSize
+    let weight: FontWeight
 }
 
 // > The text-decoration entity is based on the similar
@@ -966,28 +945,13 @@ public struct Voice: Decodable, Equatable {
 // >
 public struct Fermata: Decodable, Equatable {
 
-    // > The fermata text content represents the shape of the
-    // > fermata sign and may be normal, angled, square,
-    // > double-angled, double-square, double-dot, half-curve,
-    // > curlew, or an empty string.
-    public enum Shape: String, Decodable {
-        case normal
-        case angled
-        case square
-        case doubleAngled = "double-angled"
-        case doubleSquare = "double-square"
-        case doubleDot
-        case halfCurve
-        case curlew
-    }
-
     public enum Kind: String, Decodable {
         case upright
         case inverted
     }
 
     // > An empty fermata element represents a normal fermata.
-    let shape: Shape = .normal
+    let shape: FermataShape = .normal
 
     // > The fermata type is upright if not specified.
     let kind: Kind = .upright
