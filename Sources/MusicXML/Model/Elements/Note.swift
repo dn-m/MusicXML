@@ -180,23 +180,6 @@ public struct DurationType: Decodable, Equatable {
         case size
     }
 
-    public enum Kind: String, Decodable {
-        case maxima
-        case long
-        case breve
-        case whole
-        case half
-        case quarter
-        case eighth
-        case sixteenth = "16th"
-        case thirysecond = "32nd"
-        case sixtyfourth = "64th"
-        case onehundredtwentyeighth = "128th"
-        case twohundredfiftysixth = "256th"
-        case fivehundredtwelfth = "512th"
-        case onethousandtwentyfourth = "1024th"
-    }
-
     public enum Size: String, Decodable {
         case full = "full"
         case cue = "cue"
@@ -204,10 +187,10 @@ public struct DurationType: Decodable, Equatable {
         case large = "large"
     }
 
-    let kind: Kind
+    let kind: NoteTypeValue
     let size: Size?
 
-    public init(kind: Kind, size: Size?) {
+    public init(kind: NoteTypeValue, size: Size?) {
         self.kind = kind
         self.size = size
     }
@@ -215,7 +198,7 @@ public struct DurationType: Decodable, Equatable {
     #warning("FIXME: Handle DurationType.size decoding, which is blocked by XMLCoder limitation")
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.kind = try container.decode(Kind.self)
+        self.kind = try container.decode(NoteTypeValue.self)
         self.size = nil
     }
 }
@@ -1808,47 +1791,7 @@ public struct Stem {
 //    %smufl;
 // >
 public struct Notehead {
-
-    // > The element
-    // > value can be slash, triangle, diamond, square, cross, x,
-    // > circle-x, inverted triangle, arrow down, arrow up, circled,
-    // > slashed, back slashed, normal, cluster, circle dot,
-    // > left triangle, rectangle, other, or none.
-    // > For shape note music, the element values do, re, mi, fa,
-    // > fa up, so, la, and ti are also used, corresponding to Aikin's
-    // > 7-shape system.
-    public enum Kind: String {
-        case slash
-        case triangle
-        case diamond
-        case square
-        case cross
-        case x
-        case circleX = "circle-x"
-        case invertedTriangle = "inverted triangle"
-        case arrowDown = "arrow down"
-        case arrowUp = "arrow up"
-        case circled
-        case slashed
-        case backSlashed = "back slashed"
-        case normal
-        case cluster
-        case circleDot = "circle dot"
-        case leftTriangle = "left triangle"
-        case rectangle
-        case other
-        case none
-        case `do`
-        case re
-        case mi
-        case fa
-        case faUp = "fa up"
-        case so
-        case la
-        case ti
-    }
-
-    let kind: Kind
+    let value: NoteheadValue
     let filled: Bool
     let parentheses: Bool
     let font: Font
