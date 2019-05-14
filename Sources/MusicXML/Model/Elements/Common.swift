@@ -417,27 +417,6 @@ public struct Font: Decodable, Equatable {
     let weight: Weight
 }
 
-// > The color entity indicates the color of an element.
-// > Color may be represented as hexadecimal RGB triples,
-// > as in HTML, or as hexadecimal ARGB tuples, with the
-// > A indicating alpha of transparency. An alpha value
-// > of 00 is totally transparent; FF is totally opaque.
-// > If RGB is used, the A value is assumed to be FF.
-// > For instance, the RGB value "#800080" represents
-// > purple. An ARGB value of "#40800080" would be a
-// > transparent purple.
-// > As in SVG 1.1, colors are defined in terms of the
-// > sRGB color space (IEC 61966).
-//
-// <!ENTITY % color
-//    "color CDATA #IMPLIED">
-public struct Color: Decodable, Equatable {
-    let alpha: Int = 1
-    let red: Int
-    let green: Int
-    let blue: Int
-}
-
 // > The text-decoration entity is based on the similar
 // > feature in XHTML and CSS. It allows for text to
 // > be underlined, overlined, or struck-through. It
@@ -611,33 +590,7 @@ public struct TextRotation: Decodable, Equatable {
 // <!ENTITY % enclosure
 //    "enclosure %enclosure-shape; #IMPLIED">
 public struct Enclosure: Decodable, Equatable {
-    // > The enclosure-shape entity describes the shape and
-    // > presence / absence of an enclosure around text. A bracket
-    // > enclosure is similar to a rectangle with the bottom line
-    // > missing, as is common in jazz notation.
-    //
-    // <!ENTITY % enclosure-shape
-    //    "(rectangle | square | oval | circle |
-    //      bracket | triangle | diamond | pentagon |
-    //      hexagon | heptagon | octagon | nonagon |
-    //      decagon | none)">
-    public enum Shape: String, Decodable, Equatable {
-        case rectangle
-        case square
-        case oval
-        case circle
-        case bracket
-        case triangle
-        case diamond
-        case pentagon
-        case hexagon
-        case heptagon
-        case octagon
-        case nonagon
-        case decagon
-        case none
-    }
-    let shape: Shape
+    let shape: EnclosureShape
 }
 
 // > The print-style entity groups together the most popular

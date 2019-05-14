@@ -1043,15 +1043,8 @@ public struct Degree: Decodable, Equatable {
     //    %print-style;
     // >
     public struct Value: Decodable, Equatable {
-        public enum Symbol: String, Decodable {
-            case major
-            case minor
-            case augmented
-            case diminished
-            case halfDiminished = "half-diminished"
-        }
         let value: Int
-        let symbol: Symbol?
+        let symbol: DegreeSymbolValue?
         let text: String?
         let printStyle: PrintStyle?
     }

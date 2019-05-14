@@ -46,19 +46,6 @@ public struct Attributes: Equatable {
     let measureStyles: [MeasureStyle]?
 }
 
-// > Musical notation duration is commonly represented as
-// > fractions. The divisions element indicates how many
-// > divisions per quarter note are used to indicate a note's
-// > duration. For example, if duration = 1 and divisions = 2,
-// > this is an eighth note duration. Duration and divisions
-// > are used directly for generating sound output, so they
-// > must be chosen to take tuplets into account. Using a
-// > divisions element lets us use just one number to
-// > represent a duration for each note in the score, while
-// > retaining the full power of a fractional representation.
-// > For maximum compatibility with Standard MIDI Files, the
-// > divisions value should not exceed 16383.
-public typealias Divisions = Int
 
 // > Clefs are represented by the sign, line, and
 // > clef-octave-change elements.
@@ -114,18 +101,9 @@ public typealias Divisions = Int
 // <!ELEMENT line (#PCDATA)>
 // <!ELEMENT clef-octave-change (#PCDATA)>
 public struct Clef: Decodable, Equatable {
-    public enum Sign: String, Codable {
-        case g = "G"
-        case f = "F"
-        case c = "C"
-        case percussion = "percussion"
-        case TAB = "TAB"
-        case jianpu = "jianpu"
-        case none = "none"
-    }
-    let sign: Sign
+    let sign: ClefSign
     let line: Int?
-    public init(sign: Sign, line: Int?) {
+    public init(sign: ClefSign, line: Int?) {
         self.sign = sign
         self.line = line
     }

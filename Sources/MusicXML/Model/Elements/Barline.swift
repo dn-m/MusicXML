@@ -128,7 +128,7 @@ public struct Ending: Equatable {
         case stop
         case discontinue
     }
-    let value: String // e.g., 1., 2.
+    let value: EndingNumber // e.g., 1., 2.
     let number: [Int]
     let type: Kind
     let printObject: Bool?
