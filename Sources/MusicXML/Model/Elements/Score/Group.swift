@@ -150,14 +150,7 @@ public struct GroupAbbreviationDisplay: Decodable, Equatable {
 //    %color;
 // >
 public struct GroupSymbol: Decodable, Equatable {
-    public enum Value: String, Decodable {
-        case none
-        case brace
-        case line
-        case bracket
-        case square
-    }
-    let value: Value
+    let value: GroupSymbolValue
     let position: Position?
     let color: Color?
 }
@@ -171,11 +164,6 @@ public struct GroupSymbol: Decodable, Equatable {
 //    %color;
 // >
 public struct GroupBarline: Decodable, Equatable {
-    public enum Value: String, Decodable {
-        case yes
-        case no
-        case mensurstrich = "Mensurstrich"
-    }
-    let value: Value
+    let value: GroupBarlineValue
     let color: Color?
 }
