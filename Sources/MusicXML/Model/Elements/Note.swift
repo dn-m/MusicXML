@@ -826,35 +826,9 @@ public struct Technical {
 //<!ELEMENT circular-arrow (#PCDATA)>
 public struct Arrow {
 
-    public enum Direction: String {
-        case left
-        case up
-        case right
-        case down
-        case northwest
-        case northeast
-        case southeast
-        case southwest
-        case leftRight = "left right"
-        case upDown = "up down"
-        case northwestSoutheast = "nothwest southeast"
-        case northeastSouthwest = "northeast southwest"
-        case other
-    }
-
-    public enum Style: String {
-        case single
-        case double
-        case filled
-        case hollow
-        case paired
-        case combined
-        case other
-    }
-
     public enum Kind {
         case circular
-        case linear(Direction, Style?, arrowhead: Bool)
+        case linear(ArrowDirection, ArrowStyle?, arrowhead: Bool)
     }
 
     let kind: Kind

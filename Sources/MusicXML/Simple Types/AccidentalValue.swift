@@ -73,5 +73,4 @@ public enum AccidentalValue: String, Decodable, Equatable {
     case sori
     case koron
     case other
-
 }
