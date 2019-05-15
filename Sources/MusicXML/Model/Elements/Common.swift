@@ -100,22 +100,8 @@
 // <!ENTITY % start-stop-single "(start | stop | single)">
 // <!ENTITY % tied-type "(start | stop | continue | let-ring)">
 // <!ENTITY % tremolo-type "(start | stop | single | unmeasured)">
-public enum StartStop: String, Decodable{
-    case start
-    case stop
-}
 
-public enum StartStopContinue: String, Decodable {
-    case start
-    case stop
-    case `continue`
-}
 
-public enum StartStopSingle: String, Decodable {
-    case start
-    case stop
-    case single
-}
 
 public enum TiedType: String, Decodable {
     case start = "start"
@@ -141,17 +127,6 @@ public enum YesNoNumber {
     case number(Double)
 }
 
-// > The symbol-size entity is used to distinguish between
-// > full, cue sized, grace cue sized, and oversized symbols.
-//
-// <!ENTITY % symbol-size "(full | cue | grace-cue | large)">
-public enum SymbolSize: String, Decodable {
-    case full
-    case cue
-    case graceCue = "grace-cue"
-    case large
-}
-
 // > The up-down entity is used for arrow direction,
 // > indicating which way the tip is pointing.
 //
@@ -161,14 +136,7 @@ public enum UpDown {
     case down
 }
 
-// > The top-bottom entity is used to indicate the top or
-// > bottom part of a vertical shape like non-arpeggiate.
-//
-// <!ENTITY % top-bottom "(top | bottom)">
-public enum TopBottom {
-    case top
-    case bottom
-}
+
 
 // > The number-of-lines entity is used to specify the
 // > number of lines in text decoration attributes.
@@ -517,29 +485,6 @@ public enum LineHeight: Decodable, Equatable {
     }
 }
 
-// > The text-direction entity is used to adjust and override
-// > the Unicode bidirectional text algorithm, similar to the
-// > W3C Internationalization Tag Set recommendation. Values
-// > are ltr (left-to-right embed), rtl (right-to-left embed),
-// > lro (left-to-right bidi-override), and rlo (right-to-left
-// > bidi-override). The default value is ltr.
-// >
-// > This entity
-// > is typically used by applications that store text in
-// > left-to-right visual order rather than logical order.
-// > Such applications can use the lro value to better
-// > communicate with other applications that more fully
-// > support bidirectional text.
-//
-// <!ENTITY % text-direction
-//    "dir (ltr | rtl | lro | rlo) #IMPLIED">
-public enum TextDirection: String, Decodable, Equatable {
-    case leftToRightEmbed = "ltr"
-    case rightToLeftEmbed = "rtl"
-    case leftToRightOverride = "lro"
-    case rightToLeftOverride = "rlo"
-}
-
 // > The text-rotation entity is used to rotate text
 // > around the alignment point specified by the
 // > halign and valign entities. The value is a number
@@ -736,24 +681,6 @@ public struct LevelDisplay: Decodable, Equatable {
 //     second-beat   CDATA    #IMPLIED
 //     last-beat     CDATA    #IMPLIED">
 public struct TrillSound: Decodable, Equatable {
-
-    public enum StartNote: String, Decodable {
-        case upper
-        case main
-        case below
-    }
-
-    public enum TrillStep: String, Decodable {
-        case whole
-        case half
-        case unison
-    }
-
-    public enum TwoNoteTurn: String, Decodable {
-        case whole
-        case half
-        case none
-    }
 
     let startNote: StartNote = .upper
     let trillStep: TrillStep = .whole

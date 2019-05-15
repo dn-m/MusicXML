@@ -132,17 +132,7 @@ public struct Note: Decodable, Equatable {
 // <!ELEMENT alter (#PCDATA)>
 // <!ELEMENT octave (#PCDATA)>
 public struct Pitch: Decodable, Equatable {
-
-    public enum Step: String, Decodable {
-        case a = "A"
-        case b = "B"
-        case c = "C"
-        case d = "D"
-        case e = "E"
-        case f = "F"
-        case g = "G"
-    }
-
+    
     let step: Step
     let alter: Double?
     let octave: Int
@@ -1739,13 +1729,7 @@ public struct TimeModification {
 //    %color;
 // >
 public struct Stem {
-    public enum Kind {
-        case down
-        case up
-        case none
-        case double
-    }
-    let kind: Kind
+    let value: StemValue
     let position: Position
     let color: Color
 }
