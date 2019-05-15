@@ -868,45 +868,7 @@ public struct Inversion: Decodable, Equatable {
     let printStyle: PrintStyle
 }
 
-// > Bass is used to indicate a bass note in popular music
-// > chord symbols, e.g. G/C. It is generally not used in
-// > functional harmony, as inversion is generally not used
-// > in pop chord symbols. As with root, it is divided into
-// > step and alter elements, similar to pitches. The attributes
-// > for bass-step and bass-alter work the same way as
-// > the corresponding attributes for root-step and root-alter.
-//
-// <!ELEMENT bass (bass-step, bass-alter?)>
-public struct Bass: Decodable, Equatable {
 
-    // <!ELEMENT bass-step (#PCDATA)>
-    // <!ATTLIST bass-step
-    //    text CDATA #IMPLIED
-    //    %print-style;
-    // >
-    public struct Step: Decodable, Equatable {
-        let value: String
-        let text: String?
-        let printStyle: PrintStyle?
-    }
-
-    // <!ELEMENT bass-alter (#PCDATA)>
-    // <!ATTLIST bass-alter
-    //    %print-object;
-    //    %print-style;
-    //    location (left | right) #IMPLIED
-    // >
-    public struct Alter: Decodable, Equatable {
-        public enum Location: String, Decodable {
-            case left
-            case right
-        }
-        let value: Double
-        let printObject: Bool
-        let printStyle: PrintStyle?
-        let location: Location?
-    }
-}
 
 // > The degree element is used to add, alter, or subtract
 // > individual notes in the chord. If the degree-type is alter or subtract, the
