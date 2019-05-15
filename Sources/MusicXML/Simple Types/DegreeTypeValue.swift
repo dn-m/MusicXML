@@ -15,3 +15,6 @@ public enum DegreeTypeValue: String {
     /// If the degree element is a subtraction from the kind of the current chord.
     case subtract
 }
+
+extension DegreeTypeValue: Equatable { }
+extension DegreeTypeValue: Decodable { }
