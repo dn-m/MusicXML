@@ -645,51 +645,8 @@ public struct Voice: Decodable, Equatable {
     let value: Int
 }
 
-// > Fermata and wavy-line elements can be applied both to
-// > notes and to barlines, so they are defined here. Wavy
-// > lines are one way to indicate trills; when used with a
-// > barline element, they should always have type="continue"
-// > set.
-//
-// <!ELEMENT fermata  (#PCDATA)>
-// <!ATTLIST fermata
-//    type (upright | inverted) #IMPLIED
-//    %print-style;
-//    %optional-unique-id;
-// >
-public struct Fermata: Decodable, Equatable {
 
-    public enum Kind: String, Decodable {
-        case upright
-        case inverted
-    }
 
-    // > An empty fermata element represents a normal fermata.
-    let shape: FermataShape = .normal
-
-    // > The fermata type is upright if not specified.
-    let kind: Kind = .upright
-    let printStyle: PrintStyle
-    let id: Int?
-}
-
-// <!ELEMENT wavy-line EMPTY>
-// <!ATTLIST wavy-line
-//    type %start-stop-continue; #REQUIRED
-//    number %number-level; #IMPLIED
-//    %position;
-//    %placement;
-//    %color;
-//    %trill-sound;
-// >
-public struct WavyLine: Decodable, Equatable {
-    let type: StartStopContinue
-    let number: NumberLevel
-    let position: Position
-    let placement: Placement
-    let color: Color
-    let trillSound: TrillSound
-}
 
 // > Staff assignment is only needed for music notated on
 // > multiple staves. Used by both notes and directions. Staff
