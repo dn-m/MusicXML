@@ -489,22 +489,7 @@ public struct SymbolFormatting: Decodable, Equatable {
     let enclosure: Enclosure
 }
 
-// > The level-display entity allows specification of three
-// > common ways to indicate editorial indications: putting
-// > parentheses or square brackets around a symbol, or making
-// > the symbol a different size. If not specified, they are
-// > left to application defaults. It is used by the level and
-// > accidental elements.
-//
-// <!ENTITY % level-display
-//    "parentheses %yes-no;       #IMPLIED
-//     bracket     %yes-no;       #IMPLIED
-//     size        %symbol-size;  #IMPLIED">
-public struct LevelDisplay: Decodable, Equatable {
-    let parentheses: Bool
-    let bracket: Bool
-    let size: SymbolSize
-}
+
 
 // MARK: - Plyaback Attributes
 
@@ -667,15 +652,7 @@ public struct Footnote: Decodable, Equatable {
     let formatting: TextFormatting
 }
 
-// <!ELEMENT level (#PCDATA)>
-// <!ATTLIST level
-//    reference %yes-no; #IMPLIED
-//    %level-display;
-// >
-public struct Level: Decodable, Equatable {
-    let reference: Bool
-    let levelDisplay: LevelDisplay
-}
+
 
 // <!ELEMENT voice (#PCDATA)>
 public struct Voice: Decodable, Equatable {

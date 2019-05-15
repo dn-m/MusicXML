@@ -19,7 +19,7 @@
 /// situation. The attribute is ignored  for mid-measure clefs. Clefs appear at the start of each
 /// system unless the print-object attribute has been set to "no" or the additional attribute has
 /// been set to "yes".
-public enum ClefSign: String, Codable {
+public enum ClefSign: String {
     case g = "G"
     case f = "F"
     case c = "C"
@@ -28,3 +28,6 @@ public enum ClefSign: String, Codable {
     case jianpu = "jianpu"
     case none = "none"
 }
+
+extension ClefSign: Equatable { }
+extension ClefSign: Decodable { }

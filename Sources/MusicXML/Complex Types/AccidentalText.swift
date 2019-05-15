@@ -5,21 +5,6 @@
 //  Created by James Bean on 5/14/19.
 //
 
-//// > The accidental-text element is used for exact formatting of
-//// > accidentals in display elements such as part-name-display.
-//// > Values are the same as for the accidental element.
-//// > Enclosure is none by default.
-////
-//// <!ELEMENT accidental-text (#PCDATA)>
-//// <!ATTLIST accidental-text
-////    %text-formatting;
-////    %smufl;
-//// >
-//public struct AccidentalText: Decodable, Equatable {
-//    let smufl: SMuFL
-//    let formatting: TextFormatting
-//}
-
 /// The accidental-text type represents an element with an accidental value and text-formatting
 /// attributes.
 public struct AccidentalText {

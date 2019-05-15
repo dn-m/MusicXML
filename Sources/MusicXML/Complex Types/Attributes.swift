@@ -21,93 +21,26 @@
 //  The attributes DTD module contains the attributes element
 //  and its children, such as key and time signatures.
 
-// > The attributes element contains musical information that
-// > typically changes on measure boundaries. This includes
-// > key and time signatures, clefs, transpositions, and staving.
-// > When attributes are changed mid-measure, it affects the
-// > music in score order, not in MusicXML document order.
-//
-// <!ELEMENT attributes (%editorial;, divisions?, key*, time*,
-//    staves?, part-symbol?, instruments?, clef*, staff-details*,
-//    transpose*, directive*, measure-style*)>
+/// The attributes element contains musical information that typically changes on measure
+/// boundaries. This includes key and time signatures, clefs, transpositions, and staving. When
+/// attributes are changed mid-measure, it affects the music in score order, not in MusicXML
+/// document order.
 public struct Attributes: Equatable {
-
-    let editorial: Editorial?
-    let divisions: Divisions?
-    let keys: [Key]?
-    let time: [Time]?
-    let staves: Staves?
-    let partSymbol: PartSymbol?
-    let instruments: Instruments?
-    let clefs: [Clef]?
-    let staffDetails: [StaffDetails]?
-    let transpose: [Transpose]?
-    let directive: [Directive]?
-    let measureStyles: [MeasureStyle]?
+    public let footNote: FormattedText?
+    public let level: Level?
+    public let divisions: Int?
+    public let keys: [Key]
+    public let time: [Time]
+    public let staves: Int?
+    public let partSymbol: PartSymbol?
+    public let instruments: Int?
+    public let clefs: [Clef]
+    public let staffDetails: [StaffDetails]
+    public let transpose: [Transpose]
+    public let directive: [Directive]
+    public let measureStyles: [MeasureStyle]
 }
 
-
-// > Clefs are represented by the sign, line, and
-// > clef-octave-change elements.
-// >
-// > Sign values include G, F, C, percussion, TAB, jianpu, and none.
-// >
-// > Line numbers are
-// > counted from the bottom of the staff. Standard values are
-// > 2 for the G sign (treble clef), 4 for the F sign (bass clef),
-// > 3 for the C sign (alto clef) and 5 for TAB (on a 6-line
-// > staff).
-// >
-// > The clef-octave-change element is used for
-// > transposing clefs (e.g., a treble clef for tenors would
-// > have a clef-octave-change value of -1). The optional
-// > number attribute refers to staff numbers within the part,
-// > from top to bottom on the system.
-// > A value of 1 is
-// > assumed if not present.
-// >
-// > The jianpu sign indicates that the music that follows
-// > should be in jianpu numbered notation, just as the TAB
-// > sign indicates that the music that follows should be in
-// > tablature notation. Unlike TAB, a jianpu sign does not
-// > correspond to a visual clef notation.
-// > Sometimes clefs are added to the staff in non-standard
-// > line positions, either to indicate cue passages, or when
-// > there are multiple clefs present simultaneously on one
-// > staff. In this situation, the additional attribute is set to
-// > "yes" and the line value is ignored. The size attribute
-// > is used for clefs where the additional attribute is "yes".
-// > It is typically used to indicate cue clefs.
-// > Sometimes clefs at the start of a measure need to appear
-// > after the barline rather than before, as for cues or for
-// > use after a repeated section. The after-barline attribute
-// > is set to "yes" in this situation. The attribute is ignored
-// > for mid-measure clefs.
-// > Clefs appear at the start of each system unless the
-// > print-object attribute has been set to "no" or the
-// > additional attribute has been set to "yes".
-//
-// <!ELEMENT clef (sign, line?, clef-octave-change?)>
-// <!ATTLIST clef
-//     number CDATA #IMPLIED
-//     additional %yes-no; #IMPLIED
-//     size %symbol-size; #IMPLIED
-//     after-barline %yes-no; #IMPLIED
-//     %print-style;
-//     %print-object;
-//     %optional-unique-id;
-// >
-// <!ELEMENT sign (#PCDATA)>
-// <!ELEMENT line (#PCDATA)>
-// <!ELEMENT clef-octave-change (#PCDATA)>
-public struct Clef: Decodable, Equatable {
-    let sign: ClefSign
-    let line: Int?
-    public init(sign: ClefSign, line: Int?) {
-        self.sign = sign
-        self.line = line
-    }
-}
 
 // > If the part is being encoded for a transposing instrument
 // > in written vs. concert pitch, the transposition must be
@@ -551,22 +484,24 @@ public struct Directive: Decodable, Equatable {
     }
 }
 
-extension Attributes: Decodable {
+extension Attributes: Decodable { }
 
-    // MARK: Decodable
-
-    enum CodingKeys: String, CodingKey {
-        case editorial
-        case divisions
-        case keys = "key"
-        case time
-        case staves
-        case partSymbol = "part-symbol"
-        case instruments
-        case clefs = "clef"
-        case staffDetails = "staff-details"
-        case transpose
-        case directive
-        case measureStyles = "measure-style"
-    }
-}
+//extension Attributes: Decodable {
+//
+//    // MARK: Decodable
+//
+//    enum CodingKeys: String, CodingKey {
+//        case editorial
+//        case divisions
+//        case keys = "key"
+//        case time
+//        case staves
+//        case partSymbol = "part-symbol"
+//        case instruments
+//        case clefs = "clef"
+//        case staffDetails = "staff-details"
+//        case transpose
+//        case directive
+//        case measureStyles = "measure-style"
+//    }
+//}

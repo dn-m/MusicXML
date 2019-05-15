@@ -12,7 +12,6 @@ public struct Arrow {
         case linear(ArrowDirection, ArrowStyle?)
     }
     public let kind: Kind
-    // Attributes
     public let position: Position
     public let printStyle: PrintStyle
     public let placement: AboveBelow?
