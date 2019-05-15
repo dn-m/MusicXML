@@ -12,3 +12,6 @@ public enum Fan: String {
     case ritardando = "rit"
     case none
 }
+
+extension Fan: Equatable { }
+extension Fan: Decodable { }

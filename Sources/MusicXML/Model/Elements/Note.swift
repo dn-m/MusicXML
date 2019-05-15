@@ -1323,55 +1323,7 @@ public struct NoteheadText {
     let values: [Kind]
 }
 
-// > Beam types include begin, continue, end, forward hook, and
-// > backward hook. Up to eight concurrent beams are available to
-// > cover up to 1024th notes, using an enumerated type defined
-// > in the common.mod file. Each beam in a note is represented
-// > with a separate beam element, starting with the eighth note
-// > beam using a number attribute of 1.
-// > Note that the beam number does not distinguish sets of
-// > beams that overlap, as it does for slur and other elements.
-// > Beaming groups are distinguished by being in different
-// > voices and/or the presence or absence of grace and cue
-// > elements.
-//
-// > Beams that have a begin value can also have a fan attribute to
-// > indicate accelerandos and ritardandos using fanned beams. The
-// > fan attribute may also be used with a continue value if the
-// > fanning direction changes on that note. The value is "none"
-// > if not specified.
-// > The repeater attribute has been deprecated in MusicXML 3.0.
-// > Formerly used for tremolos, it needs to be specified with a
-// > "yes" value for each beam using it.
-//
-// <!ELEMENT beam (#PCDATA)>
-// <!ATTLIST beam
-//    number %beam-level; "1"
-//    repeater %yes-no; #IMPLIED
-//    fan (accel | rit | none) #IMPLIED
-//    %color;
-//    %optional-unique-id;
-//>
-public struct Beam {
-    public enum Kind: String {
-        case begin
-        case `continue`
-        case end
-        case forwardHook = "forward hook"
-        case backwardHook = "backward hook"
-    }
 
-
-
-    // MARK: - Attributes
-
-    let kind: Kind
-    let number: BeamLevel = .one
-    let repeater: Bool
-    let fan: Fan
-    let color: Color
-    let id: Int?
-}
 
 // > Notations are musical notations, not XML notations. Multiple
 // > notations are allowed in order to represent multiple editorial
