@@ -100,22 +100,8 @@
 // <!ENTITY % start-stop-single "(start | stop | single)">
 // <!ENTITY % tied-type "(start | stop | continue | let-ring)">
 // <!ENTITY % tremolo-type "(start | stop | single | unmeasured)">
-public enum StartStop: String, Decodable{
-    case start
-    case stop
-}
 
-public enum StartStopContinue: String, Decodable {
-    case start
-    case stop
-    case `continue`
-}
 
-public enum StartStopSingle: String, Decodable {
-    case start
-    case stop
-    case single
-}
 
 public enum TiedType: String, Decodable {
     case start = "start"
@@ -128,65 +114,6 @@ public enum TremoloType: String, Decodable {
     case stop
     case single
     case unmeasured
-}
-
-// > The yes-no-number entity is used for attributes that can
-// > be either boolean or numeric values. Values can be "yes",
-// > "no", or numbers.
-//
-// <!ENTITY % yes-no-number "NMTOKEN">
-public enum YesNoNumber {
-    case yes
-    case no
-    case number(Double)
-}
-
-// > The symbol-size entity is used to distinguish between
-// > full, cue sized, grace cue sized, and oversized symbols.
-//
-// <!ENTITY % symbol-size "(full | cue | grace-cue | large)">
-public enum SymbolSize: String, Decodable {
-    case full
-    case cue
-    case graceCue = "grace-cue"
-    case large
-}
-
-// > The above-below type is used to indicate whether one
-// > element appears above or below another element.
-//
-// <!ENTITY % above-below "(above | below)">
-public enum AboveBelow {
-    case above
-    case below
-}
-
-// > The up-down entity is used for arrow direction,
-// > indicating which way the tip is pointing.
-//
-// <!ENTITY % up-down "(up | down)">
-public enum UpDown {
-    case up
-    case down
-}
-
-// > The top-bottom entity is used to indicate the top or
-// > bottom part of a vertical shape like non-arpeggiate.
-//
-// <!ENTITY % top-bottom "(top | bottom)">
-public enum TopBottom {
-    case top
-    case bottom
-}
-
-// > The left-right entity is used to indicate whether one
-// > element appears to the left or the right of another
-// > element.
-//
-// <!ENTITY % left-right "(left | right)">
-public enum LeftRight {
-    case left
-    case right
 }
 
 // > The number-of-lines entity is used to specify the
@@ -218,25 +145,6 @@ public enum NumberLevel: String, Decodable {
     case four = "4"
     case five = "5"
     case six = "6"
-}
-
-// > The MusicXML format supports eight levels of beaming, up
-// > to 1024th notes. Unlike the number-level attribute, the
-// > beam-level attribute identifies concurrent beams in a beam
-// > group. It does not distinguish overlapping beams such as
-// > grace notes within regular notes, or beams used in different
-// > voices.
-// >
-// <!ENTITY % beam-level "(1 | 2 | 3 | 4 | 5 | 6 | 7 | 8)">
-public enum BeamLevel: String {
-    case one = "1"
-    case two = "2"
-    case three = "3"
-    case four = "4"
-    case five = "5"
-    case six = "6"
-    case seven = "7"
-    case eight = "8"
 }
 
 // > The smufl-glyph-name entity is used for attributes that
@@ -418,52 +326,10 @@ public struct Bezier {
 //     font-size    CDATA  #IMPLIED
 //     font-weight  CDATA  #IMPLIED">
 public struct Font: Decodable, Equatable {
-
-    enum Style: String, Decodable, Equatable {
-        case normal
-        case italic
-    }
-
-    enum Size: String, Decodable, Equatable {
-        case extraExtraSmall = "xx-small"
-        case extraSmall = "x-small"
-        case small = "small"
-        case medium = "medium"
-        case large = "large"
-        case extraLarge = "x-large"
-        case extraExtraLarge = "xx-large"
-    }
-
-    enum Weight: String, Decodable, Equatable {
-        case normal
-        case bold
-    }
-
     let family: String
-    let style: Style
-    let size: Size
-    let weight: Weight
-}
-
-// > The color entity indicates the color of an element.
-// > Color may be represented as hexadecimal RGB triples,
-// > as in HTML, or as hexadecimal ARGB tuples, with the
-// > A indicating alpha of transparency. An alpha value
-// > of 00 is totally transparent; FF is totally opaque.
-// > If RGB is used, the A value is assumed to be FF.
-// > For instance, the RGB value "#800080" represents
-// > purple. An ARGB value of "#40800080" would be a
-// > transparent purple.
-// > As in SVG 1.1, colors are defined in terms of the
-// > sRGB color space (IEC 61966).
-//
-// <!ENTITY % color
-//    "color CDATA #IMPLIED">
-public struct Color: Decodable, Equatable {
-    let alpha: Int = 1
-    let red: Int
-    let green: Int
-    let blue: Int
+    let style: FontStyle
+    let size: FontSize
+    let weight: FontWeight
 }
 
 // > The text-decoration entity is based on the similar
@@ -517,18 +383,6 @@ public enum HorizonalAlignment: String, Decodable, Equatable {
     case right
 }
 
-// > The valign entity is used to indicate vertical
-// > alignment to the top, middle, bottom, or baseline
-// > of the text. Defaults are implementation-dependent.
-//
-// <!ENTITY % valign
-//    "valign (top | middle | bottom | baseline) #IMPLIED">
-public enum VerticalAlignment: String, Decodable, Equatable {
-    case top
-    case middle
-    case bottom
-    case baseline
-}
 
 // > The valign-image entity is used to indicate vertical
 // > alignment for images and graphics, so it removes the
@@ -597,29 +451,6 @@ public enum LineHeight: Decodable, Equatable {
     }
 }
 
-// > The text-direction entity is used to adjust and override
-// > the Unicode bidirectional text algorithm, similar to the
-// > W3C Internationalization Tag Set recommendation. Values
-// > are ltr (left-to-right embed), rtl (right-to-left embed),
-// > lro (left-to-right bidi-override), and rlo (right-to-left
-// > bidi-override). The default value is ltr.
-// >
-// > This entity
-// > is typically used by applications that store text in
-// > left-to-right visual order rather than logical order.
-// > Such applications can use the lro value to better
-// > communicate with other applications that more fully
-// > support bidirectional text.
-//
-// <!ENTITY % text-direction
-//    "dir (ltr | rtl | lro | rlo) #IMPLIED">
-public enum TextDirection: String, Decodable, Equatable {
-    case leftToRightEmbed = "ltr"
-    case rightToLeftEmbed = "rtl"
-    case leftToRightOverride = "lro"
-    case rightToLeftOverride = "rlo"
-}
-
 // > The text-rotation entity is used to rotate text
 // > around the alignment point specified by the
 // > halign and valign entities. The value is a number
@@ -639,33 +470,7 @@ public struct TextRotation: Decodable, Equatable {
 // <!ENTITY % enclosure
 //    "enclosure %enclosure-shape; #IMPLIED">
 public struct Enclosure: Decodable, Equatable {
-    // > The enclosure-shape entity describes the shape and
-    // > presence / absence of an enclosure around text. A bracket
-    // > enclosure is similar to a rectangle with the bottom line
-    // > missing, as is common in jazz notation.
-    //
-    // <!ENTITY % enclosure-shape
-    //    "(rectangle | square | oval | circle |
-    //      bracket | triangle | diamond | pentagon |
-    //      hexagon | heptagon | octagon | nonagon |
-    //      decagon | none)">
-    public enum Shape: String, Decodable, Equatable {
-        case rectangle
-        case square
-        case oval
-        case circle
-        case bracket
-        case triangle
-        case diamond
-        case pentagon
-        case hexagon
-        case heptagon
-        case octagon
-        case nonagon
-        case decagon
-        case none
-    }
-    let shape: Shape
+    let shape: EnclosureShape
 }
 
 // > The print-style entity groups together the most popular
@@ -692,31 +497,7 @@ public struct PrintStyle: Decodable, Equatable {
 public struct PrintStyleAlignment: Decodable, Equatable {
     let printStyle: PrintStyle
     let horizontalAlignment: HorizonalAlignment
-    let verticalAlignment: VerticalAlignment
-}
-
-// > The line-shape entity is used to distinguish between
-// > straight and curved lines. The line-type entity
-// > distinguishes between solid, dashed, dotted, and
-// > wavy lines. The line-length entity distinguishes
-// > between different line lengths for doit, falloff,
-// > plop, and scoop articulations.
-//
-// <!ENTITY % line-shape
-//    "line-shape (straight | curved) #IMPLIED">
-public enum LineShape {
-    case straight
-    case curved
-}
-
-// <!ENTITY % line-type
-//    "line-type (solid | dashed | dotted | wavy) #IMPLIED">
-//
-public enum LineType {
-    case solid
-    case dashed
-    case dotted
-    case wavy
+    let verticalAlignment: VAlign
 }
 
 // <!ENTITY % line-length
@@ -866,24 +647,6 @@ public struct LevelDisplay: Decodable, Equatable {
 //     second-beat   CDATA    #IMPLIED
 //     last-beat     CDATA    #IMPLIED">
 public struct TrillSound: Decodable, Equatable {
-
-    public enum StartNote: String, Decodable {
-        case upper
-        case main
-        case below
-    }
-
-    public enum TrillStep: String, Decodable {
-        case whole
-        case half
-        case unison
-    }
-
-    public enum TwoNoteTurn: String, Decodable {
-        case whole
-        case half
-        case none
-    }
 
     let startNote: StartNote = .upper
     let trillStep: TrillStep = .whole
@@ -1041,28 +804,13 @@ public struct Voice: Decodable, Equatable {
 // >
 public struct Fermata: Decodable, Equatable {
 
-    // > The fermata text content represents the shape of the
-    // > fermata sign and may be normal, angled, square,
-    // > double-angled, double-square, double-dot, half-curve,
-    // > curlew, or an empty string.
-    public enum Shape: String, Decodable {
-        case normal
-        case angled
-        case square
-        case doubleAngled = "double-angled"
-        case doubleSquare = "double-square"
-        case doubleDot
-        case halfCurve
-        case curlew
-    }
-
     public enum Kind: String, Decodable {
         case upright
         case inverted
     }
 
     // > An empty fermata element represents a normal fermata.
-    let shape: Shape = .normal
+    let shape: FermataShape = .normal
 
     // > The fermata type is upright if not specified.
     let kind: Kind = .upright
@@ -1511,32 +1259,6 @@ public struct Play {
         // >
         public struct Other {
             let type: String
-        }
-
-        // > The mute element represents muting for different instruments,
-        // > including brass, winds, and strings. The on and off values
-        // > are used for undifferentiated mutes. The remaining values
-        // > represent specific mutes: straight, cup, harmon-no-stem,
-        // > harmon-stem, bucket, plunger, hat, solotone, practice,
-        // > stop-mute, stop-hand, echo, and palm.
-        //
-        // <!ELEMENT mute (#PCDATA)>
-        public enum Mute {
-            case on
-            case off
-            case straight
-            case cup
-            case harmonNoStem
-            case harmonStem
-            case bucket
-            case plunger
-            case hat
-            case solotone
-            case practice
-            case stopMute
-            case stopHand
-            case echo
-            case palm
         }
 
         // > The semi-pitched element represents categories of indefinite

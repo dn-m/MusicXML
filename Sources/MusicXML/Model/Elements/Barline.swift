@@ -83,33 +83,7 @@ public struct Barline: Equatable {
     let optionalUniqueID: String?
 }
 
-// > Bar-style contains style information. Choices are
-// > regular, dotted, dashed, heavy, light-light,
-// > light-heavy, heavy-light, heavy-heavy, tick (a
-// > short stroke through the top line), short (a partial
-// > barline between the 2nd and 4th lines), and none.
-//
-// <!ELEMENT bar-style (#PCDATA)>
-// <!ATTLIST bar-style
-//    %color;
-// >
-public struct BarStyle: Decodable, Equatable {
-    public enum Kind: String, Decodable, Equatable {
-        case regular
-        case dotted
-        case dashed
-        case heavy
-        case lightLight = "light-light"
-        case lightHeavy = "light-heavy"
-        case heavyLight = "heavy-light"
-        case heavyHeavy = "heavy-heavy"
-        case tick
-        case short
-        case none
-    }
-    let kind: Kind
-    let color: Color
-}
+
 
 // > The editorial entity and the wavy-line, segno, and fermata
 // > elements are defined in the common.mod file. They can
@@ -154,7 +128,7 @@ public struct Ending: Equatable {
         case stop
         case discontinue
     }
-    let value: String // e.g., 1., 2.
+    let value: EndingNumber // e.g., 1., 2.
     let number: [Int]
     let type: Kind
     let printObject: Bool?

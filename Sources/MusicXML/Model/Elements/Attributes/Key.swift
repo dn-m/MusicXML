@@ -49,54 +49,17 @@ public struct Key: Decodable, Equatable {
         // > minor/mode distinctions.
         public struct Traditional: Decodable, Equatable {
 
-            // > A cancel element indicates that the old
-            // > key signature should be cancelled before the new one
-            // > appears. This will always happen when changing to C major
-            // > or A minor and need not be specified then. The cancel
-            // > value matches the fifths value of the cancelled key
-            // > signature (e.g., a cancel of -2 will provide an explicit
-            // > cancellation for changing from B flat major to F major).
-            // > The optional location attribute indicates where a key
-            // > signature cancellation appears relative to a new key
-            // > signature: to the left, to the right, or before the barline
-            // > and to the left. It is left by default. For mid-measure key
-            // > elements, a cancel location of before-barline should be
-            // > treated like a cancel location of left.
-            //
-            // > <!ELEMENT cancel (#PCDATA)>
-            // > <!ATTLIST cancel
-            // >     location (left | right | before-barline) #IMPLIED
-            // > >
-            public enum Cancel: String, Decodable {
-                case left = "left"
-                case right = "right"
-                case beforeBarline = "before-barline"
-            }
 
-            // > Valid mode values include major, minor, dorian, phrygian,
-            // > lydian, mixolydian, aeolian, ionian, locrian, and none.
-            public enum Mode: String, Decodable {
-                case major
-                case minor
-                case dorian
-                case phrygian
-                case lydian
-                case mixolydian
-                case aeolian
-                case ionian
-                case locrian
-                case none
-            }
 
             // > Negative numbers are used for
             // > flats and positive numbers for sharps, reflecting the
             // > key's placement within the circle of fifths (hence the
             // > element name).
             let fifths: Int
-            let cancel: Cancel?
+            let cancel: CancelLocation?
             let mode: Mode?
 
-            public init(fifths: Int, cancel: Cancel?, mode: Mode?) {
+            public init(fifths: Int, cancel: CancelLocation?, mode: Mode?) {
                 self.fifths = fifths
                 self.cancel = cancel
                 self.mode = mode

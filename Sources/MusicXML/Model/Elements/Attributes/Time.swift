@@ -31,66 +31,6 @@
 // <!ELEMENT time-relation (#PCDATA)>
 public struct Time: Equatable {
 
-    // > The time-separator entity indicates how to display the
-    // > arrangement between the beats and beat-type values in a
-    // > time signature. The default value is none. The horizontal,
-    // > diagonal, and vertical values represent horizontal, diagonal
-    // > lower-left to upper-right, and vertical lines respectively.
-    // > For these values, the beats and beat-type values are arranged
-    // > on either side of the separator line. The none value represents
-    // > no separator with the beats and beat-type arranged vertically.
-    // > The adjacent value represents no separator with the beats and
-    // > beat-type arranged horizontally.
-    //
-    // <!ENTITY % time-separator
-    //    "separator (none | horizontal | diagonal |
-    //        vertical | adjacent) #IMPLIED">
-    public enum Separator: String, Decodable {
-        case none
-        case horizontal
-        case diagonal
-        case vertical
-        case adjacent
-    }
-
-    // > The time-symbol entity indicates how to display a time
-    // > signature. The normal value is the usual fractional display,
-    // > and is the implied symbol type if none is specified. Other
-    // > options are the common and cut time symbols, as well as a
-    // > single number with an implied denominator. The note symbol
-    // > indicates that the beat-type should be represented with
-    // > the corresponding downstem note rather than a number. The
-    // > dotted-note symbol indicates that the beat-type should be
-    // > represented with a dotted downstem note that corresponds to
-    // > three times the beat-type value, and a numerator that is
-    // > one third the beats value.
-    //
-    // <!ENTITY % time-symbol
-    //    "symbol (common | cut | single-number |
-    //             note | dotted-note | normal) #IMPLIED">
-    public enum Symbol: String, Decodable {
-        case common = "common"
-        case cut = "cut"
-        case singleNumber = "single-number"
-        case note = "note"
-        case dottedNote = "dotted-note"
-        case normal = "normal"
-    }
-
-    // > The time-relation element indicates the symbol used to
-    // > represent the interchangeable aspect of the time signature.
-    //
-    // > Valid values are parentheses, bracket, equals, slash, space,
-    // > and hyphen.
-    public enum Relation: String, Decodable {
-        case parentheses
-        case bracket
-        case equals
-        case slash
-        case space
-        case hyphen
-    }
-
     public enum Kind: Equatable {
 
         // > Time signatures are represented by two elements. The
@@ -111,8 +51,8 @@ public struct Time: Equatable {
         // > which applies to the first of the dual time signatures.
         public struct Measured: Equatable {
             public struct Interchangeable: Decodable, Equatable {
-                let symbol: Symbol
-                let separator: Separator
+                let symbol: TimeSymbol
+                let separator: TimeSeparator
             }
             public struct Signature: Equatable {
                 let beats: Int
@@ -136,8 +76,8 @@ public struct Time: Equatable {
     }
 
     let kind: Kind
-    let symbol: Symbol
-    let separator: Separator
+    let symbol: TimeSymbol
+    let separator: TimeSeparator
 
     // The optional number attribute refers to staff
     // > numbers within the part, from top to bottom on the system.
@@ -147,7 +87,7 @@ public struct Time: Equatable {
 
     // MARK: - Initializers
 
-    public init(kind: Kind, symbol: Symbol, separator: Separator, id: Int?) {
+    public init(kind: Kind, symbol: TimeSymbol, separator: TimeSeparator, id: Int?) {
         self.kind = kind
         self.symbol = symbol
         self.separator = separator
