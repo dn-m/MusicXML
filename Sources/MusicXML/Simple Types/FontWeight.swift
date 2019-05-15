@@ -6,7 +6,7 @@
 //
 
 /// The font-weight type represents a simplified version of the CSS font-weight property.
-enum FontWeight: String {
+public enum FontWeight: String {
     case normal
     case bold
 }

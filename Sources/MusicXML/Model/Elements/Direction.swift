@@ -1157,7 +1157,7 @@ public struct Print: Decodable, Equatable {
     let measureNumbeing: MeasureNumbering?
     let partNameDisplay: PartNameDisplay?
     let partAbbreviationDisplay: PartAbbreviationDisplay?
-    let staffSpacing: Int? // tenths
+    let staffSpacing: Tenths?
     let newSystem: Bool?
     let newPage: Bool?
     let blankPage: Bool?

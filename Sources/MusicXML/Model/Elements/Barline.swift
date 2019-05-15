@@ -133,9 +133,9 @@ public struct Ending: Equatable {
     let type: Kind
     let printObject: Bool?
     let printStyle: PrintStyle?
-    let endLength: Int? // tenths
-    let textX: Int? // tenths
-    let textY: Int? // tenths
+    let endLength: Tenths?
+    let textX: Tenths?
+    let textY: Tenths?
 }
 
 // > Repeat marks. The start of the repeat has a forward direction

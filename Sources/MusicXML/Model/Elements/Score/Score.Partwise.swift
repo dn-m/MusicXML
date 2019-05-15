@@ -76,7 +76,7 @@ extension Score.Partwise {
         let text: String?
         let implicit: Bool?
         let nonControlling: Bool?
-        let width: Int? // Tenths
+        let width: Tenths?
         let optionalUniqueID: Int?
         let musicData: MusicData?
     }
@@ -122,7 +122,7 @@ extension Score.Partwise.Measure: Decodable {
         self.text = try keyed.decodeIfPresent(String.self, forKey: .text)
         self.implicit = try keyed.decodeIfPresent(Bool.self, forKey: .implicit)
         self.nonControlling = try keyed.decodeIfPresent(Bool.self, forKey: .nonControlling)
-        self.width = try keyed.decodeIfPresent(Int.self, forKey: .width)
+        self.width = try keyed.decodeIfPresent(Tenths.self, forKey: .width)
         self.optionalUniqueID = try keyed.decodeIfPresent(Int.self, forKey: .optionalUniqueID)
         self.musicData = try unkeyed.decode(MusicData.self)
     }

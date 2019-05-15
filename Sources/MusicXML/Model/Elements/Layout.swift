@@ -36,9 +36,9 @@ public struct PageLayout: Decodable, Equatable {
 
     public struct Size: Decodable, Equatable {
         // <!ELEMENT page-height %layout-tenths;>
-        let height: Int // tenths
+        let height: Tenths
         // <!ELEMENT page-width %layout-tenths;>
-        let width: Int // tenths
+        let width: Tenths
     }
 
     #warning("FIXME: Refactor Margins a little better to encode logic")
@@ -63,10 +63,10 @@ public struct PageMargins: Decodable, Equatable {
         case both
     }
     let kind: Kind
-    let left: Int // tenths
-    let right: Int // tenths
-    let top: Int // tenths
-    let bottom: Int // tenths
+    let left: Tenths
+    let right: Tenths
+    let top: Tenths
+    let bottom: Tenths
 }
 
 
@@ -148,7 +148,7 @@ public struct PageMargins: Decodable, Equatable {
 
 public struct SystemLayout: Decodable, Equatable {
     let systemMargins: SystemMargins?
-    let systemDistance: Int // tenths
+    let systemDistance: Tenths
     let topSystemDistance: Int?
     let systemDividers: SystemDividers?
 }
@@ -157,8 +157,8 @@ public struct SystemLayout: Decodable, Equatable {
 // <!ELEMENT system-distance %layout-tenths;>
 // <!ELEMENT top-system-distance %layout-tenths;>
 public struct SystemMargins: Decodable, Equatable {
-    let left: Int // tenths
-    let right: Int // tenths
+    let left: Tenths
+    let right: Tenths
 }
 
 //    The system-dividers element indicates the presence or

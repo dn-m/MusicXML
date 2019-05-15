@@ -224,10 +224,10 @@ public struct SMuFLGlyph: Decodable, Equatable {
 //     relative-x    %tenths;    #IMPLIED
 //     relative-y    %tenths;    #IMPLIED">
 public struct Position: Decodable, Equatable {
-    let defaultX: Int // tenths
-    let defaultY: Int // tenths
-    let relativeX: Int // tenths
-    let relativeY: Int // tenths
+    let defaultX: Tenths
+    let defaultY: Tenths
+    let relativeX: Tenths
+    let relativeY: Tenths
 }
 
 // > The placement attribute indicates whether something is
@@ -518,8 +518,8 @@ public enum LineLength {
 //    "dash-length   %tenths;  #IMPLIED
 //     space-length  %tenths;  #IMPLIED">
 public struct DashedFormatting {
-    let dashLength: Int // Tenths
-    let spaceLength: Int // Tenths
+    let dashLength: Tenths
+    let spaceLength: Tenths
 }
 
 // > The printout entity is based on MuseData print
@@ -1072,21 +1072,6 @@ public struct TablatureString {
 // >
 public struct DisplayText: Decodable, Equatable {
     let value: String
-    let formatting: TextFormatting
-}
-
-// > The accidental-text element is used for exact formatting of
-// > accidentals in display elements such as part-name-display.
-// > Values are the same as for the accidental element.
-// > Enclosure is none by default.
-//
-// <!ELEMENT accidental-text (#PCDATA)>
-// <!ATTLIST accidental-text
-//    %text-formatting;
-//    %smufl;
-// >
-public struct AccidentalText: Decodable, Equatable {
-    let smufl: SMuFL
     let formatting: TextFormatting
 }
 

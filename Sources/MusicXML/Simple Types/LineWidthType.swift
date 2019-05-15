@@ -31,3 +31,6 @@ public enum LineWidthType: String {
     case tupletBracket = "tuplet bracket"
     case wedge
 }
+
+extension LineWidthType: Equatable { }
+extension LineWidthType: Decodable { }

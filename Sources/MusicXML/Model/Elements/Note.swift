@@ -462,22 +462,7 @@ public struct Ornaments {
 //>
 //
 //<!--
-//    An accidental-mark can be used as a separate notation or
-//    as part of an ornament. When used in an ornament, position
-//    and placement are relative to the ornament, not relative to
-//    the note.
-//-->
-//<!ELEMENT accidental-mark (#PCDATA)>
-//<!ATTLIST accidental-mark
-//    %level-display;
-//    %print-style;
-//    %placement;
-//    %smufl;
-//    %optional-unique-id;
-//>
-public struct AccidentalMark {
-    #warning("TODO: AccidentalMark")
-}
+
 //
 //<!--
 //    Technical indications give performance information for
@@ -753,62 +738,7 @@ public struct Technical {
 //>
 //<!ELEMENT hole-shape (#PCDATA)>
 //
-//<!--
-//    The arrow element represents an arrow used for a musical
-//    technical indication. Straight arrows are represented with
-//    an arrow-direction element and an optional arrow-style
-//    element. Circular arrows are represented with a
-//    circular-arrow element. Descriptive values use Unicode
-//    arrow terminology.
-//
-//    Values for the arrow-direction element are left, up, right,
-//    down, northwest, northeast, southeast, southwest, left right,
-//    up down, northwest southeast, northeast southwest, and other.
-//
-//    Values for the arrow-style element are single, double,
-//    filled, hollow, paired, combined, and other.
-//
-//    Filled and
-//    hollow arrows indicate polygonal single arrows. Paired
-//    arrows are duplicate single arrows in the same direction.
-//    Combined arrows apply to double direction arrows like
-//    left right, indicating that an arrow in one direction
-//    should be combined with an arrow in the other direction.
-//    Values for the circular-arrow element are clockwise and
-//    anticlockwise.
-//
-//    The arrow element can represent both Unicode and SMuFL arrows.
-//    The presence of an arrowhead element indicates that only the
-//    arrowhead is displayed, not the arrow stem. The smufl
-//    attribute distinguishes different SMuFL glyphs that have
-//    an arrow appearance such as arrowBlackUp, guitarStrumUp,
-//    or handbellsSwingUp. The specified glyph should match the
-//    descriptive representation.
-//-->
-//<!ELEMENT arrow
-//    ((arrow-direction, arrow-style?, arrowhead?) |
-//     circular-arrow)>
-//<!ATTLIST arrow
-//    %print-style;
-//    %placement;
-//    %smufl;
-//>
-//<!ELEMENT arrow-direction (#PCDATA)>
-//<!ELEMENT arrow-style (#PCDATA)>
-//<!ELEMENT arrowhead EMPTY>
-//<!ELEMENT circular-arrow (#PCDATA)>
-public struct Arrow {
 
-    public enum Kind {
-        case circular
-        case linear(ArrowDirection, ArrowStyle?, arrowhead: Bool)
-    }
-
-    let kind: Kind
-    let printStyle: PrintStyle
-    let placement: Placement
-    let smufl: SMuFL
-}
 
 //
 //<!--
@@ -1177,39 +1107,6 @@ public struct Articulations {
         case caesura(Caesura)
         case other(Other)
     }
-}
-
-// > The arpeggiate element indicates that this note is part of
-// > an arpeggiated chord. The number attribute can be used to
-// > distinguish between two simultaneous chords arpeggiated
-// > separately (different numbers) or together (same number).
-// > The up-down attribute is used if there is an arrow on the
-// > arpeggio sign. By default, arpeggios go from the lowest to
-// > highest note.
-//
-// <!ELEMENT arpeggiate EMPTY>
-// <!ATTLIST arpeggiate
-//    number %number-level; #IMPLIED
-//    direction %up-down; #IMPLIED
-//    %position;
-//    %placement;
-//    %color;
-//    %optional-unique-id;
-// >
-// TODO: Appearance
-public struct Arpeggiate {
-
-    public enum Direction: String {
-        case up
-        case down
-    }
-
-    let number: Int
-    let direction: Direction
-    let position: Position
-    let placement: Placement
-    let color: Color
-    let id: String?
 }
 
 // > The non-arpeggiate element indicates that this note is at
@@ -1626,76 +1523,7 @@ public struct Rest: Decodable, Equatable {
 //    %placement;
 //>
 //
-// > Actual notated accidentals. The attribute value is a SMuFL canonical
-// > glyph name that starts with acc.
-// > Editorial and cautionary indications are indicated
-// > by attributes. Values for these attributes are "no" if not
-// > present. Specific graphic display such as parentheses,
-// > brackets, and size are controlled by the level-display
-// > entity defined in the common.mod file.
-//
-// <!ELEMENT accidental (#PCDATA)>
-// <!ATTLIST accidental
-//    cautionary %yes-no; #IMPLIED
-//    editorial %yes-no; #IMPLIED
-//    %level-display;
-//    %print-style;
-//    %smufl;
-// >
-#warning("TODO: Add support for Accidental level-display, print-style, and smufl")
-public struct Accidental: Decodable, Equatable {
 
-    enum CodingKeys: String, CodingKey {
-        case editorial
-        case cautionary
-        case parentheses
-        case bracket
-        case value
-    }
-
-    let value: AccidentalValue
-    let parentheses: Bool
-    let bracket: Bool
-    let cautionary: Bool
-    let editorial: Bool
-
-    public init(
-        _ value: AccidentalValue,
-        parentheses: Bool = false,
-        bracket: Bool = false,
-        cautionary: Bool = false,
-        editorial: Bool = false
-    )
-    {
-        self.value = value
-        self.parentheses = parentheses
-        self.bracket = bracket
-        self.cautionary = cautionary
-        self.editorial = editorial
-    }
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.value = try container.decode(AccidentalValue.self, forKey: .value)
-        self.parentheses = try container.decodeIfPresent(Bool.self, forKey: .parentheses) ?? false
-        self.bracket = try container.decodeIfPresent(Bool.self, forKey: .bracket) ?? false
-        self.cautionary = try container.decodeIfPresent(Bool.self, forKey: .cautionary) ?? false
-        self.editorial = try container.decodeIfPresent(Bool.self, forKey: .editorial) ?? false
-    }
-}
-
-extension Accidental: DynamicNodeDecoding {
-
-    /// - Returns: The proper `XMLDecoder.NodeDecoding` for the given `key`.
-    public static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
-        switch key {
-        case Accidental.CodingKeys.value:
-            return .element
-        default:
-            return .attribute
-        }
-    }
-}
 
 // > Time modification indicates tuplets, double-note tremolos,
 // > and other durational changes. A time-modification element

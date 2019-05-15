@@ -76,7 +76,7 @@ extension Score.Timewise {
         let text: String?
         let implicit: Bool?
         let nonControlling: Bool?
-        let width: Int? // Tenths
+        let width: Tenths?
         let optionalUniqueID: Int?
         let parts: [Part]
     }
