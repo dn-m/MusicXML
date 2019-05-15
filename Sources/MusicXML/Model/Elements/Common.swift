@@ -400,20 +400,6 @@ public enum LineLength {
     case long
 }
 
-// > The dashed-formatting entity represents the length of
-// > dashes and spaces in a dashed line. Both the dash-length
-// > and space-length attributes are represented in tenths.
-// > These attributes are ignored if the corresponding
-// > line-type attribute is not dashed.
-//
-// <!ENTITY % dashed-formatting
-//    "dash-length   %tenths;  #IMPLIED
-//     space-length  %tenths;  #IMPLIED">
-public struct DashedFormatting {
-    let dashLength: Tenths
-    let spaceLength: Tenths
-}
-
 // > The printout entity is based on MuseData print
 // > suggestions. They allow a way to specify not to print
 // > print an object (e.g. note or rest), its augmentation

@@ -113,45 +113,7 @@ public struct PageMargins: Decodable, Equatable {
 //<!ELEMENT bottom-margin %layout-tenths;>
 
 
-// > A system is a group of staves that are read and played
-// > simultaneously. System layout includes left and right
-// > margins, the vertical distance from the previous system,
-// > and the presence or absence of system dividers.
-//
-// > Margins are relative to the page margins. Positive values
-// > indent and negative values reduce the margin size. The
-// > system distance is measured from the bottom line of the
-// > previous system to the top line of the current system.
-// > It is ignored for the first system on a page. The top
-// > system distance is measured from the page's top margin to
-// > the top line of the first system. It is ignored for all
-// > but the first system on a page.
-// > Sometimes the sum of measure widths in a system may not
-// > equal the system width specified by the layout elements due
-// > to roundoff or other errors. The behavior when reading
-// > MusicXML files in these cases is application-dependent.
-// > For instance, applications may find that the system layout
-// > data is more reliable than the sum of the measure widths,
-// > and adjust the measure widths accordingly.
-// > When used in the layout element, the system-layout element
-// > defines a default appearance for all systems in the score.
-// > When used in the print element, the system layout element
-// > affects the appearance of the current system only. All
-// > other systems use the default values provided in the
-// > defaults element. If any child elements are missing from
-// > the system-layout element in a print element, the values
-// > from the defaults element are used there as well.
-//
-// <!ELEMENT system-layout
-//    (system-margins?, system-distance?,
-//     top-system-distance?, system-dividers?)>
 
-public struct SystemLayout: Decodable, Equatable {
-    let systemMargins: SystemMargins?
-    let systemDistance: Tenths
-    let topSystemDistance: Int?
-    let systemDividers: SystemDividers?
-}
 
 // <!ELEMENT system-margins (left-margin, right-margin)>
 // <!ELEMENT system-distance %layout-tenths;>
