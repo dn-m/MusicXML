@@ -1081,28 +1081,6 @@ public struct FiguredBass: Equatable {
     let parenthesized: Bool = false
 }
 
-// > The backup and forward elements are required to coordinate
-// > multiple voices in one part, including music on multiple
-// > staves. The forward element is generally used within voices
-// > and staves, while the backup element is generally used to
-// > move between voices and staves. Thus the backup element
-// > does not include voice or staff elements. Duration values
-// > should always be positive, and should not cross measure
-// > boundaries or mid-measure changes in the divisions value.
-//
-// <!ELEMENT backup (duration, %editorial;)>
-public struct Backup: Decodable, Equatable {
-    let duration: Int
-    let editorial: Editorial
-}
-
-// <!ELEMENT forward
-//    (duration, %editorial-voice;, staff?)>
-public struct Forward: Decodable, Equatable {
-    let duration: Int
-    let editorialVoice: EditorialVoice?
-    let staff: Staff?
-}
 
 //    The common note elements between cue/grace notes and
 //    regular (full) notes: pitch, chord, and rest information,

@@ -615,22 +615,8 @@ public struct SMuFL: Decodable, Equatable {
 
 // MARK: - Elements
 
-// > Two entities for editorial information in notes. These
-// > entities, and their elements defined below, are used
-// > across all the different component DTD modules.
-//
-// <!ENTITY % editorial "(footnote?, level?)">
-public struct Editorial: Decodable, Equatable {
-    let footnote: Footnote?
-    let level: Level?
-}
 
-// <!ENTITY % editorial-voice "(footnote?, level?, voice?)">
-public struct EditorialVoice: Decodable, Equatable {
-    let footnote: Footnote?
-    let level: Level?
-    let voice: Voice?
-}
+
 
 // > Footnote and level are used to specify editorial
 // > information, while voice is used to distinguish between
