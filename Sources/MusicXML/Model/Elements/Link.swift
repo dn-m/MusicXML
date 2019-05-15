@@ -29,19 +29,6 @@
 //    root folder of the zip file.
 //
 
-// <!ELEMENT bookmark EMPTY>
-// <!ATTLIST bookmark
-//    id    ID     #REQUIRED
-//    name  CDATA  #IMPLIED
-//    element  NMTOKEN #IMPLIED
-//    position NMTOKEN #IMPLIED
-// >
-public struct Bookmark: Decodable, Equatable {
-    let id: String
-    let name: String?
-    let element: String?
-    let position: String?
-}
 
 // <!ELEMENT link EMPTY>
 // <!ATTLIST link
