@@ -24,3 +24,12 @@ public enum Articulations {
     case tenuto(EmptyPlacement)
     case unstress(EmptyPlacement)
 }
+
+extension Articulations: Equatable { }
+
+extension Articulations: Decodable {
+    #warning("TODO: Implement Articulations: Decodable conformance")
+    public init(from decoder: Decoder) throws {
+        fatalError("Articulations.init(from: Decoder) not yet implemented!")
+    }
+}

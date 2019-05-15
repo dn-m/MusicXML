@@ -12,3 +12,6 @@ public struct BreathMark {
     public let printStyle: PrintStyle
     public let placement: AboveBelow
 }
+
+extension BreathMark: Equatable { }
+extension BreathMark: Decodable { }
