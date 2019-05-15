@@ -853,7 +853,7 @@ public struct Kind: Decodable, Equatable {
     let bracketDegrees: Bool?
     let printStyle: PrintStyle?
     let horizontalAlignment: HorizonalAlignment?
-    let verticalAlignment: VerticalAlignment?
+    let verticalAlignment: VAlign?
 }
 
 // > Inversion is a number indicating which inversion is used:

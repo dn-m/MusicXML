@@ -116,28 +116,6 @@ public enum TremoloType: String, Decodable {
     case unmeasured
 }
 
-// > The yes-no-number entity is used for attributes that can
-// > be either boolean or numeric values. Values can be "yes",
-// > "no", or numbers.
-//
-// <!ENTITY % yes-no-number "NMTOKEN">
-public enum YesNoNumber {
-    case yes
-    case no
-    case number(Double)
-}
-
-// > The up-down entity is used for arrow direction,
-// > indicating which way the tip is pointing.
-//
-// <!ENTITY % up-down "(up | down)">
-public enum UpDown {
-    case up
-    case down
-}
-
-
-
 // > The number-of-lines entity is used to specify the
 // > number of lines in text decoration attributes.
 //
@@ -405,18 +383,6 @@ public enum HorizonalAlignment: String, Decodable, Equatable {
     case right
 }
 
-// > The valign entity is used to indicate vertical
-// > alignment to the top, middle, bottom, or baseline
-// > of the text. Defaults are implementation-dependent.
-//
-// <!ENTITY % valign
-//    "valign (top | middle | bottom | baseline) #IMPLIED">
-public enum VerticalAlignment: String, Decodable, Equatable {
-    case top
-    case middle
-    case bottom
-    case baseline
-}
 
 // > The valign-image entity is used to indicate vertical
 // > alignment for images and graphics, so it removes the
@@ -531,7 +497,7 @@ public struct PrintStyle: Decodable, Equatable {
 public struct PrintStyleAlignment: Decodable, Equatable {
     let printStyle: PrintStyle
     let horizontalAlignment: HorizonalAlignment
-    let verticalAlignment: VerticalAlignment
+    let verticalAlignment: VAlign
 }
 
 // <!ENTITY % line-length

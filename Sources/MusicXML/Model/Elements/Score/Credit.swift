@@ -75,7 +75,7 @@ public struct Credit: Decodable, Equatable {
         let width: Int?
         let position: Position?
         let horizontalAlignment: HorizonalAlignment?
-        let verticalAlignment: VerticalAlignment?
+        let verticalAlignment: VAlign?
         let optionalUniqueID: String?
     }
 
