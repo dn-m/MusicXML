@@ -9,14 +9,8 @@
 /// ornament, position and placement are relative to the ornament, not relative to the note.
 public struct AccidentalMark {
     public let value: AccidentalValue
-    public let defaultX: Tenths?
-    public let defaultY: Tenths?
-    public let relativeX: Tenths?
-    public let relativeY: Tenths?
-    public let fontFamily: CommaSeparatedText?
-    public let fontStyle: FontStyle?
-    public let fontWeight: FontWeight?
-    public let color: Color?
+    public let position: Position
+    public let printStyle: PrintStyle
     public let placement: AboveBelow?
 }
 

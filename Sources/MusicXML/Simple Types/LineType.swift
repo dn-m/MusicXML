@@ -6,9 +6,12 @@
 //
 
 /// The line-type type distinguishes between solid, dashed, dotted, and wavy lines.
-public enum LineType {
+public enum LineType: String {
     case solid
     case dashed
     case dotted
     case wavy
 }
+
+extension LineType: Equatable { }
+extension LineType: Decodable { }

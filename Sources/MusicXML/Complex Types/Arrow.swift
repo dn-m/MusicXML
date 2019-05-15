@@ -13,15 +13,8 @@ public struct Arrow {
     }
     public let kind: Kind
     // Attributes
-    public let defaultX: Double?
-    public let defaultY: Double?
-    public let relativeX: Double?
-    public let relativeY: Double?
-    public let fontFamily: CommaSeparatedText?
-    public let fontSize: FontSize?
-    public let fontStyle: FontStyle?
-    public let fontWeight: FontWeight?
-    public let color: Color?
+    public let position: Position
+    public let printStyle: PrintStyle
     public let placement: AboveBelow?
 }
 

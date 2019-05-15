@@ -861,284 +861,7 @@ public struct Technical {
 
 
 
-//
-//<!--
-//    Articulations and accents are grouped together here.
-//-->
-//<!ELEMENT articulations
-//    ((accent | strong-accent | staccato | tenuto |
-//      detached-legato | staccatissimo | spiccato |
-//      scoop | plop | doit | falloff | breath-mark |
-//      caesura | stress | unstress | soft-accent |
-//      other-articulation)*)>
-//<!ATTLIST articulations
-//    %optional-unique-id;
-//>
-public struct Articulations {
 
-    //
-    //<!ELEMENT accent EMPTY>
-    //<!ATTLIST accent
-    //    %print-style;
-    //    %placement;
-    //>
-    //<!ELEMENT strong-accent EMPTY>
-    //<!ATTLIST strong-accent
-    //    %print-style;
-    //    %placement;
-    //    type %up-down; "up"
-    //>
-    //
-    //<!--
-    //    The staccato element is used for a dot articulation, as
-    //    opposed to a stroke or a wedge.
-    //-->
-    //<!ELEMENT staccato EMPTY>
-    //<!ATTLIST staccato
-    //    %print-style;
-    //    %placement;
-    //>
-    //<!ELEMENT tenuto EMPTY>
-    //<!ATTLIST tenuto
-    //    %print-style;
-    //    %placement;
-    //>
-    //<!ELEMENT detached-legato EMPTY>
-    //<!ATTLIST detached-legato
-    //    %print-style;
-    //    %placement;
-    //>
-    //
-    //<!--
-    //    The staccatissimo element is used for a wedge articulation,
-    //    as opposed to a dot or a stroke.
-    //-->
-    //<!ELEMENT staccatissimo EMPTY>
-    //<!ATTLIST staccatissimo
-    //    %print-style;
-    //    %placement;
-    //>
-    //
-    //<!--
-    //    The spiccato element is used for a stroke articulation, as
-    //    opposed to a dot or a wedge.
-    //-->
-    //<!ELEMENT spiccato EMPTY>
-    //<!ATTLIST spiccato
-    //    %print-style;
-    //    %placement;
-    //>
-    //<!ELEMENT stress EMPTY>
-    //<!ATTLIST stress
-    //    %print-style;
-    //    %placement;
-    //>
-    //<!ELEMENT unstress EMPTY>
-    //<!ATTLIST unstress
-    //    %print-style;
-    //    %placement;
-    //>
-    //<!--
-    //    The soft-accent element indicates a soft accent that is
-    //    not as heavy as a normal accent. It is often notated as
-    //    &lt;&gt;. It can be combined with other articulations to
-    //    implement the entire SMuFL Articulation Supplement range.
-    //-->
-    //<!ELEMENT soft-accent EMPTY>
-    //<!ATTLIST soft-accent
-    //    %print-style;
-    //    %placement;
-    //>
-    public struct Simple {
-
-        public enum Kind: String {
-            case accent = "accent"
-            case strongAccent = "strong-accent"
-            case staccato = "staccato"
-            case tenuto = "tenuto"
-            case detachedLegato = "detached-legato"
-            case staccatissimo = "staccatissimo"
-            case spiccato = "spiccato"
-            case stress = "stress"
-            case unstress = "unstress"
-            case softAccent = "soft-accent"
-        }
-
-        let kind: Kind
-        let printStyle: PrintStyle
-        let placement: Placement
-    }
-
-    //    The scoop, plop, doit, and falloff elements are
-    //    indeterminate slides attached to a single note.
-    //    Scoops and plops come before the main note, coming
-    //    from below and above the pitch, respectively. Doits
-    //    and falloffs come after the main note, going above
-    //    and below the pitch, respectively.
-    //-->
-    //<!ELEMENT scoop EMPTY>
-    //<!ATTLIST scoop
-    //    %line-shape;
-    //    %line-type;
-    //    %line-length;
-    //    %dashed-formatting;
-    //    %print-style;
-    //    %placement;
-    //>
-    //<!ELEMENT plop EMPTY>
-    //<!ATTLIST plop
-    //    %line-shape;
-    //    %line-type;
-    //    %line-length;
-    //    %dashed-formatting;
-    //    %print-style;
-    //    %placement;
-    //>
-    //<!ELEMENT doit EMPTY>
-    //<!ATTLIST doit
-    //    %line-shape;
-    //    %line-type;
-    //    %line-length;
-    //    %dashed-formatting;
-    //    %print-style;
-    //    %placement;
-    //>
-    //<!ELEMENT falloff EMPTY>
-    //<!ATTLIST falloff
-    //    %line-shape;
-    //    %line-type;
-    //    %line-length;
-    //    %dashed-formatting;
-    //    %print-style;
-    //    %placement;
-    //>
-    public struct Slide {
-        public enum Kind: String {
-            case scoop
-            case plop
-            case doit
-            case falloff
-        }
-        let kind: Kind
-        let lineShape: LineShape
-        let lineType: LineType
-        let lineLength: LineLength
-        let dashedFormatting: DashedFormatting
-        let printStyle: PrintStyle
-        let placement: Placement
-    }
-
-    // > The breath-mark element may have a text value to
-    // > indicate the symbol used for the mark. Valid values are
-    // > comma, tick, upbow, salzedo, and an empty string.
-    //
-    //<!ELEMENT breath-mark (#PCDATA)>
-    //<!ATTLIST breath-mark
-    //    %print-style;
-    //    %placement;
-    //>
-    public struct BreathMark {
-
-        enum Text: String {
-            case comma
-            case tick
-            case upbow
-            case salzedo
-            case empty
-        }
-
-        let text: Text
-        let printStyle: PrintStyle
-        let placement: Placement
-    }
-
-    //    The caesura element indicates a slight pause. It is notated
-    //    using a "railroad tracks" symbol or other variations
-    //    specified in the element content. Valid values are normal,
-    //    thick, short, curved, single, and an empty string.
-    //
-    // <!ELEMENT caesura (#PCDATA)>
-    // <!ATTLIST caesura
-    //    %print-style;
-    //    %placement;
-    // >
-    public struct Caesura {
-
-        public enum Symbol {
-            case noraml
-            case thick
-            case short
-            case curved
-            case single
-            case empty
-        }
-
-        let symbol: Symbol
-        let printStyle: PrintStyle
-        let placement: Placement
-    }
-
-    //    The other-articulation element is used to define any
-    //    articulations not yet in the MusicXML format. The smufl
-    //    attribute can be used to specify a particular articulation,
-    //    allowing application interoperability without requiring every
-    //    SMuFL articulation to have a MusicXML element equivalent.
-    //    Using the other-articulation element without the smufl
-    //    attribute allows for extended representation, though without
-    //    application interoperability.
-    //
-    // <!ELEMENT other-articulation (#PCDATA)>
-    // <!ATTLIST other-articulation
-    //    %print-style;
-    //    %placement;
-    //    %smufl;
-    // >
-    public struct Other {
-        let value: String
-        let printStyle: PrintStyle
-        let placement: Placement
-        let smufl: SMuFL
-    }
-
-    public enum Kind {
-        case simple(Simple)
-        case slide(Slide)
-        case breathMark(BreathMark)
-        case caesura(Caesura)
-        case other(Other)
-    }
-}
-
-// > The non-arpeggiate element indicates that this note is at
-// > the top or bottom of a bracket indicating to not arpeggiate
-// > these notes. Since this does not involve playback, it is
-// > only used on the top or bottom notes, not on each note
-// > as for the arpeggiate element.
-//
-// <!ELEMENT non-arpeggiate EMPTY>
-// <!ATTLIST non-arpeggiate
-//    type %top-bottom; #REQUIRED
-//    number %number-level; #IMPLIED
-//    %position;
-//    %placement;
-//    %color;
-//    %optional-unique-id;
-// >
-// TODO: Appearance
-public struct NonArpeggiate {
-
-    public enum Kind {
-        case top
-        case bottom
-    }
-
-    let kind: Kind
-    let number: Int
-    let position: Position
-    let placement: Placement
-    let color: Color
-    let id: String?
-}
 
 // > Text underlays for lyrics, based on Humdrum with support
 // > for other formats.
@@ -1714,6 +1437,38 @@ public struct Notations {
     let printObject: Bool
     let id: Int?
 }
+
+// > The non-arpeggiate element indicates that this note is at
+// > the top or bottom of a bracket indicating to not arpeggiate
+// > these notes. Since this does not involve playback, it is
+// > only used on the top or bottom notes, not on each note
+// > as for the arpeggiate element.
+//
+// <!ELEMENT non-arpeggiate EMPTY>
+// <!ATTLIST non-arpeggiate
+//    type %top-bottom; #REQUIRED
+//    number %number-level; #IMPLIED
+//    %position;
+//    %placement;
+//    %color;
+//    %optional-unique-id;
+// >
+// TODO: Appearance
+public struct NonArpeggiate {
+
+    public enum Kind {
+        case top
+        case bottom
+    }
+
+    let kind: Kind
+    let number: Int
+    let position: Position
+    let placement: Placement
+    let color: Color
+    let id: String?
+}
+
 
 // > The tied element represents the notated tie. The tie element
 // > represents the tie sound.

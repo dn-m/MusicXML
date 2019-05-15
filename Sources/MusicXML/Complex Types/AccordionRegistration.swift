@@ -11,15 +11,8 @@
 /// presence of one or more dots in the registration diagram. An accordion-registration element
 /// needs to have at least one of the child elements present.
 public struct AccordionRegistration {
-    public let defaultX: Tenths?
-    public let defaultY: Tenths?
-    public let relativeX: Tenths?
-    public let relativeY: Tenths?
-    public let fontFamily: CommaSeparatedText?
-    public let fontStyle: FontStyle?
-    public let fontSize: FontSize?
-    public let fontWeight: FontWeight?
-    public let color: Color?
+    public let position: Position
+    public let printStyle: PrintStyle
     public let hAlign: LeftCenterRight?
     public let vAlaign: VAlign?
 }

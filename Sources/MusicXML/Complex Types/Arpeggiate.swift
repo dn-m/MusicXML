@@ -9,10 +9,7 @@
 public struct Arpeggiate {
     public let number: NumberLevel?
     public let direction: UpDown?
-    public let defaultX: Tenths?
-    public let defaultY: Tenths?
-    public let relativeX: Tenths?
-    public let relativeY: Tenths?
+    public let position: Position
     public let placement: AboveBelow?
     public let color: Color?
 }

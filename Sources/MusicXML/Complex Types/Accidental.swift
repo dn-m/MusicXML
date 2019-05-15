@@ -16,15 +16,8 @@ public struct Accidental {
     public let parentheses: Bool?
     public let bracket: Bool?
     public let size: SymbolSize?
-    public let defaultX: Tenths?
-    public let defaultY: Tenths?
-    public let relativeX: Tenths?
-    public let relativeY: Tenths?
-    public let fontFamily: CommaSeparatedText?
-    public let fontStyle: FontSize?
-    public let fontSize: FontSize?
-    public let fontWeight: FontWeight?
-    public let color: Color?
+    public let position: Position
+    public let printStyle: PrintStyle
 }
 
 extension Accidental: Equatable { }
