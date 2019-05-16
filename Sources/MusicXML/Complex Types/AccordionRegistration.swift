@@ -11,8 +11,8 @@
 /// presence of one or more dots in the registration diagram. An accordion-registration element
 /// needs to have at least one of the child elements present.
 public struct AccordionRegistration {
-    public let position: Position
-    public let printStyle: PrintStyle
+    public let position: Position?
+    public let printStyle: PrintStyle?
     public let hAlign: LeftCenterRight?
     public let vAlaign: VAlign?
 }

@@ -260,7 +260,7 @@ public struct TextDecoration: Decodable, Equatable {
 //
 // <!ENTITY % justify
 //    "justify (left | center | right) #IMPLIED">
-public enum Justification: String, Decodable {
+public enum Justify: String, Decodable {
     case left
     case center
     case right
@@ -379,18 +379,7 @@ public struct Enclosure: Decodable, Equatable {
 
 
 
-// > The print-style-align entity adds the halign and valign
-// > attributes to the position, font, and color attributes.
-//
-// <!ENTITY % print-style-align
-//    "%print-style;
-//     %halign;
-//     %valign;">
-public struct PrintStyleAlignment: Decodable, Equatable {
-    let printStyle: PrintStyle
-    let horizontalAlignment: HorizonalAlignment
-    let verticalAlignment: VAlign
-}
+
 
 // <!ENTITY % line-length
 //    "line-length (short | medium | long) #IMPLIED">
@@ -448,7 +437,7 @@ public struct Printout: Decodable, Equatable {
 //     %text-direction;
 //     %enclosure;">
 public struct TextFormatting: Decodable, Equatable {
-    let justify: Justification
+    let justify: Justify
 }
 
 // > The symbol-formatting entity contains the common formatting
@@ -465,8 +454,8 @@ public struct TextFormatting: Decodable, Equatable {
 //     %text-direction;
 //     %enclosure;">
 public struct SymbolFormatting: Decodable, Equatable {
-    let justify: Justification
-    let printStyleAlignment: PrintStyleAlignment
+    let justify: Justify
+    let printStyleAlignment: PrintStyleAlign
     let decoration: TextDecoration
     let rotation: TextRotation
     let letterSpacing: LetterSpacing
@@ -658,7 +647,7 @@ public struct Staff: Decodable, Equatable {
 //    %smufl;
 // >
 public struct Segno: Decodable, Equatable {
-    let printStyleAlignment: PrintStyleAlignment
+    let printStyleAlignment: PrintStyleAlign
     let smufl: SMuFL
     let id: Int?
 }
@@ -670,7 +659,7 @@ public struct Segno: Decodable, Equatable {
 //    %smufl;
 //>
 public struct Coda: Decodable, Equatable {
-    let printStyleAlignment: PrintStyleAlignment
+    let printStyleAlignment: PrintStyleAlign
     let smufl: SMuFL
     let id: Int?
 }
@@ -731,7 +720,7 @@ public struct Dynamics {
     // <!ATTLIST other-dynamics
     //    %smufl;
     // >
-    public struct Other {
+    public struct Other: Equatable, Decodable {
         let smufl: SMuFL
     }
 
@@ -761,7 +750,11 @@ public struct Dynamics {
     // <!ELEMENT n EMPTY>
     // <!ELEMENT pf EMPTY>
     // <!ELEMENT sfzp EMPTY>
-    public enum Dynamic {
+    public enum Dynamic: Equatable, Decodable {
+        public init(from decoder: Decoder) throws {
+            fatalError()
+        }
+
         case p
         case pp
         case ppp
@@ -792,6 +785,12 @@ public struct Dynamics {
     }
 
     let values: [Dynamic]
+}
+
+extension Dynamics: Equatable, Decodable {
+    public init(from decoder: Decoder) throws {
+        fatalError()
+    }
 }
 
 // MARK: - Frest, String, and Fingering

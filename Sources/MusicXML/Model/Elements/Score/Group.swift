@@ -74,7 +74,7 @@ public struct PartGroup: Decodable, Equatable {
 public struct GroupName: Decodable, Equatable {
     let value: String
     let printStyle: PrintStyle?
-    let justification: Justification?
+    let justification: Justify?
 }
 
 // <!ELEMENT group-name-display
@@ -111,7 +111,7 @@ public struct GroupNameDisplay: Decodable, Equatable {
 public struct GroupAbbreviation: Decodable, Equatable {
     let value: String
     let printStyle: PrintStyle?
-    let justification: Justification?
+    let justification: Justify?
 }
 
 // <!ELEMENT group-abbreviation-display

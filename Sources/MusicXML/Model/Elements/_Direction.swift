@@ -18,38 +18,6 @@
 //
 //     https://www.w3.org/community/about/agreements/fsa-deed/
 //
-//  This direction DTD module contains the direction element
-//  and its children. Directions are generally not note-specific,
-//  but instead are associated with a part or the overall score.
-//
-//  Harmony indications and general print and sound
-//  suggestions are likewise not necessarily attached to
-//  particular note elements, and are included here as well.
-
-// > A direction is a musical indication that is not necessarily
-// > attached to a specific note. Two or more may be combined to
-// > indicate starts and stops of wedges, dashes, etc. For
-// > applications where a specific direction is indeed attached
-// > to a specific note, the direction element can be associated
-// > with the note element that follows it in score order that
-// > is not in a different voice.
-// > By default, a series of direction-type elements and a
-// > series of child elements of a direction-type within a
-// > single direction element follow one another in sequence
-// > visually. For a series of direction-type children, non-
-// > positional formatting attributes are carried over from
-// > the previous element by default.
-//
-// <!ELEMENT direction (direction-type+, offset?,
-//    %editorial-voice;, staff?, sound?)>
-// <!ATTLIST direction
-//    %placement;
-//    %directive;
-//    %optional-unique-id;
-// >
-public struct Direction: Equatable {
-    #warning("Build out Direction")
-}
 
 //<!-- Entities -->
 //
@@ -1059,7 +1027,7 @@ public struct MeasureNumbering: Decodable, Equatable {
         case system
     }
     let value: Value
-    let printStyleAlignment: PrintStyleAlignment
+    let printStyleAlignment: PrintStyleAlign
 }
 
 //    The sound element contains general playback parameters.
@@ -1167,5 +1135,4 @@ public struct MeasureNumbering: Decodable, Equatable {
 
 // MARK: Decodable
 
-extension Direction: Decodable { }
 extension Harmony: Decodable { }

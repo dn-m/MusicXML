@@ -949,7 +949,7 @@ public struct Lyric {
     // > verse/chorus/section specification).
     let number: String
     let name: String
-    let justify: Justification
+    let justify: Justify
     let position: Position
     let placement: Placement
     let printObject: Bool

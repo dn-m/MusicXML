@@ -154,7 +154,7 @@ public struct SystemDividers: Decodable, Equatable {
 // >
 public struct Divider: Decodable, Equatable {
     let printObject: Bool?
-    let printStyleAlignment: PrintStyleAlignment?
+    let printStyleAlignment: PrintStyleAlign?
 }
 
 //<!--

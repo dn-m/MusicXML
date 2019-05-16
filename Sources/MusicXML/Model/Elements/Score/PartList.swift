@@ -87,7 +87,7 @@ extension PartList {
             let value: String
             let printStyle: PrintStyle?
             let printObject: Bool?
-            let justification: Justification?
+            let justification: Justify?
         }
 
         // > The part-abbreviation indicates the abbreviated version of
@@ -103,7 +103,7 @@ extension PartList {
             let value: String
             let printStyle: PrintStyle?
             let printObject: Bool?
-            let justification: Justification?
+            let justification: Justify?
         }
 
         let id: String
