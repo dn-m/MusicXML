@@ -14,7 +14,7 @@ public struct Metronome {
     public let printStyleAlign: PrintStyleAlign?
     public let justify: Justify?
     public let parentheses: Bool?
-    #warning("TODO: Flesh out Content Model")
+    #warning("TODO: Flesh out Metronome Content Model")
 }
 
 extension Metronome: Equatable { }

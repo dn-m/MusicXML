@@ -14,7 +14,7 @@
 public struct Direction {
     public let placement: AboveBelow?
     public let directive: Bool?
-    // directionType: DirectionType
+    public let directionType: DirectionType
 }
 
 extension Direction: Equatable { }
