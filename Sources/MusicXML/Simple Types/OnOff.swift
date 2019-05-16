@@ -11,3 +11,5 @@ public enum OnOff: String {
     case off
 }
 
+extension OnOff: Equatable { }
+extension OnOff: Decodable { }
