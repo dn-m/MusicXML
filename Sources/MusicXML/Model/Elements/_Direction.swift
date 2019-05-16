@@ -836,41 +836,6 @@ public struct Inversion: Decodable, Equatable {
     let printStyle: PrintStyle
 }
 
-
-
-
-// > The frame element represents a frame or fretboard diagram
-// > used together with a chord symbol. The representation is
-// > based on the NIFF guitar grid with additional information.
-// > The frame-strings and frame-frets elements give the
-// > overall size of the frame in vertical lines (strings) and
-// > horizontal spaces (frets).
-// > The frame element's unplayed attribute indicates what to
-// > display above a string that has no associated frame-note
-// > element. Typical values are x and the empty string. If the
-// > attribute is not present, the display of the unplayed
-// > string is application-defined.
-//
-// <!ELEMENT frame
-//    (frame-strings, frame-frets, first-fret?, frame-note+)>
-// <!ATTLIST frame
-//    %position;
-//    %color;
-//    %halign;
-//    %valign-image;
-//    height  %tenths;  #IMPLIED
-//    width   %tenths;  #IMPLIED
-//    unplayed CDATA    #IMPLIED
-//    %optional-unique-id;
-// >
-// <!ELEMENT frame-strings (#PCDATA)>
-// <!ELEMENT frame-frets (#PCDATA)>
-public struct Frame: Decodable, Equatable {
-    public struct Strings: Decodable, Equatable { }
-    public struct Frets: Decodable, Equatable { }
-    #warning("Build out Frame & friends")
-}
-
 //
 //<!--
 //    The first-fret indicates which fret is shown in the top
@@ -939,15 +904,6 @@ public struct Grouping: Decodable, Equatable {
     let number: Int = 1
     let memeberOf: String
     let optionalUniqueID: String?
-}
-
-// <!ELEMENT feature (#PCDATA)>
-// <!ATTLIST feature
-//    type CDATA #IMPLIED
-// >
-public struct Feature: Decodable, Equatable {
-    let value: String
-    let type: String?
 }
 
 // > The print element contains general printing parameters,

@@ -389,38 +389,6 @@ public enum LineLength {
     case long
 }
 
-// > The printout entity is based on MuseData print
-// > suggestions. They allow a way to specify not to print
-// > print an object (e.g. note or rest), its augmentation
-// > dots, or its lyrics. This is especially useful for notes
-// > that overlap in different voices, or for chord sheets
-// > that contain lyrics and chords but no melody. For wholly
-// > invisible notes, such as those providing sound-only data,
-// > the attribute for print-spacing may be set to no so that
-// > no space is left for this note. The print-spacing value
-// > is only used if no note, dot, or lyric is being printed.
-// > By default, all these attributes are set to yes. If
-// > print-object is set to no, print-dot and print-lyric are
-// > interpreted to also be set to no if they are not present.
-//
-// <!ENTITY % print-object
-//    "print-object  %yes-no;  #IMPLIED">
-//
-// <!ENTITY % print-spacing
-//    "print-spacing %yes-no;  #IMPLIED">
-//
-// <!ENTITY % printout
-//    "%print-object;
-//     print-dot     %yes-no;  #IMPLIED
-//     %print-spacing;
-//     print-lyric   %yes-no;  #IMPLIED">
-public struct Printout: Decodable, Equatable {
-    let printObject: Bool
-    let printDot: Bool
-    let printSpacing: Bool
-    let printLyric: Bool
-}
-
 // > The text-formatting entity contains the common formatting
 // > attributes for text elements. Default values may differ
 // > across the elements that use this entity.
@@ -467,47 +435,6 @@ public struct SymbolFormatting: Decodable, Equatable {
 
 
 // MARK: - Plyaback Attributes
-
-// > The trill-sound entity includes attributes used to guide
-// > the sound of trills, mordents, turns, shakes, and wavy
-// > lines, based on MuseData sound suggestions. The default
-// > choices are:
-//
-// > start-note = "upper"
-// > trill-step = "whole"
-// > two-note-turn = "none"
-// > accelerate = "no"
-// > beats = "4" (minimum of "2").
-//
-// > Second-beat and last-beat are percentages for landing on
-// > the indicated beat, with defaults of 25 and 75 respectively.
-//
-// > For mordent and inverted-mordent elements, the defaults
-// > are different:
-//
-// >     The default start-note is "main", not "upper".
-// >     The default for beats is "3", not "4".
-// >     The default for second-beat is "12", not "25".
-// >     The default for last-beat is "24", not "75".
-//
-// <!ENTITY % trill-sound
-//    "start-note    (upper | main | below)  #IMPLIED
-//     trill-step    (whole | half | unison) #IMPLIED
-//     two-note-turn (whole | half | none)   #IMPLIED
-//     accelerate    %yes-no; #IMPLIED
-//     beats         CDATA    #IMPLIED
-//     second-beat   CDATA    #IMPLIED
-//     last-beat     CDATA    #IMPLIED">
-public struct TrillSound: Decodable, Equatable {
-
-    let startNote: StartNote = .upper
-    let trillStep: TrillStep = .whole
-    let twoNoteTurn: TwoNoteTurn = .none
-    let accelerate: Bool = false
-    let beats: Int = 4
-    let secondBeat: Int = 25
-    let lastBeat: Int = 75
-}
 
 // > The bend-sound entity is used for bend and slide elements,
 // > and is similar to the trill-sound. Here the beats element
@@ -793,33 +720,8 @@ extension Dynamics: Equatable, Decodable {
     }
 }
 
-// MARK: - Frest, String, and Fingering
+// MARK: - Frets, String, and Fingering
 
-//    The fret, string, and fingering elements can be used either
-//    in a technical element for a note or in a frame element as
-//    part of a chord symbol.
-
-//    Fingering is typically indicated 1,2,3,4,5. Multiple
-//    fingerings may be given, typically to substitute
-//    fingerings in the middle of a note. The substitution
-//    and alternate values are "no" if the attribute is
-//    not present. For guitar and other fretted instruments,
-//    the fingering element represents the fretting finger;
-//    the pluck element represents the plucking finger.
-//
-// <!ELEMENT fingering (#PCDATA)>
-// <!ATTLIST fingering
-//    substitution %yes-no; #IMPLIED
-//    alternate %yes-no; #IMPLIED
-//    %print-style;
-//    %placement;
-// >
-public struct Fingering {
-    let substitution: Bool
-    let alternate: Bool
-    let printStyle: PrintStyle
-    let placement: Placement
-}
 
 // > Fret and string are used with tablature notation and chord
 // > symbols. Fret numbers start with 0 for an open string and

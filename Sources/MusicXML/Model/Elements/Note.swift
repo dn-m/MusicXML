@@ -905,23 +905,6 @@ public struct Technical {
 // TODO: Appearance attributes
 public struct Lyric {
 
-    //     The extend element represents lyric word extension /
-    //     melisma lines as well as figured bass extensions. The
-    //     optional type and position attributes are added in
-    //     Version 3.0 to provide better formatting control.
-    //
-    // <!ELEMENT extend EMPTY>
-    // <!ATTLIST extend
-    //     type %start-stop-continue; #IMPLIED
-    //     %position;
-    //     %color;
-    // >
-    // TODO: Lift to struct with nested Kind when adding appearance properties
-    public enum Extend: String {
-        case start
-        case stop
-        case `continue`
-    }
 
     public enum Kind {
 
@@ -1010,76 +993,7 @@ public struct Text {
 // <!ELEMENT end-line EMPTY>
 // <!ELEMENT end-paragraph EMPTY>
 
-// > Figured bass elements take their position from the first
-// > regular note (not a grace note or chord note) that follows
-// > in score order.
-//
-// > Figures are ordered from top to bottom.
-// >
-// > The orientation and display of the slash usually
-// > depends on the figure number. The prefix and suffix elements
-// > may contain additional values for symbols specific to
-// > particular figured bass styles.
-//
-// <!ELEMENT figured-bass (figure+, duration?, %editorial;)>
-// <!ATTLIST figured-bass
-//    %print-style;
-//    %printout;
-//    parentheses %yes-no; #IMPLIED
-//    %optional-unique-id;
-// >
-public struct FiguredBass: Equatable {
 
-    // <!ELEMENT figure
-    //    (prefix?, figure-number?, suffix?, extend?, %editorial;)>
-    // <!ELEMENT prefix (#PCDATA)>
-    // <!ATTLIST prefix
-    //    %print-style;
-    // >
-    public struct Figure: Decodable, Equatable {
-
-        // > Values for prefix and suffix include plus and
-        // > the accidental values sharp, flat, natural, double-sharp,
-        // > flat-flat, and sharp-sharp.
-        public enum Prefix: String, Decodable, Equatable {
-            case plus = "plus"
-            case sharp = "sharp"
-            case flat = "flat"
-            case natural = "natural"
-            case doubleSharp = "double-sharp"
-            case flatFlat = "flat-flat"
-            case sharpSharp = "sharp-sharp"
-        }
-
-        // > Suffixes include both symbols
-        // > that come after the figure number and those that overstrike
-        // > the figure number. The suffix values slash, back-slash, and
-        // > vertical are used for slashed numbers indicating chromatic
-        // > alteration.
-        public enum Suffix: String, Decodable, Equatable {
-            case slash = "slash"
-            case backSlash = "back-slash"
-            case vertical = "vertical"
-        }
-
-        let prefix: Prefix?
-        let number: Int?
-        let suffix: Suffix?
-    }
-
-    let printStyle: PrintStyle
-    let printout: Printout
-
-    // TODO: Ensure NonEmpty
-    let figures: [Figure]
-
-    // > The optional duration element is used to
-    // > indicate changes of figures under a note.
-    let duration: Int?
-
-    // > The value of parentheses is "no" if not present.
-    let parenthesized: Bool = false
-}
 
 
 //    The common note elements between cue/grace notes and
@@ -1580,8 +1494,4 @@ public struct TupletType {
 public struct TupletDot {
     let font: Font
     let color: Color
-}
-
-extension FiguredBass: Decodable {
-
 }

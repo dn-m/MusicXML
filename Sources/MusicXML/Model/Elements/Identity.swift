@@ -92,30 +92,7 @@ public struct Identification: Decodable, Equatable {
     //<!ELEMENT encoding-description (#PCDATA)>
     public struct Encoding: Decodable, Equatable {
 
-        // > The supports element indicates if the encoding supports
-        // > a particular MusicXML element. This is recommended for
-        // > elements like beam, stem, and accidental, where the
-        // > absence of an element is ambiguous if you do not know
-        // > if the encoding supports that element. For Version 2.0,
-        // > the supports element is expanded to allow programs to
-        // > indicate support for particular attributes or particular
-        // > values. This lets applications communicate, for example,
-        // > that all system and/or page breaks are contained in the
-        // > MusicXML file.
-        //
-        //<!ELEMENT supports EMPTY>
-        //<!ATTLIST supports
-        //    type %yes-no; #REQUIRED
-        //    element CDATA #REQUIRED
-        //    attribute CDATA #IMPLIED
-        //    value CDATA #IMPLIED
-        //>
-        public struct Supports: Decodable, Equatable {
-            let type: Bool
-            let element: String
-            let attribute: String?
-            let value: String?
-        }
+
 
         let date: Date?
         let encoder: String?
