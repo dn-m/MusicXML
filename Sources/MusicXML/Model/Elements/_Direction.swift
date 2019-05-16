@@ -699,67 +699,7 @@ public struct Function: Decodable, Equatable {
     let printStyle: PrintStyle?
 }
 
-// > The attributes are used to indicate the formatting
-// > of the symbol. Since the kind element is the constant
-// > in all the harmony-chord entities that can make up
-// > a polychord, many formatting attributes are here.
-// > The use-symbols attribute is yes if the kind should be
-// > represented when possible with harmony symbols rather
-// > than letters and numbers. These symbols include:
-// >     major: a triangle, like Unicode 25B3
-// >     minor: -, like Unicode 002D
-// >     augmented: +, like Unicode 002B
-// >     diminished: °, like Unicode 00B0
-// >     half-diminished: ø, like Unicode 00F8
-// > For the major-minor kind, only the minor symbol is used when
-// > use-symbols is yes. The major symbol is set using the symbol
-// > attribute in the degree-value element. The corresponding
-// > degree-alter value will usually be 0 in this case.
-// > The text attribute describes how the kind should be spelled
-// > in a score. If use-symbols is yes, the value of the text
-// > attribute follows the symbol. The stack-degrees attribute
-// > is yes if the degree elements should be stacked above each
-// > other. The parentheses-degrees attribute is yes if all the
-// > degrees should be in parentheses. The bracket-degrees
-// > attribute is yes if all the degrees should be in a bracket.
-// > If not specified, these values are implementation-specific.
-// > The alignment attributes are for the entire harmony-chord
-// > entity of which this kind element is a part.
-//-->
-//<!ELEMENT kind (#PCDATA)>
-//<!ATTLIST kind
-//    use-symbols          %yes-no;   #IMPLIED
-//    text                 CDATA      #IMPLIED
-//    stack-degrees        %yes-no;   #IMPLIED
-//    parentheses-degrees  %yes-no;   #IMPLIED
-//    bracket-degrees      %yes-no;   #IMPLIED
-//    %print-style;
-//    %halign;
-//    %valign;
-//>
-public struct Kind: Decodable, Equatable {
-    let value: KindValue
-    let useSymbols: Bool?
-    let text: String?
-    let stackDegrees: Bool?
-    let parenthesesDegrees: Bool?
-    let bracketDegrees: Bool?
-    let printStyle: PrintStyle?
-    let horizontalAlignment: HorizonalAlignment?
-    let verticalAlignment: VAlign?
-}
 
-// > Inversion is a number indicating which inversion is used:
-// > 0 for root position, 1 for first inversion, etc.
-//
-// <!ELEMENT inversion (#PCDATA)>
-// <!ATTLIST inversion
-//    %print-style;
-// >
-public struct Inversion: Decodable, Equatable {
-    let value: Int
-    let printStyle: PrintStyle
-}
 
 //
 //<!--

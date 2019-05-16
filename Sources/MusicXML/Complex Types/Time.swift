@@ -56,10 +56,7 @@ extension Time {
     // > available compared to the time element's symbol attribute,
     // > which applies to the first of the dual time signatures.
     public struct Measured {
-        public struct Interchangeable: Decodable, Equatable {
-            let symbol: TimeSymbol
-            let separator: TimeSeparator
-        }
+
         public struct Signature: Equatable, Decodable {
             let beats: Int
             let beatType: Int

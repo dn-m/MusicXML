@@ -62,37 +62,3 @@ public struct Link: Decodable, Equatable {
 
     // TODO: position: Position?
 }
-
-//<!-- Entities -->
-//
-//<!--
-//    Namespace entity for the XLink recommendation.
-//-->
-//<!ENTITY % xlink.ns "http://www.w3.org/1999/xlink">
-//
-//<!--
-//    The link-attributes entity includes all the simple XLink
-//    attributes supported in the MusicXML format.
-//-->
-//<!ENTITY % link-attributes
-//    "xmlns:xlink  CDATA    #FIXED     '%xlink.ns;'
-//     xlink:href   CDATA    #REQUIRED
-//     xlink:type   (simple) #FIXED     'simple'
-//     xlink:role   CDATA    #IMPLIED
-//     xlink:title  CDATA    #IMPLIED
-//     xlink:show   (new | replace | embed | other | none)
-//        'replace'
-//     xlink:actuate    (onRequest | onLoad | other | none)
-//        'onRequest'">
-//
-//<!-- Elements -->
-//
-//<!--
-//    The element and position attributes are new as of Version
-//    2.0. They allow for bookmarks and links to be positioned at
-//    higher resolution than the level of music-data elements.
-//    When no element and position attributes are present, the
-//    bookmark or link element refers to the next sibling element
-//    in the MusicXML file.
-//-->
-//
