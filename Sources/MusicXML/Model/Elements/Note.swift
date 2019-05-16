@@ -193,35 +193,7 @@ public struct DurationType: Decodable, Equatable {
     }
 }
 
-//    Glissando and slide elements both indicate rapidly moving
-//    from one pitch to the other so that individual notes are not
-//    discerned. The distinction is similar to that between NIFF's
-//    glissando and portamento elements. A glissando sounds the
-//    half notes in between the slide and defaults to a wavy line.
-//    A slide is continuous between two notes and defaults to a
-//    solid line. The optional text for a glissando or slide is
-//    printed alongside the line.
-//
-// <!ELEMENT glissando (#PCDATA)>
-// <!ATTLIST glissando
-//    type %start-stop; #REQUIRED
-//    number %number-level; "1"
-//    %line-type;
-//    %dashed-formatting;
-//    %print-style;
-//    %optional-unique-id;
-// >
-public struct Glissando {
 
-    public enum Kind {
-        case start
-        case stop
-    }
-
-    let text: String
-    let number: Int
-    let lineType: LineType
-}
 
 // <!ELEMENT slide (#PCDATA)>
 // <!ATTLIST slide

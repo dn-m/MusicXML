@@ -66,16 +66,7 @@ public struct PartGroup: Decodable, Equatable {
     let editorial: Editorial?
 }
 
-// <!ELEMENT group-name (#PCDATA)>
-// <!ATTLIST group-name
-//    %print-style;
-//    %justify;
-// >
-public struct GroupName: Decodable, Equatable {
-    let value: String
-    let printStyle: PrintStyle?
-    let justification: Justify?
-}
+
 
 // <!ELEMENT group-name-display
 //    ((display-text | accidental-text)*)>
@@ -138,32 +129,4 @@ public struct GroupAbbreviationDisplay: Decodable, Equatable {
     }
     let elements: [Element]?
     let printObject: Bool?
-}
-
-// > The group-symbol element indicates how the symbol for
-// > a group is indicated in the score. Values include none,
-// > brace, line, bracket, and square; the default is none.
-//
-// <!ELEMENT group-symbol (#PCDATA)>
-// <!ATTLIST group-symbol
-//    %position;
-//    %color;
-// >
-public struct GroupSymbol: Decodable, Equatable {
-    let value: GroupSymbolValue
-    let position: Position?
-    let color: Color?
-}
-
-// > The group-barline element indicates if the group should
-// > have common barlines. Values can be yes, no, or
-// > Mensurstrich.
-//
-// <!ELEMENT group-barline (#PCDATA)>
-// <!ATTLIST group-barline
-//    %color;
-// >
-public struct GroupBarline: Decodable, Equatable {
-    let value: GroupBarlineValue
-    let color: Color?
 }
