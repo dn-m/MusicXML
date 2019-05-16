@@ -20,6 +20,10 @@ public enum DirectionType {
     case harpPedals(HarpPedals)
     case image(Image)
     case metronome(Metronome)
+    case octaveShift(OctaveShift)
+    case otherDirection(OtherDirection)
+    case pedal(Pedal)
+    case percussion(Percussion)
 }
 
 extension DirectionType: Equatable { }
