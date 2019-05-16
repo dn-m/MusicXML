@@ -632,81 +632,6 @@ public struct Offset: Decodable, Equatable {
 
 // MARK: - Harmony
 
-// > The harmony elements are based on Humdrum's **harm
-// > encoding, extended to support chord symbols in popular
-// > music as well as functional harmony analysis in classical
-// > music.
-//
-// > If there are alternate harmonies possible, this can be
-// > specified using multiple harmony elements differentiated
-// > by type. Explicit harmonies have all note present in the
-// > music; implied have some notes missing but implied;
-// > alternate represents alternate analyses.
-//
-// > The harmony object may be used for analysis or for
-// > chord symbols. The print-object attribute controls
-// > whether or not anything is printed due to the harmony
-// > element. The print-frame attribute controls printing
-// > of a frame or fretboard diagram. The print-style entity
-// > sets the default for the harmony, but individual elements
-// > can override this with their own print-style values.
-//
-// > A harmony element can contain many stacked chords (e.g.
-// > V of II). A sequence of harmony-chord entities is used
-// > for this type of secondary function, where V of II would
-// > be represented by a harmony-chord with a V function
-// > followed by a harmony-chord with a II function.
-//
-// <!ENTITY % harmony-chord "((root | function), kind,
-//    inversion?, bass?, degree*)">
-public struct HarmonyChord: Decodable, Equatable {
-    public enum RootOrFunction: Decodable, Equatable {
-        enum CodingKeys: String, CodingKey {
-            case root
-            case function
-        }
-        case root(Root)
-        case function(Function)
-        public init(from decoder: Decoder) throws {
-            let keyed = try decoder.container(keyedBy: CodingKeys.self)
-            do {
-                self = .root(try keyed.decode(Root.self, forKey: .root))
-            } catch {
-                self = .function(try keyed.decode(Function.self, forKey: .function))
-            }
-        }
-    }
-    let rootOrFunction: RootOrFunction
-    let kind: Kind
-    let inversion: Inversion?
-    let bass: Bass?
-    let degree: [Degree] // TODO: Make `NonEmpty`
-}
-
-// <!ELEMENT harmony ((%harmony-chord;)+, frame?,
-//    offset?, %editorial;, staff?)>
-// <!ATTLIST harmony
-//    type (explicit | implied | alternate) #IMPLIED
-//    %print-object;
-//    print-frame  %yes-no; #IMPLIED
-//    %print-style;
-//    %placement;
-//    %optional-unique-id;
-//>
-public struct Harmony: Equatable {
-    let chord: [HarmonyChord] // TODO: Make NonEmpty
-    let frame: Frame?
-    let offset: Offset?
-    let editorial: Editorial?
-    let staff: Staff?
-    let type: HarmonyType
-    let printObject: Bool
-    let printFrame: Bool?
-    let printStyle: PrintStyle?
-    let placement: Placement?
-    let optionalUniqueID: String?
-}
-
 // > A root is a pitch name like C, D, E, where a function
 // > is an indication like I, II, III. Root is generally
 // > used with pop chord symbols, function with classical
@@ -1058,7 +983,3 @@ public struct MeasureNumbering: Decodable, Equatable {
 //    sostenuto-pedal %yes-no-number; #IMPLIED
 //    %optional-unique-id;
 //>
-
-// MARK: Decodable
-
-extension Harmony: Decodable { }

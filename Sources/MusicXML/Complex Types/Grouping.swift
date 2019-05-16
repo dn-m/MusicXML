@@ -15,8 +15,8 @@ public struct Grouping {
     public let feature: [Feature] // NonEmpty
     /// The number attribute is used for distinguishing between overlapping and hierarchical
     /// groupings.
-    let number: Int?
-    let memberOf: String?
+    public let number: Int?
+    public let memberOf: String?
 }
 
 extension Grouping: Equatable { }
