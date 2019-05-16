@@ -11,3 +11,6 @@ public struct MetronomeBeam {
     public let value: BeamValue
     public let number: BeamLevel?
 }
+
+extension MetronomeBeam: Equatable { }
+extension MetronomeBeam: Decodable { }

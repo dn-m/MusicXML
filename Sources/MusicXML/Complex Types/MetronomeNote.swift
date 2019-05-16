@@ -12,3 +12,6 @@ public struct MetronomeNote {
     public let metronomeBeam: [MetronomeBeam]
     public let metronomeTuplet: MetronomeTuplet?
 }
+
+extension MetronomeNote: Equatable { }
+extension MetronomeNote: Decodable { }

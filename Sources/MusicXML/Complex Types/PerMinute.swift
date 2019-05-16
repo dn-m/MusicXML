@@ -13,3 +13,6 @@ public struct PerMinute {
     public let value: String
     public let font: Font?
 }
+
+extension PerMinute: Equatable { }
+extension PerMinute: Decodable { }

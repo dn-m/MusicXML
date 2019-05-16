@@ -40,12 +40,35 @@ extension Metronome {
     // TODO: Consider naming
     public struct Complicated {
         public let metronomeNote: [MetronomeNote] // NonEmpty
-        public let other: (String?, [MetronomeNote] /*NonEmpty*/)
+        public let metronomeRelation: String?
+        public let otherMetronomeNote: [MetronomeNote] // NonEmpty
     }
 
     public enum Kind {
         case regular(Regular)
         case relative(Complicated)
+    }
+}
+
+extension Metronome.Regular.Relation: Equatable { }
+extension Metronome.Regular.Relation: Decodable {
+    #warning("TODO: Implement Metronome.Regular.Relation: Decodable conformance")
+    public init(from decoder: Decoder) throws {
+        fatalError("Metronome.Regular.Relation.init(from: Decoder not yet implemented!)")
+    }
+}
+
+extension Metronome.Regular: Equatable { }
+extension Metronome.Regular: Decodable { }
+
+extension Metronome.Complicated: Equatable { }
+extension Metronome.Complicated: Decodable { }
+
+extension Metronome.Kind: Equatable { }
+extension Metronome.Kind: Decodable {
+    #warning("TODO: Implement Metronome.Kind: Decodable conformance")
+    public init(from decoder: Decoder) throws {
+        fatalError("Metronome.Kind.init(from: Decoder not yet implemented!)")
     }
 }
 
