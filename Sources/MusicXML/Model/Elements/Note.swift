@@ -1225,24 +1225,6 @@ public struct Rest: Decodable, Equatable {
 //>
 //
 
-
-// > Time modification indicates tuplets, double-note tremolos,
-// > and other durational changes. A time-modification element
-// > shows how the cumulative, sounding effect of tuplets and
-// > double-note tremolos compare to the written note type
-// > represented by the type and dot elements. The child elements
-// > are defined in the common.mod file. Nested tuplets and other
-// > notations that use more detailed information need both the
-// > time-modification and tuplet elements to be represented
-// > accurately.
-//
-// <!ELEMENT time-modification
-//    (actual-notes, normal-notes, (normal-type, normal-dot*)?)>
-//
-public struct TimeModification {
-    #warning("Build out TimeModification")
-}
-
 // > Stems can be down, up, none, or double. For down and up
 // > stems, the position attributes can be used to specify
 // > stem length. The relative values specify the end of the
