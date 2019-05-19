@@ -386,25 +386,6 @@ public struct SymbolFormatting: Decodable, Equatable {
     let enclosure: Enclosure
 }
 
-
-
-// MARK: - Plyaback Attributes
-
-
-
-// > The time-only entity is used to indicate that a particular
-// > playback-related element only applies particular times through
-// > a repeated section.
-//
-// <!ENTITY % time-only
-//    "time-only CDATA #IMPLIED">
-public struct TimeOnly {
-    // > The value is a comma-separated list of
-    // > positive integers arranged in ascending order, indicating which
-    // > times through the repeated section that the element applies.
-    let offsets: [Int]
-}
-
 // MARK: - Other
 
 // > The document-attributes entity is used to specify the
@@ -625,61 +606,4 @@ public struct PartNameDisplay: Decodable, Equatable {
 public struct PartAbbreviationDisplay: Decodable, Equatable {
     let metadata: [DisplayTextOrAccidentalText]
     let printObject: Bool
-}
-
-
-
-// > The play element, new in Version 3.0, specifies playback
-// > techniques to be used in conjunction with the instrument-sound
-// > element. When used as part of a sound element, it applies to
-// > all notes going forward in score order. In multi-instrument
-// > parts, the affected instrument should be specified using the
-// > id attribute. When used as part of a note element, it applies
-// > to the current note only.
-//
-// <!ELEMENT play ((ipa | mute | semi-pitched | other-play)*)>
-// <!ATTLIST play
-//    id IDREF #IMPLIED
-// >
-public struct Play {
-
-    public enum Kind {
-
-        // > The other-play element represents other types of playback. The
-        // > required type attribute indicates the type of playback to which
-        // > the element content applies.
-        //
-        // <!ELEMENT other-play (#PCDATA)>
-        // <!ATTLIST other-play
-        //    type CDATA #REQUIRED
-        // >
-        public struct Other {
-            let type: String
-        }
-
-        // > The semi-pitched element represents categories of indefinite
-        // > pitch for percussion instruments. Values are high, medium-high,
-        // > medium, medium-low, low, and very-low.
-        //
-        // <!ELEMENT semi-pitched (#PCDATA)>
-        public enum SemiPitched: String {
-            case high
-            case mediumHigh = "medium-height"
-            case medium
-            case mediumLow = "medium-low"
-            case low
-            case veryLow = "very-low"
-        }
-
-        // > The ipa element represents International Phonetic Alphabet
-        // > (IPA) sounds for vocal music. String content is limited to
-        // > IPA 2005 symbols represented in Unicode 6.0.
-        //
-        // <!ELEMENT ipa (#PCDATA)>
-        case ipa(String)
-        case mute(Mute)
-        case semiPitched(SemiPitched)
-    }
-
-    let id: Int?
 }
