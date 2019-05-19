@@ -186,53 +186,7 @@ public enum Orientation: String, Decodable {
     case under
 }
 
-// > The bezier entity is used to indicate the curvature of
-// > slurs and ties, representing the control points for a
-// > cubic bezier curve. For ties, the bezier entity is
-// > used with the tied element.
-// > Normal slurs, S-shaped slurs, and ties need only two
-// > bezier points: one associated with the start of the slur
-// > or tie, the other with the stop. Complex slurs and slurs
-// > divided over system breaks can specify additional
-// > bezier data at slur elements with a continue type.
-//
-// > The bezier-x, bezier-y, and bezier-offset attributes
-// > describe the outgoing bezier point for slurs and ties
-// > with a start type, and the incoming bezier point for
-// > slurs and ties with types of stop or continue. The
-// > bezier-x2, bezier-y2, and bezier-offset2 attributes
-// > are only valid with slurs of type continue, and
-// > describe the outgoing bezier point.
-//
-// > The bezier-x, bezier-y, bezier-x2, and bezier-y2
-// > attributes are specified in tenths, relative to any
-// > position settings associated with the slur or tied
-// > element. The bezier-offset and bezier-offset2
-// > attributes are measured in terms of musical divisions,
-// > like the offset element.
-// > The bezier-offset and bezier-offset2 attributes are
-// > deprecated as of MusicXML 3.1. If both the bezier-x
-// > and bezier-offset attributes are present, the bezier-x
-// > attribute takes priority. Similarly, the bezier-x2
-// > attribute takes priority over the bezier-offset2
-// > attribute. The two types of bezier attributes are
-// > not additive.
-//
-// <!ENTITY % bezier
-//    "bezier-x       %tenths;  #IMPLIED
-//     bezier-y       %tenths;  #IMPLIED
-//     bezier-x2      %tenths;  #IMPLIED
-//     bezier-y2      %tenths;  #IMPLIED
-//     bezier-offset  CDATA     #IMPLIED
-//     bezier-offset2 CDATA     #IMPLIED">
-public struct Bezier {
-    let x: Int
-    let y: Int
-    let x2: Int
-    let y2: Int
-    let offset: Int
-    let offset2: Int
-}
+
 
 
 
@@ -436,30 +390,7 @@ public struct SymbolFormatting: Decodable, Equatable {
 
 // MARK: - Plyaback Attributes
 
-// > The bend-sound entity is used for bend and slide elements,
-// > and is similar to the trill-sound. Here the beats element
-// > refers to the number of discrete elements (like MIDI pitch
-// > bends) used to represent a continuous bend or slide. The
-// > first-beat indicates the percentage of the direction for
-// > starting a bend; the last-beat the percentage for ending it.
-// > The default choices are:
-//
-// >     accelerate = "no"
-// >     beats = "4" (minimum of "2")
-// >     first-beat = "25"
-// >     last-beat = "75"
-//
-// <!ENTITY % bend-sound
-//    "accelerate    %yes-no; #IMPLIED
-//     beats         CDATA    #IMPLIED
-//     first-beat    CDATA    #IMPLIED
-//     last-beat     CDATA    #IMPLIED">
-public struct BendSound {
-    let accelerate: Bool = false
-    let beats: Int = 4
-    let firstBeat: Int = 25
-    let lastBeat: Int = 75
-}
+
 
 // > The time-only entity is used to indicate that a particular
 // > playback-related element only applies particular times through
@@ -589,135 +520,6 @@ public struct Coda: Decodable, Equatable {
     let printStyleAlignment: PrintStyleAlign
     let smufl: SMuFL
     let id: Int?
-}
-
-#warning("TODO: actual-notes, normal-notes, normal-type, normal-dot")
-// > These elements are used both in the time-modification and
-// > metronome-tuplet elements. The actual-notes element
-// > describes how many notes are played in the time usually
-// > occupied by the number of normal-notes. If the normal-notes
-// > type is different than the current note type (e.g., a
-// > quarter note within an eighth note triplet), then the
-// > normal-notes type (e.g. eighth) is specified in the
-// > normal-type and normal-dot elements. The content of the
-// > actual-notes and normal-notes elements is a non-negative
-// > integer.
-//
-// <!ELEMENT actual-notes (#PCDATA)>
-// <!ELEMENT normal-notes (#PCDATA)>
-// <!ELEMENT normal-type (#PCDATA)>
-// <!ELEMENT normal-dot EMPTY>
-
-
-// > Dynamics can be associated either with a note or a general
-// > musical direction. To avoid inconsistencies between and
-// > amongst the letter abbreviations for dynamics (what is sf
-// > vs. sfz, standing alone or with a trailing dynamic that is
-// > not always piano), we use the actual letters as the names
-// > of these dynamic elements. The other-dynamics element
-// > allows other dynamic marks that are not covered here, but
-// > many of those should perhaps be included in a more general
-// > musical direction element. Dynamics may also be combined as
-// > in <sf/><mp/>.
-//
-// > These letter dynamic symbols are separated from crescendo,
-// > decrescendo, and wedge indications. Dynamic representation
-// > is inconsistent in scores. Many things are assumed by the
-// > composer and left out, such as returns to original dynamics.
-// > Systematic representations are quite complex: for example,
-// > Humdrum has at least 3 representation formats related to
-// > dynamics. The MusicXML format captures what is in the score,
-// > but does not try to be optimal for analysis or synthesis of
-// > dynamics.
-//
-// <!ELEMENT dynamics ((p | pp | ppp | pppp | ppppp | pppppp |
-//    f | ff | fff | ffff | fffff | ffffff | mp | mf | sf |
-//    sfp | sfpp | fp | rf | rfz | sfz | sffz | fz |
-//    n | pf | sfzp | other-dynamics)*)>
-// <!ATTLIST dynamics
-//    %print-style-align;
-//    %placement;
-//    %text-decoration;
-//    %enclosure;
-//    %optional-unique-id;
-//>
-public struct Dynamics {
-
-    // <!ELEMENT other-dynamics (#PCDATA)>
-    // <!ATTLIST other-dynamics
-    //    %smufl;
-    // >
-    public struct Other: Equatable, Decodable {
-        let smufl: SMuFL
-    }
-
-    // <!ELEMENT p EMPTY>
-    // <!ELEMENT pp EMPTY>
-    // <!ELEMENT ppp EMPTY>
-    // <!ELEMENT pppp EMPTY>
-    // <!ELEMENT ppppp EMPTY>
-    // <!ELEMENT pppppp EMPTY>
-    // <!ELEMENT f EMPTY>
-    // <!ELEMENT ff EMPTY>
-    // <!ELEMENT fff EMPTY>
-    // <!ELEMENT ffff EMPTY>
-    // <!ELEMENT fffff EMPTY>
-    // <!ELEMENT ffffff EMPTY>
-    // <!ELEMENT mp EMPTY>
-    // <!ELEMENT mf EMPTY>
-    // <!ELEMENT sf EMPTY>
-    // <!ELEMENT sfp EMPTY>
-    // <!ELEMENT sfpp EMPTY>
-    // <!ELEMENT fp EMPTY>
-    // <!ELEMENT rf EMPTY>
-    // <!ELEMENT rfz EMPTY>
-    // <!ELEMENT sfz EMPTY>
-    // <!ELEMENT sffz EMPTY>
-    // <!ELEMENT fz EMPTY>
-    // <!ELEMENT n EMPTY>
-    // <!ELEMENT pf EMPTY>
-    // <!ELEMENT sfzp EMPTY>
-    public enum Dynamic: Equatable, Decodable {
-        public init(from decoder: Decoder) throws {
-            fatalError()
-        }
-
-        case p
-        case pp
-        case ppp
-        case pppp
-        case ppppp
-        case pppppp
-        case f
-        case ff
-        case fff
-        case ffff
-        case fffff
-        case ffffff
-        case mp
-        case mf
-        case sf
-        case sfp
-        case sfpp
-        case fp
-        case rf
-        case rfz
-        case sfz
-        case sffz
-        case fz
-        case n
-        case pf
-        case sfzp
-        case other(Other)
-    }
-
-    let values: [Dynamic]
-}
-
-extension Dynamics: Equatable, Decodable {
-    public init(from decoder: Decoder) throws {
-        fatalError()
-    }
 }
 
 // MARK: - Frets, String, and Fingering
