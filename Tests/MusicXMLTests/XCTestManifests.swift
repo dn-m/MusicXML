@@ -1,45 +1,8 @@
 import XCTest
 
-extension HelloWorldDecoderTests {
-    static let __allTests = [
-        ("testHelloWorld", testHelloWorld),
-        ("testMusicData", testMusicData),
-    ]
-}
-
 extension IdentificationDecoderTests {
     static let __allTests = [
         ("testIdentificationMiscellaneousField", testIdentificationMiscellaneousField),
-    ]
-}
-
-extension Partwise_01_Pitches {
-    static let __allTests = [
-        ("testA_Pitches", testA_Pitches),
-        ("testB_Intervals", testB_Intervals),
-        ("testC_NoVoiceElement", testC_NoVoiceElement),
-        ("testD_Microtones", testD_Microtones),
-        ("testE_ParenthesizedAccidentals", testE_ParenthesizedAccidentals),
-        ("testF_ParenthesizedMicrotoneAccidentals", testF_ParenthesizedMicrotoneAccidentals),
-    ]
-}
-
-extension ScoreDecoderTests {
-    static let __allTests = [
-        ("testMeasure", testMeasure),
-        ("testPart", testPart),
-        ("testPartList", testPartList),
-    ]
-}
-
-extension Timewise_01_Pitches {
-    static let __allTests = [
-        ("testA_Pitches", testA_Pitches),
-        ("testB_Intervals", testB_Intervals),
-        ("testC_NoVoiceElement", testC_NoVoiceElement),
-        ("testD_Microtones", testD_Microtones),
-        ("testE_ParenthesizedAccidentals", testE_ParenthesizedAccidentals),
-        ("testF_ParenthesizedMicrotoneAccidentals", testF_ParenthesizedMicrotoneAccidentals),
     ]
 }
 
