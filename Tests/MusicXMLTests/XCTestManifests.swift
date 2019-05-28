@@ -1,14 +1,5 @@
 import XCTest
 
-extension AttributesDecoderTests {
-    static let __allTests = [
-        ("testAttributes", testAttributes),
-        ("testClef", testClef),
-        ("testKey", testKey),
-        ("testTime", testTime),
-    ]
-}
-
 extension HelloWorldDecoderTests {
     static let __allTests = [
         ("testHelloWorld", testHelloWorld),
@@ -19,15 +10,6 @@ extension HelloWorldDecoderTests {
 extension IdentificationDecoderTests {
     static let __allTests = [
         ("testIdentificationMiscellaneousField", testIdentificationMiscellaneousField),
-    ]
-}
-
-extension NoteDecoderTests {
-    static let __allTests = [
-        ("testAccidental", testAccidental),
-        ("testNoteFull", testNoteFull),
-        ("testNoteThin", testNoteThin),
-        ("testPitch", testPitch),
     ]
 }
 
