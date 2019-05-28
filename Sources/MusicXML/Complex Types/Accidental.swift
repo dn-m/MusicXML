@@ -16,65 +16,9 @@ public struct Accidental {
     public let parentheses: Bool?
     public let bracket: Bool?
     public let size: SymbolSize?
-    public let position: Position
-    public let printStyle: PrintStyle
+    public let position: Position?
+    public let printStyle: PrintStyle?
 }
 
 extension Accidental: Equatable { }
 extension Accidental: Decodable { }
-
-//extension Accidental {
-//
-//    // MARK: Initializers
-//
-//    public init(
-//        _ value: AccidentalValue,
-//        parentheses: Bool = false,
-//        bracket: Bool = false,
-//        cautionary: Bool = false,
-//        editorial: Bool = false
-//    )
-//    {
-//        self.value = value
-//        self.parentheses = parentheses
-//        self.bracket = bracket
-//        self.cautionary = cautionary
-//        self.editorial = editorial
-//    }
-//}
-//
-//extension Accidental: Equatable { }
-//
-//extension Accidental: Decodable {
-//    enum CodingKeys: String, CodingKey {
-//        case editorial
-//        case cautionary
-//        case parentheses
-//        case bracket
-//        case value
-//    }
-//
-//    public init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CodingKeys.self)
-//        self.value = try container.decode(AccidentalValue.self, forKey: .value)
-//        self.parentheses = try container.decodeIfPresent(Bool.self, forKey: .parentheses) ?? false
-//        self.bracket = try container.decodeIfPresent(Bool.self, forKey: .bracket) ?? false
-//        self.cautionary = try container.decodeIfPresent(Bool.self, forKey: .cautionary) ?? false
-//        self.editorial = try container.decodeIfPresent(Bool.self, forKey: .editorial) ?? false
-//    }
-//}
-//
-//import XMLCoder
-//
-//extension Accidental: DynamicNodeDecoding {
-//
-//    /// - Returns: The proper `XMLDecoder.NodeDecoding` for the given `key`.
-//    public static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
-//        switch key {
-//        case Accidental.CodingKeys.value:
-//            return .element
-//        default:
-//            return .attribute
-//        }
-//    }
-//}
