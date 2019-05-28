@@ -6,7 +6,7 @@
 //
 
 /// The font-style type represents a simplified version of the CSS font-style property.
-enum FontStyle: String {
+public enum FontStyle: String {
     case normal
     case italic
 }

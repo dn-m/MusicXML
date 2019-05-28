@@ -43,3 +43,6 @@ public enum NoteheadValue: String {
     case la
     case ti
 }
+
+extension NoteheadValue: Equatable { }
+extension NoteheadValue: Decodable { }

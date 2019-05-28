@@ -11,3 +11,6 @@ public enum BackwardForward: String {
     case backward
     case forward
 }
+
+extension BackwardForward: Equatable { }
+extension BackwardForward: Decodable { }
