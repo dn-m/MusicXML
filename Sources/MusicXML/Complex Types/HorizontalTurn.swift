@@ -9,7 +9,7 @@
 /// These are empty elements with print-style, placement, trill-sound, and slash attributes.
 public struct HorizontalTurn {
     public let printStyle: PrintStyle?
-    public let placement: Placement?
+    public let placement: AboveBelow?
     public let trillSound: TrillSound?
     public let slash: Bool?
 }

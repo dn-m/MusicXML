@@ -17,7 +17,7 @@ public struct Kind {
     public let parenthesesDegrees: Bool?
     public let bracketDegrees: Bool?
     public let printStyle: PrintStyle?
-    public let horizontalAlignment: HorizonalAlignment?
+    public let horizontalAlignment: LeftCenterRight?
     public let verticalAlignment: VAlign?
 }
 

@@ -7,7 +7,7 @@
 
 /// The heel and toe elements are used with organ pedals.
 public struct HeelToe {
-    public let placement: Placement?
+    public let placement: AboveBelow?
     public let substitution: Bool?
 }
 

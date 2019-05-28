@@ -14,7 +14,7 @@
 public struct Harmonic {
     public let printObject: Bool?
     public let printStyle: PrintStyle?
-    public let placement: Placement?
+    public let placement: AboveBelow?
     public let naturalArtificial: NaturalArtificial?
     public let baseSoundingTouchingPitch: BaseSoundingTouchingPitch?
 }

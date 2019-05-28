@@ -19,12 +19,12 @@ public struct Harmony {
     /// The print-frame attribute controls printing of a frame or fretboard diagram.
     public let printFrame: Bool?
     public let printStyle: PrintStyle?
-    public let placement: Placement?
+    public let placement: AboveBelow?
     public let chord: [HarmonyChord] // NonEmpty
     public let frame: Frame?
     public let offset: Offset?
     public let editorial: Editorial?
-    public let staff: Staff?
+    public let staff: Int?
 }
 
 extension Harmony: Equatable { }

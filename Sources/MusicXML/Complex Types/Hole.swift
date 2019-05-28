@@ -19,7 +19,7 @@ public struct Hole {
     /// circle.
     public let holeShape: String?
     public let printStyle: PrintStyle?
-    public let placement: Placement?
+    public let placement: AboveBelow?
 }
 
 extension Hole: Equatable { }

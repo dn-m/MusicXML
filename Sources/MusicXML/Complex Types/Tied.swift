@@ -8,7 +8,7 @@
 /// The tied type represents the notated tie. The tie element represents the tie sound.
 public struct Tied {
     public let type: StartStopContinue
-    public let number: NumberLevel?
+    public let number: Int?
     public let lineType: LineType?
     public let dashedFormatting: DashedFormatting?
     public let position: Position?

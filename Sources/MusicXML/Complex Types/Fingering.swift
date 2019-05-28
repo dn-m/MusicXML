@@ -13,7 +13,7 @@ public struct Fingering {
     public let substitution: Bool
     public let alternate: Bool
     public let printStyle: PrintStyle
-    public let placement: Placement
+    public let placement: AboveBelow
 }
 
 extension Fingering: Equatable { }

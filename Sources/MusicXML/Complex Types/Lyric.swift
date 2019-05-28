@@ -23,7 +23,7 @@ public struct Lyric {
     public let name: String?
     public let justify: LeftCenterRight?
     public let position: Position?
-    public let placement: Placement?
+    public let placement: AboveBelow?
     public let printObject: Bool?
 
     /// The end-line element comes from RP-017 for Standard MIDI File Lyric meta-events. It

@@ -7,7 +7,7 @@
 
 /// The arpeggiate type indicates that this note is part of an arpeggiated chord.
 public struct Arpeggiate {
-    public let number: NumberLevel?
+    public let number: Int?
     public let direction: UpDown?
     public let position: Position
     public let placement: AboveBelow?

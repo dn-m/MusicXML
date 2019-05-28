@@ -9,7 +9,7 @@
 /// trill-sound attributes.
 public struct EmptyTrillSound {
     public let printStyle: PrintStyle?
-    public let placement: Placement?
+    public let placement: AboveBelow?
     public let trillSound: TrillSound
 }
 

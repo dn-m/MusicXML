@@ -11,7 +11,7 @@
 /// octave; a size of 15 indicates two octaves.
 public struct OctaveShift {
     public let type: StartStopContinue
-    public let number: NumberLevel?
+    public let number: Int?
     public let size: Int?
     public let dashedFormatting: DashedFormatting?
     public let printStyle: PrintStyle?

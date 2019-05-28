@@ -34,12 +34,12 @@
 //    %document-attributes;
 // >
 #warning("TODO: Support Score document-attributes")
-public struct Score: Equatable {
+public struct Score {
     let header: Header
     let traversal: Traversal
 }
 
-// MARK: - Decoding
+extension Score: Equatable { }
 
 extension Score: Decodable {
 

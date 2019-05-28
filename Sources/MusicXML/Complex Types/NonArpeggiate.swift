@@ -10,7 +10,7 @@
 /// or bottom notes, not on each note as for the arpeggiate type.
 public struct NonArpeggiate {
     public let type: TopBottom
-    public let number: NumberLevel?
+    public let number: Int?
     public let position: Position?
     public let placement: AboveBelow?
     public let color: Color?

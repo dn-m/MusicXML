@@ -11,7 +11,7 @@ extension MusicXML {
     public struct String {
         public let value: StringNumber
         public let printStyle: PrintStyle?
-        public let placement: Placement?
+        public let placement: AboveBelow?
     }
 }
 

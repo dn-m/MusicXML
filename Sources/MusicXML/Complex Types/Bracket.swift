@@ -7,7 +7,7 @@
 
 public struct Bracket {
     public let type: StartStopContinue
-    public let number: NumberLevel?
+    public let number: Int?
     /// The line-end attribute specifies if there is a jog up or down (or both), an arrow, or
     /// nothing at the start or end of the bracket. If the line-end is up or down, the length of the
     /// jog can be specified using the end-length attribute.

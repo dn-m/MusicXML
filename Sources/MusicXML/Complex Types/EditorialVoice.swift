@@ -7,9 +7,9 @@
 
 // <!ENTITY % editorial-voice "(footnote?, level?, voice?)">
 public struct EditorialVoice {
-    public let footnote: Footnote?
+    public let footnote: FormattedText?
     public let level: Level?
-    public let voice: Voice?
+    public let voice: Int?
 }
 
 extension EditorialVoice: Equatable { }

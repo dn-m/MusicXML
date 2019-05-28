@@ -12,7 +12,7 @@ public struct Wedge {
     /// and diminuendo for the start of a wedge that is closed on the right side.
     public let type: WedgeType
     /// When a number-level value is implied, the value is 1 by default.
-    public let number: NumberLevel?
+    public let number: Int?
     /// Spread values are measured in tenths; those at the start of a crescendo wedge or end of a
     /// diminuendo wedge are ignored.
     public let spread: Tenths?

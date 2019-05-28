@@ -12,7 +12,7 @@
 public struct OtherNotation {
     public let value: String
     public let type: StartStopSingle
-    public let number: NumberLevel?
+    public let number: Int?
     public let printObject: Bool?
     public let printStyle: PrintStyle?
     public let placement: AboveBelow?

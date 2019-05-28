@@ -9,11 +9,11 @@
 /// have type="continue" set.
 public struct WavyLine {
     public let type: StartStopContinue
-    public let number: NumberLevel
-    public let position: Position
-    public let placement: Placement
-    public let color: Color
-    public let trillSound: TrillSound
+    public let number: Int?
+    public let position: Position?
+    public let placement: AboveBelow?
+    public let color: Color?
+    public let trillSound: TrillSound?
 }
 
 extension WavyLine: Equatable { }

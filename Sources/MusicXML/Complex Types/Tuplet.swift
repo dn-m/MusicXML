@@ -16,7 +16,7 @@
 public struct Tuplet {
     public let type: StartStop
     /// The number attribute is used to distinguish nested tuplets.
-    public let number: NumberLevel?
+    public let number: Int?
     /// The bracket attribute is used to indicate the presence of a bracket. If unspecified, the
     /// results are implementation-dependent.
     public let bracket: Bool?

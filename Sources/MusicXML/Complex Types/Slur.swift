@@ -10,7 +10,7 @@
 /// to specify the formatting of cross-system slurs, or to specify the shape of very complex slurs.
 public struct Slur {
     public let type: StartStopContinue
-    public let number: NumberLevel?
+    public let number: Int?
     public let lineType: LineType?
     public let dashedFormatting: DashedFormatting?
     public let position: Position?

@@ -12,7 +12,7 @@
 public struct Glissando {
     public let value: String
     public let type: StartStop
-    public let number: NumberLevel?
+    public let number: Int?
     public let lineType: LineType?
     public let dashedFormatting: DashedFormatting?
     public let printStyle: PrintStyle?

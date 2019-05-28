@@ -28,7 +28,7 @@ public struct ScorePart {
     /// also be used here to change how a part name or abbreviation is displayed over the course of
     /// a piece. They take effect when the current measure or a succeeding measure starts a new
     /// system.
-    public let nameDisplay: PartNameDisplay?
+    public let nameDisplay: NameDisplay?
 
     /// The part-name-display and part-abbreviation-display elements used in the score.mod file may
     /// also be used here to change how a part name or abbreviation is displayed over the course of

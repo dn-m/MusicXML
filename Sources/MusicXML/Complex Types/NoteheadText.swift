@@ -7,7 +7,7 @@
 
 public struct NoteheadText {
     public enum Kind {
-        case displayText(DisplayText)
+        case displayText(FormattedText)
         case accidentalText(AccidentalText)
     }
     public let values: [Kind] // NonEmpty

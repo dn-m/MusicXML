@@ -10,7 +10,7 @@
 public struct Handbell {
     public let value: HandbellValue
     public let printStyle: PrintStyle?
-    public let placement: Placement?
+    public let placement: AboveBelow?
 }
 
 extension Handbell: Equatable { }

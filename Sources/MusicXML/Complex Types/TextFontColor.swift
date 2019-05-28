@@ -12,8 +12,8 @@ public struct TextFontColor {
     public let font: Font?
     public let color: Color?
     public let textDecoration: TextDecoration?
-    public let textRotation: TextRotation?
-    public let letterSpacing: LetterSpacing?
+    public let textRotation: Double?
+    public let letterSpacing: NumberOrNormal?
     public let dir: TextDirection?
 }
 

@@ -29,25 +29,17 @@
 //    root folder of the zip file.
 //
 
+/// The link type serves as an outgoing simple XLink. It is also used to connect a MusicXML score
+/// with a MusicXML opus. If a relative link is used within a document that is part of a compressed
+/// MusicXML file, the link is relative to the root folder of the zip file.
+public struct Link {
 
-// <!ELEMENT link EMPTY>
-// <!ATTLIST link
-//    %link-attributes;
-//    name  CDATA  #IMPLIED
-//    element  NMTOKEN #IMPLIED
-//    position NMTOKEN #IMPLIED
-//    %position;
-// >
-public struct Link: Decodable, Equatable {
-
-    // TODO: LinkAttributes
-
-    let name: String?
+    public let name: String?
 
     // > The element attribute specifies an
     // > element type for a descendant of the next sibling element
     // > that is not a link or bookmark.
-    let element: String
+    public let element: String?
 
     // The position attribute
     //    specifies the position of this descendant element, where
@@ -58,7 +50,8 @@ public struct Link: Decodable, Equatable {
     //    of the next sibling element that is not a link or bookmark.
     //    This is equivalent to an XPath test of [.//beam[2]] done
     //    in the context of the sibling element.
-    let position: String
-
-    // TODO: position: Position?
+    public let position: String?
 }
+
+extension Link: Equatable { }
+extension Link: Decodable { }

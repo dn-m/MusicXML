@@ -19,9 +19,9 @@ public struct PartGroup {
     public let type: StartStop
     public let number: Int?
     public let name: GroupName?
-    public let nameDisplay: GroupNameDisplay?
-    public let abbreviation: GroupAbbreviation?
-    public let abbreviationDisplay: GroupAbbreviationDisplay?
+    public let nameDisplay: NameDisplay?
+    public let abbreviation: GroupName?
+    public let abbreviationDisplay: NameDisplay?
     public let symbol: GroupSymbol?
     public let barline: GroupBarline?
     public let time: Bool?

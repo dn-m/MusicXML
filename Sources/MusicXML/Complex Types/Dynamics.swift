@@ -20,9 +20,9 @@
 public struct Dynamics {
     public let values: [Dynamic]
     public let printStyleAlign: PrintStyleAlign?
-    public let placement: Placement?
+    public let placement: AboveBelow?
     public let textDecoration: TextDecoration?
-    public let enclosure: Enclosure?
+    public let enclosure: EnclosureShape?
 }
 
 

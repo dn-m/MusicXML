@@ -12,7 +12,7 @@
 //
 // <!ENTITY % editorial "(footnote?, level?)">
 public struct Editorial {
-    public let footnote: Footnote?
+    public let footnote: FormattedText?
     public let level: Level?
 }
 

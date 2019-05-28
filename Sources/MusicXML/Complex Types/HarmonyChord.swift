@@ -43,7 +43,7 @@ public struct HarmonyChord {
 extension HarmonyChord {
     public enum RootOrFunction {
         case root(Root)
-        case function(Function)
+        case function(StyleText)
     }
 }
 
@@ -58,7 +58,7 @@ extension HarmonyChord.RootOrFunction: Decodable {
         do {
             self = .root(try keyed.decode(Root.self, forKey: .root))
         } catch {
-            self = .function(try keyed.decode(Function.self, forKey: .function))
+            self = .function(try keyed.decode(StyleText.self, forKey: .function))
         }
     }
 }
