@@ -17,3 +17,8 @@ public struct Defaults: Decodable, Equatable {
     public let lyricFonts: [LyricFont]
     public let lyricLanguages: [LyricLanguage]
 }
+
+// FIXME: Redefine?
+public struct Scaling { }
+extension Scaling: Equatable { }
+extension Scaling: Decodable { }

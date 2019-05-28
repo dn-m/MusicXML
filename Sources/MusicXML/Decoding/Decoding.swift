@@ -11,11 +11,11 @@ import XMLCoder
 extension MusicXML {
 
     public enum Error: Swift.Error {
-        case invalidMusicXMLString(String)
+        case invalidMusicXMLString(Swift.String)
     }
 
     /// Creates a `MusicXML` model from the given MusicXML-formatted `string`.
-    public init(string: String) throws {
+    public init(string: Swift.String) throws {
         guard let data = string.data(using: .utf8) else {
             throw Error.invalidMusicXMLString(string)
         }

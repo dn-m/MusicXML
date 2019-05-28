@@ -103,19 +103,6 @@
 
 
 
-public enum TiedType: String, Decodable {
-    case start = "start"
-    case stop = "stop"
-    case letRight = "let-ring"
-}
-
-public enum TremoloType: String, Decodable {
-    case start
-    case stop
-    case single
-    case unmeasured
-}
-
 // > The number-of-lines entity is used to specify the
 // > number of lines in text decoration attributes.
 //

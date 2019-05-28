@@ -760,23 +760,7 @@ public struct FullNote {
 //<!ELEMENT chord EMPTY>
 //
 
-//    The unpitched element indicates musical elements that are
-//    notated on the staff but lack definite pitch, such as
-//    unpitched percussion and speaking voice. Like notes, it
-//    uses step and octave elements to indicate placement on the
-//    staff, following the current clef. If percussion clef is
-//    used, the display-step and display-octave elements are
-//    interpreted as if in treble clef, with a G in octave 4 on
-//    line 2. If not present, the note is placed on the middle
-//    line of the staff, generally used for a one-line staff.
-//
-// <!ELEMENT unpitched ((display-step, display-octave)?)>
-// <!ELEMENT display-step (#PCDATA)>
-// <!ELEMENT display-octave (#PCDATA)>
-public struct Unpitched: Decodable, Equatable {
-    let displayStep: Int
-    let displayOctave: Int
-}
+
 
 //    The rest element indicates notated rests or silences. Rest
 //    elements are usually empty, but placement on the staff can

@@ -39,29 +39,6 @@ public struct Score: Equatable {
     let traversal: Traversal
 }
 
-// <!ELEMENT work (work-number?, work-title?, opus?)>
-// <!ELEMENT work-number (#PCDATA)>
-// <!ELEMENT work-title (#PCDATA)>
-public struct Work: Equatable {
-    let number: String?
-    let title: String?
-    let opus: Opus?
-}
-
-// <!ELEMENT opus EMPTY>
-// <!ATTLIST opus
-//    %link-attributes;
-// >
-#warning("TODO: Implement Opus (LinkAttributes)")
-public struct Opus: Decodable, Equatable {
-//    let linkAttributes: LinkAttributes
-}
-
-
-
-
-
-
 // MARK: - Decoding
 
 extension Score: Decodable {
@@ -74,5 +51,3 @@ extension Score: Decodable {
         self.traversal = try container.decode(Traversal.self)
     }
 }
-
-extension Work: Decodable { }

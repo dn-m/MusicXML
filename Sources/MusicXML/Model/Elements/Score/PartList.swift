@@ -53,77 +53,9 @@ extension PartList {
 
     // MARK: Nested Types
 
-    // <!ELEMENT score-part (identification?,
-    //    part-name, part-name-display?,
-    //    part-abbreviation?, part-abbreviation-display?,
-    //    group*, score-instrument*,
-    //    (midi-device?, midi-instrument?)*)>
-    // <!ATTLIST score-part
-    //    id ID #REQUIRED
-    //
-    // > The part-name will often
-    // > precede the first system, while the part-abbreviation will
-    // > precede the other systems.
-    //
-    // > The formatting attributes for
-    // > these elements are deprecated in Version 2.0 in favor of
-    // > the new part-name-display and part-abbreviation-display
-    // > elements. These are defined in the common.mod file as they
-    // > are used in both the part-list and print elements. They
-    // > provide more complete formatting control for how part names
-    // > and abbreviations appear in a score.
-    #warning("TODO: Add support for ScorePart print-style, print-object, and justify")
-    public struct ScorePart: Equatable {
 
-        // > The part-name indicates the full name of the musical part.
-        //
-        // <!ELEMENT part-name (#PCDATA)>
-        // <!ATTLIST part-name
-        //     %print-style;
-        //     %print-object;
-        //     %justify;
-        // >
-        public struct Name: Decodable, Equatable {
-            let value: String
-            let printStyle: PrintStyle?
-            let printObject: Bool?
-            let justification: Justify?
-        }
-
-        // > The part-abbreviation indicates the abbreviated version of
-        // > the name of the musical part.
-        //
-        // <!ELEMENT part-abbreviation (#PCDATA)>
-        // <!ATTLIST part-abbreviation
-        //     %print-style;
-        //     %print-object;
-        //     %justify;
-        // >
-        public struct Abbreviation: Decodable, Equatable {
-            let value: String
-            let printStyle: PrintStyle?
-            let printObject: Bool?
-            let justification: Justify?
-        }
-
-        let id: String
-        let identification: Identification?
-        let name: Name
-        let nameDisplay: PartNameDisplay?
-    }
 }
 
-extension PartList.ScorePart: Decodable {
-
-    // MARK: - Decodable
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case identification
-        case name = "part-name"
-        case nameDisplay = "part-name-display"
-    }
-}
 
 extension PartList: Decodable {
 

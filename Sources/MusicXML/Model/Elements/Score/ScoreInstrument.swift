@@ -82,12 +82,3 @@ public struct ScoreInstrument: Decodable, Equatable {
     let soloOrEnsemble: SoloOrEnsemble?
     let virtualInstrument: VirtualInstrument?
 }
-
-//<!ELEMENT virtual-instrument
-//    (virtual-library?, virtual-name?)>
-public struct VirtualInstrument: Decodable, Equatable {
-    //<!ELEMENT virtual-library (#PCDATA)>
-    let library: String?
-    //<!ELEMENT virtual-name (#PCDATA)>
-    let name: String?
-}

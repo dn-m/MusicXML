@@ -608,28 +608,6 @@
 //>
 //
 
-// > An offset is represented in terms of divisions, and
-// > indicates where the direction will appear relative to
-// > the current musical location. This affects the visual
-// > appearance of the direction. If the sound attribute is
-// > "yes", then the offset affects playback too. If the sound
-// > attribute is "no", then any sound associated with the
-// > direction takes effect at the current location. The sound
-// > attribute is "no" by default for compatibility with earlier
-// > versions of the MusicXML format. If an element within a
-// > direction includes a default-x attribute, the offset value
-// > will be ignored when determining the appearance of that
-// > element.
-//
-// <!ELEMENT offset (#PCDATA)>
-// <!ATTLIST offset
-//    sound %yes-no; #IMPLIED
-// >
-public struct Offset: Decodable, Equatable {
-    let value: Int
-    let sound: Bool
-}
-
 // MARK: - Harmony
 
 // > A root is a pitch name like C, D, E, where a function
