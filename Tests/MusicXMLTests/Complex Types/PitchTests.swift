@@ -23,4 +23,8 @@ class PitchTests: XCTestCase {
     func testMiddleCRoundTrip() throws {
         try testRoundTrip(Pitch(step: .c, alter: nil, octave: 4))
     }
+
+    func testHighFQuarterSharpRoundTrip() throws {
+        try testRoundTrip(Pitch(step: .f, alter: 0.5, octave: 7))
+    }
 }
