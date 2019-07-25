@@ -18,4 +18,4 @@ public enum Step: String {
 }
 
 extension Step: Equatable { }
-extension Step: Decodable { }
+extension Step: Codable { }

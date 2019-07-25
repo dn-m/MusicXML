@@ -15,4 +15,4 @@ public struct Pitch {
 }
 
 extension Pitch: Equatable { }
-extension Pitch: Decodable { }
+extension Pitch: Codable { }
