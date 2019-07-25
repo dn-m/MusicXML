@@ -11,20 +11,13 @@ import XMLCoder
 
 class PitchTests: XCTestCase {
 
-    func testRoundTrip <Value: Codable & Equatable> (
-        _ value: Value,
-        rootKey: String = "container"
-    ) throws {
-        let encoded = try XMLEncoder().encode(value, withRootKey: rootKey)
-        let decoded = try XMLDecoder().decode(Value.self, from: encoded)
-        XCTAssertEqual(decoded, value)
-    }
-
     func testMiddleCRoundTrip() throws {
-        try testRoundTrip(Pitch(step: .c, alter: nil, octave: 4))
+        let middleC = Pitch(step: .c, alter: nil, octave: 4)
+        try testRoundTrip(middleC, rootKey: "pitch", loggingEncoded: true)
     }
 
     func testHighFQuarterSharpRoundTrip() throws {
-        try testRoundTrip(Pitch(step: .f, alter: 0.5, octave: 7))
+        let high = Pitch(step: .f, alter: 0.5, octave: 7)
+        try testRoundTrip(high, rootKey: "pitch", loggingEncoded: true)
     }
 }
