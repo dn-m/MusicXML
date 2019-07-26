@@ -16,4 +16,4 @@ public enum StickType: String {
 }
 
 extension StickType: Equatable { }
-extension StickType: Decodable { }
+extension StickType: Codable { }

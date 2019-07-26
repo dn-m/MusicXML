@@ -13,4 +13,4 @@ public enum UpDown: String {
 }
 
 extension UpDown: Equatable { }
-extension UpDown: Decodable { }
+extension UpDown: Codable { }

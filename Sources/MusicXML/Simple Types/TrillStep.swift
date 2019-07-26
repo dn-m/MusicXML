@@ -14,4 +14,4 @@ public enum TrillStep: String {
 }
 
 extension TrillStep: Equatable { }
-extension TrillStep: Decodable { }
+extension TrillStep: Codable { }

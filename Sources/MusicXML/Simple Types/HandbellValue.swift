@@ -21,4 +21,4 @@ public enum HandbellValue: String {
 }
 
 extension HandbellValue: Equatable { }
-extension HandbellValue: Decodable { }
+extension HandbellValue: Codable { }

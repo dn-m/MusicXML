@@ -16,4 +16,4 @@ public enum DegreeSymbolValue: String {
 }
 
 extension DegreeSymbolValue: Equatable { }
-extension DegreeSymbolValue: Decodable { }
+extension DegreeSymbolValue: Codable { }

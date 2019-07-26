@@ -14,4 +14,4 @@ public enum VAlignImage: String {
 }
 
 extension VAlignImage: Equatable { }
-extension VAlignImage: Decodable { }
+extension VAlignImage: Codable { }

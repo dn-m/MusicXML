@@ -30,4 +30,4 @@ public enum ClefSign: String {
 }
 
 extension ClefSign: Equatable { }
-extension ClefSign: Decodable { }
+extension ClefSign: Codable { }

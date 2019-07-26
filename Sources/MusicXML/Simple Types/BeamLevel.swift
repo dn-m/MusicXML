@@ -21,4 +21,4 @@ public enum BeamLevel: String {
 }
 
 extension BeamLevel: Equatable { }
-extension BeamLevel: Decodable { }
+extension BeamLevel: Codable { }

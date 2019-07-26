@@ -13,4 +13,4 @@ public enum OverUnder: String {
 }
 
 extension OverUnder: Equatable { }
-extension OverUnder: Decodable { }
+extension OverUnder: Codable { }

@@ -17,4 +17,4 @@ public enum WedgeType: String {
 }
 
 extension WedgeType: Equatable { }
-extension WedgeType: Decodable { }
+extension WedgeType: Codable { }

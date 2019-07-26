@@ -12,4 +12,4 @@ public enum BreathMarkValue: String {
 }
 
 extension BreathMarkValue: Equatable { }
-extension BreathMarkValue: Decodable { }
+extension BreathMarkValue: Codable { }

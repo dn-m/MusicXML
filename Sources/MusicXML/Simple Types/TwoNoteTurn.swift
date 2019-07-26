@@ -14,4 +14,4 @@ public enum TwoNoteTurn: String {
 }
 
 extension TwoNoteTurn: Equatable { }
-extension TwoNoteTurn: Decodable { }
+extension TwoNoteTurn: Codable { }

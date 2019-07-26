@@ -12,4 +12,4 @@ public enum FontWeight: String {
 }
 
 extension FontWeight: Equatable { }
-extension FontWeight: Decodable { }
+extension FontWeight: Codable { }

@@ -16,4 +16,4 @@ public struct Color {
 }
 
 extension Color: Equatable { }
-extension Color: Decodable { }
+extension Color: Codable { }

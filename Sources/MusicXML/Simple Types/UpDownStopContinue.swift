@@ -15,4 +15,4 @@ public enum UpDownStopContinue: String {
 }
 
 extension UpDownStopContinue: Equatable { }
-extension UpDownStopContinue: Decodable { }
+extension UpDownStopContinue: Codable { }

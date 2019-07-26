@@ -27,4 +27,4 @@ public enum Mute: String {
 }
 
 extension Mute: Equatable { }
-extension Mute: Decodable { }
+extension Mute: Codable { }

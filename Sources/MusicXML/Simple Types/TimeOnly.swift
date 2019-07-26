@@ -17,4 +17,4 @@ public struct TimeOnly {
 }
 
 extension TimeOnly: Equatable { }
-extension TimeOnly: Decodable { }
+extension TimeOnly: Codable { }

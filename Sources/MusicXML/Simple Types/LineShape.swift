@@ -12,4 +12,4 @@ public enum LineShape: String {
 }
 
 extension LineShape: Equatable { }
-extension LineShape: Decodable { }
+extension LineShape: Codable { }

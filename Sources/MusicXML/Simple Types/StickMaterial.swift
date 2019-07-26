@@ -15,4 +15,4 @@ public enum StickMaterial: String {
 }
 
 extension StickMaterial: Equatable { }
-extension StickMaterial: Decodable { }
+extension StickMaterial: Codable { }

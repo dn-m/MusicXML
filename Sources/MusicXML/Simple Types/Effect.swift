@@ -24,4 +24,4 @@ public enum Effect: String {
 }
 
 extension Effect: Equatable { }
-extension Effect: Decodable { }
+extension Effect: Codable { }

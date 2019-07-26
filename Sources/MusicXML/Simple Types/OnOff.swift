@@ -12,4 +12,4 @@ public enum OnOff: String {
 }
 
 extension OnOff: Equatable { }
-extension OnOff: Decodable { }
+extension OnOff: Codable { }

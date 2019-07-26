@@ -16,4 +16,4 @@ public enum BeamValue: String {
 }
 
 extension BeamValue: Equatable { }
-extension BeamValue: Decodable { }
+extension BeamValue: Codable { }

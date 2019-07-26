@@ -26,4 +26,4 @@ public enum EnclosureShape: String {
 }
 
 extension EnclosureShape: Equatable { }
-extension EnclosureShape: Decodable { }
+extension EnclosureShape: Codable { }

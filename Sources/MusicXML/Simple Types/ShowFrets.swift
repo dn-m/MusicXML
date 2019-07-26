@@ -13,4 +13,4 @@ public enum ShowFrets: String {
 }
 
 extension ShowFrets: Equatable { }
-extension ShowFrets: Decodable { }
+extension ShowFrets: Codable { }

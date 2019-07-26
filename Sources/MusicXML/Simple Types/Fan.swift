@@ -14,4 +14,4 @@ public enum Fan: String {
 }
 
 extension Fan: Equatable { }
-extension Fan: Decodable { }
+extension Fan: Codable { }

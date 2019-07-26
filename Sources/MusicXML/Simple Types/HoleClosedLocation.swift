@@ -15,4 +15,4 @@ public enum HoleClosedLocation: String {
 }
 
 extension HoleClosedLocation: Equatable { }
-extension HoleClosedLocation: Decodable { }
+extension HoleClosedLocation: Codable { }

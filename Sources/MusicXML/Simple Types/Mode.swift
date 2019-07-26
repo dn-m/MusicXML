@@ -21,4 +21,4 @@ public enum Mode: String {
 }
 
 extension Mode: Equatable { }
-extension Mode: Decodable { }
+extension Mode: Codable { }

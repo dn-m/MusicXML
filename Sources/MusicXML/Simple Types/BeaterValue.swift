@@ -28,4 +28,4 @@ public enum BeaterValue: String {
 }
 
 extension BeaterValue: Equatable { }
-extension BeaterValue: Decodable { }
+extension BeaterValue: Codable { }

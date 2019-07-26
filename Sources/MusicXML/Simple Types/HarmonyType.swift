@@ -15,4 +15,4 @@ public enum HarmonyType: String {
 }
 
 extension HarmonyType: Equatable { }
-extension HarmonyType: Decodable { }
+extension HarmonyType: Codable { }

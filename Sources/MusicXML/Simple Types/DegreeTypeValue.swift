@@ -17,4 +17,4 @@ public enum DegreeTypeValue: String {
 }
 
 extension DegreeTypeValue: Equatable { }
-extension DegreeTypeValue: Decodable { }
+extension DegreeTypeValue: Codable { }

@@ -14,4 +14,4 @@ public enum MeasureNumberingValue: String {
 }
 
 extension MeasureNumberingValue: Equatable { }
-extension MeasureNumberingValue: Decodable { }
+extension MeasureNumberingValue: Codable { }

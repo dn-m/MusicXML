@@ -22,4 +22,4 @@ public enum TimeSymbol: String {
 }
 
 extension TimeSymbol: Equatable { }
-extension TimeSymbol: Decodable { }
+extension TimeSymbol: Codable { }

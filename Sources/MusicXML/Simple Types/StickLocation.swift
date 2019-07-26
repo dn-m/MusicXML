@@ -15,4 +15,4 @@ public enum StickLocation: String {
 }
 
 extension StickLocation: Equatable { }
-extension StickLocation: Decodable { }
+extension StickLocation: Codable { }

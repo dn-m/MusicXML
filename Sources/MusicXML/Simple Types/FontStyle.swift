@@ -12,4 +12,4 @@ public enum FontStyle: String {
 }
 
 extension FontStyle: Equatable { }
-extension FontStyle: Decodable { }
+extension FontStyle: Codable { }

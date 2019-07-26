@@ -13,4 +13,4 @@ public enum GroupBarlineValue: String {
 }
 
 extension GroupBarlineValue: Equatable { }
-extension GroupBarlineValue: Decodable { }
+extension GroupBarlineValue: Codable { }

@@ -18,4 +18,4 @@ public enum Winged: String {
 }
 
 extension Winged: Equatable { }
-extension Winged: Decodable { }
+extension Winged: Codable { }

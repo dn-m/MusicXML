@@ -15,4 +15,4 @@ public enum VAlign: String {
 }
 
 extension VAlign: Equatable { }
-extension VAlign: Decodable { }
+extension VAlign: Codable { }

@@ -23,4 +23,4 @@ public enum TipDirection: String {
 }
 
 extension TipDirection: Equatable { }
-extension TipDirection: Decodable { }
+extension TipDirection: Codable { }
