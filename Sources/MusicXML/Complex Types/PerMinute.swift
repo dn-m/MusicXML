@@ -15,4 +15,4 @@ public struct PerMinute {
 }
 
 extension PerMinute: Equatable { }
-extension PerMinute: Decodable { }
+extension PerMinute: Codable { }

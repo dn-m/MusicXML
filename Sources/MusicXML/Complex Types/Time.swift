@@ -81,18 +81,18 @@ extension Time {
 }
 
 extension Time.Measured: Equatable { }
-extension Time.Measured: Decodable { }
+extension Time.Measured: Codable { }
 
 extension Time.Unmeasured: Equatable { }
-extension Time.Unmeasured: Decodable { }
+extension Time.Unmeasured: Codable { }
 
 extension Time.Kind: Equatable { }
-extension Time.Kind: Decodable {
-    #warning("TODO: Implement Time.Kind: Decodable conformance")
+extension Time.Kind: Codable {
+    #warning("TODO: Implement Time.Kind: Codable conformance")
     public init(from decoder: Decoder) throws {
         fatalError("Time.Kind.init(from: Decoder) not yet implemented")
     }
 }
 
 extension Time: Equatable { }
-extension Time: Decodable { }
+extension Time: Codable { }

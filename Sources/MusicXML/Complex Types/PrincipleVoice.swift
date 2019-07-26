@@ -17,4 +17,4 @@ public struct PrincipleVoice {
 }
 
 extension PrincipleVoice: Equatable { }
-extension PrincipleVoice: Decodable { }
+extension PrincipleVoice: Codable { }

@@ -33,7 +33,7 @@ public struct MusicData: Equatable {
     let values: [Datum]
 }
 
-extension MusicData: Decodable {
+extension MusicData: Codable {
 
     // MARK: - Decodable
 
@@ -43,7 +43,7 @@ extension MusicData: Decodable {
     }
 }
 
-extension MusicData.Datum: Decodable {
+extension MusicData.Datum: Codable {
 
     // MARK: - Decodable
 
@@ -67,7 +67,7 @@ extension MusicData.Datum: Decodable {
 
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Decodable {
+        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 

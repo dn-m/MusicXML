@@ -23,7 +23,7 @@ extension PartList {
 }
 
 extension PartList.Element: Equatable { }
-extension PartList.Element: Decodable {
+extension PartList.Element: Codable {
     enum CodingKeys: String, CodingKey {
         case group
         case part
@@ -39,7 +39,7 @@ extension PartList.Element: Decodable {
 }
 
 extension PartList: Equatable { }
-extension PartList: Decodable {
+extension PartList: Codable {
 
     // MARK: - Decodable
 

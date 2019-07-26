@@ -15,4 +15,4 @@ public struct Rest {
 }
 
 extension Rest: Equatable { }
-extension Rest: Decodable { }
+extension Rest: Codable { }

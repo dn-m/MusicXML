@@ -13,4 +13,4 @@ public struct EmptyPlacement {
 }
 
 extension EmptyPlacement: Equatable { }
-extension EmptyPlacement: Decodable { }
+extension EmptyPlacement: Codable { }

@@ -14,4 +14,4 @@ public struct RootStep {
 }
 
 extension RootStep: Equatable { }
-extension RootStep: Decodable { }
+extension RootStep: Codable { }

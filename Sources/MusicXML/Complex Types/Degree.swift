@@ -11,7 +11,7 @@
 /// degree-type text attributes specify how the value and type of the degree should be displayed. A
 /// harmony of kind "other" can be spelled explicitly by using a series of degree elements together
 /// with a root.
-public struct Degree: Decodable, Equatable {
+public struct Degree: Codable, Equatable {
     public let value: DegreeValue
     public let alter: DegreeAlter
     public let type: DegreeType

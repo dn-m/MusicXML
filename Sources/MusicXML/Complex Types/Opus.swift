@@ -13,4 +13,4 @@ public struct Opus {
 }
 
 extension Opus: Equatable { }
-extension Opus: Decodable { }
+extension Opus: Codable { }

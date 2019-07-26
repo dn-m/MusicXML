@@ -23,4 +23,4 @@ public struct Font {
 }
 
 extension Font: Equatable { }
-extension Font: Decodable { }
+extension Font: Codable { }

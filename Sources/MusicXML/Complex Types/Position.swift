@@ -65,4 +65,4 @@ public struct Position {
 }
 
 extension Position: Equatable { }
-extension Position: Decodable { }
+extension Position: Codable { }

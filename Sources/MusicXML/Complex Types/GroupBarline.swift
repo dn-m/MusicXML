@@ -12,4 +12,4 @@ public struct GroupBarline {
 }
 
 extension GroupBarline: Equatable { }
-extension GroupBarline: Decodable { }
+extension GroupBarline: Codable { }

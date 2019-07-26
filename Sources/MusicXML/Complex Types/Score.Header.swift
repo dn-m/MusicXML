@@ -26,7 +26,7 @@ extension Score {
     }
 }
 
-extension Score.Header: Decodable {
+extension Score.Header: Codable {
 
     // MARK: - Decodable
 

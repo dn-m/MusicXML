@@ -17,4 +17,4 @@ public struct WavyLine {
 }
 
 extension WavyLine: Equatable { }
-extension WavyLine: Decodable { }
+extension WavyLine: Codable { }

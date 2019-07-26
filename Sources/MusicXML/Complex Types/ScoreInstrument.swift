@@ -30,7 +30,7 @@ extension ScoreInstrument {
 
 extension ScoreInstrument.SoloEnsemble: Equatable { }
 
-extension ScoreInstrument.SoloEnsemble: Decodable {
+extension ScoreInstrument.SoloEnsemble: Codable {
     enum CodingKeys: String, CodingKey {
         case solo
         case ensemble
@@ -46,4 +46,4 @@ extension ScoreInstrument.SoloEnsemble: Decodable {
 }
 
 extension ScoreInstrument: Equatable { }
-extension ScoreInstrument: Decodable { }
+extension ScoreInstrument: Codable { }

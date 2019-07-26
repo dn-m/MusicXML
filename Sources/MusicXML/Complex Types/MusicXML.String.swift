@@ -16,4 +16,4 @@ extension MusicXML {
 }
 
 extension MusicXML.String: Equatable { }
-extension MusicXML.String: Decodable { }
+extension MusicXML.String: Codable { }

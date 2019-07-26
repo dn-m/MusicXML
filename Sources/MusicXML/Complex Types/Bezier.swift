@@ -27,4 +27,4 @@ public struct Bezier {
 }
 
 extension Bezier: Equatable { }
-extension Bezier: Decodable { }
+extension Bezier: Codable { }

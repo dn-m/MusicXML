@@ -17,4 +17,4 @@ public struct NonArpeggiate {
 }
 
 extension NonArpeggiate: Equatable { }
-extension NonArpeggiate: Decodable { }
+extension NonArpeggiate: Codable { }

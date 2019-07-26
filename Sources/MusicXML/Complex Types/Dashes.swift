@@ -12,4 +12,4 @@ public struct Dashes {
 }
 
 extension Dashes: Equatable { }
-extension Dashes: Decodable { }
+extension Dashes: Codable { }

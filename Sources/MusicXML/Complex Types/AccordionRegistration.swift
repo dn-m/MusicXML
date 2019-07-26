@@ -18,4 +18,4 @@ public struct AccordionRegistration {
 }
 
 extension AccordionRegistration: Equatable { }
-extension AccordionRegistration: Decodable { }
+extension AccordionRegistration: Codable { }

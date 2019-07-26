@@ -22,4 +22,4 @@ public struct Kind {
 }
 
 extension Kind: Equatable { }
-extension Kind: Decodable { }
+extension Kind: Codable { }

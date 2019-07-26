@@ -17,4 +17,4 @@ public struct Editorial {
 }
 
 extension Editorial: Equatable { }
-extension Editorial: Decodable { }
+extension Editorial: Codable { }

@@ -23,4 +23,4 @@ public struct Tremolo {
 }
 
 extension Tremolo: Equatable { }
-extension Tremolo: Decodable { }
+extension Tremolo: Codable { }

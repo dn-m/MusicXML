@@ -27,8 +27,8 @@ public enum Articulations {
 
 extension Articulations: Equatable { }
 
-extension Articulations: Decodable {
-    #warning("TODO: Implement Articulations: Decodable conformance")
+extension Articulations: Codable {
+    #warning("TODO: Implement Articulations: Codable conformance")
     public init(from decoder: Decoder) throws {
         fatalError("Articulations.init(from: Decoder) not yet implemented!")
     }

@@ -14,4 +14,4 @@ public struct EmptyTrillSound {
 }
 
 extension EmptyTrillSound: Equatable { }
-extension EmptyTrillSound: Decodable { }
+extension EmptyTrillSound: Codable { }

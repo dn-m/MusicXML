@@ -19,5 +19,5 @@ public struct MIDIDevice {
 }
 
 extension MIDIDevice: Equatable { }
-extension MIDIDevice: Decodable { }
+extension MIDIDevice: Codable { }
 

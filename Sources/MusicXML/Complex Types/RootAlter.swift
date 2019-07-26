@@ -18,4 +18,4 @@ public struct RootAlter {
 }
 
 extension RootAlter: Equatable { }
-extension RootAlter: Decodable { }
+extension RootAlter: Codable { }

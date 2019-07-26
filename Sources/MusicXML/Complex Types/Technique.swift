@@ -31,8 +31,8 @@ public enum Technique {
 }
 
 extension Technique: Equatable { }
-extension Technique: Decodable {
-    #warning("TODO: Implement Technique: Decodable conformance")
+extension Technique: Codable {
+    #warning("TODO: Implement Technique: Codable conformance")
     public init(from decoder: Decoder) throws {
         fatalError("Technique.init(from: Decoder) not yet implemented!")
     }

@@ -13,4 +13,4 @@ public struct Instrument {
 }
 
 extension Instrument: Equatable { }
-extension Instrument: Decodable { }
+extension Instrument: Codable { }

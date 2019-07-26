@@ -24,4 +24,4 @@ extension PageMargins {
 }
 
 extension PageMargins: Equatable { }
-extension PageMargins: Decodable { }
+extension PageMargins: Codable { }

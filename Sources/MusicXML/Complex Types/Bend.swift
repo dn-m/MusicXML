@@ -32,7 +32,7 @@ extension Bend {
 }
 
 extension Bend.PreBendOrRelease: Equatable { }
-extension Bend.PreBendOrRelease: Decodable { }
+extension Bend.PreBendOrRelease: Codable { }
 
 extension Bend: Equatable { }
-extension Bend: Decodable { }
+extension Bend: Codable { }

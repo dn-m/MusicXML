@@ -6,7 +6,7 @@
 //
 
 /// The defaults type specifies score-wide defaults for scaling, layout, and appearance.
-public struct Defaults: Decodable, Equatable {
+public struct Defaults: Codable, Equatable {
     public let scaling: Scaling?
     public let pageLayout: PageLayout?
     public let systemLayout: SystemLayout?
@@ -21,4 +21,4 @@ public struct Defaults: Decodable, Equatable {
 // FIXME: Redefine?
 public struct Scaling { }
 extension Scaling: Equatable { }
-extension Scaling: Decodable { }
+extension Scaling: Codable { }

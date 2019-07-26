@@ -24,7 +24,7 @@
 ///     The default for second-beat is "12", not "25".
 ///     The default for last-beat is "24", not "75".
 ///
-public struct TrillSound: Decodable, Equatable {
+public struct TrillSound: Codable, Equatable {
     let startNote: StartNote
     let trillStep: TrillStep
     let twoNoteTurn: TwoNoteTurn

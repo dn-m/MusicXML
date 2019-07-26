@@ -19,4 +19,4 @@ public struct OtherNotation {
 }
 
 extension OtherNotation: Equatable { }
-extension OtherNotation: Decodable { }
+extension OtherNotation: Codable { }

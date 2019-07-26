@@ -14,4 +14,4 @@ public struct PrintStyleAlign {
 }
 
 extension PrintStyleAlign: Equatable { }
-extension PrintStyleAlign: Decodable { }
+extension PrintStyleAlign: Codable { }

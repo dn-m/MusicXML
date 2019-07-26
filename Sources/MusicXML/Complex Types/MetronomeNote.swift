@@ -14,4 +14,4 @@ public struct MetronomeNote {
 }
 
 extension MetronomeNote: Equatable { }
-extension MetronomeNote: Decodable { }
+extension MetronomeNote: Codable { }

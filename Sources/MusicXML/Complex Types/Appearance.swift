@@ -17,4 +17,4 @@ public struct Appearance {
 }
 
 extension Appearance: Equatable { }
-extension Appearance: Decodable { }
+extension Appearance: Codable { }

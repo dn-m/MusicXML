@@ -14,4 +14,4 @@ public struct PlacementText {
 }
 
 extension PlacementText: Equatable { }
-extension PlacementText: Decodable { }
+extension PlacementText: Codable { }

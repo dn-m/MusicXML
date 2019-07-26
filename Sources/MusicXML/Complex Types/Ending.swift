@@ -27,9 +27,9 @@ public struct Ending {
 }
 
 extension Ending: Equatable { }
-extension Ending: Decodable { }
+extension Ending: Codable { }
 
-//extension Ending: Decodable {
+//extension Ending: Codable {
 //    enum CodingKeys: String, CodingKey {
 //        case value
 //        case number

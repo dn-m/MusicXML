@@ -13,4 +13,4 @@ public struct MetronomeBeam {
 }
 
 extension MetronomeBeam: Equatable { }
-extension MetronomeBeam: Decodable { }
+extension MetronomeBeam: Codable { }

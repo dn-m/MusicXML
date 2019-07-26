@@ -27,4 +27,4 @@ public struct Figure {
 }
 
 extension Figure: Equatable { }
-extension Figure: Decodable { }
+extension Figure: Codable { }

@@ -32,4 +32,4 @@ public struct Frame {
 }
 
 extension Frame: Equatable { }
-extension Frame: Decodable { }
+extension Frame: Codable { }

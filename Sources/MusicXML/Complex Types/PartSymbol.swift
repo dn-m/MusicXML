@@ -20,4 +20,4 @@ public struct PartSymbol {
 }
 
 extension PartSymbol: Equatable { }
-extension PartSymbol: Decodable { }
+extension PartSymbol: Codable { }

@@ -16,4 +16,4 @@ public enum Justify: String {
 }
 
 extension Justify: Equatable { }
-extension Justify: Decodable { }
+extension Justify: Codable { }

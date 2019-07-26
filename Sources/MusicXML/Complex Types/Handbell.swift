@@ -14,4 +14,4 @@ public struct Handbell {
 }
 
 extension Handbell: Equatable { }
-extension Handbell: Decodable { }
+extension Handbell: Codable { }

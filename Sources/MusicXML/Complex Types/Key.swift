@@ -29,7 +29,7 @@ extension Key {
     /// Non-traditional key signatures can be represented using the Humdrum/Scot concept of a list
     /// of altered tones. The key-step element indicates the pitch step to be altered, represented
     /// using the same names as in the step element.
-    public struct NonTraditional: Decodable, Equatable {
+    public struct NonTraditional: Codable, Equatable {
         public let step: Step
         public let alter: Double
         public let accidental: AccidentalValue
@@ -42,15 +42,15 @@ extension Key {
 }
 
 extension Key.Traditional: Equatable { }
-extension Key.Traditional: Decodable { }
+extension Key.Traditional: Codable { }
 
 extension Key.Kind: Equatable { }
-extension Key.Kind: Decodable {
-    #warning("TODO: Implement Key.Kind: Decodable conformance")
+extension Key.Kind: Codable {
+    #warning("TODO: Implement Key.Kind: Codable conformance")
     public init(from decoder: Decoder) throws {
         fatalError("Key.Kind.init(from: Decoder) not yet implemented!")
     }
 }
 
 extension Key: Equatable { }
-extension Key: Decodable { }
+extension Key: Codable { }

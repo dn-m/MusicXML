@@ -27,4 +27,4 @@ public struct Wedge {
 }
 
 extension Wedge: Equatable { }
-extension Wedge: Decodable { }
+extension Wedge: Codable { }

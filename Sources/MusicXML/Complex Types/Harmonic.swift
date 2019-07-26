@@ -43,10 +43,10 @@ extension Harmonic {
 }
 
 extension Harmonic.NaturalArtificial: Equatable { }
-extension Harmonic.NaturalArtificial: Decodable { }
+extension Harmonic.NaturalArtificial: Codable { }
 
 extension Harmonic.BaseSoundingTouchingPitch: Equatable { }
-extension Harmonic.BaseSoundingTouchingPitch: Decodable { }
+extension Harmonic.BaseSoundingTouchingPitch: Codable { }
 
 extension Harmonic: Equatable { }
-extension Harmonic: Decodable { }
+extension Harmonic: Codable { }

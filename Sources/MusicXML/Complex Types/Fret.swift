@@ -14,4 +14,4 @@ public struct Fret {
 }
 
 extension Fret: Equatable { }
-extension Fret: Decodable { }
+extension Fret: Codable { }

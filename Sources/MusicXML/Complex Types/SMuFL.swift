@@ -27,4 +27,4 @@ public struct SMuFL {
 }
 
 extension SMuFL: Equatable { }
-extension SMuFL: Decodable { }
+extension SMuFL: Codable { }

@@ -15,4 +15,4 @@ public struct MeasureLayout {
 }
 
 extension MeasureLayout: Equatable { }
-extension MeasureLayout: Decodable { }
+extension MeasureLayout: Codable { }

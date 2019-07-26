@@ -16,4 +16,4 @@ public struct FrameNote {
 }
 
 extension FrameNote: Equatable { }
-extension FrameNote: Decodable { }
+extension FrameNote: Codable { }

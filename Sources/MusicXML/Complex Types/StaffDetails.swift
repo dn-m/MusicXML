@@ -47,4 +47,4 @@ public struct StaffDetails {
 }
 
 extension StaffDetails: Equatable { }
-extension StaffDetails: Decodable { }
+extension StaffDetails: Codable { }

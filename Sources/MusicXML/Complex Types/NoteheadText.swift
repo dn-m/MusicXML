@@ -14,12 +14,12 @@ public struct NoteheadText {
 }
 
 extension NoteheadText.Kind: Equatable { }
-extension NoteheadText.Kind: Decodable {
-    #warning("TODO: Implement NoteheadText.Kind: Decodable conformance")
+extension NoteheadText.Kind: Codable {
+    #warning("TODO: Implement NoteheadText.Kind: Codable conformance")
     public init(from decoder: Decoder) throws {
         fatalError("NoteheadText.Kind.init(from: Decoder) not yet implemented!")
     }
 }
 
 extension NoteheadText: Equatable { }
-extension NoteheadText: Decodable { }
+extension NoteheadText: Codable { }

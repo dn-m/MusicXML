@@ -49,7 +49,7 @@
 //    page-number CDATA #IMPLIED
 //    %optional-unique-id;
 // >
-public struct Print: Decodable, Equatable {
+public struct Print: Codable, Equatable {
     let pageLayout: PageLayout?
     let systemLayout: SystemLayout?
     let measureLayout: MeasureLayout?

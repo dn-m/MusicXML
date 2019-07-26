@@ -19,4 +19,4 @@ public struct Supports {
 }
 
 extension Supports: Equatable { }
-extension Supports: Decodable { }
+extension Supports: Codable { }

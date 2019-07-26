@@ -13,4 +13,4 @@ public struct Interchangeable {
 }
 
 extension Interchangeable: Equatable { }
-extension Interchangeable: Decodable { }
+extension Interchangeable: Codable { }

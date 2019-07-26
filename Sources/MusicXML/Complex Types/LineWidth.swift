@@ -13,4 +13,4 @@ public struct LineWidth {
 }
 
 extension LineWidth: Equatable { }
-extension LineWidth: Decodable { }
+extension LineWidth: Codable { }

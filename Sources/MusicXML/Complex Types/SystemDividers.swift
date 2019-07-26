@@ -18,4 +18,4 @@ public struct SystemDividers {
 }
 
 extension SystemDividers: Equatable { }
-extension SystemDividers: Decodable { }
+extension SystemDividers: Codable { }

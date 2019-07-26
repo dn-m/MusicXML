@@ -29,15 +29,15 @@ extension MeasureStyle {
 }
 
 extension MeasureStyle.Kind: Equatable { }
-extension MeasureStyle.Kind: Decodable {
-    #warning("Implement MeasureStyle.Kind: Decodable conformance")
+extension MeasureStyle.Kind: Codable {
+    #warning("Implement MeasureStyle.Kind: Codable conformance")
     public init(from decoder: Decoder) throws {
         fatalError("MeasureStyle.Kind.init(from: Decoder) not yet implemented!")
     }
 }
 
 extension MeasureStyle: Equatable { }
-extension MeasureStyle: Decodable { }
+extension MeasureStyle: Codable { }
 
 
 

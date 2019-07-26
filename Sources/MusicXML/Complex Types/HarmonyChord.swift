@@ -48,7 +48,7 @@ extension HarmonyChord {
 }
 
 extension HarmonyChord.RootOrFunction: Equatable { }
-extension HarmonyChord.RootOrFunction: Decodable {
+extension HarmonyChord.RootOrFunction: Codable {
     enum CodingKeys: String, CodingKey {
         case root
         case function
@@ -64,4 +64,4 @@ extension HarmonyChord.RootOrFunction: Decodable {
 }
 
 extension HarmonyChord: Equatable { }
-extension HarmonyChord: Decodable { }
+extension HarmonyChord: Codable { }

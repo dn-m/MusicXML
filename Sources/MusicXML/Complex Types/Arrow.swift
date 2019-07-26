@@ -19,7 +19,7 @@ public struct Arrow {
 
 extension Arrow.Kind: Equatable { }
 
-extension Arrow.Kind: Decodable {
+extension Arrow.Kind: Codable {
     #warning("TODO: Implement Arrow.Kind: Decoder conformance")
     public init(from decoder: Decoder) throws {
         fatalError("Arrow.Kind.init(from: Decoder) not yet implemented!")
@@ -27,4 +27,4 @@ extension Arrow.Kind: Decodable {
 }
 
 extension Arrow: Equatable { }
-extension Arrow: Decodable { }
+extension Arrow: Codable { }

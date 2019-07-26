@@ -14,4 +14,4 @@ public struct Ornaments {
 }
 
 extension Ornaments: Equatable { }
-extension Ornaments: Decodable { }
+extension Ornaments: Codable { }

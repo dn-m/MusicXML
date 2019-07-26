@@ -26,4 +26,4 @@ public struct TimeModification {
 }
 
 extension TimeModification: Equatable { }
-extension TimeModification: Decodable { }
+extension TimeModification: Codable { }

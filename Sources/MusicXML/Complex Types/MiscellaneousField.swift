@@ -13,4 +13,4 @@ public struct MiscellaneousField {
 }
 
 extension MiscellaneousField: Equatable { }
-extension MiscellaneousField: Decodable { }
+extension MiscellaneousField: Codable { }

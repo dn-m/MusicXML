@@ -20,7 +20,7 @@ extension Score {
     }
 }
 
-extension Score.Traversal: Decodable {
+extension Score.Traversal: Codable {
 
     // MARK: - Decodable
 

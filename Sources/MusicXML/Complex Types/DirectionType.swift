@@ -105,8 +105,8 @@ public enum DirectionType {
 
 extension DirectionType: Equatable { }
 
-extension DirectionType: Decodable {
-    #warning("TODO: Implement DirectionType: Decodable conformance")
+extension DirectionType: Codable {
+    #warning("TODO: Implement DirectionType: Codable conformance")
     public init(from decoder: Decoder) throws {
         fatalError("DirectionType.init(from: Decoder) not yet implemented!")
     }

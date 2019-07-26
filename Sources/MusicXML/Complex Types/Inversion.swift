@@ -13,4 +13,4 @@ public struct Inversion {
 }
 
 extension Inversion: Equatable { }
-extension Inversion: Decodable { }
+extension Inversion: Codable { }

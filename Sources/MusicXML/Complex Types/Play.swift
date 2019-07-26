@@ -22,12 +22,12 @@ public struct Play {
 }
 
 extension Play.Value: Equatable { }
-extension Play.Value: Decodable {
-    #warning("TODO: Implement Play.Value: Decodable conformance")
+extension Play.Value: Codable {
+    #warning("TODO: Implement Play.Value: Codable conformance")
     public init(from decoder: Decoder) throws {
         fatalError("Play.Value.init(from: Decoder) not yet implemented!")
     }
 }
 
 extension Play: Equatable { }
-extension Play: Decodable { }
+extension Play: Codable { }

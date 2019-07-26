@@ -24,4 +24,4 @@ public struct Slash {
 }
 
 extension Slash: Equatable { }
-extension Slash: Decodable { }
+extension Slash: Codable { }

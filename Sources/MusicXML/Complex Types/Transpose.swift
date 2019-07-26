@@ -34,4 +34,4 @@ public struct Transpose {
 }
 
 extension Transpose: Equatable { }
-extension Transpose: Decodable { }
+extension Transpose: Codable { }

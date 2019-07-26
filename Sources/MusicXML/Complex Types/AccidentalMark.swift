@@ -15,4 +15,4 @@ public struct AccidentalMark {
 }
 
 extension AccidentalMark: Equatable { }
-extension AccidentalMark: Decodable { }
+extension AccidentalMark: Codable { }

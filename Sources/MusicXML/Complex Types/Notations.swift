@@ -36,12 +36,12 @@ extension Notations {
 }
 
 extension Notations.Notation: Equatable { }
-extension Notations.Notation: Decodable {
-    #warning("TODO: Implement Notations.Notation: Decodable conformance")
+extension Notations.Notation: Codable {
+    #warning("TODO: Implement Notations.Notation: Codable conformance")
     public init(from decoder: Decoder) throws {
         fatalError("Notations.Notation.init(from: Decoder) not yet implemented!")
     }
 }
 
 extension Notations: Equatable { }
-extension Notations: Decodable { }
+extension Notations: Codable { }

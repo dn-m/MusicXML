@@ -12,4 +12,4 @@ public struct Scordatura {
 }
 
 extension Scordatura: Equatable { }
-extension Scordatura: Decodable { }
+extension Scordatura: Codable { }

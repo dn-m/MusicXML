@@ -53,10 +53,10 @@ extension Credit {
 }
 
 extension Credit.Words: Equatable { }
-extension Credit.Words: Decodable { }
+extension Credit.Words: Codable { }
 
 extension Credit.Kind: Equatable { }
-extension Credit.Kind: Decodable {
+extension Credit.Kind: Codable {
     #warning("TODO: Implement Credit.kind: Decoder conformance")
     public init(from decoder: Decoder) throws {
         fatalError("Credit.Kind.init(from: Decoder) not yet implemented!")
@@ -64,4 +64,4 @@ extension Credit.Kind: Decodable {
 }
 
 extension Credit: Equatable { }
-extension Credit: Decodable { }
+extension Credit: Codable { }

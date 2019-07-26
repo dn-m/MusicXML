@@ -23,12 +23,12 @@ public struct Encoding {
 }
 
 extension Encoding.Kind: Equatable { }
-extension Encoding.Kind: Decodable {
-    #warning("TODO: Implement Encoding.Kind: Decodable conformance")
+extension Encoding.Kind: Codable {
+    #warning("TODO: Implement Encoding.Kind: Codable conformance")
     public init(from decoder: Decoder) throws {
         fatalError("Encoding.Kind.init(from: Decoder) not yet implemented!")
     }
 }
 
 extension Encoding: Equatable { }
-extension Encoding: Decodable { }
+extension Encoding: Codable { }

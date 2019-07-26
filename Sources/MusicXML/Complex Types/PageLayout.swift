@@ -16,17 +16,17 @@ public struct PageLayout {
 
 extension PageLayout {
 
-    public struct Size: Decodable, Equatable {
+    public struct Size: Codable, Equatable {
         let height: Tenths
         let width: Tenths
     }
 
     #warning("FIXME: Refactor Margins a little better to encode logic")
-    public struct Margins: Decodable, Equatable {
+    public struct Margins: Codable, Equatable {
         let even: PageMargins
         let odd: PageMargins?
     }
 }
 
 extension PageLayout: Equatable { }
-extension PageLayout: Decodable { }
+extension PageLayout: Codable { }

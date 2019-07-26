@@ -14,4 +14,4 @@ public struct FirstFret {
 }
 
 extension FirstFret: Equatable { }
-extension FirstFret: Decodable { }
+extension FirstFret: Codable { }

@@ -12,4 +12,4 @@ public struct BarStyleColor {
 }
 
 extension BarStyleColor: Equatable { }
-extension BarStyleColor: Decodable { }
+extension BarStyleColor: Codable { }

@@ -12,4 +12,4 @@ public struct StringNumber {
 }
 
 extension StringNumber: Equatable { }
-extension StringNumber: Decodable { }
+extension StringNumber: Codable { }

@@ -15,4 +15,4 @@ public struct Image {
 }
 
 extension Image: Equatable { }
-extension Image: Decodable { }
+extension Image: Codable { }

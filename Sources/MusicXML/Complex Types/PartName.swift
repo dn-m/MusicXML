@@ -16,4 +16,4 @@ public struct PartName {
 }
 
 extension PartName: Equatable { }
-extension PartName: Decodable { }
+extension PartName: Codable { }

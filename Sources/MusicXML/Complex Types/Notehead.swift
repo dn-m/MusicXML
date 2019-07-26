@@ -17,4 +17,4 @@ public struct Notehead {
 }
 
 extension Notehead: Equatable { }
-extension Notehead: Decodable { }
+extension Notehead: Codable { }

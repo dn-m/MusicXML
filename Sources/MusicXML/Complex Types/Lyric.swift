@@ -59,18 +59,18 @@ extension Lyric {
 }
 
 extension Lyric.Verbal: Equatable { }
-extension Lyric.Verbal: Decodable { }
+extension Lyric.Verbal: Codable { }
 
 extension Lyric.NonVerbal: Equatable { }
-extension Lyric.NonVerbal: Decodable { }
+extension Lyric.NonVerbal: Codable { }
 
 extension Lyric.Kind: Equatable { }
-extension Lyric.Kind: Decodable {
-    #warning("TODO: Implement Lyric.Kind: Decodable conformance")
+extension Lyric.Kind: Codable {
+    #warning("TODO: Implement Lyric.Kind: Codable conformance")
     public init(from decoder: Decoder) throws {
         fatalError("Lyric.Kind.init(from: Decoder) not yet implemented!")
     }
 }
 
 extension Lyric: Equatable { }
-extension Lyric: Decodable { }
+extension Lyric: Codable { }

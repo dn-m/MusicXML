@@ -12,4 +12,4 @@ public struct StringMute {
 }
 
 extension StringMute: Equatable { }
-extension StringMute: Decodable { }
+extension StringMute: Codable { }

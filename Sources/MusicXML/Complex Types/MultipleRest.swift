@@ -14,4 +14,4 @@ public struct MultipleRest {
 }
 
 extension MultipleRest: Equatable { }
-extension MultipleRest: Decodable { }
+extension MultipleRest: Codable { }

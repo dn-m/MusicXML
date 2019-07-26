@@ -17,4 +17,4 @@ public struct Pedal {
 }
 
 extension Pedal: Equatable { }
-extension Pedal: Decodable { }
+extension Pedal: Codable { }

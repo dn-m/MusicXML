@@ -36,8 +36,8 @@ public enum Dynamic {
 }
 
 extension Dynamic: Equatable { }
-extension Dynamic: Decodable {
-    #warning("TODO: Implement Dynamic: Decodable conformance")
+extension Dynamic: Codable {
+    #warning("TODO: Implement Dynamic: Codable conformance")
     public init(from decoder: Decoder) throws {
         fatalError("Dynamic.init(from: Decoder) not yet implemented!")
     }

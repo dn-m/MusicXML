@@ -17,4 +17,4 @@ public struct EmptyLine {
 }
 
 extension EmptyLine: Equatable { }
-extension EmptyLine: Decodable { }
+extension EmptyLine: Codable { }

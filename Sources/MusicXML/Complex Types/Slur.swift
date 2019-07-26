@@ -21,4 +21,4 @@ public struct Slur {
 }
 
 extension Slur: Equatable { }
-extension Slur: Decodable { }
+extension Slur: Codable { }

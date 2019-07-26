@@ -18,4 +18,4 @@ public struct BassStep {
 }
 
 extension BassStep: Equatable { }
-extension BassStep: Decodable { }
+extension BassStep: Codable { }

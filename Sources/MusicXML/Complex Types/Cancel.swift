@@ -15,4 +15,4 @@ public struct Cancel {
 }
 
 extension Cancel: Equatable { }
-extension Cancel: Decodable { }
+extension Cancel: Codable { }

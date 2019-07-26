@@ -11,4 +11,4 @@ public struct Technical {
 }
 
 extension Technical: Equatable { }
-extension Technical: Decodable { }
+extension Technical: Codable { }

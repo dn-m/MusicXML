@@ -14,4 +14,4 @@ public struct OtherAppearance {
 }
 
 extension OtherAppearance: Equatable { }
-extension OtherAppearance: Decodable { }
+extension OtherAppearance: Codable { }

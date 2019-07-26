@@ -12,4 +12,4 @@ public struct PedalTuning {
 }
 
 extension PedalTuning: Equatable { }
-extension PedalTuning: Decodable { }
+extension PedalTuning: Codable { }

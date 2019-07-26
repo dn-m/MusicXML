@@ -15,4 +15,4 @@ public struct GroupName {
 }
 
 extension GroupName: Equatable { }
-extension GroupName: Decodable { }
+extension GroupName: Codable { }

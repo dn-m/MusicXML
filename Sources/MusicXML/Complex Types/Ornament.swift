@@ -21,8 +21,8 @@ public enum Ornament {
 }
 
 extension Ornament: Equatable { }
-extension Ornament: Decodable {
-    #warning("TODO: Implement Ornament: Decodable conformance")
+extension Ornament: Codable {
+    #warning("TODO: Implement Ornament: Codable conformance")
     public init(from decoder: Decoder) throws {
         fatalError("Ornament.init(from: Decoder) not yet implemented!")
     }

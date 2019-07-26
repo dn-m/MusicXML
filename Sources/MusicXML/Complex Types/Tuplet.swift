@@ -35,4 +35,4 @@ public struct Tuplet {
 }
 
 extension Tuplet: Equatable { }
-extension Tuplet: Decodable { }
+extension Tuplet: Codable { }

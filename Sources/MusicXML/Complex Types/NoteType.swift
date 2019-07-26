@@ -12,4 +12,4 @@ public struct NoteType {
 }
 
 extension NoteType: Equatable { }
-extension NoteType: Decodable { }
+extension NoteType: Codable { }

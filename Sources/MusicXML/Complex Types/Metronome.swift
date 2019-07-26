@@ -51,26 +51,26 @@ extension Metronome {
 }
 
 extension Metronome.Regular.Relation: Equatable { }
-extension Metronome.Regular.Relation: Decodable {
-    #warning("TODO: Implement Metronome.Regular.Relation: Decodable conformance")
+extension Metronome.Regular.Relation: Codable {
+    #warning("TODO: Implement Metronome.Regular.Relation: Codable conformance")
     public init(from decoder: Decoder) throws {
         fatalError("Metronome.Regular.Relation.init(from: Decoder not yet implemented!)")
     }
 }
 
 extension Metronome.Regular: Equatable { }
-extension Metronome.Regular: Decodable { }
+extension Metronome.Regular: Codable { }
 
 extension Metronome.Complicated: Equatable { }
-extension Metronome.Complicated: Decodable { }
+extension Metronome.Complicated: Codable { }
 
 extension Metronome.Kind: Equatable { }
-extension Metronome.Kind: Decodable {
-    #warning("TODO: Implement Metronome.Kind: Decodable conformance")
+extension Metronome.Kind: Codable {
+    #warning("TODO: Implement Metronome.Kind: Codable conformance")
     public init(from decoder: Decoder) throws {
         fatalError("Metronome.Kind.init(from: Decoder not yet implemented!)")
     }
 }
 
 extension Metronome: Equatable { }
-extension Metronome: Decodable { }
+extension Metronome: Codable { }

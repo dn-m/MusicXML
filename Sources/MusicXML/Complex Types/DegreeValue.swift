@@ -18,4 +18,4 @@ public struct DegreeValue {
 }
 
 extension DegreeValue: Equatable { }
-extension DegreeValue: Decodable { }
+extension DegreeValue: Codable { }

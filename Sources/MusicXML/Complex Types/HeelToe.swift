@@ -12,4 +12,4 @@ public struct HeelToe {
 }
 
 extension HeelToe: Equatable { }
-extension HeelToe: Decodable { }
+extension HeelToe: Codable { }

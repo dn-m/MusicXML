@@ -14,4 +14,4 @@ public struct Fermata {
 }
 
 extension Fermata: Equatable { }
-extension Fermata: Decodable { }
+extension Fermata: Codable { }

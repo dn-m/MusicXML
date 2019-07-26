@@ -82,7 +82,7 @@ extension Score.Partwise {
     }
 }
 
-extension Score.Partwise: Decodable {
+extension Score.Partwise: Codable {
 
     // MARK: - Decodable
 
@@ -91,7 +91,7 @@ extension Score.Partwise: Decodable {
     }
 }
 
-extension Score.Partwise.Part: Decodable {
+extension Score.Partwise.Part: Codable {
 
     // MARK: - Decodable
 
@@ -101,7 +101,7 @@ extension Score.Partwise.Part: Decodable {
     }
 }
 
-extension Score.Partwise.Measure: Decodable {
+extension Score.Partwise.Measure: Codable {
 
     // MARK: - Decodable
 

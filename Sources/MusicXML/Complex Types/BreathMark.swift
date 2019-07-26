@@ -14,4 +14,4 @@ public struct BreathMark {
 }
 
 extension BreathMark: Equatable { }
-extension BreathMark: Decodable { }
+extension BreathMark: Codable { }

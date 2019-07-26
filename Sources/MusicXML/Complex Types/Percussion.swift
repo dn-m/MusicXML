@@ -32,12 +32,12 @@ extension Percussion {
 }
 
 extension Percussion.Kind: Equatable { }
-extension Percussion.Kind: Decodable {
-    #warning("TODO: Implement Percussion.Kind: Decodable conformance")
+extension Percussion.Kind: Codable {
+    #warning("TODO: Implement Percussion.Kind: Codable conformance")
     public init(from decoder: Decoder) throws {
         fatalError("Percussion.Kind.init(from: Decoder not yet implemented!)")
     }
 }
 
 extension Percussion: Equatable { }
-extension Percussion: Decodable { }
+extension Percussion: Codable { }

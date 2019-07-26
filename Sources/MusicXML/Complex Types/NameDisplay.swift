@@ -23,12 +23,12 @@ extension NameDisplay {
 
 extension NameDisplay.Text: Equatable { }
 
-extension NameDisplay.Text: Decodable {
-    #warning("TODO: Implement NameDisplay.Text: Decodable conformance")
+extension NameDisplay.Text: Codable {
+    #warning("TODO: Implement NameDisplay.Text: Codable conformance")
     public init(from decoder: Decoder) throws {
         fatalError("NameDisplay.Text.init(from: Decoder) not yet implemented!")
     }
 }
 
 extension NameDisplay: Equatable { }
-extension NameDisplay: Decodable { }
+extension NameDisplay: Codable { }

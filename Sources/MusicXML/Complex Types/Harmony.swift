@@ -28,4 +28,4 @@ public struct Harmony {
 }
 
 extension Harmony: Equatable { }
-extension Harmony: Decodable { }
+extension Harmony: Codable { }
