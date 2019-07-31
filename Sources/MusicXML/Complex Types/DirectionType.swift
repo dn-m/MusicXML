@@ -270,5 +270,4 @@ extension DirectionType: Codable {
     }
 }
 
-
 extension DirectionType.CodingKeys: XMLChoiceCodingKey { }
