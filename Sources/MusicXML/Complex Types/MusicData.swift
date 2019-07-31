@@ -10,8 +10,11 @@ import XMLCoder
 // > Here is the basic musical data that is either associated
 // > with a part or a measure, depending on whether partwise
 // > or timewise hierarchy is used.
-public struct MusicData: Equatable {
+public struct MusicData {
+    let values: [Datum]
+}
 
+extension MusicData {
     // <!ENTITY % music-data
     //   "(note | backup | forward | direction | attributes |
     //     harmony | figured-bass | print | sound | barline |
@@ -31,10 +34,9 @@ public struct MusicData: Equatable {
         case link(Link)
         case bookmark(Bookmark)
     }
-
-    let values: [Datum]
 }
 
+extension MusicData: Equatable { }
 extension MusicData: Codable { }
 
 extension MusicData.Datum: Codable {

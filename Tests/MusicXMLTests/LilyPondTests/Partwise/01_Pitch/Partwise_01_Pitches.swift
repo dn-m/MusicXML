@@ -5,4 +5,11 @@
 //  Created by James Bean on 5/28/19.
 //
 
-enum Partwise_01_Pitches { }
+import XCTest
+import XMLCoder
+@testable import MusicXML
+
+class Partwise_01_Pitches: XCTestCase {
+
+    
+}

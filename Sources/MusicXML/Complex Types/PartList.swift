@@ -27,8 +27,8 @@ extension PartList {
 extension PartList.Item: Equatable { }
 extension PartList.Item: Codable {
     enum CodingKeys: String, CodingKey {
-        case group
-        case part
+        case group = "part-group"
+        case part = "score-part"
     }
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

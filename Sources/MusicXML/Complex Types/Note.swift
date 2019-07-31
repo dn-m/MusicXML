@@ -12,12 +12,7 @@
 /// elements. Having these two types of information available can make interchange considerably
 /// easier, as some programs handle one type of information much more readily than the other.
 public struct Note {
-    public let defaultX: Tenths?
-    public let defaultY: Tenths?
-    public let relativeX: Tenths?
-    public let relativeY: Tenths?
-    public let font: Font?
-    public let color: Color?
+    public let printStyle: PrintStyle?
     public let printObject: Bool?
     public let printDot: Bool?
     public let printSpacing: Bool?
@@ -56,19 +51,11 @@ extension Note: Codable { }
 //public struct Note: Codable, Equatable {
 //
 //    // (
-//    //   (
-//    //      (
-//    //          grace,
-//    //          (
-//    //              (%full-note;, (tie, tie?)?) | (cue, %full-note;)
-//    //          )
-//    //      )
+//    //   ((grace, ((%full-note;, (tie, tie?)?) | (cue, %full-note;)))
 //    //   |
 //    //   (cue, %full-note;, duration)
 //    //   |
-//    //   (
-//    //      %full-note;, duration, (tie, tie?)?
-//    //   )
+//    //   (%full-note;, duration, (tie, tie?)?)
 //    // )
 //    // TODO: Kind
 //
