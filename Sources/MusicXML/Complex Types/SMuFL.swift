@@ -5,7 +5,6 @@
 //  Created by James Bean on 5/28/19.
 //
 
-#warning("TODO: optional-unique-id")
 //    The optional-unique-id entity allows an element to optionally
 //    specify an ID that is unique to the entire document. This
 //    entity is not used for a required id attribute, or for an id
