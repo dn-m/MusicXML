@@ -5,6 +5,8 @@
 //  Created by James Bean on 12/21/18.
 //
 
+import XMLCoder
+
 /// The credit type represents the appearance of the title, composer, arranger, lyricist, copyright,
 /// dedication, and other text and graphics that commonly appears on the first page of a score. The
 /// credit-words and credit-image elements are similar to the words and image elements for
@@ -46,9 +48,11 @@ extension Credit {
         public let bookmark: [Bookmark]
     }
 
+    #warning("FIXME: Establish correct model for Credit.Kind.words")
     public enum Kind {
         case image(Image)
-        case words(FormattedText, [Words])
+        case words([Words])
+        // case words(FormattedText, [Words])
     }
 }
 
@@ -57,11 +61,30 @@ extension Credit.Words: Codable { }
 
 extension Credit.Kind: Equatable { }
 extension Credit.Kind: Codable {
-    #warning("TODO: Implement Credit.kind: Decoder conformance")
+    enum CodingKeys: String, CodingKey {
+        case image
+        case words
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case let .image(value):
+            try container.encode(value, forKey: .image)
+        case let .words(value):
+            try container.encode(value, forKey: .words)
+        }
+    }
     public init(from decoder: Decoder) throws {
-        fatalError("Credit.Kind.init(from: Decoder) not yet implemented!")
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        do {
+            self = .image(try container.decode(Image.self, forKey: .image))
+        } catch {
+            self = .words(try container.decode([Credit.Words].self, forKey: .words))
+        }
     }
 }
+
+extension Credit.Kind.CodingKeys: XMLChoiceCodingKey { }
 
 extension Credit: Equatable { }
 extension Credit: Codable { }

@@ -5,6 +5,8 @@
 //  Created by James Bean on 12/21/18.
 //
 
+import XMLCoder
+
 // > Here is the basic musical data that is either associated
 // > with a part or a measure, depending on whether partwise
 // > or timewise hierarchy is used.
@@ -33,15 +35,7 @@ public struct MusicData: Equatable {
     let values: [Datum]
 }
 
-extension MusicData: Codable {
-
-    // MARK: - Decodable
-
-    public init(from decoder: Decoder) throws {
-        var container = try decoder.unkeyedContainer()
-        self.values = try container.decode([Datum].self)
-    }
-}
+extension MusicData: Codable { }
 
 extension MusicData.Datum: Codable {
 
@@ -61,6 +55,38 @@ extension MusicData.Datum: Codable {
         case grouping
         case link
         case bookmark
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case let .note(value):
+            try container.encode(value, forKey: .note)
+        case let .backup(value):
+            try container.encode(value, forKey: .backup)
+        case let .forward(value):
+            try container.encode(value, forKey: .forward)
+        case let .direction(value):
+            try container.encode(value, forKey: .direction)
+        case let .attributes(value):
+            try container.encode(value, forKey: .attributes)
+        case let .harmony(value):
+            try container.encode(value, forKey: .harmony)
+        case let .figuredBass(value):
+            try container.encode(value, forKey: .figuredBass)
+        case let .print(value):
+            try container.encode(value, forKey: .print)
+        case let .sound(value):
+            try container.encode(value, forKey: .sound)
+        case let .barline(value):
+            try container.encode(value, forKey: .barline)
+        case let .grouping(value):
+            try container.encode(value, forKey: .grouping)
+        case let .link(value):
+            try container.encode(value, forKey: .link)
+        case let .bookmark(value):
+            try container.encode(value, forKey: .bookmark)
+        }
     }
 
     public init(from decoder: Decoder) throws {
@@ -123,3 +149,5 @@ extension MusicData.Datum: Codable {
         }
     }
 }
+
+extension MusicData.Datum.CodingKeys: XMLChoiceCodingKey { }

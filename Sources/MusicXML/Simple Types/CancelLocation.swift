@@ -9,8 +9,11 @@
 /// a new key signature: to the left, to the right, or before the barline and to the left. It is
 /// left by default. For mid-measure key elements, a cancel location of before-barline should be
 /// treated like a cancel location of left.
-public enum CancelLocation: String, Decodable {
+public enum CancelLocation: String {
     case left = "left"
     case right = "right"
     case beforeBarline = "before-barline"
 }
+
+extension CancelLocation: Equatable { }
+extension CancelLocation: Codable { }

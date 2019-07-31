@@ -18,3 +18,6 @@ public enum ArrowStyle: String {
     case combined
     case other
 }
+
+extension ArrowStyle: Equatable { }
+extension ArrowStyle: Codable { }

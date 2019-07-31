@@ -5,7 +5,7 @@
 //  Created by James Bean on 5/19/19.
 //
 
-public enum Dynamic {
+public enum Dynamic: String {
     case p
     case pp
     case ppp
@@ -32,13 +32,9 @@ public enum Dynamic {
     case n
     case pf
     case sfzp
-    case other(OtherDynamics)
+    #warning("FIXME: Add support for Dynamic.other(OtherDynamics)")
+    //case other(OtherDynamics)
 }
 
 extension Dynamic: Equatable { }
-extension Dynamic: Codable {
-    #warning("TODO: Implement Dynamic: Codable conformance")
-    public init(from decoder: Decoder) throws {
-        fatalError("Dynamic.init(from: Decoder) not yet implemented!")
-    }
-}
+extension Dynamic: Codable { }

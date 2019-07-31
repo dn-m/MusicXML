@@ -5,6 +5,8 @@
 //  Created by James Bean on 5/15/19.
 //
 
+import XMLCoder
+
 /// The metronome type represents metronome marks and other metric relationships. The beat-unit
 /// group and per-minute element specify regular metronome marks. The metronome-note and
 /// metronome-relation elements allow for the specification of more complicated metric
@@ -23,10 +25,11 @@ extension Metronome {
 
     public struct Regular {
 
-        // TODO: Consider naming, verify correct model!
+        #warning("FIXME: Establish correct model for Metronome.Regular.Relation")
         public enum Relation {
             case perMinute(PerMinute)
-            case beatUnit(NoteTypeValue, [Empty])
+            case beatUnit(NoteTypeValue)
+            // case beatUnit(NoteTypeValue, [Empty])
         }
 
         /// The beat-unit element indicates the graphical note type to use in a metronome mark.
@@ -52,9 +55,26 @@ extension Metronome {
 
 extension Metronome.Regular.Relation: Equatable { }
 extension Metronome.Regular.Relation: Codable {
-    #warning("TODO: Implement Metronome.Regular.Relation: Codable conformance")
+    enum CodingKeys: String, CodingKey {
+        case perMinute
+        case beatUnit
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case let .perMinute(value):
+            try container.encode(value, forKey: .perMinute)
+        case let .beatUnit(value):
+            try container.encode(value, forKey: .beatUnit)
+        }
+    }
     public init(from decoder: Decoder) throws {
-        fatalError("Metronome.Regular.Relation.init(from: Decoder not yet implemented!)")
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        do {
+            self = .perMinute(try container.decode(PerMinute.self, forKey: .perMinute))
+        } catch {
+            self = .beatUnit(try container.decode(NoteTypeValue.self, forKey: .beatUnit))
+        }
     }
 }
 
@@ -66,11 +86,30 @@ extension Metronome.Complicated: Codable { }
 
 extension Metronome.Kind: Equatable { }
 extension Metronome.Kind: Codable {
-    #warning("TODO: Implement Metronome.Kind: Codable conformance")
+    enum CodingKeys: String, CodingKey {
+        case regular
+        case relative
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case let .regular(value):
+            try container.encode(value, forKey: .regular)
+        case let .relative(value):
+            try container.encode(value, forKey: .relative)
+        }
+    }
     public init(from decoder: Decoder) throws {
-        fatalError("Metronome.Kind.init(from: Decoder not yet implemented!)")
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        do {
+            self = .regular(try container.decode(Metronome.Regular.self, forKey: .regular))
+        } catch {
+            self = .relative(try container.decode(Metronome.Complicated.self, forKey: .relative))
+        }
     }
 }
+
+extension Metronome.Kind.CodingKeys: XMLChoiceCodingKey { }
 
 extension Metronome: Equatable { }
 extension Metronome: Codable { }

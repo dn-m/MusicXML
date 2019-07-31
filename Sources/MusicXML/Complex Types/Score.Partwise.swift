@@ -103,27 +103,15 @@ extension Score.Partwise.Part: Codable {
 
 extension Score.Partwise.Measure: Codable {
 
-    // MARK: - Decodable
+    // MARK: - Codable
 
     enum CodingKeys: String, CodingKey {
         case number
-        case attributes
         case text
         case implicit
         case nonControlling = "non-controlling"
         case width
         case optionalUniqueID = "optional-unique-id"
-    }
-
-    public init(from decoder: Decoder) throws {
-        let keyed = try decoder.container(keyedBy: CodingKeys.self)
-        var unkeyed = try decoder.unkeyedContainer()
-        self.number = try keyed.decode(Int.self, forKey: .number)
-        self.text = try keyed.decodeIfPresent(String.self, forKey: .text)
-        self.implicit = try keyed.decodeIfPresent(Bool.self, forKey: .implicit)
-        self.nonControlling = try keyed.decodeIfPresent(Bool.self, forKey: .nonControlling)
-        self.width = try keyed.decodeIfPresent(Tenths.self, forKey: .width)
-        self.optionalUniqueID = try keyed.decodeIfPresent(Int.self, forKey: .optionalUniqueID)
-        self.musicData = try unkeyed.decode(MusicData.self)
+        case musicData
     }
 }

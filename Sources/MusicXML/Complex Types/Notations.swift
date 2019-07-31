@@ -5,6 +5,8 @@
 //  Created by James Bean on 5/19/19.
 //
 
+import XMLCoder
+
 /// Notations refer to musical notations, not XML notations. Multiple notations are allowed in order
 /// to represent multiple editorial levels. The print-object attribute, added in Version 3.0, allows
 /// notations to represent details of performance technique, such as fingerings, without having them
@@ -37,11 +39,120 @@ extension Notations {
 
 extension Notations.Notation: Equatable { }
 extension Notations.Notation: Codable {
-    #warning("TODO: Implement Notations.Notation: Codable conformance")
+    enum CodingKeys: String, CodingKey {
+        case tied
+        case slur
+        case tuplet
+        case glissando
+        case slide
+        case ornaments
+        case technical
+        case articulations
+        case dynamics
+        case fermata
+        case arpeggiate
+        case nonArpeggiate
+        case accidentalMark
+        case other
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case let .tied(value):
+            try container.encode(value, forKey: .tied)
+        case let .slur(value):
+            try container.encode(value, forKey: .slur)
+        case let .tuplet(value):
+            try container.encode(value, forKey: .tuplet)
+        case let .glissando(value):
+            try container.encode(value, forKey: .glissando)
+        case let .slide(value):
+            try container.encode(value, forKey: .slide)
+        case let .ornaments(value):
+            try container.encode(value, forKey: .ornaments)
+        case let .technical(value):
+            try container.encode(value, forKey: .technical)
+        case let .articulations(value):
+            try container.encode(value, forKey: .articulations)
+        case let .dynamics(value):
+            try container.encode(value, forKey: .dynamics)
+        case let .fermata(value):
+            try container.encode(value, forKey: .fermata)
+        case let .arpeggiate(value):
+            try container.encode(value, forKey: .arpeggiate)
+        case let .nonArpeggiate(value):
+            try container.encode(value, forKey: .nonArpeggiate)
+        case let .accidentalMark(value):
+            try container.encode(value, forKey: .accidentalMark)
+        case let .other(value):
+            try container.encode(value, forKey: .other)
+        }
+    }
     public init(from decoder: Decoder) throws {
-        fatalError("Notations.Notation.init(from: Decoder) not yet implemented!")
+
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+            return try container.decode(T.self, forKey: key)
+        }
+
+        do {
+            self = .tied(try decode(.tied))
+        } catch {
+            do {
+                self = .slur(try decode(.slur))
+            } catch {
+                do {
+                    self = .tuplet(try decode(.tuplet))
+                } catch {
+                    do {
+                        self = .glissando(try decode(.glissando))
+                    } catch {
+                        do {
+                            self = .slide(try decode(.slide))
+                        } catch {
+                            do {
+                                self = .ornaments(try decode(.ornaments))
+                            } catch {
+                                do {
+                                    self = .technical(try decode(.technical))
+                                } catch {
+                                    do {
+                                        self = .articulations(try decode(.articulations))
+                                    } catch {
+                                        do {
+                                            self = .dynamics(try decode(.dynamics))
+                                        } catch {
+                                            do {
+                                                self = .fermata(try decode(.fermata))
+                                            } catch {
+                                                do {
+                                                    self = .arpeggiate(try decode(.arpeggiate))
+                                                } catch {
+                                                    do {
+                                                        self = .nonArpeggiate(try decode(.nonArpeggiate))
+                                                    } catch {
+                                                        do {
+                                                            self = .accidentalMark(try decode(.accidentalMark))
+                                                        } catch {
+                                                            self = .other(try decode(.other))
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
+
+extension Notations.Notation.CodingKeys: XMLChoiceCodingKey { }
 
 extension Notations: Equatable { }
 extension Notations: Codable { }

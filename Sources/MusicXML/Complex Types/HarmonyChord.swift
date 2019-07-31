@@ -5,6 +5,8 @@
 //  Created by James Bean on 5/16/19.
 //
 
+import XMLCoder
+
 // > The harmony elements are based on Humdrum's **harm
 // > encoding, extended to support chord symbols in popular
 // > music as well as functional harmony analysis in classical
@@ -53,6 +55,15 @@ extension HarmonyChord.RootOrFunction: Codable {
         case root
         case function
     }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case let .root(value):
+            try container.encode(value, forKey: .root)
+        case let .function(value):
+            try container.encode(value, forKey: .function)
+        }
+    }
     public init(from decoder: Decoder) throws {
         let keyed = try decoder.container(keyedBy: CodingKeys.self)
         do {
@@ -61,7 +72,10 @@ extension HarmonyChord.RootOrFunction: Codable {
             self = .function(try keyed.decode(StyleText.self, forKey: .function))
         }
     }
+
 }
+
+extension HarmonyChord.RootOrFunction.CodingKeys: XMLChoiceCodingKey { }
 
 extension HarmonyChord: Equatable { }
 extension HarmonyChord: Codable { }

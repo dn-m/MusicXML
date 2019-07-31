@@ -35,6 +35,15 @@ extension ScoreInstrument.SoloEnsemble: Codable {
         case solo
         case ensemble
     }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case .solo:
+            try container.encode("", forKey: .solo)
+        case let .ensemble(value):
+            try container.encode(value, forKey: .ensemble)
+        }
+    }
     public init(from decoder: Decoder) throws {
         let keyed = try decoder.container(keyedBy: CodingKeys.self)
         do {

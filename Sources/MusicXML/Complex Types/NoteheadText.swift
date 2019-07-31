@@ -5,6 +5,8 @@
 //  Created by James Bean on 5/19/19.
 //
 
+import XMLCoder
+
 public struct NoteheadText {
     public enum Kind {
         case displayText(FormattedText)
@@ -15,11 +17,30 @@ public struct NoteheadText {
 
 extension NoteheadText.Kind: Equatable { }
 extension NoteheadText.Kind: Codable {
-    #warning("TODO: Implement NoteheadText.Kind: Codable conformance")
+    enum CodingKeys: String, CodingKey {
+        case displayText
+        case accidentalText
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case let .displayText(value):
+            try container.encode(value, forKey: .displayText)
+        case let .accidentalText(value):
+            try container.encode(value, forKey: .accidentalText)
+        }
+    }
     public init(from decoder: Decoder) throws {
-        fatalError("NoteheadText.Kind.init(from: Decoder) not yet implemented!")
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        do {
+            self = .displayText(try container.decode(FormattedText.self, forKey: .displayText))
+        } catch {
+            self = .accidentalText(try container.decode(AccidentalText.self, forKey: .accidentalText))
+        }
     }
 }
+
+extension NoteheadText.Kind.CodingKeys: XMLChoiceCodingKey { }
 
 extension NoteheadText: Equatable { }
 extension NoteheadText: Codable { }

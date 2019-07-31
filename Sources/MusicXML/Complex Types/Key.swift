@@ -5,6 +5,8 @@
 //  Created by James Bean on 12/21/18.
 //
 
+import XMLCoder
+
 /// The key type represents a key signature. Both traditional and non-traditional key signatures are
 /// supported. If absent, the key signature applies to all staves in the part. Key signatures appear
 /// at the start of each system unless the print-object attribute has been set to "no".
@@ -46,11 +48,30 @@ extension Key.Traditional: Codable { }
 
 extension Key.Kind: Equatable { }
 extension Key.Kind: Codable {
-    #warning("TODO: Implement Key.Kind: Codable conformance")
+    enum CodingKeys: String, CodingKey {
+        case traditional
+        case nonTraditional
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case let .traditional(value):
+            try container.encode(value, forKey: .traditional)
+        case let .nonTraditional(value):
+            try container.encode(value, forKey: .nonTraditional)
+        }
+    }
     public init(from decoder: Decoder) throws {
-        fatalError("Key.Kind.init(from: Decoder) not yet implemented!")
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        do {
+            self = .traditional(try container.decode(Key.Traditional.self, forKey: .traditional))
+        } catch {
+            self = .nonTraditional(try container.decode(Key.NonTraditional.self, forKey: .nonTraditional))
+        }
     }
 }
+
+extension Key.Kind.CodingKeys: XMLChoiceCodingKey { }
 
 extension Key: Equatable { }
 extension Key: Codable { }

@@ -5,6 +5,8 @@
 //  Created by James Bean on 5/16/19.
 //
 
+import XMLCoder
+
 /// The lyric type represents text underlays for lyrics, based on Humdrum with support for other
 /// formats. Two text elements that are not separated by an elision element are part of the same
 /// syllable, but may have different text formatting. The MusicXML 2.0 XSD is more strict than the
@@ -66,11 +68,30 @@ extension Lyric.NonVerbal: Codable { }
 
 extension Lyric.Kind: Equatable { }
 extension Lyric.Kind: Codable {
-    #warning("TODO: Implement Lyric.Kind: Codable conformance")
+    enum CodingKeys: String, CodingKey {
+        case verbal
+        case nonVerbal
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case let .verbal(value):
+            try container.encode(value, forKey: .verbal)
+        case let .nonVerbal(value):
+            try container.encode(value, forKey: .nonVerbal)
+        }
+    }
     public init(from decoder: Decoder) throws {
-        fatalError("Lyric.Kind.init(from: Decoder) not yet implemented!")
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        do {
+            self = .verbal(try container.decode(Lyric.Verbal.self, forKey: .verbal))
+        } catch {
+            self = .nonVerbal(try container.decode(Lyric.NonVerbal.self, forKey: .nonVerbal))
+        }
     }
 }
+
+extension Lyric.Kind.CodingKeys: XMLChoiceCodingKey { }
 
 extension Lyric: Equatable { }
 extension Lyric: Codable { }

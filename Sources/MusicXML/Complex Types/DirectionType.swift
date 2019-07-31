@@ -5,6 +5,8 @@
 //  Created by James Bean on 5/15/19.
 //
 
+import XMLCoder
+
 /// Textual direction types may have more than 1 component due to multiple fonts. The dynamics
 /// element may also be used in the notations element. Attribute groups related to print suggestions
 /// apply to the individual direction-type, not to the overall direction.
@@ -106,8 +108,167 @@ public enum DirectionType {
 extension DirectionType: Equatable { }
 
 extension DirectionType: Codable {
-    #warning("TODO: Implement DirectionType: Codable conformance")
+    enum CodingKeys: String, CodingKey {
+        case accordianRegistration
+        case bracket
+        case coda
+        case damp
+        case dampAll
+        case dashes
+        case dynamics
+        case eyeglasses
+        case harpPedals
+        case image
+        case metronome
+        case octaveShift
+        case otherDirection
+        case pedal
+        case percussion
+        case principleVoice
+        case rehearsal
+        case scordatura
+        case segno
+        case stringMute
+        case wedge
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case let .accordionRegistration(value):
+            try container.encode(value, forKey: .accordianRegistration)
+        case let .bracket(value):
+            try container.encode(value, forKey: .bracket)
+        case let .coda(value):
+            try container.encode(value, forKey: .coda)
+        case let .damp(value):
+            try container.encode(value, forKey: .damp)
+        case let .dampAll(value):
+            try container.encode(value, forKey: .dampAll)
+        case let .dashes(value):
+            try container.encode(value, forKey: .dashes)
+        case let .dynamics(value):
+            try container.encode(value, forKey: .dynamics)
+        case let .eyeglasses(value):
+            try container.encode(value, forKey: .eyeglasses)
+        case let .harpPedals(value):
+            try container.encode(value, forKey: .harpPedals)
+        case let .image(value):
+            try container.encode(value, forKey: .image)
+        case let .metronome(value):
+            try container.encode(value, forKey: .metronome)
+        case let .octaveShift(value):
+            try container.encode(value, forKey: .octaveShift)
+        case let .otherDirection(value):
+            try container.encode(value, forKey: .otherDirection)
+        case let .pedal(value):
+            try container.encode(value, forKey: .pedal)
+        case let .percussion(value):
+            try container.encode(value, forKey: .percussion)
+        case let .principleVoice(value):
+            try container.encode(value, forKey: .principleVoice)
+        case let .rehearsal(value):
+            try container.encode(value, forKey: .rehearsal)
+        case let .scordatura(value):
+            try container.encode(value, forKey: .scordatura)
+        case let .segno(value):
+            try container.encode(value, forKey: .segno)
+        case let .stringMute(value):
+            try container.encode(value, forKey: .stringMute)
+        case let .wedge(value):
+            try container.encode(value, forKey: .wedge)
+        }
+    }
     public init(from decoder: Decoder) throws {
-        fatalError("DirectionType.init(from: Decoder) not yet implemented!")
+
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+            return try container.decode(T.self, forKey: key)
+        }
+
+        do {
+            self = .accordionRegistration(try decode(.accordianRegistration))
+        } catch {
+            do {
+                self = .bracket(try decode(.bracket))
+            } catch {
+                do {
+                    self = .coda(try decode(.coda))
+                } catch {
+                    do {
+                        self = .damp(try decode(.damp))
+                    } catch {
+                        do {
+                            self = .dampAll(try decode(.dampAll))
+                        } catch {
+                            do {
+                                self = .dashes(try decode(.dashes))
+                            } catch {
+                                do {
+                                    self = .dynamics(try decode(.dynamics))
+                                } catch {
+                                    do {
+                                        self = .eyeglasses(try decode(.eyeglasses))
+                                    } catch {
+                                        do {
+                                            self = .harpPedals(try decode(.harpPedals))
+                                        } catch {
+                                            do {
+                                                self = .image(try decode(.image))
+                                            } catch {
+                                                do {
+                                                    self = .metronome(try decode(.metronome))
+                                                } catch {
+                                                    do {
+                                                        self = .octaveShift(try decode(.octaveShift))
+                                                    } catch {
+                                                        do {
+                                                            self = .otherDirection(try decode(.otherDirection))
+                                                        } catch {
+                                                            do {
+                                                                self = .pedal(try decode(.pedal))
+                                                            } catch {
+                                                                do {
+                                                                    self = .percussion(try decode(.percussion))
+                                                                } catch {
+                                                                    do {
+                                                                        self = .principleVoice(try decode(.percussion))
+                                                                    } catch {
+                                                                        do {
+                                                                            self = .rehearsal(try decode(.rehearsal))
+                                                                        } catch {
+                                                                            do {
+                                                                                self = .scordatura(try decode(.scordatura))
+                                                                            } catch {
+                                                                                do {
+                                                                                    self = .segno(try decode(.segno))
+                                                                                } catch {
+                                                                                    do {
+                                                                                        self = .stringMute(try decode(.stringMute))
+                                                                                    } catch {
+                                                                                        self = .wedge(try decode(.wedge))
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
+
+
+extension DirectionType.CodingKeys: XMLChoiceCodingKey { }

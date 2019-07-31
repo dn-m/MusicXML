@@ -22,3 +22,6 @@ public enum ArrowDirection: String {
     case northeastSouthwest = "northeast southwest"
     case other
 }
+
+extension ArrowDirection: Equatable { }
+extension ArrowDirection: Codable { }
