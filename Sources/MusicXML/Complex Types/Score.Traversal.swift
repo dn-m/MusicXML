@@ -5,6 +5,8 @@
 //  Created by James Bean on 12/21/18.
 //
 
+import XMLCoder
+
 extension Score {
 
     // MARK: - Score Traversal
@@ -20,13 +22,23 @@ extension Score {
     }
 }
 
-extension Score.Traversal: Decodable {
+extension Score.Traversal: Codable {
 
-    // MARK: - Decodable
+    // MARK: - Codable
 
     enum CodingKeys: String, CodingKey {
         case partwise = "score-partwise"
         case timewise = "score-timewise"
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case let .partwise(value):
+            try container.encode(value, forKey: .partwise)
+        case let .timewise(value):
+            try container.encode(value, forKey: .timewise)
+        }
     }
 
     public init(from decoder: Decoder) throws {
@@ -38,3 +50,5 @@ extension Score.Traversal: Decodable {
         }
     }
 }
+
+extension Score.Traversal.CodingKeys: XMLChoiceCodingKey { }

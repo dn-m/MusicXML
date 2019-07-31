@@ -27,4 +27,4 @@ public struct Dynamics {
 
 
 extension Dynamics: Equatable { }
-extension Dynamics: Decodable { }
+extension Dynamics: Codable { }

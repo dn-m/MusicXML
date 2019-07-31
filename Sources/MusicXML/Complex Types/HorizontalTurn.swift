@@ -15,4 +15,4 @@ public struct HorizontalTurn {
 }
 
 extension HorizontalTurn: Equatable { }
-extension HorizontalTurn: Decodable { }
+extension HorizontalTurn: Codable { }

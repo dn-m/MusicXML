@@ -13,4 +13,4 @@ public struct EditorialVoice {
 }
 
 extension EditorialVoice: Equatable { }
-extension EditorialVoice: Decodable { }
+extension EditorialVoice: Codable { }

@@ -28,7 +28,7 @@
 /// location is specified, the right barline is the default.
 public struct Barline {
 
-//    public struct Fermatas: Decodable, Equatable {
+//    public struct Fermatas: Codable, Equatable {
 //        let above: Fermata?
 //        let below: Fermata?
 //    }
@@ -72,7 +72,7 @@ public struct Barline {
     public let `repeat`: Repeat?
 }
 
-//extension Barline: Decodable {
+//extension Barline: Codable {
 //    enum CodingKeys: String, CodingKey {
 //        case location
 //        case barStyle = "bar-style"
@@ -89,4 +89,4 @@ public struct Barline {
 //}
 
 extension Barline: Equatable { }
-extension Barline: Decodable { }
+extension Barline: Codable { }

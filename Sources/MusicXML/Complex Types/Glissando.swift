@@ -19,4 +19,4 @@ public struct Glissando {
 }
 
 extension Glissando: Equatable { }
-extension Glissando: Decodable { }
+extension Glissando: Codable { }

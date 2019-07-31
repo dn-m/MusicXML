@@ -11,4 +11,4 @@ public struct EmptyFont {
 }
 
 extension EmptyFont: Equatable { }
-extension EmptyFont: Decodable { }
+extension EmptyFont: Codable { }

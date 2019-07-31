@@ -18,4 +18,4 @@ public struct Direction {
 }
 
 extension Direction: Equatable { }
-extension Direction: Decodable { }
+extension Direction: Codable { }

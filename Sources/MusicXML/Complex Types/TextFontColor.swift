@@ -18,4 +18,4 @@ public struct TextFontColor {
 }
 
 extension TextFontColor: Equatable { }
-extension TextFontColor: Decodable { }
+extension TextFontColor: Codable { }

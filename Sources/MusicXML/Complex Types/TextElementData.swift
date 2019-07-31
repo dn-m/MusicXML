@@ -19,4 +19,4 @@ public struct TextElementData {
 }
 
 extension TextElementData: Equatable { }
-extension TextElementData: Decodable { }
+extension TextElementData: Codable { }

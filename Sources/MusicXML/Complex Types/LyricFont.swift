@@ -13,4 +13,4 @@ public struct LyricFont {
 }
 
 extension LyricFont: Equatable { }
-extension LyricFont: Decodable { }
+extension LyricFont: Codable { }

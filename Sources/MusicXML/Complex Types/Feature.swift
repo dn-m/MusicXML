@@ -14,4 +14,4 @@ public struct Feature {
 }
 
 extension Feature: Equatable { }
-extension Feature: Decodable { }
+extension Feature: Codable { }

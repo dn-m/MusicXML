@@ -41,7 +41,7 @@ public struct Score {
 
 extension Score: Equatable { }
 
-extension Score: Decodable {
+extension Score: Codable {
 
     // MARK: - Decodable
 

@@ -19,4 +19,4 @@ public struct Tied {
 }
 
 extension Tied: Equatable { }
-extension Tied: Decodable { }
+extension Tied: Codable { }

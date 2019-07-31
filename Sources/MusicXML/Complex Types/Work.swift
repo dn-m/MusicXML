@@ -14,4 +14,4 @@ public struct Work {
 }
 
 extension Work: Equatable { }
-extension Work: Decodable { }
+extension Work: Codable { }

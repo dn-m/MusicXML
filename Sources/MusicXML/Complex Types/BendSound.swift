@@ -25,4 +25,4 @@ public struct BendSound {
 }
 
 extension BendSound: Equatable { }
-extension BendSound: Decodable { }
+extension BendSound: Codable { }

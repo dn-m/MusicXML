@@ -13,4 +13,4 @@ public struct GroupSymbol {
 }
 
 extension GroupSymbol: Equatable { }
-extension GroupSymbol: Decodable { }
+extension GroupSymbol: Codable { }

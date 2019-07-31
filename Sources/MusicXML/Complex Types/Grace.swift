@@ -15,4 +15,4 @@ public struct Grace {
 }
 
 extension Grace: Equatable { }
-extension Grace: Decodable { }
+extension Grace: Codable { }

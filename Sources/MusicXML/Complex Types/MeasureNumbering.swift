@@ -13,4 +13,4 @@ public struct MeasureNumbering {
 }
 
 extension MeasureNumbering: Equatable { }
-extension MeasureNumbering: Decodable { }
+extension MeasureNumbering: Codable { }

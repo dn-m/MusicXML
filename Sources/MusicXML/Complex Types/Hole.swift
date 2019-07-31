@@ -23,4 +23,4 @@ public struct Hole {
 }
 
 extension Hole: Equatable { }
-extension Hole: Decodable { }
+extension Hole: Codable { }

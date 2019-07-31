@@ -13,4 +13,4 @@ public struct VirtualInstrument {
 }
 
 extension VirtualInstrument: Equatable { }
-extension VirtualInstrument: Decodable { }
+extension VirtualInstrument: Codable { }

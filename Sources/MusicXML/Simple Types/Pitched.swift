@@ -17,3 +17,6 @@ public enum Pitched: String {
     case vibraphone
     case xylophone
 }
+
+extension Pitched: Equatable { }
+extension Pitched: Codable { }

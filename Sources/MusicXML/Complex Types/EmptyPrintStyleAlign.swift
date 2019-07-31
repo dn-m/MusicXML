@@ -14,4 +14,4 @@ public struct EmptyPrintStyleAlign {
 }
 
 extension EmptyPrintStyleAlign: Equatable { }
-extension EmptyPrintStyleAlign: Decodable { }
+extension EmptyPrintStyleAlign: Codable { }

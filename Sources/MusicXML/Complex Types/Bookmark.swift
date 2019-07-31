@@ -14,4 +14,4 @@ public struct Bookmark {
 }
 
 extension Bookmark: Equatable { }
-extension Bookmark: Decodable { }
+extension Bookmark: Codable { }

@@ -12,4 +12,4 @@ public struct Level {
 }
 
 extension Level: Equatable { }
-extension Level: Decodable { }
+extension Level: Codable { }

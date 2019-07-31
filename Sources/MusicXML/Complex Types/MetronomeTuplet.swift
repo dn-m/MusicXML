@@ -15,4 +15,4 @@ public struct MetronomeTuplet {
 }
 
 extension MetronomeTuplet: Equatable { }
-extension MetronomeTuplet: Decodable { }
+extension MetronomeTuplet: Codable { }

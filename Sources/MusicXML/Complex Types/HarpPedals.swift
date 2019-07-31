@@ -15,4 +15,4 @@ public struct HarpPedals {
 }
 
 extension HarpPedals: Equatable { }
-extension HarpPedals: Decodable { }
+extension HarpPedals: Codable { }

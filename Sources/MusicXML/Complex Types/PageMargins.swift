@@ -16,12 +16,15 @@ public struct PageMargins {
 }
 
 extension PageMargins {
-    public enum Kind: String, Decodable, Equatable {
+    public enum Kind: String {
         case odd
         case even
         case both
     }
 }
 
+extension PageMargins.Kind: Equatable { }
+extension PageMargins.Kind: Codable { }
+
 extension PageMargins: Equatable { }
-extension PageMargins: Decodable { }
+extension PageMargins: Codable { }

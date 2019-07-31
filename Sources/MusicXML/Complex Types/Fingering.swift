@@ -17,4 +17,4 @@ public struct Fingering {
 }
 
 extension Fingering: Equatable { }
-extension Fingering: Decodable { }
+extension Fingering: Codable { }

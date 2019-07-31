@@ -5,6 +5,8 @@
 //  Created by James Bean on 12/21/18.
 //
 
+import XMLCoder
+
 /// Time signatures are represented by the beats element for the numerator and the beat-type element
 /// for the denominator. Multiple pairs of beat and beat-type elements are used for composite time
 /// signatures with multiple denominators, such as 2/4 + 3/8. A composite such as 3+2/8 requires
@@ -57,7 +59,7 @@ extension Time {
     // > which applies to the first of the dual time signatures.
     public struct Measured {
 
-        public struct Signature: Equatable, Decodable {
+        public struct Signature: Equatable, Codable {
             let beats: Int
             let beatType: Int
         }
@@ -81,18 +83,37 @@ extension Time {
 }
 
 extension Time.Measured: Equatable { }
-extension Time.Measured: Decodable { }
+extension Time.Measured: Codable { }
 
 extension Time.Unmeasured: Equatable { }
-extension Time.Unmeasured: Decodable { }
+extension Time.Unmeasured: Codable { }
 
 extension Time.Kind: Equatable { }
-extension Time.Kind: Decodable {
-    #warning("TODO: Implement Time.Kind: Decodable conformance")
+extension Time.Kind: Codable {
+    enum CodingKeys: String, CodingKey {
+        case measured
+        case unmeasured
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case let .measured(value):
+            try container.encode(value, forKey: .measured)
+        case let .unmeasured(value):
+            try container.encode(value, forKey: .unmeasured)
+        }
+    }
     public init(from decoder: Decoder) throws {
-        fatalError("Time.Kind.init(from: Decoder) not yet implemented")
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        do {
+            self = .measured(try container.decode(Time.Measured.self, forKey: .measured))
+        } catch {
+            self = .unmeasured(try container.decode(Time.Unmeasured.self, forKey: .unmeasured))
+        }
     }
 }
 
+extension Time.Kind.CodingKeys: XMLChoiceCodingKey { }
+
 extension Time: Equatable { }
-extension Time: Decodable { }
+extension Time: Codable { }

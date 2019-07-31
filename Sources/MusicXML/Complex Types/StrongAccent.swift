@@ -14,4 +14,4 @@ public struct StrongAccent {
 }
 
 extension StrongAccent: Equatable { }
-extension StrongAccent: Decodable { }
+extension StrongAccent: Codable { }

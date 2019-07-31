@@ -30,7 +30,7 @@
 // > smufl attribute may be used with any accidental value to
 // > help specify the appearance of symbols that share the same
 // > MusicXML semantics.
-public enum AccidentalValue: String, Decodable, Equatable {
+public enum AccidentalValue: String {
     case sharp
     case natural
     case flat
@@ -74,3 +74,6 @@ public enum AccidentalValue: String, Decodable, Equatable {
     case koron
     case other
 }
+
+extension AccidentalValue: Equatable { }
+extension AccidentalValue: Codable { }

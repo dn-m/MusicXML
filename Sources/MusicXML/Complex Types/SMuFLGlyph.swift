@@ -17,5 +17,5 @@ public struct SMuFLGlyph {
 }
 
 extension SMuFLGlyph: Equatable { }
-extension SMuFLGlyph: Decodable { }
+extension SMuFLGlyph: Codable { }
 

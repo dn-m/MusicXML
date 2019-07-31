@@ -75,12 +75,12 @@ extension ScorePart {
 }
 
 extension ScorePart.MIDI: Equatable { }
-extension ScorePart.MIDI: Decodable { }
+extension ScorePart.MIDI: Codable { }
 
 extension ScorePart: Equatable { }
-extension ScorePart: Decodable { }
+extension ScorePart: Codable { }
 
-//extension PartList.ScorePart: Decodable {
+//extension PartList.ScorePart: Codable {
 //
 //    // MARK: - Decodable
 //

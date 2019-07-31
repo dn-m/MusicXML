@@ -31,4 +31,4 @@ public struct AccidentalText {
 }
 
 extension AccidentalText: Equatable { }
-extension AccidentalText: Decodable { }
+extension AccidentalText: Codable { }

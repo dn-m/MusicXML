@@ -17,4 +17,4 @@ public struct NoteSize {
 }
 
 extension NoteSize: Equatable { }
-extension NoteSize: Decodable { }
+extension NoteSize: Codable { }

@@ -20,4 +20,4 @@ public struct Slide {
 }
 
 extension Slide: Equatable { }
-extension Slide: Decodable { }
+extension Slide: Codable { }

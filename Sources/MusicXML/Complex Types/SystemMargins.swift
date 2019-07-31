@@ -13,4 +13,4 @@ public struct SystemMargins {
 }
 
 extension SystemMargins: Equatable { }
-extension SystemMargins: Decodable { }
+extension SystemMargins: Codable { }

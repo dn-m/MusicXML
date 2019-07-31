@@ -21,4 +21,4 @@ public struct Clef {
 }
 
 extension Clef: Equatable { }
-extension Clef: Decodable { }
+extension Clef: Codable { }

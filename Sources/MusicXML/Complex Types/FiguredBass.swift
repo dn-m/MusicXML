@@ -36,4 +36,4 @@ public struct FiguredBass {
 }
 
 extension FiguredBass: Equatable { }
-extension FiguredBass: Decodable { }
+extension FiguredBass: Codable { }

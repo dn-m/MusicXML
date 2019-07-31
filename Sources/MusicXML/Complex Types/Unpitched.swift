@@ -13,4 +13,4 @@ public struct Unpitched {
 }
 
 extension Unpitched: Equatable { }
-extension Unpitched: Decodable { }
+extension Unpitched: Codable { }

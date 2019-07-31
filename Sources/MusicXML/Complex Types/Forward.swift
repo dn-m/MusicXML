@@ -25,4 +25,4 @@ public struct Forward {
 }
 
 extension Forward: Equatable { }
-extension Forward: Decodable { }
+extension Forward: Codable { }

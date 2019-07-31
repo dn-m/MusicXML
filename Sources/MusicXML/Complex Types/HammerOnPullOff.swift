@@ -19,4 +19,4 @@ public struct HammerOnPullOff {
 }
 
 extension HammerOnPullOff: Equatable { }
-extension HammerOnPullOff: Decodable { }
+extension HammerOnPullOff: Codable { }

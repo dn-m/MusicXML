@@ -15,4 +15,4 @@ public struct Offset {
 }
 
 extension Offset: Equatable { }
-extension Offset: Decodable { }
+extension Offset: Codable { }

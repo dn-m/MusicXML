@@ -15,4 +15,4 @@ public struct BassAlter {
 }
 
 extension BassAlter: Equatable { }
-extension BassAlter: Decodable { }
+extension BassAlter: Codable { }

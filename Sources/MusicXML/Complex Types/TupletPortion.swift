@@ -16,4 +16,4 @@ public struct TupletPortion {
 }
 
 extension TupletPortion: Equatable { }
-extension TupletPortion: Decodable { }
+extension TupletPortion: Codable { }

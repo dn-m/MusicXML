@@ -41,4 +41,4 @@ public struct Attributes {
 }
 
 extension Attributes: Equatable { }
-extension Attributes: Decodable { }
+extension Attributes: Codable { }

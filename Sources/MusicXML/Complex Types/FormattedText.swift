@@ -23,4 +23,4 @@ public struct FormattedText {
 }
 
 extension FormattedText: Equatable { }
-extension FormattedText: Decodable { }
+extension FormattedText: Codable { }

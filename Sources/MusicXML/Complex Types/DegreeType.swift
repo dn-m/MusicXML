@@ -16,4 +16,4 @@ public struct DegreeType {
 }
 
 extension DegreeType: Equatable { }
-extension DegreeType: Decodable { }
+extension DegreeType: Codable { }

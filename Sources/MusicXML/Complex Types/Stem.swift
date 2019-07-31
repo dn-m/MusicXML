@@ -17,4 +17,4 @@ public struct Stem {
 }
 
 extension Stem: Equatable { }
-extension Stem: Decodable { }
+extension Stem: Codable { }

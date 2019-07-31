@@ -51,9 +51,9 @@ public struct Note {
 }
 
 extension Note: Equatable { }
-extension Note: Decodable { }
+extension Note: Codable { }
 //
-//public struct Note: Decodable, Equatable {
+//public struct Note: Codable, Equatable {
 //
 //    // (
 //    //   (

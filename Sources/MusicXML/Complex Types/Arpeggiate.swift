@@ -15,4 +15,4 @@ public struct Arpeggiate {
 }
 
 extension Arpeggiate: Equatable { }
-extension Arpeggiate: Decodable { }
+extension Arpeggiate: Codable { }

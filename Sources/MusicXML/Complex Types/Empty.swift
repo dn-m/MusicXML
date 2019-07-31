@@ -8,4 +8,4 @@
 public struct Empty { }
 
 extension Empty: Equatable { }
-extension Empty: Decodable { }
+extension Empty: Codable { }

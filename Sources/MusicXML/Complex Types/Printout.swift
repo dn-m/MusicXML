@@ -20,4 +20,4 @@ public struct Printout {
 }
 
 extension Printout: Equatable { }
-extension Printout: Decodable { }
+extension Printout: Codable { }

@@ -12,4 +12,4 @@ public struct StaffLayout {
 }
 
 extension StaffLayout: Equatable { }
-extension StaffLayout: Decodable { }
+extension StaffLayout: Codable { }

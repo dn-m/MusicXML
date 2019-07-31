@@ -15,4 +15,4 @@ public struct Root {
 }
 
 extension Root: Equatable { }
-extension Root: Decodable { }
+extension Root: Codable { }

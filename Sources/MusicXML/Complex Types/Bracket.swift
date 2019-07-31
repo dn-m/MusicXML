@@ -21,4 +21,4 @@ public struct Bracket {
 }
 
 extension Bracket: Equatable { }
-extension Bracket: Decodable { }
+extension Bracket: Codable { }

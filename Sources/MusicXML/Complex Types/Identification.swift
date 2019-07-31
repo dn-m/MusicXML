@@ -40,4 +40,4 @@ public struct Identification {
 }
 
 extension Identification: Equatable { }
-extension Identification: Decodable { }
+extension Identification: Codable { }

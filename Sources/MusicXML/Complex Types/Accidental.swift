@@ -21,4 +21,4 @@ public struct Accidental {
 }
 
 extension Accidental: Equatable { }
-extension Accidental: Decodable { }
+extension Accidental: Codable { }

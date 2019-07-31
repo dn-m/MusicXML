@@ -15,4 +15,4 @@ public struct DashedFormatting {
 }
 
 extension DashedFormatting: Equatable { }
-extension DashedFormatting: Decodable { }
+extension DashedFormatting: Codable { }

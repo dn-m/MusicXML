@@ -15,4 +15,4 @@ public struct StaffTuning {
 }
 
 extension StaffTuning: Equatable { }
-extension StaffTuning: Decodable { }
+extension StaffTuning: Codable { }

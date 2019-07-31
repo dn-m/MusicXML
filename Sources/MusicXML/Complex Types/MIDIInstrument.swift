@@ -39,4 +39,4 @@ public struct MIDIInstrument {
 }
 
 extension MIDIInstrument: Equatable { }
-extension MIDIInstrument: Decodable { }
+extension MIDIInstrument: Codable { }

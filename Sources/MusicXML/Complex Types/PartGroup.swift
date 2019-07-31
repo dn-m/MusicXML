@@ -29,4 +29,4 @@ public struct PartGroup {
 }
 
 extension PartGroup: Equatable { }
-extension PartGroup: Decodable { }
+extension PartGroup: Codable { }

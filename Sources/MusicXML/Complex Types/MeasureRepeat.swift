@@ -17,4 +17,4 @@ public struct MeasureRepeat {
 }
 
 extension MeasureRepeat: Equatable { }
-extension MeasureRepeat: Decodable { }
+extension MeasureRepeat: Codable { }

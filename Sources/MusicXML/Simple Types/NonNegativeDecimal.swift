@@ -7,7 +7,6 @@
 
 public struct NonNegativeDecimal {
     public let value: Double
-    #warning("TODO: Implement NonNegativeDecimal.init")
 }
 
 extension NonNegativeDecimal: Equatable { }

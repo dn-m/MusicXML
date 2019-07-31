@@ -54,4 +54,4 @@ public struct Link {
 }
 
 extension Link: Equatable { }
-extension Link: Decodable { }
+extension Link: Codable { }

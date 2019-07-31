@@ -13,4 +13,4 @@ public struct Miscellaneous {
 }
 
 extension Miscellaneous: Equatable { }
-extension Miscellaneous: Decodable { }
+extension Miscellaneous: Codable { }

@@ -13,4 +13,4 @@ public struct KeyOctave {
 }
 
 extension KeyOctave: Equatable { }
-extension KeyOctave: Decodable { }
+extension KeyOctave: Codable { }

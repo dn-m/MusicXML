@@ -11,4 +11,4 @@ public struct Beater {
 }
 
 extension Beater: Equatable { }
-extension Beater: Decodable { }
+extension Beater: Codable { }

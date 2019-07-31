@@ -14,4 +14,4 @@ public struct Extend {
 }
 
 extension Extend: Equatable { }
-extension Extend: Decodable { }
+extension Extend: Codable { }

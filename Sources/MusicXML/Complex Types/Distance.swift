@@ -12,4 +12,4 @@ public struct Distance {
 }
 
 extension Distance: Equatable { }
-extension Distance: Decodable { }
+extension Distance: Codable { }

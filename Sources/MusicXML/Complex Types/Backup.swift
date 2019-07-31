@@ -10,7 +10,7 @@
 /// staves. Thus the backup element does not include voice or staff elements. Duration values should
 /// always be positive, and should not cross measure boundaries or mid-measure changes in the
 /// divisions value.
-public struct Backup: Decodable, Equatable {
+public struct Backup: Codable, Equatable {
     public let duration: Int
     public let editorial: Editorial
 }

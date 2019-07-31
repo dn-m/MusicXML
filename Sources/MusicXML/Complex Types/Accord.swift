@@ -16,4 +16,4 @@ public struct Accord {
 }
 
 extension Accord: Equatable { }
-extension Accord: Decodable { }
+extension Accord: Codable { }

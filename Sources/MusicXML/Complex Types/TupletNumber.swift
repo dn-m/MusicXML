@@ -13,4 +13,4 @@ public struct TupletNumber {
 }
 
 extension TupletNumber: Equatable { }
-extension TupletNumber: Decodable { }
+extension TupletNumber: Codable { }

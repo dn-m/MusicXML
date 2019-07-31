@@ -10,4 +10,4 @@ public struct OtherDynamics {
 }
 
 extension OtherDynamics: Equatable { }
-extension OtherDynamics: Decodable { }
+extension OtherDynamics: Codable { }

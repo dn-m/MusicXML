@@ -16,4 +16,4 @@ public struct LevelDisplay {
 }
 
 extension LevelDisplay: Equatable { }
-extension LevelDisplay: Decodable { }
+extension LevelDisplay: Codable { }

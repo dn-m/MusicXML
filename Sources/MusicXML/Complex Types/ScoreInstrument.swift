@@ -30,10 +30,19 @@ extension ScoreInstrument {
 
 extension ScoreInstrument.SoloEnsemble: Equatable { }
 
-extension ScoreInstrument.SoloEnsemble: Decodable {
+extension ScoreInstrument.SoloEnsemble: Codable {
     enum CodingKeys: String, CodingKey {
         case solo
         case ensemble
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case .solo:
+            try container.encode("", forKey: .solo)
+        case let .ensemble(value):
+            try container.encode(value, forKey: .ensemble)
+        }
     }
     public init(from decoder: Decoder) throws {
         let keyed = try decoder.container(keyedBy: CodingKeys.self)
@@ -46,4 +55,4 @@ extension ScoreInstrument.SoloEnsemble: Decodable {
 }
 
 extension ScoreInstrument: Equatable { }
-extension ScoreInstrument: Decodable { }
+extension ScoreInstrument: Codable { }

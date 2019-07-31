@@ -68,7 +68,7 @@ extension Sound {
 }
 
 extension Sound.MIDI: Equatable { }
-extension Sound.MIDI: Decodable { }
+extension Sound.MIDI: Codable { }
 
 extension Sound: Equatable { }
-extension Sound: Decodable { }
+extension Sound: Codable { }

@@ -18,4 +18,4 @@ public struct OctaveShift {
 }
 
 extension OctaveShift: Equatable { }
-extension OctaveShift: Decodable { }
+extension OctaveShift: Codable { }

@@ -13,4 +13,4 @@ public struct OtherPlay {
 }
 
 extension OtherPlay: Equatable { }
-extension OtherPlay: Decodable { }
+extension OtherPlay: Codable { }

@@ -15,4 +15,4 @@ public struct Mordent {
 }
 
 extension Mordent: Equatable { }
-extension Mordent: Decodable { }
+extension Mordent: Codable { }

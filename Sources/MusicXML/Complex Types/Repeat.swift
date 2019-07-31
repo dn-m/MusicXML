@@ -15,4 +15,4 @@ public struct Repeat {
 }
 
 extension Repeat: Equatable { }
-extension Repeat: Decodable { }
+extension Repeat: Codable { }

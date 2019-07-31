@@ -12,4 +12,4 @@ public struct TupletDot {
 }
 
 extension TupletDot: Equatable { }
-extension TupletDot: Decodable { }
+extension TupletDot: Codable { }

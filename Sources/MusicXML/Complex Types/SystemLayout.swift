@@ -23,4 +23,4 @@ public struct SystemLayout {
 }
 
 extension SystemLayout: Equatable { }
-extension SystemLayout: Decodable { }
+extension SystemLayout: Codable { }

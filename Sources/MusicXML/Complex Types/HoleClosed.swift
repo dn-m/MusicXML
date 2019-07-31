@@ -14,4 +14,4 @@ public struct HoleClosed {
 }
 
 extension HoleClosed: Equatable { }
-extension HoleClosed: Decodable { }
+extension HoleClosed: Codable { }

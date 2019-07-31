@@ -20,4 +20,4 @@ public struct Grouping {
 }
 
 extension Grouping: Equatable { }
-extension Grouping: Decodable { }
+extension Grouping: Codable { }

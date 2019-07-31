@@ -15,4 +15,4 @@ public struct OtherDirection {
 }
 
 extension OtherDirection: Equatable { }
-extension OtherDirection: Decodable { }
+extension OtherDirection: Codable { }

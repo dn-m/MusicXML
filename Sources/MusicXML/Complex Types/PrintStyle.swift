@@ -14,4 +14,4 @@ public struct PrintStyle {
 }
 
 extension PrintStyle: Equatable { }
-extension PrintStyle: Decodable { }
+extension PrintStyle: Codable { }

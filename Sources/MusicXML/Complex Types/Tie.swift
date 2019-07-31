@@ -13,4 +13,4 @@ public struct Tie {
 }
 
 extension Tie: Equatable { }
-extension Tie: Decodable { }
+extension Tie: Codable { }

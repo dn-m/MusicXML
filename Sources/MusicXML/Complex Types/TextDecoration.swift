@@ -15,4 +15,4 @@ public struct TextDecoration {
 }
 
 extension TextDecoration: Equatable { }
-extension TextDecoration: Decodable { }
+extension TextDecoration: Codable { }

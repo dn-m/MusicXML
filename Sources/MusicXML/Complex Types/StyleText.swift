@@ -12,4 +12,4 @@ public struct StyleText {
 }
 
 extension StyleText: Equatable { }
-extension StyleText: Decodable { }
+extension StyleText: Codable { }

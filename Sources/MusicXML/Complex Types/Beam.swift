@@ -20,4 +20,4 @@ public struct Beam {
 }
 
 extension Beam: Equatable { }
-extension Beam: Decodable { }
+extension Beam: Codable { }

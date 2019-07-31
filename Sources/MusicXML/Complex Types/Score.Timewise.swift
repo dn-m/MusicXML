@@ -82,7 +82,7 @@ extension Score.Timewise {
     }
 }
 
-extension Score.Timewise: Decodable {
+extension Score.Timewise: Codable {
 
     // MARK: - Decodable
 
@@ -91,7 +91,7 @@ extension Score.Timewise: Decodable {
     }
 }
 
-extension Score.Timewise.Part: Decodable {
+extension Score.Timewise.Part: Codable {
 
     // MARK: - Decodable
 
@@ -107,7 +107,7 @@ extension Score.Timewise.Part: Decodable {
     }
 }
 
-extension Score.Timewise.Measure: Decodable {
+extension Score.Timewise.Measure: Codable {
 
     // MARK: - Decodable
 
