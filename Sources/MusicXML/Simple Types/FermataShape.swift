@@ -19,4 +19,4 @@ public enum FermataShape: String {
 }
 
 extension FermataShape: Equatable { }
-extension FermataShape: Decodable { }
+extension FermataShape: Codable { }

@@ -13,4 +13,4 @@ public enum AboveBelow: String {
 }
 
 extension AboveBelow: Equatable { }
-extension AboveBelow: Decodable { }
+extension AboveBelow: Codable { }

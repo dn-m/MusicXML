@@ -25,4 +25,4 @@ public enum NoteTypeValue: String {
 }
 
 extension NoteTypeValue: Equatable { }
-extension NoteTypeValue: Decodable { }
+extension NoteTypeValue: Codable { }

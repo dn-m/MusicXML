@@ -19,4 +19,4 @@ public enum TextDirection: String {
 }
 
 extension TextDirection: Equatable { }
-extension TextDirection: Decodable { }
+extension TextDirection: Codable { }

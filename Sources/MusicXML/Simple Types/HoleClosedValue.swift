@@ -13,4 +13,4 @@ public enum HoleClosedValue: String {
 }
 
 extension HoleClosedValue: Equatable { }
-extension HoleClosedValue: Decodable { }
+extension HoleClosedValue: Codable { }

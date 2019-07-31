@@ -16,4 +16,4 @@ public enum LineEnd: String {
 }
 
 extension LineEnd: Equatable { }
-extension LineEnd: Decodable { }
+extension LineEnd: Codable { }

@@ -16,4 +16,4 @@ public enum NoteSizeType: String {
 }
 
 extension NoteSizeType: Equatable { }
-extension NoteSizeType: Decodable { }
+extension NoteSizeType: Codable { }

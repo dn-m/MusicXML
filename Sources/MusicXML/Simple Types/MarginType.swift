@@ -13,4 +13,4 @@ public enum MarginType: String {
 }
 
 extension MarginType: Equatable { }
-extension MarginType: Decodable { }
+extension MarginType: Codable { }

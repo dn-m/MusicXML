@@ -26,4 +26,4 @@ public enum Wood: String {
 }
 
 extension Wood: Equatable { }
-extension Wood: Decodable { }
+extension Wood: Codable { }

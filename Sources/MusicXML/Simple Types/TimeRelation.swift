@@ -17,4 +17,4 @@ public enum TimeRelation: String {
 }
 
 extension TimeRelation: Equatable { }
-extension TimeRelation: Decodable { }
+extension TimeRelation: Codable { }

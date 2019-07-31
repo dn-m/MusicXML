@@ -23,4 +23,4 @@ public enum BarStyle: String {
 }
 
 extension BarStyle: Equatable { }
-extension BarStyle: Decodable { }
+extension BarStyle: Codable { }

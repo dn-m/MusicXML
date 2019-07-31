@@ -12,4 +12,4 @@ public enum LeftRight: String {
 }
 
 extension LeftRight: Equatable { }
-extension LeftRight: Decodable { }
+extension LeftRight: Codable { }

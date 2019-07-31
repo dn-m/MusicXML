@@ -21,4 +21,4 @@ public enum TimeSeparator: String {
 }
 
 extension TimeSeparator: Equatable { }
-extension TimeSeparator: Decodable { }
+extension TimeSeparator: Codable { }

@@ -23,4 +23,4 @@ public enum Membrane: String {
 }
 
 extension Membrane: Equatable { }
-extension Membrane: Decodable { }
+extension Membrane: Codable { }

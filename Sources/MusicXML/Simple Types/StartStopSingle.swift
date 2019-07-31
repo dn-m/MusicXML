@@ -14,4 +14,4 @@ public enum StartStopSingle: String {
 }
 
 extension StartStopSingle: Equatable { }
-extension StartStopSingle: Decodable { }
+extension StartStopSingle: Codable { }

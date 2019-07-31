@@ -14,4 +14,4 @@ public enum StartStopChangeContinue: String {
 }
 
 extension StartStopChangeContinue: Equatable { }
-extension StartStopChangeContinue: Decodable { }
+extension StartStopChangeContinue: Codable { }

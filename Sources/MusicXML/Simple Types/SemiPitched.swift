@@ -16,4 +16,4 @@ public enum SemiPitched: String {
 }
 
 extension SemiPitched: Equatable { }
-extension SemiPitched: Decodable { }
+extension SemiPitched: Codable { }

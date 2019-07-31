@@ -14,4 +14,4 @@ public enum ShowTuplet: String {
 }
 
 extension ShowTuplet: Equatable { }
-extension ShowTuplet: Decodable { }
+extension ShowTuplet: Codable { }

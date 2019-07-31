@@ -45,4 +45,4 @@ public enum NoteheadValue: String {
 }
 
 extension NoteheadValue: Equatable { }
-extension NoteheadValue: Decodable { }
+extension NoteheadValue: Codable { }

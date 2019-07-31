@@ -14,4 +14,4 @@ public enum DistanceType: String {
 }
 
 extension DistanceType: Equatable { }
-extension DistanceType: Decodable { }
+extension DistanceType: Codable { }

@@ -18,4 +18,4 @@ public enum CSSFontSize: String {
 }
 
 extension CSSFontSize: Equatable { }
-extension CSSFontSize: Decodable { }
+extension CSSFontSize: Codable { }

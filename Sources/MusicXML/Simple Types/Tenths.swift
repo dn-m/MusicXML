@@ -10,4 +10,4 @@ public struct Tenths {
 }
 
 extension Tenths: Equatable { }
-extension Tenths: Decodable { }
+extension Tenths: Codable { }

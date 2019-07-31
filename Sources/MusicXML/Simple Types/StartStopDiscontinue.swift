@@ -18,4 +18,4 @@ public enum StartStopDiscontinue: String {
 }
 
 extension StartStopDiscontinue: Equatable { }
-extension StartStopDiscontinue: Decodable { }
+extension StartStopDiscontinue: Codable { }

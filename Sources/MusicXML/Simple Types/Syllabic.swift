@@ -16,4 +16,4 @@ public enum Syllabic: String {
 }
 
 extension Syllabic: Equatable { }
-extension Syllabic: Decodable { }
+extension Syllabic: Codable { }

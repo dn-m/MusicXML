@@ -14,4 +14,4 @@ public enum StemValue: String {
 }
 
 extension StemValue: Equatable { }
-extension StemValue: Decodable { }
+extension StemValue: Codable { }

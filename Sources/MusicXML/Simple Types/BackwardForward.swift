@@ -13,4 +13,4 @@ public enum BackwardForward: String {
 }
 
 extension BackwardForward: Equatable { }
-extension BackwardForward: Decodable { }
+extension BackwardForward: Codable { }

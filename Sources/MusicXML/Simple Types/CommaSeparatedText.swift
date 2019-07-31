@@ -12,4 +12,4 @@ public struct CommaSeparatedText {
 }
 
 extension CommaSeparatedText: Equatable { }
-extension CommaSeparatedText: Decodable { }
+extension CommaSeparatedText: Codable { }

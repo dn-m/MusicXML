@@ -13,4 +13,4 @@ public enum YesNo: String {
 }
 
 extension YesNo: Equatable { }
-extension YesNo: Decodable { }
+extension YesNo: Codable { }

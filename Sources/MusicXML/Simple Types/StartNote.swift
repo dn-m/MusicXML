@@ -14,4 +14,4 @@ public enum StartNote: String {
 }
 
 extension StartNote: Equatable { }
-extension StartNote: Decodable { }
+extension StartNote: Codable { }

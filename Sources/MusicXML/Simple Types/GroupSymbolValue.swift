@@ -16,4 +16,4 @@ public enum GroupSymbolValue: String {
 }
 
 extension GroupSymbolValue: Equatable { }
-extension GroupSymbolValue: Decodable { }
+extension GroupSymbolValue: Codable { }

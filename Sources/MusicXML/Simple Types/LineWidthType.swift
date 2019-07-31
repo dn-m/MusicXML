@@ -33,4 +33,4 @@ public enum LineWidthType: String {
 }
 
 extension LineWidthType: Equatable { }
-extension LineWidthType: Decodable { }
+extension LineWidthType: Codable { }

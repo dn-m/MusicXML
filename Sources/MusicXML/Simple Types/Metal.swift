@@ -34,4 +34,4 @@ public enum Metal: String {
 }
 
 extension Metal: Equatable { }
-extension Metal: Decodable { }
+extension Metal: Codable { }

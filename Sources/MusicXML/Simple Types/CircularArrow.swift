@@ -13,4 +13,4 @@ public enum CircularArrow: String {
 }
 
 extension CircularArrow: Equatable { }
-extension CircularArrow: Decodable { }
+extension CircularArrow: Codable { }

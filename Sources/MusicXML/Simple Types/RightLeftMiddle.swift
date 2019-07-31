@@ -13,4 +13,4 @@ public enum RightLeftMiddle: String {
 }
 
 extension RightLeftMiddle: Equatable { }
-extension RightLeftMiddle: Decodable { }
+extension RightLeftMiddle: Codable { }

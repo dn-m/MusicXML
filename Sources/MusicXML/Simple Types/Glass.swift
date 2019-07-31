@@ -11,4 +11,4 @@ public enum Glass: String {
 }
 
 extension Glass: Equatable { }
-extension Glass: Decodable { }
+extension Glass: Codable { }

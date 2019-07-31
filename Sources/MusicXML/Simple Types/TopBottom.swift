@@ -13,4 +13,4 @@ public enum TopBottom: String {
 }
 
 extension TopBottom: Equatable { }
-extension TopBottom: Decodable { }
+extension TopBottom: Codable { }

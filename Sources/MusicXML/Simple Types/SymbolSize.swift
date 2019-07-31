@@ -14,4 +14,4 @@ public enum SymbolSize: String {
 }
 
 extension SymbolSize: Equatable { }
-extension SymbolSize: Decodable { }
+extension SymbolSize: Codable { }

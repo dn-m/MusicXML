@@ -14,4 +14,4 @@ public enum LineType: String {
 }
 
 extension LineType: Equatable { }
-extension LineType: Decodable { }
+extension LineType: Codable { }

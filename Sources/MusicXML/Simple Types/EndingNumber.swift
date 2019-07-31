@@ -14,4 +14,4 @@ public struct EndingNumber {
 }
 
 extension EndingNumber: Equatable { }
-extension EndingNumber: Decodable { }
+extension EndingNumber: Codable { }

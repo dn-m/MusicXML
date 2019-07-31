@@ -11,4 +11,4 @@ public struct NonNegativeDecimal {
 }
 
 extension NonNegativeDecimal: Equatable { }
-extension NonNegativeDecimal: Decodable { }
+extension NonNegativeDecimal: Codable { }

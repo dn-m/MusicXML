@@ -59,4 +59,4 @@ public enum KindValue: String {
 }
 
 extension KindValue: Equatable { }
-extension KindValue: Decodable { }
+extension KindValue: Codable { }

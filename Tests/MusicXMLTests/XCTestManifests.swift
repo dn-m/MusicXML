@@ -1,11 +1,5 @@
 import XCTest
 
-extension IdentificationDecoderTests {
-    static let __allTests = [
-        ("testIdentificationMiscellaneousField", testIdentificationMiscellaneousField),
-    ]
-}
-
 #if !os(macOS)
 public func __allTests() -> [XCTestCaseEntry] {
     return [
