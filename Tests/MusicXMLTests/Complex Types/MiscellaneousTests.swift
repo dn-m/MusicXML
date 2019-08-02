@@ -43,7 +43,6 @@ class MiscellaneousTests: XCTestCase {
                 MiscellaneousField(name: "three", value: "3"),
             ]
         )
-        let encoded = try XMLEncoder().encode(misc, withRootKey: "miscellaneous")
-        try testRoundTrip(misc)
+        try testRoundTrip(misc, loggingEncoded: true)
     }
 }

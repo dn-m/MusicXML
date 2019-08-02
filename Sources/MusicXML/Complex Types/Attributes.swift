@@ -29,15 +29,15 @@ public struct Attributes {
     public let footnote: FormattedText?
     public let level: Level?
     public let divisions: Int?
-    public let keys: [Key]
-    public let time: [Time]
+    public let keys: [Key]?
+    public let time: [Time]?
     public let staves: Int?
     public let partSymbol: PartSymbol?
     public let instruments: Int?
-    public let clefs: [Clef]
-    public let staffDetails: [StaffDetails]
-    public let transpose: [Transpose]
-    public let measureStyles: [MeasureStyle]
+    public let clefs: [Clef]?
+    public let staffDetails: [StaffDetails]?
+    public let transpose: [Transpose]?
+    public let measureStyles: [MeasureStyle]?
 }
 
 extension Attributes: Equatable { }

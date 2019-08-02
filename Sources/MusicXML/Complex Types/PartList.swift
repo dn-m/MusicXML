@@ -53,10 +53,8 @@ extension PartList.Item.CodingKeys: XMLChoiceCodingKey { }
 
 extension PartList: Equatable { }
 extension PartList: Codable {
-
-    // MARK: - Codable
-
-    enum CodingKeys: String, CodingKey {
-        case parts = "score-part"
+    public init(from decoder: Decoder) throws {
+        let singleValue = try decoder.singleValueContainer()
+        self.parts = try singleValue.decode([Item].self)
     }
 }

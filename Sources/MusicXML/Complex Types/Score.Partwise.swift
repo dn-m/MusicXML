@@ -8,6 +8,13 @@
 extension Score {
     /// The `partwise` traversal of a MusicXML score.
     public struct Partwise: Equatable {
+        let work: Work?
+        let movementNumber: String?
+        let movementTitle: String?
+        let identification: Identification?
+        let defaults: Defaults?
+        let credits: [Credit]?
+        let partList: PartList
         let parts: [Part]
     }
 }
@@ -87,6 +94,13 @@ extension Score.Partwise: Codable {
     // MARK: - Decodable
 
     enum CodingKeys: String, CodingKey {
+        case work
+        case movementNumber = "movement-number"
+        case movementTitle = "movement-title"
+        case identification
+        case defaults
+        case credits = "credit"
+        case partList = "part-list"
         case parts = "part"
     }
 }

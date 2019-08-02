@@ -12,8 +12,15 @@ public struct PartName {
     public let value: String
     public let printStyle: PrintStyle?
     public let printObject: Bool?
-    public let justification: Justify?
+    public let justify: Justify?
 }
 
 extension PartName: Equatable { }
-extension PartName: Codable { }
+extension PartName: Codable {
+    enum CodingKeys: String, CodingKey {
+        case value = ""
+        case printStyle = "print-style"
+        case printObject = "print-object"
+        case justify
+    }
+}
