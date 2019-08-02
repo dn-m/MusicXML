@@ -21,7 +21,7 @@ extension MiscellaneousField: Equatable { }
 extension MiscellaneousField: Codable {
     enum CodingKeys: String, CodingKey {
         case name
-        case value
+        case value = ""
     }
 }
 
@@ -37,10 +37,13 @@ extension MiscellaneousField: DynamicNodeDecoding {
 
 extension MiscellaneousField: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key.stringValue == CodingKeys.name.stringValue {
+        switch key {
+        case CodingKeys.name:
             return .attribute
-        } else {
-            return .default
+        case CodingKeys.value:
+            return .element
+        default:
+            return .element
         }
     }
 }
