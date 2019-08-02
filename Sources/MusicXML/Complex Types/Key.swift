@@ -11,13 +11,16 @@ import XMLCoder
 /// supported. If absent, the key signature applies to all staves in the part. Key signatures appear
 /// at the start of each system unless the print-object attribute has been set to "no".
 public struct Key {
+    // MARK: - Attributes
     /// The optional number attribute refers to staff numbers.
-    public let number: Int
-    public let position: Position
-    public let printStyle: PrintStyle
-    public let printObject: Bool
+    public let number: Int?
+    public let position: Position?
+    public let printStyle: PrintStyle?
+    public let printObject: Bool?
+
+    // MARK: - Elements
     public let kind: Kind
-    public let keyOctave: [KeyOctave]
+    public let keyOctave: [KeyOctave]?
 }
 
 extension Key {
@@ -74,4 +77,31 @@ extension Key.Kind: Codable {
 extension Key.Kind.CodingKeys: XMLChoiceCodingKey { }
 
 extension Key: Equatable { }
-extension Key: Codable { }
+extension Key: Codable {
+    public init(from decoder: Decoder) throws {
+//        let container = decoder.container(keyedBy: Key.Traditional.CodingKeys.self)
+        #warning("Finish top-level-ing Key.init(from:Decoder)")
+    }
+}
+
+extension Key: DynamicNodeDecoding {
+    public static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
+        switch key {
+        case CodingKeys.number:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}
+
+extension Key: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.number:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}
