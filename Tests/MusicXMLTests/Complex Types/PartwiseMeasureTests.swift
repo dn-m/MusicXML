@@ -177,5 +177,7 @@ class PartwiseMeasureTests: XCTestCase {
         """
         let decoded = try XMLDecoder()
             .decode(Score.Partwise.Measure.self, from: xml.data(using: .utf8)!)
+        #warning("Add assertion to PartwiseMeasureTests.testDecoding()")
+
     }
 }

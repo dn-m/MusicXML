@@ -10,15 +10,32 @@
 /// graphic display such as parentheses, brackets, and size are controlled by the level-display
 /// attribute group.
 public struct Accidental {
-    public let value: AccidentalValue
-    public let cautionary: Bool?
-    public let editorial: Bool?
-    public let parentheses: Bool?
-    public let bracket: Bool?
-    public let size: SymbolSize?
-    public let position: Position?
-    public let printStyle: PrintStyle?
+
+    // MARK: - Attributes
+    
+    public var cautionary: Bool?
+    public var editorial: Bool?
+    public var parentheses: Bool?
+    public var bracket: Bool?
+    public var size: SymbolSize?
+    public var position: Position?
+    public var printStyle: PrintStyle?
+
+    // MARK: - Value
+
+    public var value: AccidentalValue
 }
 
 extension Accidental: Equatable { }
-extension Accidental: Codable { }
+extension Accidental: Codable {
+    enum CodingKeys: String, CodingKey {
+        case cautionary
+        case editorial
+        case parentheses
+        case bracket
+        case size
+        case position
+        case printStyle
+        case value = ""
+    }
+}
