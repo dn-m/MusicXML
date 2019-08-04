@@ -89,8 +89,6 @@ extension Key.Kind: Codable {
     }
 }
 
-extension Key.Kind.CodingKeys: XMLChoiceCodingKey { }
-
 extension Key: Equatable { }
 extension Key: Codable {
     public init(from decoder: Decoder) throws {
@@ -123,6 +121,7 @@ extension Key: Codable {
             )
         }
     }
+    #warning("TODO: Implement Key.encode(to: Encoder)")
 }
 
 extension Key: DynamicNodeDecoding {

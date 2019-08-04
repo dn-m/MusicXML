@@ -15,6 +15,8 @@ import XMLCoder
 /// not present.
 public struct Time {
 
+    // MARK: - Attributes
+
     /// The optional number attribute refers to staff numbers within the part. If absent, the
     /// time signature applies to all staves in the part.
     public let number: Int?
@@ -35,7 +37,9 @@ public struct Time {
     public let printStyle: PrintStyle?
     public let hAlign: LeftCenterRight?
     public let vAlign: VAlign?
-    public let printObject: Bool
+    public let printObject: Bool?
+
+    // MARK: - Elements
     public let kind: Kind
 }
 
@@ -113,7 +117,22 @@ extension Time.Kind: Codable {
     }
 }
 
-extension Time.Kind.CodingKeys: XMLChoiceCodingKey { }
-
 extension Time: Equatable { }
-extension Time: Codable { }
+extension Time: Codable {
+    public init(from decoder: Decoder) throws {
+        //let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.number = nil
+        self.symbol = nil
+        self.separator = nil
+        self.printStyle = nil
+        self.hAlign = nil
+        self.vAlign = nil
+        self.printObject = nil
+        self.kind = .measured(
+            Time.Measured(
+                signatures: [Time.Measured.Signature(beats: 4, beatType: 4)],
+                interchangeable: nil
+            )
+        )
+    }
+}
