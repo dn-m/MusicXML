@@ -45,7 +45,7 @@ public struct Time {
 
 extension Time {
 
-    public struct Signature: Equatable, Codable {
+    public struct Signature {
         let beats: Int
         let beatType: Int
     }
@@ -67,7 +67,8 @@ extension Time {
     // > available compared to the time element's symbol attribute,
     // > which applies to the first of the dual time signatures.
     public struct Measured {
-        let signatures: [Signature]
+        #warning("Handle multiple time signatures in Time.Measured")
+        let signature: Signature
         let interchangeable: Interchangeable?
     }
 
@@ -86,11 +87,28 @@ extension Time {
     }
 }
 
+extension Time.Signature: Equatable { }
+extension Time.Signature: Codable {
+    enum CodingKeys: String, CodingKey {
+        case beats
+        case beatType = "beat-type"
+    }
+}
+
 extension Time.Measured: Equatable { }
 extension Time.Measured: Codable {
     enum CodingKeys: String, CodingKey {
-        case signatures
+        case signature
         case interchangeable
+    }
+    public init(from decoder: Decoder) throws {
+        let signatureContainer = try decoder.container(keyedBy: Time.Signature.CodingKeys.self)
+        self.signature = Time.Signature(
+            beats: try signatureContainer.decode(Int.self, forKey: .beats),
+            beatType: try signatureContainer.decode(Int.self, forKey: .beatType)
+        )
+        let container = try decoder.container(keyedBy: Time.Measured.CodingKeys.self)
+        self.interchangeable = try container.decodeIfPresent(Interchangeable.self, forKey: .interchangeable)
     }
 }
 
@@ -140,10 +158,15 @@ extension Time: Codable {
         self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
         // Decode kind
         do {
+            #warning("Audit containers in Time.init(from: Decoder)")
             let kindContainer = try decoder.container(keyedBy: Measured.CodingKeys.self)
+            let signatureContainer = try decoder.container(keyedBy: Signature.CodingKeys.self)
             self.kind = .measured(
                 Time.Measured(
-                    signatures: try kindContainer.decode([Time.Signature].self, forKey: .signatures),
+                    signature: Signature(
+                        beats: try signatureContainer.decode(Int.self, forKey: .beats),
+                        beatType: try signatureContainer.decode(Int.self, forKey: .beatType)
+                    ),
                     interchangeable: try kindContainer.decodeIfPresent(Interchangeable.self,
                         forKey: .interchangeable
                     )
@@ -156,6 +179,17 @@ extension Time: Codable {
                     symbol: try kindContainer.decodeIfPresent(String.self, forKey: .symbol)
                 )
             )
+        }
+    }
+}
+
+extension Time: DynamicNodeDecoding {
+    public static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
+        switch key {
+        case CodingKeys.symbol, CodingKeys.number:
+            return .attribute
+        default:
+            return .element
         }
     }
 }

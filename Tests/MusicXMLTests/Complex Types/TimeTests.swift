@@ -11,6 +11,21 @@ import XMLCoder
 
 class TimeTests: XCTestCase {
 
+    func testDecodingMeasured() throws {
+        let xml = """
+        <time>
+            <beats>4</beats>
+            <beat-type>4</beat-type>
+        </time>
+        """
+        let decoded = try XMLDecoder().decode(Time.Measured.self, from: xml.data(using: .utf8)!)
+        let expected = Time.Measured(
+            signature: Time.Signature(beats: 4, beatType: 4),
+            interchangeable: nil
+        )
+        XCTAssertEqual(decoded, expected)
+    }
+
     func testDecodingCommon() throws {
         let xml = """
         <time symbol="common">
@@ -29,10 +44,11 @@ class TimeTests: XCTestCase {
             printObject: nil,
             kind: Time.Kind.measured(
                 Time.Measured(
-                    signatures: [Time.Signature(beats: 4, beatType: 4)],
+                    signature: Time.Signature(beats: 4, beatType: 4),
                     interchangeable: nil
                 )
             )
         )
+        XCTAssertEqual(decoded, expected)
     }
 }

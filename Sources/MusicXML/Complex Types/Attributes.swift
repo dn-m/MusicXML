@@ -30,7 +30,7 @@ public struct Attributes {
     public let level: Level?
     public let divisions: Int?
     public let keys: [Key]?
-    public let time: [Time]?
+    public let times: [Time]?
     public let staves: Int?
     public let partSymbol: PartSymbol?
     public let instruments: Int?
@@ -41,4 +41,20 @@ public struct Attributes {
 }
 
 extension Attributes: Equatable { }
-extension Attributes: Codable { }
+extension Attributes: Codable {
+    enum CodingKeys: String, CodingKey {
+        case footnote
+        case level
+        case divisions
+        case keys = "key"
+        case times = "time"
+        case staves = "stave"
+        case partSymbol = "part-symbol"
+        case instruments
+        case clefs = "clef"
+        case staffDetails = "staff-details"
+        case transpose
+        case measureStyles = "measure-style"
+    }
+
+}

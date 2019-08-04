@@ -23,7 +23,7 @@ class MusicDataTests: XCTestCase {
             level: nil,
             divisions: 1,
             keys: nil,
-            time: nil,
+            times: nil,
             staves: nil,
             partSymbol: nil,
             instruments: nil,

@@ -124,6 +124,7 @@ extension Key: Codable {
     #warning("TODO: Implement Key.encode(to: Encoder)")
 }
 
+#warning("Add all attribute grouped attributes")
 extension Key: DynamicNodeDecoding {
     public static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
         switch key {
