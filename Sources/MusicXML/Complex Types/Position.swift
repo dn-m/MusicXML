@@ -5,13 +5,6 @@
 //  Created by James Bean on 5/15/19.
 //
 
-public protocol _Position {
-    var defaultX: Tenths? { get }
-    var defaultY: Tenths? { get }
-    var relativeX: Tenths? { get }
-    var relativeY: Tenths? { get }
-}
-
 /// The position attributes are based on MuseData print suggestions. For most elements, any program
 /// will compute a default x and y position. The position attributes let this be changed two ways.
 ///
