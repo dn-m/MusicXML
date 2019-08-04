@@ -34,7 +34,7 @@ extension Key {
     /// Non-traditional key signatures can be represented using the Humdrum/Scot concept of a list
     /// of altered tones. The key-step element indicates the pitch step to be altered, represented
     /// using the same names as in the step element.
-    public struct NonTraditional: Codable, Equatable {
+    public struct NonTraditional {
         public let step: Step
         public let alter: Double
         public let accidental: AccidentalValue
@@ -43,6 +43,15 @@ extension Key {
     public enum Kind {
         case traditional(Traditional)
         case nonTraditional(NonTraditional)
+    }
+}
+
+extension Key.NonTraditional: Equatable { }
+extension Key.NonTraditional: Codable {
+    enum CodingKeys: String, CodingKey {
+        case step
+        case alter
+        case accidental
     }
 }
 
@@ -86,26 +95,33 @@ extension Key: Equatable { }
 extension Key: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-
         // Decode attributes
         self.number = try container.decodeIfPresent(Int.self, forKey: .number)
         self.position = try container.decodeIfPresent(Position.self, forKey: .position)
         self.printStyle = try container.decodeIfPresent(PrintStyle.self, forKey: .printStyle)
         self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
-
-        // Decode Kind
-        // Attempt to decode Traditional
-        let traditionalContainer = try decoder.container(keyedBy: Key.Traditional.CodingKeys.self)
-        self.kind = .traditional(
-            Traditional(
-                cancel: try traditionalContainer.decodeIfPresent(Cancel.self, forKey: .cancel),
-                fifths: try traditionalContainer.decode(Int.self, forKey: .fifths),
-                mode: try traditionalContainer.decodeIfPresent(Mode.self, forKey: .mode)
-            )
-        )
-
         // Decode Elements
         self.keyOctave = try container.decodeIfPresent([KeyOctave].self, forKey: .keyOctave)
+        // Decode Kind
+        do {
+            let kindContainer = try decoder.container(keyedBy: Key.Traditional.CodingKeys.self)
+            self.kind = .traditional(
+                Traditional(
+                    cancel: try kindContainer.decodeIfPresent(Cancel.self, forKey: .cancel),
+                    fifths: try kindContainer.decode(Int.self, forKey: .fifths),
+                    mode: try kindContainer.decodeIfPresent(Mode.self, forKey: .mode)
+                )
+            )
+        } catch {
+            let kindContainer = try decoder.container(keyedBy: NonTraditional.CodingKeys.self)
+            self.kind = .nonTraditional(
+                NonTraditional(
+                    step: try kindContainer.decode(Step.self, forKey: .step),
+                    alter: try kindContainer.decode(Double.self, forKey: .alter),
+                    accidental: try kindContainer.decode(AccidentalValue.self, forKey: .accidental)
+                )
+            )
+        }
     }
 }
 
