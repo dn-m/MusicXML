@@ -37,7 +37,12 @@ extension MusicData {
 }
 
 extension MusicData: Equatable { }
-extension MusicData: Codable { }
+extension MusicData: Codable {
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.values = try container.decode([Datum].self)
+    }
+}
 
 extension MusicData.Datum: Codable {
 
