@@ -12,6 +12,9 @@
 /// elements. Having these two types of information available can make interchange considerably
 /// easier, as some programs handle one type of information much more readily than the other.
 public struct Note {
+
+    // MARK: - Attributes
+
     public let printStyle: PrintStyle?
     public let printObject: Bool?
     public let printDot: Bool?
@@ -24,12 +27,14 @@ public struct Note {
     public let timeOnly: TimeOnly?
     public let pizzicato: Bool?
 
+    // MARK: - Elements
+
     public let instrument: Instrument?
     public let footnote: FormattedText?
     public let level: Level?
     public let voice: String?
     public let type: NoteType?
-    public let dots: [EmptyPlacement]
+    public let dots: [EmptyPlacement]?
     public let accidental: Accidental?
     public let timeModification: TimeModification?
     public let stem: Stem?
@@ -37,21 +42,24 @@ public struct Note {
     public let noteheadText: NoteheadText?
 
     public let staff: Int?
-    public let beams: [Beam] // Up to 8
-    public let notations: Notations
-    public let lyrics: [Lyric]
+    public let beams: [Beam]? // Up to 8
+    public let notations: Notations?
+    public let lyrics: [Lyric]?
     public let play: Play?
 
-    #warning("TODO: Complete Note Content Model")
+    #warning("FIXME: Flesh out Note model. Currently only supports pitched notes")
+    public let pitch: Pitch?
+    public let duration: Double?
 }
 
 extension Note: Equatable { }
 extension Note: Codable { }
+
 //
 //public struct Note: Codable, Equatable {
 //
 //    // (
-//    //   ((grace, ((%full-note;, (tie, tie?)?) | (cue, %full-note;)))
+//    //   ((grace, ((%full-note;, (tie, tie?)?) |(cue, %full-note;)))
 //    //   |
 //    //   (cue, %full-note;, duration)
 //    //   |

@@ -128,4 +128,18 @@ extension Score.Partwise.Measure: Codable {
         case optionalUniqueID = "optional-unique-id"
         case musicData
     }
+
+    public init(from decoder: Decoder) throws {
+        // Decode attributes
+        let keyedContainer = try decoder.container(keyedBy: CodingKeys.self)
+        self.number = try keyedContainer.decode(Int.self, forKey: .number)
+        self.text = nil
+        self.implicit = nil
+        self.nonControlling = nil
+        self.width = nil
+        self.optionalUniqueID = nil
+
+        let container = try decoder.singleValueContainer()
+        self.musicData = try container.decode(MusicData.self)
+    }
 }
