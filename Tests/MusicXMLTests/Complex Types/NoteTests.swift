@@ -49,13 +49,13 @@ class NoteTests: XCTestCase {
         </note>
         """
         let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
-        #warning("Make assetion in note accidental test")
-//        let expected = Note(
-//            voice: "1",
-//            type: NoteType(value: .quarter, size: nil),
-//            accidental: Accidental(value: <#T##AccidentalValue#>, cautionary: <#T##Bool?#>, editorial: <#T##Bool?#>, parentheses: <#T##Bool?#>, bracket: <#T##Bool?#>, size: <#T##SymbolSize?#>, position: <#T##Position?#>, printStyle: <#T##PrintStyle?#>)
-//            pitch: Pitch(step: .g, alter: 1, octave: 2)
-//            duration: 1
-//        )
+        let expected = Note(
+            voice: "1",
+            type: NoteType(value: .quarter),
+            accidental: Accidental(value: .sharp),
+            pitch: Pitch(step: .g, alter: 1, octave: 2),
+            duration: 1
+        )
+        XCTAssertEqual(decoded, expected)
     }
 }

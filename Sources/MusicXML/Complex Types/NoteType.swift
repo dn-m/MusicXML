@@ -7,8 +7,8 @@
 
 /// The note-type type indicates the graphic note type. Values range from 256th to long.
 public struct NoteType {
-    public let value: NoteTypeValue
-    public let size: SymbolSize?
+    public var value: NoteTypeValue
+    public var size: SymbolSize?
 }
 
 extension NoteType: Equatable { }

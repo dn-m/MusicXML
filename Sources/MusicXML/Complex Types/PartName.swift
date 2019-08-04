@@ -9,10 +9,10 @@
 /// attributes for the part-name element are deprecated in Version 2.0 in favor of the new
 /// part-name-display and part-abbreviation-display elements.
 public struct PartName {
-    public let value: String
-    public let printStyle: PrintStyle?
-    public let printObject: Bool?
-    public let justify: Justify?
+    public var value: String
+    public var printStyle: PrintStyle?
+    public var printObject: Bool?
+    public var justify: Justify?
 }
 
 extension PartName: Equatable { }

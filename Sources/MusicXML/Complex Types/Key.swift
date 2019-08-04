@@ -13,31 +13,31 @@ import XMLCoder
 public struct Key {
     // MARK: - Attributes
     /// The optional number attribute refers to staff numbers.
-    public let number: Int?
-    public let position: Position?
-    public let printStyle: PrintStyle?
-    public let printObject: Bool?
+    public var number: Int?
+    public var position: Position?
+    public var printStyle: PrintStyle?
+    public var printObject: Bool?
 
     // MARK: - Elements
-    public let kind: Kind
-    public let keyOctave: [KeyOctave]?
+    public var kind: Kind
+    public var keyOctave: [KeyOctave]?
 }
 
 extension Key {
 
     public struct Traditional {
-        public let cancel: Cancel?
-        public let fifths: Int
-        public let mode: Mode?
+        public var cancel: Cancel?
+        public var fifths: Int
+        public var mode: Mode?
     }
 
     /// Non-traditional key signatures can be represented using the Humdrum/Scot concept of a list
     /// of altered tones. The key-step element indicates the pitch step to be altered, represented
     /// using the same names as in the step element.
     public struct NonTraditional {
-        public let step: Step
-        public let alter: Double
-        public let accidental: AccidentalValue
+        public var step: Step
+        public var alter: Double
+        public var accidental: AccidentalValue
     }
 
     public enum Kind {

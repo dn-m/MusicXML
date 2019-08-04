@@ -21,11 +21,6 @@ class IdentificationTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Identification.self, from: xml.data(using: .utf8)!)
         let expected = Identification(
-            creator: nil,
-            rights: nil,
-            encoding: nil,
-            source: nil,
-            relation: nil,
             miscellaneous: Miscellaneous(
                 fields: [
                     MiscellaneousField(name: "description", value: "Here is some text."),

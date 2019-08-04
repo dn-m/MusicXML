@@ -19,10 +19,7 @@ class TimeTests: XCTestCase {
         </time>
         """
         let decoded = try XMLDecoder().decode(Time.Measured.self, from: xml.data(using: .utf8)!)
-        let expected = Time.Measured(
-            signature: Time.Signature(beats: 4, beatType: 4),
-            interchangeable: nil
-        )
+        let expected = Time.Measured(signature: Time.Signature(beats: 4, beatType: 4))
         XCTAssertEqual(decoded, expected)
     }
 
@@ -35,18 +32,9 @@ class TimeTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Time.self, from: xml.data(using: .utf8)!)
         let expected = Time(
-            number: nil,
-            symbol: TimeSymbol.common,
-            separator: nil,
-            printStyle: nil,
-            hAlign: nil,
-            vAlign: nil,
-            printObject: nil,
+            symbol: .common,
             kind: Time.Kind.measured(
-                Time.Measured(
-                    signature: Time.Signature(beats: 4, beatType: 4),
-                    interchangeable: nil
-                )
+                Time.Measured(signature: Time.Signature(beats: 4, beatType: 4))
             )
         )
         XCTAssertEqual(decoded, expected)

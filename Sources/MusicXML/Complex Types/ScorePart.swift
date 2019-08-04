@@ -16,42 +16,42 @@ public struct ScorePart {
 
     // MARK: - Attributes
 
-    public let id: String
+    public var id: String
 
     // MARK: - Elements
 
     /// Identification contains basic metadata about the score. It includes the information in
     /// MuseData headers that may apply at a score-wide, movement-wide, or part-wide level. The
     /// creator, rights, source, and relation elements are based on Dublin Core.
-    public let identification: Identification?
+    public var identification: Identification?
 
     /// The part-name type describes the name or abbreviation of a score-part element. Formatting
     /// attributes for the part-name element are deprecated in Version 2.0 in favor of the new
     /// part-name-display and part-abbreviation-display elements.
-    public let name: PartName
+    public var name: PartName
 
     /// The part-name-display and part-abbreviation-display elements used in the score.mod file may
     /// also be used here to change how a part name or abbreviation is displayed over the course of
     /// a piece. They take effect when the current measure or a succeeding measure starts a new
     /// system.
-    public let nameDisplay: NameDisplay?
+    public var nameDisplay: NameDisplay?
 
     /// The part-name-display and part-abbreviation-display elements used in the score.mod file may
     /// also be used here to change how a part name or abbreviation is displayed over the course of
     /// a piece. They take effect when the current measure or a succeeding measure starts a new
     /// system.
-    public let partAbbreviation: PartName?
+    public var partAbbreviation: PartName?
 
     /// The part-name-display and part-abbreviation-display elements used in the score.mod file may
     /// also be used here to change how a part name or abbreviation is displayed over the course of
     /// a piece. They take effect when the current measure or a succeeding measure starts a new
     /// system.
-    public let partAbbreviationDisplay: NameDisplay?
+    public var partAbbreviationDisplay: NameDisplay?
 
     /// The group element allows the use of different versions of the part for different purposes.
     /// Typical values include score, parts, sound, and data. Ordering information that is directly
     /// encoded in MuseData can be derived from the ordering within a MusicXML score or opus.
-    public let group: [String]?
+    public var group: [String]?
 
     /// The score-instrument type represents a single instrument within a score-part. As with the
     /// score-part type, each score-instrument has a required ID attribute, a name, and an optional
@@ -60,7 +60,7 @@ public struct ScorePart {
     /// MusicXML software should be able to automatically assign reasonable channels and instruments
     /// without these elements in simple cases, such as where part names match General MIDI
     /// instrument names.
-    public let scoreInstrument: [ScoreInstrument]?
+    public var scoreInstrument: [ScoreInstrument]?
 
     /// The midi-device type corresponds to the DeviceName meta event in Standard MIDI Files. Unlike
     /// the DeviceName meta event, there can be multiple midi-device elements per MusicXML part
@@ -70,7 +70,7 @@ public struct ScorePart {
     /// can be a part of either the score-instrument element at the start of a part, or the sound
     /// element within a part. The id attribute refers to the score-instrument affected by the
     /// change.
-    public let midi: [MIDI]?
+    public var midi: [MIDI]?
 }
 
 extension ScorePart {

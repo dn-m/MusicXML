@@ -18,22 +18,7 @@ class ScorePartTests: XCTestCase {
         </score-part>
         """
         let decoded = try XMLDecoder().decode(ScorePart.self, from: xml.data(using: .utf8)!)
-        let expected = ScorePart(
-            id: "P1",
-            identification: nil,
-            name: PartName(
-                value: "MusicXML Part",
-                printStyle: nil,
-                printObject: nil,
-                justify: nil
-            ),
-            nameDisplay: nil,
-            partAbbreviation: nil,
-            partAbbreviationDisplay: nil,
-            group: nil,
-            scoreInstrument: nil,
-            midi: nil
-        )
+        let expected = ScorePart(id: "P1", name: PartName(value: "MusicXML Part"))
         XCTAssertEqual(decoded, expected)
     }
 }

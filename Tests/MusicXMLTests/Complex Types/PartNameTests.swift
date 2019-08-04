@@ -14,12 +14,7 @@ class PartNameTests: XCTestCase {
     func testDecoding() throws {
         let xml = "<part-name>MusicXML Part</part-name>"
         let decoded = try XMLDecoder().decode(PartName.self, from: xml.data(using: .utf8)!)
-        let expected = PartName(
-            value: "MusicXML Part",
-            printStyle: nil,
-            printObject: nil,
-            justify: nil
-        )
+        let expected = PartName(value: "MusicXML Part")
         XCTAssertEqual(decoded, expected)
     }
 }

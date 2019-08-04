@@ -19,11 +19,11 @@ public struct Time {
 
     /// The optional number attribute refers to staff numbers within the part. If absent, the
     /// time signature applies to all staves in the part.
-    public let number: Int?
+    public var number: Int?
 
     /// The symbol attribute is used indicate common and cut time symbols as well as a single number
     /// display.
-    public let symbol: TimeSymbol?
+    public var symbol: TimeSymbol?
 
     /// The time-separator attribute indicates how to display the arrangement between the beats and
     /// beat-type values in a time signature. The default value is none. The horizontal, diagonal,
@@ -32,15 +32,15 @@ public struct Time {
     /// side of the separator line. The none value represents  no separator with the beats and
     /// beat-type arranged vertically. The adjacent value represents no separator with the beats and
     /// beat-type arranged horizontally.
-    public let separator: TimeSeparator?
+    public var separator: TimeSeparator?
 
-    public let printStyle: PrintStyle?
-    public let hAlign: LeftCenterRight?
-    public let vAlign: VAlign?
-    public let printObject: Bool?
+    public var printStyle: PrintStyle?
+    public var hAlign: LeftCenterRight?
+    public var vAlign: VAlign?
+    public var printObject: Bool?
 
     // MARK: - Elements
-    public let kind: Kind
+    public var kind: Kind
 }
 
 extension Time {
@@ -68,8 +68,8 @@ extension Time {
     // > which applies to the first of the dual time signatures.
     public struct Measured {
         #warning("Handle multiple time signatures in Time.Measured")
-        let signature: Signature
-        let interchangeable: Interchangeable?
+        var signature: Signature
+        var interchangeable: Interchangeable?
     }
 
     // > A senza-misura element explicitly indicates that no time
