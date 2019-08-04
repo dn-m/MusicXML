@@ -21,26 +21,7 @@ class PartListTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(PartList.self, from: xml.data(using: .utf8)!)
         let expected = PartList(
-            parts: [
-                .part(
-                    ScorePart(
-                        id: "P1",
-                        identification: nil,
-                        name: PartName(
-                            value: "MusicXML Part",
-                            printStyle: nil,
-                            printObject: nil,
-                            justify: nil
-                        ),
-                        nameDisplay: nil,
-                        partAbbreviation: nil,
-                        partAbbreviationDisplay: nil,
-                        group: nil,
-                        scoreInstrument: nil,
-                        midi: nil
-                    )
-                )
-            ]
+            parts: [.part(ScorePart(id: "P1", name: PartName(value: "MusicXML Part")))]
         )
         XCTAssertEqual(decoded, expected)
     }
