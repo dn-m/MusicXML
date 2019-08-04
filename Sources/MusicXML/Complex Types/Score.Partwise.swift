@@ -79,13 +79,13 @@ extension Score.Partwise {
     //     %optional-unique-id;
     // >
     public struct Measure: Equatable {
-        let number: Int
-        let text: String?
-        let implicit: Bool?
-        let nonControlling: Bool?
-        let width: Tenths?
-        let optionalUniqueID: Int?
-        let musicData: MusicData?
+        var number: Int
+        var text: String?
+        var implicit: Bool?
+        var nonControlling: Bool?
+        var width: Tenths?
+        var optionalUniqueID: Int?
+        var musicData: MusicData?
     }
 }
 
