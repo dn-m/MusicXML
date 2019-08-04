@@ -45,6 +45,11 @@ public struct Time {
 
 extension Time {
 
+    public struct Signature: Equatable, Codable {
+        let beats: Int
+        let beatType: Int
+    }
+
     // > Time signatures are represented by two elements. The
     // > beats element indicates the number of beats, as found in
     // > the numerator of a time signature. The beat-type element
@@ -62,11 +67,6 @@ extension Time {
     // > available compared to the time element's symbol attribute,
     // > which applies to the first of the dual time signatures.
     public struct Measured {
-
-        public struct Signature: Equatable, Codable {
-            let beats: Int
-            let beatType: Int
-        }
         let signatures: [Signature]
         let interchangeable: Interchangeable?
     }
@@ -87,10 +87,19 @@ extension Time {
 }
 
 extension Time.Measured: Equatable { }
-extension Time.Measured: Codable { }
+extension Time.Measured: Codable {
+    enum CodingKeys: String, CodingKey {
+        case signatures
+        case interchangeable
+    }
+}
 
 extension Time.Unmeasured: Equatable { }
-extension Time.Unmeasured: Codable { }
+extension Time.Unmeasured: Codable {
+    enum CodingKeys: String, CodingKey {
+        case symbol
+    }
+}
 
 extension Time.Kind: Equatable { }
 extension Time.Kind: Codable {
@@ -120,19 +129,33 @@ extension Time.Kind: Codable {
 extension Time: Equatable { }
 extension Time: Codable {
     public init(from decoder: Decoder) throws {
-        //let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.number = nil
-        self.symbol = nil
-        self.separator = nil
-        self.printStyle = nil
-        self.hAlign = nil
-        self.vAlign = nil
-        self.printObject = nil
-        self.kind = .measured(
-            Time.Measured(
-                signatures: [Time.Measured.Signature(beats: 4, beatType: 4)],
-                interchangeable: nil
+        // Decode attributes
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.number = try container.decodeIfPresent(Int.self, forKey: .number)
+        self.symbol = try container.decodeIfPresent(TimeSymbol.self, forKey: .symbol)
+        self.separator = try container.decodeIfPresent(TimeSeparator.self, forKey: .separator)
+        self.printStyle = try container.decodeIfPresent(PrintStyle.self, forKey: .printStyle)
+        self.hAlign = try container.decodeIfPresent(LeftCenterRight.self, forKey: .hAlign)
+        self.vAlign = try container.decodeIfPresent(VAlign.self, forKey: .vAlign)
+        self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
+        // Decode kind
+        do {
+            let kindContainer = try decoder.container(keyedBy: Measured.CodingKeys.self)
+            self.kind = .measured(
+                Time.Measured(
+                    signatures: try kindContainer.decode([Time.Signature].self, forKey: .signatures),
+                    interchangeable: try kindContainer.decodeIfPresent(Interchangeable.self,
+                        forKey: .interchangeable
+                    )
+                )
             )
-        )
+        } catch {
+            let kindContainer = try decoder.container(keyedBy: Unmeasured.CodingKeys.self)
+            self.kind = .unmeasured(
+                Time.Unmeasured(
+                    symbol: try kindContainer.decodeIfPresent(String.self, forKey: .symbol)
+                )
+            )
+        }
     }
 }

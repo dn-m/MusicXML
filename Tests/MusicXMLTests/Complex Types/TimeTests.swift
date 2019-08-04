@@ -29,7 +29,7 @@ class TimeTests: XCTestCase {
             printObject: nil,
             kind: Time.Kind.measured(
                 Time.Measured(
-                    signatures: [Time.Measured.Signature(beats: 4, beatType: 4)],
+                    signatures: [Time.Signature(beats: 4, beatType: 4)],
                     interchangeable: nil
                 )
             )
