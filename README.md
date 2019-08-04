@@ -1,6 +1,6 @@
 # MusicXML
 
-![Swift Version](https://img.shields.io/badge/Swift-4.2-orange.svg)
+![Swift Version](https://img.shields.io/badge/Swift-5.0-orange.svg)
 ![Platforms](https://img.shields.io/badge/platform-macOS%20%7C%20Linux-lightgrey.svg)
 [![Build Status](https://travis-ci.org/dn-m/MusicXML.svg?branch=latest)](https://travis-ci.org/dn-m/MusicXML)
 
