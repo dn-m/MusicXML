@@ -47,7 +47,13 @@ extension Key {
 }
 
 extension Key.Traditional: Equatable { }
-extension Key.Traditional: Codable { }
+extension Key.Traditional: Codable {
+    enum CodingKeys: String, CodingKey {
+        case cancel
+        case fifths
+        case mode
+    }
+}
 
 extension Key.Kind: Equatable { }
 extension Key.Kind: Codable {
@@ -79,8 +85,27 @@ extension Key.Kind.CodingKeys: XMLChoiceCodingKey { }
 extension Key: Equatable { }
 extension Key: Codable {
     public init(from decoder: Decoder) throws {
-//        let container = decoder.container(keyedBy: Key.Traditional.CodingKeys.self)
-        #warning("Finish top-level-ing Key.init(from:Decoder)")
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        // Decode attributes
+        self.number = try container.decodeIfPresent(Int.self, forKey: .number)
+        self.position = try container.decodeIfPresent(Position.self, forKey: .position)
+        self.printStyle = try container.decodeIfPresent(PrintStyle.self, forKey: .printStyle)
+        self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
+
+        // Decode Kind
+        // Attempt to decode Traditional
+        let traditionalContainer = try decoder.container(keyedBy: Key.Traditional.CodingKeys.self)
+        self.kind = .traditional(
+            Traditional(
+                cancel: try traditionalContainer.decodeIfPresent(Cancel.self, forKey: .cancel),
+                fifths: try traditionalContainer.decode(Int.self, forKey: .fifths),
+                mode: try traditionalContainer.decodeIfPresent(Mode.self, forKey: .mode)
+            )
+        )
+
+        // Decode Elements
+        self.keyOctave = try container.decodeIfPresent([KeyOctave].self, forKey: .keyOctave)
     }
 }
 
