@@ -8,5 +8,5 @@
 /// A MusicXML document.
 public struct MusicXML {
     /// The MusicXML.Score which is contained within a MusicXML document.
-    let score: Score
+    public let score: Score
 }

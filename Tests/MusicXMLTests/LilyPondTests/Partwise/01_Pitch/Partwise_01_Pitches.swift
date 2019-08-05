@@ -6,17 +6,24 @@
 //
 
 import XCTest
-import XMLCoder
-@testable import MusicXML
+import MusicXML
 
 class Partwise_01_Pitches: XCTestCase {
 
     func testA_Pitches() throws {
-        let decoded = try! XMLDecoder().decode(Score.Partwise.self, from: A_Pitches.data(using: .utf8)!)
-        dump(decoded)
-        for part in decoded.parts {
+        let musicXML = try MusicXML(string: A_Pitches)
+        guard case let .partwise(partwise) = musicXML.score.traversal else { XCTFail(); return }
+        for part in partwise.parts {
             for measure in part.measures {
-                measure.musicData
+                for datum in measure.musicData {
+                    switch datum {
+                    case let .note(note):
+                        note.pitch.map { print($0) }
+                        note.accidental.map { print($0.value) }
+                    default:
+                        break
+                    }
+                }
             }
         }
     }

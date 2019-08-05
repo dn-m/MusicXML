@@ -8,14 +8,14 @@
 extension Score {
     /// The `partwise` traversal of a MusicXML score.
     public struct Partwise: Equatable {
-        let work: Work?
-        let movementNumber: String?
-        let movementTitle: String?
-        let identification: Identification?
-        let defaults: Defaults?
-        let credits: [Credit]?
-        let partList: PartList
-        let parts: [Part]
+        public var work: Work?
+        public var movementNumber: String?
+        public var movementTitle: String?
+        public var identification: Identification?
+        public var defaults: Defaults?
+        public var credits: [Credit]?
+        public var partList: PartList
+        public var parts: [Part]
     }
 }
 
@@ -32,8 +32,8 @@ extension Score.Partwise {
     //    id IDREF #REQUIRED
     // >
     public struct Part: Equatable {
-        let id: String
-        let measures: [Measure]
+        public var id: String
+        public var measures: [Measure]
     }
 
     // > The implicit attribute is set to "yes" for measures where
@@ -79,13 +79,13 @@ extension Score.Partwise {
     //     %optional-unique-id;
     // >
     public struct Measure: Equatable {
-        var number: Int
-        var text: String?
-        var implicit: Bool?
-        var nonControlling: Bool?
-        var width: Tenths?
-        var optionalUniqueID: Int?
-        var musicData: [MusicData]
+        public var number: Int
+        public var text: String?
+        public var implicit: Bool?
+        public var nonControlling: Bool?
+        public var width: Tenths?
+        public var optionalUniqueID: Int?
+        public var musicData: [MusicData]
     }
 }
 

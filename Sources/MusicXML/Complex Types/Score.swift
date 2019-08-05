@@ -35,8 +35,8 @@
 // >
 #warning("TODO: Support Score document-attributes")
 public struct Score {
-    let header: Header
-    let traversal: Traversal
+    public let header: Header
+    public let traversal: Traversal
 }
 
 extension Score: Equatable { }
