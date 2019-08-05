@@ -3,11 +3,11 @@
     "pins": [
       {
         "package": "XMLCoder",
-        "repositoryURL": "https://github.com/jsbean/XMLCoder",
+        "repositoryURL": "https://github.com/MaxDesiatov/XMLCoder",
         "state": {
-          "branch": "xmlchoicekey-decode",
-          "revision": "d7434f062e08e8b121caedef7f67ae9d38a7e045",
-          "version": null
+          "branch": null,
+          "revision": "f68964b14c34f73f2a6fa56f30d8a355e21afc25",
+          "version": "0.8.0"
         }
       }
     ]
