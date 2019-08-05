@@ -5,8 +5,14 @@
 //  Created by James Bean on 8/5/19.
 //
 
-/// The `timewise` traversal of a MusicXML score.
+/// The `timewise` traversal of a `MusicXML` score.
 public struct Timewise: Equatable {
+
+    // MARK: - Instance Properties
+
+    // MARK: Elements
+
+    /// The `Measure` values which comprise a `Timewise` traversal of a `MusicXML` score.
     let measures: [Measure]
 }
 

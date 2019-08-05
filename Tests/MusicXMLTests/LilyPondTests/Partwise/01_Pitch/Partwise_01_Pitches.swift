@@ -10,21 +10,12 @@ import MusicXML
 
 class Partwise_01_Pitches: XCTestCase {
 
-    func testA_Pitches() throws {
-        let musicXML = try MusicXML(string: A_Pitches)
-        guard case let .partwise(partwise) = musicXML.score.traversal else { XCTFail(); return }
-        for part in partwise.parts {
-            for measure in part.measures {
-                for datum in measure.musicData {
-                    switch datum {
-                    case let .note(note):
-                        note.pitch.map { print($0) }
-                        note.accidental.map { print($0.value) }
-                    default:
-                        break
-                    }
-                }
-            }
-        }
+    func testNoThrows() throws {
+        let _ = try MusicXML(string: A_Pitches)
+        let _ = try MusicXML(string: B_Intervals)
+        let _ = try MusicXML(string: C_NoVoiceElement)
+        let _ = try MusicXML(string: D_Microtones)
+        let _ = try MusicXML(string: E_ParenthesizedAccidentals)
+        let _ = try MusicXML(string: F_ParenthesizedMicrotoneAccidentals)
     }
 }

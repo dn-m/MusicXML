@@ -43,7 +43,12 @@ extension Score: Equatable { }
 
 extension Score: Codable {
 
-    // MARK: - Decodable
+    // MARK: - Codable
+
+    enum CodingKeys: String, CodingKey {
+        case header = "score-header"
+        case traversal
+    }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
