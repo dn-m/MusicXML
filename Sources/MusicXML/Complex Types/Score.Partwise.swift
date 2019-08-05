@@ -85,7 +85,7 @@ extension Score.Partwise {
         var nonControlling: Bool?
         var width: Tenths?
         var optionalUniqueID: Int?
-        var musicData: MusicData?
+        var musicData: [MusicData]
     }
 }
 
@@ -140,6 +140,6 @@ extension Score.Partwise.Measure: Codable {
         self.optionalUniqueID = nil
 
         let container = try decoder.singleValueContainer()
-        self.musicData = try container.decode(MusicData.self)
+        self.musicData = try container.decode([MusicData].self)
     }
 }

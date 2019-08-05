@@ -7,44 +7,29 @@
 
 import XMLCoder
 
-// > Here is the basic musical data that is either associated
-// > with a part or a measure, depending on whether partwise
-// > or timewise hierarchy is used.
-public struct MusicData {
-    let values: [Datum]
-}
-
-extension MusicData {
-    // <!ENTITY % music-data
-    //   "(note | backup | forward | direction | attributes |
-    //     harmony | figured-bass | print | sound | barline |
-    //     grouping | link | bookmark)*">
-    public enum Datum: Equatable {
-        case note(Note)
-        case backup(Backup)
-        case forward(Forward)
-        case attributes(Attributes)
-        case direction(Direction)
-        case harmony(Harmony)
-        case figuredBass(FiguredBass)
-        case print(Print)
-        case sound(Sound)
-        case barline(Barline)
-        case grouping(Grouping)
-        case link(Link)
-        case bookmark(Bookmark)
-    }
+// <!ENTITY % music-data
+//   "(note | backup | forward | direction | attributes |
+//     harmony | figured-bass | print | sound | barline |
+//     grouping | link | bookmark)*">
+public enum MusicData {
+    case note(Note)
+    case backup(Backup)
+    case forward(Forward)
+    case attributes(Attributes)
+    case direction(Direction)
+    case harmony(Harmony)
+    case figuredBass(FiguredBass)
+    case print(Print)
+    case sound(Sound)
+    case barline(Barline)
+    case grouping(Grouping)
+    case link(Link)
+    case bookmark(Bookmark)
 }
 
 extension MusicData: Equatable { }
-extension MusicData: Codable {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        self.values = try container.decode([Datum].self)
-    }
-}
 
-extension MusicData.Datum: Codable {
+extension MusicData: Codable {
 
     // MARK: - Decodable
 
@@ -157,4 +142,4 @@ extension MusicData.Datum: Codable {
     }
 }
 
-extension MusicData.Datum.CodingKeys: XMLChoiceCodingKey { }
+extension MusicData.CodingKeys: XMLChoiceCodingKey { }

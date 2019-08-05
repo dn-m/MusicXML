@@ -17,7 +17,7 @@ class PartwiseMeasureTests: XCTestCase {
         """
         let decoded = try XMLDecoder()
             .decode(Score.Partwise.Measure.self, from: xml.data(using: .utf8)!)
-        let expected = Score.Partwise.Measure(number: 1, musicData: MusicData(values: []))
+        let expected = Score.Partwise.Measure(number: 1, musicData: [])
         XCTAssertEqual(decoded, expected)
     }
 
@@ -45,29 +45,27 @@ class PartwiseMeasureTests: XCTestCase {
             .decode(Score.Partwise.Measure.self, from: xml.data(using: .utf8)!)
         let expected = Score.Partwise.Measure(
             number: 1,
-            musicData: MusicData(
-                values: [
-                    .attributes(
-                        Attributes(
-                            divisions: 1,
-                            keys: [
-                                Key(kind: .traditional(Key.Traditional(fifths: 0, mode: .major)))
-                            ],
-                            times: [
-                                Time(
-                                    symbol: .common,
-                                    kind: .measured(
-                                        Time.Measured(
-                                            signature: Time.Signature(beats: 4, beatType: 4)
-                                        )
+            musicData: [
+                .attributes(
+                    Attributes(
+                        divisions: 1,
+                        keys: [
+                            Key(kind: .traditional(Key.Traditional(fifths: 0, mode: .major)))
+                        ],
+                        times: [
+                            Time(
+                                symbol: .common,
+                                kind: .measured(
+                                    Time.Measured(
+                                        signature: Time.Signature(beats: 4, beatType: 4)
                                     )
                                 )
-                            ],
-                            clefs: [Clef(sign: .g, line: 2)]
-                        )
+                            )
+                        ],
+                        clefs: [Clef(sign: .g, line: 2)]
                     )
-                ]
-            )
+                )
+            ]
         )
         XCTAssertEqual(decoded, expected)
     }

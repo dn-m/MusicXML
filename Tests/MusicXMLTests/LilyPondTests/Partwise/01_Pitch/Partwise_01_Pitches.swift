@@ -11,5 +11,13 @@ import XMLCoder
 
 class Partwise_01_Pitches: XCTestCase {
 
-    
+    func testA_Pitches() throws {
+        let decoded = try! XMLDecoder().decode(Score.Partwise.self, from: A_Pitches.data(using: .utf8)!)
+        dump(decoded)
+        for part in decoded.parts {
+            for measure in part.measures {
+                measure.musicData
+            }
+        }
+    }
 }

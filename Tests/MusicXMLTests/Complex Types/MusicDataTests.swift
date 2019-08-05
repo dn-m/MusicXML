@@ -42,30 +42,28 @@ class MusicDataTests: XCTestCase {
           </attributes>
         </music-data>
         """
-        let decoded = try XMLDecoder().decode(MusicData.self, from: xml.data(using: .utf8)!)
-        let expected = MusicData(
-            values: [
-                .attributes(
-                    Attributes(
-                        divisions: 1,
-                        keys: [
-                            Key(
-                                kind: .traditional(Key.Traditional(fifths: 0, mode: .major))
+        let decoded = try XMLDecoder().decode([MusicData].self, from: xml.data(using: .utf8)!)
+        let expected: [MusicData] = [
+            .attributes(
+                Attributes(
+                    divisions: 1,
+                    keys: [
+                        Key(
+                            kind: .traditional(Key.Traditional(fifths: 0, mode: .major))
+                        )
+                    ],
+                    times: [
+                        Time(
+                            symbol: .common,
+                            kind: .measured(
+                                Time.Measured(signature: Time.Signature(beats: 4, beatType: 4))
                             )
-                        ],
-                        times: [
-                            Time(
-                                symbol: .common,
-                                kind: .measured(
-                                    Time.Measured(signature: Time.Signature(beats: 4, beatType: 4))
-                                )
-                            )
-                        ],
-                        clefs: [Clef(sign: .g, line: 2)]
-                    )
+                        )
+                    ],
+                    clefs: [Clef(sign: .g, line: 2)]
                 )
-            ]
-        )
+            )
+        ]
         XCTAssertEqual(decoded, expected)
     }
 }
