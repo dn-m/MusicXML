@@ -35,15 +35,20 @@
 // >
 #warning("TODO: Support Score document-attributes")
 public struct Score {
-    let header: Header
-    let traversal: Traversal
+    public let header: Header
+    public let traversal: Traversal
 }
 
 extension Score: Equatable { }
 
 extension Score: Codable {
 
-    // MARK: - Decodable
+    // MARK: - Codable
+
+    enum CodingKeys: String, CodingKey {
+        case header = "score-header"
+        case traversal
+    }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()

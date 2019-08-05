@@ -26,19 +26,35 @@
 /// attributes are changed mid-measure, it affects the music in score order, not in MusicXML
 /// document order.
 public struct Attributes {
-    public let footnote: FormattedText?
-    public let level: Level?
-    public let divisions: Int?
-    public let keys: [Key]
-    public let time: [Time]
-    public let staves: Int?
-    public let partSymbol: PartSymbol?
-    public let instruments: Int?
-    public let clefs: [Clef]
-    public let staffDetails: [StaffDetails]
-    public let transpose: [Transpose]
-    public let measureStyles: [MeasureStyle]
+    public var footnote: FormattedText?
+    public var level: Level?
+    public var divisions: Int?
+    public var keys: [Key]?
+    public var times: [Time]?
+    public var staves: Int?
+    public var partSymbol: PartSymbol?
+    public var instruments: Int?
+    public var clefs: [Clef]?
+    public var staffDetails: [StaffDetails]?
+    public var transpose: [Transpose]?
+    public var measureStyles: [MeasureStyle]?
 }
 
 extension Attributes: Equatable { }
-extension Attributes: Codable { }
+extension Attributes: Codable {
+    enum CodingKeys: String, CodingKey {
+        case footnote
+        case level
+        case divisions
+        case keys = "key"
+        case times = "time"
+        case staves = "stave"
+        case partSymbol = "part-symbol"
+        case instruments
+        case clefs = "clef"
+        case staffDetails = "staff-details"
+        case transpose
+        case measureStyles = "measure-style"
+    }
+
+}

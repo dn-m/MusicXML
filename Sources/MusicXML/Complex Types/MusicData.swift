@@ -7,37 +7,29 @@
 
 import XMLCoder
 
-// > Here is the basic musical data that is either associated
-// > with a part or a measure, depending on whether partwise
-// > or timewise hierarchy is used.
-public struct MusicData: Equatable {
-
-    // <!ENTITY % music-data
-    //   "(note | backup | forward | direction | attributes |
-    //     harmony | figured-bass | print | sound | barline |
-    //     grouping | link | bookmark)*">
-    public enum Datum: Equatable {
-        case note(Note)
-        case backup(Backup)
-        case forward(Forward)
-        case attributes(Attributes)
-        case direction(Direction)
-        case harmony(Harmony)
-        case figuredBass(FiguredBass)
-        case print(Print)
-        case sound(Sound)
-        case barline(Barline)
-        case grouping(Grouping)
-        case link(Link)
-        case bookmark(Bookmark)
-    }
-
-    let values: [Datum]
+// <!ENTITY % music-data
+//   "(note | backup | forward | direction | attributes |
+//     harmony | figured-bass | print | sound | barline |
+//     grouping | link | bookmark)*">
+public enum MusicData {
+    case note(Note)
+    case backup(Backup)
+    case forward(Forward)
+    case attributes(Attributes)
+    case direction(Direction)
+    case harmony(Harmony)
+    case figuredBass(FiguredBass)
+    case print(Print)
+    case sound(Sound)
+    case barline(Barline)
+    case grouping(Grouping)
+    case link(Link)
+    case bookmark(Bookmark)
 }
 
-extension MusicData: Codable { }
+extension MusicData: Equatable { }
 
-extension MusicData.Datum: Codable {
+extension MusicData: Codable {
 
     // MARK: - Decodable
 
@@ -150,4 +142,4 @@ extension MusicData.Datum: Codable {
     }
 }
 
-extension MusicData.Datum.CodingKeys: XMLChoiceCodingKey { }
+extension MusicData.CodingKeys: XMLChoiceCodingKey { }

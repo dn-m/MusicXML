@@ -15,13 +15,15 @@ import XMLCoder
 /// not present.
 public struct Time {
 
+    // MARK: - Attributes
+
     /// The optional number attribute refers to staff numbers within the part. If absent, the
     /// time signature applies to all staves in the part.
-    public let number: Int?
+    public var number: Int?
 
     /// The symbol attribute is used indicate common and cut time symbols as well as a single number
     /// display.
-    public let symbol: TimeSymbol?
+    public var symbol: TimeSymbol?
 
     /// The time-separator attribute indicates how to display the arrangement between the beats and
     /// beat-type values in a time signature. The default value is none. The horizontal, diagonal,
@@ -30,16 +32,23 @@ public struct Time {
     /// side of the separator line. The none value represents  no separator with the beats and
     /// beat-type arranged vertically. The adjacent value represents no separator with the beats and
     /// beat-type arranged horizontally.
-    public let separator: TimeSeparator?
+    public var separator: TimeSeparator?
 
-    public let printStyle: PrintStyle?
-    public let hAlign: LeftCenterRight?
-    public let vAlign: VAlign?
-    public let printObject: Bool
-    public let kind: Kind
+    public var printStyle: PrintStyle?
+    public var hAlign: LeftCenterRight?
+    public var vAlign: VAlign?
+    public var printObject: Bool?
+
+    // MARK: - Elements
+    public var kind: Kind
 }
 
 extension Time {
+
+    public struct Signature {
+        let beats: Int
+        let beatType: Int
+    }
 
     // > Time signatures are represented by two elements. The
     // > beats element indicates the number of beats, as found in
@@ -58,13 +67,9 @@ extension Time {
     // > available compared to the time element's symbol attribute,
     // > which applies to the first of the dual time signatures.
     public struct Measured {
-
-        public struct Signature: Equatable, Codable {
-            let beats: Int
-            let beatType: Int
-        }
-        let signatures: [Signature]
-        let interchangeable: Interchangeable?
+        #warning("Handle multiple time signatures in Time.Measured")
+        var signature: Signature
+        var interchangeable: Interchangeable?
     }
 
     // > A senza-misura element explicitly indicates that no time
@@ -82,11 +87,37 @@ extension Time {
     }
 }
 
+extension Time.Signature: Equatable { }
+extension Time.Signature: Codable {
+    enum CodingKeys: String, CodingKey {
+        case beats
+        case beatType = "beat-type"
+    }
+}
+
 extension Time.Measured: Equatable { }
-extension Time.Measured: Codable { }
+extension Time.Measured: Codable {
+    enum CodingKeys: String, CodingKey {
+        case signature
+        case interchangeable
+    }
+    public init(from decoder: Decoder) throws {
+        let signatureContainer = try decoder.container(keyedBy: Time.Signature.CodingKeys.self)
+        self.signature = Time.Signature(
+            beats: try signatureContainer.decode(Int.self, forKey: .beats),
+            beatType: try signatureContainer.decode(Int.self, forKey: .beatType)
+        )
+        let container = try decoder.container(keyedBy: Time.Measured.CodingKeys.self)
+        self.interchangeable = try container.decodeIfPresent(Interchangeable.self, forKey: .interchangeable)
+    }
+}
 
 extension Time.Unmeasured: Equatable { }
-extension Time.Unmeasured: Codable { }
+extension Time.Unmeasured: Codable {
+    enum CodingKeys: String, CodingKey {
+        case symbol
+    }
+}
 
 extension Time.Kind: Equatable { }
 extension Time.Kind: Codable {
@@ -113,7 +144,52 @@ extension Time.Kind: Codable {
     }
 }
 
-extension Time.Kind.CodingKeys: XMLChoiceCodingKey { }
-
 extension Time: Equatable { }
-extension Time: Codable { }
+extension Time: Codable {
+    public init(from decoder: Decoder) throws {
+        // Decode attributes
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.number = try container.decodeIfPresent(Int.self, forKey: .number)
+        self.symbol = try container.decodeIfPresent(TimeSymbol.self, forKey: .symbol)
+        self.separator = try container.decodeIfPresent(TimeSeparator.self, forKey: .separator)
+        self.printStyle = try container.decodeIfPresent(PrintStyle.self, forKey: .printStyle)
+        self.hAlign = try container.decodeIfPresent(LeftCenterRight.self, forKey: .hAlign)
+        self.vAlign = try container.decodeIfPresent(VAlign.self, forKey: .vAlign)
+        self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
+        // Decode kind
+        do {
+            #warning("Audit containers in Time.init(from: Decoder)")
+            let kindContainer = try decoder.container(keyedBy: Measured.CodingKeys.self)
+            let signatureContainer = try decoder.container(keyedBy: Signature.CodingKeys.self)
+            self.kind = .measured(
+                Time.Measured(
+                    signature: Signature(
+                        beats: try signatureContainer.decode(Int.self, forKey: .beats),
+                        beatType: try signatureContainer.decode(Int.self, forKey: .beatType)
+                    ),
+                    interchangeable: try kindContainer.decodeIfPresent(Interchangeable.self,
+                        forKey: .interchangeable
+                    )
+                )
+            )
+        } catch {
+            let kindContainer = try decoder.container(keyedBy: Unmeasured.CodingKeys.self)
+            self.kind = .unmeasured(
+                Time.Unmeasured(
+                    symbol: try kindContainer.decodeIfPresent(String.self, forKey: .symbol)
+                )
+            )
+        }
+    }
+}
+
+extension Time: DynamicNodeDecoding {
+    public static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
+        switch key {
+        case CodingKeys.symbol, CodingKeys.number:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

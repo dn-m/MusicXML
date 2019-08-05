@@ -46,47 +46,44 @@ public struct Barline {
     /// element in the measure, aside from the print, bookmark, and link elements. If location is
     /// right, it should be the last element, again with the possible exception of the print,
     /// bookmark, and link elements.
-    public let location: RightLeftMiddle?
+    public var location: RightLeftMiddle?
 
     /// The segno attribute works the same way as the one in the sound element. It is used for
     /// playback when barline elements contain a segno element.
-    public let segno: EmptyPrintStyleAlign?
+    public var segno: EmptyPrintStyleAlign?
 
     /// The coda attribute works the same way as the one in the sound element. It is used for
     /// playback when a barline element contains a coda child element.
-    public let coda: EmptyPrintStyleAlign?
+    public var coda: EmptyPrintStyleAlign?
 
     /// The divisions attribute works the same way as the one in the sound element. It is used for
     /// playback when a barline element contains a divisions element.
-    public let divisions: Int?
+    public var divisions: Int?
 
     /// The bar-style type represents barline style information. Choices are regular, dotted,
     /// dashed, heavy, light-light, light-heavy, heavy-light, heavy-heavy, tick (a short stroke
     /// through the top line), short (a partial barline between the 2nd and 4th lines), and none.
-    public let barStyle: BarStyleColor?
+    public var barStyle: BarStyleColor?
 
-    public let editorial: Editorial?
-    public let wavyLine: WavyLine?
-    public let fermata: Fermata
-    public let ending: Ending?
-    public let `repeat`: Repeat?
+    public var editorial: Editorial?
+    public var wavyLine: WavyLine?
+    public var fermata: Fermata?
+    public var ending: Ending?
+    public var `repeat`: Repeat?
 }
 
-//extension Barline: Codable {
-//    enum CodingKeys: String, CodingKey {
-//        case location
-//        case barStyle = "bar-style"
-//        case editorial
-//        case wavyLine = "wavy-line"
-//        case segno
-//        case coda
-//        case fermatas
-//        case ending
-//        case `repeat`
-//        case divisions
-//        case optionalUniqueID = "optional-unique-id"
-//    }
-//}
-
 extension Barline: Equatable { }
-extension Barline: Codable { }
+extension Barline: Codable {
+    enum CodingKeys: String, CodingKey {
+        case location
+        case barStyle = "bar-style"
+        case editorial
+        case wavyLine = "wavy-line"
+        case segno
+        case coda
+        case fermata
+        case ending
+        case `repeat`
+        case divisions
+    }
+}

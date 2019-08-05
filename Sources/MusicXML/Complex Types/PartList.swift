@@ -27,8 +27,8 @@ extension PartList {
 extension PartList.Item: Equatable { }
 extension PartList.Item: Codable {
     enum CodingKeys: String, CodingKey {
-        case group
-        case part
+        case group = "part-group"
+        case part = "score-part"
     }
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -53,10 +53,8 @@ extension PartList.Item.CodingKeys: XMLChoiceCodingKey { }
 
 extension PartList: Equatable { }
 extension PartList: Codable {
-
-    // MARK: - Codable
-
-    enum CodingKeys: String, CodingKey {
-        case parts = "score-part"
+    public init(from decoder: Decoder) throws {
+        let singleValue = try decoder.singleValueContainer()
+        self.parts = try singleValue.decode([Item].self)
     }
 }

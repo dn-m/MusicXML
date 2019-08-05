@@ -12,63 +12,58 @@
 /// elements. Having these two types of information available can make interchange considerably
 /// easier, as some programs handle one type of information much more readily than the other.
 public struct Note {
-    public let defaultX: Tenths?
-    public let defaultY: Tenths?
-    public let relativeX: Tenths?
-    public let relativeY: Tenths?
-    public let font: Font?
-    public let color: Color?
-    public let printObject: Bool?
-    public let printDot: Bool?
-    public let printSpacing: Bool?
-    public let printLyric: Bool?
-    public let dynamics: Double?
-    public let endDynamics: Double?
-    public let attack: Divisions?
-    public let release: Divisions?
-    public let timeOnly: TimeOnly?
-    public let pizzicato: Bool?
 
-    public let instrument: Instrument?
-    public let footnote: FormattedText?
-    public let level: Level?
-    public let voice: String?
-    public let type: NoteType?
-    public let dots: [EmptyPlacement]
-    public let accidental: Accidental?
-    public let timeModification: TimeModification?
-    public let stem: Stem?
-    public let notehead: Notehead?
-    public let noteheadText: NoteheadText?
+    // MARK: - Attributes
 
-    public let staff: Int?
-    public let beams: [Beam] // Up to 8
-    public let notations: Notations
-    public let lyrics: [Lyric]
-    public let play: Play?
+    public var printStyle: PrintStyle?
+    public var printObject: Bool?
+    public var printDot: Bool?
+    public var printSpacing: Bool?
+    public var printLyric: Bool?
+    public var dynamics: Double?
+    public var endDynamics: Double?
+    public var attack: Divisions?
+    public var release: Divisions?
+    public var timeOnly: TimeOnly?
+    public var pizzicato: Bool?
 
-    #warning("TODO: Complete Note Content Model")
+    // MARK: - Elements
+
+    public var instrument: Instrument?
+    public var footnote: FormattedText?
+    public var level: Level?
+    public var voice: String?
+    public var type: NoteType?
+    public var dots: [EmptyPlacement]?
+    public var accidental: Accidental?
+    public var timeModification: TimeModification?
+    public var stem: Stem?
+    public var notehead: Notehead?
+    public var noteheadText: NoteheadText?
+
+    public var staff: Int?
+    public var beams: [Beam]? // Up to 8
+    public var notations: Notations?
+    public var lyrics: [Lyric]?
+    public var play: Play?
+
+    #warning("FIXME: Flesh out Note model. Currently only supports pitched notes")
+    public var pitch: Pitch?
+    public var duration: Double?
 }
 
 extension Note: Equatable { }
 extension Note: Codable { }
+
 //
 //public struct Note: Codable, Equatable {
 //
 //    // (
-//    //   (
-//    //      (
-//    //          grace,
-//    //          (
-//    //              (%full-note;, (tie, tie?)?) | (cue, %full-note;)
-//    //          )
-//    //      )
+//    //   ((grace, ((%full-note;, (tie, tie?)?) |(cue, %full-note;)))
 //    //   |
 //    //   (cue, %full-note;, duration)
 //    //   |
-//    //   (
-//    //      %full-note;, duration, (tie, tie?)?
-//    //   )
+//    //   (%full-note;, duration, (tie, tie?)?)
 //    // )
 //    // TODO: Kind
 //

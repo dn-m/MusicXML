@@ -1,18 +1,22 @@
 //
-//  Score.Partwise.swift
+//  Timewise.swift
 //  MusicXML
 //
-//  Created by James Bean on 12/21/18.
+//  Created by James Bean on 8/5/19.
 //
 
-extension Score {
-    /// The `partwise` traversal of a MusicXML score.
-    public struct Partwise: Equatable {
-        let parts: [Part]
-    }
+/// The `timewise` traversal of a `MusicXML` score.
+public struct Timewise: Equatable {
+
+    // MARK: - Instance Properties
+
+    // MARK: Elements
+
+    /// The `Measure` values which comprise a `Timewise` traversal of a `MusicXML` score.
+    let measures: [Measure]
 }
 
-extension Score.Partwise {
+extension Timewise {
 
     // MARK: - Nested Types
 
@@ -26,7 +30,7 @@ extension Score.Partwise {
     // >
     public struct Part: Equatable {
         let id: String
-        let measures: [Measure]
+        let musicData: MusicData?
     }
 
     // > The implicit attribute is set to "yes" for measures where
@@ -78,40 +82,46 @@ extension Score.Partwise {
         let nonControlling: Bool?
         let width: Tenths?
         let optionalUniqueID: Int?
-        let musicData: MusicData?
+        let parts: [Part]
     }
 }
 
-extension Score.Partwise: Codable {
+extension Timewise: Codable {
 
     // MARK: - Decodable
 
     enum CodingKeys: String, CodingKey {
-        case parts = "part"
+        case measures = "measure"
     }
 }
 
-extension Score.Partwise.Part: Codable {
+extension Timewise.Part: Codable {
 
     // MARK: - Decodable
 
     enum CodingKeys: String, CodingKey {
         case id
-        case measures = "measure"
+    }
+
+    public init(from decoder: Decoder) throws {
+        let keyed = try decoder.container(keyedBy: CodingKeys.self)
+        var unkeyed = try decoder.unkeyedContainer()
+        self.id = try keyed.decode(String.self, forKey: .id)
+        self.musicData = try unkeyed.decode(MusicData.self)
     }
 }
 
-extension Score.Partwise.Measure: Codable {
+extension Timewise.Measure: Codable {
 
-    // MARK: - Codable
+    // MARK: - Decodable
 
     enum CodingKeys: String, CodingKey {
+        case parts = "part"
         case number
         case text
         case implicit
         case nonControlling = "non-controlling"
         case width
         case optionalUniqueID = "optional-unique-id"
-        case musicData
     }
 }

@@ -1,28 +1,23 @@
 //
-//  Score.Traversal.swift
+//  Traversal.swift
 //  MusicXML
 //
-//  Created by James Bean on 12/21/18.
+//  Created by James Bean on 8/5/19.
 //
 
 import XMLCoder
 
-extension Score {
+/// Either a `partwise` or `timewise` traversal of a MusicXML score.
+public enum Traversal: Equatable {
 
-    // MARK: - Score Traversal
+    /// The `partwise` traversal of a MusicXML score.
+    case partwise(Partwise)
 
-    /// Either a `partwise` or `timewise` traversal of a MusicXML score.
-    public enum Traversal: Equatable {
-
-        /// The `partwise` traversal of a MusicXML score.
-        case partwise(Partwise)
-
-        /// The `timewise` traversal of a MusicXML score.
-        case timewise(Timewise)
-    }
+    /// The `timewise` traversal of a MusicXML score.
+    case timewise(Timewise)
 }
 
-extension Score.Traversal: Codable {
+extension Traversal: Codable {
 
     // MARK: - Codable
 
@@ -44,11 +39,11 @@ extension Score.Traversal: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         do {
-            self = .partwise(try container.decode(Score.Partwise.self))
+            self = .partwise(try container.decode(Partwise.self))
         } catch {
-            self = .timewise(try container.decode(Score.Timewise.self))
+            self = .timewise(try container.decode(Timewise.self))
         }
     }
 }
 
-extension Score.Traversal.CodingKeys: XMLChoiceCodingKey { }
+extension Traversal.CodingKeys: XMLChoiceCodingKey { }

@@ -1,18 +1,28 @@
 //
-//  Score.Timewise.swift
+//  Partwise.swift
 //  MusicXML
 //
-//  Created by James Bean on 12/21/18.
+//  Created by James Bean on 8/5/19.
 //
 
-extension Score {
-    /// The `timewise` traversal of a MusicXML score.
-    public struct Timewise: Equatable {
-        let measures: [Measure]
-    }
+/// The `partwise` traversal of a MusicXML score.
+public struct Partwise: Equatable {
+
+    // MARK: - Instance Properties
+
+    // MARK: Elements
+    
+    public var work: Work?
+    public var movementNumber: String?
+    public var movementTitle: String?
+    public var identification: Identification?
+    public var defaults: Defaults?
+    public var credits: [Credit]?
+    public var partList: PartList
+    public var parts: [Part]
 }
 
-extension Score.Timewise {
+extension Partwise {
 
     // MARK: - Nested Types
 
@@ -25,8 +35,24 @@ extension Score.Timewise {
     //    id IDREF #REQUIRED
     // >
     public struct Part: Equatable {
-        let id: String
-        let musicData: MusicData?
+
+        // MARK: - Properties
+
+        // MARK: Attributes
+
+        public var id: String
+
+        // MARK: Elements
+
+        public var measures: [Measure]
+
+        // MARK: - Initializers
+
+        /// Creates a `Partwise.Part` with the given `id` and array of `measures`.
+        public init(id: String, measures: [Measure]) {
+            self.id = id
+            self.measures = measures
+        }
     }
 
     // > The implicit attribute is set to "yes" for measures where
@@ -72,52 +98,67 @@ extension Score.Timewise {
     //     %optional-unique-id;
     // >
     public struct Measure: Equatable {
-        let number: Int
-        let text: String?
-        let implicit: Bool?
-        let nonControlling: Bool?
-        let width: Tenths?
-        let optionalUniqueID: Int?
-        let parts: [Part]
+        public var number: Int
+        public var text: String?
+        public var implicit: Bool?
+        public var nonControlling: Bool?
+        public var width: Tenths?
+        public var optionalUniqueID: Int?
+        public var musicData: [MusicData]
     }
 }
 
-extension Score.Timewise: Codable {
+extension Partwise: Codable {
 
     // MARK: - Decodable
 
     enum CodingKeys: String, CodingKey {
-        case measures = "measure"
+        case work
+        case movementNumber = "movement-number"
+        case movementTitle = "movement-title"
+        case identification
+        case defaults
+        case credits = "credit"
+        case partList = "part-list"
+        case parts = "part"
     }
 }
 
-extension Score.Timewise.Part: Codable {
+extension Partwise.Part: Codable {
 
     // MARK: - Decodable
 
     enum CodingKeys: String, CodingKey {
         case id
-    }
-
-    public init(from decoder: Decoder) throws {
-        let keyed = try decoder.container(keyedBy: CodingKeys.self)
-        var unkeyed = try decoder.unkeyedContainer()
-        self.id = try keyed.decode(String.self, forKey: .id)
-        self.musicData = try unkeyed.decode(MusicData.self)
+        case measures = "measure"
     }
 }
 
-extension Score.Timewise.Measure: Codable {
+extension Partwise.Measure: Codable {
 
-    // MARK: - Decodable
+    // MARK: - Codable
 
     enum CodingKeys: String, CodingKey {
-        case parts = "part"
         case number
         case text
         case implicit
         case nonControlling = "non-controlling"
         case width
         case optionalUniqueID = "optional-unique-id"
+        case musicData
+    }
+
+    public init(from decoder: Decoder) throws {
+        // Decode attributes
+        let keyedContainer = try decoder.container(keyedBy: CodingKeys.self)
+        self.number = try keyedContainer.decode(Int.self, forKey: .number)
+        self.text = nil
+        self.implicit = nil
+        self.nonControlling = nil
+        self.width = nil
+        self.optionalUniqueID = nil
+
+        let container = try decoder.singleValueContainer()
+        self.musicData = try container.decode([MusicData].self)
     }
 }

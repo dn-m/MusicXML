@@ -9,15 +9,15 @@
 /// appear at the start of each system unless the print-object attribute has been set to "no" or the
 /// additional attribute has been set to "yes".
 public struct Clef {
-    public let number: Int?
-    public let additional: Bool?
-    public let size: SymbolSize?
-    public let afterBarline: Bool?
-    public let printStyle: PrintStyle?
-    public let printObject: Bool?
-    public let sign: ClefSign
-    public let line: Int?
-    public let clefOctaveChange: Int?
+    public var number: Int?
+    public var additional: Bool?
+    public var size: SymbolSize?
+    public var afterBarline: Bool?
+    public var printStyle: PrintStyle?
+    public var printObject: Bool?
+    public var sign: ClefSign
+    public var line: Int?
+    public var clefOctaveChange: Int?
 }
 
 extension Clef: Equatable { }

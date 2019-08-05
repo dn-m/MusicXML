@@ -15,28 +15,28 @@ public struct Identification {
     /// and arranger. Other type values may be used for different types of creative roles. The type
     /// attribute should usually be used even if there is just a single creator element. The
     /// MusicXML format does not use the creator / contributor distinction from Dublin Core.
-    public let creator: [String]
+    public var creator: [String]?
     /// The rights element is borrowed from Dublin Core. It contains copyright and other
     /// intellectual property notices. Words, music, and derivatives can have different types, so
     /// multiple rights tags with different type attributes are supported. Standard type values are
     /// music, words, and arrangement, but other types may be used. The type attribute is only
     /// needed when there are multiple rights elements.
-    public let rights: [String]
+    public var rights: [String]?
     /// The encoding element contains information about who did the digital encoding, when, with
     /// what software, and in what aspects. Standard type values for the encoder element are music,
     /// words, and arrangement, but other types may be used. The type attribute is only needed when
     /// there are multiple encoder elements.
-    public let encoding: Encoding?
+    public var encoding: Encoding?
     /// The source for the music that is encoded. This is similar to the Dublin Core source element.
-    public let source: String?
+    public var source: String?
     /// A related resource for the music that is encoded. This is similar to the Dublin Core
     /// relation element. Standard type values are music, words, and arrangement, but other types
     /// may be used.
-    public let relation: [String]
+    public var relation: [String]?
     /// If a program has other metadata not yet supported in the MusicXML format, it can go in the
     /// miscellaneous element. The miscellaneous type puts each separate part of metadata into its
     /// own miscellaneous-field type.
-    public let miscellaneous: Miscellaneous?
+    public var miscellaneous: Miscellaneous?
 }
 
 extension Identification: Equatable { }

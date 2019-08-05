@@ -5,6 +5,8 @@
 //  Created by James Bean on 5/28/19.
 //
 
+import XMLCoder
+
 /// Each MusicXML part corresponds to a track in a Standard MIDI Format 1 file. The score-instrument
 /// elements are used when there are multiple instruments per track. The midi-device element is used
 /// to make a MIDI device or port assignment for the given track or specific MIDI instruments.
@@ -12,40 +14,44 @@
 #warning("TODO: Add support for ScorePart print-style, print-object, and justify")
 public struct ScorePart {
 
-    public let id: String
+    // MARK: - Attributes
+
+    public var id: String
+
+    // MARK: - Elements
 
     /// Identification contains basic metadata about the score. It includes the information in
     /// MuseData headers that may apply at a score-wide, movement-wide, or part-wide level. The
     /// creator, rights, source, and relation elements are based on Dublin Core.
-    public let identification: Identification?
+    public var identification: Identification?
 
     /// The part-name type describes the name or abbreviation of a score-part element. Formatting
     /// attributes for the part-name element are deprecated in Version 2.0 in favor of the new
     /// part-name-display and part-abbreviation-display elements.
-    public let name: PartName
+    public var name: PartName
 
     /// The part-name-display and part-abbreviation-display elements used in the score.mod file may
     /// also be used here to change how a part name or abbreviation is displayed over the course of
     /// a piece. They take effect when the current measure or a succeeding measure starts a new
     /// system.
-    public let nameDisplay: NameDisplay?
+    public var nameDisplay: NameDisplay?
 
     /// The part-name-display and part-abbreviation-display elements used in the score.mod file may
     /// also be used here to change how a part name or abbreviation is displayed over the course of
     /// a piece. They take effect when the current measure or a succeeding measure starts a new
     /// system.
-    public let partAbbreviation: PartName?
+    public var partAbbreviation: PartName?
 
     /// The part-name-display and part-abbreviation-display elements used in the score.mod file may
     /// also be used here to change how a part name or abbreviation is displayed over the course of
     /// a piece. They take effect when the current measure or a succeeding measure starts a new
     /// system.
-    public let partAbbreviationDisplay: NameDisplay?
+    public var partAbbreviationDisplay: NameDisplay?
 
     /// The group element allows the use of different versions of the part for different purposes.
     /// Typical values include score, parts, sound, and data. Ordering information that is directly
     /// encoded in MuseData can be derived from the ordering within a MusicXML score or opus.
-    public let group: [String]
+    public var group: [String]?
 
     /// The score-instrument type represents a single instrument within a score-part. As with the
     /// score-part type, each score-instrument has a required ID attribute, a name, and an optional
@@ -54,9 +60,17 @@ public struct ScorePart {
     /// MusicXML software should be able to automatically assign reasonable channels and instruments
     /// without these elements in simple cases, such as where part names match General MIDI
     /// instrument names.
-    public let scoreInstrument: [ScoreInstrument]
+    public var scoreInstrument: [ScoreInstrument]?
 
-    public let midi: [MIDI]
+    /// The midi-device type corresponds to the DeviceName meta event in Standard MIDI Files. Unlike
+    /// the DeviceName meta event, there can be multiple midi-device elements per MusicXML part
+    /// starting in MusicXML 3.0.
+    ///
+    /// The midi-instrument type defines MIDI 1.0 instrument playback. The midi-instrument element
+    /// can be a part of either the score-instrument element at the start of a part, or the sound
+    /// element within a part. The id attribute refers to the score-instrument affected by the
+    /// change.
+    public var midi: [MIDI]?
 }
 
 extension ScorePart {
@@ -78,7 +92,41 @@ extension ScorePart.MIDI: Equatable { }
 extension ScorePart.MIDI: Codable { }
 
 extension ScorePart: Equatable { }
-extension ScorePart: Codable { }
+extension ScorePart: Codable {
+    enum CodingKeys: String, CodingKey {
+        case id
+        case identification
+        case name = "part-name"
+        case nameDisplay = "name-display"
+        case partAbbreviation = "part-abbreviation"
+        case partAbbreviationDisplay = "part-abbreviation-display"
+        case group
+        case scoreInstrument = "score-instrument"
+        case midi
+    }
+}
+
+extension ScorePart: DynamicNodeDecoding {
+    public static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
+        switch key {
+        case CodingKeys.id:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}
+
+extension ScorePart: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.id:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}
 
 //extension PartList.ScorePart: Codable {
 //
