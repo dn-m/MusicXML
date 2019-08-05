@@ -1,25 +1,23 @@
 //
-//  Score.Partwise.swift
+//  Partwise.swift
 //  MusicXML
 //
-//  Created by James Bean on 12/21/18.
+//  Created by James Bean on 8/5/19.
 //
 
-extension Score {
-    /// The `partwise` traversal of a MusicXML score.
-    public struct Partwise: Equatable {
-        public var work: Work?
-        public var movementNumber: String?
-        public var movementTitle: String?
-        public var identification: Identification?
-        public var defaults: Defaults?
-        public var credits: [Credit]?
-        public var partList: PartList
-        public var parts: [Part]
-    }
+/// The `partwise` traversal of a MusicXML score.
+public struct Partwise: Equatable {
+    public var work: Work?
+    public var movementNumber: String?
+    public var movementTitle: String?
+    public var identification: Identification?
+    public var defaults: Defaults?
+    public var credits: [Credit]?
+    public var partList: PartList
+    public var parts: [Part]
 }
 
-extension Score.Partwise {
+extension Partwise {
 
     // MARK: - Nested Types
 
@@ -32,8 +30,24 @@ extension Score.Partwise {
     //    id IDREF #REQUIRED
     // >
     public struct Part: Equatable {
+
+        // MARK: - Properties
+
+        // MARK: Attributes
+
         public var id: String
+
+        // MARK: Elements
+
         public var measures: [Measure]
+
+        // MARK: - Initializers
+
+        /// Creates a `Partwise.Part` with the given `id` and array of `measures`.
+        public init(id: String, measures: [Measure]) {
+            self.id = id
+            self.measures = measures
+        }
     }
 
     // > The implicit attribute is set to "yes" for measures where
@@ -89,7 +103,7 @@ extension Score.Partwise {
     }
 }
 
-extension Score.Partwise: Codable {
+extension Partwise: Codable {
 
     // MARK: - Decodable
 
@@ -105,7 +119,7 @@ extension Score.Partwise: Codable {
     }
 }
 
-extension Score.Partwise.Part: Codable {
+extension Partwise.Part: Codable {
 
     // MARK: - Decodable
 
@@ -115,7 +129,7 @@ extension Score.Partwise.Part: Codable {
     }
 }
 
-extension Score.Partwise.Measure: Codable {
+extension Partwise.Measure: Codable {
 
     // MARK: - Codable
 

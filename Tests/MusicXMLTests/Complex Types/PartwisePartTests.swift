@@ -69,7 +69,7 @@ class PartwisePartTests: XCTestCase {
           </measure>
         </part>
         """
-        let decoded = try XMLDecoder().decode(Score.Partwise.Part.self, from: xml.data(using: .utf8)!)
+        let decoded = try XMLDecoder().decode(Partwise.Part.self, from: xml.data(using: .utf8)!)
         #warning("Add assertion to PatwisePartTests.testDecodingSingleMeasure()")
     }
 
@@ -1317,7 +1317,7 @@ class PartwisePartTests: XCTestCase {
           </measure>
         </part>
         """
-        let decoded = try XMLDecoder().decode(Score.Partwise.Part.self, from: xml.data(using: .utf8)!)
+        let decoded = try XMLDecoder().decode(Partwise.Part.self, from: xml.data(using: .utf8)!)
         #warning("Add assertion to PatwisePartTests.testDecoding()")
     }
 }

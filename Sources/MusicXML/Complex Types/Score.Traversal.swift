@@ -44,7 +44,7 @@ extension Score.Traversal: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         do {
-            self = .partwise(try container.decode(Score.Partwise.self))
+            self = .partwise(try container.decode(Partwise.self))
         } catch {
             self = .timewise(try container.decode(Score.Timewise.self))
         }
