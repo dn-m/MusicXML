@@ -14,13 +14,13 @@
 // "(work?, movement-number?, movement-title?,
 // identification?, defaults?, credit*, part-list)">
 public struct Header: Equatable {
-    let work: Work?
-    let movementNumber: String?
-    let movementTitle: String?
-    let identification: Identification?
-    let defaults: Defaults?
-    let credits: [Credit]?
-    let partList: PartList
+    public var work: Work?
+    public var movementNumber: String?
+    public var movementTitle: String?
+    public var identification: Identification?
+    public var defaults: Defaults?
+    public var credits: [Credit]
+    public var partList: PartList
 }
 
 extension Header: Codable {
