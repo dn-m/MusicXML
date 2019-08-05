@@ -1,18 +1,16 @@
 //
-//  Score.Timewise.swift
+//  Timewise.swift
 //  MusicXML
 //
-//  Created by James Bean on 12/21/18.
+//  Created by James Bean on 8/5/19.
 //
 
-extension Score {
-    /// The `timewise` traversal of a MusicXML score.
-    public struct Timewise: Equatable {
-        let measures: [Measure]
-    }
+/// The `timewise` traversal of a MusicXML score.
+public struct Timewise: Equatable {
+    let measures: [Measure]
 }
 
-extension Score.Timewise {
+extension Timewise {
 
     // MARK: - Nested Types
 
@@ -82,7 +80,7 @@ extension Score.Timewise {
     }
 }
 
-extension Score.Timewise: Codable {
+extension Timewise: Codable {
 
     // MARK: - Decodable
 
@@ -91,7 +89,7 @@ extension Score.Timewise: Codable {
     }
 }
 
-extension Score.Timewise.Part: Codable {
+extension Timewise.Part: Codable {
 
     // MARK: - Decodable
 
@@ -107,7 +105,7 @@ extension Score.Timewise.Part: Codable {
     }
 }
 
-extension Score.Timewise.Measure: Codable {
+extension Timewise.Measure: Codable {
 
     // MARK: - Decodable
 

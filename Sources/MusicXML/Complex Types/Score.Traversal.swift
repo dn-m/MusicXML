@@ -46,7 +46,7 @@ extension Score.Traversal: Codable {
         do {
             self = .partwise(try container.decode(Partwise.self))
         } catch {
-            self = .timewise(try container.decode(Score.Timewise.self))
+            self = .timewise(try container.decode(Timewise.self))
         }
     }
 }
