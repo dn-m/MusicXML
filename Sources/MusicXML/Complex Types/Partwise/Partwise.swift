@@ -58,7 +58,5 @@ extension Partwise: Codable {
         self.defaults = try container.decodeIfPresent(Defaults.self, forKey: .defaults)
         self.credits = try container.decodeIfPresent([Credit].self, forKey: .credits)
         self.partList = try container.decode(PartList.self, forKey: .partList)
-
-
     }
 }
