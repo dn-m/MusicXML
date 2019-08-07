@@ -1,38 +1,13 @@
 //
-//  Timewise.swift
+//  Timewise.Measure.swift
 //  MusicXML
 //
-//  Created by James Bean on 8/5/19.
+//  Created by James Bean on 8/7/19.
 //
 
-/// The `timewise` traversal of a `MusicXML` score.
-public struct Timewise: Equatable {
-
-    // MARK: - Instance Properties
-
-    // MARK: Elements
-
-    /// The `Measure` values which comprise a `Timewise` traversal of a `MusicXML` score.
-    let measures: [Measure]
-}
+import XMLCoder
 
 extension Timewise {
-
-    // MARK: - Nested Types
-
-    // In either format, the part element has an id attribute that
-    // is an IDREF back to a score-part in the part-list. Measures
-    // have a required number attribute (going from partwise to
-    // timewise, measures are grouped via the number).
-    //
-    // <!ATTLIST part
-    //    id IDREF #REQUIRED
-    // >
-    public struct Part: Equatable {
-        let id: String
-        let musicData: MusicData?
-    }
-
     // > The implicit attribute is set to "yes" for measures where
     // > the measure number should never appear, such as pickup
     // > measures and the last half of mid-measure repeats. The
@@ -86,34 +61,9 @@ extension Timewise {
     }
 }
 
-extension Timewise: Codable {
-
-    // MARK: - Decodable
-
-    enum CodingKeys: String, CodingKey {
-        case measures = "measure"
-    }
-}
-
-extension Timewise.Part: Codable {
-
-    // MARK: - Decodable
-
-    enum CodingKeys: String, CodingKey {
-        case id
-    }
-
-    public init(from decoder: Decoder) throws {
-        let keyed = try decoder.container(keyedBy: CodingKeys.self)
-        var unkeyed = try decoder.unkeyedContainer()
-        self.id = try keyed.decode(String.self, forKey: .id)
-        self.musicData = try unkeyed.decode(MusicData.self)
-    }
-}
-
 extension Timewise.Measure: Codable {
 
-    // MARK: - Decodable
+    // MARK: - Codable
 
     enum CodingKeys: String, CodingKey {
         case parts = "part"
