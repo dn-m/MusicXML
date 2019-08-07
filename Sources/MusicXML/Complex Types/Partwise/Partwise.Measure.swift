@@ -1,60 +1,13 @@
 //
-//  Partwise.swift
+//  Partwise.Measure.swift
 //  MusicXML
 //
-//  Created by James Bean on 8/5/19.
+//  Created by James Bean on 8/7/19.
 //
 
-/// The `partwise` traversal of a MusicXML score.
-public struct Partwise: Equatable {
-
-    // MARK: - Instance Properties
-
-    // MARK: Elements
-    
-    public var work: Work?
-    public var movementNumber: String?
-    public var movementTitle: String?
-    public var identification: Identification?
-    public var defaults: Defaults?
-    public var credits: [Credit]?
-    public var partList: PartList
-    public var parts: [Part]
-}
+import XMLCoder
 
 extension Partwise {
-
-    // MARK: - Nested Types
-
-    // In either format, the part element has an id attribute that
-    // is an IDREF back to a score-part in the part-list. Measures
-    // have a required number attribute (going from partwise to
-    // timewise, measures are grouped via the number).
-    //
-    // <!ATTLIST part
-    //    id IDREF #REQUIRED
-    // >
-    public struct Part: Equatable {
-
-        // MARK: - Properties
-
-        // MARK: Attributes
-
-        public var id: String
-
-        // MARK: Elements
-
-        public var measures: [Measure]
-
-        // MARK: - Initializers
-
-        /// Creates a `Partwise.Part` with the given `id` and array of `measures`.
-        public init(id: String, measures: [Measure]) {
-            self.id = id
-            self.measures = measures
-        }
-    }
-
     // > The implicit attribute is set to "yes" for measures where
     // > the measure number should never appear, such as pickup
     // > measures and the last half of mid-measure repeats. The
@@ -108,32 +61,6 @@ extension Partwise {
     }
 }
 
-extension Partwise: Codable {
-
-    // MARK: - Decodable
-
-    enum CodingKeys: String, CodingKey {
-        case work
-        case movementNumber = "movement-number"
-        case movementTitle = "movement-title"
-        case identification
-        case defaults
-        case credits = "credit"
-        case partList = "part-list"
-        case parts = "part"
-    }
-}
-
-extension Partwise.Part: Codable {
-
-    // MARK: - Decodable
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case measures = "measure"
-    }
-}
-
 extension Partwise.Measure: Codable {
 
     // MARK: - Codable
@@ -150,9 +77,9 @@ extension Partwise.Measure: Codable {
 
     public init(from decoder: Decoder) throws {
         // Decode attributes
-        let keyedContainer = try decoder.container(keyedBy: CodingKeys.self)
-        self.number = try keyedContainer.decode(Int.self, forKey: .number)
-        self.text = nil
+        let attributes = try decoder.container(keyedBy: CodingKeys.self)
+        self.number = try attributes.decode(Int.self, forKey: .number)
+        self.text = try attributes.decode(String.self, forKey: .text)
         self.implicit = nil
         self.nonControlling = nil
         self.width = nil
@@ -160,5 +87,41 @@ extension Partwise.Measure: Codable {
 
         let container = try decoder.singleValueContainer()
         self.musicData = try container.decode([MusicData].self)
+    }
+}
+
+extension Partwise.Measure: DynamicNodeDecoding {
+    public static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
+        switch key {
+        case
+        CodingKeys.number,
+        CodingKeys.text,
+        CodingKeys.implicit,
+        CodingKeys.nonControlling,
+        CodingKeys.width,
+        CodingKeys.optionalUniqueID
+            :
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}
+
+extension Partwise.Measure: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case
+        CodingKeys.number,
+        CodingKeys.text,
+        CodingKeys.implicit,
+        CodingKeys.nonControlling,
+        CodingKeys.width,
+        CodingKeys.optionalUniqueID
+            :
+            return .attribute
+        default:
+            return .element
+        }
     }
 }
