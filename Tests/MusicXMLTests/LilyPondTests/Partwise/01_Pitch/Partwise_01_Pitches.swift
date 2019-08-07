@@ -10,7 +10,7 @@ import MusicXML
 
 class Partwise_01_Pitches: XCTestCase {
 
-    func testNoThrows() throws {
+    func test_01_Pitches() throws {
         let _ = try MusicXML(string: A_Pitches)
         let _ = try MusicXML(string: B_Intervals)
         let _ = try MusicXML(string: C_NoVoiceElement)
