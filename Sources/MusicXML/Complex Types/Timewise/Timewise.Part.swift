@@ -16,11 +16,13 @@ extension Timewise {
     // <!ATTLIST part
     //    id IDREF #REQUIRED
     // >
-    public struct Part: Equatable {
-        let id: String
-        let musicData: MusicData?
+    public struct Part {
+        public var id: String
+        public var musicData: [MusicData]
     }
 }
+
+extension Timewise.Part: Equatable { }
 
 extension Timewise.Part: Codable {
 
@@ -31,9 +33,11 @@ extension Timewise.Part: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let keyed = try decoder.container(keyedBy: CodingKeys.self)
-        var unkeyed = try decoder.unkeyedContainer()
-        self.id = try keyed.decode(String.self, forKey: .id)
-        self.musicData = try unkeyed.decode(MusicData.self)
+        // Decode attributes
+        let attr = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try attr.decode(String.self, forKey: .id)
+        // Decode music data elements
+        let musicDataContainer = try decoder.singleValueContainer()
+        self.musicData = try musicDataContainer.decode([MusicData].self)
     }
 }
