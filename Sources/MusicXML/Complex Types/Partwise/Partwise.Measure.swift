@@ -84,7 +84,7 @@ extension Partwise.Measure: Codable {
         self.nonControlling = try attr.decodeIfPresent(Bool.self, forKey: .nonControlling)
         self.width = try attr.decodeIfPresent(Tenths.self, forKey: .width)
         self.optionalUniqueID = try attr.decodeIfPresent(Int.self, forKey: .optionalUniqueID)
-        // Decode top-level choice
+        // Decode music data elements
         let musicDataContainer = try decoder.singleValueContainer()
         self.musicData = try musicDataContainer.decode([MusicData].self)
     }
