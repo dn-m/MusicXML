@@ -77,16 +77,16 @@ extension Partwise.Measure: Codable {
 
     public init(from decoder: Decoder) throws {
         // Decode attributes
-        let attributes = try decoder.container(keyedBy: CodingKeys.self)
-        self.number = try attributes.decode(Int.self, forKey: .number)
-        self.text = try attributes.decode(String.self, forKey: .text)
-        self.implicit = nil
-        self.nonControlling = nil
-        self.width = nil
-        self.optionalUniqueID = nil
-
-        let container = try decoder.singleValueContainer()
-        self.musicData = try container.decode([MusicData].self)
+        let attr = try decoder.container(keyedBy: CodingKeys.self)
+        self.number = try attr.decode(Int.self, forKey: .number)
+        self.text = try attr.decodeIfPresent(String.self, forKey: .text)
+        self.implicit = try attr.decodeIfPresent(Bool.self, forKey: .implicit)
+        self.nonControlling = try attr.decodeIfPresent(Bool.self, forKey: .nonControlling)
+        self.width = try attr.decodeIfPresent(Tenths.self, forKey: .width)
+        self.optionalUniqueID = try attr.decodeIfPresent(Int.self, forKey: .optionalUniqueID)
+        // Decode top-level choice
+        let musicDataContainer = try decoder.singleValueContainer()
+        self.musicData = try musicDataContainer.decode([MusicData].self)
     }
 }
 

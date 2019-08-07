@@ -8,8 +8,6 @@
 /// The `partwise` traversal of a MusicXML score.
 public struct Partwise: Equatable {
 
-    // MARK: - Instance Properties
-
     // MARK: Elements
     
     public var work: Work?
