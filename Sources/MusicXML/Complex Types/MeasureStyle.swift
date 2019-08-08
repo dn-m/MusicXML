@@ -72,6 +72,3 @@ extension MeasureStyle.Kind.CodingKeys: XMLChoiceCodingKey { }
 
 extension MeasureStyle: Equatable { }
 extension MeasureStyle: Codable { }
-
-
-

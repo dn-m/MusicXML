@@ -52,30 +52,33 @@ public struct Note {
     public var duration: Double?
 }
 
+extension Note {
+
+    struct Normal {
+        public var chord: Empty?
+        public var pitchUnpitchedOrRest: PitchUnpitchedOrRest
+        public var duration: Int
+        public var ties: [Tie] // FIXME: Make Ties struct
+    }
+
+    struct Cue {
+        public var chord: Empty?
+        public var pitchUnpitchedOrRest: PitchUnpitchedOrRest
+        public var duration: Int
+    }
+
+    struct Grace {
+        public var chord: Empty?
+        public var pitchUnpitchedOrRest: PitchUnpitchedOrRest
+        public var ties: [Tie] // FIXME: Make Ties struct
+    }
+
+    enum Kind {
+        case normal(Normal)
+        case cue(Cue)
+        case grace(Grace)
+    }
+}
+
 extension Note: Equatable { }
 extension Note: Codable { }
-
-//
-//public struct Note: Codable, Equatable {
-//
-//    // (
-//    //   ((grace, ((%full-note;, (tie, tie?)?) |(cue, %full-note;)))
-//    //   |
-//    //   (cue, %full-note;, duration)
-//    //   |
-//    //   (%full-note;, duration, (tie, tie?)?)
-//    // )
-//    // TODO: Kind
-//
-//    public enum CodingKeys: String, CodingKey {
-//        case pitch
-//        case duration
-//        case durationType = "type"
-//        case accidental
-//    }
-//
-//    let pitch: Pitch
-//    let duration: Int // amount of "divisions"
-//    let durationType: DurationType
-//    let accidental: Accidental?
-//}

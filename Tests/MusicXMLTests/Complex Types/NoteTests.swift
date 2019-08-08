@@ -58,4 +58,19 @@ class NoteTests: XCTestCase {
         )
         XCTAssertEqual(decoded, expected)
     }
+
+    func testNoteDottedRestDecoding() throws {
+        let xml = """
+        <note>
+          <rest/>
+          <duration>48</duration>
+          <voice>1</voice>
+          <type>quarter</type>
+          <dot/>
+        </note>
+        """
+        let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
+        let expected = Note(voice: "1", type: .init(value: .quarter), dots: [EmptyPlacement.init(position: nil, printStyle: nil, placement: nil)], duration: 48)
+        
+    }
 }
