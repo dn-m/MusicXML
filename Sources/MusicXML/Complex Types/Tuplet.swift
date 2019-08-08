@@ -14,25 +14,44 @@
 /// than the time-modification element, and is needed to represent nested tuplets and other complex
 /// tuplets accurately.
 public struct Tuplet {
-    public let type: StartStop
+
+    // MARK: - Attributes
+
+    public var type: StartStop
     /// The number attribute is used to distinguish nested tuplets.
-    public let number: Int?
+    public var number: Int?
     /// The bracket attribute is used to indicate the presence of a bracket. If unspecified, the
     /// results are implementation-dependent.
-    public let bracket: Bool?
+    public var bracket: Bool?
     /// The show-number attribute is used to display either the number of actual notes, the number
     /// of both actual and normal notes, or neither. It is actual by default.
-    public let showNumber: ShowTuplet?
+    public var showNumber: ShowTuplet?
     /// The show-type attribute is used to display either the actual type, both the actual and
     /// normal types, or neither. It is none by default.
-    public let showType: ShowTuplet?
+    public var showType: ShowTuplet?
     /// The line-shape attribute distinguishes between straight and curved lines.
-    public let lineShape: LineShape?
-    public let position: Position?
-    public let placement: AboveBelow?
-    public let actual: TupletPortion?
-    public let normal: TupletPortion?
+    public var lineShape: LineShape?
+    public var position: Position?
+    public var placement: AboveBelow?
+
+    // MARK: - Elements
+
+    public var actualNotes: TupletPortion?
+    public var normalNotes: TupletPortion?
 }
 
 extension Tuplet: Equatable { }
-extension Tuplet: Codable { }
+extension Tuplet: Codable {
+    enum CodingKeys: String, CodingKey {
+        case type
+        case number
+        case bracket
+        case showNumber
+        case showType
+        case lineShape
+        case position
+        case placement
+        case actualNotes = "actual-notes"
+        case normalNotes = "normal-notes"
+    }
+}

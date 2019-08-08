@@ -71,32 +71,70 @@ class NoteTests: XCTestCase {
         XCTAssertEqual(decoded, expected)
     }
 
+    #warning("FIXME: #56 Notations.Notation.tuplet not decoding properly yet")
+    func DISABLED_testTuplet() throws {
+        let xml = """
+        <note>
+          <pitch>
+            <step>C</step>
+            <octave>4</octave>
+          </pitch>
+          <duration>56</duration>
+          <voice>1</voice>
+          <type>quarter</type>
+          <time-modification>
+            <actual-notes>3</actual-notes>
+            <normal-notes>2</normal-notes>
+          </time-modification>
+          <notations>
+            <tuplet number="1" type="start"/>
+          </notations>
+        </note>
+        """
+        let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
+        let expected = Note(
+            kind: .normal(
+                Note.Normal(
+                    pitchUnpitchedOrRest: .pitch(Pitch(step: .c, octave: 4)),
+                    duration: 56,
+                    ties: []
+                )
+            ),
+            voice: "1",
+            type: NoteType(value: .quarter),
+            timeModification: TimeModification(actualNotes: 3, normalNotes: 2),
+            notations: Notations(values: [.tuplet(Tuplet(type: .start, number: 1))])
+        )
+        XCTAssertEqual(decoded, expected)
+    }
+
+    #warning("FIXME: #41 Note.dots not decoding properly yet")
     func DISABLED_testNoteDottedRestDecoding() throws {
-//        let xml = """
-//        <note>
-//          <rest/>
-//          <duration>48</duration>
-//          <voice>1</voice>
-//          <type>quarter</type>
-//          <dot></dot>
-//        </note>
-//        """
-//        let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
-//        let expected = Note(
-//            kind: .normal(
-//                Note.Normal(
-//                    chord: nil,
-//                    pitchUnpitchedOrRest: .rest(
-//                        Rest(/*displayStep: nil, displayOctave: nil, measure: nil*/)
-//                    ),
-//                    duration: 48,
-//                    ties: []
-//                )
-//            ),
-//            voice: "1",
-//            type: NoteType(value: .quarter),
-//            dots: [EmptyPlacement(position: nil, printStyle: nil, placement: nil)]
-//        )
-//        XCTAssertEqual(decoded, expected)
+        let xml = """
+        <note>
+          <rest/>
+          <duration>48</duration>
+          <voice>1</voice>
+          <type>quarter</type>
+          <dot></dot>
+        </note>
+        """
+        let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
+        let expected = Note(
+            kind: .normal(
+                Note.Normal(
+                    chord: nil,
+                    pitchUnpitchedOrRest: .rest(
+                        Rest(/*displayStep: nil, displayOctave: nil, measure: nil*/)
+                    ),
+                    duration: 48,
+                    ties: []
+                )
+            ),
+            voice: "1",
+            type: NoteType(value: .quarter)/*,
+            dots: [EmptyPlacement(position: nil, printStyle: nil, placement: nil)]*/
+        )
+        XCTAssertEqual(decoded, expected)
     }
 }
