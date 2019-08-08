@@ -117,7 +117,7 @@ extension Note: Codable {
         case type
         case dots = "dot"
         case accidental
-        case timeModification
+        case timeModification = "time-modification"
         case stem
         case notehead
         case noteheadText

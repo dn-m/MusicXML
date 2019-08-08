@@ -13,17 +13,24 @@
 public struct TimeModification {
     /// The actual-notes element describes how many notes are played in the time usually occupied by
     /// the number in the normal-notes element.
-    public let actualNotes: Int
+    public var actualNotes: Int
     /// The normal-notes element describes how many notes are usually played in the time occupied by
     /// the number in the actual-notes element.
-    public let normalNotes: Int
+    public var normalNotes: Int
     /// If the type associated with the number in the normal-notes element is different than the
     /// current note type (e.g., a quarter note within an eighth note triplet), then the
     /// normal-notes type (e.g. eighth) is specified in the normal-type and normal-dot elements.
-    public let normalType: NoteTypeValue
+    public var normalType: NoteTypeValue?
     /// The normal-dot element is used to specify dotted normal tuplet types.
-    public let normalDot: [Empty]
+    public var normalDot: [Empty]?
 }
 
 extension TimeModification: Equatable { }
-extension TimeModification: Codable { }
+extension TimeModification: Codable {
+    enum CodingKeys: String, CodingKey {
+        case actualNotes = "actual-notes"
+        case normalNotes = "normal-notes"
+        case normalType = "normal-type"
+        case normalDot = "normal-dot"
+    }
+}

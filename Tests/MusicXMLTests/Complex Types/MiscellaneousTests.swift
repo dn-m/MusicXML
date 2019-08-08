@@ -43,6 +43,6 @@ class MiscellaneousTests: XCTestCase {
                 MiscellaneousField(name: "three", value: "3"),
             ]
         )
-        try testRoundTrip(misc, loggingEncoded: true)
+        try testRoundTrip(misc)
     }
 }
