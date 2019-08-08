@@ -7,9 +7,14 @@
 
 /// The group-barline type indicates if the group should have common barlines.
 public struct GroupBarline {
-    let value: GroupBarlineValue
-    let color: Color?
+    public var value: GroupBarlineValue
+    public var color: Color?
 }
 
 extension GroupBarline: Equatable { }
-extension GroupBarline: Codable { }
+extension GroupBarline: Codable {
+    enum CodingKeys: String, CodingKey {
+        case value = ""
+        case color
+    }
+}
