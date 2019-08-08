@@ -47,33 +47,31 @@ public struct Note {
     public var lyrics: [Lyric]?
     public var play: Play?
 
-    #warning("FIXME: Flesh out Note model. Currently only supports pitched notes")
-    public var pitch: Pitch?
-    public var duration: Double?
+    public var kind: Kind
 }
 
 extension Note {
 
-    struct Normal {
+    public struct Normal: Equatable {
         public var chord: Empty?
         public var pitchUnpitchedOrRest: PitchUnpitchedOrRest
         public var duration: Int
         public var ties: [Tie] // FIXME: Make Ties struct
     }
 
-    struct Cue {
+    public struct Cue: Equatable {
         public var chord: Empty?
         public var pitchUnpitchedOrRest: PitchUnpitchedOrRest
         public var duration: Int
     }
 
-    struct Grace {
+    public struct Grace: Equatable {
         public var chord: Empty?
         public var pitchUnpitchedOrRest: PitchUnpitchedOrRest
         public var ties: [Tie] // FIXME: Make Ties struct
     }
 
-    enum Kind {
+    public enum Kind: Equatable {
         case normal(Normal)
         case cue(Cue)
         case grace(Grace)
@@ -81,4 +79,51 @@ extension Note {
 }
 
 extension Note: Equatable { }
-extension Note: Codable { }
+extension Note: Codable {
+    enum CodingKeys: String, CodingKey {
+        // Attributes
+        case printStyle
+        case printObject
+        case printDot
+        case printSpacing
+        case printLyric
+        case dynamics
+        case endDynamics
+        case attac
+        case release
+        case timeOnly
+        case pizzicato
+        // Elements
+        case instrument
+        case footnote
+        case level
+        case voice
+        case type
+        case dots
+        case accidental
+        case timeModification
+        case stem
+        case notehead
+        case noteheadText
+        case staff
+        case beams
+        case notations
+        case lyrics
+        case play
+        // Kind
+        case chord
+        case cue
+        case grace
+        case duration
+        case tie
+        case pitch
+        case unpitched
+        case rest
+    }
+    public init(from decoder: Decoder) throws {
+        fatalError()
+    }
+    public func encode(to encoder: Encoder) throws {
+        fatalError()
+    }
+}
