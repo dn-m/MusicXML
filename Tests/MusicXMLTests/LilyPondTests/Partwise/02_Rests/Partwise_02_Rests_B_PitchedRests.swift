@@ -71,7 +71,6 @@ extension Partwise_02_Rests {
                 </measure>
             </part>
         </score-partwise>
-
         """
     }
 }

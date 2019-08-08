@@ -98,7 +98,6 @@ extension Partwise_02_Rests {
               </part>
            </measure>
         </score-timewise>
-
         """
     }
 }

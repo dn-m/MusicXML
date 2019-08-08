@@ -14,10 +14,16 @@ import XMLCoder
 /// partial measures. All but the multiple-rest element use a type attribute to indicate starting
 /// and stopping the use of the style.
 public struct MeasureStyle {
-    public let number: Int
-    public let font: Font
-    public let color: Color
-    public let kind: Kind
+
+    // MARK: - Attributes
+
+    public var number: Int?
+    public var font: Font?
+    public var color: Color?
+
+    // MARK: - Elements
+
+    public var kind: Kind
 }
 
 extension MeasureStyle {
@@ -32,9 +38,9 @@ extension MeasureStyle {
 extension MeasureStyle.Kind: Equatable { }
 extension MeasureStyle.Kind: Codable {
     enum CodingKeys: String, CodingKey {
-        case beatRepeat
-        case measureRepeat
-        case multipleRest
+        case beatRepeat = "beat-repeat"
+        case measureRepeat = "measure-repeat"
+        case multipleRest = "multiple-rest"
         case slash
     }
     public func encode(to encoder: Encoder) throws {
@@ -71,4 +77,21 @@ extension MeasureStyle.Kind: Codable {
 extension MeasureStyle.Kind.CodingKeys: XMLChoiceCodingKey { }
 
 extension MeasureStyle: Equatable { }
-extension MeasureStyle: Codable { }
+extension MeasureStyle: Codable {
+    enum CodingKeys: String, Codable {
+        case number
+        case font
+        case color
+    }
+    public init(from decoder: Decoder) throws {
+        // Decode attributes
+        #warning("TODO: Add MeasureStyle attributes decoding")
+        // Decode kind
+        let kindContainer = try decoder.singleValueContainer()
+        self.kind = try kindContainer.decode(Kind.self)
+    }
+    public func encode(to encoder: Encoder) throws {
+        #warning("TODO: MeasureStyle.encode(to:)")
+        fatalError()
+    }
+}

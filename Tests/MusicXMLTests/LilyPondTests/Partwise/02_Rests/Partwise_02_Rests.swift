@@ -17,13 +17,4 @@ class Partwise_02_Rests: XCTestCase {
         let _ = try MusicXML(string: D_Multimeasure_TimeSignatures)
         let _ = try MusicXML(string: E_NoType)
     }
-
-    func testDurations() throws {
-        do {
-            let durations = try MusicXML(string: A_Durations)
-        } catch {
-            debugPrint(error)
-        }
-
-    }
 }

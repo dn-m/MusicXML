@@ -76,7 +76,6 @@ extension Partwise.Measure: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        print("measure init from decoder?")
         // Decode attributes
         let attr = try decoder.container(keyedBy: CodingKeys.self)
         self.number = try attr.decode(Int.self, forKey: .number)

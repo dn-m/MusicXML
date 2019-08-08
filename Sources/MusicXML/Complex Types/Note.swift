@@ -13,6 +13,8 @@
 /// easier, as some programs handle one type of information much more readily than the other.
 public struct Note {
 
+    public var kind: Kind
+
     // MARK: - Attributes
 
     public var printStyle: PrintStyle?
@@ -34,38 +36,52 @@ public struct Note {
     public var level: Level?
     public var voice: String?
     public var type: NoteType?
-    public var dots: [EmptyPlacement]?
+    #warning("Reinstate Note.dots when we can decode potentially-empty elements properly")
+    // public var dots: [EmptyPlacement]?
     public var accidental: Accidental?
     public var timeModification: TimeModification?
     public var stem: Stem?
     public var notehead: Notehead?
     public var noteheadText: NoteheadText?
-
     public var staff: Int?
     public var beams: [Beam]? // Up to 8
     public var notations: Notations?
     public var lyrics: [Lyric]?
     public var play: Play?
-
-    public var kind: Kind
 }
 
 extension Note {
 
-    public struct Normal: Equatable {
+    public struct Normal: Equatable, Codable {
+        enum CodingKeys: String, CodingKey {
+            case chord
+            case duration
+            case ties
+            case pitchUnpitchedOrRest
+        }
         public var chord: Empty?
         public var pitchUnpitchedOrRest: PitchUnpitchedOrRest
         public var duration: Int
         public var ties: [Tie] // FIXME: Make Ties struct
     }
 
-    public struct Cue: Equatable {
+    public struct Cue: Equatable, Codable {
+        enum CodingKeys: String, CodingKey {
+            case chord
+            case pitchUnpitchedOrRest
+            case duration
+        }
         public var chord: Empty?
         public var pitchUnpitchedOrRest: PitchUnpitchedOrRest
         public var duration: Int
     }
 
-    public struct Grace: Equatable {
+    public struct Grace: Equatable, Codable {
+        enum CodingKeys: String, CodingKey {
+            case chord
+            case pitchUnpitchedOrRest
+            case ties = "tie"
+        }
         public var chord: Empty?
         public var pitchUnpitchedOrRest: PitchUnpitchedOrRest
         public var ties: [Tie] // FIXME: Make Ties struct
@@ -99,7 +115,7 @@ extension Note: Codable {
         case level
         case voice
         case type
-        case dots
+        case dots = "dot"
         case accidental
         case timeModification
         case stem
@@ -110,18 +126,66 @@ extension Note: Codable {
         case notations
         case lyrics
         case play
-        // Kind
-        case chord
-        case cue
-        case grace
-        case duration
-        case tie
-        case pitch
-        case unpitched
-        case rest
     }
     public init(from decoder: Decoder) throws {
-        fatalError()
+        // Ignore attributes for now
+        // Decode elements
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.instrument = try container.decodeIfPresent(Instrument.self, forKey: .instrument)
+        self.footnote = try container.decodeIfPresent(FormattedText.self, forKey: .footnote)
+        self.level = try container.decodeIfPresent(Level.self, forKey: .level)
+        self.voice = try container.decodeIfPresent(String.self, forKey: .voice)
+        self.type = try container.decodeIfPresent(NoteType.self, forKey: .type)
+        #warning("Reinstate Note.dots when we can decode potentially-empty elements properly")
+        // self.dots = try container.decodeIfPresent([EmptyPlacement].self, forKey: .dots)
+        self.accidental = try container.decodeIfPresent(Accidental.self, forKey: .accidental)
+        self.timeModification = try container.decodeIfPresent(TimeModification.self, forKey: .timeModification)
+        self.stem = try container.decodeIfPresent(Stem.self, forKey: .stem)
+        self.notehead = try container.decodeIfPresent(Notehead.self, forKey: .notehead)
+        self.noteheadText = try container.decodeIfPresent(NoteheadText.self, forKey: .noteheadText)
+        self.staff = try container.decodeIfPresent(Int.self, forKey: .staff)
+        self.beams = try container.decodeIfPresent([Beam].self, forKey: .beams)
+        self.notations = try container.decodeIfPresent(Notations.self, forKey: .notations)
+        self.lyrics = try container.decodeIfPresent([Lyric].self, forKey: .lyrics)
+        self.play = try container.decodeIfPresent(Play.self, forKey: .play)
+        // Decode pitch / unpitched / rest
+        let pitchUnpitchedRestContainer = try decoder.singleValueContainer()
+        let pitchUnpitchedOrRest = try pitchUnpitchedRestContainer.decode(PitchUnpitchedOrRest.self)
+        // Decode kind
+        do {
+            let kindContainer = try decoder.container(keyedBy: Normal.CodingKeys.self)
+            #warning("Handle Ties decode once Ties struct is in place")
+            self.kind = .normal(
+                Normal(
+                    chord: nil,
+                    pitchUnpitchedOrRest: pitchUnpitchedOrRest,
+                    duration: try kindContainer.decode(Int.self, forKey: .duration),
+                    ties: []
+                )
+            )
+        } catch {
+            do {
+                let kindContainer = try decoder.container(keyedBy: Cue.CodingKeys.self)
+                #warning("Handle Ties decode once Ties struct is in place")
+                self.kind = .cue(
+                    Cue(
+                        chord: nil,
+                        pitchUnpitchedOrRest: pitchUnpitchedOrRest,
+                        duration: try kindContainer.decode(Int.self, forKey: .duration)
+                    )
+                )
+            } catch {
+                let kindContainer = try decoder.container(keyedBy: Grace.CodingKeys.self)
+                #warning("Handle Ties decode once Ties struct is in place")
+                self.kind = .grace(
+                    Note.Grace(
+                        chord: nil,
+                        pitchUnpitchedOrRest: pitchUnpitchedOrRest,
+                        ties: []
+                    )
+                )
+            }
+        }
     }
     public func encode(to encoder: Encoder) throws {
         fatalError()
