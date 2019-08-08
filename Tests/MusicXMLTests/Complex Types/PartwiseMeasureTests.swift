@@ -128,7 +128,82 @@ class PartwiseMeasureTests: XCTestCase {
         """
         let decoded = try XMLDecoder()
             .decode(Partwise.Measure.self, from: xml.data(using: .utf8)!)
-        #warning("Add assertion to PartwiseMeasureTests.testDecoding()")
-
+        let expected = Partwise.Measure(
+            number: 1,
+            musicData: [
+                .attributes(
+                    Attributes(
+                        divisions: 1,
+                        keys: [
+                            Key(kind: .traditional(Key.Traditional(fifths: 0, mode: .major)))
+                        ],
+                        times: [
+                            Time(
+                                symbol: .common,
+                                kind: .measured(
+                                    Time.Measured(signature: Time.Signature(beats: 4, beatType: 4))
+                                )
+                            )
+                        ],
+                        clefs: [
+                            Clef(sign: .g, line: 2)
+                        ]
+                    )
+                ),
+                .note(
+                    Note(
+                        kind: .normal(
+                            Note.Normal(
+                                pitchUnpitchedOrRest: .pitch(Pitch(step: .g, octave: 2)),
+                                duration: 1,
+                                ties: []
+                            )
+                        ),
+                        voice: "1",
+                        type: NoteType(value: .quarter)
+                    )
+                ),
+                .note(
+                    Note(
+                        kind: .normal(
+                            Note.Normal(
+                                pitchUnpitchedOrRest: .pitch(Pitch(step: .a, octave: 2)),
+                                duration: 1,
+                                ties: []
+                            )
+                        ),
+                        voice: "1",
+                        type: NoteType(value: .quarter)
+                    )
+                ),
+                .note(
+                    Note(
+                        kind: .normal(
+                            Note.Normal(
+                                pitchUnpitchedOrRest: .pitch(Pitch(step: .b, octave: 2)),
+                                duration: 1,
+                                ties: []
+                            )
+                        ),
+                        voice: "1",
+                        type: NoteType(value: .quarter)
+                    )
+                ),
+                .note(
+                    Note(
+                        kind: .normal(
+                            Note.Normal(
+                                pitchUnpitchedOrRest: .pitch(Pitch(step: .c, octave: 3)),
+                                duration: 1,
+                                ties: []
+                            )
+                        ),
+                        voice: "1",
+                        type: NoteType(value: .quarter)
+                    )
+                )
+            ]
+        )
+        XCTAssertEqual(decoded, expected)
     }
 }

@@ -7,7 +7,7 @@
 
 extension Partwise_01_Pitches {
     var A_Pitches: String {
-        return """
+        """
         <?xml version="1.0" encoding="UTF-8"?>
         <!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 1.0 Partwise//EN"
                                         "http://www.musicxml.org/dtds/partwise.dtd">

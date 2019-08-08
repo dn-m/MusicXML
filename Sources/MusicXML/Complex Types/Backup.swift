@@ -11,6 +11,9 @@
 /// always be positive, and should not cross measure boundaries or mid-measure changes in the
 /// divisions value.
 public struct Backup: Codable, Equatable {
-    public let duration: Int
-    public let editorial: Editorial
+
+    // MARK: - Elements
+
+    public var duration: Int
+    public var editorial: Editorial?
 }

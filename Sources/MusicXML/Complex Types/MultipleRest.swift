@@ -9,8 +9,14 @@
 /// Multiple rests may use the 1-bar / 2-bar / 4-bar rest symbols, or a single shape. The element
 /// text is ignored when the type is stop.
 public struct MultipleRest {
-    public let count: Int
-    public let useSymbols: Bool
+
+    // MARK: - Attributes
+
+    public var useSymbols: Bool?
+
+    // MARK: - Value
+
+    public var value: Int
 }
 
 extension MultipleRest: Equatable { }
