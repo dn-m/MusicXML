@@ -7,7 +7,7 @@
 
 extension Partwise_02_Rests {
     var A_Durations: String {
-        return """
+        """
         <?xml version="1.0" encoding="UTF-8"?>
         <!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 1.0 Partwise//EN"
                                         "http://www.musicxml.org/dtds/partwise.dtd">
