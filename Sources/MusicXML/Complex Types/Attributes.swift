@@ -56,5 +56,4 @@ extension Attributes: Codable {
         case transpose
         case measureStyles = "measure-style"
     }
-
 }
