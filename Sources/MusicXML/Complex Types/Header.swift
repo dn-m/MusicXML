@@ -19,7 +19,7 @@ public struct Header: Equatable {
     public var movementTitle: String?
     public var identification: Identification?
     public var defaults: Defaults?
-    public var credits: [Credit]
+    public var credits: [Credit]?
     public var partList: PartList
 }
 

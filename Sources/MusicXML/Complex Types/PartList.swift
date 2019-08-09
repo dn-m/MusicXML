@@ -15,6 +15,9 @@ import XMLCoder
 /// appear in the part-list.
 public struct PartList {
     public let parts: [Item]
+    public init(_ parts: [Item]) {
+        self.parts = parts
+    }
 }
 
 extension PartList {
