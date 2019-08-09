@@ -9,11 +9,14 @@
 /// to not arpeggiate these notes. Since this does not involve playback, it is only used on the top
 /// or bottom notes, not on each note as for the arpeggiate type.
 public struct NonArpeggiate {
-    public let type: TopBottom
-    public let number: Int?
-    public let position: Position?
-    public let placement: AboveBelow?
-    public let color: Color?
+
+    // MARK: - Attributes
+
+    public var type: TopBottom
+    public var number: Int?
+    public var position: Position?
+    public var placement: AboveBelow?
+    public var color: Color?
 }
 
 extension NonArpeggiate: Equatable { }

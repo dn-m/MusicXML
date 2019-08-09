@@ -8,10 +8,10 @@
 /// The horizontal-turn type represents turn elements that are horizontal rather than vertical.
 /// These are empty elements with print-style, placement, trill-sound, and slash attributes.
 public struct HorizontalTurn {
-    public let printStyle: PrintStyle?
-    public let placement: AboveBelow?
-    public let trillSound: TrillSound?
-    public let slash: Bool?
+    public var printStyle: PrintStyle?
+    public var placement: AboveBelow?
+    public var trillSound: TrillSound?
+    public var slash: Bool?
 }
 
 extension HorizontalTurn: Equatable { }
