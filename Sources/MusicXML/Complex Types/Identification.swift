@@ -15,7 +15,7 @@ public struct Identification {
     /// and arranger. Other type values may be used for different types of creative roles. The type
     /// attribute should usually be used even if there is just a single creator element. The
     /// MusicXML format does not use the creator / contributor distinction from Dublin Core.
-    public var creator: [String]?
+    public var creator: [Creator]?
     /// The rights element is borrowed from Dublin Core. It contains copyright and other
     /// intellectual property notices. Words, music, and derivatives can have different types, so
     /// multiple rights tags with different type attributes are supported. Standard type values are
