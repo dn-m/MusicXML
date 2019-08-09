@@ -15,8 +15,8 @@ public struct Encoding {
 
     public enum Kind {
         case encoder(String)
-        case encodingDate(String)
-        case encodingDescription(String)
+        case date(String)
+        case description(String)
         case software(String)
         case supports(Supports)
     }
@@ -28,8 +28,8 @@ extension Encoding.Kind: Equatable { }
 extension Encoding.Kind: Codable {
     enum CodingKeys: String, CodingKey {
         case encoder
-        case encodingDate
-        case encodingDescription
+        case date = "encoding-date"
+        case description = "encoding-description"
         case software
         case supports
     }
@@ -38,10 +38,10 @@ extension Encoding.Kind: Codable {
         switch self {
         case let .encoder(value):
             try container.encode(value, forKey: .encoder)
-        case let .encodingDate(value):
-            try container.encode(value, forKey: .encodingDate)
-        case let .encodingDescription(value):
-            try container.encode(value, forKey: .encodingDescription)
+        case let .date(value):
+            try container.encode(value, forKey: .date)
+        case let .description(value):
+            try container.encode(value, forKey: .description)
         case let .software(value):
             try container.encode(value, forKey: .software)
         case let .supports(value):
@@ -54,11 +54,11 @@ extension Encoding.Kind: Codable {
             self = .encoder(try container.decode(String.self, forKey: .encoder))
         } catch {
             do {
-                self = .encodingDate(try container.decode(String.self, forKey: .encodingDate))
+                self = .date(try container.decode(String.self, forKey: .date))
             } catch {
                 do {
-                    self = .encodingDescription(
-                        try container.decode(String.self, forKey: .encodingDescription)
+                    self = .description(
+                        try container.decode(String.self, forKey: .description)
                     )
                 } catch {
                     do {
@@ -74,4 +74,10 @@ extension Encoding.Kind: Codable {
 extension Encoding.Kind.CodingKeys: XMLChoiceCodingKey {}
 
 extension Encoding: Equatable { }
-extension Encoding: Codable { }
+
+extension Encoding: Codable {
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.values = try container.decode([Kind].self)
+    }
+}
