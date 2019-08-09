@@ -8,6 +8,30 @@ A **work-in-progress** implementation of the [musicXML](https://www.musicxml.com
 
 The goal of this project is to allow Swift users to read, manipulate, and write musicXML files in a richly-typed manner on any platform supported by Swift.
 
+## Roadmap
+
+The upcoming pre-release versions will be focused on completing different tasks.
+
+### 0.2.0
+
+Pre-release version **0.2.0** will be defined by incorporating all of the tests from the full LilyPond Test Suite into the `MusicXMLTests` target. These tests will be used to ensure that the model is implemented in its entirety, and to soften rough edges in the **decoding** process of **abstract musical content** from `.xml` source files.
+
+The aspiration for this version is to allow an `.xml` file to be transformed into a data structure capable of feeding an audio engine or to produce a basic musical score.
+
+Attributes defined in attribute groups (e.g., `<print-style>`, etc.) will not be consistently supported at this point. Likewise, some abstract musical elements may not be decodable due to blocking implementation challenges. These will be documented along with quarantined failing tests.
+
+### 0.3.0
+
+Pre-release version **0.3.0** will be defined by completing the implementation of the **encoding** of **abstract musical content**. The LilyPond Test Suite tests will be transformed into round-trip tests to ensure that the plumbing is clean.
+
+### 0.4.0
+
+Pre-release version **0.4.0** will be defined by implementing decoding and encoding for attributes defined in attribute groups, which are generally used for graphical information. A standardized way of handling attributes (and attribute groups), elements, values will be chosen and implemented.
+
+### 0.5.0
+
+Pre-release version **0.5.0** will be defined by refining the public interfaces exposed by the `MusicXML` package. Up until this point, pubic initializers may be somewhat clumsy or completely non-existent.
+
 ## Getting Started
 
 ### Requirements
