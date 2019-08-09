@@ -18,7 +18,6 @@ public struct Timewise {
     public var identification: Identification?
     public var defaults: Defaults?
     public var credits: [Credit]?
-    public var partList: PartList
 
     /// The `Measure` values which comprise a `Timewise` traversal of a `MusicXML` score.
     let measures: [Measure]
@@ -37,7 +36,6 @@ extension Timewise: Codable {
         case identification
         case defaults
         case credits = "credit"
-        case partList = "part-list"
         case measures = "measure"
     }
 
@@ -61,6 +59,5 @@ extension Timewise: Codable {
         self.identification = try container.decodeIfPresent(Identification.self, forKey: .identification)
         self.defaults = try container.decodeIfPresent(Defaults.self, forKey: .defaults)
         self.credits = try container.decodeIfPresent([Credit].self, forKey: .credits)
-        self.partList = try container.decode(PartList.self, forKey: .partList)
     }
 }

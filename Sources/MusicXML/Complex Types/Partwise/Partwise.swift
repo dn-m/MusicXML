@@ -16,7 +16,6 @@ public struct Partwise {
     public var identification: Identification?
     public var defaults: Defaults?
     public var credits: [Credit]?
-    public var partList: PartList
     public var parts: [Part]
 }
 
@@ -33,7 +32,6 @@ extension Partwise: Codable {
         case identification
         case defaults
         case credits = "credit"
-        case partList = "part-list"
         case parts = "part"
     }
 
@@ -57,6 +55,5 @@ extension Partwise: Codable {
         self.identification = try container.decodeIfPresent(Identification.self, forKey: .identification)
         self.defaults = try container.decodeIfPresent(Defaults.self, forKey: .defaults)
         self.credits = try container.decodeIfPresent([Credit].self, forKey: .credits)
-        self.partList = try container.decode(PartList.self, forKey: .partList)
     }
 }

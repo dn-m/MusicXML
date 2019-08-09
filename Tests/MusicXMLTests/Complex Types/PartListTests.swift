@@ -20,9 +20,9 @@ class PartListTests: XCTestCase {
         </part-list>
         """
         let decoded = try XMLDecoder().decode(PartList.self, from: xml.data(using: .utf8)!)
-        let expected = PartList(
-            parts: [.part(ScorePart(id: "P1", name: PartName(value: "MusicXML Part")))]
-        )
+        let expected = PartList([
+            .part(ScorePart(id: "P1", name: PartName(value: "MusicXML Part")))
+        ])
         XCTAssertEqual(decoded, expected)
     }
 
@@ -43,21 +43,19 @@ class PartListTests: XCTestCase {
         </part-list>
         """
         let decoded = try XMLDecoder().decode(PartList.self, from: xml.data(using: .utf8)!)
-        let expected = PartList(
-            parts: [
-                .group(
-                    PartGroup(
-                        type: .start,
-                        number: 1,
-                        symbol: GroupSymbol(value: .bracket),
-                        barline: GroupBarline(value: .yes)
-                    )
-                ),
-                .part(ScorePart(id: "P1", name: PartName(value: "Part 1"))),
-                .part(ScorePart(id: "P2", name: PartName(value: "Part 2"))),
-                .group(PartGroup(type: .stop, number: 1)),
-            ]
-        )
+        let expected = PartList([
+            .group(
+                PartGroup(
+                    type: .start,
+                    number: 1,
+                    symbol: GroupSymbol(value: .bracket),
+                    barline: GroupBarline(value: .yes)
+                )
+            ),
+            .part(ScorePart(id: "P1", name: PartName(value: "Part 1"))),
+            .part(ScorePart(id: "P2", name: PartName(value: "Part 2"))),
+            .group(PartGroup(type: .stop, number: 1)),
+        ])
         XCTAssertEqual(decoded, expected)
     }
 }
