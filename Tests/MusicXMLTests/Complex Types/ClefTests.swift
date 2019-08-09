@@ -59,10 +59,4 @@ class ClefTests: XCTestCase {
         """
         try assertDecoded(xml, equals: Clef(sign: .none))
     }
-
-    // TODO: Move this to a more global scope
-    func assertDecoded<T: Decodable & Equatable>(_ xmlString: String, equals expected: T) throws {
-        let decoded = try XMLDecoder().decode(T.self, from: xmlString.data(using: .utf8)!)
-        XCTAssertEqual(decoded, expected)
-    }
 }

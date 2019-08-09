@@ -7,11 +7,14 @@
 
 /// The arpeggiate type indicates that this note is part of an arpeggiated chord.
 public struct Arpeggiate {
-    public let number: Int?
-    public let direction: UpDown?
-    public let position: Position
-    public let placement: AboveBelow?
-    public let color: Color?
+
+    // MARK: - Attributes
+
+    public var number: Int?
+    public var direction: UpDown?
+    public var position: Position?
+    public var placement: AboveBelow?
+    public var color: Color?
 }
 
 extension Arpeggiate: Equatable { }

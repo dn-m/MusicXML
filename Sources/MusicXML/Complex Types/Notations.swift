@@ -94,6 +94,8 @@ extension Notations.Notation: Codable {
             try container.encode(value, forKey: .other)
         }
     }
+
+    // FIXME: Use `if let value = try?` instead of pyramid of doom
     public init(from decoder: Decoder) throws {
 
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -161,4 +163,15 @@ extension Notations.Notation: Codable {
 extension Notations.Notation.CodingKeys: XMLChoiceCodingKey { }
 
 extension Notations: Equatable { }
-extension Notations: Codable { }
+extension Notations: Codable {
+    public init(from decoder: Decoder) throws {
+        // Decode values
+        let valuesContainer = try decoder.singleValueContainer()
+        self.values = try valuesContainer.decode([Notation].self)
+        // Decode attribtues
+        let attributesContainer = try decoder.container(keyedBy: CodingKeys.self)
+        self.footnote = try attributesContainer.decodeIfPresent(FormattedText.self, forKey: .footnote)
+        self.level = try attributesContainer.decodeIfPresent(Level.self, forKey: .level)
+        self.printObject = try attributesContainer.decodeIfPresent(Bool.self, forKey: .printObject)
+    }
+}
