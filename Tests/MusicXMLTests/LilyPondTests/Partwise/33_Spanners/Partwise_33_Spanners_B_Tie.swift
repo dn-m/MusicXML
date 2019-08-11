@@ -8,70 +8,48 @@
 extension Partwise_33_Spanners {
     var B_Tie: String {
         """
-        <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-        <!DOCTYPE score-timewise
-          PUBLIC "-//Recordare//DTD MusicXML 2.0 Timewise//EN" "http://www.musicxml.org/dtds/timewise.dtd">
-        <score-timewise>
-           <identification>
-                    <miscellaneous>
-                          <miscellaneous-field name="description">Two simple tied whole notes</miscellaneous-field>
-                    </miscellaneous>
-              </identification>
-           <part-list>
-                    <score-part id="P1">
-                 <part-name/>
-              </score-part>
-              </part-list>
-           <measure number="1">
-              <part id="P1">
-                          <attributes>
-                                <divisions>1</divisions>
-                                <key>
-                       <fifths>0</fifths>
-                    </key>
-                                <time>
-                       <beats>4</beats>
-                       <beat-type>4</beat-type>
-                    </time>
-                                <staves>1</staves>
-                                <clef number="1">
-                       <sign>G</sign>
-                       <line>2</line>
-                    </clef>
-                          </attributes>
-                          <note>
-                                <pitch>
-                       <step>F</step>
-                       <octave>4</octave>
-                    </pitch>
-                                <duration>4</duration>
-                                <tie type="start"/>
-                                <voice>1</voice>
-                                <type>whole</type>
-                                <notations>
-                       <tied type="start"/>
-                    </notations>
-                          </note>
-                    </part>
-           </measure>
-           <measure number="2">
-              <part id="P1">
-                          <note>
-                                <pitch>
-                       <step>F</step>
-                       <octave>4</octave>
-                    </pitch>
-                                <duration>4</duration>
-                                <tie type="stop"/>
-                                <voice>1</voice>
-                                <type>whole</type>
-                                <notations>
-                       <tied type="stop"/>
-                    </notations>
-                          </note>
-                    </part>
-           </measure>
-        </score-timewise>
+        <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+        <!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 0.6b Partwise//EN"
+         "http://www.musicxml.org/dtds/partwise.dtd">
+        <score-partwise>
+            <identification>
+                <miscellaneous>
+                    <miscellaneous-field name="description">Two simple tied whole notes</miscellaneous-field>
+                </miscellaneous>
+            </identification>
+            <part-list>
+                <score-part id="P1"><part-name></part-name></score-part>
+            </part-list>
+            <part id="P1">
+                <measure number="1">
+                    <attributes>
+                        <divisions>1</divisions>
+                        <key><fifths>0</fifths></key>
+                        <time><beats>4</beats><beat-type>4</beat-type></time>
+                        <staves>1</staves>
+                        <clef number="1"><sign>G</sign><line>2</line></clef>
+                    </attributes>
+                    <note>
+                        <pitch><step>F</step><octave>4</octave></pitch>
+                        <duration>4</duration>
+                        <tie type="start"/>
+                        <voice>1</voice>
+                        <type>whole</type>
+                        <notations><tied type="start"/></notations>
+                    </note>
+                </measure>
+                <measure number="2">
+                    <note>
+                        <pitch><step>F</step><octave>4</octave></pitch>
+                        <duration>4</duration>
+                        <tie type="stop"/>
+                        <voice>1</voice>
+                        <type>whole</type>
+                        <notations><tied type="stop"/></notations>
+                    </note>
+                </measure>
+            </part>
+        </score-partwise>
         """
     }
 }
