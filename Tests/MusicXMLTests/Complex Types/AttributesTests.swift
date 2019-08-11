@@ -39,7 +39,7 @@ class AttributesTests: XCTestCase {
                 Time(
                     symbol: .common,
                     kind: .measured(
-                        Time.Measured(signature: Time.Signature(beats: 4, beatType: 4))
+                        Time.Measured(signatures: [Time.Signature(beats: "4", beatType: "4")])
                     )
                 )
             ],

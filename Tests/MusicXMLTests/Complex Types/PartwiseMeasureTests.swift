@@ -57,7 +57,7 @@ class PartwiseMeasureTests: XCTestCase {
                                 symbol: .common,
                                 kind: .measured(
                                     Time.Measured(
-                                        signature: Time.Signature(beats: 4, beatType: 4)
+                                        signatures: [Time.Signature(beats: "4", beatType: "4")]
                                     )
                                 )
                             )
@@ -141,7 +141,7 @@ class PartwiseMeasureTests: XCTestCase {
                             Time(
                                 symbol: .common,
                                 kind: .measured(
-                                    Time.Measured(signature: Time.Signature(beats: 4, beatType: 4))
+                                    Time.Measured(signatures: [Time.Signature(beats: "4", beatType: "4")])
                                 )
                             )
                         ],
