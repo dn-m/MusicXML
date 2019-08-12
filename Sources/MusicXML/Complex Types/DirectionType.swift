@@ -109,26 +109,26 @@ extension DirectionType: Equatable { }
 
 extension DirectionType: Codable {
     enum CodingKeys: String, CodingKey {
-        case accordianRegistration
+        case accordianRegistration = "accordian-registration"
         case bracket
         case coda
         case damp
-        case dampAll
+        case dampAll = "damp-all"
         case dashes
         case dynamics
         case eyeglasses
-        case harpPedals
+        case harpPedals = "harp-pedals"
         case image
         case metronome
-        case octaveShift
-        case otherDirection
+        case octaveShift = "octave-shift"
+        case otherDirection = "other-direction"
         case pedal
         case percussion
-        case principleVoice
+        case principleVoice = "principle-voice"
         case rehearsal
         case scordatura
         case segno
-        case stringMute
+        case stringMute = "string-mute"
         case wedge
     }
     public func encode(to encoder: Encoder) throws {

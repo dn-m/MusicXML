@@ -18,7 +18,7 @@ extension Partwise_33_Spanners {
                 </miscellaneous>
             </identification>
             <part-list>
-                <score-part id="P1"><part-name></part-name></score-part>
+                <score-part id="P1"><part-name>MusicXML Part</part-name></score-part>
             </part-list>
             <part id="P1">
                 <measure number="1">

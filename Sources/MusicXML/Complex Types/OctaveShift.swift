@@ -10,11 +10,11 @@
 /// with an octave-shift down from the pitch data indicated in the notes. A size of 8 indicates one
 /// octave; a size of 15 indicates two octaves.
 public struct OctaveShift {
-    public let type: StartStopContinue
-    public let number: Int?
-    public let size: Int?
-    public let dashedFormatting: DashedFormatting?
-    public let printStyle: PrintStyle?
+    public var type: UpDownStopContinue
+    public var number: Int?
+    public var size: Int?
+    public var dashedFormatting: DashedFormatting?
+    public var printStyle: PrintStyle?
 }
 
 extension OctaveShift: Equatable { }

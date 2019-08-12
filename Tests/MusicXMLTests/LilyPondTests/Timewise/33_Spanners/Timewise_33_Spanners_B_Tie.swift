@@ -19,7 +19,7 @@ extension Timewise_33_Spanners {
               </identification>
            <part-list>
                     <score-part id="P1">
-                 <part-name/>
+                 <part-name>MusicXML PArt</part-name>
               </score-part>
               </part-list>
            <measure number="1">

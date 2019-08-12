@@ -51,7 +51,7 @@ extension Timewise: Codable {
                 Partwise.self,
                 DecodingError.Context(
                     codingPath: decoder.codingPath,
-                    debugDescription: "Expected Partwise traversal but no parts found"
+                    debugDescription: "Expected Timewise traversal but no parts found"
                 )
             )
         }
