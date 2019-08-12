@@ -12,10 +12,44 @@
 /// children, non-positional formatting attributes are carried over from the previous element by
 /// default.
 public struct Direction {
-    public let placement: AboveBelow?
-    public let directive: Bool?
-    public let directionType: DirectionType
+
+    // MARK: - Attributes
+
+    public var placement: AboveBelow?
+    public var directive: Bool?
+
+    // MARK: - Elements
+
+    public var types: [DirectionType]
+    public var offset: Offset?
+    public var footnote: FormattedText?
+    public var level: Level?
+    public var voice: String?
+    public var staff: Int?
+    public var sound: Sound?
 }
 
 extension Direction: Equatable { }
-extension Direction: Codable { }
+extension Direction: Codable {
+    enum CodingKeys: String, CodingKey {
+        case placement
+        case directive
+        case types = "direction-type"
+        case offset
+        case footnote
+        case level
+        case voice
+        case staff
+        case sound
+    }
+    public init(from decoder: Decoder) throws {
+        let typesContainer = try decoder.singleValueContainer()
+        self.types = try typesContainer.decode([DirectionType].self)
+        let elementsContainer = try decoder.container(keyedBy: CodingKeys.self)
+        self.offset = try elementsContainer.decodeIfPresent(Offset.self, forKey: .offset)
+        self.footnote = try elementsContainer.decodeIfPresent(FormattedText.self, forKey: .footnote)
+        self.level = try elementsContainer.decodeIfPresent(Level.self, forKey: .level)
+        self.staff = try elementsContainer.decodeIfPresent(Int.self, forKey: .staff)
+        self.sound = try elementsContainer.decodeIfPresent(Sound.self, forKey: .sound)
+    }
+}
