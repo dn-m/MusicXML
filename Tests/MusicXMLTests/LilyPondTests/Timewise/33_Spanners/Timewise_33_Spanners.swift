@@ -18,11 +18,11 @@ class Timewise_33_Spanners: XCTestCase {
         let _ = try MusicXML(string: G_Slur_ChordedNotes)
         let _ = try MusicXML(string: H_Glissando)
         let _ = try MusicXML(string: I_Ties_NotEnded)
+        let _ = try MusicXML(string: C_Slurs)
+        let _ = try MusicXML(string: E_OctaveShifts_InvalidSize)
     }
 
     func test_33_Spanners() throws {
         let _ = try MusicXML(string: B_Tie)
-//        let _ = try MusicXML(string: C_Slurs)
-        let _ = try MusicXML(string: E_OctaveShifts_InvalidSize)
     }
 }

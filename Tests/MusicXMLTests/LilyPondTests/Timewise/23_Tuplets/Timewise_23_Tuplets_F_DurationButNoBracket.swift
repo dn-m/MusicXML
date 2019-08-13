@@ -6,7 +6,7 @@
 //
 
 extension Timewise_23_Tuplets {
-    var F_DurationButNotBracket: String {
+    var F_DurationButNoBracket: String {
         """
         <?xml version="1.0" encoding="UTF-8" standalone="no"?>
         <!DOCTYPE score-timewise

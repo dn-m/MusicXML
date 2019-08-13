@@ -13,11 +13,19 @@
 /// presence or absence of grace and cue elements.
 public struct Beam {
     public let value: BeamValue
-    public let number: BeamLevel?
-    public let repeater: Bool?
-    public let fan: Fan?
-    public let color: Color?
+    public var number: Int?
+    public var repeater: Bool?
+    public var fan: Fan?
+    public var color: Color?
 }
 
 extension Beam: Equatable { }
-extension Beam: Codable { }
+extension Beam: Codable {
+    enum CodingKeys: String, CodingKey {
+        case value = ""
+        case number
+        case repeater
+        case fan
+        case color
+    }
+}

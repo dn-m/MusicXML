@@ -11,6 +11,9 @@
 /// duration element. Cue notes have a duration element, as do forward elements, but no tie
 /// elements. Having these two types of information available can make interchange considerably
 /// easier, as some programs handle one type of information much more readily than the other.
+///
+/// - Warning: The `dots` and `notations` elements are currently **unsupported**.
+///
 public struct Note {
 
     public var kind: Kind
@@ -36,8 +39,10 @@ public struct Note {
     public var level: Level?
     public var voice: String?
     public var type: NoteType?
-    #warning("Reinstate Note.dots when we can decode potentially-empty elements properly")
+
+    #warning("FIXME: #41: Note.dots not decoding properly yet")
     // public var dots: [EmptyPlacement]?
+
     public var accidental: Accidental?
     public var timeModification: TimeModification?
     public var stem: Stem?
@@ -45,7 +50,10 @@ public struct Note {
     public var noteheadText: NoteheadText?
     public var staff: Int?
     public var beams: [Beam]? // Up to 8
-    public var notations: Notations?
+
+    #warning("FIXME: #56: Notations not decoding properly")
+    // public var notations: Notations?
+
     public var lyrics: [Lyric]?
     public var play: Play?
 }
@@ -115,15 +123,21 @@ extension Note: Codable {
         case level
         case voice
         case type
-        case dots = "dot"
+
+        #warning("FIXME: #41: Note.dots not decoding properly yet")
+        //case dots = "dot"
+
         case accidental
         case timeModification = "time-modification"
         case stem
         case notehead
         case noteheadText
         case staff
-        case beams
-        case notations
+        case beams = "beam"
+
+        #warning("FIXME: #56: Notations not decoding properly")
+        //case notations
+
         case lyrics
         case play
     }
@@ -136,8 +150,10 @@ extension Note: Codable {
         self.level = try container.decodeIfPresent(Level.self, forKey: .level)
         self.voice = try container.decodeIfPresent(String.self, forKey: .voice)
         self.type = try container.decodeIfPresent(NoteType.self, forKey: .type)
-        #warning("Reinstate Note.dots when we can decode potentially-empty elements properly")
+
+        #warning("FIXME: #41: Note.dots not decoding properly yet")
         // self.dots = try container.decodeIfPresent([EmptyPlacement].self, forKey: .dots)
+
         self.accidental = try container.decodeIfPresent(Accidental.self, forKey: .accidental)
         self.timeModification = try container.decodeIfPresent(TimeModification.self, forKey: .timeModification)
         self.stem = try container.decodeIfPresent(Stem.self, forKey: .stem)
@@ -145,7 +161,10 @@ extension Note: Codable {
         self.noteheadText = try container.decodeIfPresent(NoteheadText.self, forKey: .noteheadText)
         self.staff = try container.decodeIfPresent(Int.self, forKey: .staff)
         self.beams = try container.decodeIfPresent([Beam].self, forKey: .beams)
-        self.notations = try container.decodeIfPresent(Notations.self, forKey: .notations)
+
+        #warning("FIXME: #56: Notations not decoding properly")
+        // self.notations = try container.decodeIfPresent(Notations.self, forKey: .notations)
+
         self.lyrics = try container.decodeIfPresent([Lyric].self, forKey: .lyrics)
         self.play = try container.decodeIfPresent(Play.self, forKey: .play)
         // Decode pitch / unpitched / rest
@@ -154,7 +173,7 @@ extension Note: Codable {
         // Decode kind
         do {
             let kindContainer = try decoder.container(keyedBy: Normal.CodingKeys.self)
-            #warning("Handle Ties decode once Ties struct is in place")
+            // FIXME: Decode ties when `Ties` struct is in plance
             self.kind = .normal(
                 Normal(
                     chord: kindContainer.contains(.chord),
@@ -166,7 +185,7 @@ extension Note: Codable {
         } catch {
             do {
                 let kindContainer = try decoder.container(keyedBy: Cue.CodingKeys.self)
-                #warning("Handle Ties decode once Ties struct is in place")
+                // FIXME: Decode ties when `Ties` struct is in plance
                 self.kind = .cue(
                     Cue(
                         chord: nil,
@@ -176,7 +195,7 @@ extension Note: Codable {
                 )
             } catch {
                 let kindContainer = try decoder.container(keyedBy: Grace.CodingKeys.self)
-                #warning("Handle Ties decode once Ties struct is in place")
+                // FIXME: Decode ties when `Ties` struct is in plance
                 self.kind = .grace(
                     Note.Grace(
                         chord: nil,

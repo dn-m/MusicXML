@@ -16,7 +16,10 @@ public enum MusicData {
     case backup(Backup)
     case forward(Forward)
     case attributes(Attributes)
-    case direction(Direction)
+
+    #warning("FIXME: #67 Directions not decoding properly")
+    // case direction(Direction)
+
     case harmony(Harmony)
     case figuredBass(FiguredBass)
     case print(Print)
@@ -37,7 +40,10 @@ extension MusicData: Codable {
         case note
         case backup
         case forward
+
+        #warning("FIXME: #67 Directions not decoding properly")
         case direction
+
         case attributes
         case harmony
         case figuredBass = "figured-bass"
@@ -58,8 +64,11 @@ extension MusicData: Codable {
             try container.encode(value, forKey: .backup)
         case let .forward(value):
             try container.encode(value, forKey: .forward)
-        case let .direction(value):
-            try container.encode(value, forKey: .direction)
+
+            #warning("FIXME: #67 Directions not decoding properly")
+        // case let .direction(value):
+        //     try container.encode(value, forKey: .direction)
+
         case let .attributes(value):
             try container.encode(value, forKey: .attributes)
         case let .harmony(value):
@@ -103,30 +112,33 @@ extension MusicData: Codable {
                         self = .attributes(try decode(.attributes))
                     } catch {
                         do {
-                            self = .direction(try decode(.direction))
+                            self = .harmony(try decode(.harmony))
                         } catch {
                             do {
-                                self = .harmony(try decode(.harmony))
+                                self = .figuredBass(try decode(.figuredBass))
                             } catch {
                                 do {
-                                    self = .figuredBass(try decode(.figuredBass))
+                                    self = .print(try decode(.print))
                                 } catch {
                                     do {
-                                        self = .print(try decode(.print))
+                                        self = .sound(try decode(.sound))
                                     } catch {
                                         do {
-                                            self = .sound(try decode(.sound))
+                                            self = .barline(try decode(.barline))
                                         } catch {
                                             do {
-                                                self = .barline(try decode(.barline))
+                                                self = .grouping(try decode(.grouping))
                                             } catch {
                                                 do {
-                                                    self = .grouping(try decode(.grouping))
+                                                    self = .link(try decode(.link))
                                                 } catch {
                                                     do {
-                                                        self = .link(try decode(.link))
-                                                    } catch {
                                                         self = .bookmark(try decode(.bookmark))
+                                                    } catch {
+                                                        throw error
+
+                                                        #warning("FIXME: #67 Directions not decoding properly")
+                                                        //self = .direction(try decode(.direction))
                                                     }
                                                 }
                                             }

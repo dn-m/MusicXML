@@ -10,8 +10,7 @@ import MusicXML
 
 class Timewise_23_Tuplets: XCTestCase {
 
-    #warning("FIXME: #56 Notations.Notation.tuplet not decoding properly yet")
-    func DISABLEd_test_23_Tuplets_E_Tremolo() throws {
+    func DISABLE_test_Quarantine() throws {
         let _ = try MusicXML(string: E_Tremolo)
     }
 
@@ -20,6 +19,6 @@ class Timewise_23_Tuplets: XCTestCase {
         let _ = try MusicXML(string: B_Styles)
         let _ = try MusicXML(string: C_DisplayNonStandard)
         let _ = try MusicXML(string: D_Nested)
-        let _ = try MusicXML(string: F_DurationButNotBracket)
+        let _ = try MusicXML(string: F_DurationButNoBracket)
     }
 }

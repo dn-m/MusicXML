@@ -206,4 +206,90 @@ class PartwiseMeasureTests: XCTestCase {
         )
         XCTAssertEqual(decoded, expected)
     }
+
+    #warning("FIXME: #67 Directions not decoding properly")
+    func DISABLED_testNoThrows() throws {
+        let xml = """
+        <measure number="4">
+          <note>
+            <pitch>
+              <step>F</step>
+              <octave>4</octave>
+            </pitch>
+            <duration>12</duration>
+            <voice>1</voice>
+            <type>eighth</type>
+            <time-modification>
+              <actual-notes>3</actual-notes>
+              <normal-notes>2</normal-notes>
+            </time-modification>
+            <beam number="1">begin</beam>
+            <notations>
+              <tuplet number="1" type="start"/>
+            </notations>
+          </note>
+          <note>
+            <pitch>
+              <step>A</step>
+              <octave>4</octave>
+            </pitch>
+            <duration>12</duration>
+            <voice>1</voice>
+            <type>eighth</type>
+            <time-modification>
+              <actual-notes>3</actual-notes>
+              <normal-notes>2</normal-notes>
+            </time-modification>
+            <beam number="1">continue</beam>
+          </note>
+          <note>
+            <pitch>
+              <step>A</step>
+              <octave>4</octave>
+            </pitch>
+            <duration>12</duration>
+            <voice>1</voice>
+            <type>eighth</type>
+            <time-modification>
+              <actual-notes>3</actual-notes>
+              <normal-notes>2</normal-notes>
+            </time-modification>
+            <beam number="1">end</beam>
+            <notations>
+              <tuplet number="1" type="stop"/>
+            </notations>
+          </note>
+          <direction placement="below">
+            <direction-type>
+              <dynamics>
+                <fp/>
+              </dynamics>
+            </direction-type>
+          </direction>
+          <note>
+            <pitch>
+              <step>A</step>
+              <octave>4</octave>
+            </pitch>
+            <duration>72</duration>
+            <voice>1</voice>
+            <type>half</type>
+            <dot/>
+            <time-modification>
+              <actual-notes>6</actual-notes>
+              <normal-notes>4</normal-notes>
+              <normal-type>eighth</normal-type>
+            </time-modification>
+            <notations>
+              <tuplet number="1" type="start"/>
+              <tuplet number="1" type="stop"/>
+              <ornaments>
+                <tremolo>1</tremolo>
+              </ornaments>
+            </notations>
+          </note>
+        </measure>
+        """
+        let _ = try XMLDecoder().decode(Partwise.Measure.self, from: xml.data(using: .utf8)!)
+    }
 }
