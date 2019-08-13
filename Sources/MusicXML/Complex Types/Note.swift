@@ -59,7 +59,7 @@ extension Note {
             case ties
             case pitchUnpitchedOrRest
         }
-        public var chord: Empty?
+        public var chord: Bool = false
         public var pitchUnpitchedOrRest: PitchUnpitchedOrRest
         public var duration: Int
         public var ties: [Tie] // FIXME: Make Ties struct
@@ -157,7 +157,7 @@ extension Note: Codable {
             #warning("Handle Ties decode once Ties struct is in place")
             self.kind = .normal(
                 Normal(
-                    chord: nil,
+                    chord: kindContainer.contains(.chord),
                     pitchUnpitchedOrRest: pitchUnpitchedOrRest,
                     duration: try kindContainer.decode(Int.self, forKey: .duration),
                     ties: []

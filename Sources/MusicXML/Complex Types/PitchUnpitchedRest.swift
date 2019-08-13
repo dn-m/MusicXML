@@ -29,13 +29,7 @@ extension PitchUnpitchedOrRest: Codable {
             do {
                 self = .unpitched(try container.decode(Unpitched.self, forKey: .unpitched))
             } catch {
-                do {
-                    self = .rest(try container.decode(Rest.self, forKey: .rest))
-                } catch {
-                    print(error)
-                    throw error
-                }
-
+                self = .rest(try container.decode(Rest.self, forKey: .rest))
             }
         }
     }

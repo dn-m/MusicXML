@@ -28,7 +28,6 @@ class NoteTests: XCTestCase {
         let expected = Note(
             kind: .normal(
                 Note.Normal(
-                    chord: nil,
                     pitchUnpitchedOrRest: .pitch(Pitch(step: .c, alter: -1.5, octave: 4)),
                     duration: 1,
                     ties: []
@@ -58,7 +57,6 @@ class NoteTests: XCTestCase {
         let expected = Note(
             kind: .normal(
                 Note.Normal(
-                    chord: nil,
                     pitchUnpitchedOrRest: .pitch(Pitch(step: .g, alter: 1, octave: 2)),
                     duration: 1,
                     ties: []
@@ -69,6 +67,34 @@ class NoteTests: XCTestCase {
             accidental: Accidental(value: .sharp)
         )
         XCTAssertEqual(decoded, expected)
+    }
+
+    func testChord() throws {
+        let xml = """
+        <note>
+            <chord/>
+            <pitch>
+                <step>F</step>
+                <octave>4</octave>
+            </pitch>
+            <duration>960</duration>
+            <voice>1</voice>
+            <type>quarter</type>
+        </note>
+        """
+        let expected = Note(
+            kind: .normal(
+                Note.Normal(
+                    chord: true,
+                    pitchUnpitchedOrRest: .pitch(Pitch(step: .f, octave: 4)),
+                    duration: 960,
+                    ties: []
+                )
+            ),
+            voice: "1",
+            type: NoteType(value: .quarter)
+        )
+        try assertDecoded(xml, equals: expected)
     }
 
     #warning("FIXME: #56 Notations.Notation.tuplet not decoding properly yet")
@@ -123,7 +149,6 @@ class NoteTests: XCTestCase {
         let expected = Note(
             kind: .normal(
                 Note.Normal(
-                    chord: nil,
                     pitchUnpitchedOrRest: .rest(
                         Rest(/*displayStep: nil, displayOctave: nil, measure: nil*/)
                     ),
