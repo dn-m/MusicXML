@@ -11,11 +11,6 @@ public enum FermataShape: String {
     case normal
     case angled
     case square
-    case doubleAngled = "double-angled"
-    case doubleSquare = "double-square"
-    case doubleDot
-    case halfCurve
-    case curlew
 }
 
 extension FermataShape: Equatable { }
