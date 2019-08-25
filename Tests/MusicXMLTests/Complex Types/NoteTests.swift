@@ -106,6 +106,23 @@ class NoteTests: XCTestCase {
         XCTAssertEqual(decoded, expected)
     }
 
+    #warning("FIXME: #68 Chord not decoding properly")
+    func DISABLED_testChord() throws {
+        let xml = """
+        <note>
+          <chord/>
+          <pitch>
+            <step>E</step><octave>5</octave>
+          </pitch>
+          <duration>1</duration>
+          <voice>1</voice>
+          <type>quarter</type>
+        </note>
+        """
+        let expected = Note(kind: .normal(Note.Normal(chord: true, pitchUnpitchedOrRest: .pitch(Pitch(step: .e, octave: 5)), duration: 1, ties: [])), voice: "1", type: NoteType(value: .quarter))
+        try assertDecoded(xml, equals: expected)
+    }
+
     #warning("FIXME: #41 Note.dots not decoding properly yet")
     func DISABLED_testNoteDottedRestDecoding() throws {
         let xml = """
