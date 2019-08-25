@@ -16,7 +16,6 @@ public enum FermataShape: String {
     case doubleDot
     case halfCurve
     case curlew
-    case none = ""
 }
 
 extension FermataShape: Equatable { }

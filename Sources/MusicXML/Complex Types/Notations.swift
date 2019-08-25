@@ -57,8 +57,8 @@ extension Notations.Notation: Codable {
         case dynamics
         case fermata
         case arpeggiate
-        case nonArpeggiate
-        case accidentalMark
+        case nonArpeggiate = "non-arpeggiate"
+        case accidentalMark = "accidental-mark"
         case other
     }
     public func encode(to encoder: Encoder) throws {
