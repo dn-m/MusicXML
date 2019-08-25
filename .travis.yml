@@ -13,7 +13,7 @@ script:
   - swift package update
   - swift package generate-xcodeproj
   - if hash xcodebuild 2>/dev/null; then
-        xcodebuild -quiet -project MusicXML.xcodeproj -scheme MusicXML-Package -enableCodeCoverage YES build test\
+        xcodebuild -quiet -project MusicXML.xcodeproj -scheme MusicXML-Package -enableCodeCoverage YES build test
     else
         swift test
     fi
