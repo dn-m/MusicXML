@@ -71,8 +71,7 @@ class NoteTests: XCTestCase {
         XCTAssertEqual(decoded, expected)
     }
 
-    #warning("FIXME: #56 Notations.Notation.tuplet not decoding properly yet")
-    func DISABLED_testTuplet() throws {
+    func testTuplet() throws {
         let xml = """
         <note>
           <pitch>

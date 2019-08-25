@@ -11,7 +11,7 @@ import MusicXML
 class Timewise_23_Tuplets: XCTestCase {
 
     #warning("FIXME: #56 Notations.Notation.tuplet not decoding properly yet")
-    func DISABLEd_test_23_Tuplets_E_Tremolo() throws {
+    func DISABLED_test_23_Tuplets_E_Tremolo() throws {
         let _ = try MusicXML(string: E_Tremolo)
     }
 

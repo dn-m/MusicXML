@@ -11,8 +11,7 @@ import XMLCoder
 
 class NotationsTests: XCTestCase {
 
-    #warning("FIXME: #56 Notations.Notation.tuplet not decoding properly yet")
-    func DISABLED_testTuplet() throws {
+    func testTuplet() throws {
         let xml = """
         <notations>
           <tuplet number="1" type="start"/>
