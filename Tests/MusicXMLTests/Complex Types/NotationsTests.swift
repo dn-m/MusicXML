@@ -33,34 +33,43 @@ class NotationsTests: XCTestCase {
         )
     }
 
-    #warning("FIXME: #56 Notations.Notation.tuplet not decoding properly yet")
-    func DISABLED_testOrnaments() throws {
+    func testAccidentalMark() throws {
         let xml = """
-        <notations>
-          <ornaments>
-            <turn/>
-            <accidental-mark placement="above">sharp</accidental-mark>
-            <accidental-mark placement="above">three-quarters-flat</accidental-mark>
-          </ornaments>
-        </notations>
+        <accidental-mark placement="above">sharp</accidental-mark>
         """
-        try assertDecoded(xml,
-            equals: Notations(
-                values: [
-                    .ornaments(
-                        Ornaments(
-                            values: [
-                                .turn(HorizontalTurn()),
-                            ],
-                            accidentalMarks: [
-                                AccidentalMark(value: .sharp, placement: .above),
-                                AccidentalMark(value: .threeQuartersFlat, placement: .above),
-                            ]
-                        )
+        let _ = try XMLDecoder().decode(AccidentalMark.self, from: xml.data(using: .utf8)!)
+    }
+
+    func testTurn() throws {
+        let xml = "<turn/>"
+        let _ = try XMLDecoder().decode(HorizontalTurn.self, from: xml.data(using: .utf8)!)
+    }
+
+    #warning("FIXME: #41 Note.dots not decoding properly yet")
+    func DISABLED_testOrnamentsNotation() throws {
+        let xml = """
+        <ornaments>
+          <turn/>
+          <accidental-mark placement="above">sharp</accidental-mark>
+          <accidental-mark placement="above">three-quarters-flat</accidental-mark>
+        </ornaments>
+        """
+        let expected = Notations(
+            values: [
+                .ornaments(
+                    Ornaments(
+                        values: [
+                            .turn(HorizontalTurn()),
+                        ],
+                        accidentalMarks: [
+                            AccidentalMark(value: .sharp, placement: .above),
+                            AccidentalMark(value: .threeQuartersFlat, placement: .above),
+                        ]
                     )
-                ]
-            )
+                )
+            ]
         )
+        try assertDecoded(xml, equals: expected)
     }
 
     #warning("FIXME: #41 Note.dots not decoding properly yet")
@@ -89,8 +98,7 @@ class NotationsTests: XCTestCase {
         try assertDecoded(xml, equals: expected)
     }
 
-    #warning("FIXME: #56 Notations.Notation.tuplet not decoding properly yet")
-    func DISABLED_testAccidentalMark() throws {
+    func testAccidentalMarkNotation() throws {
         let xml = """
         <notations>
           <accidental-mark placement="above">double-sharp</accidental-mark>
@@ -149,8 +157,7 @@ class NotationsTests: XCTestCase {
         )
     }
 
-    #warning("FIXME: #41 Note.dots not decoding properly yet")
-    func DISABLED_testNonArpeggiate() throws {
+    func testNonArpeggiate() throws {
         let xml = """
         <notations><non-arpeggiate type="bottom"/></notations>
         """
@@ -159,15 +166,14 @@ class NotationsTests: XCTestCase {
         )
     }
 
-    #warning("FIXME: #41 Note.dots not decoding properly yet")
-    func DISABLED_testFermataNoValue() throws {
+    func testFermataNoValue() throws {
         let xml = """
         <notations>
           <fermata type="upright"/>
         </notations>
         """
         try assertDecoded(xml,
-            equals: Notations(values: [.fermata(Fermata(value: .none, type: .upright))])
+            equals: Notations(values: [.fermata(Fermata(value: .normal, type: .upright))])
         )
     }
 }

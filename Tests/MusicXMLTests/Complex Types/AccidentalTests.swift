@@ -19,4 +19,12 @@ class AccidentalTests: XCTestCase {
         let expected = Accidental(value: .sharp)
         XCTAssertEqual(decoded, expected)
     }
+
+    func testDecodingPlacement() throws {
+        let xml = """
+        <accidental-mark placement="above">double-sharp</accidental-mark>
+        """
+        let expected = AccidentalMark(value: .doubleSharp, placement: .above)
+        try assertDecoded(xml, equals: expected)
+    }
 }

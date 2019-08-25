@@ -26,4 +26,10 @@ extension Fermata: Codable {
         case type
         case printStyle
     }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.value = try container.decodeIfPresent(FermataShape.self, forKey: .value) ?? .normal
+        self.type = try container.decodeIfPresent(UprightInverted.self, forKey: .type)
+    }
 }
