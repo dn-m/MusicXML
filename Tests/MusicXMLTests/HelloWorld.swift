@@ -71,25 +71,8 @@ class HelloWorld: XCTestCase {
                                             .attributes(
                                                 Attributes(
                                                     divisions: 1,
-                                                    keys: [
-                                                        Key(
-                                                            kind: .traditional(
-                                                                Key.Traditional(fifths: 0)
-                                                            )
-                                                        )
-                                                    ],
-                                                    times: [
-                                                        Time(
-                                                            kind: .measured(
-                                                                Time.Measured(
-                                                                    signature: Time.Signature(
-                                                                        beats: 4,
-                                                                        beatType: 4
-                                                                    )
-                                                                )
-                                                            )
-                                                        )
-                                                    ],
+                                                    keys: [Key(fifths: 0)],
+                                                    times: [Time(4, 4)],
                                                     clefs: [Clef(sign: .g, line: 2)]
                                                 )
                                             ),

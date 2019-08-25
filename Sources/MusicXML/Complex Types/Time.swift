@@ -40,7 +40,51 @@ public struct Time {
     public var printObject: Bool?
 
     // MARK: - Elements
+
     public var kind: Kind
+}
+
+extension Time {
+
+    // MARK: - Initializers
+
+    /// Creates a `Measured` type `Time`.
+    ///
+    /// **Example Usage:**
+    ///
+    ///     let _ = Time(4,4)
+    ///     let _ = Time(3, 16, staff: 3)
+    ///
+    public init(
+        _ beats: Int,
+        _ beatType: Int,
+        symbol: TimeSymbol? = nil,
+        staff: Int? = nil,
+        interchangeable: Interchangeable? = nil
+    )
+    {
+        self.number = staff
+        self.symbol = symbol
+        self.kind = .measured(
+            Measured(
+                signature: Time.Signature(beats: beats, beatType: beatType),
+                interchangeable: interchangeable
+            )
+        )
+        // TODO: Add remaining attributes and elements
+    }
+
+    /// Creates an `Unmeasured` type `Time`.
+    ///
+    /// **Example Usage:**
+    ///
+    ///     let _ = Time(symbol: "XXX")
+    ///
+    public init(symbol: String? = nil, staff: Int? = nil) {
+        self.number = staff
+        self.kind = .unmeasured(Unmeasured(symbol: symbol))
+        // TODO: Add remaining attributes and elements
+    }
 }
 
 extension Time {

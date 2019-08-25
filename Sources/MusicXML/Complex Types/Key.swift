@@ -11,7 +11,9 @@ import XMLCoder
 /// supported. If absent, the key signature applies to all staves in the part. Key signatures appear
 /// at the start of each system unless the print-object attribute has been set to "no".
 public struct Key {
+
     // MARK: - Attributes
+
     /// The optional number attribute refers to staff numbers.
     public var number: Int?
     public var position: Position?
@@ -19,8 +21,29 @@ public struct Key {
     public var printObject: Bool?
 
     // MARK: - Elements
+
     public var kind: Kind
     public var keyOctave: [KeyOctave]?
+}
+
+extension Key {
+
+    // MARK: - Initializers
+
+    /// Creates a `Traditional` type `Key`.
+    public init(fifths: Int, cancel: Cancel? = nil, mode: Mode? = nil, staff: Int? = nil) {
+        self.number = staff
+        self.kind = .traditional(Traditional(cancel: cancel, fifths: fifths, mode: mode))
+        // TODO: Add remaining attributes and elements
+    }
+
+    /// Creates a `NonTraditional` type `Key`.
+    public init(step: Step, alter: Double, accidental: AccidentalValue) {
+        self.kind = .nonTraditional(
+            NonTraditional(step: step, alter: alter, accidental: accidental)
+        )
+        // TODO: Add remaining attributes and elements
+    }
 }
 
 extension Key {
