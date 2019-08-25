@@ -59,7 +59,7 @@ extension Note {
             case ties
             case pitchUnpitchedOrRest
         }
-        public var chord: Empty?
+        public var chord = false
         public var pitchUnpitchedOrRest: PitchUnpitchedOrRest
         public var duration: Int
         public var ties: [Tie] // FIXME: Make Ties struct
@@ -71,7 +71,7 @@ extension Note {
             case pitchUnpitchedOrRest
             case duration
         }
-        public var chord: Empty?
+        public var chord = false
         public var pitchUnpitchedOrRest: PitchUnpitchedOrRest
         public var duration: Int
     }
@@ -82,7 +82,7 @@ extension Note {
             case pitchUnpitchedOrRest
             case ties = "tie"
         }
-        public var chord: Empty?
+        public var chord = false
         public var pitchUnpitchedOrRest: PitchUnpitchedOrRest
         public var ties: [Tie] // FIXME: Make Ties struct
     }
@@ -127,6 +127,8 @@ extension Note: Codable {
         case lyrics
         case play
     }
+    #warning("Handle Ties decode once Ties struct is in place")
+    #warning("Reinstate Note.dots when we can decode potentially-empty elements properly")
     public init(from decoder: Decoder) throws {
         // Ignore attributes for now
         // Decode elements
@@ -136,7 +138,7 @@ extension Note: Codable {
         self.level = try container.decodeIfPresent(Level.self, forKey: .level)
         self.voice = try container.decodeIfPresent(String.self, forKey: .voice)
         self.type = try container.decodeIfPresent(NoteType.self, forKey: .type)
-        #warning("Reinstate Note.dots when we can decode potentially-empty elements properly")
+
         // self.dots = try container.decodeIfPresent([EmptyPlacement].self, forKey: .dots)
         self.accidental = try container.decodeIfPresent(Accidental.self, forKey: .accidental)
         self.timeModification = try container.decodeIfPresent(TimeModification.self, forKey: .timeModification)
@@ -154,10 +156,9 @@ extension Note: Codable {
         // Decode kind
         do {
             let kindContainer = try decoder.container(keyedBy: Normal.CodingKeys.self)
-            #warning("Handle Ties decode once Ties struct is in place")
             self.kind = .normal(
                 Normal(
-                    chord: nil,
+                    chord: kindContainer.contains(.chord),
                     pitchUnpitchedOrRest: pitchUnpitchedOrRest,
                     duration: try kindContainer.decode(Int.self, forKey: .duration),
                     ties: []
@@ -166,20 +167,18 @@ extension Note: Codable {
         } catch {
             do {
                 let kindContainer = try decoder.container(keyedBy: Cue.CodingKeys.self)
-                #warning("Handle Ties decode once Ties struct is in place")
                 self.kind = .cue(
                     Cue(
-                        chord: nil,
+                        chord: kindContainer.contains(.chord),
                         pitchUnpitchedOrRest: pitchUnpitchedOrRest,
                         duration: try kindContainer.decode(Int.self, forKey: .duration)
                     )
                 )
             } catch {
                 let kindContainer = try decoder.container(keyedBy: Grace.CodingKeys.self)
-                #warning("Handle Ties decode once Ties struct is in place")
                 self.kind = .grace(
                     Note.Grace(
-                        chord: nil,
+                        chord: kindContainer.contains(.chord),
                         pitchUnpitchedOrRest: pitchUnpitchedOrRest,
                         ties: []
                     )

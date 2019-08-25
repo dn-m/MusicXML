@@ -28,7 +28,7 @@ class NoteTests: XCTestCase {
         let expected = Note(
             kind: .normal(
                 Note.Normal(
-                    chord: nil,
+                    chord: false,
                     pitchUnpitchedOrRest: .pitch(Pitch(step: .c, alter: -1.5, octave: 4)),
                     duration: 1,
                     ties: []
@@ -58,7 +58,6 @@ class NoteTests: XCTestCase {
         let expected = Note(
             kind: .normal(
                 Note.Normal(
-                    chord: nil,
                     pitchUnpitchedOrRest: .pitch(Pitch(step: .g, alter: 1, octave: 2)),
                     duration: 1,
                     ties: []
@@ -115,14 +114,13 @@ class NoteTests: XCTestCase {
           <duration>48</duration>
           <voice>1</voice>
           <type>quarter</type>
-          <dot></dot>
+          <dot/>
         </note>
         """
         let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
         let expected = Note(
             kind: .normal(
                 Note.Normal(
-                    chord: nil,
                     pitchUnpitchedOrRest: .rest(
                         Rest(/*displayStep: nil, displayOctave: nil, measure: nil*/)
                     ),
