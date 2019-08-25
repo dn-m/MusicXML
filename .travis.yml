@@ -12,4 +12,7 @@ env:
   - CODECOV_TOKEN=52103015-769c-4c59-b537-4fa9fe91c41c
 script:
   - swift package update
-  - swift test
+  - swift build
+  - swift package generate-xcodeproj
+  - xcodebuild -project MusicXML.xcodeproj -scheme MusicXML-Package -enableCodeCoverage YES build test
+  - bash <(curl -s https://codecov.io/bash)
