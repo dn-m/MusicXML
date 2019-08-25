@@ -31,9 +31,10 @@ extension Key {
     // MARK: - Initializers
 
     /// Creates a `Traditional` type `Key`.
-    public init(fifths: Int, cancel: Cancel? = nil, mode: Mode? = nil) {
+    public init(fifths: Int, cancel: Cancel? = nil, mode: Mode? = nil, staff: Int? = nil) {
+        self.number = staff
         self.kind = .traditional(Traditional(cancel: cancel, fifths: fifths, mode: mode))
-        // TODO: Add remaining attirbutes and elements
+        // TODO: Add remaining attributes and elements
     }
 
     /// Creates a `NonTraditional` type `Key`.
@@ -41,7 +42,7 @@ extension Key {
         self.kind = .nonTraditional(
             NonTraditional(step: step, alter: alter, accidental: accidental)
         )
-        // TODO: Add remaining attirbutes and elements
+        // TODO: Add remaining attributes and elements
     }
 }
 
