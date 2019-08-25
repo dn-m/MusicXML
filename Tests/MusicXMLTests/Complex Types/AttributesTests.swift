@@ -32,9 +32,7 @@ class AttributesTests: XCTestCase {
         let decoded = try XMLDecoder().decode(Attributes.self, from: xml.data(using: .utf8)!)
         let expected = Attributes(
             divisions: 1,
-            keys: [
-                Key(kind: .traditional(Key.Traditional(cancel: nil, fifths: 0, mode: .major)))
-            ],
+            keys: [Key(fifths: 0, mode: .major)],
             times: [
                 Time(
                     symbol: .common,

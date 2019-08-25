@@ -49,9 +49,7 @@ class PartwiseMeasureTests: XCTestCase {
                 .attributes(
                     Attributes(
                         divisions: 1,
-                        keys: [
-                            Key(kind: .traditional(Key.Traditional(fifths: 0, mode: .major)))
-                        ],
+                        keys: [Key(fifths: 0, mode: .major)],
                         times: [
                             Time(
                                 symbol: .common,
@@ -134,9 +132,7 @@ class PartwiseMeasureTests: XCTestCase {
                 .attributes(
                     Attributes(
                         divisions: 1,
-                        keys: [
-                            Key(kind: .traditional(Key.Traditional(fifths: 0, mode: .major)))
-                        ],
+                        keys: [Key(fifths: 0, mode: .major)],
                         times: [
                             Time(
                                 symbol: .common,

@@ -19,7 +19,7 @@ class KeyTests: XCTestCase {
         </key>
         """
         let decoded = try XMLDecoder().decode(Key.self, from: xml.data(using: .utf8)!)
-        let expected = Key(kind: .traditional(Key.Traditional(fifths: 0, mode: .major)))
+        let expected = Key(fifths: 0, mode: .major)
         XCTAssertEqual(decoded, expected)
     }
 }
