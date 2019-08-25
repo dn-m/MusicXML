@@ -31,12 +31,7 @@ class TimeTests: XCTestCase {
         </time>
         """
         let decoded = try XMLDecoder().decode(Time.self, from: xml.data(using: .utf8)!)
-        let expected = Time(
-            symbol: .common,
-            kind: Time.Kind.measured(
-                Time.Measured(signature: Time.Signature(beats: 4, beatType: 4))
-            )
-        )
+        let expected = Time(4, 4, symbol: .common)
         XCTAssertEqual(decoded, expected)
     }
 }

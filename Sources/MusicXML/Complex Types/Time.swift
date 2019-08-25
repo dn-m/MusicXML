@@ -55,8 +55,16 @@ extension Time {
     ///     let _ = Time(4,4)
     ///     let _ = Time(3, 16, staff: 3)
     ///
-    public init(_ beats: Int, _ beatType: Int, staff: Int? = nil, interchangeable: Interchangeable?) {
+    public init(
+        _ beats: Int,
+        _ beatType: Int,
+        symbol: TimeSymbol? = nil,
+        staff: Int? = nil,
+        interchangeable: Interchangeable? = nil
+    )
+    {
         self.number = staff
+        self.symbol = symbol
         self.kind = .measured(
             Measured(
                 signature: Time.Signature(beats: beats, beatType: beatType),

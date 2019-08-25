@@ -50,16 +50,7 @@ class PartwiseMeasureTests: XCTestCase {
                     Attributes(
                         divisions: 1,
                         keys: [Key(fifths: 0, mode: .major)],
-                        times: [
-                            Time(
-                                symbol: .common,
-                                kind: .measured(
-                                    Time.Measured(
-                                        signature: Time.Signature(beats: 4, beatType: 4)
-                                    )
-                                )
-                            )
-                        ],
+                        times: [Time(4, 4, symbol: .common)],
                         clefs: [Clef(sign: .g, line: 2)]
                     )
                 )
@@ -133,14 +124,7 @@ class PartwiseMeasureTests: XCTestCase {
                     Attributes(
                         divisions: 1,
                         keys: [Key(fifths: 0, mode: .major)],
-                        times: [
-                            Time(
-                                symbol: .common,
-                                kind: .measured(
-                                    Time.Measured(signature: Time.Signature(beats: 4, beatType: 4))
-                                )
-                            )
-                        ],
+                        times: [Time(4, 4, symbol: .common)],
                         clefs: [
                             Clef(sign: .g, line: 2)
                         ]
