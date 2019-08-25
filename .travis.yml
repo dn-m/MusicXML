@@ -12,5 +12,5 @@ env:
 script:
   - swift package update
   - swift package generate-xcodeproj
-  - xcodebuild -project MusicXML.xcodeproj -scheme MusicXML-Package -enableCodeCoverage YES build test
+  - xcodebuild -quiet -project MusicXML.xcodeproj -scheme MusicXML-Package -enableCodeCoverage YES build test
   - bash <(curl -s https://codecov.io/bash)
