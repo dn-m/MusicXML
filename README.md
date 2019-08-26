@@ -3,6 +3,7 @@
 ![Swift Version](https://img.shields.io/badge/Swift-5.1-orange.svg)
 ![Platforms](https://img.shields.io/badge/platform-linux%20%7C%20macOS%20%7C%20iOS%20%7C%20watchOS%20%7C%20tvOS-lightgrey)
 [![Build Status](https://travis-ci.org/dn-m/MusicXML.svg?branch=latest)](https://travis-ci.org/dn-m/MusicXML)
+[![Code Coverage](https://codecov.io/gh/dn-m/MusicXML/branch/latest/graph/badge.svg)](https://codecov.io/github/dn-m/MusicXML)
 
 A **work-in-progress** implementation of the [musicXML](https://www.musicxml.com) specification in Swift.
 
