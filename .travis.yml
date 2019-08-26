@@ -11,6 +11,10 @@ env:
   - SWIFT_VERSION=DEVELOPMENT-SNAPSHOT-2019-08-01-a CODECOV_TOKEN=52103015-769c-4c59-b537-4fa9fe91c41c
 script:
   - swift package update
-  - swift package generate-xcodeproj
-  - if [ $TRAVIS_OS_NAME = 'osx' ]; then xcodebuild -quiet -project MusicXML.xcodeproj -scheme MusicXML-Package -enableCodeCoverage YES build test; else swift test; fi
-  - bash <(curl -s https://codecov.io/bash)
+  - if [ $TRAVIS_OS_NAME = 'osx' ]; then 
+      swift package generate-xcodeproj;
+      xcodebuild -quiet -project MusicXML.xcodeproj -scheme MusicXML-Package -enableCodeCoverage YES build test; 
+      bash <(curl -s https://codecov.io/bash);
+    else 
+      swift test; 
+    fi
