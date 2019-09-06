@@ -88,74 +88,45 @@ extension Articulation: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
-            return try container.decode(T.self, forKey: key)
+        enum DecodingError: Error {
+            case unknownKind
         }
 
-        do {
-            self = .accent(try decode(.accent))
-        } catch {
-            do {
-                self = .breathMark(try decode(.breathMark))
-            } catch {
-                do {
-                    self = .caesura(try decode(.caesura))
-                } catch {
-                    do {
-                        self = .detachedLegato(try decode(.detatchedLegato))
-                    } catch {
-                        do {
-                            self = .doit(try decode(.doit))
-                        } catch {
-                            do {
-                                self = .falloff(try decode(.falloff))
-                            } catch {
-                                do {
-                                    self = .otherArticulation(try decode(.otherArticulation))
-                                } catch {
-                                    do {
-                                        self = .plop(try decode(.plop))
-                                    } catch {
-                                        do {
-                                            self = .scoop(try decode(.scoop))
-                                        } catch {
-                                            do {
-                                                self = .spicatto(try decode(.spicatto))
-                                            } catch {
-                                                do {
-                                                    self = .staccatissimo(try decode(.staccatissimo))
-                                                } catch {
-                                                    do {
-                                                        self = .staccato(try decode(.staccato))
-                                                    } catch {
-                                                        do  {
-                                                            self = .stress(try decode(.stress))
-                                                        } catch {
-                                                            do {
-                                                                self = .strongAccent(try decode(.strongAccent))
-                                                            } catch {
-                                                                do {
-                                                                    self = .tenuto(try decode(.tenuto))
-                                                                } catch {
-                                                                    do {
-                                                                        self = .unstress(try decode(.unstress))
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        if let value = try? container.decode(EmptyPlacement.self, forKey: .accent) {
+            self = .accent(value)
+        } else if let value = try? container.decode(BreathMark.self, forKey: .breathMark) {
+            self = .breathMark(value)
+        } else if let value = try? container.decode(EmptyPlacement.self, forKey: .caesura) {
+            self = .caesura(value)
+        } else if let value = try? container.decode(EmptyPlacement.self, forKey: .detatchedLegato) {
+            self = .detachedLegato(value)
+        } else if let value = try? container.decode(EmptyLine.self, forKey: .doit) {
+            self = .doit(value)
+        } else if let value = try? container.decode(EmptyLine.self, forKey: .falloff) {
+            self = .falloff(value)
+        } else if let value = try? container.decode(PlacementText.self, forKey: .otherArticulation) {
+            self = .otherArticulation(value)
+        } else if let value = try? container.decode(EmptyLine.self, forKey: .plop) {
+            self = .plop(value)
+        } else if let value = try? container.decode(EmptyLine.self, forKey: .scoop) {
+            self = .scoop(value)
+        } else if let value = try? container.decode(EmptyPlacement.self, forKey: .spicatto) {
+            self = .spicatto(value)
+        } else if let value = try? container.decode(EmptyPlacement.self, forKey: .staccatissimo) {
+            self = .staccatissimo(value)
+        } else if let value = try? container.decode(EmptyPlacement.self, forKey: .staccato) {
+            self = .staccato(value)
+        } else if let value = try? container.decode(StrongAccent.self, forKey: .strongAccent) {
+            self = .strongAccent(value)
+        } else if let value = try? container.decode(EmptyPlacement.self, forKey: .tenuto) {
+            self = .tenuto(value)
+        } else if let value = try? container.decode(EmptyPlacement.self, forKey: .unstress) {
+            self = .unstress(value)
+        } else {
+            throw DecodingError.unknownKind
         }
     }
 }
