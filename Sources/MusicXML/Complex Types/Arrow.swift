@@ -9,17 +9,53 @@ import XMLCoder
 
 /// The arrow element represents an arrow used for a musical technical indication.
 public struct Arrow {
+    public let kind: Kind
+    public let position: Position?
+    public let printStyle: PrintStyle?
+    public let placement: AboveBelow?
+}
+
+extension Arrow {
+
+    // MARK: - Nested Types
+
     public enum Kind {
         case circular(CircularArrow)
         case linear(LinearArrow)
     }
-    public let kind: Kind
-    public let position: Position
-    public let printStyle: PrintStyle
-    public let placement: AboveBelow?
 }
 
-extension Arrow.Kind: Equatable { }
+extension Arrow {
+
+    // MARK: - Initializers
+
+    /// Create a circular `Arrow`.
+    public init(
+        direction: CircularArrow,
+        position: Position? = nil,
+        printStyle: PrintStyle? = nil,
+        placement: AboveBelow? = nil
+    ) {
+        self.kind = .circular(direction)
+        self.position = position
+        self.printStyle = printStyle
+        self.placement = placement
+    }
+
+    /// Create a linear `Arrow`.
+    public init(
+        direction: ArrowDirection,
+        style: ArrowStyle? = nil,
+        position: Position? = nil,
+        printStyle: PrintStyle? = nil,
+        placement: AboveBelow? = nil
+    ) {
+        self.kind = .linear(LinearArrow(direction: direction, style: style))
+        self.position = position
+        self.printStyle = printStyle
+        self.placement = placement
+    }
+}
 
 extension Arrow.Kind: Codable {
     enum CodingKeys: String, CodingKey {
@@ -47,5 +83,6 @@ extension Arrow.Kind: Codable {
 
 extension Arrow.Kind.CodingKeys: XMLChoiceCodingKey {}
 
+extension Arrow.Kind: Equatable { }
 extension Arrow: Equatable { }
 extension Arrow: Codable { }
