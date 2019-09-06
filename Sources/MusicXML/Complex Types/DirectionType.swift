@@ -180,92 +180,56 @@ extension DirectionType: Codable {
     }
     public init(from decoder: Decoder) throws {
 
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
-            return try container.decode(T.self, forKey: key)
+        enum DecodingError: Error {
+            case unknownKind
         }
 
-        do {
-            self = .accordionRegistration(try decode(.accordianRegistration))
-        } catch {
-            do {
-                self = .bracket(try decode(.bracket))
-            } catch {
-                do {
-                    self = .coda(try decode(.coda))
-                } catch {
-                    do {
-                        self = .damp(try decode(.damp))
-                    } catch {
-                        do {
-                            self = .dampAll(try decode(.dampAll))
-                        } catch {
-                            do {
-                                self = .dashes(try decode(.dashes))
-                            } catch {
-                                do {
-                                    self = .dynamics(try decode(.dynamics))
-                                } catch {
-                                    do {
-                                        self = .eyeglasses(try decode(.eyeglasses))
-                                    } catch {
-                                        do {
-                                            self = .harpPedals(try decode(.harpPedals))
-                                        } catch {
-                                            do {
-                                                self = .image(try decode(.image))
-                                            } catch {
-                                                do {
-                                                    self = .metronome(try decode(.metronome))
-                                                } catch {
-                                                    do {
-                                                        self = .octaveShift(try decode(.octaveShift))
-                                                    } catch {
-                                                        do {
-                                                            self = .otherDirection(try decode(.otherDirection))
-                                                        } catch {
-                                                            do {
-                                                                self = .pedal(try decode(.pedal))
-                                                            } catch {
-                                                                do {
-                                                                    self = .percussion(try decode(.percussion))
-                                                                } catch {
-                                                                    do {
-                                                                        self = .principleVoice(try decode(.percussion))
-                                                                    } catch {
-                                                                        do {
-                                                                            self = .rehearsal(try decode(.rehearsal))
-                                                                        } catch {
-                                                                            do {
-                                                                                self = .scordatura(try decode(.scordatura))
-                                                                            } catch {
-                                                                                do {
-                                                                                    self = .segno(try decode(.segno))
-                                                                                } catch {
-                                                                                    do {
-                                                                                        self = .stringMute(try decode(.stringMute))
-                                                                                    } catch {
-                                                                                        self = .wedge(try decode(.wedge))
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        if let value = try? container.decode(AccordionRegistration.self, forKey: .accordianRegistration) {
+            self = .accordionRegistration(value)
+        } else if let value = try? container.decode(Bracket.self, forKey: .bracket) {
+            self = .bracket(value)
+        } else if let value = try? container.decode([EmptyPrintStyleAlign].self, forKey: .coda) {
+            self = .coda(value)
+        } else if let value = try? container.decode(EmptyPrintStyleAlign.self, forKey: .damp) {
+            self = .damp(value)
+        } else if let value = try? container.decode(EmptyPrintStyleAlign.self, forKey: .dampAll) {
+            self = .dampAll(value)
+        } else if let value = try? container.decode(Dashes.self, forKey: .dashes) {
+            self = .dashes(value)
+        } else if let value = try? container.decode([Dynamics].self, forKey: .dynamics) {
+            self = .dynamics(value)
+        } else if let value = try? container.decode(EmptyPrintStyleAlign.self, forKey: .eyeglasses) {
+            self = .eyeglasses(value)
+        } else if let value = try? container.decode(HarpPedals.self, forKey: .harpPedals) {
+            self = .harpPedals(value)
+        } else if let value = try? container.decode(Image.self, forKey: .image) {
+            self = .image(value)
+        } else if let value = try? container.decode(Metronome.self, forKey: .metronome) {
+            self = .metronome(value)
+        } else if let value = try? container.decode(OctaveShift.self, forKey: .octaveShift) {
+            self = .octaveShift(value)
+        } else if let value = try? container.decode(OtherDirection.self, forKey: .otherDirection) {
+            self = .otherDirection(value)
+        } else if let value = try? container.decode(Pedal.self, forKey: .pedal) {
+            self = .pedal(value)
+        } else if let value = try? container.decode([Percussion].self, forKey: .percussion) {
+            self = .percussion(value)
+        } else if let value = try? container.decode(PrincipleVoice.self, forKey: .principleVoice) {
+            self = .principleVoice(value)
+        } else if let value = try? container.decode([FormattedText].self, forKey: .rehearsal) {
+            self = .rehearsal(value)
+        } else if let value = try? container.decode(Scordatura.self, forKey: .scordatura) {
+            self = .scordatura(value)
+        } else if let value = try? container.decode(EmptyPrintStyleAlign.self, forKey: .segno) {
+            self = .segno(value)
+        } else if let value = try? container.decode(StringMute.self, forKey: .stringMute) {
+            self = .stringMute(value)
+        } else if let value = try? container.decode(Wedge.self, forKey: .wedge) {
+            self = .wedge(value)
+        } else {
+            throw DecodingError.unknownKind
         }
     }
 }
