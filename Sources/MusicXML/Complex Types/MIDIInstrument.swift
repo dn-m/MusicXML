@@ -9,7 +9,7 @@
 /// be a part of either the score-instrument element at the start of a part, or the sound element
 /// within a part. The id attribute refers to the score-instrument affected by the change.
 public struct MIDIInstrument {
-    public let id: Int
+    public let id: String
     /// The midi-channel element specifies a MIDI 1.0 channel number ranging from 1 to 16.
     public let midiChannel: Int?
     /// The midi-name element corresponds to a ProgramName meta-event within a Standard MIDI File.
@@ -26,7 +26,7 @@ public struct MIDIInstrument {
     /// The volume element value is a percentage of the maximum ranging from 0 to 100, with decimal
     /// values allowed. This corresponds to a scaling value for the MIDI 1.0 channel volume
     /// controller.
-    public let volume: Int?
+    public let volume: Double?
     /// The pan and elevation elements allow placing of sound in a 3-D space relative to the
     /// listener. Both are expressed in degrees ranging from -180 to 180. For pan, 0 is straight
     /// ahead, -90 is hard left, 90 is hard right, and -180 and 180 are directly behind the
@@ -36,6 +36,18 @@ public struct MIDIInstrument {
     /// listener. Both are expressed in degrees ranging from -180 to 180. For elevation, 0 is level
     /// with the listener, 90 is directly above, and -90 is directly below.
     public let elevation: Int?
+
+    public init(id: String, midiChannel: Int? = nil, midiName: String? = nil, midiBank: Int? = nil, midiProgram: Int? = nil, midiUnpitched: Int? = nil, volume: Double? = nil, pan: Int? = nil, elevation: Int? = nil) {
+        self.id = id
+        self.midiChannel = midiChannel
+        self.midiName = midiName
+        self.midiBank = midiBank
+        self.midiProgram = midiProgram
+        self.midiUnpitched = midiUnpitched
+        self.volume = volume
+        self.pan = pan
+        self.elevation = elevation
+    }
 }
 
 extension MIDIInstrument: Equatable { }
