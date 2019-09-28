@@ -102,6 +102,7 @@ extension ScorePart: Codable {
         case partAbbreviationDisplay = "part-abbreviation-display"
         case group
         case scoreInstrument = "score-instrument"
+        #warning("TODO: Properly decode midi-channel and midi-program. See score.mod:172")
         case midi
     }
 }

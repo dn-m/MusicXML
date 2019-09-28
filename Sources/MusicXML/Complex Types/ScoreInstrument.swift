@@ -16,9 +16,18 @@ public struct ScoreInstrument {
     public let id: String
     public let instrumentName: String
     public let instrumentAbbreviation: String?
-    public let sound: String
+    public let sound: String?
     public let soloOrEnsemble: SoloEnsemble?
     public let virtualInstrument: VirtualInstrument?
+
+    public init(id: String, instrumentName: String, instrumentAbbreviation: String? = nil, sound: String? = nil, soloOrEnsemble: SoloEnsemble? = nil, virtualInstrument: VirtualInstrument? = nil) {
+        self.id = id
+        self.instrumentName = instrumentName
+        self.instrumentAbbreviation = instrumentAbbreviation
+        self.sound = sound
+        self.soloOrEnsemble = soloOrEnsemble
+        self.virtualInstrument = virtualInstrument
+    }
 }
 
 extension ScoreInstrument {
@@ -55,4 +64,13 @@ extension ScoreInstrument.SoloEnsemble: Codable {
 }
 
 extension ScoreInstrument: Equatable { }
-extension ScoreInstrument: Codable { }
+extension ScoreInstrument: Codable {
+    enum CodingKeys: String, CodingKey {
+        case id
+        case instrumentName = "instrument-name"
+        case instrumentAbbreviation = "instrument-abbreviation"
+        case sound
+        case soloOrEnsemble
+        case virtualInstrument = "virtual-instrument"
+    }
+}
