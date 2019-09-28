@@ -11,7 +11,6 @@ import MusicXML
 class Partwise_01_Pitches: XCTestCase {
 
     func test_01_Pitches() throws {
-        let _ = try MusicXML(testFileName: "01a-Pitches-Pitches", traversal: .partwise)
         let _ = try MusicXML(string: B_Intervals)
         let _ = try MusicXML(string: C_NoVoiceElement)
         let _ = try MusicXML(string: D_Microtones)
