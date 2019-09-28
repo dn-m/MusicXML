@@ -17,14 +17,11 @@ enum LilyPondTestSuite {
             .deletingLastPathComponent()
             .deletingLastPathComponent()
             .deletingLastPathComponent()
-            .appendingPathComponent("LilypondTestSuite", isDirectory: true)
+            .appendingPathComponent("LilyPondTestSuite", isDirectory: true)
             .appendingPathComponent(traversal.rawValue, isDirectory: true)
             .appendingPathComponent("\(testName).xml")
     }
     static func string(testName: String, traversal: Traversal) throws -> String {
-        let url = Self.url(testName: testName, traversal: traversal)
-        print(url)
-        print("does a file exist at the url?: \(FileManager.default.fileExists(atPath: url.absoluteString))")
-        return try String(contentsOf: url)
+        return try String(contentsOf: url(testName: testName, traversal: traversal))
     }
 }
