@@ -39,11 +39,12 @@ class LilyPondTests: XCTestCase {
 
 extension LilyPondTests {
 
-    enum Traversal: String, CaseIterable {
-        case partwise = "Partwise"
-        case timewise = "Timewise"
-    }
-
+    // The `URL` of the `LilyPondTestSuite` directory which contains two subdirectories:
+    //
+    //  - `Partwise`
+    //  - `Timewise`
+    //
+    // Each of these subdirectories contains all of the test music xml files for a given traversal.
     var testSuiteURL: URL {
         return URL(fileURLWithPath: "\(#file)")
             .deletingLastPathComponent() // => MusicXML/Tests/MusicXMLTests/LilyPondTests
