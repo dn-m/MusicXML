@@ -22,6 +22,8 @@ enum LilyPondTestSuite {
             .appendingPathComponent("\(testName).xml")
     }
     static func string(testName: String, traversal: Traversal) throws -> String {
-        return try String(contentsOf: url(testName: testName, traversal: traversal))
+        let url = Self.url(testName: testName, traversal: traversal)
+        print(url)
+        return try String(contentsOf: url)
     }
 }
