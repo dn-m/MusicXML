@@ -128,15 +128,3 @@ extension ScorePart: DynamicNodeEncoding {
         }
     }
 }
-
-//extension PartList.ScorePart: Codable {
-//
-//    // MARK: - Decodable
-//
-//    enum CodingKeys: String, CodingKey {
-//        case id
-//        case identification
-//        case name = "part-name"
-//        case nameDisplay = "part-name-display"
-//    }
-//}
