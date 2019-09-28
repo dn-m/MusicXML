@@ -5,34 +5,51 @@
 //  Created by James Bean on 9/28/19.
 //
 
-import Foundation
+import XCTest
 import MusicXML
 
-enum LilyPondTestSuite {
-    enum Traversal: String, CaseIterable {
-        case partwise = "Partwise"
-        case timewise = "Timewise"
-    }
-    static func url(testName: String, traversal: Traversal) -> URL {
-        return URL(fileURLWithPath: "\(#file)")
-            .deletingLastPathComponent()
-            .deletingLastPathComponent()
-            .deletingLastPathComponent()
-            .appendingPathComponent("LilyPondTestSuite", isDirectory: true)
-            .appendingPathComponent(traversal.rawValue, isDirectory: true)
-            .appendingPathComponent("\(testName).xml")
-    }
-    static func string(testName: String, traversal: Traversal) throws -> String {
-        return try String(contentsOf: url(testName: testName, traversal: traversal))
+class LilyPondTests: XCTestCase {
+
+    func testAll() throws {
+        var successes: [String] = []
+        var failures: [(name: String, error: Error)] = []
+        for subdir in ["Partwise", "Timewise"] {
+            let directory = testSuiteURL.appendingPathComponent(subdir, isDirectory: true)
+            for fileName in try FileManager.default.contentsOfDirectory(atPath: directory.path) {
+                let fileURL = directory.appendingPathComponent(fileName)
+                do {
+                    let _ = try MusicXML(url: fileURL)
+                    successes.append("\(subdir)/\(fileName)")
+                } catch {
+                    failures.append((name: "\(subdir)/\(fileName)", error: error))
+                }
+            }
+        }
+        print()
+        print("# Successfully parsed \(successes.count) files:")
+        successes.forEach { print("- \($0)") }
+        print()
+        print("# Failed to parse \(failures.count) files:")
+        failures.forEach { name, error in
+            print("- \(name)")
+            print("  error: \(error))")
+        }
     }
 }
 
-extension MusicXML {
+extension LilyPondTests {
 
-    /// Create a `MusicXML` structure with the given `testFileName` and the given `traversal`.
-    ///
-    /// This grabs the `.xml` file from the `Tests/LilyPondTestSuite` directory.
-    init(testFileName: Swift.String, traversal: LilyPondTestSuite.Traversal) throws {
-        try self.init(string: LilyPondTestSuite.string(testName: testFileName, traversal: traversal))
+    // The `URL` of the `LilyPondTestSuite` directory which contains two subdirectories:
+    //
+    //  - `Partwise`
+    //  - `Timewise`
+    //
+    // Each of these subdirectories contains all of the test music xml files for a given traversal.
+    var testSuiteURL: URL {
+        return URL(fileURLWithPath: "\(#file)")
+            .deletingLastPathComponent() // => MusicXML/Tests/MusicXMLTests/LilyPondTests
+            .deletingLastPathComponent() // => MusicXML/Tests/LilyPondTests
+            .deletingLastPathComponent() // => MusicXML/Tests
+            .appendingPathComponent("LilyPondTestSuite", isDirectory: true)
     }
 }
