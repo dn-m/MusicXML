@@ -17,7 +17,7 @@ enum LilyPondTestSuite {
             .deletingLastPathComponent()
             .deletingLastPathComponent()
             .deletingLastPathComponent()
-            .appendingPathComponent("LilyPondTestSuite", isDirectory: true)
+            .appendingPathComponent("LilypondTestSuite", isDirectory: true)
             .appendingPathComponent(traversal.rawValue, isDirectory: true)
             .appendingPathComponent("\(testName).xml")
     }
