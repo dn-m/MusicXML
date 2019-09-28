@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import MusicXML
 
 enum LilyPondTestSuite {
-    enum Traversal: String {
+    enum Traversal: String, CaseIterable {
         case partwise = "Partwise"
         case timewise = "Timewise"
     }
@@ -23,5 +24,15 @@ enum LilyPondTestSuite {
     }
     static func string(testName: String, traversal: Traversal) throws -> String {
         return try String(contentsOf: url(testName: testName, traversal: traversal))
+    }
+}
+
+extension MusicXML {
+
+    /// Create a `MusicXML` structure with the given `testFileName` and the given `traversal`.
+    ///
+    /// This grabs the `.xml` file from the `Tests/LilyPondTestSuite` directory.
+    init(testFileName: Swift.String, traversal: LilyPondTestSuite.Traversal) throws {
+        try self.init(string: LilyPondTestSuite.string(testName: testFileName, traversal: traversal))
     }
 }
