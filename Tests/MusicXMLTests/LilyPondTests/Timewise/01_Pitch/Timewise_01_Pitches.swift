@@ -11,7 +11,7 @@ import MusicXML
 class Timewise_01_Pitches: XCTestCase {
 
     func test_01_Pitches() throws {
-        let _ = try MusicXML(string: A_Pitches)
+        let _ = try MusicXML(testFileName: "01a-Pitches-Pitches", traversal: .timewise)
         let _ = try MusicXML(string: B_Intervals)
         let _ = try MusicXML(string: C_NoVoiceElement)
         let _ = try MusicXML(string: D_Microtones)
