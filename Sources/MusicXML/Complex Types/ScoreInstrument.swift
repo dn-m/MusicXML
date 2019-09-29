@@ -13,21 +13,12 @@
 /// without these elements in simple cases, such as where part names match General MIDI instrument
 /// names.
 public struct ScoreInstrument {
-    public let id: String
-    public let instrumentName: String
-    public let instrumentAbbreviation: String?
-    public let sound: String?
-    public let soloOrEnsemble: SoloEnsemble?
-    public let virtualInstrument: VirtualInstrument?
-
-    public init(id: String, instrumentName: String, instrumentAbbreviation: String? = nil, sound: String? = nil, soloOrEnsemble: SoloEnsemble? = nil, virtualInstrument: VirtualInstrument? = nil) {
-        self.id = id
-        self.instrumentName = instrumentName
-        self.instrumentAbbreviation = instrumentAbbreviation
-        self.sound = sound
-        self.soloOrEnsemble = soloOrEnsemble
-        self.virtualInstrument = virtualInstrument
-    }
+    public var id: String
+    public var instrumentName: String
+    public var instrumentAbbreviation: String?
+    public var sound: String?
+    public var soloOrEnsemble: SoloEnsemble?
+    public var virtualInstrument: VirtualInstrument?
 }
 
 extension ScoreInstrument {

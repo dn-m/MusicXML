@@ -32,7 +32,6 @@ extension PitchUnpitchedOrRest: Codable {
                 do {
                     self = .rest(try container.decode(Rest.self, forKey: .rest))
                 } catch {
-                    print(error)
                     throw error
                 }
 
