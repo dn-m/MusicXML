@@ -39,4 +39,17 @@ public struct MIDIInstrument {
 }
 
 extension MIDIInstrument: Equatable { }
-extension MIDIInstrument: Codable { }
+extension MIDIInstrument: Codable {
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case midiChannel = "midi-channel"
+        case midiName = "midi-name"
+        case midiBank = "midi-bank"
+        case midiProgram = "midi-program"
+        case midiUnpitched = "midi-unpitched"
+        case volume
+        case pan
+        case elevation
+    }
+}

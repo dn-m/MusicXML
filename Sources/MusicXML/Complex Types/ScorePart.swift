@@ -103,7 +103,40 @@ extension ScorePart: Codable {
         case group
         case scoreInstrument = "score-instrument"
         #warning("TODO: Properly decode midi-channel and midi-program. See score.mod:172")
-        case midi
+        case midiDevice = "midi-device"
+        case midiInstrument = "midi-instrument"
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encodeIfPresent(identification, forKey: .identification)
+        try container.encode(name, forKey: .name)
+        try container.encodeIfPresent(nameDisplay, forKey: .nameDisplay)
+        try container.encodeIfPresent(partAbbreviation, forKey: .partAbbreviation)
+        try container.encodeIfPresent(partAbbreviationDisplay, forKey: .partAbbreviationDisplay)
+        try container.encodeIfPresent(group, forKey: .group)
+        try container.encodeIfPresent(scoreInstrument, forKey: .scoreInstrument)
+        // TODO: encode midi
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(String.self, forKey: .id)
+        self.identification = try container.decodeIfPresent(Identification.self, forKey: .identification)
+        self.name = try container.decode(PartName.self, forKey: .name)
+        self.nameDisplay = try container.decodeIfPresent(NameDisplay.self, forKey: .nameDisplay)
+        self.partAbbreviation = try container.decodeIfPresent(PartName.self, forKey: .partAbbreviation)
+        self.partAbbreviationDisplay = try container.decodeIfPresent(NameDisplay.self, forKey: .partAbbreviationDisplay)
+        self.group = try container.decodeIfPresent([String].self, forKey: .group)
+        self.scoreInstrument = try container.decodeIfPresent([ScoreInstrument].self, forKey: .scoreInstrument)
+        let midiDevice = try container.decodeIfPresent([MIDIDevice].self, forKey: .midiDevice)
+        let midiInstrument = try container.decodeIfPresent([MIDIInstrument].self, forKey: .midiInstrument)
+        if let midiDevice = midiDevice, let midiInstrument = midiInstrument {
+            self.midi = zip(midiDevice, midiInstrument).map { (device, instrument) -> MIDI in
+                return MIDI(midiDevice: device, midiInstrument: instrument)
+            }
+        }
     }
 }
 
