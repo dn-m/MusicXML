@@ -38,6 +38,13 @@ class ScorePartTests: XCTestCase {
                 <volume>78.7402</volume>
                 <pan>0</pan>
             </midi-instrument>
+            <midi-device id="P1-I2" port="2"></midi-device>
+            <midi-instrument id="P1-I2">
+                <midi-channel>1</midi-channel>
+                <midi-program>1</midi-program>
+                <volume>50</volume>
+                <pan>-45</pan>
+            </midi-instrument>
         </score-part>
         """
 
@@ -46,9 +53,11 @@ class ScorePartTests: XCTestCase {
             id: "P1",
             name: PartName(value: "Piano"),
             partAbbreviation: PartName(value: "Pno."),
-            scoreInstrument: [ScoreInstrument(id: "P1-I1", instrumentName: "Piano")]
-            // TODO: midi-channel and midi-program are not decoding properly
-//            midi: [ScorePart.MIDI(midiDevice: MIDIDevice(value: "", port: 1, id: "P1-I1"), midiInstrument: MIDIInstrument(id: "P1-I1", midiChannel: 1, midiProgram: 1, volume: 78.7402, pan: 0))]
+            scoreInstrument: [ScoreInstrument(id: "P1-I1", instrumentName: "Piano")],
+            midi: [
+                ScorePart.MIDI(midiDevice: MIDIDevice(port: 1, id: "P1-I1"), midiInstrument: MIDIInstrument(id: "P1-I1", midiChannel: 1, midiProgram: 1, volume: 78.7402, pan: 0)),
+                ScorePart.MIDI(midiDevice: MIDIDevice(port: 2, id: "P1-I2"), midiInstrument: MIDIInstrument(id: "P1-I2", midiChannel: 1, midiProgram: 1, volume: 50, pan: -45))
+            ]
         )
         XCTAssertEqual(decoded, expected)
     }
