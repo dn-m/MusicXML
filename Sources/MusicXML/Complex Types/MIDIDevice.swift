@@ -25,23 +25,5 @@ extension MIDIDevice: Codable {
         case port
         case id
     }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(value, forKey: .value)
-        if let port = port {
-            try container.encode(String(port), forKey: .port)
-        }
-        try container.encodeIfPresent(id, forKey: .id)
-    }
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.value = try container.decodeIfPresent(String.self, forKey: .value)
-        if let portString = try container.decodeIfPresent(String.self, forKey: .port) {
-            self.port = Int(portString)!
-        }
-        self.id = try container.decode(String.self, forKey: .id)
-    }
 }
 
