@@ -3,10 +3,10 @@
     "pins": [
       {
         "package": "XMLCoder",
-        "repositoryURL": "https://github.com/bwetherfield/XMLCoder",
+        "repositoryURL": "https://github.com/jsbean/XMLCoder",
         "state": {
-          "branch": "fix-nested-choice-array",
-          "revision": "e1470331fcc2ce22a92aebb7c1e056f7938dd46b",
+          "branch": "empty-element-empty-string",
+          "revision": "e95cb2be57a5de0fc43770633de84f2c4fb0e7c0",
           "version": null
         }
       }
