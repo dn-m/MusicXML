@@ -5,8 +5,8 @@
         "package": "XMLCoder",
         "repositoryURL": "https://github.com/jsbean/XMLCoder",
         "state": {
-          "branch": "empty-element-empty-string",
-          "revision": "e95cb2be57a5de0fc43770633de84f2c4fb0e7c0",
+          "branch": "master",
+          "revision": "6a07cba247cd454f3516487e6019250313b6d072",
           "version": null
         }
       }
