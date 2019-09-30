@@ -147,8 +147,7 @@ class NotationsTests: XCTestCase {
         try assertDecoded(xml, equals: expected)
     }
 
-    #warning("FIXME: #41 Note.dots not decoding properly yet")
-    func DISABLED_testArpeggiate() throws {
+    func testArpeggiate() throws {
         let xml = """
         <notations><arpeggiate/></notations>
         """
