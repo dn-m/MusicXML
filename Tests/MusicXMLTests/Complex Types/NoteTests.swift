@@ -123,8 +123,8 @@ class NoteTests: XCTestCase {
         try assertDecoded(xml, equals: expected)
     }
 
-    #warning("FIXME: #41 Note.dots not decoding properly yet")
-    func DISABLED_testNoteDottedRestDecoding() throws {
+    // FIXME: Reengage dots
+    func testNoteDottedRestDecoding() throws {
         let xml = """
         <note>
           <rest/>
