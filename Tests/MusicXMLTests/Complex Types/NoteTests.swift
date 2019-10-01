@@ -123,7 +123,7 @@ class NoteTests: XCTestCase {
         try assertDecoded(xml, equals: expected)
     }
 
-    // FIXME: Reengage dots
+    #warning("FIXME: Reengage dots")
     func testNoteDottedRestDecoding() throws {
         let xml = """
         <note>
