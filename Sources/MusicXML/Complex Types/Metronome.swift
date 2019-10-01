@@ -13,12 +13,12 @@ import XMLCoder
 /// relationships, such as swing tempo marks where two eighths are equated to a quarter note /
 /// eighth note triplet.
 public struct Metronome {
-    public let printStyleAlign: PrintStyleAlign?
-    public let justify: Justify?
+    public var printStyleAlign: PrintStyleAlign?
+    public var justify: Justify?
     /// The parentheses attribute indicates whether or not to put the metronome mark in parentheses;
     /// its value is no if not specified.
-    public let parentheses: Bool?
-    public let kind: Kind
+    public var parentheses: Bool?
+    public var kind: Kind
 }
 
 extension Metronome {
@@ -112,4 +112,11 @@ extension Metronome.Kind: Codable {
 extension Metronome.Kind.CodingKeys: XMLChoiceCodingKey { }
 
 extension Metronome: Equatable { }
-extension Metronome: Codable { }
+extension Metronome: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case printStyleAlign = "print-style-align"
+        case justify
+        case parentheses
+        case kind
+    }
+}

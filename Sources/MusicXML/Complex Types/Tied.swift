@@ -7,16 +7,28 @@
 
 /// The tied type represents the notated tie. The tie element represents the tie sound.
 public struct Tied {
-    public let type: StartStopContinue
-    public let number: Int?
-    public let lineType: LineType?
-    public let dashedFormatting: DashedFormatting?
-    public let position: Position?
-    public let placement: AboveBelow?
-    public let orientation: OverUnder?
-    public let bezier: Bezier?
-    public let color: Color?
+    public var type: StartStopContinue
+    public var number: Int?
+    public var lineType: LineType?
+    public var dashedFormatting: DashedFormatting?
+    public var position: Position?
+    public var placement: AboveBelow?
+    public var orientation: OverUnder?
+    public var bezier: Bezier?
+    public var color: Color?
 }
 
 extension Tied: Equatable { }
-extension Tied: Codable { }
+extension Tied: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case type
+        case number
+        case lineType = "line-type"
+        case dashedFormatting = "dashed-formatting"
+        case position
+        case placement
+        case orientation
+        case bezier
+        case color
+    }
+}
