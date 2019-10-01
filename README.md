@@ -95,4 +95,6 @@ If you use the Xcode IDE, use the Swift Package Manager to generate an `.xcodepr
 swift package generate-xcodeproj
 ```
 
-See the [MusicXML Document Type Definition (DTD)](https://www.musicxml.com/for-developers/musicxml-dtd/) for more information about how musicXML is structured.
+## More Resources
+
+See the [MusicXML XSD Schema Reference](http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#MusicXMLReference.htm%3FTocPath%3DMusicXML%2520Reference%7C_____0) for more information about how musicXML is structured.
