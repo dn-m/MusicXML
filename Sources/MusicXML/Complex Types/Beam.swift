@@ -12,11 +12,11 @@
 /// and other elements. Beaming groups are distinguished by being in different voices and/or the
 /// presence or absence of grace and cue elements.
 public struct Beam {
-    public let value: BeamValue
-    public let number: BeamLevel?
-    public let repeater: Bool?
-    public let fan: Fan?
-    public let color: Color?
+    public var value: BeamValue
+    public var number: BeamLevel?
+    public var repeater: Bool?
+    public var fan: Fan?
+    public var color: Color?
 }
 
 extension Beam: Equatable { }

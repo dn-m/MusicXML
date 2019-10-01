@@ -151,4 +151,42 @@ class NoteTests: XCTestCase {
         )
         XCTAssertEqual(decoded, expected)
     }
+
+    func testBeam() throws {
+        let xml = """
+        <note default-x="368.91" default-y="0.00">
+          <pitch>
+            <step>F</step>
+            <alter>1</alter>
+            <octave>5</octave>
+            </pitch>
+          <duration>1</duration>
+          <voice>1</voice>
+          <type>16th</type>
+          <stem>down</stem>
+          <beam number="1">begin</beam>
+          <beam number="2">begin</beam>
+        </note>
+        """
+        let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
+        let expected = Note(
+            kind: .normal(
+                Note.Normal(
+                    pitchUnpitchedOrRest: .pitch(
+                        Pitch(step: .f, alter: 1, octave: 5)
+                    ),
+                    duration: 1,
+                    ties: []
+                )
+            ),
+            voice: "1",
+            type: NoteType(value: .sixteenth),
+            stem: Stem(value: .down),
+            beams: [
+                Beam(value: .begin, number: .one),
+                Beam(value: .begin, number: .two)
+            ]
+        )
+        XCTAssertEqual(decoded, expected)
+    }
 }
