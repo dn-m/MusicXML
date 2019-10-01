@@ -5,6 +5,8 @@
 //  Created by James Bean on 12/21/18.
 //
 
+import XMLCoder
+
 /// The score-instrument type represents a single instrument within a score-part. As with the
 /// score-part type, each score-instrument has a required ID attribute, a name, and an optional
 /// abbreviation.  A score-instrument type is also required if the score specifies MIDI 1.0
@@ -63,5 +65,27 @@ extension ScoreInstrument: Codable {
         case sound
         case soloOrEnsemble
         case virtualInstrument = "virtual-instrument"
+    }
+}
+
+extension ScoreInstrument: DynamicNodeDecoding {
+    public static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
+        switch key {
+        case CodingKeys.id:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}
+
+extension ScoreInstrument: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.id:
+            return .attribute
+        default:
+            return .element
+        }
     }
 }

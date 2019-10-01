@@ -5,6 +5,8 @@
 //  Created by James Bean on 5/16/19.
 //
 
+import XMLCoder
+
 /// The midi-device type corresponds to the DeviceName meta event in Standard MIDI Files. Unlike the
 /// DeviceName meta event, there can be multiple midi-device elements per MusicXML part starting in
 /// MusicXML 3.0.
@@ -21,9 +23,30 @@ public struct MIDIDevice {
 extension MIDIDevice: Equatable { }
 extension MIDIDevice: Codable {
     enum CodingKeys: String, CodingKey {
-        case value = ""
-        case port
         case id
+        case port
+        case value = ""
     }
 }
 
+extension MIDIDevice: DynamicNodeDecoding {
+    public static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
+        switch key {
+        case CodingKeys.id, CodingKeys.port:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}
+
+extension MIDIDevice: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.id, CodingKeys.port:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

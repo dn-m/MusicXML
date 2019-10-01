@@ -5,6 +5,8 @@
 //  Created by James Bean on 5/16/19.
 //
 
+import XMLCoder
+
 /// The midi-instrument type defines MIDI 1.0 instrument playback. The midi-instrument element can
 /// be a part of either the score-instrument element at the start of a part, or the sound element
 /// within a part. The id attribute refers to the score-instrument affected by the change.
@@ -51,5 +53,27 @@ extension MIDIInstrument: Codable {
         case volume
         case pan
         case elevation
+    }
+}
+
+extension MIDIInstrument: DynamicNodeDecoding {
+    public static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
+        switch key {
+        case CodingKeys.id:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}
+
+extension MIDIInstrument: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.id:
+            return .attribute
+        default:
+            return .element
+        }
     }
 }
