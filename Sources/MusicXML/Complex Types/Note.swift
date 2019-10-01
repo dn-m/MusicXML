@@ -105,7 +105,7 @@ extension Note: Codable {
         case printLyric
         case dynamics
         case endDynamics
-        case attac
+        case attack
         case release
         case timeOnly
         case pizzicato
@@ -122,7 +122,7 @@ extension Note: Codable {
         case notehead
         case noteheadText
         case staff
-        case beams
+        case beams = "beam"
         case notations
         case lyrics
         case play
