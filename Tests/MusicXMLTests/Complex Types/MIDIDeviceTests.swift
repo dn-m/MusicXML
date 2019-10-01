@@ -19,6 +19,14 @@ class MIDIDeviceTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(MIDIDevice.self, from: xml.data(using: .utf8)!)
         let expected = MIDIDevice(port: 1, id: "P1-I1")
+
         XCTAssertEqual(decoded, expected)
+    }
+
+    func testEncoding() throws {
+        let midiDevice = MIDIDevice(port: 1, id: "P1-I1")
+        let encoded = String(data: try XMLEncoder().encode(midiDevice, withRootKey: "midi-device"), encoding: .utf8)!
+
+        XCTAssertEqual(encoded, #"<midi-device id="P1-I1" port="1" />"#)
     }
 }
