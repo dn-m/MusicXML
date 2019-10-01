@@ -89,55 +89,32 @@ extension MusicData: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
-        // FIXME: Attempt to escape do-try-catch hell
-        do {
+        if container.contains(.note) {
             self = .note(try decode(.note))
-        } catch {
-            do {
-                self = .backup(try decode(.backup))
-            } catch {
-                do {
-                    self = .forward(try decode(.forward))
-                } catch {
-                    do {
-                        self = .attributes(try decode(.attributes))
-                    } catch {
-                        do {
-                            self = .direction(try decode(.direction))
-                        } catch {
-                            do {
-                                self = .harmony(try decode(.harmony))
-                            } catch {
-                                do {
-                                    self = .figuredBass(try decode(.figuredBass))
-                                } catch {
-                                    do {
-                                        self = .print(try decode(.print))
-                                    } catch {
-                                        do {
-                                            self = .sound(try decode(.sound))
-                                        } catch {
-                                            do {
-                                                self = .barline(try decode(.barline))
-                                            } catch {
-                                                do {
-                                                    self = .grouping(try decode(.grouping))
-                                                } catch {
-                                                    do {
-                                                        self = .link(try decode(.link))
-                                                    } catch {
-                                                        self = .bookmark(try decode(.bookmark))
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        } else if container.contains(.backup) {
+            self = .backup(try decode(.backup))
+        } else if container.contains(.forward) {
+            self = .forward(try decode(.forward))
+        } else if container.contains(.attributes) {
+            self = .attributes(try decode(.attributes))
+        } else if container.contains(.direction) {
+            self = .direction(try decode(.direction))
+        } else if container.contains(.harmony) {
+            self = .harmony(try decode(.harmony))
+        } else if container.contains(.figuredBass) {
+            self = .figuredBass(try decode(.figuredBass))
+        } else if container.contains(.print) {
+            self = .print(try decode(.print))
+        } else if container.contains(.sound) {
+            self = .sound(try decode(.sound))
+        } else if container.contains(.barline) {
+            self = .barline(try decode(.barline))
+        } else if container.contains(.grouping) {
+            self = .grouping(try decode(.grouping))
+        } else if container.contains(.link) {
+            self = .link(try decode(.link))
+        } else {
+            self = .bookmark(try decode(.bookmark))
         }
     }
 }
