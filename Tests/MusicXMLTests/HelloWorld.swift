@@ -83,8 +83,7 @@ class HelloWorld: XCTestCase {
                                                             pitchUnpitchedOrRest: .pitch(
                                                                 Pitch(step: .c, octave: 4)
                                                             ),
-                                                            duration: 4,
-                                                            ties: []
+                                                            duration: 4
                                                         )
                                                     ),
                                                     type: NoteType(value: .whole)

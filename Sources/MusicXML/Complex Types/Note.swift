@@ -51,40 +51,23 @@ public struct Note {
 }
 
 extension Note {
-
-    public struct Normal: Equatable, Codable {
-        enum CodingKeys: String, CodingKey {
-            case chord
-            case duration
-            case ties
-            case pitchUnpitchedOrRest
-        }
+    public struct Normal: Equatable {
         public var chord = false
         public var pitchUnpitchedOrRest: PitchUnpitchedOrRest
         public var duration: Int
-        public var ties: [Tie] // FIXME: Make Ties struct
+        public var ties: Ties?
     }
 
-    public struct Cue: Equatable, Codable {
-        enum CodingKeys: String, CodingKey {
-            case chord
-            case pitchUnpitchedOrRest
-            case duration
-        }
+    public struct Cue: Equatable {
         public var chord = false
         public var pitchUnpitchedOrRest: PitchUnpitchedOrRest
         public var duration: Int
     }
 
-    public struct Grace: Equatable, Codable {
-        enum CodingKeys: String, CodingKey {
-            case chord
-            case pitchUnpitchedOrRest
-            case ties = "tie"
-        }
+    public struct Grace: Equatable {
         public var chord = false
         public var pitchUnpitchedOrRest: PitchUnpitchedOrRest
-        public var ties: [Tie] // FIXME: Make Ties struct
+        public var ties: Ties?
     }
 
     public enum Kind: Equatable {
@@ -126,8 +109,13 @@ extension Note: Codable {
         case notations
         case lyrics
         case play
+        // Normal Note, Cue and Grace
+        case grace
+        case cue
+        case chord
+        case duration
+        case tie
     }
-    #warning("Handle Ties decode once Ties struct is in place")
     #warning("Reinstate Note.dots when we can decode potentially-empty elements properly")
     public init(from decoder: Decoder) throws {
         // Ignore attributes for now
@@ -150,40 +138,38 @@ extension Note: Codable {
         self.notations = try container.decodeIfPresent(Notations.self, forKey: .notations)
         self.lyrics = try container.decodeIfPresent([Lyric].self, forKey: .lyrics)
         self.play = try container.decodeIfPresent(Play.self, forKey: .play)
+        let chordEmptyElement = try container.decodeIfPresent(Empty.self, forKey: .chord)
+        let ties = try container.decodeIfPresent([Tie].self, forKey: .tie).map(Ties.init)
+
         // Decode pitch / unpitched / rest
         let pitchUnpitchedRestContainer = try decoder.singleValueContainer()
         let pitchUnpitchedOrRest = try pitchUnpitchedRestContainer.decode(PitchUnpitchedOrRest.self)
         // Decode kind
-        do {
-            let kindContainer = try decoder.container(keyedBy: Normal.CodingKeys.self)
-            self.kind = .normal(
-                Normal(
-                    chord: kindContainer.contains(.chord),
+        if container.contains(.grace) {
+            self.kind = .grace(
+                Note.Grace(
+                    chord: chordEmptyElement != nil,
                     pitchUnpitchedOrRest: pitchUnpitchedOrRest,
-                    duration: try kindContainer.decode(Int.self, forKey: .duration),
-                    ties: []
+                    ties: ties
                 )
             )
-        } catch {
-            do {
-                let kindContainer = try decoder.container(keyedBy: Cue.CodingKeys.self)
-                self.kind = .cue(
-                    Cue(
-                        chord: kindContainer.contains(.chord),
-                        pitchUnpitchedOrRest: pitchUnpitchedOrRest,
-                        duration: try kindContainer.decode(Int.self, forKey: .duration)
-                    )
+        } else if container.contains(.cue) {
+            self.kind = .cue(
+                Note.Cue(
+                    chord: chordEmptyElement != nil,
+                    pitchUnpitchedOrRest: pitchUnpitchedOrRest,
+                    duration: try container.decode(Int.self, forKey: .duration)
                 )
-            } catch {
-                let kindContainer = try decoder.container(keyedBy: Grace.CodingKeys.self)
-                self.kind = .grace(
-                    Note.Grace(
-                        chord: kindContainer.contains(.chord),
-                        pitchUnpitchedOrRest: pitchUnpitchedOrRest,
-                        ties: []
-                    )
+            )
+        } else {
+            self.kind = .normal(
+                Normal(
+                    chord: chordEmptyElement != nil,
+                    pitchUnpitchedOrRest: pitchUnpitchedOrRest,
+                    duration: try container.decode(Int.self, forKey: .duration),
+                    ties: ties
                 )
-            }
+            )
         }
     }
     public func encode(to encoder: Encoder) throws {
