@@ -10,4 +10,14 @@ public struct Tenths {
 }
 
 extension Tenths: Equatable { }
-extension Tenths: Codable { }
+extension Tenths: Codable {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(value)
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        value = try container.decode(Double.self)
+    }
+}

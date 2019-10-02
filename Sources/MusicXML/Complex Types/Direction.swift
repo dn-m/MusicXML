@@ -12,9 +12,9 @@
 /// children, non-positional formatting attributes are carried over from the previous element by
 /// default.
 public struct Direction {
-    public let placement: AboveBelow?
-    public let directive: Bool?
-    public let directionType: DirectionType
+    public var placement: AboveBelow?
+    public var directive: Bool?
+    public var directionType: DirectionType
 }
 
 extension Direction: Equatable { }
