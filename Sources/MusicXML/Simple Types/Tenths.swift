@@ -21,3 +21,13 @@ extension Tenths: Codable {
         value = try container.decode(Double.self)
     }
 }
+extension Tenths: ExpressibleByFloatLiteral {
+    public init(floatLiteral value: Double) {
+        self.value = value
+    }
+}
+extension Tenths: ExpressibleByIntegerLiteral {
+    public init(integerLiteral value: Int) {
+        self.value = Double(value)
+    }
+}

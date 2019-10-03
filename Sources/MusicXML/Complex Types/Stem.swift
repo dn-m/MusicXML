@@ -12,9 +12,21 @@
 /// associated with a rest refers to a stemlet.
 public struct Stem {
     public var value: StemValue
-    public var position: Position?
+    public var position: Position = Position()
     public var color: Color?
 }
 
 extension Stem: Equatable { }
-extension Stem: Codable { }
+extension Stem: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case value = ""
+        case color
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.value = try container.decode(StemValue.self, forKey: .value)
+        self.position = try Position(from: decoder)
+        self.color = try container.decodeIfPresent(Color.self, forKey: .color)
+    }
+}
