@@ -17,6 +17,12 @@ public struct Note {
 
     // MARK: - Attributes
 
+    public var position: Position = Position()
+    public var fontFamily: CommaSeparatedText?
+    public var fontStyle: FontStyle?
+    public var fontSize: FontSize?
+    public var fontWeight: FontWeight?
+    public var color: Color?
     public var printStyle: PrintStyle?
     public var printObject: Bool?
     public var printDot: Bool?
@@ -81,16 +87,21 @@ extension Note: Equatable { }
 extension Note: Codable {
     enum CodingKeys: String, CodingKey {
         // Attributes
-        case printStyle
-        case printObject
-        case printDot
-        case printSpacing
-        case printLyric
+        case fontFamily = "font-family"
+        case fontStyle = "font-style"
+        case fontSize = "font-size"
+        case fontWeight = "font-weight"
+        case color
+        case printStyle = "print-style"
+        case printObject = "print-object"
+        case printDot = "print-dot"
+        case printSpacing = "print-spacing"
+        case printLyric = "print-lyric"
         case dynamics
-        case endDynamics
+        case endDynamics = "end-dynamics"
         case attack
         case release
-        case timeOnly
+        case timeOnly = "time-only"
         case pizzicato
         // Elements
         case instrument
@@ -118,9 +129,26 @@ extension Note: Codable {
     }
     #warning("Reinstate Note.dots when we can decode potentially-empty elements properly")
     public init(from decoder: Decoder) throws {
-        // Ignore attributes for now
-        // Decode elements
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        // Attributes
+        self.position = try Position(from: decoder)
+        self.fontFamily = try container.decodeIfPresent(CommaSeparatedText.self, forKey: .fontFamily)
+        self.fontStyle = try container.decodeIfPresent(FontStyle.self, forKey: .fontStyle)
+        self.fontSize = try container.decodeIfPresent(FontSize.self, forKey: .fontSize)
+        self.fontWeight = try container.decodeIfPresent(FontWeight.self, forKey: .fontWeight)
+        self.color = try container.decodeIfPresent(Color.self, forKey: .color)
+        self.printStyle = try container.decodeIfPresent(PrintStyle.self, forKey: .printStyle)
+        self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
+        self.printDot = try container.decodeIfPresent(Bool.self, forKey: .printDot)
+        self.printSpacing = try container.decodeIfPresent(Bool.self, forKey: .printSpacing)
+        self.printLyric = try container.decodeIfPresent(Bool.self, forKey: .printLyric)
+        self.dynamics = try container.decodeIfPresent(Double.self, forKey: .dynamics)
+        self.endDynamics = try container.decodeIfPresent(Double.self, forKey: .endDynamics)
+        self.attack = try container.decodeIfPresent(Divisions.self, forKey: .attack)
+        self.release = try container.decodeIfPresent(Divisions.self, forKey: .release)
+        self.timeOnly = try container.decodeIfPresent(TimeOnly.self, forKey: .timeOnly)
+        self.pizzicato = try container.decodeIfPresent(Bool.self, forKey: .pizzicato)
+        // Decode elements
         self.instrument = try container.decodeIfPresent(Instrument.self, forKey: .instrument)
         self.footnote = try container.decodeIfPresent(FormattedText.self, forKey: .footnote)
         self.level = try container.decodeIfPresent(Level.self, forKey: .level)

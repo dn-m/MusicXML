@@ -174,6 +174,7 @@ class NoteTests: XCTestCase {
                     duration: 1
                 )
             ),
+            position: Position(defaultX: 368.91, defaultY: 0),
             voice: "1",
             type: NoteType(value: .sixteenth),
             stem: Stem(value: .down),
@@ -215,6 +216,7 @@ class NoteTests: XCTestCase {
                     ties: Ties(start: Tie(type: .start), stop: Tie(type: .stop))
                 )
             ),
+            position: Position(defaultX: 483.50, defaultY: -25.00),
             voice: "1",
             type: NoteType(value: .quarter),
             stem: Stem(value: .up),
@@ -222,6 +224,44 @@ class NoteTests: XCTestCase {
                 .tied(Tied(type: .stop)),
                 .tied(Tied(type: .start))
             ])
+        )
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testUnpitched() throws {
+        let xml = """
+        <note default-x="68">
+          <unpitched>
+            <display-step>F</display-step>
+            <display-octave>4</display-octave>
+          </unpitched>
+          <duration>1</duration>
+          <instrument id="P1-X2"/>
+          <voice>1</voice>
+          <type>eighth</type>
+          <stem default-y="-70">down</stem>
+          <beam number="1">begin</beam>
+        </note>
+        """
+        let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
+        let expected = Note(
+            kind: .normal(
+                Note.Normal(
+                    pitchUnpitchedOrRest: .unpitched(
+                        Unpitched(
+                            displayStep: .f,
+                            displayOctave: 4
+                        )
+                    ),
+                    duration: 1
+                )
+            ),
+            position: Position(defaultX: 68),
+            instrument: Instrument(id: "P1-X2"),
+            voice: "1",
+            type: NoteType(value: .eighth),
+            stem: Stem(value: .down, position: Position(defaultY: -70)),
+            beams: [Beam(value: .begin, number: .one)]
         )
         XCTAssertEqual(decoded, expected)
     }
