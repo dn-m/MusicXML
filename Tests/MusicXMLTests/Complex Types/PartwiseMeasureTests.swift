@@ -136,8 +136,7 @@ class PartwiseMeasureTests: XCTestCase {
                         kind: .normal(
                             Note.Normal(
                                 pitchUnpitchedOrRest: .pitch(Pitch(step: .g, octave: 2)),
-                                duration: 1,
-                                ties: []
+                                duration: 1
                             )
                         ),
                         voice: "1",
@@ -149,8 +148,7 @@ class PartwiseMeasureTests: XCTestCase {
                         kind: .normal(
                             Note.Normal(
                                 pitchUnpitchedOrRest: .pitch(Pitch(step: .a, octave: 2)),
-                                duration: 1,
-                                ties: []
+                                duration: 1
                             )
                         ),
                         voice: "1",
@@ -162,8 +160,7 @@ class PartwiseMeasureTests: XCTestCase {
                         kind: .normal(
                             Note.Normal(
                                 pitchUnpitchedOrRest: .pitch(Pitch(step: .b, octave: 2)),
-                                duration: 1,
-                                ties: []
+                                duration: 1
                             )
                         ),
                         voice: "1",
@@ -175,8 +172,7 @@ class PartwiseMeasureTests: XCTestCase {
                         kind: .normal(
                             Note.Normal(
                                 pitchUnpitchedOrRest: .pitch(Pitch(step: .c, octave: 3)),
-                                duration: 1,
-                                ties: []
+                                duration: 1
                             )
                         ),
                         voice: "1",

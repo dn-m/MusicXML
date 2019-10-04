@@ -23,21 +23,15 @@ extension PitchUnpitchedOrRest: Codable {
     }
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        do {
+        if container.contains(.pitch) {
             self = .pitch(try container.decode(Pitch.self, forKey: .pitch))
-        } catch {
-            do {
-                self = .unpitched(try container.decode(Unpitched.self, forKey: .unpitched))
-            } catch {
-                do {
-                    self = .rest(try container.decode(Rest.self, forKey: .rest))
-                } catch {
-                    throw error
-                }
-
-            }
+        } else if container.contains(.unpitched) {
+            self = .unpitched(try container.decode(Unpitched.self, forKey: .unpitched))
+        } else {
+            self = .rest(try container.decode(Rest.self, forKey: .rest))
         }
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
