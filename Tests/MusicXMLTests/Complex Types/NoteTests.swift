@@ -177,7 +177,7 @@ class NoteTests: XCTestCase {
             position: Position(defaultX: 368.91, defaultY: 0),
             voice: "1",
             type: NoteType(value: .sixteenth),
-            stem: Stem(.down),
+            stem: .down,
             beams: [
                 Beam(value: .begin, number: .one),
                 Beam(value: .begin, number: .two)
@@ -219,7 +219,7 @@ class NoteTests: XCTestCase {
             position: Position(defaultX: 483.50, defaultY: -25.00),
             voice: "1",
             type: NoteType(value: .quarter),
-            stem: Stem(.up),
+            stem: .up,
             notations: Notations(values: [
                 .tied(Tied(type: .stop)),
                 .tied(Tied(type: .start))
