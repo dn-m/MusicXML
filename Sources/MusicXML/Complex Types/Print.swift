@@ -62,4 +62,19 @@ public struct Print: Codable, Equatable {
     let blankPage: Bool?
     let pageNumber: Bool?
     let optionalUniqueID: String
+
+    public init(pageLayout: PageLayout? = nil, systemLayout: SystemLayout? = nil, measureLayout: MeasureLayout? = nil, measureNumbeing: MeasureNumbering? = nil, partNameDisplay: NameDisplay? = nil, partAbbreviationDisplay: NameDisplay? = nil, staffSpacing: Tenths? = nil, newSystem: Bool? = nil, newPage: Bool? = nil, blankPage: Bool? = nil, pageNumber: Bool? = nil, optionalUniqueID: String) {
+        self.pageLayout = pageLayout
+        self.systemLayout = systemLayout
+        self.measureLayout = measureLayout
+        self.measureNumbeing = measureNumbeing
+        self.partNameDisplay = partNameDisplay
+        self.partAbbreviationDisplay = partAbbreviationDisplay
+        self.staffSpacing = staffSpacing
+        self.newSystem = newSystem
+        self.newPage = newPage
+        self.blankPage = blankPage
+        self.pageNumber = pageNumber
+        self.optionalUniqueID = optionalUniqueID
+    }
 }

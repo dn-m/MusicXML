@@ -12,6 +12,11 @@
 public struct Offset {
     public let value: Divisions
     public let sound: Bool
+
+    public init(value: Divisions, sound: Bool) {
+        self.value = value
+        self.sound = sound
+    }
 }
 
 extension Offset: Equatable { }

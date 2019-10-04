@@ -15,6 +15,12 @@ public struct Percussion {
     public let printStyleAlign: PrintStyleAlign?
     public let enclosure: EnclosureShape?
     public let kind: Kind
+
+    public init(printStyleAlign: PrintStyleAlign? = nil, enclosure: EnclosureShape? = nil, kind: Kind) {
+        self.printStyleAlign = printStyleAlign
+        self.enclosure = enclosure
+        self.kind = kind
+    }
 }
 
 extension Percussion {

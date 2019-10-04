@@ -12,6 +12,12 @@ public struct GroupSymbol {
     public var value: GroupSymbolValue
     public var position: Position?
     public var color: Color?
+
+    public init(value: GroupSymbolValue, position: Position? = nil, color: Color? = nil) {
+        self.value = value
+        self.position = position
+        self.color = color
+    }
 }
 
 extension GroupSymbol: Equatable { }

@@ -13,12 +13,19 @@ import XMLCoder
 /// relationships, such as swing tempo marks where two eighths are equated to a quarter note /
 /// eighth note triplet.
 public struct Metronome {
-    public var printStyleAlign: PrintStyleAlign?
-    public var justify: Justify?
+    public let printStyleAlign: PrintStyleAlign?
+    public let justify: Justify?
     /// The parentheses attribute indicates whether or not to put the metronome mark in parentheses;
     /// its value is no if not specified.
-    public var parentheses: Bool?
-    public var kind: Kind
+    public let parentheses: Bool?
+    public let kind: Kind
+
+    public init(printStyleAlign: PrintStyleAlign? = nil, justify: Justify? = nil, parentheses: Bool? = nil, kind: Kind) {
+        self.printStyleAlign = printStyleAlign
+        self.justify = justify
+        self.parentheses = parentheses
+        self.kind = kind
+    }
 }
 
 extension Metronome {
@@ -38,6 +45,12 @@ extension Metronome {
         /// note.
         public let beatUnitDot: [Empty]
         public let relation: Relation
+
+        public init(beatUnit: NoteTypeValue, beatUnitDot: [Empty], relation: Relation) {
+            self.beatUnit = beatUnit
+            self.beatUnitDot = beatUnitDot
+            self.relation = relation
+        }
     }
 
     // TODO: Consider naming
@@ -45,6 +58,12 @@ extension Metronome {
         public let metronomeNote: [MetronomeNote] // NonEmpty
         public let metronomeRelation: String?
         public let otherMetronomeNote: [MetronomeNote] // NonEmpty
+
+        public init(metronomeNote: [MetronomeNote], metronomeRelation: String? = nil, otherMetronomeNote: [MetronomeNote]) {
+            self.metronomeNote = metronomeNote
+            self.metronomeRelation = metronomeRelation
+            self.otherMetronomeNote = otherMetronomeNote
+        }
     }
 
     public enum Kind {

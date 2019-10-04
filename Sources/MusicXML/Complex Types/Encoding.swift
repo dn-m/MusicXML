@@ -22,6 +22,10 @@ public struct Encoding {
     }
 
     public let values: [Kind]
+
+    public init(values: [Kind]) {
+        self.values = values
+    }
 }
 
 extension Encoding.Kind: Equatable { }

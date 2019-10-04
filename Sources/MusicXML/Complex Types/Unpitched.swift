@@ -10,6 +10,11 @@
 public struct Unpitched {
     public var displayStep: Step
     public var displayOctave: Int
+
+    public init(displayStep: Step, displayOctave: Int) {
+        self.displayStep = displayStep
+        self.displayOctave = displayOctave
+    }
 }
 
 extension Unpitched: Equatable { }

@@ -12,6 +12,12 @@ public struct GroupName {
     public let value: String
     public let printStyle: PrintStyle?
     public let justify: Justify?
+
+    public init(value: String, printStyle: PrintStyle? = nil, justify: Justify? = nil) {
+        self.value = value
+        self.printStyle = printStyle
+        self.justify = justify
+    }
 }
 
 extension GroupName: Equatable { }

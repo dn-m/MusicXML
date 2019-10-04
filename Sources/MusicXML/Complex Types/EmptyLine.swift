@@ -14,6 +14,15 @@ public struct EmptyLine {
     public var position: Position?
     public var printStyle: PrintStyle?
     public var placement: AboveBelow?
+
+    public init(lineShape: LineShape? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting? = nil, position: Position? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+        self.lineShape = lineShape
+        self.lineType = lineType
+        self.dashedFormatting = dashedFormatting
+        self.position = position
+        self.printStyle = printStyle
+        self.placement = placement
+    }
 }
 
 extension EmptyLine: Equatable { }

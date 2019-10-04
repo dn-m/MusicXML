@@ -21,6 +21,16 @@ public struct Header: Equatable {
     public var defaults: Defaults?
     public var credits: [Credit]?
     public var partList: PartList
+
+    public init(work: Work? = nil, movementNumber: String? = nil, movementTitle: String? = nil, identification: Identification? = nil, defaults: Defaults? = nil, credits: [Credit]? = nil, partList: PartList) {
+        self.work = work
+        self.movementNumber = movementNumber
+        self.movementTitle = movementTitle
+        self.identification = identification
+        self.defaults = defaults
+        self.credits = credits
+        self.partList = partList
+    }
 }
 
 extension Header: Codable {

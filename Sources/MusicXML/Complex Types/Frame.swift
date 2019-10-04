@@ -29,6 +29,20 @@ public struct Frame {
     /// The frame-note type represents each note included in the frame. An open string will have a
     /// fret value of 0, while a muted string will not be associated with a frame-note element.
     public let frameNote: [FrameNote] // NonEmpty
+
+    public init(position: Position? = nil, color: Color? = nil, hAlign: LeftCenterRight? = nil, vAlign: VAlignImage? = nil, height: Tenths? = nil, width: Tenths? = nil, unplayed: String, frameStrings: Int, frameFrets: Int, firstFret: FirstFret? = nil, frameNote: [FrameNote]) {
+        self.position = position
+        self.color = color
+        self.hAlign = hAlign
+        self.vAlign = vAlign
+        self.height = height
+        self.width = width
+        self.unplayed = unplayed
+        self.frameStrings = frameStrings
+        self.frameFrets = frameFrets
+        self.firstFret = firstFret
+        self.frameNote = frameNote
+    }
 }
 
 extension Frame: Equatable { }

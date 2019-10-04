@@ -10,6 +10,11 @@
 public struct EmptyPrintObjectStyleAlign {
     public let printObject: Bool?
     public let printStyleAlign: PrintStyleAlign?
+
+    public init(printObject: Bool? = nil, printStyleAlign: PrintStyleAlign? = nil) {
+        self.printObject = printObject
+        self.printStyleAlign = printStyleAlign
+    }
 }
 
 extension EmptyPrintObjectStyleAlign: Equatable { }

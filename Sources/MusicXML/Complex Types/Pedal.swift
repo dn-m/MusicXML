@@ -14,6 +14,13 @@ public struct Pedal {
     public let line: Bool?
     public let sign: Bool?
     public let printStyleAlign: PrintStyleAlign?
+
+    public init(type: StartStopContinue, line: Bool? = nil, sign: Bool? = nil, printStyleAlign: PrintStyleAlign? = nil) {
+        self.type = type
+        self.line = line
+        self.sign = sign
+        self.printStyleAlign = printStyleAlign
+    }
 }
 
 extension Pedal: Equatable { }

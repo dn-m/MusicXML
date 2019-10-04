@@ -12,6 +12,12 @@ public struct Repeat {
     public let direction: BackwardForward
     public let times: Int
     public let winged: Winged
+
+    public init(direction: BackwardForward, times: Int, winged: Winged) {
+        self.direction = direction
+        self.times = times
+        self.winged = winged
+    }
 }
 
 extension Repeat: Equatable { }

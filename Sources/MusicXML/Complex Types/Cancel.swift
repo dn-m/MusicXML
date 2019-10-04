@@ -12,6 +12,11 @@
 public struct Cancel {
     public let fifths: Int
     public let location: CancelLocation
+
+    public init(fifths: Int, location: CancelLocation) {
+        self.fifths = fifths
+        self.location = location
+    }
 }
 
 extension Cancel: Equatable { }

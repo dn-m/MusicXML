@@ -17,6 +17,14 @@ public struct NonArpeggiate {
     public var position: Position?
     public var placement: AboveBelow?
     public var color: Color?
+
+    public init(type: TopBottom, number: Int? = nil, position: Position? = nil, placement: AboveBelow? = nil, color: Color? = nil) {
+        self.type = type
+        self.number = number
+        self.position = position
+        self.placement = placement
+        self.color = color
+    }
 }
 
 extension NonArpeggiate: Equatable { }

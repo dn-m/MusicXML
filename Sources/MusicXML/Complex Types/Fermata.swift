@@ -17,6 +17,12 @@ public struct Fermata {
 
     public var type: UprightInverted?
     public var printStyle: PrintStyle?
+
+    public init(value: FermataShape, type: UprightInverted? = nil, printStyle: PrintStyle? = nil) {
+        self.value = value
+        self.type = type
+        self.printStyle = printStyle
+    }
 }
 
 extension Fermata: Equatable { }

@@ -51,6 +51,12 @@ public struct Link {
     //    This is equivalent to an XPath test of [.//beam[2]] done
     //    in the context of the sibling element.
     public let position: String?
+
+    public init(name: String? = nil, element: String? = nil, position: String? = nil) {
+        self.name = name
+        self.element = element
+        self.position = position
+    }
 }
 
 extension Link: Equatable { }

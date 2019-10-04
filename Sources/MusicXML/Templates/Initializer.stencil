@@ -1,0 +1,13 @@
+{# A template to generate initializer inline #}
+{# Example: $sourcery --sources Complex\ Types/Accidental.swift --templates Templates/ --output Output/ #}
+{% for type in types.structs %}
+{% set spacing %}{% if type.parentName %}    {% endif %}{% endset %}
+{% map type.storedVariables into parameters using var %}{{ var.name }}: {{ var.typeName }}{% if var.defaultValue %} = {{var.defaultValue}}{% elif var.typeName.isOptional %} = nil{% endif %}{% endmap %}
+// sourcery:inline:auto:{{ type.name }}.AutoInit
+{{spacing}}    {{ type.accessLevel }} init({{ parameters|join:", " }}) {
+{{spacing}}        {% for variable in type.storedVariables %}
+{{spacing}}        self.{{ variable.name }} = {{ variable.name }}
+{{spacing}}        {% endfor %}
+{{spacing}}    }
+// sourcery:end
+{% endfor %}

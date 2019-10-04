@@ -17,6 +17,15 @@ public struct PartSymbol {
     let bottomStaff: Int
     let position: Position
     let color: Color
+
+    public init(value: GroupSymbolValue, kind: Kind, topStaff: Int, bottomStaff: Int, position: Position, color: Color) {
+        self.value = value
+        self.kind = kind
+        self.topStaff = topStaff
+        self.bottomStaff = bottomStaff
+        self.position = position
+        self.color = color
+    }
 }
 
 extension PartSymbol: Equatable { }

@@ -14,6 +14,14 @@ public struct Notehead {
     public let parentheses: Bool
     public let font: Font
     public let color: Color
+
+    public init(value: NoteheadValue, filled: Bool, parentheses: Bool, font: Font, color: Color) {
+        self.value = value
+        self.filled = filled
+        self.parentheses = parentheses
+        self.font = font
+        self.color = color
+    }
 }
 
 extension Notehead: Equatable { }

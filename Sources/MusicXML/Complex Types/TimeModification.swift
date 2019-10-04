@@ -23,6 +23,13 @@ public struct TimeModification {
     public var normalType: NoteTypeValue?
     /// The normal-dot element is used to specify dotted normal tuplet types.
     public var normalDot: [Empty]?
+
+    public init(actualNotes: Int, normalNotes: Int, normalType: NoteTypeValue? = nil, normalDot: [Empty]? = nil) {
+        self.actualNotes = actualNotes
+        self.normalNotes = normalNotes
+        self.normalType = normalType
+        self.normalDot = normalDot
+    }
 }
 
 extension TimeModification: Equatable { }

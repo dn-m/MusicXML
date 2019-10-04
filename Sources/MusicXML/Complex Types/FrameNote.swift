@@ -12,6 +12,13 @@ public struct FrameNote {
     public let fret: Fret
     public let fingering: Fingering?
     public let barre: Barre?
+
+    public init(string: MusicXML.String, fret: Fret, fingering: Fingering? = nil, barre: Barre? = nil) {
+        self.string = string
+        self.fret = fret
+        self.fingering = fingering
+        self.barre = barre
+    }
 }
 
 extension FrameNote: Equatable { }

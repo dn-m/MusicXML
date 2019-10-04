@@ -13,6 +13,14 @@ public struct PageMargins {
     public let right: Tenths
     public let top: Tenths
     public let bottom: Tenths
+
+    public init(kind: Kind, left: Tenths, right: Tenths, top: Tenths, bottom: Tenths) {
+        self.kind = kind
+        self.left = left
+        self.right = right
+        self.top = top
+        self.bottom = bottom
+    }
 }
 
 extension PageMargins {

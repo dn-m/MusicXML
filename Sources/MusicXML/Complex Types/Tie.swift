@@ -10,6 +10,11 @@
 public struct Tie {
     public var type: StartStop
     public var timeOnly: TimeOnly?
+
+    public init(type: StartStop, timeOnly: TimeOnly? = nil) {
+        self.type = type
+        self.timeOnly = timeOnly
+    }
 }
 
 extension Tie: Equatable { }

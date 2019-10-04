@@ -22,6 +22,17 @@ public struct Bend {
     public let bendAlter: Double?
     public let prependOrRelease: PreBendOrRelease?
     public let withBar: PlacementText?
+
+    public init(printStyle: PrintStyle? = nil, accelerate: Bool? = nil, beats: Bool? = nil, firstBeat: Double? = nil, lastBeat: Double? = nil, bendAlter: Double? = nil, prependOrRelease: PreBendOrRelease? = nil, withBar: PlacementText? = nil) {
+        self.printStyle = printStyle
+        self.accelerate = accelerate
+        self.beats = beats
+        self.firstBeat = firstBeat
+        self.lastBeat = lastBeat
+        self.bendAlter = bendAlter
+        self.prependOrRelease = prependOrRelease
+        self.withBar = withBar
+    }
 }
 
 extension Bend {

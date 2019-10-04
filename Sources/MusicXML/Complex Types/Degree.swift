@@ -16,5 +16,12 @@ public struct Degree: Codable, Equatable {
     public let alter: DegreeAlter
     public let type: DegreeType
     public let printObject: Bool
+
+    public init(value: DegreeValue, alter: DegreeAlter, type: DegreeType, printObject: Bool) {
+        self.value = value
+        self.alter = alter
+        self.type = type
+        self.printObject = printObject
+    }
 }
 

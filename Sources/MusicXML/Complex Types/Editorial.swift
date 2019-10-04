@@ -14,6 +14,11 @@
 public struct Editorial {
     public let footnote: FormattedText?
     public let level: Level?
+
+    public init(footnote: FormattedText? = nil, level: Level? = nil) {
+        self.footnote = footnote
+        self.level = level
+    }
 }
 
 extension Editorial: Equatable { }

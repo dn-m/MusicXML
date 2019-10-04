@@ -13,17 +13,28 @@ public struct Accidental {
 
     // MARK: - Attributes
     
-    public var cautionary: Bool?
-    public var editorial: Bool?
-    public var parentheses: Bool?
-    public var bracket: Bool?
-    public var size: SymbolSize?
-    public var position: Position?
-    public var printStyle: PrintStyle?
+    public let cautionary: Bool?
+    public let editorial: Bool?
+    public let parentheses: Bool?
+    public let bracket: Bool?
+    public let size: SymbolSize?
+    public let position: Position?
+    public let printStyle: PrintStyle?
 
     // MARK: - Value
 
-    public var value: AccidentalValue
+    public let value: AccidentalValue
+
+    public init(cautionary: Bool? = nil, editorial: Bool? = nil, parentheses: Bool? = nil, bracket: Bool? = nil, size: SymbolSize? = nil, position: Position? = nil, printStyle: PrintStyle? = nil, value: AccidentalValue) {
+        self.cautionary = cautionary
+        self.editorial = editorial
+        self.parentheses = parentheses
+        self.bracket = bracket
+        self.size = size
+        self.position = position
+        self.printStyle = printStyle
+        self.value = value
+    }
 }
 
 extension Accidental: Equatable { }

@@ -7,6 +7,10 @@
 
 public struct OtherDynamics {
     public let smufl: SMuFL
+
+    public init(smufl: SMuFL) {
+        self.smufl = smufl
+    }
 }
 
 extension OtherDynamics: Equatable { }

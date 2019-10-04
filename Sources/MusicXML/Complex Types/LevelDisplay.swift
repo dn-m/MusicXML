@@ -13,6 +13,12 @@ public struct LevelDisplay {
     public let parentheses: Bool
     public let bracket: Bool
     public let size: SymbolSize
+
+    public init(parentheses: Bool, bracket: Bool, size: SymbolSize) {
+        self.parentheses = parentheses
+        self.bracket = bracket
+        self.size = size
+    }
 }
 
 extension LevelDisplay: Equatable { }

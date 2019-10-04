@@ -21,6 +21,14 @@ public struct Slash {
     /// The slash-dot element is used to specify any augmentation dots in the note type used to
     /// display repetition marks.
     public let slashDot: [Empty]
+
+    public init(type: StartStop, useDots: Bool? = nil, useStems: Bool? = nil, slashType: NoteTypeValue, slashDot: [Empty]) {
+        self.type = type
+        self.useDots = useDots
+        self.useStems = useStems
+        self.slashType = slashType
+        self.slashDot = slashDot
+    }
 }
 
 extension Slash: Equatable { }

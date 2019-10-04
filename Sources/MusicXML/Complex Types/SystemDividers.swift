@@ -15,6 +15,11 @@
 public struct SystemDividers {
     public let left: EmptyPrintObjectStyleAlign
     public let right: EmptyPrintObjectStyleAlign
+
+    public init(left: EmptyPrintObjectStyleAlign, right: EmptyPrintObjectStyleAlign) {
+        self.left = left
+        self.right = right
+    }
 }
 
 extension SystemDividers: Equatable { }

@@ -32,4 +32,14 @@ public struct TrillSound: Codable, Equatable {
     let beats: Int
     let secondBeat: Int
     let lastBeat: Int
+
+    public init(startNote: StartNote, trillStep: TrillStep, twoNoteTurn: TwoNoteTurn, accelerate: Bool, beats: Int, secondBeat: Int, lastBeat: Int) {
+        self.startNote = startNote
+        self.trillStep = trillStep
+        self.twoNoteTurn = twoNoteTurn
+        self.accelerate = accelerate
+        self.beats = beats
+        self.secondBeat = secondBeat
+        self.lastBeat = lastBeat
+    }
 }

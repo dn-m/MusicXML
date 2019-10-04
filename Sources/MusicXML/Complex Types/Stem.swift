@@ -11,9 +11,15 @@
 /// relative-y that would flip a stem instead of shortening it are ignored. A stem element
 /// associated with a rest refers to a stemlet.
 public struct Stem {
-    public var value: StemValue
-    public var position: Position = Position()
-    public var color: Color?
+    public let value: StemValue
+    public let position: Position
+    public let color: Color?
+
+    public init(value: StemValue, position: Position = Position(), color: Color? = nil) {
+        self.value = value
+        self.position = position
+        self.color = color
+    }
 }
 
 extension Stem: Equatable { }

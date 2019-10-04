@@ -15,6 +15,13 @@ public struct AccordionRegistration {
     public let printStyle: PrintStyle?
     public let hAlign: LeftCenterRight?
     public let vAlaign: VAlign?
+
+    public init(position: Position? = nil, printStyle: PrintStyle? = nil, hAlign: LeftCenterRight? = nil, vAlaign: VAlign? = nil) {
+        self.position = position
+        self.printStyle = printStyle
+        self.hAlign = hAlign
+        self.vAlaign = vAlaign
+    }
 }
 
 extension AccordionRegistration: Equatable { }

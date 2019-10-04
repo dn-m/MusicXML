@@ -24,6 +24,17 @@ public struct Wedge {
     public let dashedFormatting: DashedFormatting?
     public let position: Position?
     public let color: Color?
+
+    public init(type: WedgeType, number: Int? = nil, spread: Tenths? = nil, niente: Bool? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting? = nil, position: Position? = nil, color: Color? = nil) {
+        self.type = type
+        self.number = number
+        self.spread = spread
+        self.niente = niente
+        self.lineType = lineType
+        self.dashedFormatting = dashedFormatting
+        self.position = position
+        self.color = color
+    }
 }
 
 extension Wedge: Equatable { }

@@ -19,6 +19,18 @@ public struct Kind {
     public let printStyle: PrintStyle?
     public let horizontalAlignment: LeftCenterRight?
     public let verticalAlignment: VAlign?
+
+    public init(value: KindValue, useSymbols: Bool? = nil, text: String? = nil, stackDegrees: Bool? = nil, parenthesesDegrees: Bool? = nil, bracketDegrees: Bool? = nil, printStyle: PrintStyle? = nil, horizontalAlignment: LeftCenterRight? = nil, verticalAlignment: VAlign? = nil) {
+        self.value = value
+        self.useSymbols = useSymbols
+        self.text = text
+        self.stackDegrees = stackDegrees
+        self.parenthesesDegrees = parenthesesDegrees
+        self.bracketDegrees = bracketDegrees
+        self.printStyle = printStyle
+        self.horizontalAlignment = horizontalAlignment
+        self.verticalAlignment = verticalAlignment
+    }
 }
 
 extension Kind: Equatable { }

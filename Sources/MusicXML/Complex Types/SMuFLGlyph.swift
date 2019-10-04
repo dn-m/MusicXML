@@ -14,6 +14,10 @@
 // <!ENTITY % smufl-glyph-name "NMTOKEN">
 public struct SMuFLGlyph {
     public let name: String
+
+    public init(name: String) {
+        self.name = name
+    }
 }
 
 extension SMuFLGlyph: Equatable { }

@@ -11,6 +11,12 @@ public struct Work {
     public let number: String?
     public let title: String?
     public let opus: Opus?
+
+    public init(number: String? = nil, title: String? = nil, opus: Opus? = nil) {
+        self.number = number
+        self.title = title
+        self.opus = opus
+    }
 }
 
 extension Work: Equatable { }

@@ -20,6 +20,13 @@ public struct SystemLayout {
     public let systemDistance: Tenths
     public let topSystemDistance: Int?
     public let systemDividers: SystemDividers?
+
+    public init(systemMargins: SystemMargins? = nil, systemDistance: Tenths, topSystemDistance: Int? = nil, systemDividers: SystemDividers? = nil) {
+        self.systemMargins = systemMargins
+        self.systemDistance = systemDistance
+        self.topSystemDistance = topSystemDistance
+        self.systemDividers = systemDividers
+    }
 }
 
 extension SystemLayout: Equatable { }

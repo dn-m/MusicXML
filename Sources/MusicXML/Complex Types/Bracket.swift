@@ -18,6 +18,18 @@ public struct Bracket {
     public let spaceLength: Tenths?
     public let position: Position?
     public let color: Color?
+
+    public init(type: StartStopContinue, number: Int? = nil, lineEnd: LineEnd, endLength: Tenths? = nil, lineType: LineType? = nil, dashLength: Tenths? = nil, spaceLength: Tenths? = nil, position: Position? = nil, color: Color? = nil) {
+        self.type = type
+        self.number = number
+        self.lineEnd = lineEnd
+        self.endLength = endLength
+        self.lineType = lineType
+        self.dashLength = dashLength
+        self.spaceLength = spaceLength
+        self.position = position
+        self.color = color
+    }
 }
 
 extension Bracket: Equatable { }

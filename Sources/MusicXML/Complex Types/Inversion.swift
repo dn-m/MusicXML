@@ -10,6 +10,11 @@
 public struct Inversion {
     public let value: Int
     public let printStyle: PrintStyle
+
+    public init(value: Int, printStyle: PrintStyle) {
+        self.value = value
+        self.printStyle = printStyle
+    }
 }
 
 extension Inversion: Equatable { }

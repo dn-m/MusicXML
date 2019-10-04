@@ -44,6 +44,18 @@ public struct StaffDetails {
     /// unless specified here. Staff size affects staff height only, not the relationship of the
     /// staff to the left and right margins.
     public let staffSize: Double?
+
+    public init(number: Int? = nil, showFrets: ShowFrets? = nil, printObject: Bool? = nil, printSpacing: Bool? = nil, staffType: StaffType? = nil, staffLines: Int? = nil, staffTuning: [StaffTuning], capo: Int? = nil, staffSize: Double? = nil) {
+        self.number = number
+        self.showFrets = showFrets
+        self.printObject = printObject
+        self.printSpacing = printSpacing
+        self.staffType = staffType
+        self.staffLines = staffLines
+        self.staffTuning = staffTuning
+        self.capo = capo
+        self.staffSize = staffSize
+    }
 }
 
 extension StaffDetails: Equatable { }

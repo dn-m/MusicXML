@@ -11,6 +11,12 @@ public struct Stick {
     public let tip: TipDirection?
     public let stickType: StickType
     public let stickMaterial: StickMaterial
+
+    public init(tip: TipDirection? = nil, stickType: StickType, stickMaterial: StickMaterial) {
+        self.tip = tip
+        self.stickType = stickType
+        self.stickMaterial = stickMaterial
+    }
 }
 
 extension Stick: Equatable { }

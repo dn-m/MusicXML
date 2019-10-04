@@ -14,6 +14,12 @@ public struct BeatRepeat {
     public let type: StartStop
     public let slashes: Int
     public let useDots: Bool
+
+    public init(type: StartStop, slashes: Int, useDots: Bool) {
+        self.type = type
+        self.slashes = slashes
+        self.useDots = useDots
+    }
 }
 
 extension BeatRepeat: Equatable { }

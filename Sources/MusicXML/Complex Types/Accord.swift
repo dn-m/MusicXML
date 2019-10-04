@@ -13,6 +13,13 @@ public struct Accord {
     public let tuningAlter: Double? // semitones
     public let tuningOctave: Int? // octaves
 
+
+    public init(string: Int, tuningStep: Step, tuningAlter: Double? = nil, tuningOctave: Int? = nil) {
+        self.string = string
+        self.tuningStep = tuningStep
+        self.tuningAlter = tuningAlter
+        self.tuningOctave = tuningOctave
+    }
 }
 
 extension Accord: Equatable { }

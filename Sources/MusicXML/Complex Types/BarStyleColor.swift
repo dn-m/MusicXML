@@ -9,6 +9,11 @@
 public struct BarStyleColor {
     public var value: BarStyle
     public var color: Color?
+
+    public init(value: BarStyle, color: Color? = nil) {
+        self.value = value
+        self.color = color
+    }
 }
 
 extension BarStyleColor: Equatable { }

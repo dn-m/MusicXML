@@ -23,6 +23,14 @@ public struct Harmonic {
     public var printObject: Bool?
     public var printStyle: PrintStyle?
     public var placement: AboveBelow?
+
+    public init(naturalArtificial: NaturalArtificial? = nil, baseSoundingTouchingPitch: BaseSoundingTouchingPitch? = nil, printObject: Bool? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+        self.naturalArtificial = naturalArtificial
+        self.baseSoundingTouchingPitch = baseSoundingTouchingPitch
+        self.printObject = printObject
+        self.printStyle = printStyle
+        self.placement = placement
+    }
 }
 
 extension Harmonic {

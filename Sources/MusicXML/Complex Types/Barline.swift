@@ -70,6 +70,19 @@ public struct Barline {
     public var fermata: Fermata?
     public var ending: Ending?
     public var `repeat`: Repeat?
+
+    public init(location: RightLeftMiddle? = nil, segno: EmptyPrintStyleAlign? = nil, coda: EmptyPrintStyleAlign? = nil, divisions: Int? = nil, barStyle: BarStyleColor? = nil, editorial: Editorial? = nil, wavyLine: WavyLine? = nil, fermata: Fermata? = nil, ending: Ending? = nil, `repeat`: Repeat? = nil) {
+        self.location = location
+        self.segno = segno
+        self.coda = coda
+        self.divisions = divisions
+        self.barStyle = barStyle
+        self.editorial = editorial
+        self.wavyLine = wavyLine
+        self.fermata = fermata
+        self.ending = ending
+        self.`repeat` = `repeat`
+    }
 }
 
 extension Barline: Equatable { }

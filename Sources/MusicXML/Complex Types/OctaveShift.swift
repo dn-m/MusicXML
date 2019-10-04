@@ -15,6 +15,14 @@ public struct OctaveShift {
     public let size: Int?
     public let dashedFormatting: DashedFormatting?
     public let printStyle: PrintStyle?
+
+    public init(type: StartStopContinue, number: Int? = nil, size: Int? = nil, dashedFormatting: DashedFormatting? = nil, printStyle: PrintStyle? = nil) {
+        self.type = type
+        self.number = number
+        self.size = size
+        self.dashedFormatting = dashedFormatting
+        self.printStyle = printStyle
+    }
 }
 
 extension OctaveShift: Equatable { }

@@ -58,10 +58,17 @@
 /// As elsewhere in the MusicXML format, tenths are the global tenths defined by the scaling
 /// element, not the local tenths of a staff resized by the staff-size element.
 public struct Position {
-    public var defaultX: Tenths?
-    public var defaultY: Tenths?
-    public var relativeX: Tenths?
-    public var relativeY: Tenths?
+    public let defaultX: Tenths?
+    public let defaultY: Tenths?
+    public let relativeX: Tenths?
+    public let relativeY: Tenths?
+
+    public init(defaultX: Tenths? = nil, defaultY: Tenths? = nil, relativeX: Tenths? = nil, relativeY: Tenths? = nil) {
+        self.defaultX = defaultX
+        self.defaultY = defaultY
+        self.relativeX = relativeX
+        self.relativeY = relativeY
+    }
 }
 
 extension Position: Equatable { }

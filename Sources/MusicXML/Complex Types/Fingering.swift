@@ -14,6 +14,13 @@ public struct Fingering {
     public let alternate: Bool
     public let printStyle: PrintStyle
     public let placement: AboveBelow
+
+    public init(substitution: Bool, alternate: Bool, printStyle: PrintStyle, placement: AboveBelow) {
+        self.substitution = substitution
+        self.alternate = alternate
+        self.printStyle = printStyle
+        self.placement = placement
+    }
 }
 
 extension Fingering: Equatable { }

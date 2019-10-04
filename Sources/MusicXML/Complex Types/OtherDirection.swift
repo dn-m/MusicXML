@@ -12,6 +12,12 @@ public struct OtherDirection {
     public let value: String
     public let printObject: Bool?
     public let printStyleAlign: PrintStyleAlign?
+
+    public init(value: String, printObject: Bool? = nil, printStyleAlign: PrintStyleAlign? = nil) {
+        self.value = value
+        self.printObject = printObject
+        self.printStyleAlign = printStyleAlign
+    }
 }
 
 extension OtherDirection: Equatable { }

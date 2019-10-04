@@ -11,6 +11,11 @@
 public struct Feature {
     public let value: String
     public let type: String?
+
+    public init(value: String, type: String? = nil) {
+        self.value = value
+        self.type = type
+    }
 }
 
 extension Feature: Equatable { }

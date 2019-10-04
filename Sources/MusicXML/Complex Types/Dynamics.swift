@@ -23,6 +23,14 @@ public struct Dynamics {
     public let placement: AboveBelow?
     public let textDecoration: TextDecoration?
     public let enclosure: EnclosureShape?
+
+    public init(values: [Dynamic], printStyleAlign: PrintStyleAlign? = nil, placement: AboveBelow? = nil, textDecoration: TextDecoration? = nil, enclosure: EnclosureShape? = nil) {
+        self.values = values
+        self.printStyleAlign = printStyleAlign
+        self.placement = placement
+        self.textDecoration = textDecoration
+        self.enclosure = enclosure
+    }
 }
 
 

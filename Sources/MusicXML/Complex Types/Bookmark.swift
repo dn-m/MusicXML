@@ -11,6 +11,13 @@ public struct Bookmark {
     public let name: String?
     public let element: String?
     public let position: Int?
+
+    public init(id: String, name: String? = nil, element: String? = nil, position: Int? = nil) {
+        self.id = id
+        self.name = name
+        self.element = element
+        self.position = position
+    }
 }
 
 extension Bookmark: Equatable { }
