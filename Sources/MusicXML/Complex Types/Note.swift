@@ -147,19 +147,15 @@ extension Note: Codable {
 
         // Decode pitch / unpitched / rest
         let pitchUnpitchedOrRest: PitchUnpitchedOrRest
-        do {
+        if container.contains(.pitch) {
             let pitch = try container.decode(Pitch.self, forKey: .pitch)
             pitchUnpitchedOrRest = .pitch(pitch)
-        } catch {
-            do {
-                let rest = try container.decode(Rest.self, forKey: .rest)
-                pitchUnpitchedOrRest =  .rest(rest)
-            } catch {
-                do {
-                    let unpitched = try container.decode(Unpitched.self, forKey: .unpitched)
-                    pitchUnpitchedOrRest = .unpitched(unpitched)
-                }
-            }
+        } else if container.contains(.rest) {
+            let rest = try container.decode(Rest.self, forKey: .rest)
+            pitchUnpitchedOrRest =  .rest(rest)
+        } else {
+            let unpitched = try container.decode(Unpitched.self, forKey: .unpitched)
+            pitchUnpitchedOrRest = .unpitched(unpitched)
         }
 
         // Decode kind
