@@ -103,7 +103,6 @@ class NoteTests: XCTestCase {
         XCTAssertEqual(decoded, expected)
     }
 
-    #warning("FIXME: #68 Chord not decoding properly")
     func testChord() throws {
         let xml = """
         <note>
