@@ -104,7 +104,7 @@ class NoteTests: XCTestCase {
     }
 
     #warning("FIXME: #68 Chord not decoding properly")
-    func DISABLED_testChord() throws {
+    func testChord() throws {
         let xml = """
         <note>
           <chord/>
