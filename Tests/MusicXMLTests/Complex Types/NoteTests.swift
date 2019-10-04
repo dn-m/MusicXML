@@ -177,7 +177,7 @@ class NoteTests: XCTestCase {
             position: Position(defaultX: 368.91, defaultY: 0),
             voice: "1",
             type: NoteType(value: .sixteenth),
-            stem: Stem(value: .down),
+            stem: Stem(.down),
             beams: [
                 Beam(value: .begin, number: .one),
                 Beam(value: .begin, number: .two)
@@ -219,7 +219,7 @@ class NoteTests: XCTestCase {
             position: Position(defaultX: 483.50, defaultY: -25.00),
             voice: "1",
             type: NoteType(value: .quarter),
-            stem: Stem(value: .up),
+            stem: Stem(.up),
             notations: Notations(values: [
                 .tied(Tied(type: .stop)),
                 .tied(Tied(type: .start))
@@ -260,7 +260,7 @@ class NoteTests: XCTestCase {
             instrument: Instrument(id: "P1-X2"),
             voice: "1",
             type: NoteType(value: .eighth),
-            stem: Stem(value: .down, position: Position(defaultY: -70)),
+            stem: Stem(.down, position: Position(defaultY: -70)),
             beams: [Beam(value: .begin, number: .one)]
         )
         XCTAssertEqual(decoded, expected)
