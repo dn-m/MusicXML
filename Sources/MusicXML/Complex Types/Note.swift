@@ -218,6 +218,10 @@ extension Note: Codable {
         case chord
         case duration
         case tie
+        
+        case pitch
+        case rest
+        case unpitched
     }
     #warning("Reinstate Note.dots when we can decode potentially-empty elements properly")
     public init(from decoder: Decoder) throws {
@@ -262,8 +266,18 @@ extension Note: Codable {
         let ties = try container.decodeIfPresent([Tie].self, forKey: .tie).map(Ties.init)
 
         // Decode pitch / unpitched / rest
-        let pitchUnpitchedRestContainer = try decoder.singleValueContainer()
-        let pitchUnpitchedOrRest = try pitchUnpitchedRestContainer.decode(PitchUnpitchedOrRest.self)
+        let pitchUnpitchedOrRest: PitchUnpitchedOrRest
+        if container.contains(.pitch) {
+            let pitch = try container.decode(Pitch.self, forKey: .pitch)
+            pitchUnpitchedOrRest = .pitch(pitch)
+        } else if container.contains(.rest) {
+            let rest = try container.decode(Rest.self, forKey: .rest)
+            pitchUnpitchedOrRest =  .rest(rest)
+        } else {
+            let unpitched = try container.decode(Unpitched.self, forKey: .unpitched)
+            pitchUnpitchedOrRest = .unpitched(unpitched)
+        }
+
         // Decode kind
         if container.contains(.grace) {
             self.kind = .grace(
