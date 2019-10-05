@@ -37,6 +37,11 @@
 public struct Score {
     public let header: Header
     public let traversal: Traversal
+
+    public init(header: Header, traversal: Traversal) {
+        self.header = header
+        self.traversal = traversal
+    }
 }
 
 extension Score: Equatable { }

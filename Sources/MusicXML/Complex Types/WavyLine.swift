@@ -14,6 +14,15 @@ public struct WavyLine {
     public let placement: AboveBelow?
     public let color: Color?
     public let trillSound: TrillSound?
+
+    public init(type: StartStopContinue, number: Int? = nil, position: Position? = nil, placement: AboveBelow? = nil, color: Color? = nil, trillSound: TrillSound? = nil) {
+        self.type = type
+        self.number = number
+        self.position = position
+        self.placement = placement
+        self.color = color
+        self.trillSound = trillSound
+    }
 }
 
 extension WavyLine: Equatable { }

@@ -11,6 +11,12 @@ public struct FirstFret {
     public let value: Int
     public let text: String?
     public let location: LeftRight?
+
+    public init(value: Int, text: String? = nil, location: LeftRight? = nil) {
+        self.value = value
+        self.text = text
+        self.location = location
+    }
 }
 
 extension FirstFret: Equatable { }

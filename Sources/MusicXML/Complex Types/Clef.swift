@@ -14,18 +14,30 @@ public struct Clef {
 
     // MARK: - Attributes
 
-    public var number: Int?
-    public var additional: Bool?
-    public var size: SymbolSize?
-    public var afterBarline: Bool?
-    public var printStyle: PrintStyle?
-    public var printObject: Bool?
+    public let number: Int?
+    public let additional: Bool?
+    public let size: SymbolSize?
+    public let afterBarline: Bool?
+    public let printStyle: PrintStyle?
+    public let printObject: Bool?
 
     // MARK: - Elements
 
-    public var sign: ClefSign
-    public var line: Int?
-    public var clefOctaveChange: Int?
+    public let sign: ClefSign
+    public let line: Int?
+    public let clefOctaveChange: Int?
+
+    public init(number: Int? = nil, additional: Bool? = nil, size: SymbolSize? = nil, afterBarline: Bool? = nil, printStyle: PrintStyle? = nil, printObject: Bool? = nil, sign: ClefSign, line: Int? = nil, clefOctaveChange: Int? = nil) {
+        self.number = number
+        self.additional = additional
+        self.size = size
+        self.afterBarline = afterBarline
+        self.printStyle = printStyle
+        self.printObject = printObject
+        self.sign = sign
+        self.line = line
+        self.clefOctaveChange = clefOctaveChange
+    }
 }
 
 extension Clef: Equatable { }

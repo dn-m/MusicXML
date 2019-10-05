@@ -21,6 +21,15 @@ public struct ScoreInstrument {
     public var sound: String?
     public var soloOrEnsemble: SoloEnsemble?
     public var virtualInstrument: VirtualInstrument?
+
+    public init(id: String, instrumentName: String, instrumentAbbreviation: String? = nil, sound: String? = nil, soloOrEnsemble: SoloEnsemble? = nil, virtualInstrument: VirtualInstrument? = nil) {
+        self.id = id
+        self.instrumentName = instrumentName
+        self.instrumentAbbreviation = instrumentAbbreviation
+        self.sound = sound
+        self.soloOrEnsemble = soloOrEnsemble
+        self.virtualInstrument = virtualInstrument
+    }
 }
 
 extension ScoreInstrument {

@@ -37,6 +37,15 @@ public struct Identification {
     /// miscellaneous element. The miscellaneous type puts each separate part of metadata into its
     /// own miscellaneous-field type.
     public var miscellaneous: Miscellaneous?
+
+    public init(creators: [Creator]? = nil, rights: [Rights]? = nil, encoding: Encoding? = nil, source: String? = nil, relation: [String]? = nil, miscellaneous: Miscellaneous? = nil) {
+        self.creators = creators
+        self.rights = rights
+        self.encoding = encoding
+        self.source = source
+        self.relation = relation
+        self.miscellaneous = miscellaneous
+    }
 }
 
 extension Identification: Equatable { }

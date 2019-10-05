@@ -51,13 +51,23 @@ extension Partwise {
     //     %optional-unique-id;
     // >
     public struct Measure: Equatable {
-        public var number: Int
-        public var text: String?
-        public var implicit: Bool?
-        public var nonControlling: Bool?
-        public var width: Tenths?
-        public var optionalUniqueID: Int?
-        public var musicData: [MusicData]
+        public let number: Int
+        public let text: String?
+        public let implicit: Bool?
+        public let nonControlling: Bool?
+        public let width: Tenths?
+        public let optionalUniqueID: Int?
+        public let musicData: [MusicData]
+
+        public init(number: Int, text: String? = nil, implicit: Bool? = nil, nonControlling: Bool? = nil, width: Tenths? = nil, optionalUniqueID: Int? = nil, musicData: [MusicData] = []) {
+            self.number = number
+            self.text = text
+            self.implicit = implicit
+            self.nonControlling = nonControlling
+            self.width = width
+            self.optionalUniqueID = optionalUniqueID
+            self.musicData = musicData
+        }
     }
 }
 

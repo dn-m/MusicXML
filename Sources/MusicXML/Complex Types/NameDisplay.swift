@@ -12,6 +12,11 @@
 public struct NameDisplay {
     public let printObject: Bool
     public let text: Text
+
+    public init(printObject: Bool, text: Text) {
+        self.printObject = printObject
+        self.text = text
+    }
 }
 
 extension NameDisplay {

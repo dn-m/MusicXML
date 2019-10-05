@@ -16,6 +16,14 @@ public struct HammerOnPullOff {
     public let number: Int?
     public let printStyle: PrintStyle?
     public let placement: AboveBelow?
+
+    public init(value: String, type: StartStop, number: Int? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+        self.value = value
+        self.type = type
+        self.number = number
+        self.printStyle = printStyle
+        self.placement = placement
+    }
 }
 
 extension HammerOnPullOff: Equatable { }

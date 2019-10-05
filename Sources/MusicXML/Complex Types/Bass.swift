@@ -11,4 +11,9 @@
 public struct Bass: Codable, Equatable {
     public let bassStep: BassStep
     public let bassAlter: BassAlter?
+
+    public init(bassStep: BassStep, bassAlter: BassAlter? = nil) {
+        self.bassStep = bassStep
+        self.bassAlter = bassAlter
+    }
 }

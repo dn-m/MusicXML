@@ -9,6 +9,11 @@
 public struct PedalTuning {
     public let pedalStep: Step
     public let pedalAlter: Int
+
+    public init(pedalStep: Step, pedalAlter: Int) {
+        self.pedalStep = pedalStep
+        self.pedalAlter = pedalAlter
+    }
 }
 
 extension PedalTuning: Equatable { }

@@ -11,6 +11,12 @@ public struct EmptyTrillSound {
     public let printStyle: PrintStyle?
     public let placement: AboveBelow?
     public let trillSound: TrillSound
+
+    public init(printStyle: PrintStyle? = nil, placement: AboveBelow? = nil, trillSound: TrillSound) {
+        self.printStyle = printStyle
+        self.placement = placement
+        self.trillSound = trillSound
+    }
 }
 
 extension EmptyTrillSound: Equatable { }

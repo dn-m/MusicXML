@@ -17,6 +17,13 @@ public struct Grouping {
     /// groupings.
     public let number: Int?
     public let memberOf: String?
+
+    public init(type: StartStopSingle, feature: [Feature], number: Int? = nil, memberOf: String? = nil) {
+        self.type = type
+        self.feature = feature
+        self.number = number
+        self.memberOf = memberOf
+    }
 }
 
 extension Grouping: Equatable { }

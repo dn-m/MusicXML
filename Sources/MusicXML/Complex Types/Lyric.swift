@@ -36,6 +36,18 @@ public struct Lyric {
     public let endParagraph: Empty?
 
     public let kind: Kind
+
+    public init(number: String? = nil, name: String? = nil, justify: LeftCenterRight? = nil, position: Position? = nil, placement: AboveBelow? = nil, printObject: Bool? = nil, endLine: Empty? = nil, endParagraph: Empty? = nil, kind: Kind) {
+        self.number = number
+        self.name = name
+        self.justify = justify
+        self.position = position
+        self.placement = placement
+        self.printObject = printObject
+        self.endLine = endLine
+        self.endParagraph = endParagraph
+        self.kind = kind
+    }
 }
 
 extension Lyric {
@@ -44,6 +56,11 @@ extension Lyric {
     public struct Verbal {
         public let text: TextElementData
         public let syllabic: Syllabic?
+
+        public init(text: TextElementData, syllabic: Syllabic? = nil) {
+            self.text = text
+            self.syllabic = syllabic
+        }
     }
 
     // > Humming and laughing representations are taken from

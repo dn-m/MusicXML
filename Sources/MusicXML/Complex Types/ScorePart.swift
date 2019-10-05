@@ -71,6 +71,18 @@ public struct ScorePart {
     /// element within a part. The id attribute refers to the score-instrument affected by the
     /// change.
     public var midi: [MIDI]?
+
+    public init(id: String, identification: Identification? = nil, name: PartName, nameDisplay: NameDisplay? = nil, partAbbreviation: PartName? = nil, partAbbreviationDisplay: NameDisplay? = nil, group: [String]? = nil, scoreInstrument: [ScoreInstrument]? = nil, midi: [MIDI]? = nil) {
+        self.id = id
+        self.identification = identification
+        self.name = name
+        self.nameDisplay = nameDisplay
+        self.partAbbreviation = partAbbreviation
+        self.partAbbreviationDisplay = partAbbreviationDisplay
+        self.group = group
+        self.scoreInstrument = scoreInstrument
+        self.midi = midi
+    }
 }
 
 extension ScorePart {
@@ -85,6 +97,11 @@ extension ScorePart {
         /// the sound element within a part. The id attribute refers to the score-instrument
         /// affected by the change.
         public let midiInstrument: MIDIInstrument?
+
+        public init(midiDevice: MIDIDevice? = nil, midiInstrument: MIDIInstrument? = nil) {
+            self.midiDevice = midiDevice
+            self.midiInstrument = midiInstrument
+        }
     }
 }
 

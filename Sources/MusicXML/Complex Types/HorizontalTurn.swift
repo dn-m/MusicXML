@@ -12,6 +12,13 @@ public struct HorizontalTurn {
     public var placement: AboveBelow?
     public var trillSound: TrillSound?
     public var slash: Bool?
+
+    public init(printStyle: PrintStyle? = nil, placement: AboveBelow? = nil, trillSound: TrillSound? = nil, slash: Bool? = nil) {
+        self.printStyle = printStyle
+        self.placement = placement
+        self.trillSound = trillSound
+        self.slash = slash
+    }
 }
 
 extension HorizontalTurn: Equatable { }

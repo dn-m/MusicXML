@@ -40,6 +40,14 @@ public struct HarmonyChord {
     public let inversion: Inversion?
     public let bass: Bass?
     public let degree: [Degree] // NonEmpty
+
+    public init(rootOrFunction: RootOrFunction, kind: Kind, inversion: Inversion? = nil, bass: Bass? = nil, degree: [Degree]) {
+        self.rootOrFunction = rootOrFunction
+        self.kind = kind
+        self.inversion = inversion
+        self.bass = bass
+        self.degree = degree
+    }
 }
 
 extension HarmonyChord {

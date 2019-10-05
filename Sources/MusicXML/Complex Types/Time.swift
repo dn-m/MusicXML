@@ -19,11 +19,11 @@ public struct Time {
 
     /// The optional number attribute refers to staff numbers within the part. If absent, the
     /// time signature applies to all staves in the part.
-    public var number: Int?
+    public let number: Int?
 
     /// The symbol attribute is used indicate common and cut time symbols as well as a single number
     /// display.
-    public var symbol: TimeSymbol?
+    public let symbol: TimeSymbol?
 
     /// The time-separator attribute indicates how to display the arrangement between the beats and
     /// beat-type values in a time signature. The default value is none. The horizontal, diagonal,
@@ -32,16 +32,27 @@ public struct Time {
     /// side of the separator line. The none value represents  no separator with the beats and
     /// beat-type arranged vertically. The adjacent value represents no separator with the beats and
     /// beat-type arranged horizontally.
-    public var separator: TimeSeparator?
+    public let separator: TimeSeparator?
 
-    public var printStyle: PrintStyle?
-    public var hAlign: LeftCenterRight?
-    public var vAlign: VAlign?
-    public var printObject: Bool?
+    public let printStyle: PrintStyle?
+    public let hAlign: LeftCenterRight?
+    public let vAlign: VAlign?
+    public let printObject: Bool?
 
     // MARK: - Elements
 
-    public var kind: Kind
+    public let kind: Kind
+
+    public init(number: Int? = nil, symbol: TimeSymbol? = nil, separator: TimeSeparator? = nil, printStyle: PrintStyle? = nil, hAlign: LeftCenterRight? = nil, vAlign: VAlign? = nil, printObject: Bool? = nil, kind: Kind) {
+        self.number = number
+        self.symbol = symbol
+        self.separator = separator
+        self.printStyle = printStyle
+        self.hAlign = hAlign
+        self.vAlign = vAlign
+        self.printObject = printObject
+        self.kind = kind
+    }
 }
 
 extension Time {
@@ -72,6 +83,11 @@ extension Time {
             )
         )
         // TODO: Add remaining attributes and elements
+        self.separator = nil
+        self.printStyle = nil
+        self.hAlign = nil
+        self.vAlign = nil
+        self.printObject = nil
     }
 
     /// Creates an `Unmeasured` type `Time`.
@@ -84,6 +100,13 @@ extension Time {
         self.number = staff
         self.kind = .unmeasured(Unmeasured(symbol: symbol))
         // TODO: Add remaining attributes and elements
+        // TODO: correct symbol
+        self.symbol = nil
+        self.separator = nil
+        self.printStyle = nil
+        self.hAlign = nil
+        self.vAlign = nil
+        self.printObject = nil
     }
 }
 
@@ -92,6 +115,11 @@ extension Time {
     public struct Signature {
         let beats: Int
         let beatType: Int
+
+        public init(beats: Int, beatType: Int) {
+            self.beats = beats
+            self.beatType = beatType
+        }
     }
 
     // > Time signatures are represented by two elements. The
@@ -114,6 +142,11 @@ extension Time {
         #warning("Handle multiple time signatures in Time.Measured")
         var signature: Signature
         var interchangeable: Interchangeable?
+
+        public init(signature: Signature, interchangeable: Interchangeable? = nil) {
+            self.signature = signature
+            self.interchangeable = interchangeable
+        }
     }
 
     // > A senza-misura element explicitly indicates that no time
@@ -123,6 +156,10 @@ extension Time {
     // > senza-misura element is present.
     public struct Unmeasured {
         let symbol: String?
+
+        public init(symbol: String? = nil) {
+            self.symbol = symbol
+        }
     }
 
     public enum Kind {

@@ -25,6 +25,19 @@ public struct Harmony {
     public let offset: Offset?
     public let editorial: Editorial?
     public let staff: Int?
+
+    public init(type: HarmonyType, printObject: Bool, printFrame: Bool? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil, chord: [HarmonyChord], frame: Frame? = nil, offset: Offset? = nil, editorial: Editorial? = nil, staff: Int? = nil) {
+        self.type = type
+        self.printObject = printObject
+        self.printFrame = printFrame
+        self.printStyle = printStyle
+        self.placement = placement
+        self.chord = chord
+        self.frame = frame
+        self.offset = offset
+        self.editorial = editorial
+        self.staff = staff
+    }
 }
 
 extension Harmony: Equatable { }

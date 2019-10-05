@@ -9,6 +9,11 @@
 public struct Distance {
     public let value: Tenths
     public let type: DistanceType
+
+    public init(value: Tenths, type: DistanceType) {
+        self.value = value
+        self.type = type
+    }
 }
 
 extension Distance: Equatable { }

@@ -16,6 +16,13 @@ public struct Supports {
     public let element: String
     public let attribute: String?
     public let value: String?
+
+    public init(type: Bool, element: String, attribute: String? = nil, value: String? = nil) {
+        self.type = type
+        self.element = element
+        self.attribute = attribute
+        self.value = value
+    }
 }
 
 extension Supports: Equatable { }

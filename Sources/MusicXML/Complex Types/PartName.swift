@@ -13,6 +13,13 @@ public struct PartName {
     public var printStyle: PrintStyle?
     public var printObject: Bool?
     public var justify: Justify?
+
+    public init(value: String, printStyle: PrintStyle? = nil, printObject: Bool? = nil, justify: Justify? = nil) {
+        self.value = value
+        self.printStyle = printStyle
+        self.printObject = printObject
+        self.justify = justify
+    }
 }
 
 extension PartName: Equatable { }

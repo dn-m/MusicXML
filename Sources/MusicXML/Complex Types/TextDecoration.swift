@@ -12,6 +12,12 @@ public struct TextDecoration {
     public let underline: Int
     public let overline: Int
     public let lineThrough: Int
+
+    public init(underline: Int, overline: Int, lineThrough: Int) {
+        self.underline = underline
+        self.overline = overline
+        self.lineThrough = lineThrough
+    }
 }
 
 extension TextDecoration: Equatable { }

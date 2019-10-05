@@ -16,4 +16,9 @@ public struct Backup: Codable, Equatable {
 
     public var duration: Int
     public var editorial: Editorial?
+
+    public init(duration: Int, editorial: Editorial? = nil) {
+        self.duration = duration
+        self.editorial = editorial
+    }
 }

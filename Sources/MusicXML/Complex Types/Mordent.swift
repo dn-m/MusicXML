@@ -12,6 +12,13 @@ public struct Mordent {
     public let long: Bool?
     public let approach: AboveBelow?
     public let departure: AboveBelow?
+
+    public init(emptyTrillSound: EmptyTrillSound? = nil, long: Bool? = nil, approach: AboveBelow? = nil, departure: AboveBelow? = nil) {
+        self.emptyTrillSound = emptyTrillSound
+        self.long = long
+        self.approach = approach
+        self.departure = departure
+    }
 }
 
 extension Mordent: Equatable { }

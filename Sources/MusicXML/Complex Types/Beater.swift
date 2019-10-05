@@ -8,6 +8,11 @@
 public struct Beater {
     public let value: BeaterValue
     public let tip: TipDirection?
+
+    public init(value: BeaterValue, tip: TipDirection? = nil) {
+        self.value = value
+        self.tip = tip
+    }
 }
 
 extension Beater: Equatable { }

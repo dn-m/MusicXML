@@ -13,6 +13,10 @@ public struct NoteheadText {
         case accidentalText(AccidentalText)
     }
     public let values: [Kind] // NonEmpty
+
+    public init(values: [Kind]) {
+        self.values = values
+    }
 }
 
 extension NoteheadText.Kind: Equatable { }

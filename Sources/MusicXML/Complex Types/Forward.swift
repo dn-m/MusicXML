@@ -22,6 +22,12 @@ public struct Forward {
     /// Staff assignment is only needed for music notated on multiple staves. Used by both notes
     /// and directions. Staff values are numbers, with 1 referring to the top-most staff in a part.
     public let staff: Int?
+
+    public init(duration: Int, editorialVoice: EditorialVoice? = nil, staff: Int? = nil) {
+        self.duration = duration
+        self.editorialVoice = editorialVoice
+        self.staff = staff
+    }
 }
 
 extension Forward: Equatable { }

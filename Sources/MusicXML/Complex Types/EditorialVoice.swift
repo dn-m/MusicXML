@@ -10,6 +10,12 @@ public struct EditorialVoice {
     public let footnote: FormattedText?
     public let level: Level?
     public let voice: Int?
+
+    public init(footnote: FormattedText? = nil, level: Level? = nil, voice: Int? = nil) {
+        self.footnote = footnote
+        self.level = level
+        self.voice = voice
+    }
 }
 
 extension EditorialVoice: Equatable { }

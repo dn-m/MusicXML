@@ -9,6 +9,11 @@
 public struct Dashes {
     public let type: StartStopContinue
     public let dashedFormatting: DashedFormatting
+
+    public init(type: StartStopContinue, dashedFormatting: DashedFormatting) {
+        self.type = type
+        self.dashedFormatting = dashedFormatting
+    }
 }
 
 extension Dashes: Equatable { }

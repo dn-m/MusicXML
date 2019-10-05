@@ -11,6 +11,12 @@ public struct Handbell {
     public let value: HandbellValue
     public let printStyle: PrintStyle?
     public let placement: AboveBelow?
+
+    public init(value: HandbellValue, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+        self.value = value
+        self.printStyle = printStyle
+        self.placement = placement
+    }
 }
 
 extension Handbell: Equatable { }

@@ -12,6 +12,12 @@ extension MusicXML {
         public let value: StringNumber
         public let printStyle: PrintStyle?
         public let placement: AboveBelow?
+
+        public init(value: StringNumber, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+            self.value = value
+            self.printStyle = printStyle
+            self.placement = placement
+        }
     }
 }
 

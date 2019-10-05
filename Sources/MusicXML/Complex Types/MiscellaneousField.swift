@@ -15,6 +15,11 @@ public struct MiscellaneousField {
     public let name: String
     // MARK: - Value
     public let value: String
+
+    public init(name: String, value: String) {
+        self.name = name
+        self.value = value
+    }
 }
 
 extension MiscellaneousField: Equatable { }

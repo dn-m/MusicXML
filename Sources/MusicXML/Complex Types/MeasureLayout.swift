@@ -12,6 +12,10 @@ public struct MeasureLayout {
     /// system, as in systems with codas. To specify the measure width, use the width attribute of
     /// the measure element.
     public let measureDistance: Tenths?
+
+    public init(measureDistance: Tenths? = nil) {
+        self.measureDistance = measureDistance
+    }
 }
 
 extension MeasureLayout: Equatable { }

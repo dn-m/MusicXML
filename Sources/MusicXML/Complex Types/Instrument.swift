@@ -10,6 +10,10 @@
 /// specified on a score-part, there should be an instrument element for each note in the part.
 public struct Instrument {
     public let id: String
+
+    public init(id: String) {
+        self.id = id
+    }
 }
 
 extension Instrument: Equatable { }

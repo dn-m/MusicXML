@@ -16,6 +16,18 @@ public struct Tied {
     public var orientation: OverUnder?
     public var bezier: Bezier?
     public var color: Color?
+
+    public init(type: StartStopContinue, number: Int? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting? = nil, position: Position? = nil, placement: AboveBelow? = nil, orientation: OverUnder? = nil, bezier: Bezier? = nil, color: Color? = nil) {
+        self.type = type
+        self.number = number
+        self.lineType = lineType
+        self.dashedFormatting = dashedFormatting
+        self.position = position
+        self.placement = placement
+        self.orientation = orientation
+        self.bezier = bezier
+        self.color = color
+    }
 }
 
 extension Tied: Equatable { }

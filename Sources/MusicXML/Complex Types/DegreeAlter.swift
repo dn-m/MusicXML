@@ -15,6 +15,12 @@ public struct DegreeAlter {
     public let value: Int
     public let printStyle: PrintStyle?
     public let plusMinus: Bool?
+
+    public init(value: Int, printStyle: PrintStyle? = nil, plusMinus: Bool? = nil) {
+        self.value = value
+        self.printStyle = printStyle
+        self.plusMinus = plusMinus
+    }
 }
 
 extension DegreeAlter: Equatable { }

@@ -24,6 +24,13 @@ public struct Figure {
     /// The extend type represents lyric word extension / melisma lines as well as figured bass
     /// extensions.
     public let extend: Extend?
+
+    public init(prefix: StyleText? = nil, figureNumber: StyleText? = nil, suffix: StyleText? = nil, extend: Extend? = nil) {
+        self.prefix = prefix
+        self.figureNumber = figureNumber
+        self.suffix = suffix
+        self.extend = extend
+    }
 }
 
 extension Figure: Equatable { }

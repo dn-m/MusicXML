@@ -13,6 +13,13 @@ public struct Arrow {
     public let position: Position?
     public let printStyle: PrintStyle?
     public let placement: AboveBelow?
+
+    public init(kind: Kind, position: Position? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+        self.kind = kind
+        self.position = position
+        self.printStyle = printStyle
+        self.placement = placement
+    }
 }
 
 extension Arrow {

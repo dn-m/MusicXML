@@ -58,6 +58,16 @@ extension Timewise {
         let width: Tenths?
         let optionalUniqueID: Int?
         let parts: [Part]
+
+        public init(number: Int, text: String? = nil, implicit: Bool? = nil, nonControlling: Bool? = nil, width: Tenths? = nil, optionalUniqueID: Int? = nil, parts: [Part]) {
+            self.number = number
+            self.text = text
+            self.implicit = implicit
+            self.nonControlling = nonControlling
+            self.width = width
+            self.optionalUniqueID = optionalUniqueID
+            self.parts = parts
+        }
     }
 }
 

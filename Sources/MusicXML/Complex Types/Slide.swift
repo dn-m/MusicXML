@@ -17,6 +17,16 @@ public struct Slide {
     public let dashedFormatting: DashedFormatting?
     public let printStyle: PrintStyle?
     public let bendSound: BendSound?
+
+    public init(value: String, type: StartStop, number: Int? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting? = nil, printStyle: PrintStyle? = nil, bendSound: BendSound? = nil) {
+        self.value = value
+        self.type = type
+        self.number = number
+        self.lineType = lineType
+        self.dashedFormatting = dashedFormatting
+        self.printStyle = printStyle
+        self.bendSound = bendSound
+    }
 }
 
 extension Slide: Equatable { }

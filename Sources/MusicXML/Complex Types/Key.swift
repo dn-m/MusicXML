@@ -15,15 +15,24 @@ public struct Key {
     // MARK: - Attributes
 
     /// The optional number attribute refers to staff numbers.
-    public var number: Int?
-    public var position: Position?
-    public var printStyle: PrintStyle?
-    public var printObject: Bool?
+    public let number: Int?
+    public let position: Position?
+    public let printStyle: PrintStyle?
+    public let printObject: Bool?
 
     // MARK: - Elements
 
-    public var kind: Kind
-    public var keyOctave: [KeyOctave]?
+    public let kind: Kind
+    public let keyOctave: [KeyOctave]?
+
+    public init(number: Int? = nil, position: Position? = nil, printStyle: PrintStyle? = nil, printObject: Bool? = nil, kind: Kind, keyOctave: [KeyOctave]? = nil) {
+        self.number = number
+        self.position = position
+        self.printStyle = printStyle
+        self.printObject = printObject
+        self.kind = kind
+        self.keyOctave = keyOctave
+    }
 }
 
 extension Key {
@@ -35,6 +44,11 @@ extension Key {
         self.number = staff
         self.kind = .traditional(Traditional(cancel: cancel, fifths: fifths, mode: mode))
         // TODO: Add remaining attributes and elements
+
+        self.position = nil
+        self.printStyle = nil
+        self.printObject = nil
+        self.keyOctave = nil
     }
 
     /// Creates a `NonTraditional` type `Key`.
@@ -43,6 +57,11 @@ extension Key {
             NonTraditional(step: step, alter: alter, accidental: accidental)
         )
         // TODO: Add remaining attributes and elements
+        self.number = nil
+        self.position = nil
+        self.printStyle = nil
+        self.printObject = nil
+        self.keyOctave = nil
     }
 }
 
@@ -52,6 +71,12 @@ extension Key {
         public var cancel: Cancel?
         public var fifths: Int
         public var mode: Mode?
+
+        public init(cancel: Cancel? = nil, fifths: Int, mode: Mode? = nil) {
+            self.cancel = cancel
+            self.fifths = fifths
+            self.mode = mode
+        }
     }
 
     /// Non-traditional key signatures can be represented using the Humdrum/Scot concept of a list
@@ -61,6 +86,12 @@ extension Key {
         public var step: Step
         public var alter: Double
         public var accidental: AccidentalValue
+
+        public init(step: Step, alter: Double, accidental: AccidentalValue) {
+            self.step = step
+            self.alter = alter
+            self.accidental = accidental
+        }
     }
 
     public enum Kind {

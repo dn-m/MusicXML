@@ -28,6 +28,29 @@ public struct AccidentalText {
     public let lineHeight: NumberOrNormal?
     public let dir: TextDirection?
     public let enclosureShape: EnclosureShape?
+
+    public init(justify: LeftCenterRight? = nil, defaultX: Double? = nil, defaultY: Double? = nil, relativeX: Double? = nil, relativeY: Double? = nil, fontFamily: CommaSeparatedText? = nil, fontSize: FontSize? = nil, fontStyle: FontStyle? = nil, fontWeight: FontWeight? = nil, color: Color? = nil, hAlign: LeftCenterRight? = nil, vAlign: VAlign? = nil, underline: Int? = nil, overline: Int? = nil, lineThrough: Int? = nil, rotation: Double? = nil, letterSpacing: NumberOrNormal? = nil, lineHeight: NumberOrNormal? = nil, dir: TextDirection? = nil, enclosureShape: EnclosureShape? = nil) {
+        self.justify = justify
+        self.defaultX = defaultX
+        self.defaultY = defaultY
+        self.relativeX = relativeX
+        self.relativeY = relativeY
+        self.fontFamily = fontFamily
+        self.fontSize = fontSize
+        self.fontStyle = fontStyle
+        self.fontWeight = fontWeight
+        self.color = color
+        self.hAlign = hAlign
+        self.vAlign = vAlign
+        self.underline = underline
+        self.overline = overline
+        self.lineThrough = lineThrough
+        self.rotation = rotation
+        self.letterSpacing = letterSpacing
+        self.lineHeight = lineHeight
+        self.dir = dir
+        self.enclosureShape = enclosureShape
+    }
 }
 
 extension AccidentalText: Equatable { }

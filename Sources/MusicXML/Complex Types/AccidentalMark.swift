@@ -18,6 +18,13 @@ public struct AccidentalMark {
     public var placement: AboveBelow?
     public var position: Position?
     public var printStyle: PrintStyle?
+
+    public init(value: AccidentalValue, placement: AboveBelow? = nil, position: Position? = nil, printStyle: PrintStyle? = nil) {
+        self.value = value
+        self.placement = placement
+        self.position = position
+        self.printStyle = printStyle
+    }
 }
 
 extension AccidentalMark: Equatable { }

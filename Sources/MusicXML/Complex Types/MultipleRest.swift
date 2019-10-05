@@ -17,6 +17,11 @@ public struct MultipleRest {
     // MARK: - Value
 
     public var value: Int
+
+    public init(useSymbols: Bool? = nil, value: Int) {
+        self.useSymbols = useSymbols
+        self.value = value
+    }
 }
 
 extension MultipleRest: Equatable { }

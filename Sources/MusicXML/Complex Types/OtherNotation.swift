@@ -16,6 +16,15 @@ public struct OtherNotation {
     public let printObject: Bool?
     public let printStyle: PrintStyle?
     public let placement: AboveBelow?
+
+    public init(value: String, type: StartStopSingle, number: Int? = nil, printObject: Bool? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+        self.value = value
+        self.type = type
+        self.number = number
+        self.printObject = printObject
+        self.printStyle = printStyle
+        self.placement = placement
+    }
 }
 
 extension OtherNotation: Equatable { }

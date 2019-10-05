@@ -10,6 +10,12 @@ public struct EmptyPlacement {
     public var position: Position?
     public var printStyle: PrintStyle?
     public var placement: AboveBelow?
+
+    public init(position: Position? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+        self.position = position
+        self.printStyle = printStyle
+        self.placement = placement
+    }
 }
 
 extension EmptyPlacement: Equatable { }

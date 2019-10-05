@@ -12,6 +12,11 @@
 public struct DashedFormatting {
     public let dashLength: Tenths
     public let spaceLength: Tenths
+
+    public init(dashLength: Tenths, spaceLength: Tenths) {
+        self.dashLength = dashLength
+        self.spaceLength = spaceLength
+    }
 }
 
 extension DashedFormatting: Equatable { }

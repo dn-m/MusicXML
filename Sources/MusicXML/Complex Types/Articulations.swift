@@ -7,6 +7,10 @@
 
 public struct Articulations {
     let values: [Articulation]
+
+    public init(values: [Articulation]) {
+        self.values = values
+    }
 }
 
 extension Articulations: Equatable { }

@@ -15,6 +15,12 @@ public struct BassStep {
     /// contents.
     public let text: String?
     public let printStyle: PrintStyle?
+
+    public init(value: Step, text: String? = nil, printStyle: PrintStyle? = nil) {
+        self.value = value
+        self.text = text
+        self.printStyle = printStyle
+    }
 }
 
 extension BassStep: Equatable { }
