@@ -14,6 +14,12 @@ public struct Appearance {
     public let noteSize: NoteSizeType?
     public let distance: Distance?
     // TODO: other-appearance?
+
+    public init(lineWidth: LineWidth? = nil, noteSize: NoteSizeType? = nil, distance: Distance? = nil) {
+        self.lineWidth = lineWidth
+        self.noteSize = noteSize
+        self.distance = distance
+    }
 }
 
 extension Appearance: Equatable { }

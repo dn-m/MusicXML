@@ -12,6 +12,11 @@
 public struct PageLayout {
     public let size: Size?
     public let margins: [Margins]
+
+    public init(size: Size? = nil, margins: [Margins]) {
+        self.size = size
+        self.margins = margins
+    }
 }
 
 extension PageLayout {
@@ -19,12 +24,22 @@ extension PageLayout {
     public struct Size: Codable, Equatable {
         let height: Tenths
         let width: Tenths
+
+        public init(height: Tenths, width: Tenths) {
+            self.height = height
+            self.width = width
+        }
     }
 
     #warning("FIXME: Refactor Margins a little better to encode logic")
     public struct Margins: Codable, Equatable {
         let even: PageMargins
         let odd: PageMargins?
+
+        public init(even: PageMargins, odd: PageMargins? = nil) {
+            self.even = even
+            self.odd = odd
+        }
     }
 }
 

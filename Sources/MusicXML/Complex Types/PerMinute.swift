@@ -12,6 +12,11 @@
 public struct PerMinute {
     public let value: String
     public let font: Font?
+
+    public init(value: String, font: Font? = nil) {
+        self.value = value
+        self.font = font
+    }
 }
 
 extension PerMinute: Equatable { }

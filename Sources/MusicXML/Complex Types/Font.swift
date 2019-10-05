@@ -20,6 +20,13 @@ public struct Font {
     public let style: FontStyle
     public let size: FontSize
     public let weight: FontWeight
+
+    public init(family: CommaSeparatedText, style: FontStyle, size: FontSize, weight: FontWeight) {
+        self.family = family
+        self.style = style
+        self.size = size
+        self.weight = weight
+    }
 }
 
 extension Font: Equatable { }

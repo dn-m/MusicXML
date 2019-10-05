@@ -38,6 +38,13 @@ public struct Credit {
     /// compressed MusicXML file, the link is relative to the  root folder of the zip file.
     public let link: [Link]?
     public let bookmarks: [Bookmark]?
+
+    public init(page: Int? = nil, types: [String]? = nil, link: [Link]? = nil, bookmarks: [Bookmark]? = nil) {
+        self.page = page
+        self.types = types
+        self.link = link
+        self.bookmarks = bookmarks
+    }
 }
 
 extension Credit {
@@ -46,6 +53,12 @@ extension Credit {
         public let words: FormattedText
         public let links: [Link]
         public let bookmark: [Bookmark]
+
+        public init(words: FormattedText, links: [Link], bookmark: [Bookmark]) {
+            self.words = words
+            self.links = links
+            self.bookmark = bookmark
+        }
     }
 
     #warning("FIXME: Establish correct model for Credit.Kind.words")

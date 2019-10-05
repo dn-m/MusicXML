@@ -9,6 +9,11 @@
 public struct StyleText {
     public let value: String
     public let printStyle: PrintStyle?
+
+    public init(value: String, printStyle: PrintStyle? = nil) {
+        self.value = value
+        self.printStyle = printStyle
+    }
 }
 
 extension StyleText: Equatable { }

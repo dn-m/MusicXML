@@ -10,6 +10,11 @@
 public struct SystemMargins {
     public let left: Tenths
     public let right: Tenths
+
+    public init(left: Tenths, right: Tenths) {
+        self.left = left
+        self.right = right
+    }
 }
 
 extension SystemMargins: Equatable { }

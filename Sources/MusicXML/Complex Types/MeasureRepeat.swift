@@ -14,6 +14,11 @@
 public struct MeasureRepeat {
     public let type: StartStop
     public let slashes: Int
+
+    public init(type: StartStop, slashes: Int) {
+        self.type = type
+        self.slashes = slashes
+    }
 }
 
 extension MeasureRepeat: Equatable { }

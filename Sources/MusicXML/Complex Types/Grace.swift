@@ -12,6 +12,13 @@ public struct Grace {
     public let stealTimeFollowing: Int?
     public let makeTime: Divisions?
     public let slash: Bool?
+
+    public init(stealTimePrevious: Int? = nil, stealTimeFollowing: Int? = nil, makeTime: Divisions? = nil, slash: Bool? = nil) {
+        self.stealTimePrevious = stealTimePrevious
+        self.stealTimeFollowing = stealTimeFollowing
+        self.makeTime = makeTime
+        self.slash = slash
+    }
 }
 
 extension Grace: Equatable { }

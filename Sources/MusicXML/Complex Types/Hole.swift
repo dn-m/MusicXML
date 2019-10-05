@@ -20,6 +20,14 @@ public struct Hole {
     public let holeShape: String?
     public let printStyle: PrintStyle?
     public let placement: AboveBelow?
+
+    public init(holeType: String? = nil, holeClosed: HoleClosed, holeShape: String? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+        self.holeType = holeType
+        self.holeClosed = holeClosed
+        self.holeShape = holeShape
+        self.printStyle = printStyle
+        self.placement = placement
+    }
 }
 
 extension Hole: Equatable { }

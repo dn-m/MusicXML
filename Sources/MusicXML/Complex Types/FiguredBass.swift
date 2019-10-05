@@ -15,7 +15,7 @@ public struct FiguredBass {
     public let printout: Printout
 
     // > The value of parentheses is "no" if not present.
-    public let parentheses: Bool = false
+    public let parentheses: Bool
 
     /// The figure type represents a single figure within a figured-bass element.
     public let figures: [Figure] // NonEmpty
@@ -33,6 +33,16 @@ public struct FiguredBass {
 
     /// The level type is used to specify editorial information for different MusicXML elements.
     public let level: Level?
+
+    public init(printStyle: PrintStyle, printout: Printout, parentheses: Bool = false, figures: [Figure], duration: Int? = nil, footnote: FormattedText? = nil, level: Level? = nil) {
+        self.printStyle = printStyle
+        self.printout = printout
+        self.parentheses = parentheses
+        self.figures = figures
+        self.duration = duration
+        self.footnote = footnote
+        self.level = level
+    }
 }
 
 extension FiguredBass: Equatable { }

@@ -24,6 +24,13 @@ public struct MeasureStyle {
     // MARK: - Elements
 
     public var kind: Kind
+
+    public init(number: Int? = nil, font: Font? = nil, color: Color? = nil, kind: Kind) {
+        self.number = number
+        self.font = font
+        self.color = color
+        self.kind = kind
+    }
 }
 
 extension MeasureStyle {

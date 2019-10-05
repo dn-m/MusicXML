@@ -19,6 +19,11 @@ extension Timewise {
     public struct Part {
         public var id: String
         public var musicData: [MusicData]
+
+        public init(id: String, musicData: [MusicData]) {
+            self.id = id
+            self.musicData = musicData
+        }
     }
 }
 

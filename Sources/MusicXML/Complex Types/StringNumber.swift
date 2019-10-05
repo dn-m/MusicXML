@@ -9,6 +9,10 @@
 /// being the highest pitched string.
 public struct StringNumber {
     public let value: Int
+
+    public init(value: Int) {
+        self.value = value
+    }
 }
 
 extension StringNumber: Equatable { }

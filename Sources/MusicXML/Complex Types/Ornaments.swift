@@ -14,6 +14,11 @@ public struct Ornaments {
 
     public var values: [Ornament]
     public var accidentalMarks: [AccidentalMark]?
+
+    public init(values: [Ornament], accidentalMarks: [AccidentalMark]? = nil) {
+        self.values = values
+        self.accidentalMarks = accidentalMarks
+    }
 }
 
 extension Ornaments: Equatable { }

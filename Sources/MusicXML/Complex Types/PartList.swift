@@ -18,6 +18,10 @@ public struct PartList {
     public init(_ parts: [Item]) {
         self.parts = parts
     }
+
+    public init(parts: [Item]) {
+        self.parts = parts
+    }
 }
 
 extension PartList {

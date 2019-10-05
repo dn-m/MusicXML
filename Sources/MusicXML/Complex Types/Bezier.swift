@@ -24,6 +24,15 @@ public struct Bezier {
     public let bezierY2: Int
     public let bezierOffset: Int
     public let bezierOffset2: Int
+
+    public init(bezierX: Int, bezierY: Int, bezierX2: Int, bezierY2: Int, bezierOffset: Int, bezierOffset2: Int) {
+        self.bezierX = bezierX
+        self.bezierY = bezierY
+        self.bezierX2 = bezierX2
+        self.bezierY2 = bezierY2
+        self.bezierOffset = bezierOffset
+        self.bezierOffset2 = bezierOffset2
+    }
 }
 
 extension Bezier: Equatable { }

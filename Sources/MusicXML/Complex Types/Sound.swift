@@ -43,6 +43,28 @@ public struct Sound {
     public let sostenutoPedal: YesNoNumber?
     public let offset: Offset?
     public let midi: [MIDI]
+
+    public init(tempo: Double? = nil, dynamics: Double? = nil, dacapo: Bool? = nil, segno: String? = nil, dalsegno: String? = nil, coda: String? = nil, tocoda: String? = nil, divisions: Divisions? = nil, forwardRepeat: Bool? = nil, fine: String? = nil, timeOnly: TimeOnly? = nil, pizzicato: Bool? = nil, pan: Double? = nil, elevation: Double? = nil, damperPedal: YesNoNumber? = nil, softPedal: YesNoNumber? = nil, sostenutoPedal: YesNoNumber? = nil, offset: Offset? = nil, midi: [MIDI]) {
+        self.tempo = tempo
+        self.dynamics = dynamics
+        self.dacapo = dacapo
+        self.segno = segno
+        self.dalsegno = dalsegno
+        self.coda = coda
+        self.tocoda = tocoda
+        self.divisions = divisions
+        self.forwardRepeat = forwardRepeat
+        self.fine = fine
+        self.timeOnly = timeOnly
+        self.pizzicato = pizzicato
+        self.pan = pan
+        self.elevation = elevation
+        self.damperPedal = damperPedal
+        self.softPedal = softPedal
+        self.sostenutoPedal = sostenutoPedal
+        self.offset = offset
+        self.midi = midi
+    }
 }
 
 extension Sound {
@@ -64,6 +86,12 @@ extension Sound {
         /// affected instrument should be specified using the id attribute. When used as part of a
         /// note element, it applies to the current note only.
         public let play: Play?
+
+        public init(midiDevice: MIDIDevice? = nil, midiInstrument: MIDIInstrument? = nil, play: Play? = nil) {
+            self.midiDevice = midiDevice
+            self.midiInstrument = midiInstrument
+            self.play = play
+        }
     }
 }
 

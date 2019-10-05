@@ -12,6 +12,13 @@ public struct BassAlter {
     public let printObject: Bool?
     public let printStyle: PrintStyle?
     public let location: LeftRight?
+
+    public init(value: Double, printObject: Bool? = nil, printStyle: PrintStyle? = nil, location: LeftRight? = nil) {
+        self.value = value
+        self.printObject = printObject
+        self.printStyle = printStyle
+        self.location = location
+    }
 }
 
 extension BassAlter: Equatable { }

@@ -9,6 +9,11 @@
 public struct GroupBarline {
     public var value: GroupBarlineValue
     public var color: Color?
+
+    public init(value: GroupBarlineValue, color: Color? = nil) {
+        self.value = value
+        self.color = color
+    }
 }
 
 extension GroupBarline: Equatable { }

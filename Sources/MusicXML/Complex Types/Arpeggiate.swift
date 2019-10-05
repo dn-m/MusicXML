@@ -15,6 +15,14 @@ public struct Arpeggiate {
     public var position: Position?
     public var placement: AboveBelow?
     public var color: Color?
+
+    public init(number: Int? = nil, direction: UpDown? = nil, position: Position? = nil, placement: AboveBelow? = nil, color: Color? = nil) {
+        self.number = number
+        self.direction = direction
+        self.position = position
+        self.placement = placement
+        self.color = color
+    }
 }
 
 extension Arpeggiate: Equatable { }

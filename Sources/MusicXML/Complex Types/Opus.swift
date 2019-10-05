@@ -10,6 +10,9 @@
 #warning("TODO: Flesh out Opus")
 public struct Opus {
 
+
+    public init() {
+    }
 }
 
 extension Opus: Equatable { }

@@ -24,6 +24,17 @@ public struct Ending {
     public let endLength: Tenths?
     public let textX: Tenths?
     public let textY: Tenths?
+
+    public init(value: EndingNumber, number: [Int], type: StartStopContinue, printObject: Bool? = nil, printStyle: PrintStyle? = nil, endLength: Tenths? = nil, textX: Tenths? = nil, textY: Tenths? = nil) {
+        self.value = value
+        self.number = number
+        self.type = type
+        self.printObject = printObject
+        self.printStyle = printStyle
+        self.endLength = endLength
+        self.textX = textX
+        self.textY = textY
+    }
 }
 
 extension Ending: Equatable { }

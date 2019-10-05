@@ -15,6 +15,16 @@ public struct TextFontColor {
     public let textRotation: Double?
     public let letterSpacing: NumberOrNormal?
     public let dir: TextDirection?
+
+    public init(value: String, font: Font? = nil, color: Color? = nil, textDecoration: TextDecoration? = nil, textRotation: Double? = nil, letterSpacing: NumberOrNormal? = nil, dir: TextDirection? = nil) {
+        self.value = value
+        self.font = font
+        self.color = color
+        self.textDecoration = textDecoration
+        self.textRotation = textRotation
+        self.letterSpacing = letterSpacing
+        self.dir = dir
+    }
 }
 
 extension TextFontColor: Equatable { }

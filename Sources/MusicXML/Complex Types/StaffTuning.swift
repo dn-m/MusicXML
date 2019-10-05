@@ -12,6 +12,13 @@ public struct StaffTuning {
     public let tuningAlter: Double?
     public let tuningOctave: Int
 
+
+    public init(line: Int? = nil, tuningStep: Step, tuningAlter: Double? = nil, tuningOctave: Int) {
+        self.line = line
+        self.tuningStep = tuningStep
+        self.tuningAlter = tuningAlter
+        self.tuningOctave = tuningOctave
+    }
 }
 
 extension StaffTuning: Equatable { }

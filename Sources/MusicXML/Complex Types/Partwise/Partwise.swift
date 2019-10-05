@@ -17,6 +17,16 @@ public struct Partwise {
     public var defaults: Defaults?
     public var credits: [Credit]?
     public var parts: [Part]
+
+    public init(work: Work? = nil, movementNumber: String? = nil, movementTitle: String? = nil, identification: Identification? = nil, defaults: Defaults? = nil, credits: [Credit]? = nil, parts: [Part]) {
+        self.work = work
+        self.movementNumber = movementNumber
+        self.movementTitle = movementTitle
+        self.identification = identification
+        self.defaults = defaults
+        self.credits = credits
+        self.parts = parts
+    }
 }
 
 extension Partwise: Equatable { }

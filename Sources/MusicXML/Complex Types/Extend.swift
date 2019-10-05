@@ -11,6 +11,11 @@
 public struct Extend {
     public let type: StartStopContinue?
     public let printStyle: PrintStyle?
+
+    public init(type: StartStopContinue? = nil, printStyle: PrintStyle? = nil) {
+        self.type = type
+        self.printStyle = printStyle
+    }
 }
 
 extension Extend: Equatable { }

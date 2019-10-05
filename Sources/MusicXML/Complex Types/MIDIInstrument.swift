@@ -38,6 +38,18 @@ public struct MIDIInstrument {
     /// listener. Both are expressed in degrees ranging from -180 to 180. For elevation, 0 is level
     /// with the listener, 90 is directly above, and -90 is directly below.
     public var elevation: Int?
+
+    public init(id: String, midiChannel: Int? = nil, midiName: String? = nil, midiBank: Int? = nil, midiProgram: Int? = nil, midiUnpitched: Int? = nil, volume: Double? = nil, pan: Int? = nil, elevation: Int? = nil) {
+        self.id = id
+        self.midiChannel = midiChannel
+        self.midiName = midiName
+        self.midiBank = midiBank
+        self.midiProgram = midiProgram
+        self.midiUnpitched = midiUnpitched
+        self.volume = volume
+        self.pan = pan
+        self.elevation = elevation
+    }
 }
 
 extension MIDIInstrument: Equatable { }

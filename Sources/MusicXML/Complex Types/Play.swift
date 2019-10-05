@@ -21,6 +21,10 @@ public struct Play {
     }
 
     public let values: [Kind]
+
+    public init(values: [Kind]) {
+        self.values = values
+    }
 }
 
 extension Play.Kind: Equatable { }

@@ -9,6 +9,10 @@
 /// staff-tuning elements. Strings are numbered from high to low.
 public struct Scordatura {
     public let accord: [Accord] // NonEmpty
+
+    public init(accord: [Accord]) {
+        self.accord = accord
+    }
 }
 
 extension Scordatura: Equatable { }

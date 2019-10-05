@@ -31,6 +31,14 @@ public struct Transpose {
     /// from what is currently written (as is the case for mixed cello / bass parts in orchestral
     /// literature).
     public let double: Bool
+
+    public init(number: Int? = nil, diatonic: Int? = nil, chromatic: Int, octaveChange: Int, double: Bool) {
+        self.number = number
+        self.diatonic = diatonic
+        self.chromatic = chromatic
+        self.octaveChange = octaveChange
+        self.double = double
+    }
 }
 
 extension Transpose: Equatable { }

@@ -10,6 +10,11 @@
 public struct KeyOctave {
     public let number: Int
     public let cancel: Bool
+
+    public init(number: Int, cancel: Bool) {
+        self.number = number
+        self.cancel = cancel
+    }
 }
 
 extension KeyOctave: Equatable { }

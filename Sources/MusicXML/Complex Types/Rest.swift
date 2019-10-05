@@ -13,6 +13,7 @@ public struct Rest {
 //    public let displayStep: Int?
 //    public let displayOctave: Int?
 //    public let measure: Bool?
+    public init() {}
 }
 
 extension Rest: Equatable { }

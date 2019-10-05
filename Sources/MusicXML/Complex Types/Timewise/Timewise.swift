@@ -21,6 +21,16 @@ public struct Timewise {
 
     /// The `Measure` values which comprise a `Timewise` traversal of a `MusicXML` score.
     let measures: [Measure]
+
+    public init(work: Work? = nil, movementNumber: String? = nil, movementTitle: String? = nil, identification: Identification? = nil, defaults: Defaults? = nil, credits: [Credit]? = nil, measures: [Measure]) {
+        self.work = work
+        self.movementNumber = movementNumber
+        self.movementTitle = movementTitle
+        self.identification = identification
+        self.defaults = defaults
+        self.credits = credits
+        self.measures = measures
+    }
 }
 
 extension Timewise: Equatable { }

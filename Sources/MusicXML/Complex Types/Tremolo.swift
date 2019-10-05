@@ -20,6 +20,13 @@ public struct Tremolo {
     public let type: StartStopSingle?
     public let printStyle: PrintStyle?
     public let placement: AboveBelow?
+
+    public init(marks: Int, type: StartStopSingle? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+        self.marks = marks
+        self.type = type
+        self.printStyle = printStyle
+        self.placement = placement
+    }
 }
 
 extension Tremolo: Equatable { }

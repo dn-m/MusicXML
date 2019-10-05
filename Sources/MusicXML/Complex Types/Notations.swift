@@ -22,6 +22,13 @@ public struct Notations {
     public var footnote: FormattedText?
     public var level: Level?
     public var values: [Notation]
+
+    public init(printObject: Bool? = nil, footnote: FormattedText? = nil, level: Level? = nil, values: [Notation]) {
+        self.printObject = printObject
+        self.footnote = footnote
+        self.level = level
+        self.values = values
+    }
 }
 
 extension Notations {

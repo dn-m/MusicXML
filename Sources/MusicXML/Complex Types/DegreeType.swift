@@ -13,6 +13,12 @@ public struct DegreeType {
     let value: DegreeTypeValue
     let text: String?
     let printStyle: PrintStyle?
+
+    public init(value: DegreeTypeValue, text: String? = nil, printStyle: PrintStyle? = nil) {
+        self.value = value
+        self.text = text
+        self.printStyle = printStyle
+    }
 }
 
 extension DegreeType: Equatable { }

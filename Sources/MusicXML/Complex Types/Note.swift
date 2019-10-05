@@ -13,67 +13,159 @@
 /// easier, as some programs handle one type of information much more readily than the other.
 public struct Note {
 
-    public var kind: Kind
+    public let kind: Kind
 
     // MARK: - Attributes
 
-    public var position: Position = Position()
-    public var fontFamily: CommaSeparatedText?
-    public var fontStyle: FontStyle?
-    public var fontSize: FontSize?
-    public var fontWeight: FontWeight?
-    public var color: Color?
-    public var printStyle: PrintStyle?
-    public var printObject: Bool?
-    public var printDot: Bool?
-    public var printSpacing: Bool?
-    public var printLyric: Bool?
-    public var dynamics: Double?
-    public var endDynamics: Double?
-    public var attack: Divisions?
-    public var release: Divisions?
-    public var timeOnly: TimeOnly?
-    public var pizzicato: Bool?
+    public let position: Position
+    public let fontFamily: CommaSeparatedText?
+    public let fontStyle: FontStyle?
+    public let fontSize: FontSize?
+    public let fontWeight: FontWeight?
+    public let color: Color?
+    public let printStyle: PrintStyle?
+    public let printObject: Bool?
+    public let printDot: Bool?
+    public let printSpacing: Bool?
+    public let printLyric: Bool?
+    public let dynamics: Double?
+    public let endDynamics: Double?
+    public let attack: Divisions?
+    public let release: Divisions?
+    public let timeOnly: TimeOnly?
+    public let pizzicato: Bool?
 
     // MARK: - Elements
 
-    public var instrument: Instrument?
-    public var footnote: FormattedText?
-    public var level: Level?
-    public var voice: String?
-    public var type: NoteType?
+    public let instrument: Instrument?
+    public let footnote: FormattedText?
+    public let level: Level?
+    public let voice: String?
+    public let type: NoteType?
     #warning("Reinstate Note.dots when we can decode potentially-empty elements properly")
-    // public var dots: [EmptyPlacement]?
-    public var accidental: Accidental?
-    public var timeModification: TimeModification?
-    public var stem: Stem?
-    public var notehead: Notehead?
-    public var noteheadText: NoteheadText?
-    public var staff: Int?
-    public var beams: [Beam]? // Up to 8
-    public var notations: Notations?
-    public var lyrics: [Lyric]?
-    public var play: Play?
+    // public let dots: [EmptyPlacement]?
+    public let accidental: Accidental?
+    public let timeModification: TimeModification?
+    public let stem: Stem?
+    public let notehead: Notehead?
+    public let noteheadText: NoteheadText?
+    public let staff: Int?
+    public let beams: [Beam]? // Up to 8
+    public let notations: Notations?
+    public let lyrics: [Lyric]?
+    public let play: Play?
+
+    public init(
+        kind: Kind,
+        position: Position = Position(),
+        fontFamily: CommaSeparatedText? = nil,
+        fontStyle: FontStyle? = nil,
+        fontSize: FontSize? = nil,
+        fontWeight: FontWeight? = nil,
+        color: Color? = nil,
+        printStyle: PrintStyle? = nil,
+        printObject: Bool? = nil,
+        printDot: Bool? = nil,
+        printSpacing: Bool? = nil,
+        printLyric: Bool? = nil,
+        dynamics: Double? = nil,
+        endDynamics: Double? = nil,
+        attack: Divisions? = nil,
+        release: Divisions? = nil,
+        timeOnly: TimeOnly? = nil,
+        pizzicato: Bool? = nil,
+        instrument: Instrument? = nil,
+        footnote: FormattedText? = nil,
+        level: Level? = nil,
+        voice: String? = nil,
+        type: NoteType? = nil,
+        // dots: [EmptyPlacement]? = nil,
+        accidental: Accidental? = nil,
+        timeModification: TimeModification? = nil,
+        stem: Stem? = nil,
+        notehead: Notehead? = nil,
+        noteheadText: NoteheadText? = nil,
+        staff: Int? = nil,
+        beams: [Beam]? = nil,
+        notations: Notations? = nil,
+        lyrics: [Lyric]? = nil,
+        play: Play? = nil) {
+
+        self.kind = kind
+        self.position = position
+        self.fontFamily = fontFamily
+        self.fontStyle = fontStyle
+        self.fontSize = fontSize
+        self.fontWeight = fontWeight
+        self.color = color
+        self.printStyle = printStyle
+        self.printObject = printObject
+        self.printDot = printDot
+        self.printSpacing = printSpacing
+        self.printLyric = printLyric
+        self.dynamics = dynamics
+        self.endDynamics = endDynamics
+        self.attack = attack
+        self.release = release
+        self.timeOnly = timeOnly
+        self.pizzicato = pizzicato
+        self.instrument = instrument
+        self.footnote = footnote
+        self.level = level
+        self.voice = voice
+        self.type = type
+        #warning("Reinstate Note.dots when we can decode potentially-empty elements properly")
+        // self.dots = dots
+        self.accidental = accidental
+        self.timeModification = timeModification
+        self.stem = stem
+        self.notehead = notehead
+        self.noteheadText = noteheadText
+        self.staff = staff
+        self.beams = beams
+        self.notations = notations
+        self.lyrics = lyrics
+        self.play = play
+    }
 }
 
 extension Note {
     public struct Normal: Equatable {
-        public var chord = false
-        public var pitchUnpitchedOrRest: PitchUnpitchedOrRest
-        public var duration: Int
-        public var ties: Ties?
+        public let chord: Bool
+        public let pitchUnpitchedOrRest: PitchUnpitchedOrRest
+        public let duration: Int
+        public let ties: Ties?
+
+        public init(chord: Bool = false, pitchUnpitchedOrRest: PitchUnpitchedOrRest, duration: Int, ties: Ties? = nil) {
+            self.chord = chord
+            self.pitchUnpitchedOrRest = pitchUnpitchedOrRest
+            self.duration = duration
+            self.ties = ties
+        }
     }
 
     public struct Cue: Equatable {
-        public var chord = false
-        public var pitchUnpitchedOrRest: PitchUnpitchedOrRest
-        public var duration: Int
+        public let chord: Bool
+        public let pitchUnpitchedOrRest: PitchUnpitchedOrRest
+        public let duration: Int
+
+        public init(chord: Bool = false, pitchUnpitchedOrRest: PitchUnpitchedOrRest, duration: Int) {
+            self.chord = chord
+            self.pitchUnpitchedOrRest = pitchUnpitchedOrRest
+            self.duration = duration
+        }
     }
 
     public struct Grace: Equatable {
-        public var chord = false
-        public var pitchUnpitchedOrRest: PitchUnpitchedOrRest
-        public var ties: Ties?
+        public let chord: Bool
+        public let pitchUnpitchedOrRest: PitchUnpitchedOrRest
+        public let ties: Ties?
+
+        public init(chord: Bool = false, pitchUnpitchedOrRest: PitchUnpitchedOrRest, ties: Ties? = nil) {
+            self.chord = chord
+            self.pitchUnpitchedOrRest = pitchUnpitchedOrRest
+            self.ties = ties
+        }
     }
 
     public enum Kind: Equatable {
@@ -126,6 +218,10 @@ extension Note: Codable {
         case chord
         case duration
         case tie
+        
+        case pitch
+        case rest
+        case unpitched
     }
     #warning("Reinstate Note.dots when we can decode potentially-empty elements properly")
     public init(from decoder: Decoder) throws {
@@ -170,8 +266,18 @@ extension Note: Codable {
         let ties = try container.decodeIfPresent([Tie].self, forKey: .tie).map(Ties.init)
 
         // Decode pitch / unpitched / rest
-        let pitchUnpitchedRestContainer = try decoder.singleValueContainer()
-        let pitchUnpitchedOrRest = try pitchUnpitchedRestContainer.decode(PitchUnpitchedOrRest.self)
+        let pitchUnpitchedOrRest: PitchUnpitchedOrRest
+        if container.contains(.pitch) {
+            let pitch = try container.decode(Pitch.self, forKey: .pitch)
+            pitchUnpitchedOrRest = .pitch(pitch)
+        } else if container.contains(.rest) {
+            let rest = try container.decode(Rest.self, forKey: .rest)
+            pitchUnpitchedOrRest =  .rest(rest)
+        } else {
+            let unpitched = try container.decode(Unpitched.self, forKey: .unpitched)
+            pitchUnpitchedOrRest = .unpitched(unpitched)
+        }
+
         // Decode kind
         if container.contains(.grace) {
             self.kind = .grace(

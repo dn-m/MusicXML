@@ -10,6 +10,10 @@
 /// miscellaneous-field type.
 public struct Miscellaneous {
     public let fields: [MiscellaneousField]
+
+    public init(fields: [MiscellaneousField]) {
+        self.fields = fields
+    }
 }
 
 extension Miscellaneous: Equatable { }

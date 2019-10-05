@@ -11,6 +11,12 @@ public struct PlacementText {
     public let position: Position
     public let printStyle: PrintStyle
     public let placement: AboveBelow
+
+    public init(position: Position, printStyle: PrintStyle, placement: AboveBelow) {
+        self.position = position
+        self.printStyle = printStyle
+        self.placement = placement
+    }
 }
 
 extension PlacementText: Equatable { }

@@ -16,6 +16,15 @@ public struct Glissando {
     public let lineType: LineType?
     public let dashedFormatting: DashedFormatting?
     public let printStyle: PrintStyle?
+
+    public init(value: String, type: StartStop, number: Int? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting? = nil, printStyle: PrintStyle? = nil) {
+        self.value = value
+        self.type = type
+        self.number = number
+        self.lineType = lineType
+        self.dashedFormatting = dashedFormatting
+        self.printStyle = printStyle
+    }
 }
 
 extension Glissando: Equatable { }

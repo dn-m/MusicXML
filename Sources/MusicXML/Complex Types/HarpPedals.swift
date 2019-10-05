@@ -12,6 +12,11 @@
 public struct HarpPedals {
     public let printStyleAlign: PrintStyleAlign
     public let pedalTuning: [PedalTuning]
+
+    public init(printStyleAlign: PrintStyleAlign, pedalTuning: [PedalTuning]) {
+        self.printStyleAlign = printStyleAlign
+        self.pedalTuning = pedalTuning
+    }
 }
 
 extension HarpPedals: Equatable { }

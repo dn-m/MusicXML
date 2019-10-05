@@ -9,6 +9,11 @@
 public struct StringMute {
     public let type: OnOff
     public let printStyleAlign: PrintStyleAlign?
+
+    public init(type: OnOff, printStyleAlign: PrintStyleAlign? = nil) {
+        self.type = type
+        self.printStyleAlign = printStyleAlign
+    }
 }
 
 extension StringMute: Equatable { }

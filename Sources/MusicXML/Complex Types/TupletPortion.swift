@@ -13,6 +13,12 @@ public struct TupletPortion {
     public let tupletNumber: TupletNumber?
     public let tupletType: TupletType?
     public let tupletDot: [TupletDot]
+
+    public init(tupletNumber: TupletNumber? = nil, tupletType: TupletType? = nil, tupletDot: [TupletDot]) {
+        self.tupletNumber = tupletNumber
+        self.tupletType = tupletType
+        self.tupletDot = tupletDot
+    }
 }
 
 extension TupletPortion: Equatable { }

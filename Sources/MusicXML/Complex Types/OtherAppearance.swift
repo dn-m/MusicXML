@@ -11,6 +11,11 @@
 public struct OtherAppearance {
     public let value: String
     public let type: String
+
+    public init(value: String, type: String) {
+        self.value = value
+        self.type = type
+    }
 }
 
 extension OtherAppearance: Equatable { }

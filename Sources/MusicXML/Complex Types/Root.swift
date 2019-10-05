@@ -12,6 +12,11 @@
 public struct Root {
     public let step: RootStep
     public let alter: RootAlter?
+
+    public init(step: RootStep, alter: RootAlter? = nil) {
+        self.step = step
+        self.alter = alter
+    }
 }
 
 extension Root: Equatable { }

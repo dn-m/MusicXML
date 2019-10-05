@@ -26,6 +26,19 @@ public struct PartGroup {
     public var barline: GroupBarline?
     public var time: Bool?
     public var editorial: Editorial?
+
+    public init(type: StartStop, number: Int? = nil, name: GroupName? = nil, nameDisplay: NameDisplay? = nil, abbreviation: GroupName? = nil, abbreviationDisplay: NameDisplay? = nil, symbol: GroupSymbol? = nil, barline: GroupBarline? = nil, time: Bool? = nil, editorial: Editorial? = nil) {
+        self.type = type
+        self.number = number
+        self.name = name
+        self.nameDisplay = nameDisplay
+        self.abbreviation = abbreviation
+        self.abbreviationDisplay = abbreviationDisplay
+        self.symbol = symbol
+        self.barline = barline
+        self.time = time
+        self.editorial = editorial
+    }
 }
 
 extension PartGroup: Equatable { }

@@ -11,6 +11,12 @@ public struct EmptyPrintStyleAlign {
     public let printStyle: PrintStyle?
     public let hAlign: LeftCenterRight?
     public let vAlign: VAlign?
+
+    public init(printStyle: PrintStyle? = nil, hAlign: LeftCenterRight? = nil, vAlign: VAlign? = nil) {
+        self.printStyle = printStyle
+        self.hAlign = hAlign
+        self.vAlign = vAlign
+    }
 }
 
 extension EmptyPrintStyleAlign: Equatable { }

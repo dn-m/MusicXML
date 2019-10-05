@@ -11,6 +11,13 @@ public struct StrongAccent {
     public let position: Position
     public let printStyle: PrintStyle
     public let placement: AboveBelow
+
+    public init(type: UpDown, position: Position, printStyle: PrintStyle, placement: AboveBelow) {
+        self.type = type
+        self.position = position
+        self.printStyle = printStyle
+        self.placement = placement
+    }
 }
 
 extension StrongAccent: Equatable { }

@@ -10,6 +10,12 @@ public struct LyricFont {
     public let number: Int?
     public let name: String?
     public let font: Font
+
+    public init(number: Int? = nil, name: String? = nil, font: Font) {
+        self.number = number
+        self.name = name
+        self.font = font
+    }
 }
 
 extension LyricFont: Equatable { }

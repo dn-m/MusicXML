@@ -10,4 +10,10 @@ public struct LyricLanguage: Codable, Equatable {
     public let number: Int?
     public let name: String?
     public let language: String?
+
+    public init(number: Int? = nil, name: String? = nil, language: String? = nil) {
+        self.number = number
+        self.name = name
+        self.language = language
+    }
 }

@@ -17,6 +17,13 @@ public struct Printout {
     public let printDot: Bool
     public let printSpacing: Bool
     public let printLyric: Bool
+
+    public init(printObject: Bool, printDot: Bool, printSpacing: Bool, printLyric: Bool) {
+        self.printObject = printObject
+        self.printDot = printDot
+        self.printSpacing = printSpacing
+        self.printLyric = printLyric
+    }
 }
 
 extension Printout: Equatable { }

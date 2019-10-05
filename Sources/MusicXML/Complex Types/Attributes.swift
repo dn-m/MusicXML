@@ -26,18 +26,45 @@
 /// attributes are changed mid-measure, it affects the music in score order, not in MusicXML
 /// document order.
 public struct Attributes {
-    public var footnote: FormattedText?
-    public var level: Level?
-    public var divisions: Int?
-    public var keys: [Key]?
-    public var times: [Time]?
-    public var staves: Int?
-    public var partSymbol: PartSymbol?
-    public var instruments: Int?
-    public var clefs: [Clef]?
-    public var staffDetails: [StaffDetails]?
-    public var transpose: [Transpose]?
-    public var measureStyles: [MeasureStyle]?
+    public let footnote: FormattedText?
+    public let level: Level?
+    public let divisions: Int?
+    public let keys: [Key]?
+    public let times: [Time]?
+    public let staves: Int?
+    public let partSymbol: PartSymbol?
+    public let instruments: Int?
+    public let clefs: [Clef]?
+    public let staffDetails: [StaffDetails]?
+    public let transpose: [Transpose]?
+    public let measureStyles: [MeasureStyle]?
+
+    public init(
+        footnote: FormattedText? = nil,
+        level: Level? = nil,
+        divisions: Int? = nil,
+        keys: [Key]? = nil,
+        times: [Time]? = nil,
+        staves: Int? = nil,
+        partSymbol: PartSymbol? = nil,
+        instruments: Int? = nil,
+        clefs: [Clef]? = nil,
+        staffDetails: [StaffDetails]? = nil,
+        transpose: [Transpose]? = nil,
+        measureStyles: [MeasureStyle]? = nil) {
+        self.footnote = footnote
+        self.level = level
+        self.divisions = divisions
+        self.keys = keys
+        self.times = times
+        self.staves = staves
+        self.partSymbol = partSymbol
+        self.instruments = instruments
+        self.clefs = clefs
+        self.staffDetails = staffDetails
+        self.transpose = transpose
+        self.measureStyles = measureStyles
+    }
 }
 
 extension Attributes: Equatable { }

@@ -18,6 +18,12 @@ public struct MIDIDevice {
     /// The optional id attribute refers to the score-instrument assigned to this device. If
     /// missing, the device assignment affects all score-instrument elements in the score-part.
     public var id: String?
+
+    public init(value: String? = nil, port: Int? = nil, id: String? = nil) {
+        self.value = value
+        self.port = port
+        self.id = id
+    }
 }
 
 extension MIDIDevice: Equatable { }
