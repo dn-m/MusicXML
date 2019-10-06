@@ -39,7 +39,7 @@ extension Ornaments: Codable {
             }
         }
         self.values = ornaments
-        let elementsContainer = try decoder.container(keyedBy: Ornaments.CodingKeys.self)
+        let elementsContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.accidentalMarks = try elementsContainer.decodeIfPresent([AccidentalMark].self, forKey: .accidentalMarks)
     }
 }
