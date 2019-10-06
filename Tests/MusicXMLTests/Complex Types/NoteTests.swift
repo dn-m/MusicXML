@@ -133,15 +133,13 @@ class NoteTests: XCTestCase {
         let expected = Note(
             kind: .normal(
                 Note.Normal(
-                    pitchUnpitchedOrRest: .rest(
-                        Rest(/*displayStep: nil, displayOctave: nil, measure: nil*/)
-                    ),
+                    pitchUnpitchedOrRest: .rest(Rest()),
                     duration: 48
                 )
             ),
             voice: "1",
             type: .quarter,
-            dots: [EmptyPlacement(position: nil, printStyle: nil, placement: nil)]
+            dots: [EmptyPlacement()]
         )
         XCTAssertEqual(decoded, expected)
     }

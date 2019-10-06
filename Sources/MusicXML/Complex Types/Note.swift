@@ -42,7 +42,6 @@ public struct Note {
     public let level: Level?
     public let voice: String?
     public let type: NoteType?
-    #warning("Reinstate Note.dots when we can decode potentially-empty elements properly")
     public let dots: [EmptyPlacement]?
     public let accidental: Accidental?
     public let timeModification: TimeModification?
@@ -89,8 +88,8 @@ public struct Note {
         beams: [Beam]? = nil,
         notations: Notations? = nil,
         lyrics: [Lyric]? = nil,
-        play: Play? = nil) {
-
+        play: Play? = nil
+    ) {
         self.kind = kind
         self.position = position
         self.fontFamily = fontFamily
@@ -114,8 +113,7 @@ public struct Note {
         self.level = level
         self.voice = voice
         self.type = type
-        #warning("Reinstate Note.dots when we can decode potentially-empty elements properly")
-         self.dots = dots
+        self.dots = dots
         self.accidental = accidental
         self.timeModification = timeModification
         self.stem = stem
@@ -262,6 +260,7 @@ extension Note: Codable {
         self.notations = try container.decodeIfPresent(Notations.self, forKey: .notations)
         self.lyrics = try container.decodeIfPresent([Lyric].self, forKey: .lyrics)
         self.play = try container.decodeIfPresent(Play.self, forKey: .play)
+
         let chordEmptyElement = try container.decodeIfPresent(Empty.self, forKey: .chord)
         let ties = try container.decodeIfPresent([Tie].self, forKey: .tie).map(Ties.init)
 
