@@ -140,7 +140,7 @@ class PartwiseMeasureTests: XCTestCase {
                             )
                         ),
                         voice: "1",
-                        type: NoteType(value: .quarter)
+                        type: NoteType( .quarter)
                     )
                 ),
                 .note(
@@ -152,7 +152,7 @@ class PartwiseMeasureTests: XCTestCase {
                             )
                         ),
                         voice: "1",
-                        type: NoteType(value: .quarter)
+                        type: NoteType( .quarter)
                     )
                 ),
                 .note(
@@ -164,7 +164,7 @@ class PartwiseMeasureTests: XCTestCase {
                             )
                         ),
                         voice: "1",
-                        type: NoteType(value: .quarter)
+                        type: NoteType( .quarter)
                     )
                 ),
                 .note(
@@ -176,7 +176,7 @@ class PartwiseMeasureTests: XCTestCase {
                             )
                         ),
                         voice: "1",
-                        type: NoteType(value: .quarter)
+                        type: NoteType( .quarter)
                     )
                 )
             ]

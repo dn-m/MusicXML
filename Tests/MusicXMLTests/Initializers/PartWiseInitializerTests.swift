@@ -51,7 +51,7 @@ class PartWiseInitializerTests: XCTestCase {
                       )
                     ),
                     voice: "1",
-                    type: NoteType(value: .quarter)
+                    type: NoteType(.quarter)
                   )
                 ),
                 .note(
@@ -66,7 +66,7 @@ class PartWiseInitializerTests: XCTestCase {
                         ),
                         position: Position(defaultX: 10, defaultY: -45),
                         voice: "1",
-                        type: NoteType(value: .half),
+                        type: NoteType(.half),
                         stem: Stem(value: .up)
                     )
                 ),

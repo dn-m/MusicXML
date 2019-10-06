@@ -10,7 +10,7 @@ public struct NoteType {
     public let value: NoteTypeValue
     public let size: SymbolSize?
 
-    public init(value: NoteTypeValue, size: SymbolSize? = nil) {
+    public init(_ value: NoteTypeValue, size: SymbolSize? = nil) {
         self.value = value
         self.size = size
     }

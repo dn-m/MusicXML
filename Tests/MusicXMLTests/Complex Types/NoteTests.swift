@@ -34,7 +34,7 @@ class NoteTests: XCTestCase {
                 )
             ),
             voice: "1",
-            type: NoteType(value: .quarter)
+            type: NoteType(.quarter)
         )
         XCTAssertEqual(decoded, expected)
     }
@@ -62,7 +62,7 @@ class NoteTests: XCTestCase {
                 )
             ),
             voice: "1",
-            type: NoteType(value: .quarter),
+            type: NoteType(.quarter),
             accidental: Accidental(value: .sharp)
         )
         XCTAssertEqual(decoded, expected)
@@ -96,7 +96,7 @@ class NoteTests: XCTestCase {
                 )
             ),
             voice: "1",
-            type: NoteType(value: .quarter),
+            type: NoteType(.quarter),
             timeModification: TimeModification(actualNotes: 3, normalNotes: 2),
             notations: Notations(values: [.tuplet(Tuplet(type: .start, number: 1))])
         )
@@ -115,7 +115,7 @@ class NoteTests: XCTestCase {
           <type>quarter</type>
         </note>
         """
-        let expected = Note(kind: .normal(Note.Normal(chord: true, pitchUnpitchedOrRest: .pitch(Pitch(step: .e, octave: 5)), duration: 1)), voice: "1", type: NoteType(value: .quarter))
+        let expected = Note(kind: .normal(Note.Normal(chord: true, pitchUnpitchedOrRest: .pitch(Pitch(step: .e, octave: 5)), duration: 1)), voice: "1", type: NoteType(.quarter))
         try assertDecoded(xml, equals: expected)
     }
 
@@ -141,7 +141,7 @@ class NoteTests: XCTestCase {
                 )
             ),
             voice: "1",
-            type: NoteType(value: .quarter)/*,
+            type: NoteType(.quarter)/*,
             dots: [EmptyPlacement(position: nil, printStyle: nil, placement: nil)]*/
         )
         XCTAssertEqual(decoded, expected)
@@ -175,7 +175,7 @@ class NoteTests: XCTestCase {
             ),
             position: Position(defaultX: 368.91, defaultY: 0),
             voice: "1",
-            type: NoteType(value: .sixteenth),
+            type: NoteType(.sixteenth),
             stem: Stem(value: .down),
             beams: [
                 Beam(value: .begin, number: .one),
@@ -217,7 +217,7 @@ class NoteTests: XCTestCase {
             ),
             position: Position(defaultX: 483.50, defaultY: -25.00),
             voice: "1",
-            type: NoteType(value: .quarter),
+            type: NoteType(.quarter),
             stem: Stem(value: .up),
             notations: Notations(values: [
                 .tied(Tied(type: .stop)),
@@ -258,7 +258,7 @@ class NoteTests: XCTestCase {
             position: Position(defaultX: 68),
             instrument: Instrument(id: "P1-X2"),
             voice: "1",
-            type: NoteType(value: .eighth),
+            type: NoteType(.eighth),
             stem: Stem(value: .down, position: Position(defaultY: -70)),
             beams: [Beam(value: .begin, number: .one)]
         )
