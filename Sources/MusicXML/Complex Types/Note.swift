@@ -221,7 +221,7 @@ extension Note: Codable {
         case rest
         case unpitched
     }
-    #warning("Reinstate Note.dots when we can decode potentially-empty elements properly")
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         // Attributes
