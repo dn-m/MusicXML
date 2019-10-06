@@ -43,7 +43,7 @@ public struct Note {
     public let voice: String?
     public let type: NoteType?
     #warning("Reinstate Note.dots when we can decode potentially-empty elements properly")
-    // public let dots: [EmptyPlacement]?
+    public let dots: [EmptyPlacement]?
     public let accidental: Accidental?
     public let timeModification: TimeModification?
     public let stem: Stem?
@@ -79,7 +79,7 @@ public struct Note {
         level: Level? = nil,
         voice: String? = nil,
         type: NoteType? = nil,
-        // dots: [EmptyPlacement]? = nil,
+        dots: [EmptyPlacement]? = nil,
         accidental: Accidental? = nil,
         timeModification: TimeModification? = nil,
         stem: Stem? = nil,
@@ -115,7 +115,7 @@ public struct Note {
         self.voice = voice
         self.type = type
         #warning("Reinstate Note.dots when we can decode potentially-empty elements properly")
-        // self.dots = dots
+         self.dots = dots
         self.accidental = accidental
         self.timeModification = timeModification
         self.stem = stem
@@ -251,7 +251,7 @@ extension Note: Codable {
         self.voice = try container.decodeIfPresent(String.self, forKey: .voice)
         self.type = try container.decodeIfPresent(NoteType.self, forKey: .type)
 
-        // self.dots = try container.decodeIfPresent([EmptyPlacement].self, forKey: .dots)
+        self.dots = try container.decodeIfPresent([EmptyPlacement].self, forKey: .dots)
         self.accidental = try container.decodeIfPresent(Accidental.self, forKey: .accidental)
         self.timeModification = try container.decodeIfPresent(TimeModification.self, forKey: .timeModification)
         self.stem = try container.decodeIfPresent(Stem.self, forKey: .stem)

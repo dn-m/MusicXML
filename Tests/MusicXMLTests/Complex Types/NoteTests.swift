@@ -119,7 +119,6 @@ class NoteTests: XCTestCase {
         try assertDecoded(xml, equals: expected)
     }
 
-    #warning("FIXME: Reengage dots")
     func testNoteDottedRestDecoding() throws {
         let xml = """
         <note>
@@ -141,8 +140,8 @@ class NoteTests: XCTestCase {
                 )
             ),
             voice: "1",
-            type: .quarter/*,
-            dots: [EmptyPlacement(position: nil, printStyle: nil, placement: nil)]*/
+            type: .quarter,
+            dots: [EmptyPlacement(position: nil, printStyle: nil, placement: nil)]
         )
         XCTAssertEqual(decoded, expected)
     }
