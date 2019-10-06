@@ -111,10 +111,13 @@ class NotationsTests: XCTestCase {
         )
     }
 
-    #warning("FIXME: #41 Note.dots not decoding properly yet")
-    func DISABLED_testArticulations() throws {
+    func testArticulations() throws {
         let xml = """
-        <articulations><plop/></articulations>
+        <notations>
+            <articulations>
+                <plop/>
+            </articulations>
+        </notations>
         """
         try assertDecoded(xml,
             equals: Notations(values: [.articulations(Articulations(values: [.plop(EmptyLine())]))])
