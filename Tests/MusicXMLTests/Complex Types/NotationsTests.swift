@@ -45,14 +45,15 @@ class NotationsTests: XCTestCase {
         let _ = try XMLDecoder().decode(HorizontalTurn.self, from: xml.data(using: .utf8)!)
     }
 
-    #warning("FIXME: #41 Note.dots not decoding properly yet")
-    func DISABLED_testOrnamentsNotation() throws {
+    func testOrnamentsNotation() throws {
         let xml = """
-        <ornaments>
-          <turn/>
-          <accidental-mark placement="above">sharp</accidental-mark>
-          <accidental-mark placement="above">three-quarters-flat</accidental-mark>
-        </ornaments>
+        <notations>
+            <ornaments>
+              <turn/>
+              <accidental-mark placement="above">sharp</accidental-mark>
+              <accidental-mark placement="above">three-quarters-flat</accidental-mark>
+            </ornaments>
+        </notations>
         """
         let expected = Notations(
             values: [

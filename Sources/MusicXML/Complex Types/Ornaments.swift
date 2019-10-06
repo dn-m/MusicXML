@@ -28,8 +28,17 @@ extension Ornaments: Codable {
         case accidentalMarks = "accidental-mark"
     }
     public init(from decoder: Decoder) throws {
-        let valuesContainer = try decoder.singleValueContainer()
-        self.values = try valuesContainer.decode([Ornament].self)
+        var valuesContainer = try decoder.unkeyedContainer()
+        var ornaments = [Ornament]()
+        while !valuesContainer.isAtEnd {
+            do {
+                ornaments.append(try valuesContainer.decode(Ornament.self))
+            } catch {
+                // Error is caught when we try to read an accidental-mark as an ornament.
+                break
+            }
+        }
+        self.values = ornaments
         let elementsContainer = try decoder.container(keyedBy: CodingKeys.self)
         self.accidentalMarks = try elementsContainer.decodeIfPresent([AccidentalMark].self, forKey: .accidentalMarks)
     }
