@@ -73,8 +73,7 @@ class NotationsTests: XCTestCase {
         try assertDecoded(xml, equals: expected)
     }
 
-    #warning("FIXME: #41 Note.dots not decoding properly yet")
-    func DISABLED_testTechnical() throws {
+    func testTechnical() throws {
         let xml = """
         <notations>
           <technical><harmonic><natural/><base-pitch/></harmonic></technical>
@@ -112,10 +111,13 @@ class NotationsTests: XCTestCase {
         )
     }
 
-    #warning("FIXME: #41 Note.dots not decoding properly yet")
-    func DISABLED_testArticulations() throws {
+    func testArticulations() throws {
         let xml = """
-        <articulations><plop/></articulations>
+        <notations>
+            <articulations>
+                <plop/>
+            </articulations>
+        </notations>
         """
         try assertDecoded(xml,
             equals: Notations(values: [.articulations(Articulations(values: [.plop(EmptyLine())]))])
