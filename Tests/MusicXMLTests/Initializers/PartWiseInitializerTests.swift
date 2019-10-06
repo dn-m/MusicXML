@@ -6,7 +6,6 @@
 //
 
 import XCTest
-// Do not use @testable
 import MusicXML
 
 class PartWiseInitializerTests: XCTestCase {
@@ -67,7 +66,7 @@ class PartWiseInitializerTests: XCTestCase {
                         position: Position(defaultX: 10, defaultY: -45),
                         voice: "1",
                         type: .half,
-                        stem: Stem(value: .up)
+                        stem: .up
                     )
                 ),
             ]
