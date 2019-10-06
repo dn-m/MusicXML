@@ -7,12 +7,14 @@
 
 /// Technical indications give performance information for individual instruments.
 public struct Technical {
-    public let values: [Technique]
-
-    public init(values: [Technique]) {
-        self.values = values
-    }
+    public var values: [Technique]
 }
 
 extension Technical: Equatable { }
-extension Technical: Codable { }
+extension Technical: Codable {
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        values = try container.decode([Technique].self)
+    }
+}

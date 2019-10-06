@@ -73,8 +73,7 @@ class NotationsTests: XCTestCase {
         try assertDecoded(xml, equals: expected)
     }
 
-    #warning("FIXME: #41 Note.dots not decoding properly yet")
-    func DISABLED_testTechnical() throws {
+    func testTechnical() throws {
         let xml = """
         <notations>
           <technical><harmonic><natural/><base-pitch/></harmonic></technical>
