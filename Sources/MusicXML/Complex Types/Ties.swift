@@ -1,27 +1,31 @@
 //
-//  File.swift
-//  
+//  Ties.swift
+//  MusicXML
 //
 //  Created by Ben Lu on 10/1/19.
 //
 
 public struct Ties {
-    public var start: Tie?
-    public var stop: Tie?
+    public let start: Tie?
+    public let stop: Tie?
 
-    public init(start: Tie?, stop: Tie?) {
+    public init(start: Tie? = nil, stop: Tie? = nil) {
         self.start = start
         self.stop = stop
     }
 
     init(ties: [Tie]) {
+        var startTie: Tie?
+        var stopTie: Tie?
         for tie in ties {
             if tie.type == .start {
-                self.start = tie
+                startTie = tie
             } else if tie.type == .stop {
-                self.stop = tie
+                stopTie = tie
             }
         }
+        self.start = startTie
+        self.stop = stopTie
     }
 }
 
