@@ -86,7 +86,7 @@ class HelloWorld: XCTestCase {
                                                             duration: 4
                                                         )
                                                     ),
-                                                    type: NoteType( .whole)
+                                                    type: .whole
                                                 )
                                             )
                                         ]
