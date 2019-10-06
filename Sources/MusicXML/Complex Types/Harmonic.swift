@@ -56,6 +56,51 @@ extension Harmonic {
     }
 }
 
+extension Harmonic: Codable {
+    public enum CodingKeys: String, CodingKey {
+        case naturalArtificial
+        case baseSoundingTouchingPitch
+        
+        case printObject
+        case printStyle
+        case placement
+        
+        case natural
+        case artificial
+        
+        case base = "base-pitch"
+        case sounding = "sounding-pitch"
+        case touching = "touching-pitch"
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if container.contains(.natural) {
+            self.naturalArtificial = .natural
+        } else if container.contains(.artificial) {
+            self.naturalArtificial = .artificial
+        } else {
+            self.naturalArtificial = nil
+        }
+        
+        if container.contains(.base) {
+            self.baseSoundingTouchingPitch = .base
+        } else if container.contains(.sounding) {
+            self.baseSoundingTouchingPitch = .sounding
+        } else if container.contains(.touching) {
+            self.baseSoundingTouchingPitch = .touching
+        }
+        
+        self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
+        self.printStyle = try container.decodeIfPresent(PrintStyle.self, forKey: .printStyle)
+        self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        fatalError()
+    }
+}
+
 extension Harmonic.NaturalArtificial: Equatable { }
 extension Harmonic.NaturalArtificial: Codable { }
 
@@ -63,4 +108,3 @@ extension Harmonic.BaseSoundingTouchingPitch: Equatable { }
 extension Harmonic.BaseSoundingTouchingPitch: Codable { }
 
 extension Harmonic: Equatable { }
-extension Harmonic: Codable { }

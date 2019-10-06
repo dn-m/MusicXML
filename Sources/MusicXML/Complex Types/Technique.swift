@@ -44,7 +44,7 @@ extension Technique: Codable {
         case fret
         case hammerOn
         case handbell
-        case harmonc
+        case harmonic
         case heel
         case openString
         case otherTechnical
@@ -80,7 +80,7 @@ extension Technique: Codable {
         case let .handbell(value):
             try container.encode(value, forKey: .handbell)
         case let .harmonic(value):
-            try container.encode(value, forKey: .harmonc)
+            try container.encode(value, forKey: .harmonic)
         case let .heel(value):
             try container.encode(value, forKey: .heel)
         case let .openString(value):
@@ -144,7 +144,7 @@ extension Technique: Codable {
                                             self = .handbell(try decode(.handbell))
                                         } catch {
                                             do {
-                                                self = .harmonic(try decode(.harmonc))
+                                                self = .harmonic(try decode(.harmonic))
                                             } catch {
                                                 do {
                                                     self = .heel(try decode(.heel))
