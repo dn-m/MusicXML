@@ -121,7 +121,7 @@ extension Notations.Notation: Codable {
         } else if container.contains(.tuplet) {
             self = .tuplet(try decode(.tuplet))
         } else if container.contains(.glissando) {
-            self = try decode(.glissando)
+            self = .glissando(try decode(.glissando))
         } else if container.contains(.slide) {
             self = .slide(try decode(.slide))
         } else if container.contains(.ornaments) {
