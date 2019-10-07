@@ -13,14 +13,19 @@ import XMLCoder
 /// relationships, such as swing tempo marks where two eighths are equated to a quarter note /
 /// eighth note triplet.
 public struct Metronome {
+    // MARK: - Attributes
+    public let position: Position
     public let printStyleAlign: PrintStyleAlign?
     public let justify: Justify?
     /// The parentheses attribute indicates whether or not to put the metronome mark in parentheses;
     /// its value is no if not specified.
     public let parentheses: Bool?
+
+    // MARK: - Elements
     public let kind: Kind
 
-    public init(printStyleAlign: PrintStyleAlign? = nil, justify: Justify? = nil, parentheses: Bool? = nil, kind: Kind) {
+    public init(position: Position = Position(), printStyleAlign: PrintStyleAlign? = nil, justify: Justify? = nil, parentheses: Bool? = nil, kind: Kind) {
+        self.position = position
         self.printStyleAlign = printStyleAlign
         self.justify = justify
         self.parentheses = parentheses
@@ -31,35 +36,32 @@ public struct Metronome {
 extension Metronome {
 
     public struct Regular {
-
-        #warning("FIXME: Establish correct model for Metronome.Regular.Relation")
         public enum Relation {
             case perMinute(PerMinute)
-            case beatUnit(NoteTypeValue)
-            // case beatUnit(NoteTypeValue, [Empty])
+            case beatUnit(NoteTypeValue, [Empty]? = nil)
         }
-
+        
         /// The beat-unit element indicates the graphical note type to use in a metronome mark.
         public let beatUnit: NoteTypeValue
         /// The beat-unit-dot element is used to specify any augmentation dots for a metronome mark
         /// note.
-        public let beatUnitDot: [Empty]
+        public let beatUnitDot: [Empty]?
         public let relation: Relation
 
-        public init(beatUnit: NoteTypeValue, beatUnitDot: [Empty], relation: Relation) {
+        public init(beatUnit: NoteTypeValue, beatUnitDot: [Empty]? = nil, relation: Relation) {
             self.beatUnit = beatUnit
             self.beatUnitDot = beatUnitDot
             self.relation = relation
         }
     }
 
-    // TODO: Consider naming
+    #warning("TODO: Consider renaming Metronome.Complicated")
     public struct Complicated {
         public let metronomeNote: [MetronomeNote] // NonEmpty
-        public let metronomeRelation: String?
+        public let metronomeRelation: String
         public let otherMetronomeNote: [MetronomeNote] // NonEmpty
 
-        public init(metronomeNote: [MetronomeNote], metronomeRelation: String? = nil, otherMetronomeNote: [MetronomeNote]) {
+        public init(metronomeNote: [MetronomeNote], metronomeRelation: String, otherMetronomeNote: [MetronomeNote]) {
             self.metronomeNote = metronomeNote
             self.metronomeRelation = metronomeRelation
             self.otherMetronomeNote = otherMetronomeNote
@@ -75,67 +77,102 @@ extension Metronome {
 extension Metronome.Regular.Relation: Equatable { }
 extension Metronome.Regular.Relation: Codable {
     enum CodingKeys: String, CodingKey {
-        case perMinute
-        case beatUnit
+        case perMinute = "per-minute"
+        case beatUnit = "beat-unit"
+        case beatUnitDot = "beat-unit-dot"
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
         case let .perMinute(value):
             try container.encode(value, forKey: .perMinute)
-        case let .beatUnit(value):
+        case let .beatUnit(value, dots):
             try container.encode(value, forKey: .beatUnit)
+            try container.encode(dots, forKey: .beatUnitDot)
         }
     }
     public init(from decoder: Decoder) throws {
+        enum DecodingError: Error {
+            case unknownKind
+        }
+
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        do {
+        if container.contains(.perMinute) {
             self = .perMinute(try container.decode(PerMinute.self, forKey: .perMinute))
-        } catch {
-            self = .beatUnit(try container.decode(NoteTypeValue.self, forKey: .beatUnit))
+        } else if container.contains(.beatUnit) {
+            let beatUnit = try container.decode(NoteTypeValue.self, forKey: .beatUnit)
+            let beatUnitDot = try container.decodeIfPresent([Empty].self, forKey: .beatUnitDot)
+            self = .beatUnit(beatUnit, beatUnitDot)
+        } else {
+            throw DecodingError.unknownKind
         }
     }
 }
 
 extension Metronome.Regular: Equatable { }
-extension Metronome.Regular: Codable { }
-
-extension Metronome.Complicated: Equatable { }
-extension Metronome.Complicated: Codable { }
-
-extension Metronome.Kind: Equatable { }
-extension Metronome.Kind: Codable {
+extension Metronome.Regular: Codable {
     enum CodingKeys: String, CodingKey {
-        case regular
-        case relative
+        case beatUnit = "beat-unit"
+        case beatUnitDot = "beat-unit-dot"
     }
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        switch self {
-        case let .regular(value):
-            try container.encode(value, forKey: .regular)
-        case let .relative(value):
-            try container.encode(value, forKey: .relative)
-        }
-    }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        do {
-            self = .regular(try container.decode(Metronome.Regular.self, forKey: .regular))
-        } catch {
-            self = .relative(try container.decode(Metronome.Complicated.self, forKey: .relative))
-        }
+        self.beatUnit = try container.decode(NoteTypeValue.self, forKey: .beatUnit)
+        self.beatUnitDot = try container.decodeIfPresent([Empty].self, forKey: .beatUnitDot)
+        self.relation = try Relation(from: decoder)
     }
 }
 
-extension Metronome.Kind.CodingKeys: XMLChoiceCodingKey { }
+extension Metronome.Complicated: Equatable { }
+extension Metronome.Complicated: Codable {
+    enum CodingKeys: String, CodingKey {
+        case metronomeNote = "metronome-note"
+        case metronomeRelation = "metronome-relation"
+        case otherMetronomeNote = "other-metronome-note"
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.metronomeNote = try container.decode([MetronomeNote].self, forKey: .metronomeNote)
+        self.metronomeRelation = try container.decode(String.self, forKey: .metronomeRelation)
+        self.otherMetronomeNote = try container.decode([MetronomeNote].self, forKey: .otherMetronomeNote)
+    }
+}
+
+extension Metronome.Kind: Equatable { }
 
 extension Metronome: Equatable { }
 extension Metronome: Codable {
     private enum CodingKeys: String, CodingKey {
+        case position
         case printStyleAlign = "print-style-align"
         case justify
         case parentheses
-        case kind
+
+        case beatUnit = "beat-unit"
+        case beatUnitDot = "beat-unit-dot"
+
+        case metronomeNote = "metronome-note"
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        fatalError("TODO")
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.position = try Position(from: decoder)
+        self.printStyleAlign = try container.decodeIfPresent(PrintStyleAlign.self, forKey: .printStyleAlign)
+        self.justify = try container.decodeIfPresent(Justify.self, forKey: .justify)
+        self.parentheses = try container.decodeIfPresent(Bool.self, forKey: .parentheses)
+
+        if container.contains(.beatUnit) {
+            // Decode regular type
+            self.kind = .regular(try Metronome.Regular(from: decoder))
+        } else {
+            self.kind = .relative(try Metronome.Complicated(from: decoder))
+        }
     }
 }
