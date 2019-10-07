@@ -102,8 +102,11 @@ extension Notations.Notation: Codable {
         }
     }
 
-    // FIXME: Use `if let value = try?` instead of pyramid of doom
     public init(from decoder: Decoder) throws {
+
+        enum DecodingError: Error {
+            case unknownKind
+        }
 
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -111,58 +114,36 @@ extension Notations.Notation: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
-        do {
+        if container.contains(.tied) {
             self = .tied(try decode(.tied))
-        } catch {
-            do {
-                self = .slur(try decode(.slur))
-            } catch {
-                do {
-                    self = .tuplet(try decode(.tuplet))
-                } catch {
-                    do {
-                        self = .glissando(try decode(.glissando))
-                    } catch {
-                        do {
-                            self = .slide(try decode(.slide))
-                        } catch {
-                            do {
-                                self = .ornaments(try decode(.ornaments))
-                            } catch {
-                                do {
-                                    self = .technical(try decode(.technical))
-                                } catch {
-                                    do {
-                                        self = .articulations(try decode(.articulations))
-                                    } catch {
-                                        do {
-                                            self = .dynamics(try decode(.dynamics))
-                                        } catch {
-                                            do {
-                                                self = .fermata(try decode(.fermata))
-                                            } catch {
-                                                do {
-                                                    self = .arpeggiate(try decode(.arpeggiate))
-                                                } catch {
-                                                    do {
-                                                        self = .nonArpeggiate(try decode(.nonArpeggiate))
-                                                    } catch {
-                                                        do {
-                                                            self = .accidentalMark(try decode(.accidentalMark))
-                                                        } catch {
-                                                            self = .other(try decode(.other))
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        } else if container.contains(.slur) {
+            self = .slur(try decode(.slur))
+        } else if container.contains(.tuplet) {
+            self = .tuplet(try decode(.tuplet))
+        } else if container.contains(.glissando) {
+            self = try decode(.glissando)
+        } else if container.contains(.slide) {
+            self = .slide(try decode(.slide))
+        } else if container.contains(.ornaments) {
+            self = .ornaments(try decode(.ornaments))
+        } else if container.contains(.technical) {
+            self = .technical(try decode(.technical))
+        } else if container.contains(.articulations) {
+            self = .articulations(try decode(.articulations))
+        } else if container.contains(.dynamics) {
+            self = .dynamics(try decode(.dynamics))
+        } else if container.contains(.fermata) {
+            self = .fermata(try decode(.fermata))
+        } else if container.contains(.arpeggiate) {
+            self = .arpeggiate(try decode(.arpeggiate))
+        } else if container.contains(.nonArpeggiate) {
+            self = .nonArpeggiate(try decode(.nonArpeggiate))
+        } else if container.contains(.accidentalMark) {
+            self = .accidentalMark(try decode(.accidentalMark))
+        } else if container.contains(.other) {
+            self = .other(try decode(.other))
+        } else {
+            throw DecodingError.unknownKind
         }
     }
 }
