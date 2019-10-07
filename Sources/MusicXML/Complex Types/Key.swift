@@ -16,7 +16,7 @@ public struct Key {
 
     /// The optional number attribute refers to staff numbers.
     public let number: Int?
-    public let position: Position?
+    public let position: Position
     public let printStyle: PrintStyle?
     public let printObject: Bool?
 
@@ -25,7 +25,7 @@ public struct Key {
     public let kind: Kind
     public let keyOctave: [KeyOctave]?
 
-    public init(number: Int? = nil, position: Position? = nil, printStyle: PrintStyle? = nil, printObject: Bool? = nil, kind: Kind, keyOctave: [KeyOctave]? = nil) {
+    public init(number: Int? = nil, position: Position = Position(), printStyle: PrintStyle? = nil, printObject: Bool? = nil, kind: Kind, keyOctave: [KeyOctave]? = nil) {
         self.number = number
         self.position = position
         self.printStyle = printStyle
@@ -45,7 +45,7 @@ extension Key {
         self.kind = .traditional(Traditional(cancel: cancel, fifths: fifths, mode: mode))
         // TODO: Add remaining attributes and elements
 
-        self.position = nil
+        self.position = Position()
         self.printStyle = nil
         self.printObject = nil
         self.keyOctave = nil
@@ -58,7 +58,7 @@ extension Key {
         )
         // TODO: Add remaining attributes and elements
         self.number = nil
-        self.position = nil
+        self.position = Position()
         self.printStyle = nil
         self.printObject = nil
         self.keyOctave = nil
@@ -149,7 +149,7 @@ extension Key: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         // Decode attributes
         self.number = try container.decodeIfPresent(Int.self, forKey: .number)
-        self.position = try container.decodeIfPresent(Position.self, forKey: .position)
+        self.position = try Position(from: decoder)
         self.printStyle = try container.decodeIfPresent(PrintStyle.self, forKey: .printStyle)
         self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
         // Decode Elements
