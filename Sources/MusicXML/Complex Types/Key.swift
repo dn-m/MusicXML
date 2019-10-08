@@ -52,10 +52,8 @@ extension Key {
     }
 
     /// Creates a `NonTraditional` type `Key`.
-    public init(step: Step, alter: Double, accidental: AccidentalValue) {
-        self.kind = .nonTraditional(
-            NonTraditional(step: step, alter: alter, accidental: accidental)
-        )
+    public init(_ alteredTones: [AlteredTone]) {
+        self.kind = .nonTraditional(alteredTones)
         // TODO: Add remaining attributes and elements
         self.number = nil
         self.position = Position()
@@ -82,26 +80,20 @@ extension Key {
     /// Non-traditional key signatures can be represented using the Humdrum/Scot concept of a list
     /// of altered tones. The key-step element indicates the pitch step to be altered, represented
     /// using the same names as in the step element.
-    public struct NonTraditional {
+    public struct AlteredTone {
         public var step: Step
         public var alter: Double
         public var accidental: AccidentalValue
-
-        public init(step: Step, alter: Double, accidental: AccidentalValue) {
-            self.step = step
-            self.alter = alter
-            self.accidental = accidental
-        }
     }
 
     public enum Kind {
         case traditional(Traditional)
-        case nonTraditional(NonTraditional)
+        case nonTraditional([AlteredTone])
     }
 }
 
-extension Key.NonTraditional: Equatable { }
-extension Key.NonTraditional: Codable {
+extension Key.AlteredTone: Equatable { }
+extension Key.AlteredTone: Codable {
     enum CodingKeys: String, CodingKey {
         case step
         case alter
@@ -138,7 +130,7 @@ extension Key.Kind: Codable {
         do {
             self = .traditional(try container.decode(Key.Traditional.self, forKey: .traditional))
         } catch {
-            self = .nonTraditional(try container.decode(Key.NonTraditional.self, forKey: .nonTraditional))
+            self = .nonTraditional(try container.decode([Key.AlteredTone].self, forKey: .nonTraditional))
         }
     }
 }
@@ -165,16 +157,12 @@ extension Key: Codable {
                 )
             )
         } catch {
-            let kindContainer = try decoder.container(keyedBy: NonTraditional.CodingKeys.self)
-            self.kind = .nonTraditional(
-                NonTraditional(
-                    step: try kindContainer.decode(Step.self, forKey: .step),
-                    alter: try kindContainer.decode(Double.self, forKey: .alter),
-                    accidental: try kindContainer.decode(AccidentalValue.self, forKey: .accidental)
-                )
-            )
+            let kindContainer = try decoder.singleValueContainer()
+            #warning("FIX Key.nonTraditional decoding")
+            self.kind = .nonTraditional(try kindContainer.decode([AlteredTone].self))
         }
     }
+
     #warning("TODO: Implement Key.encode(to: Encoder)")
 }
 
