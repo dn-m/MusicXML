@@ -88,11 +88,6 @@ extension Articulation: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-
-        enum DecodingError: Error {
-            case unknownKind
-        }
-
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         if let value = try? container.decode(EmptyPlacement.self, forKey: .accent) {
@@ -126,7 +121,13 @@ extension Articulation: Codable {
         } else if let value = try? container.decode(EmptyPlacement.self, forKey: .unstress) {
             self = .unstress(value)
         } else {
-            throw DecodingError.unknownKind
+            throw DecodingError.typeMismatch(
+                Articulation.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized choice"
+                )
+            )
         }
     }
 }
