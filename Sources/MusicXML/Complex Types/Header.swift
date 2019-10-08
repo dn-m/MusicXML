@@ -41,9 +41,9 @@ extension Header: Codable {
         case work
         case movementNumber = "movement-number"
         case movementTitle = "movement-title"
-        case partList = "part-list"
         case identification
         case defaults
         case credits = "credit"
+        case partList = "part-list"
     }
 }

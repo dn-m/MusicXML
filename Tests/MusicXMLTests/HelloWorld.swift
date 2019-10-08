@@ -54,13 +54,18 @@ class HelloWorld: XCTestCase {
         
         let expected = MusicXML(
             Score(
-                header: Header(
-                    partList: PartList([
-                        .part(ScorePart(id: "P1", name: PartName(value: "Music")))
-                    ])
-                ),
                 traversal: .partwise(
                     Partwise(
+                        header: Header(
+                            partList: PartList([
+                                .part(
+                                    ScorePart(
+                                        id: "P1",
+                                        name: PartName(value: "Music")
+                                    )
+                                )
+                            ])
+                        ),
                         parts: [
                             Partwise.Part(
                                 id: "P1",

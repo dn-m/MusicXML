@@ -9,12 +9,23 @@
 /// The rest element indicates notated rests or silences. Rest elements are usually empty, but
 /// placement on the staff can be specified using display-step and display-octave elements.
 public struct Rest {
-    #warning("Build Rest back up when XMLCoder can decode fully-nilable choice types properly")
-//    public let displayStep: Int?
-//    public let displayOctave: Int?
-//    public let measure: Bool?
-    public init() {}
+    public let measure: Bool?
+
+    public let displayStep: Step?
+    public let displayOctave: Int?
+
+    public init(measure: Bool? = nil, displayStep: Step? = nil, displayOctave: Int? = nil) {
+        self.measure = measure
+        self.displayStep = displayStep
+        self.displayOctave = displayOctave
+    }
 }
 
 extension Rest: Equatable { }
-extension Rest: Codable { }
+extension Rest: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case measure
+        case displayStep = "display-step"
+        case displayOctave = "display-octave"
+    }
+}

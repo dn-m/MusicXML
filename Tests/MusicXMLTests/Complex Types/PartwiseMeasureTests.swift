@@ -38,6 +38,10 @@ class PartwiseMeasureTests: XCTestCase {
               <sign>G</sign>
               <line>2</line>
             </clef>
+            <transpose>
+              <diatonic>2</diatonic>
+              <chromatic>3</chromatic>
+            </transpose>
           </attributes>
         </measure>
         """
@@ -52,7 +56,8 @@ class PartwiseMeasureTests: XCTestCase {
                         divisions: 1,
                         keys: [Key(fifths: 0, mode: .major)],
                         times: [Time(4, 4, symbol: .common)],
-                        clefs: [Clef(sign: .g, line: 2)]
+                        clefs: [Clef(sign: .g, line: 2)],
+                        transpose: [Transpose(diatonic: 2, chromatic: 3)]
                     )
                 )
             ]
@@ -181,6 +186,17 @@ class PartwiseMeasureTests: XCTestCase {
                 )
             ]
         )
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testDecodingBarline() throws {
+        let xml = """
+        <barline location="right">
+          <bar-style>light-heavy</bar-style>
+        </barline>
+        """
+        let decoded = try XMLDecoder().decode(Barline.self, from: xml.data(using: .utf8)!)
+        let expected = Barline(location: .right, barStyle: BarStyleColor(value: .lightHeavy))
         XCTAssertEqual(decoded, expected)
     }
 }

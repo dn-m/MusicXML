@@ -8,27 +8,14 @@
 /// The `timewise` traversal of a `MusicXML` score.
 public struct Timewise {
 
-    // MARK: - Instance Properties
-
     // MARK: Elements
-
-    public var work: Work?
-    public var movementNumber: String?
-    public var movementTitle: String?
-    public var identification: Identification?
-    public var defaults: Defaults?
-    public var credits: [Credit]?
+    public let header: Header
 
     /// The `Measure` values which comprise a `Timewise` traversal of a `MusicXML` score.
-    let measures: [Measure]
+    public let measures: [Measure]
 
-    public init(work: Work? = nil, movementNumber: String? = nil, movementTitle: String? = nil, identification: Identification? = nil, defaults: Defaults? = nil, credits: [Credit]? = nil, measures: [Measure]) {
-        self.work = work
-        self.movementNumber = movementNumber
-        self.movementTitle = movementTitle
-        self.identification = identification
-        self.defaults = defaults
-        self.credits = credits
+    public init(header: Header, measures: [Measure]) {
+        self.header = header
         self.measures = measures
     }
 }
@@ -40,17 +27,12 @@ extension Timewise: Codable {
     // MARK: - Codable
 
     enum CodingKeys: String, CodingKey {
-        case work
-        case movementNumber = "movement-number"
-        case movementTitle = "movement-title"
-        case identification
-        case defaults
-        case credits = "credit"
         case measures = "measure"
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.header = try Header(from: decoder)
         self.measures = try container.decode([Measure].self, forKey: .measures)
         // There is not currently a way for the `XMLDecoder` to check against the case of the
         // `Traversal` type at the top-level. A `Timewise` traversal must have at least one measure.
@@ -59,15 +41,9 @@ extension Timewise: Codable {
                 Partwise.self,
                 DecodingError.Context(
                     codingPath: decoder.codingPath,
-                    debugDescription: "Expected Partwise traversal but no parts found"
+                    debugDescription: "Expected Timewise traversal but no measures found"
                 )
             )
         }
-        self.work = try container.decodeIfPresent(Work.self, forKey: .work)
-        self.movementNumber = try container.decodeIfPresent(String.self, forKey: .movementNumber)
-        self.movementTitle = try container.decodeIfPresent(String.self, forKey: .movementTitle)
-        self.identification = try container.decodeIfPresent(Identification.self, forKey: .identification)
-        self.defaults = try container.decodeIfPresent(Defaults.self, forKey: .defaults)
-        self.credits = try container.decodeIfPresent([Credit].self, forKey: .credits)
     }
 }

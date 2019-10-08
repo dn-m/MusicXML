@@ -98,12 +98,17 @@ extension Lyric.Kind: Codable {
             try container.encode(value, forKey: .nonVerbal)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        do {
+        if container.contains(.verbal) {
             self = .verbal(try container.decode(Lyric.Verbal.self, forKey: .verbal))
-        } catch {
+        } else if container.contains(.nonVerbal) {
             self = .nonVerbal(try container.decode(Lyric.NonVerbal.self, forKey: .nonVerbal))
+        } else {
+            throw DecodingError.typeMismatch(
+                Lyric.Kind.self,
+                DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Unrecognized lyric"))
         }
     }
 }

@@ -10,9 +10,9 @@
 public struct PrintStyle {
     public let position: Position
     public let font: Font
-    public let color: Color
+    public let color: Color?
 
-    public init(position: Position, font: Font, color: Color) {
+    public init(position: Position = Position(), font: Font = Font(), color: Color? = nil) {
         self.position = position
         self.font = font
         self.color = color
@@ -20,4 +20,15 @@ public struct PrintStyle {
 }
 
 extension PrintStyle: Equatable { }
-extension PrintStyle: Codable { }
+extension PrintStyle: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case color
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.position = try Position(from: decoder)
+        self.font = try Font(from: decoder)
+        self.color = try container.decodeIfPresent(Color.self, forKey: .color)
+    }
+}

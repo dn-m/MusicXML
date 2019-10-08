@@ -25,14 +25,14 @@ public struct Transpose {
 
     /// The octave-change element indicates how many octaves to add to get from written pitch to
     /// sounding pitch.
-    public let octaveChange: Int
+    public let octaveChange: Int?
 
     /// If the double element is present, it indicates that the music is doubled one octave down
     /// from what is currently written (as is the case for mixed cello / bass parts in orchestral
     /// literature).
-    public let double: Bool
+    public let double: Bool?
 
-    public init(number: Int? = nil, diatonic: Int? = nil, chromatic: Int, octaveChange: Int, double: Bool) {
+    public init(number: Int? = nil, diatonic: Int? = nil, chromatic: Int, octaveChange: Int? = nil, double: Bool? = nil) {
         self.number = number
         self.diatonic = diatonic
         self.chromatic = chromatic

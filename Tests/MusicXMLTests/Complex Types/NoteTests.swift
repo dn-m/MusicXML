@@ -261,4 +261,36 @@ class NoteTests: XCTestCase {
         )
         XCTAssertEqual(decoded, expected)
     }
+
+    func testNoteheads() throws {
+        let xml = """
+        <note>
+          <chord/>
+          <pitch>
+            <step>C</step>
+            <octave>5</octave>
+          </pitch>
+          <duration>1</duration>
+          <voice>1</voice>
+          <type>quarter</type>
+          <notehead parentheses="yes">normal</notehead>
+        </note>
+        """
+        let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
+        let expected = Note(
+            kind: .normal(
+                Note.Normal(
+                    chord: true,
+                    pitchUnpitchedOrRest: .pitch(
+                        Pitch(step: .c, octave: 5)
+                    ),
+                    duration: 1
+                )
+            ),
+            voice: "1",
+            type: .quarter,
+            notehead: Notehead(value: .normal, parentheses: true)
+        )
+        XCTAssertEqual(decoded, expected)
+    }
 }
