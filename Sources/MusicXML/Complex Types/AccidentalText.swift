@@ -8,38 +8,26 @@
 /// The accidental-text type represents an element with an accidental value and text-formatting
 /// attributes.
 public struct AccidentalText {
+    // MARK: - Attributes
     public let justify: LeftCenterRight?
-    public let defaultX: Double?
-    public let defaultY: Double?
-    public let relativeX: Double?
-    public let relativeY: Double?
-    public let fontFamily: CommaSeparatedText?
-    public let fontSize: FontSize?
-    public let fontStyle: FontStyle?
-    public let fontWeight: FontWeight?
-    public let color: Color?
+    public let printStyle: PrintStyle
     public let hAlign: LeftCenterRight?
     public let vAlign: VAlign?
-    public let underline: Int? // number-of-lines
-    public let overline: Int? // number-of-lines
-    public let lineThrough: Int? // number-of-lines
-    public let rotation: Double? // rotation-degrees
+    public let underline: Int?
+    public let overline: Int?
+    public let lineThrough: Int?
+    public let rotation: Double?
     public let letterSpacing: NumberOrNormal?
     public let lineHeight: NumberOrNormal?
-    public let dir: TextDirection?
-    public let enclosureShape: EnclosureShape?
+    public let direction: TextDirection?
+    public let enclosure: EnclosureShape?
 
-    public init(justify: LeftCenterRight? = nil, defaultX: Double? = nil, defaultY: Double? = nil, relativeX: Double? = nil, relativeY: Double? = nil, fontFamily: CommaSeparatedText? = nil, fontSize: FontSize? = nil, fontStyle: FontStyle? = nil, fontWeight: FontWeight? = nil, color: Color? = nil, hAlign: LeftCenterRight? = nil, vAlign: VAlign? = nil, underline: Int? = nil, overline: Int? = nil, lineThrough: Int? = nil, rotation: Double? = nil, letterSpacing: NumberOrNormal? = nil, lineHeight: NumberOrNormal? = nil, dir: TextDirection? = nil, enclosureShape: EnclosureShape? = nil) {
+    // MARK: - Elements
+    public let value: AccidentalValue
+
+    public init(justify: LeftCenterRight? = nil, printStyle: PrintStyle = PrintStyle(), hAlign: LeftCenterRight? = nil, vAlign: VAlign? = nil, underline: Int? = nil, overline: Int? = nil, lineThrough: Int? = nil, rotation: Double? = nil, letterSpacing: NumberOrNormal? = nil, lineHeight: NumberOrNormal? = nil, direction: TextDirection? = nil, enclosure: EnclosureShape? = nil, value: AccidentalValue) {
         self.justify = justify
-        self.defaultX = defaultX
-        self.defaultY = defaultY
-        self.relativeX = relativeX
-        self.relativeY = relativeY
-        self.fontFamily = fontFamily
-        self.fontSize = fontSize
-        self.fontStyle = fontStyle
-        self.fontWeight = fontWeight
-        self.color = color
+        self.printStyle = printStyle
         self.hAlign = hAlign
         self.vAlign = vAlign
         self.underline = underline
@@ -48,10 +36,43 @@ public struct AccidentalText {
         self.rotation = rotation
         self.letterSpacing = letterSpacing
         self.lineHeight = lineHeight
-        self.dir = dir
-        self.enclosureShape = enclosureShape
+        self.direction = direction
+        self.enclosure = enclosure
+        self.value = value
     }
 }
 
 extension AccidentalText: Equatable { }
-extension AccidentalText: Codable { }
+extension AccidentalText: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case justify
+        case hAlign = "halign"
+        case vAlign = "valign"
+        case underline
+        case overline
+        case lineThrough = "line-through"
+        case rotation
+        case letterSpacing = "letter-spacing"
+        case lineHeight = "line-height"
+        case direction = "dir"
+        case enclosure
+        case value = ""
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.justify = try container.decodeIfPresent(LeftCenterRight.self, forKey: .justify)
+        self.printStyle = try PrintStyle(from: decoder)
+        self.hAlign = try container.decodeIfPresent(LeftCenterRight.self, forKey: .hAlign)
+        self.vAlign = try container.decodeIfPresent(VAlign.self, forKey: .vAlign)
+        self.underline = try container.decodeIfPresent(Int.self, forKey: .underline)
+        self.overline = try container.decodeIfPresent(Int.self, forKey: .overline)
+        self.lineThrough = try container.decodeIfPresent(Int.self, forKey: .lineThrough)
+        self.rotation = try container.decodeIfPresent(Double.self, forKey: .rotation)
+        self.letterSpacing = try container.decodeIfPresent(NumberOrNormal.self, forKey: .letterSpacing)
+        self.lineHeight = try container.decodeIfPresent(NumberOrNormal.self, forKey: .lineHeight)
+        self.direction = try container.decodeIfPresent(TextDirection.self, forKey: .direction)
+        self.enclosure = try container.decodeIfPresent(EnclosureShape.self, forKey: .enclosure)
+        self.value = try container.decode(AccidentalValue.self, forKey: .value)
+    }
+}

@@ -16,10 +16,10 @@ public struct Bracket {
     public let lineType: LineType?
     public let dashLength: Tenths?
     public let spaceLength: Tenths?
-    public let position: Position?
+    public let position: Position
     public let color: Color?
 
-    public init(type: StartStopContinue, number: Int? = nil, lineEnd: LineEnd, endLength: Tenths? = nil, lineType: LineType? = nil, dashLength: Tenths? = nil, spaceLength: Tenths? = nil, position: Position? = nil, color: Color? = nil) {
+    public init(type: StartStopContinue, number: Int? = nil, lineEnd: LineEnd, endLength: Tenths? = nil, lineType: LineType? = nil, dashLength: Tenths? = nil, spaceLength: Tenths? = nil, position: Position = Position(), color: Color? = nil) {
         self.type = type
         self.number = number
         self.lineEnd = lineEnd
@@ -33,4 +33,28 @@ public struct Bracket {
 }
 
 extension Bracket: Equatable { }
-extension Bracket: Codable { }
+extension Bracket: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case type
+        case number
+        case lineEnd = "line-end"
+        case endLength = "end-length"
+        case lineType = "line-type"
+        case dashLength = "dash-length"
+        case spaceLength = "space-length"
+        case color = "color"
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.type = try container.decode(StartStopContinue.self, forKey: .type)
+        self.lineEnd = try container.decode(LineEnd.self, forKey: .lineEnd)
+        self.number = try container.decodeIfPresent(Int.self, forKey: .number)
+        self.endLength = try container.decodeIfPresent(Tenths.self, forKey: .endLength)
+        self.lineType = try container.decodeIfPresent(LineType.self, forKey: .lineType)
+        self.dashLength = try container.decodeIfPresent(Tenths.self, forKey: .dashLength)
+        self.spaceLength = try container.decodeIfPresent(Tenths.self, forKey: .spaceLength)
+        self.position = try Position(from: decoder)
+        self.color = try container.decodeIfPresent(Color.self, forKey: .color)
+    }
+}

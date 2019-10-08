@@ -10,11 +10,11 @@
 /// part-name-display and part-abbreviation-display elements.
 public struct PartName {
     public var value: String
-    public var printStyle: PrintStyle?
+    public var printStyle: PrintStyle
     public var printObject: Bool?
     public var justify: Justify?
 
-    public init(value: String, printStyle: PrintStyle? = nil, printObject: Bool? = nil, justify: Justify? = nil) {
+    public init(value: String, printStyle: PrintStyle = PrintStyle(), printObject: Bool? = nil, justify: Justify? = nil) {
         self.value = value
         self.printStyle = printStyle
         self.printObject = printObject
@@ -24,10 +24,23 @@ public struct PartName {
 
 extension PartName: Equatable { }
 extension PartName: Codable {
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case value = ""
-        case printStyle = "print-style"
         case printObject = "print-object"
         case justify
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.value = try container.decode(String.self, forKey: .value)
+        self.printStyle = try PrintStyle(from: decoder)
+        self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
+        self.justify = try container.decodeIfPresent(Justify.self, forKey: .justify)
+    }
+}
+
+extension PartName: ExpressibleByStringLiteral {
+    public init(stringLiteral value: String) {
+        self.init(value: value)
     }
 }

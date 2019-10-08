@@ -109,33 +109,33 @@ extension DirectionType: Equatable { }
 
 extension DirectionType: Codable {
     enum CodingKeys: String, CodingKey {
-        case accordianRegistration
+        case accordionRegistration = "accordion-registration"
         case bracket
         case coda
         case damp
-        case dampAll
+        case dampAll = "damp-all"
         case dashes
         case dynamics
         case eyeglasses
-        case harpPedals
+        case harpPedals = "harp-pedals"
         case image
         case metronome
-        case octaveShift
-        case otherDirection
+        case octaveShift = "octave-shift"
+        case otherDirection = "other-direction"
         case pedal
         case percussion
-        case principleVoice
+        case principleVoice = "principle-voice"
         case rehearsal
         case scordatura
         case segno
-        case stringMute
+        case stringMute = "string-mute"
         case wedge
     }
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
         case let .accordionRegistration(value):
-            try container.encode(value, forKey: .accordianRegistration)
+            try container.encode(value, forKey: .accordionRegistration)
         case let .bracket(value):
             try container.encode(value, forKey: .bracket)
         case let .coda(value):
@@ -181,8 +181,8 @@ extension DirectionType: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        if container.contains(.accordianRegistration) {
-            self = .accordionRegistration(try container.decode(AccordionRegistration.self, forKey: .accordianRegistration))
+        if container.contains(.accordionRegistration) {
+            self = .accordionRegistration(try container.decode(AccordionRegistration.self, forKey: .accordionRegistration))
         } else if container.contains(.bracket) {
             self = .bracket(try container.decode(Bracket.self, forKey: .bracket))
         } else if container.contains(.coda) {

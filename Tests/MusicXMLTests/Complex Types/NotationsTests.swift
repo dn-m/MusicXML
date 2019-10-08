@@ -10,6 +10,19 @@ import XMLCoder
 @testable import MusicXML
 
 class NotationsTests: XCTestCase {
+    func testTied() throws {
+        let xml = """
+        <notations>
+            <tied type="start"/>
+        </notations>
+        """
+        let decoded = try XMLDecoder().decode(Notations.self, from: xml.data(using: .utf8)!)
+        let expected = Notations(values: [
+            .tied(Tied(type: .start))
+        ])
+
+        XCTAssertEqual(decoded, expected)
+    }
 
     func testTuplet() throws {
         let xml = """

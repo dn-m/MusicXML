@@ -114,7 +114,7 @@ extension ScorePart: Codable {
         case id
         case identification
         case name = "part-name"
-        case nameDisplay = "name-display"
+        case nameDisplay = "part-name-display"
         case partAbbreviation = "part-abbreviation"
         case partAbbreviationDisplay = "part-abbreviation-display"
         case group

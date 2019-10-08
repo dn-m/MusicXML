@@ -68,4 +68,24 @@ class ScorePartTests: XCTestCase {
 
         XCTAssertEqual(decoded, decoded2)
     }
+
+    func testComplex() throws {
+        let xml = """
+        <score-part id="P2">
+          <part-name>Part name</part-name>
+          <part-name-display><display-text>Overridden Part Name</display-text></part-name-display>
+          <part-abbreviation>abbrv.</part-abbreviation>
+          <part-abbreviation-display><display-text>Overr.abbrv.</display-text></part-abbreviation-display>
+        </score-part>
+        """
+        let decoded = try XMLDecoder().decode(ScorePart.self, from: xml.data(using: .utf8)!)
+        let expected = ScorePart(
+            id: "P2",
+            name: "Part name",
+            nameDisplay: NameDisplay(texts: [.displayText("Overridden Part Name")]),
+            partAbbreviation: "abbrv.",
+            partAbbreviationDisplay: NameDisplay(texts: [.displayText("Overr.abbrv.")])
+        )
+        XCTAssertEqual(decoded, expected)
+    }
 }

@@ -25,18 +25,18 @@ public enum Ornament {
 extension Ornament: Equatable { }
 extension Ornament: Codable {
     enum CodingKeys: String, CodingKey {
-        case delayedInvertedTurn
-        case delayedTurn
-        case invertedMordent
-        case invertedTurn
+        case delayedInvertedTurn = "delayed-inverted-turn"
+        case delayedTurn = "delayed-turn"
+        case invertedMordent = "inverted-mordent"
+        case invertedTurn = "inverted-turn"
         case mordent
-        case otherOrnament
+        case otherOrnament = "other-ornament"
         case shake
         case tremolo
-        case trillMark
+        case trillMark = "trill-mark"
         case turn
-        case verticalTurn
-        case wavyLine
+        case verticalTurn = "vertical-turn"
+        case wavyLine = "wavy-line"
     }
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

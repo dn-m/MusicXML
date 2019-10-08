@@ -16,12 +16,12 @@
 /// numeric point size. The font-weight can be normal or bold. The default is application-dependent,
 /// but is a text font vs. a music font.
 public struct Font {
-    public let family: CommaSeparatedText
-    public let style: FontStyle
-    public let size: FontSize
-    public let weight: FontWeight
+    public let family: CommaSeparatedText?
+    public let style: FontStyle?
+    public let size: FontSize?
+    public let weight: FontWeight?
 
-    public init(family: CommaSeparatedText, style: FontStyle, size: FontSize, weight: FontWeight) {
+    public init(family: CommaSeparatedText? = nil, style: FontStyle? = nil, size: FontSize? = nil, weight: FontWeight? = nil) {
         self.family = family
         self.style = style
         self.size = size
@@ -30,4 +30,11 @@ public struct Font {
 }
 
 extension Font: Equatable { }
-extension Font: Codable { }
+extension Font: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case family = "font-family"
+        case style = "font-style"
+        case size = "font-size"
+        case weight = "font-weight"
+    }
+}

@@ -11,7 +11,7 @@
 /// single wedge is divided into multiple segments.
 public enum WedgeType: String {
     case crescendo
-    case descrescendo
+    case diminuendo
     case stop
     case `continue`
 }
