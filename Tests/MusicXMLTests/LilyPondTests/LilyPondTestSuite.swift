@@ -11,14 +11,28 @@ import MusicXML
 class LilyPondTests: XCTestCase {
 
     func testAll() throws {
+        let tempDirUrl = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("LilyPondTestsResults")
+        try FileManager.default.createDirectory(at: tempDirUrl, withIntermediateDirectories: true, attributes: nil)
+        print("Created LilyPondTest result directory at \(tempDirUrl.absoluteString). Parsed scores from LilyPond test suite will be written there for inspection.")
+
         var successes: [String] = []
         var failures: [(name: String, error: Error)] = []
         for subdir in ["Partwise", "Timewise"] {
+            try FileManager.default.createDirectory(at: tempDirUrl, withIntermediateDirectories: true, attributes: nil)
             let directory = testSuiteURL.appendingPathComponent(subdir, isDirectory: true)
             for fileName in try FileManager.default.contentsOfDirectory(atPath: directory.path) {
                 let fileURL = directory.appendingPathComponent(fileName)
                 do {
-                    let _ = try MusicXML(url: fileURL)
+                    let parsed = try MusicXML(url: fileURL)
+                    let parsedResultDirUrl = tempDirUrl.appendingPathComponent(subdir)
+                    try FileManager.default.createDirectory(at: parsedResultDirUrl, withIntermediateDirectories: true, attributes: nil)
+                    
+                    let parsedResultFileUrl = parsedResultDirUrl.appendingPathComponent("\(fileName).parsed")
+                    do {
+                        try String(describing: parsed).write(to: parsedResultFileUrl, atomically: true, encoding: String.Encoding.utf8)
+                    } catch {
+                        print("Failed to write result for \(fileName)")
+                    }
                     successes.append("\(subdir)/\(fileName)")
                 } catch {
                     failures.append((name: "\(subdir)/\(fileName)", error: error))
