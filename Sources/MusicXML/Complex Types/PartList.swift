@@ -47,11 +47,19 @@ extension PartList.Item: Codable {
         }
     }
     public init(from decoder: Decoder) throws {
-        let keyed = try decoder.container(keyedBy: CodingKeys.self)
-        do {
-            self = .group(try keyed.decode(PartGroup.self, forKey: .group))
-        } catch {
-            self = .part(try keyed.decode(ScorePart.self, forKey: .part))
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if container.contains(.group) {
+            self = .group(try container.decode(PartGroup.self, forKey: .group))
+        } else if container.contains(.part) {
+            self = .part(try container.decode(ScorePart.self, forKey: .part))
+        } else {
+            throw DecodingError.typeMismatch(
+                PartList.Item.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized choice"
+                )
+            )
         }
     }
 }

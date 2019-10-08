@@ -179,11 +179,6 @@ extension DirectionType: Codable {
         }
     }
     public init(from decoder: Decoder) throws {
-
-        enum DecodingError: Error {
-            case unknownKind
-        }
-
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         if container.contains(.accordianRegistration) {
@@ -229,7 +224,13 @@ extension DirectionType: Codable {
         } else if container.contains(.wedge) {
             self = .wedge(try container.decode(Wedge.self, forKey: .wedge))
         } else {
-            throw DecodingError.unknownKind
+            throw DecodingError.typeMismatch(
+                DirectionType.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized choice"
+                )
+            )
         }
     }
 }

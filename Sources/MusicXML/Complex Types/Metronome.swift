@@ -93,10 +93,6 @@ extension Metronome.Regular.Relation: Codable {
         }
     }
     public init(from decoder: Decoder) throws {
-        enum DecodingError: Error {
-            case unknownKind
-        }
-
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if container.contains(.perMinute) {
             self = .perMinute(try container.decode(PerMinute.self, forKey: .perMinute))
@@ -105,7 +101,13 @@ extension Metronome.Regular.Relation: Codable {
             let beatUnitDot = try container.decodeIfPresent([Empty].self, forKey: .beatUnitDot)
             self = .beatUnit(beatUnit, beatUnitDot)
         } else {
-            throw DecodingError.unknownKind
+            throw DecodingError.typeMismatch(
+                Metronome.Regular.Relation.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized choice"
+                )
+            )
         }
     }
 }

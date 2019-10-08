@@ -10,10 +10,10 @@
 /// is printed at the start of each system. Enclosure for the display-text element is none by
 /// default. Language for the display-text element is Italian ("it") by default.
 public struct NameDisplay {
-    public let printObject: Bool
+    public let printObject: Bool?
     public let text: Text
 
-    public init(printObject: Bool, text: Text) {
+    public init(printObject: Bool? = nil, text: Text) {
         self.printObject = printObject
         self.text = text
     }
@@ -30,8 +30,8 @@ extension NameDisplay.Text: Equatable { }
 
 extension NameDisplay.Text: Codable {
     enum CodingKeys: String, CodingKey {
-        case displayText
-        case accidentalText
+        case displayText = "display-text"
+        case accidentalText = "accidental-text"
     }
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -44,10 +44,18 @@ extension NameDisplay.Text: Codable {
     }
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        do {
+        if container.contains(.displayText) {
             self = .displayText(try container.decode(FormattedText.self, forKey: .displayText))
-        } catch {
+        } else if container.contains(.accidentalText) {
             self = .accidentalText(try container.decode(AccidentalText.self, forKey: .accidentalText))
+        } else {
+            throw DecodingError.typeMismatch(
+                NameDisplay.Text.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Cannot decode NameDisplay.Text"
+                )
+            )
         }
     }
 }

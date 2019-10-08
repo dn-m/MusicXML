@@ -103,11 +103,6 @@ extension Notations.Notation: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-
-        enum DecodingError: Error {
-            case unknownKind
-        }
-
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
@@ -143,7 +138,13 @@ extension Notations.Notation: Codable {
         } else if container.contains(.other) {
             self = .other(try decode(.other))
         } else {
-            throw DecodingError.unknownKind
+            throw DecodingError.typeMismatch(
+                Notations.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized choice"
+                )
+            )
         }
     }
 }
