@@ -75,54 +75,38 @@ extension Ornament: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
-        do {
+        if container.contains(.delayedInvertedTurn) {
             self = .delayedInvertedTurn(try decode(.delayedInvertedTurn))
-        } catch {
-            do {
-                self = .delayedTurn(try decode(.delayedTurn))
-            } catch {
-                do {
-                    self = .invertedMordent(try decode(.invertedMordent))
-                } catch {
-                    do {
-                        self = .invertedTurn(try decode(.invertedTurn))
-                    } catch {
-                        do {
-                            self = .mordent(try decode(.mordent))
-                        } catch {
-                            do {
-                                self = .otherOrnament(try decode(.otherOrnament))
-                            } catch {
-                                do {
-                                    self = .shake(try decode(.shake))
-                                } catch {
-                                    do {
-                                        self = .tremolo(try decode(.tremolo))
-                                    } catch {
-                                        do {
-                                            self = .trillMark(try decode(.trillMark))
-                                        } catch {
-                                            do {
-                                                self = .turn(try decode(.turn))
-                                            } catch {
-                                                do {
-                                                    self = .verticalTurn(try decode(.verticalTurn))
-                                                } catch {
-                                                    do {
-                                                        self = .wavyLine(try decode(.wavyLine))
-                                                    } catch DecodingError.typeMismatch(_, let context) {
-                                                        throw DecodingError.typeMismatch(Ornament.self, context)
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        } else if container.contains(.delayedTurn) {
+            self = .delayedTurn(try decode(.delayedTurn))
+        } else if container.contains(.invertedMordent) {
+            self = .invertedMordent(try decode(.invertedMordent))
+        } else if container.contains(.invertedTurn) {
+            self = .invertedTurn(try decode(.invertedTurn))
+        } else if container.contains(.mordent) {
+            self = .mordent(try decode(.mordent))
+        } else if container.contains(.otherOrnament) {
+            self = .otherOrnament(try decode(.otherOrnament))
+        } else if container.contains(.shake) {
+            self = .shake(try decode(.shake))
+        } else if container.contains(.tremolo) {
+            self = .tremolo(try decode(.tremolo))
+        } else if container.contains(.trillMark) {
+            self = .trillMark(try decode(.trillMark))
+        } else if container.contains(.turn) {
+            self = .turn(try decode(.turn))
+        } else if container.contains(.verticalTurn) {
+            self = .verticalTurn(try decode(.verticalTurn))
+        } else if container.contains(.wavyLine) {
+            self = .wavyLine(try decode(.wavyLine))
+        } else {
+            throw DecodingError.typeMismatch(
+                Ornament.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized choice"
+                )
+            )
         }
     }
 }
