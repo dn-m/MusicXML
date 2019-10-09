@@ -71,4 +71,34 @@ class KeyTests: XCTestCase {
         )
         XCTAssertEqual(decoded, expected)
     }
+
+    func testDeocdingNonTraditionalWithAccidental() throws {
+        let xml = """
+        <key>
+          <key-step>B</key-step>
+          <key-alter>-1</key-alter>
+          <key-accidental>quarter-flat</key-accidental>
+          <key-step>E</key-step>
+          <key-alter>-2</key-alter>
+          <key-accidental>slash-flat</key-accidental>
+          <key-step>A</key-step>
+          <key-alter>-2</key-alter>
+          <key-accidental>slash-flat</key-accidental>
+          <key-step>F</key-step>
+          <key-alter>2</key-alter>
+          <key-accidental>sharp</key-accidental>
+        </key>
+        """
+        let decoded = try XMLDecoder().decode(Key.self, from: xml.data(using: .utf8)!)
+        let expected = Key(
+            kind: .nonTraditional([
+                Key.AlteredTone(step: .b, alter: -1, accidental: .quarterFlat),
+                Key.AlteredTone(step: .e, alter: -2, accidental: .slashFlat),
+                Key.AlteredTone(step: .a, alter: -2, accidental: .slashFlat),
+                Key.AlteredTone(step: .f, alter: 2, accidental: .sharp),
+            ]),
+            keyOctaves: []
+        )
+        XCTAssertEqual(decoded, expected)
+    }
 }

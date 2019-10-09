@@ -23,9 +23,9 @@ public struct Key {
     // MARK: - Elements
 
     public let kind: Kind
-    public let keyOctaves: [KeyOctave]?
+    public let keyOctaves: [KeyOctave]
 
-    public init(number: Int? = nil, position: Position = Position(), printStyle: PrintStyle? = nil, printObject: Bool? = nil, kind: Kind, keyOctaves: [KeyOctave]? = nil) {
+    public init(number: Int? = nil, position: Position = Position(), printStyle: PrintStyle? = nil, printObject: Bool? = nil, kind: Kind, keyOctaves: [KeyOctave] = []) {
         self.number = number
         self.position = position
         self.printStyle = printStyle
@@ -48,7 +48,7 @@ extension Key {
         self.position = Position()
         self.printStyle = nil
         self.printObject = nil
-        self.keyOctaves = nil
+        self.keyOctaves = []
     }
 
     /// Creates a `NonTraditional` type `Key`.
@@ -59,7 +59,7 @@ extension Key {
         self.position = Position()
         self.printStyle = nil
         self.printObject = nil
-        self.keyOctaves = nil
+        self.keyOctaves = []
     }
 }
 
@@ -134,7 +134,7 @@ extension Key: Codable {
         self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
 
         // Decode Elements
-        self.keyOctaves = try container.decodeIfPresent([KeyOctave].self, forKey: .keyOctaves)
+        self.keyOctaves = try container.decode([KeyOctave].self, forKey: .keyOctaves)
 
         do {
             // Attempt to decode traditional `Key`
