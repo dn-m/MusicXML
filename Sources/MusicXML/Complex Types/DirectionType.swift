@@ -103,6 +103,10 @@ public enum DirectionType {
     /// crescendo, or the type is stop for a wedge that began with a diminuendo type. The line-type
     /// is solid by default.
     case wedge(Wedge)
+    /// The words element specifies a standard text direction. Left justification is
+    /// assumed if not specified. Language is Italian ("it") by default. Enclosure is none
+    /// by default.
+    case words(FormattedText)
 }
 
 extension DirectionType: Equatable { }
@@ -130,6 +134,8 @@ extension DirectionType: Codable {
         case segno
         case stringMute = "string-mute"
         case wedge
+        case words
+
     }
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -176,6 +182,8 @@ extension DirectionType: Codable {
             try container.encode(value, forKey: .stringMute)
         case let .wedge(value):
             try container.encode(value, forKey: .wedge)
+        case let .words(value):
+            try container.encode(value, forKey: .words)
         }
     }
     public init(from decoder: Decoder) throws {
@@ -223,6 +231,8 @@ extension DirectionType: Codable {
             self = .stringMute(try container.decode(StringMute.self, forKey: .stringMute))
         } else if container.contains(.wedge) {
             self = .wedge(try container.decode(Wedge.self, forKey: .wedge))
+        } else if container.contains(.words) {
+            self = .words(try container.decode(FormattedText.self, forKey: .words))
         } else {
             throw DecodingError.typeMismatch(
                 DirectionType.self,

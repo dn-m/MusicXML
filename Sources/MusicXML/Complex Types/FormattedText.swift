@@ -7,6 +7,10 @@
 
 /// The formatted-text type represents a text element with text-formatting attributes.
 public struct FormattedText {
+
+    // MARK: - Value
+    public let value: String
+
     // MARK: - Attributes
     public let justify: LeftCenterRight?
     public let printStyle: PrintStyle
@@ -22,9 +26,24 @@ public struct FormattedText {
     public let enclosure: EnclosureShape?
 
     // MARK: - Elements
-    public let value: String
 
-    public init(justify: LeftCenterRight? = nil, printStyle: PrintStyle = PrintStyle(), hAlign: LeftCenterRight? = nil, vAlign: VAlign? = nil, underline: Int? = nil, overline: Int? = nil, lineThrough: Int? = nil, rotation: Double? = nil, letterSpacing: NumberOrNormal? = nil, lineHeight: NumberOrNormal? = nil, direction: TextDirection? = nil, enclosure: EnclosureShape? = nil, value: String) {
+
+    public init(
+        _ value: String,
+        justify: LeftCenterRight? = nil,
+        printStyle: PrintStyle = PrintStyle(),
+        hAlign: LeftCenterRight? = nil,
+        vAlign: VAlign? = nil,
+        underline: Int? = nil,
+        overline: Int? = nil,
+        lineThrough: Int? = nil,
+        rotation: Double? = nil,
+        letterSpacing: NumberOrNormal? = nil,
+        lineHeight: NumberOrNormal? = nil,
+        direction: TextDirection? = nil,
+        enclosure: EnclosureShape? = nil
+    ) {
+        self.value = value
         self.justify = justify
         self.printStyle = printStyle
         self.hAlign = hAlign
@@ -37,7 +56,7 @@ public struct FormattedText {
         self.lineHeight = lineHeight
         self.direction = direction
         self.enclosure = enclosure
-        self.value = value
+
     }
 }
 
@@ -78,6 +97,6 @@ extension FormattedText: Codable {
 
 extension FormattedText: ExpressibleByStringLiteral {
     public init(stringLiteral value: String) {
-        self.init(value: value)
+        self.init(value)
     }
 }
