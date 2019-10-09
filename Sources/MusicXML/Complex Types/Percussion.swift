@@ -81,6 +81,7 @@ extension Percussion.Kind: Codable {
             try container.encode(value, forKey: .wood)
         }
     }
+    
     public init(from decoder: Decoder) throws {
 
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -89,42 +90,36 @@ extension Percussion.Kind: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
-        do {
+        if container.contains(.beater) {
             self = .beater(try decode(.beater))
-        } catch {
-            do {
-                self = .effect(try decode(.effect))
-            } catch {
-                do {
-                    self = .glass(try decode(.glass))
-                } catch {
-                    do {
-                        self = .membrane(try decode(.membrane))
-                    } catch {
-                        do {
-                            self = .metal(try decode(.metal))
-                        } catch {
-                            do {
-                                self = .other(try decode(.other))
-                            } catch {
-                                do {
-                                    self = .pitched(try decode(.pitched))
-                                } catch {
-                                    do {
-                                        self = .stickLocation(try decode(.stickLocation))
-                                    } catch {
-                                        do {
-                                            self = .timpani(try decode(.timpani))
-                                        } catch {
-                                            self = .wood(try decode(.wood))
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        } else if container.contains(.effect) {
+            self = .effect(try decode(.effect))
+        } else if container.contains(.glass) {
+            self = .glass(try decode(.glass))
+        } else if container.contains(.membrane) {
+            self = .membrane(try decode(.membrane))
+        } else if container.contains(.metal) {
+            self = .metal(try decode(.metal))
+        } else if container.contains(.other) {
+            self = .other(try decode(.other))
+        } else if container.contains(.pitched) {
+            self = .pitched(try decode(.pitched))
+        } else if container.contains(.stick) {
+            self = .stick(try decode(.stick))
+        } else if container.contains(.stickLocation) {
+            self = .stickLocation(try decode(.stickLocation))
+        } else if container.contains(.timpani) {
+            self = .timpani(try decode(.timpani))
+        } else if container.contains(.wood) {
+            self = .wood(try decode(.wood))
+        } else {
+            throw DecodingError.typeMismatch(
+                Percussion.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized choice"
+                )
+            )
         }
     }
 }
