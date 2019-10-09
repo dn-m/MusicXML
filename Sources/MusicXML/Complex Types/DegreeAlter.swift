@@ -13,10 +13,10 @@
 /// sharp and flat symbols to display the degree alteration; it is no by default.
 public struct DegreeAlter {
     public let value: Int
-    public let printStyle: PrintStyle?
+    public let printStyle: PrintStyle
     public let plusMinus: Bool?
 
-    public init(value: Int, printStyle: PrintStyle? = nil, plusMinus: Bool? = nil) {
+    public init(value: Int, printStyle: PrintStyle = PrintStyle(), plusMinus: Bool? = nil) {
         self.value = value
         self.printStyle = printStyle
         self.plusMinus = plusMinus
@@ -24,4 +24,16 @@ public struct DegreeAlter {
 }
 
 extension DegreeAlter: Equatable { }
-extension DegreeAlter: Codable { }
+extension DegreeAlter: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case value = ""
+        case plusMinus = "plus-minus"
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.printStyle = try PrintStyle(from: decoder)
+        self.value = try container.decode(Int.self, forKey: .value)
+        self.plusMinus = try container.decodeIfPresent(Bool.self, forKey: .plusMinus)
+    }
+}

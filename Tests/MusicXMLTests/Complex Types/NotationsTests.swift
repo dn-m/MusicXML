@@ -191,4 +191,17 @@ class NotationsTests: XCTestCase {
             equals: Notations(values: [.fermata(Fermata(value: .normal, type: .upright))])
         )
     }
+
+    func testSlideNoValue() throws {
+        let xml = """
+        <notations>
+          <slide line-type="solid" number="1" type="stop"/>
+        </notations>
+        """
+        try assertDecoded(xml,
+            equals: Notations(values: [
+                .slide(Slide(type: .stop, number: 1, lineType: .solid))
+            ])
+        )
+    }
 }

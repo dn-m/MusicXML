@@ -18,12 +18,12 @@
 // >     first-beat = "25"
 // >     last-beat = "75"
 public struct BendSound {
-    public let accelerate: Bool
-    public let beats: Int
-    public let firstBeat: Int
-    public let lastBeat: Int
+    public let accelerate: Bool?
+    public let beats: Int?
+    public let firstBeat: Int?
+    public let lastBeat: Int?
 
-    public init(accelerate: Bool = false, beats: Int = 4, firstBeat: Int = 25, lastBeat: Int = 75) {
+    public init(accelerate: Bool? = nil, beats: Int? = nil, firstBeat: Int? = nil, lastBeat: Int? = nil) {
         self.accelerate = accelerate
         self.beats = beats
         self.firstBeat = firstBeat
@@ -32,4 +32,11 @@ public struct BendSound {
 }
 
 extension BendSound: Equatable { }
-extension BendSound: Codable { }
+extension BendSound: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case accelerate
+        case beats
+        case firstBeat = "first-beat"
+        case lastBeat = "last-beat"
+    }
+}

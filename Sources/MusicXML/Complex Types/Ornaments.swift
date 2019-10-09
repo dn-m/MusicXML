@@ -24,9 +24,9 @@ public struct Ornaments {
 extension Ornaments: Equatable { }
 extension Ornaments: Codable {
     enum CodingKeys: String, CodingKey {
-        case values
         case accidentalMarks = "accidental-mark"
     }
+    
     public init(from decoder: Decoder) throws {
         var valuesContainer = try decoder.unkeyedContainer()
         var ornaments = [Ornament]()

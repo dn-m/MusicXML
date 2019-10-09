@@ -20,7 +20,7 @@ class LilyPondTests: XCTestCase {
         for subdir in ["Partwise", "Timewise"] {
             try FileManager.default.createDirectory(at: tempDirUrl, withIntermediateDirectories: true, attributes: nil)
             let directory = testSuiteURL.appendingPathComponent(subdir, isDirectory: true)
-            for fileName in try FileManager.default.contentsOfDirectory(atPath: directory.path) {
+            for fileName in try FileManager.default.contentsOfDirectory(atPath: directory.path).sorted() {
                 let fileURL = directory.appendingPathComponent(fileName)
                 do {
                     let parsed = try MusicXML(url: fileURL)

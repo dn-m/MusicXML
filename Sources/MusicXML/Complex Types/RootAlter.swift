@@ -10,13 +10,13 @@
 /// root-alter information. In that case, the print-object attribute of the root-alter element can
 /// be set to no.
 public struct RootAlter {
-    public let value: Double?
+    public let value: Double
     public let printObject: Bool?
-    public let printStyle: PrintStyle?
+    public let printStyle: PrintStyle
     public let location: LeftRight?
 
 
-    public init(value: Double? = nil, printObject: Bool? = nil, printStyle: PrintStyle? = nil, location: LeftRight? = nil) {
+    public init(value: Double, printObject: Bool? = nil, printStyle: PrintStyle = PrintStyle(), location: LeftRight? = nil) {
         self.value = value
         self.printObject = printObject
         self.printStyle = printStyle
@@ -25,4 +25,24 @@ public struct RootAlter {
 }
 
 extension RootAlter: Equatable { }
-extension RootAlter: Codable { }
+extension RootAlter: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case value = ""
+        case printObject = "print-object"
+        case location
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.value = try container.decode(Double.self, forKey: .value)
+        self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
+        self.printStyle = try PrintStyle(from: decoder)
+        self.location = try container.decodeIfPresent(LeftRight.self, forKey: .location)
+    }
+}
+
+extension RootAlter: ExpressibleByFloatLiteral {
+    public init(floatLiteral value: Double) {
+        self.init(value: value)
+    }
+}

@@ -28,15 +28,15 @@ public enum KindValue: String {
     case augmented
     case diminished
     case dominant
-    case majorSeventh = "majorSeventh"
-    case minorSeventh = "minorSeventh"
+    case majorSeventh = "major-seventh"
+    case minorSeventh = "minor-seventh"
     case diminishedSeventh = "diminished-seventh"
     case augmentedSeventh = "augmented-seventh"
     case halfDiminished = "half-diminished"
-    case minorMajor = "minor-major"
+    case majorMinor = "major-minor"
     case majorSixth = "major-sixth"
     case minorSixth = "minor-sixth"
-    case dominantNinth = "dominant-ninght"
+    case dominantNinth = "dominant-ninth"
     case majorNinth = "major-ninth"
     case minorNinth = "minor-ninth"
     case dominantEleventh = "dominant-11th"
@@ -47,13 +47,13 @@ public enum KindValue: String {
     case minorThirteenth = "minor-13th"
     case suspendedSecond = "suspended-second"
     case suspendedFourth = "suspended-fourth"
-    case neapolitan = "Neopolitan"
+    case neapolitan = "Neapolitan"
     case italian = "Italian"
     case french = "French"
     case german = "German"
-    case pedalPointBass = "pedal-point-bass"
+    case pedalPointBass = "pedal"
     case power
-    case tristan
+    case tristan = "Tristan"
     case other
     case none
 }

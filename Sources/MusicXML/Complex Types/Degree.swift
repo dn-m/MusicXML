@@ -11,17 +11,29 @@
 /// degree-type text attributes specify how the value and type of the degree should be displayed. A
 /// harmony of kind "other" can be spelled explicitly by using a series of degree elements together
 /// with a root.
-public struct Degree: Codable, Equatable {
+public struct Degree {
+    public let printObject: Bool?
+
     public let value: DegreeValue
     public let alter: DegreeAlter
     public let type: DegreeType
-    public let printObject: Bool
 
-    public init(value: DegreeValue, alter: DegreeAlter, type: DegreeType, printObject: Bool) {
+    public init(printObject: Bool? = nil, value: DegreeValue, alter: DegreeAlter, type: DegreeType) {
         self.value = value
         self.alter = alter
         self.type = type
         self.printObject = printObject
+    }
+}
+
+extension Degree: Equatable {}
+
+extension Degree: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case printObject = "print-object"
+        case value = "degree-value"
+        case type = "degree-type"
+        case alter = "degree-alter"
     }
 }
 
