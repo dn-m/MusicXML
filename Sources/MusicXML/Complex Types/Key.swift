@@ -16,8 +16,7 @@ public struct Key {
 
     /// The optional number attribute refers to staff numbers.
     public let number: Int?
-    public let position: Position
-    public let printStyle: PrintStyle?
+    public let printStyle: PrintStyle
     public let printObject: Bool?
 
     // MARK: - Elements
@@ -25,9 +24,8 @@ public struct Key {
     public let kind: Kind
     public let keyOctaves: [KeyOctave]
 
-    public init(number: Int? = nil, position: Position = Position(), printStyle: PrintStyle? = nil, printObject: Bool? = nil, kind: Kind, keyOctaves: [KeyOctave] = []) {
+    public init(number: Int? = nil, printStyle: PrintStyle = PrintStyle(), printObject: Bool? = nil, kind: Kind, keyOctaves: [KeyOctave] = []) {
         self.number = number
-        self.position = position
         self.printStyle = printStyle
         self.printObject = printObject
         self.kind = kind
@@ -45,8 +43,7 @@ extension Key {
         self.kind = .traditional(Traditional(cancel: cancel, fifths: fifths, mode: mode))
         // TODO: Add remaining attributes and elements
 
-        self.position = Position()
-        self.printStyle = nil
+        self.printStyle = PrintStyle()
         self.printObject = nil
         self.keyOctaves = []
     }
@@ -56,8 +53,7 @@ extension Key {
         self.kind = .nonTraditional(alteredTones)
         // TODO: Add remaining attributes and elements
         self.number = nil
-        self.position = Position()
-        self.printStyle = nil
+        self.printStyle = PrintStyle()
         self.printObject = nil
         self.keyOctaves = []
     }
@@ -129,8 +125,7 @@ extension Key: Codable {
 
         // Decode attributes
         self.number = try container.decodeIfPresent(Int.self, forKey: .number)
-        self.position = try Position(from: decoder)
-        self.printStyle = try container.decodeIfPresent(PrintStyle.self, forKey: .printStyle)
+        self.printStyle = try PrintStyle(from: decoder)
         self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
 
         // Decode Elements

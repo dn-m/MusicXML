@@ -11,11 +11,27 @@ public struct Inversion {
     public let value: Int
     public let printStyle: PrintStyle
 
-    public init(value: Int, printStyle: PrintStyle) {
+    public init(value: Int, printStyle: PrintStyle = PrintStyle()) {
         self.value = value
         self.printStyle = printStyle
     }
 }
 
 extension Inversion: Equatable { }
-extension Inversion: Codable { }
+extension Inversion: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case value = ""
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.value = try container.decode(Int.self, forKey: .value)
+        self.printStyle = try PrintStyle(from: decoder)
+    }
+}
+
+extension Inversion: ExpressibleByIntegerLiteral {
+    public init(integerLiteral value: Int) {
+        self.init(value: value)
+    }
+}

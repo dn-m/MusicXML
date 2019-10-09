@@ -12,9 +12,9 @@
 public struct DegreeType {
     let value: DegreeTypeValue
     let text: String?
-    let printStyle: PrintStyle?
+    let printStyle: PrintStyle
 
-    public init(value: DegreeTypeValue, text: String? = nil, printStyle: PrintStyle? = nil) {
+    public init(value: DegreeTypeValue, text: String? = nil, printStyle: PrintStyle = PrintStyle()) {
         self.value = value
         self.text = text
         self.printStyle = printStyle
@@ -22,4 +22,16 @@ public struct DegreeType {
 }
 
 extension DegreeType: Equatable { }
-extension DegreeType: Codable { }
+extension DegreeType: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case value = ""
+        case text
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.text = try container.decodeIfPresent(String.self, forKey: .text)
+        self.printStyle = try PrintStyle(from: decoder)
+        self.value = try container.decode(DegreeTypeValue.self, forKey: .value)
+    }
+}

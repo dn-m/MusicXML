@@ -14,25 +14,29 @@
 /// printed due to the harmony element. The print-style attribute group sets the default for the
 /// harmony, but individual elements can override this with their own print-style values.
 public struct Harmony {
-    public let type: HarmonyType
-    public let printObject: Bool
+
+    // MARK: - Attributes
+    public let type: HarmonyType?
+    public let printObject: Bool?
     /// The print-frame attribute controls printing of a frame or fretboard diagram.
     public let printFrame: Bool?
-    public let printStyle: PrintStyle?
+    public let printStyle: PrintStyle
     public let placement: AboveBelow?
-    public let chord: [HarmonyChord] // NonEmpty
+
+    // MARK: - Elements
+    public let chords: [HarmonyChord] // NonEmpty
     public let frame: Frame?
     public let offset: Offset?
-    public let editorial: Editorial?
+    public let editorial: Editorial
     public let staff: Int?
 
-    public init(type: HarmonyType, printObject: Bool, printFrame: Bool? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil, chord: [HarmonyChord], frame: Frame? = nil, offset: Offset? = nil, editorial: Editorial? = nil, staff: Int? = nil) {
+    public init(type: HarmonyType? = nil, printObject: Bool? = nil, printFrame: Bool? = nil, printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil, chords: [HarmonyChord], frame: Frame? = nil, offset: Offset? = nil, editorial: Editorial = Editorial(), staff: Int? = nil) {
         self.type = type
         self.printObject = printObject
         self.printFrame = printFrame
         self.printStyle = printStyle
         self.placement = placement
-        self.chord = chord
+        self.chords = chords
         self.frame = frame
         self.offset = offset
         self.editorial = editorial
@@ -41,4 +45,42 @@ public struct Harmony {
 }
 
 extension Harmony: Equatable { }
-extension Harmony: Codable { }
+extension Harmony: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case type
+        case printObject = "print-object"
+        case printFrame = "print-frame"
+        case printStyle = "print-style"
+        case placement
+        case frame
+        case offset
+        case staff
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.type = try container.decodeIfPresent(HarmonyType.self, forKey: .type)
+        self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
+        self.printFrame = try container.decodeIfPresent(Bool.self, forKey: .printFrame)
+        self.printStyle = try PrintStyle(from: decoder)
+        self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
+
+        // Imploded list of harmony-chords are difficult to decode.
+        // The final way is to break down into individual elements and reassemble them back to harmony-chords
+        var chordComponents = [HarmonyChordComponent]()
+        var valuesContainer = try decoder.unkeyedContainer()
+        while !valuesContainer.isAtEnd {
+            do {
+                chordComponents.append(try valuesContainer.decode(HarmonyChordComponent.self))
+            } catch DecodingError.typeMismatch(let type, _) where type == HarmonyChordComponent.self {
+                break
+            }
+        }
+        self.chords = try HarmonyChord.assemble(from: chordComponents)
+
+        self.frame = try container.decodeIfPresent(Frame.self, forKey: .frame)
+        self.offset = try container.decodeIfPresent(Offset.self, forKey: .offset)
+        self.editorial = try Editorial(from: decoder)
+        self.staff = try container.decodeIfPresent(Int.self, forKey: .staff)
+    }
+}
