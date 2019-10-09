@@ -116,90 +116,58 @@ extension Technique: Codable {
         }
 
         // Touché Xcode
-        do {
+        if container.contains(.arrow) {
             self = .arrow(try decode(.arrow))
-        } catch {
-            do {
-                self = .bend(try decode(.bend))
-            } catch {
-                do {
-                    self = .doubleTongue(try decode(.doubleTongue))
-                } catch {
-                    do {
-                        self = .downBow(try decode(.downBow))
-                    } catch {
-                        do {
-                            self = .fingering(try decode(.fingering))
-                        } catch {
-                            do {
-                                self = .fingernails(try decode(.fingernails))
-                            } catch {
-                                do {
-                                    self = .fret(try decode(.fret))
-                                } catch {
-                                    do {
-                                        self = .hammerOn(try decode(.hammerOn))
-                                    } catch {
-                                        do {
-                                            self = .handbell(try decode(.handbell))
-                                        } catch {
-                                            do {
-                                                self = .harmonic(try decode(.harmonic))
-                                            } catch {
-                                                do {
-                                                    self = .heel(try decode(.heel))
-                                                } catch {
-                                                    do {
-                                                        self = .openString(try decode(.openString))
-                                                    } catch {
-                                                        do {
-                                                            self = .otherTechnical(try decode(.otherTechnical))
-                                                        } catch {
-                                                            do {
-                                                                self = .pluck(try decode(.pluck))
-                                                            } catch {
-                                                                do {
-                                                                    self = .pullOff(try decode(.pullOff))
-                                                                } catch {
-                                                                    do {
-                                                                        self = .snapPizzicato(try decode(.snapPizzicato))
-                                                                    } catch {
-                                                                        do {
-                                                                            self = .string(try decode(.string))
-                                                                        } catch {
-                                                                            do {
-                                                                                self = .tap(try decode(.tap))
-                                                                            } catch {
-                                                                                do {
-                                                                                    self = .thumbPosition(try decode(.thumbPosition))
-                                                                                } catch {
-                                                                                    do {
-                                                                                        self = .toe(try decode(.toe))
-                                                                                    } catch {
-                                                                                        do {
-                                                                                            self = .tripleTongue(try decode(.tripleTongue))
-                                                                                        } catch {
-                                                                                            self = .upBow(try decode(.upBow))
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        } else if container.contains(.bend) {
+            self = .bend(try decode(.bend))
+        } else if container.contains(.doubleTongue) {
+            self = .doubleTongue(try decode(.doubleTongue))
+        } else if container.contains(.downBow) {
+            self = .downBow(try decode(.downBow))
+        } else if container.contains(.fingering) {
+            self = .fingering(try decode(.fingering))
+        } else if container.contains(.fingernails) {
+            self = .fingernails(try decode(.fingernails))
+        } else if container.contains(.fret) {
+            self = .fret(try decode(.fret))
+        } else if container.contains(.hammerOn) {
+            self = .hammerOn(try decode(.hammerOn))
+        } else if container.contains(.handbell) {
+            self = .handbell(try decode(.handbell))
+        } else if container.contains(.harmonic) {
+            self = .harmonic(try decode(.harmonic))
+        } else if container.contains(.heel) {
+            self = .heel(try decode(.heel))
+        } else if container.contains(.openString) {
+            self = .openString(try decode(.openString))
+        } else if container.contains(.otherTechnical) {
+            self = .otherTechnical(try decode(.otherTechnical))
+        } else if container.contains(.pluck) {
+            self = .pluck(try decode(.pluck))
+        } else if container.contains(.pullOff) {
+            self = .pullOff(try decode(.pullOff))
+        } else if container.contains(.snapPizzicato) {
+            self = .snapPizzicato(try decode(.snapPizzicato))
+        } else if container.contains(.string) {
+            self = .string(try decode(.string))
+        } else if container.contains(.tap) {
+            self = .tap(try decode(.tap))
+        } else if container.contains(.thumbPosition) {
+            self = .thumbPosition(try decode(.thumbPosition))
+        } else if container.contains(.toe) {
+            self = .toe(try decode(.toe))
+        } else if container.contains(.tripleTongue) {
+            self = .tripleTongue(try decode(.tripleTongue))
+        } else if container.contains(.upBow) {
+            self = .upBow(try decode(.upBow))
+        } else {
+            throw DecodingError.typeMismatch(
+                Technique.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized choice"
+                )
+            )
         }
     }
 }
