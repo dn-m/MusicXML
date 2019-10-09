@@ -96,8 +96,7 @@ class KeyTests: XCTestCase {
                 Key.AlteredTone(step: .e, alter: -2, accidental: .slashFlat),
                 Key.AlteredTone(step: .a, alter: -2, accidental: .slashFlat),
                 Key.AlteredTone(step: .f, alter: 2, accidental: .sharp),
-            ]),
-            keyOctaves: []
+            ])
         )
         XCTAssertEqual(decoded, expected)
     }
