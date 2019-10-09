@@ -108,7 +108,11 @@ extension Ornament: Codable {
                                                 do {
                                                     self = .verticalTurn(try decode(.verticalTurn))
                                                 } catch {
-                                                    self = .wavyLine(try decode(.wavyLine))
+                                                    do {
+                                                        self = .wavyLine(try decode(.wavyLine))
+                                                    } catch DecodingError.typeMismatch(_, let context) {
+                                                        throw DecodingError.typeMismatch(Ornament.self, context)
+                                                    }
                                                 }
                                             }
                                         }
