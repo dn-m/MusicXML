@@ -24,7 +24,13 @@ public struct Dynamics {
     public let textDecoration: TextDecoration?
     public let enclosure: EnclosureShape?
 
-    public init(values: [Dynamic], printStyleAlign: PrintStyleAlign? = nil, placement: AboveBelow? = nil, textDecoration: TextDecoration? = nil, enclosure: EnclosureShape? = nil) {
+    public init(
+        _ values: [Dynamic],
+        printStyleAlign: PrintStyleAlign? = nil,
+        placement: AboveBelow? = nil,
+        textDecoration: TextDecoration? = nil,
+        enclosure: EnclosureShape? = nil
+    ) {
         self.values = values
         self.printStyleAlign = printStyleAlign
         self.placement = placement
@@ -33,6 +39,23 @@ public struct Dynamics {
     }
 }
 
-
 extension Dynamics: Equatable { }
-extension Dynamics: Codable { }
+extension Dynamics: Codable {
+    public init(from decoder: Decoder) throws {
+
+        // Decode values
+        var values: [Dynamic] = []
+        var valuesContainer = try decoder.unkeyedContainer()
+        while !valuesContainer.isAtEnd {
+            values.append(try valuesContainer.decode(Dynamic.self))
+        }
+        self.values = values
+
+        // Decode attributes
+        #warning("FIXME: Decode Dynamics.attributes")
+        self.printStyleAlign = nil
+        self.placement = nil
+        self.textDecoration = nil
+        self.enclosure = nil
+    }
+}
