@@ -23,15 +23,15 @@ public struct Key {
     // MARK: - Elements
 
     public let kind: Kind
-    public let keyOctave: [KeyOctave]?
+    public let keyOctaves: [KeyOctave]?
 
-    public init(number: Int? = nil, position: Position = Position(), printStyle: PrintStyle? = nil, printObject: Bool? = nil, kind: Kind, keyOctave: [KeyOctave]? = nil) {
+    public init(number: Int? = nil, position: Position = Position(), printStyle: PrintStyle? = nil, printObject: Bool? = nil, kind: Kind, keyOctaves: [KeyOctave]? = nil) {
         self.number = number
         self.position = position
         self.printStyle = printStyle
         self.printObject = printObject
         self.kind = kind
-        self.keyOctave = keyOctave
+        self.keyOctaves = keyOctaves
     }
 }
 
@@ -48,7 +48,7 @@ extension Key {
         self.position = Position()
         self.printStyle = nil
         self.printObject = nil
-        self.keyOctave = nil
+        self.keyOctaves = nil
     }
 
     /// Creates a `NonTraditional` type `Key`.
@@ -59,7 +59,7 @@ extension Key {
         self.position = Position()
         self.printStyle = nil
         self.printObject = nil
-        self.keyOctave = nil
+        self.keyOctaves = nil
     }
 }
 
@@ -83,7 +83,13 @@ extension Key {
     public struct AlteredTone {
         public var step: Step
         public var alter: Double
-        public var accidental: AccidentalValue
+        public var accidental: AccidentalValue?
+
+        public init(step: Step, alter: Double, accidental: AccidentalValue? = nil) {
+            self.step = step
+            self.alter = alter
+            self.accidental = accidental
+        }
     }
 
     public enum Kind {
@@ -93,98 +99,76 @@ extension Key {
 }
 
 extension Key.AlteredTone: Equatable { }
-extension Key.AlteredTone: Codable {
-    enum CodingKeys: String, CodingKey {
-        case step
-        case alter
-        case accidental
-    }
-}
 
 extension Key.Traditional: Equatable { }
-extension Key.Traditional: Codable {
+extension Key.Traditional: Codable { }
+
+extension Key.Kind: Equatable { }
+
+extension Key: Equatable { }
+extension Key: Codable {
+
     enum CodingKeys: String, CodingKey {
+        case number
+        case position
+        case printStyle
+        case printObject
+        case kind
+        case keyOctaves = "key-octave"
+        case keyStep = "key-step"
+        case keyAlter = "key-alter"
+        case keyAccidental = "key-accidental"
         case cancel
         case fifths
         case mode
     }
-}
 
-extension Key.Kind: Equatable { }
-extension Key.Kind: Codable {
-    enum CodingKeys: String, CodingKey {
-        case traditional
-        case nonTraditional
-    }
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        switch self {
-        case let .traditional(value):
-            try container.encode(value, forKey: .traditional)
-        case let .nonTraditional(value):
-            try container.encode(value, forKey: .nonTraditional)
-        }
-    }
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        do {
-            self = .traditional(try container.decode(Key.Traditional.self, forKey: .traditional))
-        } catch {
-            self = .nonTraditional(try container.decode([Key.AlteredTone].self, forKey: .nonTraditional))
-        }
-    }
-}
 
-extension Key: Equatable { }
-extension Key: Codable {
-    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
         // Decode attributes
         self.number = try container.decodeIfPresent(Int.self, forKey: .number)
         self.position = try Position(from: decoder)
         self.printStyle = try container.decodeIfPresent(PrintStyle.self, forKey: .printStyle)
         self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
+
         // Decode Elements
-        self.keyOctave = try container.decodeIfPresent([KeyOctave].self, forKey: .keyOctave)
-        // Decode Kind
+        self.keyOctaves = try container.decodeIfPresent([KeyOctave].self, forKey: .keyOctaves)
+
         do {
-            let kindContainer = try decoder.container(keyedBy: Key.Traditional.CodingKeys.self)
+            // Attempt to decode traditional `Key`
             self.kind = .traditional(
                 Traditional(
-                    cancel: try kindContainer.decodeIfPresent(Cancel.self, forKey: .cancel),
-                    fifths: try kindContainer.decode(Int.self, forKey: .fifths),
-                    mode: try kindContainer.decodeIfPresent(Mode.self, forKey: .mode)
+                    cancel: try container.decodeIfPresent(Cancel.self, forKey: .cancel),
+                    fifths: try container.decode(Int.self, forKey: .fifths),
+                    mode: try container.decodeIfPresent(Mode.self, forKey: .mode)
                 )
             )
         } catch {
-            let kindContainer = try decoder.singleValueContainer()
-            #warning("FIX Key.nonTraditional decoding")
-            self.kind = .nonTraditional(try kindContainer.decode([AlteredTone].self))
+            // Attempt to decode non-traditional `Key`.
+            // FIXME: This is not technically correct. The `<key-accidental>` values are optional.
+            // Here, we assume there is a `<key-accidental>` for each `<key-step>` and `<key-alter>`
+            // pair. Otherwise, we shove any `<key-accidental>` to the earliest pair. This may not
+            // be the case in real life.
+            let steps = try container.decode([Step].self, forKey: .keyStep)
+            let alters = try container.decode([Double].self, forKey: .keyAlter)
+            let accidentals = try container.decode([AccidentalValue].self, forKey: .keyAccidental)
+            let alteredTones: [AlteredTone] = zip(steps,alters)
+                .enumerated()
+                .map { index, stepAndAlter in
+                    let (step,alter) = stepAndAlter
+                    return AlteredTone(
+                        step: step,
+                        alter: alter,
+                        accidental: index < accidentals.count ? accidentals[index] : nil
+                    )
+                }
+            self.kind = .nonTraditional(alteredTones)
         }
     }
 
-    #warning("TODO: Implement Key.encode(to: Encoder)")
-}
-
-#warning("Add all attribute grouped attributes")
-extension Key: DynamicNodeDecoding {
-    public static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
-        switch key {
-        case CodingKeys.number:
-            return .attribute
-        default:
-            return .element
-        }
-    }
-}
-
-extension Key: DynamicNodeEncoding {
-    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        switch key {
-        case CodingKeys.number:
-            return .attribute
-        default:
-            return .element
-        }
+    public func encode(to encoder: Encoder) throws {
+        fatalError("TODO: Implement Key.encode(to: Encoder)")
     }
 }

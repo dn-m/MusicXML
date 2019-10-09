@@ -23,6 +23,15 @@ class KeyTests: XCTestCase {
         XCTAssertEqual(decoded, expected)
     }
 
+    func testDecodingKeyOctave() throws {
+        let xml = """
+        <key-octave number="1">2</key-octave>
+        """
+        let decoded = try XMLDecoder().decode(KeyOctave.self, from: xml.data(using: .utf8)!)
+        let expected = KeyOctave(2, number: 1)
+        XCTAssertEqual(decoded, expected)
+    }
+
     func testDecodingNonTraditional() throws {
         let xml = """
         <key>
@@ -44,5 +53,22 @@ class KeyTests: XCTestCase {
         </key>
         """
         let decoded = try XMLDecoder().decode(Key.self, from: xml.data(using: .utf8)!)
+        let expected = Key(
+            kind: .nonTraditional([
+                Key.AlteredTone(step: .c, alter: -2),
+                Key.AlteredTone(step: .g, alter: 2),
+                Key.AlteredTone(step: .d, alter: -1),
+                Key.AlteredTone(step: .b, alter: 1),
+                Key.AlteredTone(step: .f, alter: 0),
+            ]),
+            keyOctaves: [
+                KeyOctave(2, number: 1),
+                KeyOctave(3, number: 2),
+                KeyOctave(4, number: 3),
+                KeyOctave(5, number: 4),
+                KeyOctave(6, number: 5),
+            ]
+        )
+        XCTAssertEqual(decoded, expected)
     }
 }
