@@ -37,3 +37,12 @@ extension Offset: Codable {
         case sound
     }
 }
+
+extension Offset: ExpressibleByIntegerLiteral {
+
+    // MARK: - ExpressibleByIntegerLiteral
+
+    public init(integerLiteral value: Int) {
+        self.init(value)
+    }
+}

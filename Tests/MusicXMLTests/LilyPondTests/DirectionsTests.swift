@@ -1154,26 +1154,27 @@ class DirectionsTests: XCTestCase {
         let _ = try MusicXML(string: xml)
     }
 
-    func testMeasure14() throws {
+    func testMeasure13() throws {
         let xml = """
-        <measure number="14">
+        <measure number="13">
            <part id="P1">
-              <direction placement="below">
+              <direction>
                  <direction-type>
-                    <words default-y="-80"
-                           font-family="Times New Roman"
-                           font-size="10.25"
-                           font-style="italic">subito</words>
+                    <scordatura>
+                       <accord string="3">
+                          <tuning-step>C</tuning-step>
+                          <tuning-octave>3</tuning-octave>
+                       </accord>
+                       <accord string="2">
+                          <tuning-step>G</tuning-step>
+                          <tuning-octave>5</tuning-octave>
+                       </accord>
+                       <accord string="1">
+                          <tuning-step>E</tuning-step>
+                          <tuning-octave>5</tuning-octave>
+                       </accord>
+                    </scordatura>
                  </direction-type>
-                 <direction-type>
-                    <words default-y="-80" font-family="Times New Roman"  font-size="10.25"> </words>
-                 </direction-type>
-                 <direction-type>
-                    <dynamics default-y="-80">
-                       <p/>
-                    </dynamics>
-                 </direction-type>
-                 <offset>2</offset>
               </direction>
               <note>
                  <pitch>
@@ -1184,19 +1185,17 @@ class DirectionsTests: XCTestCase {
                  <voice>1</voice>
                  <type>quarter</type>
                  <lyric number="1">
-                    <text>subp</text>
+                    <text>Scord.</text>
                  </lyric>
               </note>
-              <direction placement="below">
+              <direction>
                  <direction-type>
-                    <dynamics>
-                       <ppp/>
-                    </dynamics>
+                    <accordion-registration>
+                       <accordion-high/>
+                       <accordion-middle>2</accordion-middle>
+                       <accordion-low/>
+                    </accordion-registration>
                  </direction-type>
-                 <direction-type>
-                    <wedge type="crescendo"/>
-                 </direction-type>
-                 <offset>2</offset>
               </direction>
               <note>
                  <pitch>
@@ -1207,51 +1206,52 @@ class DirectionsTests: XCTestCase {
                  <voice>1</voice>
                  <type>quarter</type>
                  <lyric number="1">
-                    <syllabic>begin</syllabic>
-                    <text>ppp cresc</text>
-                 </lyric>
-              </note>
-              <direction placement="below">
-                 <direction-type>
-                    <wedge type="stop"/>
-                 </direction-type>
-                 <direction-type>
-                    <dynamics>
-                       <fff/>
-                    </dynamics>
-                 </direction-type>
-                 <offset>2</offset>
-              </direction>
-              <note>
-                 <pitch>
-                    <step>C</step>
-                    <octave>4</octave>
-                 </pitch>
-                 <duration>1</duration>
-                 <voice>1</voice>
-                 <type>quarter</type>
-                 <lyric number="1">
-                    <syllabic>end</syllabic>
-                    <text>to fff</text>
+                    <text>Accordion reg.</text>
                  </lyric>
               </note>
               <note>
                  <rest/>
-                 <duration>1</duration>
+                 <duration>2</duration>
                  <voice>1</voice>
-                 <type>quarter</type>
-                 <lyric number="1">
-                    <text>subp</text>
-                 </lyric>
+                 <type>half</type>
               </note>
               <barline location="right">
-                 <bar-style>light-heavy</bar-style>
+                 <bar-style>light-light</bar-style>
               </barline>
            </part>
         </measure>
         """
         let decoded = try XMLDecoder().decode(Timewise.Measure.self, from: xml.data(using: .utf8)!)
 
+    }
+
+    func testNoteWithLyric() throws {
+        let xml = """
+        <note>
+           <rest/>
+           <duration>1</duration>
+           <voice>1</voice>
+           <type>quarter</type>
+           <lyric number="1">
+              <text>subp</text>
+           </lyric>
+        </note>
+        """
+        let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
+        let expected = Note(
+            kind: .normal(
+                Note.Normal(
+                    pitchUnpitchedOrRest: PitchUnpitchedOrRest.rest(Rest()),
+                    duration: 1
+                )
+            ),
+            voice: "1",
+            type: NoteType(.quarter),
+            lyrics: [
+                Lyric(kind: .verbal(Lyric.Verbal(text: "subp")), number: "1")
+            ]
+        )
+        XCTAssertEqual(decoded, expected)
     }
 
     func testLyricNumberText() throws {
@@ -1261,5 +1261,68 @@ class DirectionsTests: XCTestCase {
         </lyric>
         """
         let decoded = try XMLDecoder().decode(Lyric.self, from: xml.data(using: .utf8)!)
+        let expected = Lyric(kind: .verbal(Lyric.Verbal(text: "subp")), number: "1")
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testLyricSyllabic() throws {
+        let xml = """
+        <lyric number="1">
+           <syllabic>end</syllabic>
+           <text>to fff</text>
+        </lyric>
+        """
+        let decoded = try XMLDecoder().decode(Lyric.self, from: xml.data(using: .utf8)!)
+        let expected = Lyric(
+            kind: .verbal(Lyric.Verbal(text: "to fff", syllabic: .end)),
+            number: "1"
+        )
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testDirectionWedgeAndDynamic() throws {
+        let xml = """
+        <direction placement="below">
+           <direction-type>
+              <wedge type="stop"/>
+           </direction-type>
+           <direction-type>
+              <dynamics>
+                 <fff/>
+              </dynamics>
+           </direction-type>
+           <offset>2</offset>
+        </direction>
+        """
+        let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
+        let expected = Direction(
+            placement: .below,
+            directionType: [
+                .wedge(Wedge(type: .stop)),
+                .dynamics(Dynamics([.fff]))
+            ],
+            offset: 2
+        )
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testWords() throws {
+        let xml = """
+        <words default-y="-80"
+            font-family="Times New Roman"
+            font-size="10.25"
+            font-style="italic">subito</words>
+        """
+        let decoded = try XMLDecoder().decode(FormattedText.self, from: xml.data(using: .utf8)!)
+        let expected = FormattedText("subito",
+            printStyle: PrintStyle(
+                position: Position(defaultY: -80),
+                font: Font(
+                    family: "Times New Roman",
+                    style: .italic,
+                    size: .numeric(10.25)
+                )
+            )
+        )
     }
 }

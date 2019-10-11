@@ -13,3 +13,15 @@ public struct CommaSeparatedText {
 
 extension CommaSeparatedText: Equatable { }
 extension CommaSeparatedText: Codable { }
+
+extension CommaSeparatedText: ExpressibleByArrayLiteral {
+    public init(arrayLiteral values: String...) {
+        self.values = values
+    }
+}
+
+extension CommaSeparatedText: ExpressibleByStringLiteral {
+    public init(stringLiteral value: String) {
+        self.values = [value]
+    }
+}
