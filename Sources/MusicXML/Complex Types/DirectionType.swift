@@ -42,7 +42,9 @@ public enum DirectionType {
     /// Humdrum has at least 3 representation formats related to dynamics. The MusicXML format
     /// captures what is in the score, but does not try to be optimal for analysis or synthesis of
     /// dynamics.
-    case dynamics([Dynamics] /* NonEmpty */)
+    ///
+    #warning("FIXME: This _should_ be `[Dynamics]`, but this is what we can get working at the moment.")
+    case dynamics(Dynamics)
     /// The eyeglasses element specifies the eyeglasses symbol, common in commercial music.
     case eyeglasses(EmptyPrintStyleAlign)
     /// The harp-pedals type is used to create harp pedal diagrams. The pedal-step and pedal-alter
@@ -103,6 +105,10 @@ public enum DirectionType {
     /// crescendo, or the type is stop for a wedge that began with a diminuendo type. The line-type
     /// is solid by default.
     case wedge(Wedge)
+    /// The words element specifies a standard text direction. Left justification is
+    /// assumed if not specified. Language is Italian ("it") by default. Enclosure is none
+    /// by default.
+    case words(FormattedText)
 }
 
 extension DirectionType: Equatable { }
@@ -130,6 +136,8 @@ extension DirectionType: Codable {
         case segno
         case stringMute = "string-mute"
         case wedge
+        case words
+
     }
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -176,6 +184,8 @@ extension DirectionType: Codable {
             try container.encode(value, forKey: .stringMute)
         case let .wedge(value):
             try container.encode(value, forKey: .wedge)
+        case let .words(value):
+            try container.encode(value, forKey: .words)
         }
     }
     public init(from decoder: Decoder) throws {
@@ -194,7 +204,7 @@ extension DirectionType: Codable {
         } else if container.contains(.dashes) {
             self = .dashes(try container.decode(Dashes.self, forKey: .dashes))
         } else if container.contains(.dynamics) {
-            self = .dynamics(try container.decode([Dynamics].self, forKey: .dynamics))
+            self = .dynamics(try container.decode(Dynamics.self, forKey: .dynamics))
         } else if container.contains(.eyeglasses) {
             self = .eyeglasses(try container.decode(EmptyPrintStyleAlign.self, forKey: .eyeglasses))
         } else if container.contains(.harpPedals) {
@@ -223,6 +233,8 @@ extension DirectionType: Codable {
             self = .stringMute(try container.decode(StringMute.self, forKey: .stringMute))
         } else if container.contains(.wedge) {
             self = .wedge(try container.decode(Wedge.self, forKey: .wedge))
+        } else if container.contains(.words) {
+            self = .words(try container.decode(FormattedText.self, forKey: .words))
         } else {
             throw DecodingError.typeMismatch(
                 DirectionType.self,
