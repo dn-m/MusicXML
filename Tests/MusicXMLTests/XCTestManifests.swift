@@ -168,7 +168,10 @@ extension MetronomeTests {
     //   `swift test --generate-linuxmain`
     // to regenerate.
     static let __allTests__MetronomeTests = [
-        ("testDecodingMetronome_regular", testDecodingMetronome_regular),
+        ("testDecodingMetronome_beatUnit", testDecodingMetronome_beatUnit),
+        ("testDecodingMetronome_noBeatUnitInFirst", testDecodingMetronome_noBeatUnitInFirst),
+        ("testDecodingMetronome_perMinute_withDot", testDecodingMetronome_perMinute_withDot),
+        ("testDecodingMetronome_perMinute", testDecodingMetronome_perMinute),
     ]
 }
 

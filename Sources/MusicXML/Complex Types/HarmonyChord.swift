@@ -87,7 +87,7 @@ public struct HarmonyChord {
             }
         }
         guard let rootOrFunction = aRootOrFunction else {
-            throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Requires at root or function to be present"))
+            throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Requires root or function to be present"))
         }
 
         guard let kind = aKind else {

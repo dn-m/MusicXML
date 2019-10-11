@@ -53,6 +53,40 @@ extension Metronome {
             self.beatUnitDot = beatUnitDot
             self.relation = relation
         }
+
+        init(components: [MetronomeRegularComponent]) throws {
+            var componentsCopy = components
+            guard let firstComponent = componentsCopy.first, case let .beatUnit(beatUnit) = firstComponent else {
+                throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Requires beat-unit to be present"))
+            }
+            self.beatUnit = beatUnit
+            componentsCopy.removeFirst()
+
+            func isBeatUnitDot(_ component: MetronomeRegularComponent) -> Bool {
+                if case .beatUnitDot = component {
+                    return true
+                }
+                return false
+            }
+
+            let beatUnitDot = componentsCopy.prefix(while: isBeatUnitDot).map { _ in Empty() }
+            self.beatUnitDot = beatUnitDot.isEmpty ? nil : beatUnitDot
+            componentsCopy = [MetronomeRegularComponent](componentsCopy.drop(while: isBeatUnitDot))
+            guard let firstRelationComponent = componentsCopy.first else {
+                throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Requires per-minute or beat-unit to be present"))
+            }
+
+            switch firstRelationComponent {
+                case let .perMinute(perMinute):
+                    self.relation = .perMinute(perMinute)
+                case let .beatUnit(beatUnit):
+                    componentsCopy.removeFirst()
+                    let beatUnitDotInRelation = componentsCopy.prefix(while: isBeatUnitDot).map { _ in Empty() }
+                    self.relation = .beatUnit(beatUnit, beatUnitDotInRelation.isEmpty ? nil : beatUnitDotInRelation)
+                default:
+                    throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Requires per-minute or beat-unit to be present"))
+            }
+        }
     }
 
     #warning("TODO: Consider renaming Metronome.Complicated")
@@ -75,57 +109,8 @@ extension Metronome {
 }
 
 extension Metronome.Regular.Relation: Equatable { }
-extension Metronome.Regular.Relation: Codable {
-    enum CodingKeys: String, CodingKey {
-        case perMinute = "per-minute"
-        case beatUnit = "beat-unit"
-        case beatUnitDot = "beat-unit-dot"
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        switch self {
-        case let .perMinute(value):
-            try container.encode(value, forKey: .perMinute)
-        case let .beatUnit(value, dots):
-            try container.encode(value, forKey: .beatUnit)
-            try container.encode(dots, forKey: .beatUnitDot)
-        }
-    }
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        if container.contains(.perMinute) {
-            self = .perMinute(try container.decode(PerMinute.self, forKey: .perMinute))
-        } else if container.contains(.beatUnit) {
-            let beatUnit = try container.decode(NoteTypeValue.self, forKey: .beatUnit)
-            let beatUnitDot = try container.decodeIfPresent([Empty].self, forKey: .beatUnitDot)
-            self = .beatUnit(beatUnit, beatUnitDot)
-        } else {
-            throw DecodingError.typeMismatch(
-                Metronome.Regular.Relation.self,
-                DecodingError.Context(
-                    codingPath: decoder.codingPath,
-                    debugDescription: "Unrecognized choice"
-                )
-            )
-        }
-    }
-}
 
 extension Metronome.Regular: Equatable { }
-extension Metronome.Regular: Codable {
-    enum CodingKeys: String, CodingKey {
-        case beatUnit = "beat-unit"
-        case beatUnitDot = "beat-unit-dot"
-    }
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.beatUnit = try container.decode(NoteTypeValue.self, forKey: .beatUnit)
-        self.beatUnitDot = try container.decodeIfPresent([Empty].self, forKey: .beatUnitDot)
-        self.relation = try Relation(from: decoder)
-    }
-}
 
 extension Metronome.Complicated: Equatable { }
 extension Metronome.Complicated: Codable {
@@ -171,10 +156,51 @@ extension Metronome: Codable {
         self.parentheses = try container.decodeIfPresent(Bool.self, forKey: .parentheses)
 
         if container.contains(.beatUnit) {
-            // Decode regular type
-            self.kind = .regular(try Metronome.Regular(from: decoder))
+            var metronomeRegularComponents = [MetronomeRegularComponent]()
+            var valuesContainer = try decoder.unkeyedContainer()
+            while !valuesContainer.isAtEnd {
+                do {
+                    metronomeRegularComponents.append(try valuesContainer.decode(MetronomeRegularComponent.self))
+                } catch DecodingError.typeMismatch(let type, _) where type == MetronomeRegularComponent.self {
+                    break
+                }
+            }
+            self.kind = .regular(try Metronome.Regular(components: metronomeRegularComponents))
         } else {
             self.kind = .relative(try Metronome.Complicated(from: decoder))
         }
     }
 }
+
+enum MetronomeRegularComponent {
+    case beatUnit(NoteTypeValue)
+    case beatUnitDot(Empty)
+    case perMinute(PerMinute)
+}
+
+extension MetronomeRegularComponent: Codable {
+    enum CodingKeys: String, CodingKey {
+        case beatUnit = "beat-unit"
+        case beatUnitDot = "beat-unit-dot"
+        case perMinute = "per-minute"
+    }
+
+    func encode(to encoder: Encoder) throws {
+        fatalError("should never be used")
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if container.contains(.beatUnit) {
+            self = .beatUnit(try container.decode(NoteTypeValue.self, forKey: .beatUnit))
+        } else if container.contains(.beatUnitDot) {
+            self = .beatUnitDot(try container.decode(Empty.self, forKey: .beatUnitDot))
+        } else if container.contains(.perMinute) {
+            self = .perMinute(try container.decode(PerMinute.self, forKey: .perMinute))
+        } else {
+            throw DecodingError.typeMismatch(MetronomeRegularComponent.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Unrecognized key"))
+        }
+    }
+}
+
+extension MetronomeRegularComponent.CodingKeys: XMLChoiceCodingKey {}
