@@ -86,15 +86,24 @@ extension DirectionsTests {
     //   `swift test --generate-linuxmain`
     // to regenerate.
     static let __allTests__DirectionsTests = [
-        ("testDirections", testDirections),
+        ("testCoda", testCoda),
+        ("testDashesDirection", testDashesDirection),
+        ("testDashesStop", testDashesStop),
         ("testDirectionWedgeAndDynamic", testDirectionWedgeAndDynamic),
+        ("testEyeglasses", testEyeglasses),
         ("testFormattedText", testFormattedText),
+        ("testHarpPedals", testHarpPedals),
+        ("testHarpPedalsDirectionType", testHarpPedalsDirectionType),
         ("testLyricNumberText", testLyricNumberText),
         ("testLyricSyllabic", testLyricSyllabic),
-        ("testMeasure13", testMeasure13),
         ("testNoteWithLyric", testNoteWithLyric),
+        ("testOtherDynamics", testOtherDynamics),
+        ("testPedalChange", testPedalChange),
+        ("testPedalDirection", testPedalDirection),
+        ("testRehearsal", testRehearsal),
         ("testScordatura", testScordatura),
         ("testScordaturaDirectionType", testScordaturaDirectionType),
+        ("testSegno", testSegno),
     ]
 }
 
