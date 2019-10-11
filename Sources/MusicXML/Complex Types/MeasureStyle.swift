@@ -65,18 +65,22 @@ extension MeasureStyle.Kind: Codable {
     }
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        do {
+        if container.contains(.beatRepeat) {
             self = .beatRepeat(try container.decode(BeatRepeat.self, forKey: .beatRepeat))
-        } catch {
-            do {
-                self = .measureRepeat(try container.decode(MeasureRepeat.self, forKey: .measureRepeat))
-            } catch {
-                do {
-                    self = .multipleRest(try container.decode(MultipleRest.self, forKey: .multipleRest))
-                } catch {
-                    self = .slash(try container.decode(Slash.self, forKey: .slash))
-                }
-            }
+        } else if container.contains(.measureRepeat) {
+            self = .measureRepeat(try container.decode(MeasureRepeat.self, forKey: .measureRepeat))
+        } else if container.contains(.multipleRest) {
+            self = .multipleRest(try container.decode(MultipleRest.self, forKey: .multipleRest))
+        } else if container.contains(.slash) {
+            self = .slash(try container.decode(Slash.self, forKey: .slash))
+        } else {
+            throw DecodingError.typeMismatch(
+                MeasureStyle.Kind.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized MeasureStyle.Kind"
+                )
+            )
         }
     }
 }
