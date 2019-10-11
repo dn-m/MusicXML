@@ -589,591 +589,20 @@ class DirectionsTests: XCTestCase {
                  </note>
               </part>
            </measure>
-           <measure number="8">
-              <part id="P1">
-                 <direction>
-                    <direction-type>
-                       <dynamics>
-                          <sfz/>
-                       </dynamics>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <text>sfz</text>
-                    </lyric>
-                 </note>
-                 <direction>
-                    <direction-type>
-                       <dynamics>
-                          <sffz/>
-                       </dynamics>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <text>sffz</text>
-                    </lyric>
-                 </note>
-                 <direction>
-                    <direction-type>
-                       <dynamics>
-                          <fz/>
-                       </dynamics>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <text>fz</text>
-                    </lyric>
-                 </note>
-                 <direction>
-                    <direction-type>
-                       <dynamics>
-                          <other-dynamics>abc-ffz</other-dynamics>
-                       </dynamics>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <text>abc-ffz (oth.)</text>
-                    </lyric>
-                 </note>
-              </part>
-           </measure>
-           <measure number="9">
-              <part id="P1">
-                 <direction>
-                    <direction-type>
-                       <wedge type="crescendo"/>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <syllabic>begin</syllabic>
-                       <text>hairpin</text>
-                    </lyric>
-                 </note>
-                 <direction>
-                    <direction-type>
-                       <wedge type="stop"/>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <syllabic>end</syllabic>
-                       <text>cresc</text>
-                    </lyric>
-                 </note>
-                 <direction>
-                    <direction-type>
-                       <dashes type="start"/>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <syllabic>begin</syllabic>
-                       <text>dash</text>
-                    </lyric>
-                 </note>
-                 <direction>
-                    <direction-type>
-                       <dashes type="stop"/>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <syllabic>end</syllabic>
-                       <text>es</text>
-                    </lyric>
-                 </note>
-              </part>
-           </measure>
-           <measure number="10">
-              <part id="P1">
-                 <direction>
-                    <direction-type>
-                       <bracket type="start" line-end="none"/>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <syllabic>begin</syllabic>
-                       <text>bra</text>
-                    </lyric>
-                 </note>
-                 <direction>
-                    <direction-type>
-                       <bracket type="stop" line-end="none"/>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <syllabic>end</syllabic>
-                       <text>cket</text>
-                    </lyric>
-                 </note>
-                 <direction>
-                    <direction-type>
-                       <octave-shift type="up" size="8"/>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <syllabic>begin</syllabic>
-                       <text>oct.</text>
-                    </lyric>
-                 </note>
-                 <direction>
-                    <direction-type>
-                       <octave-shift type="stop" size="8"/>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <syllabic>end</syllabic>
-                       <text>shift</text>
-                    </lyric>
-                 </note>
-              </part>
-           </measure>
-           <measure number="11">
-              <part id="P1">
-                 <direction>
-                    <direction-type>
-                       <pedal type="start"/>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <syllabic>begin</syllabic>
-                       <text>pedal</text>
-                    </lyric>
-                 </note>
-                 <direction>
-                    <direction-type>
-                       <pedal type="change"/>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <syllabic>middle</syllabic>
-                       <text>change</text>
-                    </lyric>
-                 </note>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                 </note>
-                 <direction>
-                    <direction-type>
-                       <pedal type="stop"/>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <syllabic>end</syllabic>
-                       <text>mark</text>
-                    </lyric>
-                 </note>
-              </part>
-           </measure>
-           <measure number="12">
-              <part id="P1">
-                 <direction>
-                    <direction-type>
-                       <metronome>
-                          <beat-unit>quarter</beat-unit>
-                          <per-minute>60</per-minute>
-                       </metronome>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <text>Metr.</text>
-                    </lyric>
-                 </note>
-                 <direction>
-                    <direction-type>
-                       <harp-pedals>
-                          <pedal-tuning>
-                             <pedal-step>D</pedal-step>
-                             <pedal-alter>0</pedal-alter>
-                          </pedal-tuning>
-                          <pedal-tuning>
-                             <pedal-step>C</pedal-step>
-                             <pedal-alter>-1</pedal-alter>
-                          </pedal-tuning>
-                          <pedal-tuning>
-                             <pedal-step>B</pedal-step>
-                             <pedal-alter>-1</pedal-alter>
-                          </pedal-tuning>
-                          <pedal-tuning>
-                             <pedal-step>E</pedal-step>
-                             <pedal-alter>0</pedal-alter>
-                          </pedal-tuning>
-                          <pedal-tuning>
-                             <pedal-step>F</pedal-step>
-                             <pedal-alter>0</pedal-alter>
-                          </pedal-tuning>
-                          <pedal-tuning>
-                             <pedal-step>G</pedal-step>
-                             <pedal-alter>1</pedal-alter>
-                          </pedal-tuning>
-                          <pedal-tuning>
-                             <pedal-step>A</pedal-step>
-                             <pedal-alter>-1</pedal-alter>
-                          </pedal-tuning>
-                       </harp-pedals>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <text>Harp ped.</text>
-                    </lyric>
-                 </note>
-                 <direction>
-                    <direction-type>
-                       <damp/>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <text>Damp</text>
-                    </lyric>
-                 </note>
-                 <direction>
-                    <direction-type>
-                       <damp-all/>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <text>Damp all</text>
-                    </lyric>
-                 </note>
-              </part>
-           </measure>
-           <measure number="13">
-              <part id="P1">
-                 <direction>
-                    <direction-type>
-                       <scordatura>
-                          <accord string="3">
-                             <tuning-step>C</tuning-step>
-                             <tuning-octave>3</tuning-octave>
-                          </accord>
-                          <accord string="2">
-                             <tuning-step>G</tuning-step>
-                             <tuning-octave>5</tuning-octave>
-                          </accord>
-                          <accord string="1">
-                             <tuning-step>E</tuning-step>
-                             <tuning-octave>5</tuning-octave>
-                          </accord>
-                       </scordatura>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <text>Scord.</text>
-                    </lyric>
-                 </note>
-                 <direction>
-                    <direction-type>
-                       <accordion-registration>
-                          <accordion-high/>
-                          <accordion-middle>2</accordion-middle>
-                          <accordion-low/>
-                       </accordion-registration>
-                    </direction-type>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <text>Accordion reg.</text>
-                    </lyric>
-                 </note>
-                 <note>
-                    <rest/>
-                    <duration>2</duration>
-                    <voice>1</voice>
-                    <type>half</type>
-                 </note>
-                 <barline location="right">
-                    <bar-style>light-light</bar-style>
-                 </barline>
-              </part>
-           </measure>
-           <measure number="14">
-              <part id="P1">
-                 <direction placement="below">
-                    <direction-type>
-                       <words default-y="-80"
-                              font-family="Times New Roman"
-                              font-size="10.25"
-                              font-style="italic">subito</words>
-                    </direction-type>
-                    <direction-type>
-                       <words default-y="-80" font-family="Times New Roman" font-size="10.25"> </words>
-                    </direction-type>
-                    <direction-type>
-                       <dynamics default-y="-80">
-                          <p/>
-                       </dynamics>
-                    </direction-type>
-                    <offset>2</offset>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <text>subp</text>
-                    </lyric>
-                 </note>
-                 <direction placement="below">
-                    <direction-type>
-                       <dynamics>
-                          <ppp/>
-                       </dynamics>
-                    </direction-type>
-                    <direction-type>
-                       <wedge type="crescendo"/>
-                    </direction-type>
-                    <offset>2</offset>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <syllabic>begin</syllabic>
-                       <text>ppp cresc</text>
-                    </lyric>
-                 </note>
-                 <direction placement="below">
-                    <direction-type>
-                       <wedge type="stop"/>
-                    </direction-type>
-                    <direction-type>
-                       <dynamics>
-                          <fff/>
-                       </dynamics>
-                    </direction-type>
-                    <offset>2</offset>
-                 </direction>
-                 <note>
-                    <pitch>
-                       <step>C</step>
-                       <octave>4</octave>
-                    </pitch>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <syllabic>end</syllabic>
-                       <text>to fff</text>
-                    </lyric>
-                 </note>
-                 <note>
-                    <rest/>
-                    <duration>1</duration>
-                    <voice>1</voice>
-                    <type>quarter</type>
-                    <lyric number="1">
-                       <text>subp</text>
-                    </lyric>
-                 </note>
-                 <barline location="right">
-                    <bar-style>light-heavy</bar-style>
-                 </barline>
-              </part>
-           </measure>
         </score-timewise>
         """
         let _ = try MusicXML(string: xml)
     }
 
-    func testMeasure13() throws {
+    func testMeasure8() throws {
         let xml = """
-        <measure number="13">
+                   <measure number="8">
            <part id="P1">
               <direction>
                  <direction-type>
-                    <scordatura>
-                       <accord string="3">
-                          <tuning-step>C</tuning-step>
-                          <tuning-octave>3</tuning-octave>
-                       </accord>
-                       <accord string="2">
-                          <tuning-step>G</tuning-step>
-                          <tuning-octave>5</tuning-octave>
-                       </accord>
-                       <accord string="1">
-                          <tuning-step>E</tuning-step>
-                          <tuning-octave>5</tuning-octave>
-                       </accord>
-                    </scordatura>
+                    <dynamics>
+                       <sfz/>
+                    </dynamics>
                  </direction-type>
               </direction>
               <note>
@@ -1185,16 +614,14 @@ class DirectionsTests: XCTestCase {
                  <voice>1</voice>
                  <type>quarter</type>
                  <lyric number="1">
-                    <text>Scord.</text>
+                    <text>sfz</text>
                  </lyric>
               </note>
               <direction>
                  <direction-type>
-                    <accordion-registration>
-                       <accordion-high/>
-                       <accordion-middle>2</accordion-middle>
-                       <accordion-low/>
-                    </accordion-registration>
+                    <dynamics>
+                       <sffz/>
+                    </dynamics>
                  </direction-type>
               </direction>
               <note>
@@ -1206,18 +633,47 @@ class DirectionsTests: XCTestCase {
                  <voice>1</voice>
                  <type>quarter</type>
                  <lyric number="1">
-                    <text>Accordion reg.</text>
+                    <text>sffz</text>
                  </lyric>
               </note>
+              <direction>
+                 <direction-type>
+                    <dynamics>
+                       <fz/>
+                    </dynamics>
+                 </direction-type>
+              </direction>
               <note>
-                 <rest/>
-                 <duration>2</duration>
+                 <pitch>
+                    <step>C</step>
+                    <octave>4</octave>
+                 </pitch>
+                 <duration>1</duration>
                  <voice>1</voice>
-                 <type>half</type>
+                 <type>quarter</type>
+                 <lyric number="1">
+                    <text>fz</text>
+                 </lyric>
               </note>
-              <barline location="right">
-                 <bar-style>light-light</bar-style>
-              </barline>
+              <direction>
+                 <direction-type>
+                    <dynamics>
+                       <other-dynamics>abc-ffz</other-dynamics>
+                    </dynamics>
+                 </direction-type>
+              </direction>
+              <note>
+                 <pitch>
+                    <step>C</step>
+                    <octave>4</octave>
+                 </pitch>
+                 <duration>1</duration>
+                 <voice>1</voice>
+                 <type>quarter</type>
+                 <lyric number="1">
+                    <text>abc-ffz (oth.)</text>
+                 </lyric>
+              </note>
            </part>
         </measure>
         """
@@ -1380,6 +836,146 @@ class DirectionsTests: XCTestCase {
             Accord(string: 2, tuningStep: .g, tuningOctave: 5),
             Accord(string: 1, tuningStep: .e, tuningOctave: 5),
         ])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testHarpPedalsDirectionType() throws {
+        let xml = """
+        <direction-type>
+           <harp-pedals>
+              <pedal-tuning>
+                 <pedal-step>D</pedal-step>
+                 <pedal-alter>0</pedal-alter>
+              </pedal-tuning>
+              <pedal-tuning>
+                 <pedal-step>C</pedal-step>
+                 <pedal-alter>-1</pedal-alter>
+              </pedal-tuning>
+              <pedal-tuning>
+                 <pedal-step>B</pedal-step>
+                 <pedal-alter>-1</pedal-alter>
+              </pedal-tuning>
+              <pedal-tuning>
+                 <pedal-step>E</pedal-step>
+                 <pedal-alter>0</pedal-alter>
+              </pedal-tuning>
+              <pedal-tuning>
+                 <pedal-step>F</pedal-step>
+                 <pedal-alter>0</pedal-alter>
+              </pedal-tuning>
+              <pedal-tuning>
+                 <pedal-step>G</pedal-step>
+                 <pedal-alter>1</pedal-alter>
+              </pedal-tuning>
+              <pedal-tuning>
+                 <pedal-step>A</pedal-step>
+                 <pedal-alter>-1</pedal-alter>
+              </pedal-tuning>
+           </harp-pedals>
+        </direction-type>
+        """
+        let decoded = try XMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
+        let expected = DirectionType.harpPedals(
+            HarpPedals([
+                PedalTuning(step: .d, alter: 0),
+                PedalTuning(step: .c, alter: -1),
+                PedalTuning(step: .b, alter: -1),
+                PedalTuning(step: .e, alter: 0),
+                PedalTuning(step: .f, alter: 0),
+                PedalTuning(step: .g, alter: 1),
+                PedalTuning(step: .a, alter: -1),
+            ])
+        )
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testHarpPedals() throws {
+        let xml = """
+        <harp-pedals>
+           <pedal-tuning>
+              <pedal-step>D</pedal-step>
+              <pedal-alter>0</pedal-alter>
+           </pedal-tuning>
+           <pedal-tuning>
+              <pedal-step>C</pedal-step>
+              <pedal-alter>-1</pedal-alter>
+           </pedal-tuning>
+           <pedal-tuning>
+              <pedal-step>B</pedal-step>
+              <pedal-alter>-1</pedal-alter>
+           </pedal-tuning>
+           <pedal-tuning>
+              <pedal-step>E</pedal-step>
+              <pedal-alter>0</pedal-alter>
+           </pedal-tuning>
+           <pedal-tuning>
+              <pedal-step>F</pedal-step>
+              <pedal-alter>0</pedal-alter>
+           </pedal-tuning>
+           <pedal-tuning>
+              <pedal-step>G</pedal-step>
+              <pedal-alter>1</pedal-alter>
+           </pedal-tuning>
+           <pedal-tuning>
+              <pedal-step>A</pedal-step>
+              <pedal-alter>-1</pedal-alter>
+           </pedal-tuning>
+        </harp-pedals>
+        """
+        let decoded = try XMLDecoder().decode(HarpPedals.self, from: xml.data(using: .utf8)!)
+        let expected = HarpPedals([
+            PedalTuning(step: .d, alter: 0),
+            PedalTuning(step: .c, alter: -1),
+            PedalTuning(step: .b, alter: -1),
+            PedalTuning(step: .e, alter: 0),
+            PedalTuning(step: .f, alter: 0),
+            PedalTuning(step: .g, alter: 1),
+            PedalTuning(step: .a, alter: -1),
+        ])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testPedalDirection() throws {
+        let xml = """
+        <direction>
+           <direction-type>
+              <pedal type="change"/>
+           </direction-type>
+        </direction>
+        """
+        let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
+        let expected = Direction(directionType: [.pedal(Pedal(type: .change))])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testPedalChange() throws {
+        let xml = """
+        <pedal type="change"/>
+        """
+        let decoded = try XMLDecoder().decode(Pedal.self, from: xml.data(using: .utf8)!)
+        let expected = Pedal(type: .change)
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testDashesDirection() throws {
+        let xml = """
+        <direction>
+           <direction-type>
+              <dashes type="stop"/>
+           </direction-type>
+        </direction>
+        """
+        let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
+        let expected = Direction(directionType: [.dashes(Dashes(type: .stop))])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testDashesStop() throws {
+        let xml = """
+        <dashes type="stop"/>
+        """
+        let decoded = try XMLDecoder().decode(Dashes.self, from: xml.data(using: .utf8)!)
+        let expected = Dashes(type: .stop)
         XCTAssertEqual(decoded, expected)
     }
 }
