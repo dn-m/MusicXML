@@ -170,6 +170,7 @@ class StabatMaterTests: XCTestCase {
             </part>
         </score-partwise>
         """
+        let _ = try MusicXML(string: xml)
     }
 
     func testWordsDirection() throws {
@@ -215,7 +216,11 @@ class StabatMaterTests: XCTestCase {
         </direction>
         """
         let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
-        let expected = Direction(directionType: .dynamics([Dynamics([.fp])]))
+        let expected = Direction(
+            placement: .below,
+            directionType: .dynamics(Dynamics([.fp])),
+            offset: Offset(3)
+        )
         XCTAssertEqual(decoded, expected)
     }
 
@@ -228,7 +233,7 @@ class StabatMaterTests: XCTestCase {
         </direction-type>
         """
         let decoded = try XMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
-        let expected = DirectionType.dynamics([Dynamics([.fp])])
+        let expected = DirectionType.dynamics(Dynamics([.fp]))
         XCTAssertEqual(decoded, expected)
     }
 

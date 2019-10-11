@@ -25,7 +25,17 @@ public struct Direction {
     public let staff: UInt?
     public let sound: Sound?
 
-    public init(placement: AboveBelow? = nil, directive: Bool? = nil, directionType: DirectionType, offset: Offset? = nil, footnote: FormattedText? = nil, level: Level? = nil, voice: String? = nil, staff: UInt? = nil, sound: Sound? = nil) {
+    public init(
+        placement: AboveBelow? = nil,
+        directive: Bool? = nil,
+        directionType: DirectionType,
+        offset: Offset? = nil,
+        footnote: FormattedText? = nil,
+        level: Level? = nil,
+        voice: String? = nil,
+        staff: UInt? = nil,
+        sound: Sound? = nil
+    ) {
         self.placement = placement
         self.directive = directive
         self.directionType = directionType

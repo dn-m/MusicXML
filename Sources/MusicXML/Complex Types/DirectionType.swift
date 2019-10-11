@@ -42,7 +42,9 @@ public enum DirectionType {
     /// Humdrum has at least 3 representation formats related to dynamics. The MusicXML format
     /// captures what is in the score, but does not try to be optimal for analysis or synthesis of
     /// dynamics.
-    case dynamics([Dynamics])
+    ///
+    /// - FIXME: This _should_ be `[Dynamics]`, but this is what we can get working at the moment.
+    case dynamics(Dynamics)
     /// The eyeglasses element specifies the eyeglasses symbol, common in commercial music.
     case eyeglasses(EmptyPrintStyleAlign)
     /// The harp-pedals type is used to create harp pedal diagrams. The pedal-step and pedal-alter
@@ -202,7 +204,7 @@ extension DirectionType: Codable {
         } else if container.contains(.dashes) {
             self = .dashes(try container.decode(Dashes.self, forKey: .dashes))
         } else if container.contains(.dynamics) {
-            self = .dynamics(try container.decode([Dynamics].self, forKey: .dynamics))
+            self = .dynamics(try container.decode(Dynamics.self, forKey: .dynamics))
         } else if container.contains(.eyeglasses) {
             self = .eyeglasses(try container.decode(EmptyPrintStyleAlign.self, forKey: .eyeglasses))
         } else if container.contains(.harpPedals) {

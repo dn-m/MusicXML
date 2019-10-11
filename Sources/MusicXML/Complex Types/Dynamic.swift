@@ -5,7 +5,9 @@
 //  Created by James Bean on 5/19/19.
 //
 
-public enum Dynamic: String, CodingKey {
+import XMLCoder
+
+public enum Dynamic: String {
     case p
     case pp
     case ppp
@@ -35,6 +37,8 @@ public enum Dynamic: String, CodingKey {
     #warning("FIXME: Add support for Dynamic.other(OtherDynamics)")
     //case other(OtherDynamics)
 }
+
+extension Dynamic: XMLChoiceCodingKey { }
 
 extension Dynamic: Equatable { }
 extension Dynamic: Codable {
