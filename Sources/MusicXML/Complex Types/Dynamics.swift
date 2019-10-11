@@ -19,16 +19,16 @@
 /// try to be optimal for analysis or synthesis of dynamics.
 public struct Dynamics {
     public let values: [Dynamic]
-    public let printStyleAlign: PrintStyleAlign?
+    public let printStyleAlign: PrintStyleAlign
     public let placement: AboveBelow?
-    public let textDecoration: TextDecoration?
+    public let textDecoration: TextDecoration
     public let enclosure: EnclosureShape?
 
     public init(
         _ values: [Dynamic],
-        printStyleAlign: PrintStyleAlign? = nil,
+        printStyleAlign: PrintStyleAlign = PrintStyleAlign(),
         placement: AboveBelow? = nil,
-        textDecoration: TextDecoration? = nil,
+        textDecoration: TextDecoration = TextDecoration(),
         enclosure: EnclosureShape? = nil
     ) {
         self.values = values
@@ -51,11 +51,13 @@ extension Dynamics: Codable {
         }
         self.values = values
 
-        // Decode attributes
-        #warning("FIXME: Decode Dynamics.attributes")
-        self.printStyleAlign = nil
-        self.placement = nil
-        self.textDecoration = nil
-        self.enclosure = nil
+        // Decode attribute groups
+        self.printStyleAlign = try PrintStyleAlign(from: decoder)
+        self.textDecoration = try TextDecoration(from: decoder)
+
+        // Decode one-off attributes
+        let attributesContainer = try decoder.container(keyedBy: CodingKeys.self)
+        self.placement = try attributesContainer.decodeIfPresent(AboveBelow.self, forKey: .placement)
+        self.enclosure = try attributesContainer.decodeIfPresent(EnclosureShape.self, forKey: .enclosure)
     }
 }
