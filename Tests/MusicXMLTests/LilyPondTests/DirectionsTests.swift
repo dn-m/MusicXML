@@ -1306,7 +1306,7 @@ class DirectionsTests: XCTestCase {
         XCTAssertEqual(decoded, expected)
     }
 
-    func testWords() throws {
+    func testFormattedText() throws {
         let xml = """
         <words default-y="-80"
             font-family="Times New Roman"
@@ -1320,9 +1320,66 @@ class DirectionsTests: XCTestCase {
                 font: Font(
                     family: "Times New Roman",
                     style: .italic,
-                    size: .numeric(10.25)
+                    size: 10.25
                 )
             )
         )
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testScordaturaDirectionType() throws {
+        let xml = """
+        <direction-type>
+           <scordatura>
+              <accord string="3">
+                 <tuning-step>C</tuning-step>
+                 <tuning-octave>3</tuning-octave>
+              </accord>
+              <accord string="2">
+                 <tuning-step>G</tuning-step>
+                 <tuning-octave>5</tuning-octave>
+              </accord>
+              <accord string="1">
+                 <tuning-step>E</tuning-step>
+                 <tuning-octave>5</tuning-octave>
+              </accord>
+           </scordatura>
+        </direction-type>
+        """
+        let decoded = try XMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
+        let expected = DirectionType.scordatura(
+            Scordatura([
+                Accord(string: 3, tuningStep: .c, tuningOctave: 3),
+                Accord(string: 2, tuningStep: .g, tuningOctave: 5),
+                Accord(string: 1, tuningStep: .e, tuningOctave: 5),
+            ])
+        )
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testScordatura() throws {
+        let xml = """
+        <scordatura>
+            <accord string="3">
+                <tuning-step>C</tuning-step>
+                <tuning-octave>3</tuning-octave>
+            </accord>
+            <accord string="2">
+                <tuning-step>G</tuning-step>
+                <tuning-octave>5</tuning-octave>
+            </accord>
+            <accord string="1">
+                <tuning-step>E</tuning-step>
+                <tuning-octave>5</tuning-octave>
+            </accord>
+        </scordatura>
+        """
+        let decoded = try XMLDecoder().decode(Scordatura.self, from: xml.data(using: .utf8)!)
+        let expected = Scordatura([
+            Accord(string: 3, tuningStep: .c, tuningOctave: 3),
+            Accord(string: 2, tuningStep: .g, tuningOctave: 5),
+            Accord(string: 1, tuningStep: .e, tuningOctave: 5),
+        ])
+        XCTAssertEqual(decoded, expected)
     }
 }
