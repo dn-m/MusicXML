@@ -98,8 +98,8 @@ extension Lyric {
 
     // > Humming and laughing representations are taken from
     // > Humdrum.
-    public enum NonVerbal: String {
-        case extend
+    public enum NonVerbal {
+        case extend(Extend)
         case laughing
         case humming
     }
@@ -114,7 +114,6 @@ extension Lyric.Verbal: Equatable { }
 extension Lyric.Verbal: Codable { }
 
 extension Lyric.NonVerbal: Equatable { }
-extension Lyric.NonVerbal: Codable { }
 
 extension Lyric.Kind: Equatable { }
 
@@ -128,6 +127,7 @@ extension Lyric: Codable {
         case justify
         case color
         case position
+        case placement
         case printObject = "print-object"
         case endLine = "end-line"
         case endParagraph = "end-paragraph"
@@ -151,18 +151,16 @@ extension Lyric: Codable {
         self.number = try container.decodeIfPresent(String.self, forKey: .number)
         self.name = try container.decodeIfPresent(String.self, forKey: .name)
 
-        // FIXME:
-        self.justify = nil
-        self.color = nil
-        self.placement = nil
-        self.printObject = nil
+        self.justify = try container.decodeIfPresent(LeftCenterRight.self, forKey: .justify)
+        self.color = try container.decodeIfPresent(Color.self, forKey: .color)
+        self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
+        self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
 
         // Decode elements
 
-        // FIXME:
-        self.endLine = false
-        self.endParagraph = false
-        self.level = nil
+        self.endLine = container.contains(.endLine)
+        self.endParagraph = container.contains(.endParagraph)
+        self.level = try container.decodeIfPresent(Level.self, forKey: .level)
 
         do {
             // Attempt to decode verbal `Lyric`
@@ -173,7 +171,22 @@ extension Lyric: Codable {
                 )
             )
         } catch {
-            throw error
+            // Attempt to decode non-verbal `Lyric`
+            let nonVerbal: NonVerbal
+            if container.contains(.laughing) { nonVerbal = .laughing }
+            else if container.contains(.humming) { nonVerbal = .humming }
+            else if container.contains(.extend) {
+                nonVerbal = .extend(try container.decode(Extend.self, forKey: .extend))
+            } else {
+                throw DecodingError.typeMismatch(
+                    Lyric.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Unrecognized Lyric"
+                    )
+                )
+            }
+            self.kind = .nonVerbal(nonVerbal)
         }
     }
 
@@ -181,43 +194,3 @@ extension Lyric: Codable {
         fatalError()
     }
 }
-
-
-//extension Lyric.Kind: Codable {
-//    enum CodingKeys: String, CodingKey {
-//        case verbal
-//        case nonVerbal
-//    }
-//    public func encode(to encoder: Encoder) throws {
-//        var container = encoder.container(keyedBy: CodingKeys.self)
-//        switch self {
-//        case let .verbal(value):
-//            try container.encode(value, forKey: .verbal)
-//        case let .nonVerbal(value):
-//            try container.encode(value, forKey: .nonVerbal)
-//        }
-//    }
-//
-//    public init(from decoder: Decoder) throws {
-//
-//        // Decode one-off attributes
-//
-//
-//        // Decode attribute groups
-//
-//
-////        let container = try decoder.container(keyedBy: CodingKeys.self)
-////        if container.contains(.verbal) {
-////            self = .verbal(try container.decode(Lyric.Verbal.self, forKey: .verbal))
-////        } else if container.contains(.nonVerbal) {
-////            self = .nonVerbal(try container.decode(Lyric.NonVerbal.self, forKey: .nonVerbal))
-////        } else {
-////            throw DecodingError.typeMismatch(
-////                Lyric.Kind.self,
-////                DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Unrecognized lyric"))
-////        }
-//        fatalError()
-//    }
-//}
-
-//extension Lyric.Kind.CodingKeys: XMLChoiceCodingKey { }
