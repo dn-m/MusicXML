@@ -978,4 +978,15 @@ class DirectionsTests: XCTestCase {
         let expected = Dashes(type: .stop)
         XCTAssertEqual(decoded, expected)
     }
+
+    func testOtherDynamics() throws {
+        let xml = """
+        <dynamics>
+           <other-dynamics>abc-ffz</other-dynamics>
+        </dynamics>
+        """
+        let decoded = try XMLDecoder().decode(Dynamics.self, from: xml.data(using: .utf8)!)
+        let expected = Dynamics([.other("abc-ffz")])
+        XCTAssertEqual(decoded, expected)
+    }
 }
