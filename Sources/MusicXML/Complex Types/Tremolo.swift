@@ -16,12 +16,30 @@
 /// 2/1 ratio should be multiplied by the existing tuplet ratio.  Using repeater beams for
 /// indicating tremolos is deprecated as of MusicXML 3.0.
 public struct Tremolo {
+
+    // MARK: - Instance Properties
+
+    // MARK: Value
+
     public let marks: Int
+
+    // MARK: - One-off Attributes
+
     public let type: StartStopSingle?
-    public let printStyle: PrintStyle?
     public let placement: AboveBelow?
 
-    public init(marks: Int, type: StartStopSingle? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
+
+    // MARK: - Initializers
+
+    public init(
+        marks: Int,
+        type: StartStopSingle? = nil,
+        printStyle: PrintStyle = PrintStyle(),
+        placement: AboveBelow? = nil
+    ) {
         self.marks = marks
         self.type = type
         self.printStyle = printStyle
@@ -30,4 +48,21 @@ public struct Tremolo {
 }
 
 extension Tremolo: Equatable { }
-extension Tremolo: Codable { }
+extension Tremolo: Codable {
+    enum CodingKeys: String, CodingKey {
+        case marks = ""
+        case type
+        case printStyle
+        case placement
+    }
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        // Decode value
+        self.marks = try container.decode(Int.self, forKey: .marks)
+        // Decode one-off attributes
+        self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
+        self.type = try container.decodeIfPresent(StartStopSingle.self, forKey: .type)
+        // Decode attribute groups
+        self.printStyle = try PrintStyle(from: decoder)
+    }
+}
