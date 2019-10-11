@@ -18,11 +18,27 @@
 /// formats related to dynamics. The MusicXML format captures what is in the score, but does not
 /// try to be optimal for analysis or synthesis of dynamics.
 public struct Dynamics {
+
+    // MARK: - Instance Properties
+
+    // MARK: Values
+
     public let values: [Dynamic]
+
+    // MARK: Attributes Groups
+
     public let printStyleAlign: PrintStyleAlign
-    public let placement: AboveBelow?
     public let textDecoration: TextDecoration
+
+    // MARK: One-off Attributes
+
+    public let placement: AboveBelow?
     public let enclosure: EnclosureShape?
+}
+
+extension Dynamics {
+
+    // MARK: - Initializers
 
     public init(
         _ values: [Dynamic],
