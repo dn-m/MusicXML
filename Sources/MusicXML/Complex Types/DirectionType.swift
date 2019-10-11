@@ -43,7 +43,7 @@ public enum DirectionType {
     /// captures what is in the score, but does not try to be optimal for analysis or synthesis of
     /// dynamics.
     ///
-    /// - FIXME: This _should_ be `[Dynamics]`, but this is what we can get working at the moment.
+    #warning("FIXME: This _should_ be `[Dynamics]`, but this is what we can get working at the moment.")
     case dynamics(Dynamics)
     /// The eyeglasses element specifies the eyeglasses symbol, common in commercial music.
     case eyeglasses(EmptyPrintStyleAlign)
