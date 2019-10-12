@@ -17,7 +17,7 @@ public struct Direction {
     public let directive: Bool?
 
     // MARK: - Elements
-    public let directionType: [DirectionType]
+    public let directionTypes: [DirectionType]
     public let offset: Offset?
     public let footnote: FormattedText?
     public let level: Level?
@@ -26,9 +26,10 @@ public struct Direction {
     public let sound: Sound?
 
     public init(
+        _ directionTypes: [DirectionType],
         placement: AboveBelow? = nil,
         directive: Bool? = nil,
-        directionType: [DirectionType],
+
         offset: Offset? = nil,
         footnote: FormattedText? = nil,
         level: Level? = nil,
@@ -36,10 +37,10 @@ public struct Direction {
         staff: UInt? = nil,
         sound: Sound? = nil
     ) {
-        precondition(!directionType.isEmpty)
+        precondition(!directionTypes.isEmpty)
         self.placement = placement
         self.directive = directive
-        self.directionType = directionType
+        self.directionTypes = directionTypes
         self.offset = offset
         self.footnote = footnote
         self.level = level
@@ -54,7 +55,7 @@ extension Direction: Codable {
     private enum CodingKeys: String, CodingKey {
         case placement
         case directive
-        case directionType = "direction-type"
+        case directionTypes = "direction-type"
         case offset
         case footnote
         case level

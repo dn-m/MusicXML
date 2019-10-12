@@ -81,12 +81,8 @@ class DirectionsTests: XCTestCase {
         </direction>
         """
         let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
-        let expected = Direction(
+        let expected = Direction([.wedge(Wedge(type: .stop)), .dynamics(Dynamics([.fff]))],
             placement: .below,
-            directionType: [
-                .wedge(Wedge(type: .stop)),
-                .dynamics(Dynamics([.fff]))
-            ],
             offset: 2
         )
         XCTAssertEqual(decoded, expected)
@@ -274,7 +270,7 @@ class DirectionsTests: XCTestCase {
         </direction>
         """
         let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
-        let expected = Direction(directionType: [.pedal(Pedal(type: .change))])
+        let expected = Direction([.pedal(Pedal(type: .change))])
         XCTAssertEqual(decoded, expected)
     }
 
@@ -296,7 +292,7 @@ class DirectionsTests: XCTestCase {
         </direction>
         """
         let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
-        let expected = Direction(directionType: [.dashes(Dashes(type: .stop))])
+        let expected = Direction([.dashes(Dashes(type: .stop))])
         XCTAssertEqual(decoded, expected)
     }
 
