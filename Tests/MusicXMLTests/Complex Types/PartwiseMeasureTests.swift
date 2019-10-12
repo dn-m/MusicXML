@@ -196,7 +196,7 @@ class PartwiseMeasureTests: XCTestCase {
         </barline>
         """
         let decoded = try XMLDecoder().decode(Barline.self, from: xml.data(using: .utf8)!)
-        let expected = Barline(location: .right, barStyle: BarStyleColor(value: .lightHeavy))
+        let expected = Barline(location: .right, barStyle: .lightHeavy)
         XCTAssertEqual(decoded, expected)
     }
 }
