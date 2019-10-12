@@ -226,213 +226,6 @@ class NotationsTests: XCTestCase {
           </part-list>
           <!--=========================================================-->
           <part id="P1">
-            <!-- General Notation elements (no spanners, which are tested separately):
-                 fermata | arpeggiate | non-arpeggiate | accidental-mark -->
-            <measure number="1">
-              <attributes>
-                <divisions>1</divisions>
-                <key>
-                  <fifths>0</fifths>
-                  <mode>major</mode>
-                </key>
-                <clef>
-                  <sign>G</sign>
-                  <line>2</line>
-                </clef>
-              </attributes>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <fermata type="upright"/>
-                </notations>
-                <lyric number="1"><text>ferm.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <fermata>normal</fermata>
-                </notations>
-                <lyric number="1"><text>normal ferm.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <fermata>angled</fermata>
-                </notations>
-                <lyric number="1"><text>angled ferm.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <fermata>square</fermata>
-                </notations>
-                <lyric number="1"><text>square ferm.</text></lyric>
-              </note>
-            </measure>
-            <measure number="2">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <fermata type="inverted"/>
-                </notations>
-                <lyric number="1"><text>inv.ferm.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations><arpeggiate/></notations>
-                <lyric number="1"><text>arp.</text></lyric>
-              </note>
-              <note>
-                <chord/>
-                <pitch>
-                  <step>E</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations><arpeggiate/></notations>
-              </note>
-              <note>
-                <chord/>
-                <pitch>
-                  <step>G</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations><arpeggiate/></notations>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations><non-arpeggiate type="bottom"/></notations>
-                <lyric number="1"><text>non-arp.</text></lyric>
-              </note>
-              <note>
-                <chord/>
-                <pitch>
-                  <step>E</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-              </note>
-              <note>
-                <chord/>
-                <pitch>
-                  <step>G</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations><non-arpeggiate type="top"/></notations>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <accidental-mark placement="above">double-sharp</accidental-mark>
-                </notations>
-                <lyric number="1"><text>acc.mark</text></lyric>
-              </note>
-              <barline location="right">
-                <bar-style>light-light</bar-style>
-              </barline>
-            </measure>
-
-            <!-- Articulations:
-                    accent | strong-accent | staccato | tenuto |
-                    detached-legato | staccatissimo | spiccato |
-                    scoop | plop | doit | falloff | breath-mark |
-                    caesura | stress | unstress | other-articulation -->
-            <measure number="3">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <articulations><accent/></articulations>
-                </notations>
-                <lyric number="1"><text>acc.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <articulations><strong-accent/></articulations>
-                </notations>
-                <lyric number="1"><text>str.-acc.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <articulations><staccato/></articulations>
-                </notations>
-                <lyric number="1"><text>stacc.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <articulations><tenuto/></articulations>
-                </notations>
-                <lyric number="1"><text>ten.</text></lyric>
-              </note>
-            </measure>
             <measure number="4">
               <note>
                 <pitch>
@@ -1446,5 +1239,62 @@ class NotationsTests: XCTestCase {
         </score-partwise>
         """
         let _ = try MusicXML(string: xml)
+    }
+
+    func testMeasure3() throws {
+        let xml = """
+        <measure number="3">
+          <note>
+            <pitch>
+              <step>C</step><octave>5</octave>
+            </pitch>
+            <duration>1</duration>
+            <voice>1</voice>
+            <type>quarter</type>
+            <notations>
+              <articulations><accent/></articulations>
+            </notations>
+            <lyric number="1"><text>acc.</text></lyric>
+          </note>
+          <note>
+            <pitch>
+              <step>C</step><octave>5</octave>
+            </pitch>
+            <duration>1</duration>
+            <voice>1</voice>
+            <type>quarter</type>
+            <notations>
+              <articulations><strong-accent/></articulations>
+            </notations>
+            <lyric number="1"><text>str.-acc.</text></lyric>
+          </note>
+          <note>
+            <pitch>
+              <step>C</step><octave>5</octave>
+            </pitch>
+            <duration>1</duration>
+            <voice>1</voice>
+            <type>quarter</type>
+            <notations>
+              <articulations><staccato/></articulations>
+            </notations>
+            <lyric number="1"><text>stacc.</text></lyric>
+          </note>
+          <note>
+            <pitch>
+              <step>C</step><octave>5</octave>
+            </pitch>
+            <duration>1</duration>
+            <voice>1</voice>
+            <type>quarter</type>
+            <notations>
+              <articulations><tenuto/></articulations>
+            </notations>
+            <lyric number="1"><text>ten.</text></lyric>
+          </note>
+        </measure>
+        """
+        let decoded = try XMLDecoder().decode(Partwise.Measure.self, from: xml.data(using: .utf8)!)
+
     }
 }
