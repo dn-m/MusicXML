@@ -17,7 +17,7 @@ public struct Direction {
     public let directive: Bool?
 
     // MARK: - Elements
-    public let directionType: DirectionType
+    public let directionType: [DirectionType]
     public let offset: Offset?
     public let footnote: FormattedText?
     public let level: Level?
@@ -25,7 +25,18 @@ public struct Direction {
     public let staff: UInt?
     public let sound: Sound?
 
-    public init(placement: AboveBelow? = nil, directive: Bool? = nil, directionType: DirectionType, offset: Offset? = nil, footnote: FormattedText? = nil, level: Level? = nil, voice: String? = nil, staff: UInt? = nil, sound: Sound? = nil) {
+    public init(
+        placement: AboveBelow? = nil,
+        directive: Bool? = nil,
+        directionType: [DirectionType],
+        offset: Offset? = nil,
+        footnote: FormattedText? = nil,
+        level: Level? = nil,
+        voice: String? = nil,
+        staff: UInt? = nil,
+        sound: Sound? = nil
+    ) {
+        precondition(!directionType.isEmpty)
         self.placement = placement
         self.directive = directive
         self.directionType = directionType

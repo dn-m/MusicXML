@@ -33,7 +33,7 @@ extension Ornaments: Codable {
         while !valuesContainer.isAtEnd {
             do {
                 ornaments.append(try valuesContainer.decode(Ornament.self))
-            } catch {
+            } catch DecodingError.typeMismatch(let type, _) where type == Ornament.self {
                 // Error is caught when we try to read an accidental-mark as an ornament.
                 break
             }

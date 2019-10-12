@@ -22,7 +22,8 @@ public enum DirectionType {
     case bracket(Bracket)
     /// The coda element is the visual indicator of a coda sign. A sound element is needed to guide
     /// playback applications reliably.
-    case coda([EmptyPrintStyleAlign] /* NonEmpty */)
+    #warning("FIXME: #130 This should be `[EmptyPrintStyleAlign]`")
+    case coda(EmptyPrintStyleAlign)
     /// The damp element specifies a harp damping mark.
     case damp(EmptyPrintStyleAlign)
     /// The damp-all element specifies a harp damping mark for all strings.
@@ -42,7 +43,9 @@ public enum DirectionType {
     /// Humdrum has at least 3 representation formats related to dynamics. The MusicXML format
     /// captures what is in the score, but does not try to be optimal for analysis or synthesis of
     /// dynamics.
-    case dynamics([Dynamics] /* NonEmpty */)
+    ///
+    #warning("FIXME: #130 This should be `[Dynamics]`")
+    case dynamics(Dynamics)
     /// The eyeglasses element specifies the eyeglasses symbol, common in commercial music.
     case eyeglasses(EmptyPrintStyleAlign)
     /// The harp-pedals type is used to create harp pedal diagrams. The pedal-step and pedal-alter
@@ -85,7 +88,8 @@ public enum DirectionType {
     case principleVoice(PrincipleVoice)
     /// The rehearsal type specifies a rehearsal mark. Language is Italian ("it") by default.
     /// Enclosure is square by default. Left justification is assumed if not specified.
-    case rehearsal([FormattedText] /* NonEmpty */)
+    #warning("FIXME: #130 This should be `[FormattedText]`")
+    case rehearsal(FormattedText)
     /// Scordatura string tunings are represented by a series of accord elements, similar to the
     /// staff-tuning elements. Strings are numbered from high to low.
     case scordatura(Scordatura)
@@ -103,6 +107,10 @@ public enum DirectionType {
     /// crescendo, or the type is stop for a wedge that began with a diminuendo type. The line-type
     /// is solid by default.
     case wedge(Wedge)
+    /// The words element specifies a standard text direction. Left justification is
+    /// assumed if not specified. Language is Italian ("it") by default. Enclosure is none
+    /// by default.
+    case words(FormattedText)
 }
 
 extension DirectionType: Equatable { }
@@ -130,6 +138,8 @@ extension DirectionType: Codable {
         case segno
         case stringMute = "string-mute"
         case wedge
+        case words
+
     }
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -176,6 +186,8 @@ extension DirectionType: Codable {
             try container.encode(value, forKey: .stringMute)
         case let .wedge(value):
             try container.encode(value, forKey: .wedge)
+        case let .words(value):
+            try container.encode(value, forKey: .words)
         }
     }
     public init(from decoder: Decoder) throws {
@@ -186,7 +198,7 @@ extension DirectionType: Codable {
         } else if container.contains(.bracket) {
             self = .bracket(try container.decode(Bracket.self, forKey: .bracket))
         } else if container.contains(.coda) {
-            self = .coda(try container.decode([EmptyPrintStyleAlign].self, forKey: .coda))
+            self = .coda(try container.decode(EmptyPrintStyleAlign.self, forKey: .coda))
         } else if container.contains(.damp) {
             self = .damp(try container.decode(EmptyPrintStyleAlign.self, forKey: .damp))
         } else if container.contains(.dampAll) {
@@ -194,7 +206,7 @@ extension DirectionType: Codable {
         } else if container.contains(.dashes) {
             self = .dashes(try container.decode(Dashes.self, forKey: .dashes))
         } else if container.contains(.dynamics) {
-            self = .dynamics(try container.decode([Dynamics].self, forKey: .dynamics))
+            self = .dynamics(try container.decode(Dynamics.self, forKey: .dynamics))
         } else if container.contains(.eyeglasses) {
             self = .eyeglasses(try container.decode(EmptyPrintStyleAlign.self, forKey: .eyeglasses))
         } else if container.contains(.harpPedals) {
@@ -214,7 +226,7 @@ extension DirectionType: Codable {
         } else if container.contains(.principleVoice) {
             self = .principleVoice(try container.decode(PrincipleVoice.self, forKey: .principleVoice))
         } else if container.contains(.rehearsal) {
-            self = .rehearsal(try container.decode([FormattedText].self, forKey: .rehearsal))
+            self = .rehearsal(try container.decode(FormattedText.self, forKey: .rehearsal))
         } else if container.contains(.scordatura) {
             self = .scordatura(try container.decode(Scordatura.self, forKey: .scordatura))
         } else if container.contains(.segno) {
@@ -223,6 +235,8 @@ extension DirectionType: Codable {
             self = .stringMute(try container.decode(StringMute.self, forKey: .stringMute))
         } else if container.contains(.wedge) {
             self = .wedge(try container.decode(Wedge.self, forKey: .wedge))
+        } else if container.contains(.words) {
+            self = .words(try container.decode(FormattedText.self, forKey: .words))
         } else {
             throw DecodingError.typeMismatch(
                 DirectionType.self,

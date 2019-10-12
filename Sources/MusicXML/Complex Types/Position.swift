@@ -33,7 +33,7 @@
 /// used when the current measure or a succeeding measure starts a new system. The same change of
 /// origin is used for the group-symbol element.
 ///
-// For the note, figured-bass, and harmony elements, the default-x value is considered to have
+/// For the note, figured-bass, and harmony elements, the default-x value is considered to have
 /// adjusted the musical position within the bar for its descendant elements.
 ///
 /// Since the credit-words and credit-image elements are not related to a measure, in these cases

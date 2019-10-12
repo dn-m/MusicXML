@@ -26,20 +26,22 @@ class DirectionTests: XCTestCase {
         let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
         let expected: Direction = Direction(
             placement: .above,
-            directionType: .metronome(
-                Metronome(
-                    position: Position(defaultX: -25.96, relativeY: 20.00),
-                    parentheses: false,
-                    kind: .regular(
-                        Metronome.Regular(
-                            beatUnit: .quarter,
-                            relation: .perMinute(
-                                PerMinute(value: "90")
+            directionType: [
+                .metronome(
+                    Metronome(
+                        position: Position(defaultX: -25.96, relativeY: 20.00),
+                        parentheses: false,
+                        kind: .regular(
+                            Metronome.Regular(
+                                beatUnit: .quarter,
+                                relation: .perMinute(
+                                    PerMinute(value: "90")
+                                )
                             )
                         )
                     )
                 )
-            ),
+            ],
             sound: Sound(
                 tempo: 90
             )
@@ -58,9 +60,7 @@ class DirectionTests: XCTestCase {
         let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
         let expected: Direction = Direction(
             placement: .above,
-            directionType: .wedge(
-                Wedge(type: .crescendo, spread: 0)
-            )
+            directionType: [.wedge(Wedge(type: .crescendo, spread: 0))]
         )
         XCTAssertEqual(decoded, expected)
     }
@@ -75,7 +75,9 @@ class DirectionTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
         let expected: Direction = Direction(
-            directionType: .octaveShift(OctaveShift(type: .down, size: 8))
+            directionType: [
+                .octaveShift(OctaveShift(type: .down, size: 8))
+            ]
         )
         XCTAssertEqual(decoded, expected)
     }
@@ -91,9 +93,9 @@ class DirectionTests: XCTestCase {
         let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
         let expected: Direction = Direction(
             placement: .above,
-            directionType: .bracket(
-                Bracket(type: .start, number: 1, lineEnd: .down, lineType: .solid)
-            )
+            directionType: [
+                .bracket(Bracket(type: .start, number: 1, lineEnd: .down, lineType: .solid))
+            ]
         )
         XCTAssertEqual(decoded, expected)
     }

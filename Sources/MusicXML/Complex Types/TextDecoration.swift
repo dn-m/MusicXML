@@ -9,11 +9,11 @@
 /// for text to be underlined, overlined, or struck-through. It extends the CSS version by allow
 /// double or triple lines instead of just being on or off.
 public struct TextDecoration {
-    public let underline: Int
-    public let overline: Int
-    public let lineThrough: Int
+    public let underline: Int?
+    public let overline: Int?
+    public let lineThrough: Int?
 
-    public init(underline: Int, overline: Int, lineThrough: Int) {
+    public init(underline: Int? = nil, overline: Int? = nil, lineThrough: Int? = nil) {
         self.underline = underline
         self.overline = overline
         self.lineThrough = lineThrough
