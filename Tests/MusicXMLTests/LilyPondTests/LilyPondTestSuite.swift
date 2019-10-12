@@ -13,7 +13,7 @@ class LilyPondTests: XCTestCase {
     // All of the LilyPond tests which we will _not_ test, either because they require a breaking of
     // the specification, or for some other good reason.
     private let blacklist = [
-        // This test does not
+        // This test requires our mode to break the spec.
         "41g-PartNoId.xml",
     ]
 
