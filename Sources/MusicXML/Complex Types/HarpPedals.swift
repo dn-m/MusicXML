@@ -10,14 +10,37 @@
 /// pedal-tuning elements should follow standard harp pedal order, with pedal-step values of D, C,
 /// B, E, F, G, and A.
 public struct HarpPedals {
-    public let printStyleAlign: PrintStyleAlign
-    public let pedalTuning: [PedalTuning]
 
-    public init(printStyleAlign: PrintStyleAlign, pedalTuning: [PedalTuning]) {
+    // MARK: - Instance Properties
+
+    // MARK: Attribute Groups
+
+    public let printStyleAlign: PrintStyleAlign
+
+    // MARK: - Elements
+
+    public let pedalTunings: [PedalTuning]
+
+    public init(_ pedalTunings: [PedalTuning], printStyleAlign: PrintStyleAlign = PrintStyleAlign()) {
+        precondition(!pedalTunings.isEmpty)
         self.printStyleAlign = printStyleAlign
-        self.pedalTuning = pedalTuning
+        self.pedalTunings = pedalTunings
     }
 }
 
 extension HarpPedals: Equatable { }
-extension HarpPedals: Codable { }
+extension HarpPedals: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case pedalTunings = "pedal-tuning"
+    }
+
+    public init(from decoder: Decoder) throws {
+
+        // Decode attribute groups
+        self.printStyleAlign = try PrintStyleAlign(from: decoder)
+
+        // Decode elements
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.pedalTunings = try container.decode([PedalTuning].self, forKey: .pedalTunings)
+    }
+}

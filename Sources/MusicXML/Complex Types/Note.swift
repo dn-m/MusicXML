@@ -51,7 +51,7 @@ public struct Note {
     public let staff: Int?
     public let beams: [Beam]? // Up to 8
     public let notations: Notations?
-    public let lyrics: [Lyric]?
+    public let lyrics: [Lyric]
     public let play: Play?
 
     public init(
@@ -87,7 +87,7 @@ public struct Note {
         staff: Int? = nil,
         beams: [Beam]? = nil,
         notations: Notations? = nil,
-        lyrics: [Lyric]? = nil,
+        lyrics: [Lyric] = [],
         play: Play? = nil
     ) {
         self.kind = kind
@@ -208,7 +208,7 @@ extension Note: Codable {
         case staff
         case beams = "beam"
         case notations
-        case lyrics
+        case lyrics = "lyric"
         case play
         // Normal Note, Cue and Grace
         case grace
@@ -258,7 +258,7 @@ extension Note: Codable {
         self.staff = try container.decodeIfPresent(Int.self, forKey: .staff)
         self.beams = try container.decodeIfPresent([Beam].self, forKey: .beams)
         self.notations = try container.decodeIfPresent(Notations.self, forKey: .notations)
-        self.lyrics = try container.decodeIfPresent([Lyric].self, forKey: .lyrics)
+        self.lyrics = try container.decode([Lyric].self, forKey: .lyrics)
         self.play = try container.decodeIfPresent(Play.self, forKey: .play)
 
         let chordEmptyElement = try container.decodeIfPresent(Empty.self, forKey: .chord)

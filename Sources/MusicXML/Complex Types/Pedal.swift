@@ -10,12 +10,25 @@
 /// system breaks and for more complex pedaling lines. The alignment attributes are ignored if the
 /// line attribute is yes.
 public struct Pedal {
-    public let type: StartStopContinue
+
+    // MARK: - Instance Properties
+
+    // MARK: Attribute Groups
+
+    public let printStyleAlign: PrintStyleAlign
+
+    // MARK: One-off Attributes
+
+    public let type: StartStopChangeContinue
     public let line: Bool?
     public let sign: Bool?
-    public let printStyleAlign: PrintStyleAlign?
 
-    public init(type: StartStopContinue, line: Bool? = nil, sign: Bool? = nil, printStyleAlign: PrintStyleAlign? = nil) {
+    public init(
+        type: StartStopChangeContinue,
+        line: Bool? = nil,
+        sign: Bool? = nil,
+        printStyleAlign: PrintStyleAlign = PrintStyleAlign()
+    ) {
         self.type = type
         self.line = line
         self.sign = sign
@@ -24,4 +37,12 @@ public struct Pedal {
 }
 
 extension Pedal: Equatable { }
-extension Pedal: Codable { }
+extension Pedal: Codable {
+    public init(from decoder: Decoder) throws {
+        self.printStyleAlign = try PrintStyleAlign(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.type = try container.decode(StartStopChangeContinue.self, forKey: .type)
+        self.line = try container.decodeIfPresent(Bool.self, forKey: .line)
+        self.sign = try container.decodeIfPresent(Bool.self, forKey: .sign)
+    }
+}

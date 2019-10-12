@@ -22,9 +22,9 @@ class StabatMaterTests: XCTestCase {
         let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
         let expected = Direction(
             placement: .above,
-            directionType: .words(
-                FormattedText("Largo", printStyle: PrintStyle(font: Font(weight: .bold)))
-            )
+            directionType: [
+                .words(FormattedText("Largo", printStyle: PrintStyle(font: Font(weight: .bold))))
+            ]
         )
         XCTAssertEqual(decoded, expected)
     }
@@ -56,7 +56,7 @@ class StabatMaterTests: XCTestCase {
         let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
         let expected = Direction(
             placement: .below,
-            directionType: .dynamics(Dynamics([.fp])),
+            directionType: [.dynamics(Dynamics([.fp]))],
             offset: Offset(3)
         )
         XCTAssertEqual(decoded, expected)

@@ -8,10 +8,14 @@
 /// The formatted-text type represents a text element with text-formatting attributes.
 public struct FormattedText {
 
-    // MARK: - Value
+    // MARK: - Instance Properties
+
+    // MARK: Value
+
     public let value: String
 
-    // MARK: - Attributes
+    // MARK: Attributes
+
     public let justify: LeftCenterRight?
     public let printStyle: PrintStyle
     public let hAlign: LeftCenterRight?
@@ -24,9 +28,6 @@ public struct FormattedText {
     public let lineHeight: NumberOrNormal?
     public let direction: TextDirection?
     public let enclosure: EnclosureShape?
-
-    // MARK: - Elements
-
 
     public init(
         _ value: String,
@@ -79,8 +80,15 @@ extension FormattedText: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.justify = try container.decodeIfPresent(LeftCenterRight.self, forKey: .justify)
+
+        // Decode value
+        self.value = try container.decode(String.self, forKey: .value)
+
+        // Decode attribute groups
         self.printStyle = try PrintStyle(from: decoder)
+
+        // Decode one-off attributes
+        self.justify = try container.decodeIfPresent(LeftCenterRight.self, forKey: .justify)
         self.hAlign = try container.decodeIfPresent(LeftCenterRight.self, forKey: .hAlign)
         self.vAlign = try container.decodeIfPresent(VAlign.self, forKey: .vAlign)
         self.underline = try container.decodeIfPresent(Int.self, forKey: .underline)
@@ -91,7 +99,7 @@ extension FormattedText: Codable {
         self.lineHeight = try container.decodeIfPresent(NumberOrNormal.self, forKey: .lineHeight)
         self.direction = try container.decodeIfPresent(TextDirection.self, forKey: .direction)
         self.enclosure = try container.decodeIfPresent(EnclosureShape.self, forKey: .enclosure)
-        self.value = try container.decode(String.self, forKey: .value)
+
     }
 }
 

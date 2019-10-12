@@ -26,19 +26,21 @@ class PartWiseInitializerTests: XCTestCase {
                     Direction(
                         placement: .above,
                         directive: nil,
-                        directionType: .metronome(
-                            Metronome(
-                                kind: .regular(
-                                    Metronome.Regular(
-                                        beatUnit: .quarter,
-                                        beatUnitDot: [],
-                                        relation: .perMinute(
-                                            PerMinute(value: "90", font: nil)
+                        directionType: [
+                            .metronome(
+                                Metronome(
+                                    kind: .regular(
+                                        Metronome.Regular(
+                                            beatUnit: .quarter,
+                                            beatUnitDot: [],
+                                            relation: .perMinute(
+                                                PerMinute(value: "90", font: nil)
+                                            )
                                         )
                                     )
                                 )
                             )
-                        )
+                        ]
                     )
                 ),
                 .note(

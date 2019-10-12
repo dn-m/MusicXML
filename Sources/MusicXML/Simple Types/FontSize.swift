@@ -13,27 +13,57 @@ public enum FontSize {
     case numeric(Double)
 }
 
+extension FontSize {
+
+    // MARK: - Initializers
+
+    public init(_ numeric: Double) {
+        self = .numeric(numeric)
+    }
+
+    public init(_ css: CSSFontSize) {
+        self = .css(css)
+    }
+}
+
 extension FontSize: Equatable { }
 
 extension FontSize: Codable {
-    enum CodingKeys: String, CodingKey { case css, numeric }
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        do {
-            self = .css(try container.decode(CSSFontSize.self, forKey: .css))
-        } catch {
-            self = .numeric(try container.decode(Double.self, forKey: .numeric))
+        let container = try decoder.singleValueContainer()
+        if let value = try? container.decode(Double.self) {
+            self.init(value)
+        } else if let value = try? container.decode(CSSFontSize.self) {
+            self.init(value)
+        } else {
+            throw DecodingError.typeMismatch(
+                FontSize.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Invalid type for FontSize"
+                )
+            )
         }
     }
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
+        var container = encoder.singleValueContainer()
         switch self {
         case let .css(size):
-            try container.encode(size, forKey: .css)
+            try container.encode(size)
         case let .numeric(size):
-            try container.encode(size, forKey: .numeric)
+            try container.encode(size)
         }
     }
 }
 
-extension FontSize.CodingKeys: XMLChoiceCodingKey {}
+extension FontSize: ExpressibleByIntegerLiteral {
+    public init(integerLiteral value: Double) {
+        self.init(value)
+    }
+}
+
+extension FontSize: ExpressibleByFloatLiteral {
+    public init(floatLiteral value: Double) {
+        self.init(value)
+    }
+}
