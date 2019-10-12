@@ -9,17 +9,54 @@ extension MusicXML {
     /// The string type is used with tablature notation, regular notation (where it is often
     /// circled), and chord diagrams. String numbers start with 1 for the highest string.
     public struct String {
-        public let value: StringNumber
-        public let printStyle: PrintStyle?
+
+        // MARK: - Instance Properties
+
+        // MARK: Value
+
+        public let value: Int
+
+        // MARK: One-off Attributes
+
         public let placement: AboveBelow?
 
-        public init(value: StringNumber, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+        // MARK: Attribute Groups
+
+        public let printStyle: PrintStyle
+
+        // MARK: - Initializers
+
+        public init(
+            _ value: Int = 1,
+            placement: AboveBelow? = nil,
+            printStyle: PrintStyle = PrintStyle()
+        ) {
             self.value = value
-            self.printStyle = printStyle
             self.placement = placement
+            self.printStyle = printStyle
         }
     }
 }
 
 extension MusicXML.String: Equatable { }
-extension MusicXML.String: Codable { }
+extension MusicXML.String: Codable {
+
+    private enum CodingKeys: String, CodingKey {
+        case value = ""
+        case placement
+    }
+
+    public init(from decoder: Decoder) throws {
+        // Decode attribute groups
+        self.printStyle = try PrintStyle(from: decoder)
+        // Decode one-off attributes
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
+        // Decode value
+        self.value = try container.decodeIfPresent(Int.self, forKey: .value) ?? 1
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        fatalError("TODO: MusicXML.String.encode(to:)")
+    }
+}

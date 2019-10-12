@@ -17,9 +17,7 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         let decoded = try XMLDecoder().decode(Notations.self, from: xml.data(using: .utf8)!)
-        let expected = Notations(values: [
-            .tied(Tied(type: .start))
-        ])
+        let expected = Notations([.tied(Tied(type: .start))])
 
         XCTAssertEqual(decoded, expected)
     }
@@ -31,7 +29,7 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         let decoded = try XMLDecoder().decode(Notations.self, from: xml.data(using: .utf8)!)
-        let expected = Notations(values: [.tuplet(Tuplet(type: .start, number: 1))])
+        let expected = Notations([.tuplet(Tuplet(type: .start, number: 1))])
         XCTAssertEqual(decoded, expected)
     }
 
@@ -42,7 +40,7 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         try assertDecoded(xml,
-            equals: Notations(values: [.fermata(Fermata(value: .normal))])
+            equals: Notations([.fermata(Fermata(value: .normal))])
         )
     }
 
@@ -68,21 +66,19 @@ class NotationsTests: XCTestCase {
             </ornaments>
         </notations>
         """
-        let expected = Notations(
-            values: [
-                .ornaments(
-                    Ornaments(
-                        values: [
-                            .turn(HorizontalTurn()),
-                        ],
-                        accidentalMarks: [
-                            AccidentalMark(value: .sharp, placement: .above),
-                            AccidentalMark(value: .threeQuartersFlat, placement: .above),
-                        ]
-                    )
+        let expected = Notations([
+            .ornaments(
+                Ornaments(
+                    values: [
+                        .turn(HorizontalTurn()),
+                    ],
+                    accidentalMarks: [
+                        AccidentalMark(value: .sharp, placement: .above),
+                        AccidentalMark(value: .threeQuartersFlat, placement: .above),
+                    ]
                 )
-            ]
-        )
+            )
+        ])
         try assertDecoded(xml, equals: expected)
     }
 
@@ -92,22 +88,18 @@ class NotationsTests: XCTestCase {
           <technical><harmonic><natural/><base-pitch/></harmonic></technical>
         </notations>
         """
-        let expected = Notations(
-            values: [
-                .technical(
-                    Technical(
-                        values: [
-                            .harmonic(
-                                Harmonic(
-                                    naturalArtificial: .natural,
-                                    baseSoundingTouchingPitch: .base
-                                )
-                            )
-                        ]
+        let expected = Notations([
+            .technical(
+                Technical([
+                    .harmonic(
+                        Harmonic(
+                            naturalArtificial: .natural,
+                            baseSoundingTouchingPitch: .base
+                        )
                     )
-                )
-            ]
-        )
+                ])
+            )
+        ])
         try assertDecoded(xml, equals: expected)
     }
 
@@ -118,9 +110,9 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         try assertDecoded(xml,
-            equals: Notations(
-                values: [.accidentalMark(AccidentalMark(value: .doubleSharp, placement: .above))]
-            )
+            equals: Notations([
+                .accidentalMark(AccidentalMark(value: .doubleSharp, placement: .above))
+            ])
         )
     }
 
@@ -133,7 +125,7 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         try assertDecoded(xml,
-            equals: Notations(values: [.articulations(Articulations(values: [.plop(EmptyLine())]))])
+            equals: Notations([.articulations(Articulations([.plop(EmptyLine())]))])
         )
     }
 
@@ -147,19 +139,15 @@ class NotationsTests: XCTestCase {
           </articulations>
         </notations>
         """
-        let expected = Notations(
-            values: [
-                .articulations(
-                    Articulations(
-                        values: [
-                            .accent(EmptyPlacement(placement: .below)),
-                            .tenuto(EmptyPlacement(placement: .below)),
-                            .staccato(EmptyPlacement(placement: .above)),
-                        ]
-                    )
-                )
-            ]
-        )
+        let expected = Notations([
+            .articulations(
+                Articulations([
+                    .accent(EmptyPlacement(placement: .below)),
+                    .tenuto(EmptyPlacement(placement: .below)),
+                    .staccato(EmptyPlacement(placement: .above)),
+                ])
+            )
+        ])
         try assertDecoded(xml, equals: expected)
     }
 
@@ -167,18 +155,14 @@ class NotationsTests: XCTestCase {
         let xml = """
         <notations><arpeggiate/></notations>
         """
-        try assertDecoded(xml,
-            equals: Notations(values: [.arpeggiate(Arpeggiate())])
-        )
+        try assertDecoded(xml, equals: Notations([.arpeggiate(Arpeggiate())]))
     }
 
     func testNonArpeggiate() throws {
         let xml = """
         <notations><non-arpeggiate type="bottom"/></notations>
         """
-        try assertDecoded(xml,
-              equals: Notations(values: [.nonArpeggiate(NonArpeggiate(type: .bottom))])
-        )
+        try assertDecoded(xml, equals: Notations([.nonArpeggiate(NonArpeggiate(type: .bottom))]))
     }
 
     func testFermataNoValue() throws {
@@ -188,7 +172,7 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         try assertDecoded(xml,
-            equals: Notations(values: [.fermata(Fermata(value: .normal, type: .upright))])
+            equals: Notations([.fermata(Fermata(value: .normal, type: .upright))])
         )
     }
 
@@ -199,1102 +183,109 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         try assertDecoded(xml,
-            equals: Notations(values: [
-                .slide(Slide(type: .stop, number: 1, lineType: .solid))
-            ])
+            equals: Notations([.slide(Slide(type: .stop, number: 1, lineType: .solid))])
         )
     }
 
-    func testLilyPond() throws {
-        let xml = """
-        <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 2.0 Partwise//EN"
-                                        "http://www.musicxml.org/dtds/partwise.dtd">
-        <score-partwise version="2.0">
-          <movement-title>MusicXML notations (attached to note)</movement-title>
-          <identification>
-            <miscellaneous>
-              <miscellaneous-field name="description">All &lt;notation&gt; elements
-                  defined in MusicXML. The lyrics show the notation assigned to each
-                  note.</miscellaneous-field>
-            </miscellaneous>
-          </identification>
-          <part-list>
-            <score-part id="P1">
-              <part-name></part-name>
-            </score-part>
-          </part-list>
-          <!--=========================================================-->
-          <part id="P1">
-            <measure number="4">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <articulations><detached-legato/></articulations>
-                </notations>
-                <lyric number="1"><text>det.-leg.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <articulations><staccatissimo/></articulations>
-                </notations>
-                <lyric number="1"><text>stacc.ss</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <articulations><spiccato/></articulations>
-                </notations>
-                <lyric number="1"><text>spicc.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <articulations><scoop/></articulations>
-                </notations>
-                <lyric number="1"><text>scoop</text></lyric>
-              </note>
-            </measure>
-            <measure number="5">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <articulations><plop/></articulations>
-                </notations>
-                <lyric number="1"><text>plop</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <articulations><doit/></articulations>
-                </notations>
-                <lyric number="1"><text>doit</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <articulations><falloff/></articulations>
-                </notations>
-                <lyric number="1"><text>falloff</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <articulations><breath-mark/></articulations>
-                </notations>
-                <lyric number="1"><text>breath</text></lyric>
-              </note>
-            </measure>
-            <measure number="6">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <articulations><caesura/></articulations>
-                </notations>
-                <lyric number="1"><text>caes.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <articulations><stress/></articulations>
-                </notations>
-                <lyric number="1"><text>stress</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <articulations><unstress/></articulations>
-                </notations>
-                <lyric number="1"><text>unstr.</text></lyric>
-              </note>
-              <note>
-                <rest/>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-              </note>
-              <barline location="right">
-                <bar-style>light-light</bar-style>
-              </barline>
-            </measure>
-
-            <!-- Ornaments:
-                 trill-mark | turn | delayed-turn | inverted-turn |
-                 shake | wavy-line | mordent | inverted-mordent |
-                 schleifer | tremolo | other-ornament),
-                 accidental-mark
-
-                 Test cases for various tremolo options are in a separate
-                 unit test file
-                 -->
-            <measure number="7">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <ornaments><trill-mark/></ornaments>
-                </notations>
-                <lyric number="1"><text>tr.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <ornaments><turn/></ornaments>
-                </notations>
-                <lyric number="1"><text>turn</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <ornaments><delayed-turn/></ornaments>
-                </notations>
-                <lyric number="1"><text>del.turn</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <ornaments><inverted-turn/></ornaments>
-                </notations>
-                <lyric number="1"><text>inv.turn</text></lyric>
-              </note>
-            </measure>
-            <measure number="8">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <ornaments><shake/></ornaments>
-                </notations>
-                <lyric number="1"><text>shake</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <ornaments>
-                    <wavy-line placement="below" type="start"/>
-                  </ornaments>
-                </notations>
-                <lyric number="1"><syllabic>begin</syllabic><text>wavy</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <ornaments>
-                    <wavy-line placement="below" type="stop"/>
-                    <wavy-line placement="below" type="start"/>
-                  </ornaments>
-                </notations>
-                <lyric number="1"><syllabic>middle</syllabic><text>wavy</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <ornaments>
-                    <wavy-line placement="below" type="stop"/>
-                  </ornaments>
-                </notations>
-                <lyric number="1"><syllabic>end</syllabic><text>line</text></lyric>
-              </note>
-            </measure>
-            <measure number="9">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <ornaments><mordent/></ornaments>
-                </notations>
-                <lyric number="1"><text>mord.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <ornaments><inverted-mordent/></ornaments>
-                </notations>
-                <lyric number="1"><text>inv.mord.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <ornaments><schleifer/></ornaments>
-                </notations>
-                <lyric number="1"><text>schl.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <ornaments><tremolo>3</tremolo></ornaments>
-                </notations>
-                <lyric number="1"><text>trem.</text></lyric>
-              </note>
-            </measure>
-            <measure number="10">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <ornaments>
-                    <turn/>
-                    <accidental-mark>natural</accidental-mark>
-                  </ornaments>
-                </notations>
-                <lyric number="1"><text>turn+acc.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step>
-                  <octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <ornaments>
-                    <turn/>
-                    <accidental-mark placement="above">sharp</accidental-mark>
-                    <accidental-mark placement="above">three-quarters-flat</accidental-mark>
-                  </ornaments>
-                </notations>
-                <lyric number="1"><text>turn+acc.(ab.+bel./rel to turn)</text></lyric>
-              </note>
-              <note>
-                <rest/>
-                <duration>2</duration>
-                <voice>1</voice>
-                <type>half</type>
-              </note>
-              <barline location="right">
-                <bar-style>light-light</bar-style>
-              </barline>
-            </measure>
-
-            <!-- Technical:
-                 up-bow | down-bow | harmonic | open-string |
-                 thumb-position | fingering | pluck | double-tongue |
-                 triple-tongue | stopped | snap-pizzicato | fret |
-                 string | hammer-on | pull-off | bend | tap | heel |
-                 toe | fingernails | other-technical -->
-            <measure number="11">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><up-bow/></technical>
-                </notations>
-                <lyric number="1"><text>up-b.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><down-bow/></technical>
-                </notations>
-                <lyric number="1"><text>down-b.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><harmonic/></technical>
-                </notations>
-                <lyric number="1"><text>harm.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><harmonic><natural/></harmonic></technical>
-                </notations>
-                <lyric number="1"><text>nat.harm.</text></lyric>
-              </note>
-            </measure>
-            <measure number="12">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><harmonic><artificial/></harmonic></technical>
-                </notations>
-                <lyric number="1"><text>art.harm.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><harmonic><natural/><base-pitch/></harmonic></technical>
-                </notations>
-                <lyric number="1"><text>nat.h./base</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><harmonic><natural/><touching-pitch/></harmonic></technical>
-                </notations>
-                <lyric number="1"><text>nat.h./touching</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><harmonic><natural/><sounding-pitch/></harmonic></technical>
-                </notations>
-                <lyric number="1"><text>nat.h./sounding</text></lyric>
-              </note>
-            </measure>
-            <measure number="13">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><open-string/></technical>
-                </notations>
-                <lyric number="1"><text>open-str.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><thumb-position/></technical>
-                </notations>
-                <lyric number="1"><text>thumb-pos.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><fingering/></technical>
-                </notations>
-                <lyric number="1"><text>empty fing.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><fingering>1</fingering></technical>
-                </notations>
-                <lyric number="1"><text>fing.1</text></lyric>
-              </note>
-            </measure>
-            <measure number="14">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><fingering>2</fingering></technical>
-                </notations>
-                <lyric number="1"><text>fing.2</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><fingering>3</fingering></technical>
-                </notations>
-                <lyric number="1"><text>fing.3</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><fingering>4</fingering></technical>
-                </notations>
-                <lyric number="1"><text>fing.4</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><fingering>5</fingering></technical>
-                </notations>
-                <lyric number="1"><text>fing.5</text></lyric>
-              </note>
-            </measure>
-            <measure number="15">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><fingering>something</fingering></technical>
-                </notations>
-                <lyric number="1"><text>fing.sth.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><fingering>5</fingering><fingering substitution="yes">3</fingering><fingering alternate="yes">2</fingering></technical>
-                </notations>
-                <lyric number="1"><text>mult.fing.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><pluck/></technical>
-                </notations>
-                <lyric number="1"><text>empty pluck</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><pluck>a</pluck></technical>
-                </notations>
-                <lyric number="1"><text>pluck a</text></lyric>
-              </note>
-            </measure>
-            <measure number="16">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><double-tongue/></technical>
-                </notations>
-                <lyric number="1"><text>dbl.tng.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><triple-tongue/></technical>
-                </notations>
-                <lyric number="1"><text>trpl.tng.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><stopped/></technical>
-                </notations>
-                <lyric number="1"><text>stopped</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><snap-pizzicato/></technical>
-                </notations>
-                <lyric number="1"><text>snp.pizz.</text></lyric>
-              </note>
-            </measure>
-            <measure number="17">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><fret/></technical>
-                </notations>
-                <lyric number="1"><text>empty fret</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><fret>0</fret></technical>
-                </notations>
-                <lyric number="1"><text>fret0</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><string/></technical>
-                </notations>
-                <lyric number="1"><text>empty str.</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical>
-                    <string>5</string>
-                  </technical>
-                </notations>
-                <lyric number="1"><text>str. 5</text></lyric>
-              </note>
-            </measure>
-            <measure number="18">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical>
-                    <hammer-on type="start"/>
-                  </technical>
-                </notations>
-                <lyric number="1"><syllabic>begin</syllabic><text>hammer</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical>
-                    <hammer-on type="stop"/>
-                  </technical>
-                </notations>
-                <lyric number="1"><syllabic>end</syllabic><text>on</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical>
-                    <pull-off type="start"/>
-                  </technical>
-                </notations>
-                <lyric number="1"><syllabic>begin</syllabic><text>pull</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical>
-                    <pull-off type="stop"/>
-                  </technical>
-                </notations>
-                <lyric number="1"><syllabic>end</syllabic><text>off</text></lyric>
-              </note>
-            </measure>
-            <measure number="19">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical>
-                    <bend><bend-alter>4</bend-alter></bend>
-                  </technical>
-                </notations>
-                <lyric number="1"><text>bend</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical>
-                    <bend><bend-alter>3</bend-alter><release/><with-bar/></bend>
-                  </technical>
-                </notations>
-                <lyric number="1"><text>b.3 with-bar</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical>
-                    <bend><bend-alter>-0.5</bend-alter><pre-bend/></bend>
-                  </technical>
-                </notations>
-                <lyric number="1"><text>pre-b. -0.5</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical>
-                    <bend><bend-alter>3.5</bend-alter><release/></bend>
-                  </technical>
-                </notations>
-                <lyric number="1"><text>b. release 3.5</text></lyric>
-              </note>
-            </measure>
-            <measure number="20">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><tap/></technical>
-                </notations>
-                <lyric number="1"><text>tap</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><tap>T</tap></technical>
-                </notations>
-                <lyric number="1"><text>tap T</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><heel/></technical>
-                </notations>
-                <lyric number="1"><text>heel</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><toe substitution="yes"/></technical>
-                </notations>
-                <lyric number="1"><text>toe</text></lyric>
-              </note>
-            </measure>
-            <measure number="21">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <technical><fingernails/></technical>
-                </notations>
-                <lyric number="1"><text>fingern.</text></lyric>
-              </note>
-              <note>
-                <rest/>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-              </note>
-              <note>
-                <rest/>
-                <duration>2</duration>
-                <voice>1</voice>
-                <type>half</type>
-              </note>
-              <barline location="right">
-                <bar-style>light-light</bar-style>
-              </barline>
-            </measure>
-
-            <!-- Dynamics, attached to notes by putting them inside <notations> tags -->
-            <measure number="22">
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <dynamics><f/></dynamics>
-                </notations>
-                <lyric number="1"><text>f</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <dynamics><ppp/></dynamics>
-                </notations>
-                <lyric number="1"><text>ppp</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <dynamics><sfp/></dynamics>
-                </notations>
-                <lyric number="1"><text>sfp</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>C</step><octave>5</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <dynamics><other-dynamics>sfffz</other-dynamics></dynamics>
-                </notations>
-                <lyric number="1"><text>Oth.dyn.</text></lyric>
-              </note>
-            </measure>
-
-            <!-- General tests: multiple notations, directions, etc. -->
-            <measure number="23">
-              <note>
-                <pitch>
-                  <step>G</step>
-                  <octave>4</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <articulations>
-                    <strong-accent placement="above" type="up"/>
-                    <staccato placement="above"/>
-                  </articulations>
-                </notations>
-                <lyric number="1"><text>both above</text></lyric>
-              </note>
-              <note>
-                <pitch>
-                  <step>G</step>
-                  <octave>4</octave>
-                </pitch>
-                <duration>1</duration>
-                <voice>1</voice>
-                <type>quarter</type>
-                <notations>
-                  <articulations>
-                    <accent placement="below"/>
-                    <tenuto placement="below"/>
-                    <staccato placement="above"/>
-                  </articulations>
-                </notations>
-                <lyric number="1"><text>ab./bel./bel.</text></lyric>
-              </note>
-              <note>
-                <rest/>
-                <duration>2</duration>
-                <voice>1</voice>
-                <type>half</type>
-              </note>
-              <barline location="right">
-                <bar-style>light-heavy</bar-style>
-              </barline>
-            </measure>
-          </part>
-        </score-partwise>
-        """
-        let _ = try MusicXML(string: xml)
+    func testStaccatoArticulations() throws {
+        let xml = "<articulations><staccato/></articulations>"
+        let decoded = try XMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
+        let expected = Articulations([.staccato()])
+        XCTAssertEqual(decoded, expected)
     }
 
-    func testMeasure3() throws {
+    func testStaccatoNotations() throws {
         let xml = """
-        <measure number="3">
-          <note>
-            <pitch>
-              <step>C</step><octave>5</octave>
-            </pitch>
-            <duration>1</duration>
-            <voice>1</voice>
-            <type>quarter</type>
-            <notations>
-              <articulations><accent/></articulations>
-            </notations>
-            <lyric number="1"><text>acc.</text></lyric>
-          </note>
-          <note>
-            <pitch>
-              <step>C</step><octave>5</octave>
-            </pitch>
-            <duration>1</duration>
-            <voice>1</voice>
-            <type>quarter</type>
-            <notations>
-              <articulations><strong-accent/></articulations>
-            </notations>
-            <lyric number="1"><text>str.-acc.</text></lyric>
-          </note>
-          <note>
-            <pitch>
-              <step>C</step><octave>5</octave>
-            </pitch>
-            <duration>1</duration>
-            <voice>1</voice>
-            <type>quarter</type>
-            <notations>
-              <articulations><staccato/></articulations>
-            </notations>
-            <lyric number="1"><text>stacc.</text></lyric>
-          </note>
-          <note>
-            <pitch>
-              <step>C</step><octave>5</octave>
-            </pitch>
-            <duration>1</duration>
-            <voice>1</voice>
-            <type>quarter</type>
-            <notations>
-              <articulations><tenuto/></articulations>
-            </notations>
-            <lyric number="1"><text>ten.</text></lyric>
-          </note>
-        </measure>
+        <notations>
+          <articulations><tenuto/></articulations>
+        </notations>
         """
-        let decoded = try XMLDecoder().decode(Partwise.Measure.self, from: xml.data(using: .utf8)!)
+        let decoded = try XMLDecoder().decode(Notations.self, from: xml.data(using: .utf8)!)
+        let expected = Notations([.articulations(Articulations([.tenuto()]))])
+        XCTAssertEqual(decoded, expected)
+    }
 
+    func testStrongAccentArticulations() throws {
+        let xml = "<articulations><strong-accent/></articulations>"
+        let decoded = try XMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
+        let expected = Articulations([.strongAccent()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testSpiccatoArticulations() throws {
+        let xml = "<articulations><spiccato/></articulations>"
+        let decoded = try XMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
+        let expected = Articulations([.spiccato()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testBreathMarkArticulations() throws {
+        let xml = "<articulations><breath-mark/></articulations>"
+        let decoded = try XMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
+        let expected = Articulations([.breathMark()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testStressArticulations() throws {
+        let xml = "<articulations><stress/></articulations>"
+        let decoded = try XMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
+        let expected = Articulations([.stress()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testUpBowTechnical() throws {
+        let xml = "<technical><up-bow/></technical>"
+        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let expected = Technical([.upBow()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testDownBowTechnical() throws {
+        let xml = "<technical><down-bow/></technical>"
+        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let expected = Technical([.downBow()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testFingeringEmpty() throws {
+        let xml = "<technical><fingering/></technical>"
+        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let expected = Technical([.fingering()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testFingeringValue() throws {
+        let xml = "<technical><fingering>1</fingering></technical>"
+        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let expected = Technical([.fingering(Fingering("1"))])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testPluckTechnical() throws {
+        let xml = "<technical><pluck/></technical>"
+        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let expected = Technical([.pluck()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testStoppedTechnical() throws {
+        let xml = "<technical><stopped/></technical>"
+        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let expected = Technical([.stopped()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testFretTechnical() throws {
+        let xml = "<technical><fret/></technical>"
+        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let expected = Technical([.fret()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testStringTechnical() throws {
+        let xml = "<technical><string/></technical>"
+        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let expected = Technical([.string()])
+        XCTAssertEqual(decoded, expected)
     }
 }

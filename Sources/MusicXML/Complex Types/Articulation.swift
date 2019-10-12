@@ -9,22 +9,22 @@ import XMLCoder
 
 /// Articulations and accents are grouped together here.
 public enum Articulation {
-    case accent(EmptyPlacement)
-    case breathMark(BreathMark)
-    case caesura(EmptyPlacement)
-    case detachedLegato(EmptyPlacement)
-    case doit(EmptyLine)
-    case falloff(EmptyLine)
+    case accent(EmptyPlacement = EmptyPlacement())
+    case breathMark(BreathMark = BreathMark())
+    case caesura(EmptyPlacement = EmptyPlacement())
+    case detachedLegato(EmptyPlacement = EmptyPlacement())
+    case doit(EmptyLine = EmptyLine())
+    case falloff(EmptyLine = EmptyLine())
     case otherArticulation(PlacementText)
-    case plop(EmptyLine)
-    case scoop(EmptyLine)
-    case spicatto(EmptyPlacement)
-    case staccatissimo(EmptyPlacement)
-    case staccato(EmptyPlacement)
-    case stress(EmptyPlacement)
-    case strongAccent(StrongAccent)
-    case tenuto(EmptyPlacement)
-    case unstress(EmptyPlacement)
+    case plop(EmptyLine = EmptyLine())
+    case scoop(EmptyLine = EmptyLine())
+    case spiccato(EmptyPlacement = EmptyPlacement())
+    case staccatissimo(EmptyPlacement = EmptyPlacement())
+    case staccato(EmptyPlacement = EmptyPlacement())
+    case stress(EmptyPlacement = EmptyPlacement())
+    case strongAccent(StrongAccent = StrongAccent())
+    case tenuto(EmptyPlacement = EmptyPlacement())
+    case unstress(EmptyPlacement = EmptyPlacement())
 }
 
 extension Articulation: Equatable { }
@@ -32,19 +32,19 @@ extension Articulation: Equatable { }
 extension Articulation: Codable {
     enum CodingKeys: String, CodingKey {
         case accent
-        case breathMark
+        case breathMark = "breath-mark"
         case caesura
-        case detatchedLegato
+        case detatchedLegato = "detached-legato"
         case doit
         case falloff
-        case otherArticulation
+        case otherArticulation = "other-articulation"
         case plop
         case scoop
-        case spicatto
+        case spiccato
         case staccatissimo
         case staccato
         case stress
-        case strongAccent
+        case strongAccent = "strong-accent"
         case tenuto
         case unstress
     }
@@ -70,8 +70,8 @@ extension Articulation: Codable {
             try container.encode(value, forKey: .plop)
         case let .scoop(value):
             try container.encode(value, forKey: .scoop)
-        case let .spicatto(value):
-            try container.encode(value, forKey: .spicatto)
+        case let .spiccato(value):
+            try container.encode(value, forKey: .spiccato)
         case let .staccatissimo(value):
             try container.encode(value, forKey: .staccatissimo)
         case let .staccato(value):
@@ -112,12 +112,14 @@ extension Articulation: Codable {
             self = .plop(try decode(.plop))
         } else if container.contains(.scoop) {
             self = .scoop(try decode(.scoop))
-        } else if container.contains(.spicatto) {
-            self = .spicatto(try decode(.spicatto))
+        } else if container.contains(.spiccato) {
+            self = .spiccato(try decode(.spiccato))
         } else if container.contains(.staccatissimo) {
             self = .staccatissimo(try decode(.staccatissimo))
         } else if container.contains(.staccato) {
             self = .staccato(try decode(.staccato))
+        } else if container.contains(.stress) {
+            self = .stress(try decode(.stress))
         } else if container.contains(.strongAccent) {
             self = .strongAccent(try decode(.strongAccent))
         } else if container.contains(.tenuto) {
