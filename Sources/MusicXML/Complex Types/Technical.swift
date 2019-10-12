@@ -8,6 +8,10 @@
 /// Technical indications give performance information for individual instruments.
 public struct Technical {
     public var values: [Technique]
+
+    public init(_ values: [Technique]) {
+        self.values = values
+    }
 }
 
 extension Technical: Equatable { }

@@ -23,7 +23,12 @@ public struct Notations {
     public var level: Level?
     public var values: [Notation]
 
-    public init(printObject: Bool? = nil, footnote: FormattedText? = nil, level: Level? = nil, values: [Notation]) {
+    public init(
+        _ values: [Notation],
+        printObject: Bool? = nil,
+        footnote: FormattedText? = nil,
+        level: Level? = nil
+    ) {
         self.printObject = printObject
         self.footnote = footnote
         self.level = level

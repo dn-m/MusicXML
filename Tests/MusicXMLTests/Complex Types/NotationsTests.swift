@@ -17,9 +17,7 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         let decoded = try XMLDecoder().decode(Notations.self, from: xml.data(using: .utf8)!)
-        let expected = Notations(values: [
-            .tied(Tied(type: .start))
-        ])
+        let expected = Notations([.tied(Tied(type: .start))])
 
         XCTAssertEqual(decoded, expected)
     }
@@ -31,7 +29,7 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         let decoded = try XMLDecoder().decode(Notations.self, from: xml.data(using: .utf8)!)
-        let expected = Notations(values: [.tuplet(Tuplet(type: .start, number: 1))])
+        let expected = Notations([.tuplet(Tuplet(type: .start, number: 1))])
         XCTAssertEqual(decoded, expected)
     }
 
@@ -42,7 +40,7 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         try assertDecoded(xml,
-            equals: Notations(values: [.fermata(Fermata(value: .normal))])
+            equals: Notations([.fermata(Fermata(value: .normal))])
         )
     }
 
@@ -68,21 +66,19 @@ class NotationsTests: XCTestCase {
             </ornaments>
         </notations>
         """
-        let expected = Notations(
-            values: [
-                .ornaments(
-                    Ornaments(
-                        values: [
-                            .turn(HorizontalTurn()),
-                        ],
-                        accidentalMarks: [
-                            AccidentalMark(value: .sharp, placement: .above),
-                            AccidentalMark(value: .threeQuartersFlat, placement: .above),
-                        ]
-                    )
+        let expected = Notations([
+            .ornaments(
+                Ornaments(
+                    values: [
+                        .turn(HorizontalTurn()),
+                    ],
+                    accidentalMarks: [
+                        AccidentalMark(value: .sharp, placement: .above),
+                        AccidentalMark(value: .threeQuartersFlat, placement: .above),
+                    ]
                 )
-            ]
-        )
+            )
+        ])
         try assertDecoded(xml, equals: expected)
     }
 
@@ -92,22 +88,18 @@ class NotationsTests: XCTestCase {
           <technical><harmonic><natural/><base-pitch/></harmonic></technical>
         </notations>
         """
-        let expected = Notations(
-            values: [
-                .technical(
-                    Technical(
-                        values: [
-                            .harmonic(
-                                Harmonic(
-                                    naturalArtificial: .natural,
-                                    baseSoundingTouchingPitch: .base
-                                )
-                            )
-                        ]
+        let expected = Notations([
+            .technical(
+                Technical([
+                    .harmonic(
+                        Harmonic(
+                            naturalArtificial: .natural,
+                            baseSoundingTouchingPitch: .base
+                        )
                     )
-                )
-            ]
-        )
+                ])
+            )
+        ])
         try assertDecoded(xml, equals: expected)
     }
 
@@ -118,9 +110,9 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         try assertDecoded(xml,
-            equals: Notations(
-                values: [.accidentalMark(AccidentalMark(value: .doubleSharp, placement: .above))]
-            )
+            equals: Notations([
+                .accidentalMark(AccidentalMark(value: .doubleSharp, placement: .above))
+            ])
         )
     }
 
@@ -133,7 +125,7 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         try assertDecoded(xml,
-            equals: Notations(values: [.articulations(Articulations(values: [.plop(EmptyLine())]))])
+            equals: Notations([.articulations(Articulations([.plop(EmptyLine())]))])
         )
     }
 
@@ -147,19 +139,15 @@ class NotationsTests: XCTestCase {
           </articulations>
         </notations>
         """
-        let expected = Notations(
-            values: [
-                .articulations(
-                    Articulations(
-                        values: [
-                            .accent(EmptyPlacement(placement: .below)),
-                            .tenuto(EmptyPlacement(placement: .below)),
-                            .staccato(EmptyPlacement(placement: .above)),
-                        ]
-                    )
-                )
-            ]
-        )
+        let expected = Notations([
+            .articulations(
+                Articulations([
+                    .accent(EmptyPlacement(placement: .below)),
+                    .tenuto(EmptyPlacement(placement: .below)),
+                    .staccato(EmptyPlacement(placement: .above)),
+                ])
+            )
+        ])
         try assertDecoded(xml, equals: expected)
     }
 
@@ -167,18 +155,14 @@ class NotationsTests: XCTestCase {
         let xml = """
         <notations><arpeggiate/></notations>
         """
-        try assertDecoded(xml,
-            equals: Notations(values: [.arpeggiate(Arpeggiate())])
-        )
+        try assertDecoded(xml, equals: Notations([.arpeggiate(Arpeggiate())]))
     }
 
     func testNonArpeggiate() throws {
         let xml = """
         <notations><non-arpeggiate type="bottom"/></notations>
         """
-        try assertDecoded(xml,
-              equals: Notations(values: [.nonArpeggiate(NonArpeggiate(type: .bottom))])
-        )
+        try assertDecoded(xml, equals: Notations([.nonArpeggiate(NonArpeggiate(type: .bottom))]))
     }
 
     func testFermataNoValue() throws {
@@ -188,7 +172,7 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         try assertDecoded(xml,
-            equals: Notations(values: [.fermata(Fermata(value: .normal, type: .upright))])
+            equals: Notations([.fermata(Fermata(value: .normal, type: .upright))])
         )
     }
 
@@ -199,9 +183,109 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         try assertDecoded(xml,
-            equals: Notations(values: [
-                .slide(Slide(type: .stop, number: 1, lineType: .solid))
-            ])
+            equals: Notations([.slide(Slide(type: .stop, number: 1, lineType: .solid))])
         )
+    }
+
+    func testStaccatoArticulations() throws {
+        let xml = "<articulations><staccato/></articulations>"
+        let decoded = try XMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
+        let expected = Articulations([.staccato()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testStaccatoNotations() throws {
+        let xml = """
+        <notations>
+          <articulations><tenuto/></articulations>
+        </notations>
+        """
+        let decoded = try XMLDecoder().decode(Notations.self, from: xml.data(using: .utf8)!)
+        let expected = Notations([.articulations(Articulations([.tenuto()]))])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testStrongAccentArticulations() throws {
+        let xml = "<articulations><strong-accent/></articulations>"
+        let decoded = try XMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
+        let expected = Articulations([.strongAccent()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testSpiccatoArticulations() throws {
+        let xml = "<articulations><spiccato/></articulations>"
+        let decoded = try XMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
+        let expected = Articulations([.spiccato()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testBreathMarkArticulations() throws {
+        let xml = "<articulations><breath-mark/></articulations>"
+        let decoded = try XMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
+        let expected = Articulations([.breathMark()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testStressArticulations() throws {
+        let xml = "<articulations><stress/></articulations>"
+        let decoded = try XMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
+        let expected = Articulations([.stress()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testUpBowTechnical() throws {
+        let xml = "<technical><up-bow/></technical>"
+        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let expected = Technical([.upBow()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testDownBowTechnical() throws {
+        let xml = "<technical><down-bow/></technical>"
+        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let expected = Technical([.downBow()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testFingeringEmpty() throws {
+        let xml = "<technical><fingering/></technical>"
+        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let expected = Technical([.fingering()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testFingeringValue() throws {
+        let xml = "<technical><fingering>1</fingering></technical>"
+        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let expected = Technical([.fingering(Fingering("1"))])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testPluckTechnical() throws {
+        let xml = "<technical><pluck/></technical>"
+        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let expected = Technical([.pluck()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testStoppedTechnical() throws {
+        let xml = "<technical><stopped/></technical>"
+        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let expected = Technical([.stopped()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testFretTechnical() throws {
+        let xml = "<technical><fret/></technical>"
+        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let expected = Technical([.fret()])
+        XCTAssertEqual(decoded, expected)
+    }
+
+    func testStringTechnical() throws {
+        let xml = "<technical><string/></technical>"
+        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let expected = Technical([.string()])
+        XCTAssertEqual(decoded, expected)
     }
 }
