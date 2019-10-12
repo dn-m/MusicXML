@@ -24,9 +24,7 @@ class PartWiseInitializerTests: XCTestCase {
                 ),
                 .direction(
                     Direction(
-                        placement: .above,
-                        directive: nil,
-                        directionType: [
+                        [
                             .metronome(
                                 Metronome(
                                     kind: .regular(
@@ -40,7 +38,9 @@ class PartWiseInitializerTests: XCTestCase {
                                     )
                                 )
                             )
-                        ]
+                        ],
+                        placement: .above,
+                        directive: nil
                     )
                 ),
                 .note(

@@ -21,6 +21,21 @@ class ArticulationsTextsTests: XCTestCase {
             </direction-type>
         </direction>
         """
-        let _ = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
+        let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
+        let expected = Direction(
+            [
+                .words(
+                    FormattedText("Normal, Small, Colored, Below",
+                        printStyle: PrintStyle(
+                            position: Position(defaultX: 1, defaultY: -15),
+                            font: Font(size: FontSize(.small)),
+                            color: Color(hexString: "#FF8000")
+                        )
+                    )
+                )
+            ],
+            placement: .below
+        )
+        XCTAssertEqual(decoded, expected)
     }
 }
