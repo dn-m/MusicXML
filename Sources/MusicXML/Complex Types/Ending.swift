@@ -16,39 +16,79 @@
 /// attribute. The print-object element is used to indicate when an ending is present but not
 /// printed, as is often the case for many parts in a full score.
 public struct Ending {
-    public let value: EndingNumber // e.g., 1., 2.
-    public let number: [Int]
-    public let type: StartStopContinue
+
+    // MARK: - Instance Properties
+
+    // MARK: Value
+
+    public let value: String // e.g., 1., 2.
+
+    // MARK: Attributes
+
+    /// The number attribute reflects the numeric values of what is under the ending line. Single
+    /// endings such as "1" or comma-separated multiple endings such as "1,2" may be used.
+    public let number: String
+    public let type: StartStopDiscontinue
     public let printObject: Bool?
-    public let printStyle: PrintStyle?
     public let endLength: Tenths?
     public let textX: Tenths?
     public let textY: Tenths?
 
-    public init(value: EndingNumber, number: [Int], type: StartStopContinue, printObject: Bool? = nil, printStyle: PrintStyle? = nil, endLength: Tenths? = nil, textX: Tenths? = nil, textY: Tenths? = nil) {
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle?
+
+    // MARK: - Initializers
+
+    public init(
+        _ value: String = "",
+        number: String,
+        type: StartStopDiscontinue,
+        printObject: Bool? = nil,
+        endLength: Tenths? = nil,
+        textX: Tenths? = nil,
+        textY: Tenths? = nil,
+        printStyle: PrintStyle = PrintStyle()
+    ) {
         self.value = value
         self.number = number
         self.type = type
         self.printObject = printObject
-        self.printStyle = printStyle
         self.endLength = endLength
         self.textX = textX
         self.textY = textY
+        self.printStyle = printStyle
     }
 }
 
 extension Ending: Equatable { }
-extension Ending: Codable { }
+extension Ending: Codable {
+    enum CodingKeys: String, CodingKey {
+        case value = ""
+        case number
+        case type
+        case printObject = "print-object"
+        case endLength = "end-length"
+        case textX = "text-x"
+        case textY = "text-y"
+    }
 
-//extension Ending: Codable {
-//    enum CodingKeys: String, CodingKey {
-//        case value
-//        case number
-//        case type
-//        case printObject = "print-object"
-//        case printStyle = "print-style"
-//        case endLength = "end-length"
-//        case textX = "text-x"
-//        case textY = "text-y"
-//    }
-//}
+    public init(from decoder: Decoder) throws {
+        // Decode attribute groups
+        self.printStyle = try PrintStyle(from: decoder)
+        // Decode one-off attributes
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.number = try container.decode(String.self, forKey: .number)
+        self.type = try container.decode(StartStopDiscontinue.self, forKey: .type)
+        self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
+        self.endLength = try container.decodeIfPresent(Tenths.self, forKey: .endLength)
+        self.textX = try container.decodeIfPresent(Tenths.self, forKey: .textX)
+        self.textY = try container.decodeIfPresent(Tenths.self, forKey: .textY)
+        // Decode value
+        self.value = try container.decode(String.self, forKey: .value)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        fatalError("TODO: Ending.encode(to:)")
+    }
+}
