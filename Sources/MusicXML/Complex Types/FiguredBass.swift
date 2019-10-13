@@ -11,11 +11,17 @@
 /// Figures are ordered from top to bottom. The value of parentheses is "no" if not present.
 public struct FiguredBass {
 
+    // MARK: - Instance Properties
+
+    // MARK: Attribute Groups
+
     public let printStyle: PrintStyle
     public let printout: Printout
 
+    // MARK: Attributes
+
     // > The value of parentheses is "no" if not present.
-    public let parentheses: Bool
+    public let parentheses: Bool?
 
     /// The figure type represents a single figure within a figured-bass element.
     public let figures: [Figure] // NonEmpty
@@ -34,7 +40,15 @@ public struct FiguredBass {
     /// The level type is used to specify editorial information for different MusicXML elements.
     public let level: Level?
 
-    public init(printStyle: PrintStyle, printout: Printout, parentheses: Bool = false, figures: [Figure], duration: Int? = nil, footnote: FormattedText? = nil, level: Level? = nil) {
+    public init(
+        _ figures: [Figure],
+        printStyle: PrintStyle = PrintStyle(),
+        printout: Printout = Printout(),
+        parentheses: Bool? = nil,
+        duration: Int? = nil,
+        footnote: FormattedText? = nil,
+        level: Level? = nil
+    ) {
         self.printStyle = printStyle
         self.printout = printout
         self.parentheses = parentheses
@@ -46,4 +60,28 @@ public struct FiguredBass {
 }
 
 extension FiguredBass: Equatable { }
-extension FiguredBass: Codable { }
+extension FiguredBass: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case figures = "figure"
+        case duration
+        case footnote
+        case level
+        case parentheses
+    }
+    public init(from decoder: Decoder) throws {
+        // Decode attribute groups
+        self.printStyle = try PrintStyle(from: decoder)
+        self.printout = try Printout(from: decoder)
+        // Decode one-off attribute
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.parentheses = try container.decodeIfPresent(Bool.self, forKey: .parentheses)
+        self.duration = try container.decodeIfPresent(Int.self, forKey: .duration)
+        self.footnote = try container.decodeIfPresent(FormattedText.self, forKey: .footnote)
+        self.level = try container.decodeIfPresent(Level.self, forKey: .level)
+        // Decode elements
+        self.figures = try container.decode([Figure].self, forKey: .figures)
+    }
+    public func encode(to encoder: Encoder) throws {
+        fatalError("TODO: FiguredBass.encode(to:)")
+    }
+}
