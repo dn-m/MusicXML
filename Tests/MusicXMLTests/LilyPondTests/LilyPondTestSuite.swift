@@ -18,7 +18,7 @@ class LilyPondTests: XCTestCase {
     ]
 
     func testAll() throws {
-        // Create temporary directory successfully parsed scores from the LilyPond test suite
+        // Create temporary directory for successfully parsed scores from the LilyPond test suite
         let tempDirUrl = URL(fileURLWithPath: NSTemporaryDirectory())
             .appendingPathComponent("LilyPondTestsResults")
         try FileManager.default.createDirectory(
@@ -32,6 +32,7 @@ class LilyPondTests: XCTestCase {
             Parsed scores from LilyPond test suite will be written there for inspection.
             """
         )
+        // Collect successes and failures for logging
         var successes: [String] = []
         var failures: [(name: String, error: Error)] = []
         for subdir in ["Partwise", "Timewise"] {
