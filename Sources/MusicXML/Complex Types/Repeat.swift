@@ -10,10 +10,14 @@
 /// can use the times attribute to indicate the number of times the repeated section is played.
 public struct Repeat {
     public let direction: BackwardForward
-    public let times: Int
-    public let winged: Winged
+    public let times: Int?
+    public let winged: Winged?
 
-    public init(direction: BackwardForward, times: Int, winged: Winged) {
+    public init(
+        direction: BackwardForward,
+        times: Int? = nil,
+        winged: Winged? = nil
+    ) {
         self.direction = direction
         self.times = times
         self.winged = winged

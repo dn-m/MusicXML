@@ -37,6 +37,7 @@ extension Encoding.Kind: Codable {
         case software
         case supports
     }
+    // sourcery:inline:Encoding.Kind.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -52,28 +53,36 @@ extension Encoding.Kind: Codable {
             try container.encode(value, forKey: .supports)
         }
     }
+    // sourcery:end
+    // sourcery:inline:Encoding.Kind.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        do {
-            self = .encoder(try container.decode(String.self, forKey: .encoder))
-        } catch {
-            do {
-                self = .date(try container.decode(String.self, forKey: .date))
-            } catch {
-                do {
-                    self = .description(
-                        try container.decode(String.self, forKey: .description)
-                    )
-                } catch {
-                    do {
-                        self = .software(try container.decode(String.self, forKey: .software))
-                    } catch {
-                        self = .supports(try container.decode(Supports.self, forKey: .supports))
-                    }
-                }
-            }
+
+        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+            return try container.decode(T.self, forKey: key)
+        }
+
+        if container.contains(.encoder) {
+            self = .encoder(try decode(.encoder))
+        } else if container.contains(.date) {
+            self = .date(try decode(.date))
+        } else if container.contains(.description) {
+            self = .description(try decode(.description))
+        } else if container.contains(.software) {
+            self = .software(try decode(.software))
+        } else if container.contains(.supports) {
+            self = .supports(try decode(.supports))
+        } else {
+            throw DecodingError.typeMismatch(
+                Encoding.Kind.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized choice"
+                )
+            )
         }
     }
+    // sourcery:end
 }
 extension Encoding.Kind.CodingKeys: XMLChoiceCodingKey {}
 

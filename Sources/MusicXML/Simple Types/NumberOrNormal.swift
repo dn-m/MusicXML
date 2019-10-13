@@ -18,23 +18,41 @@ extension NumberOrNormal: Equatable { }
 
 extension NumberOrNormal: Codable {
     enum CodingKeys: String, CodingKey { case number, normal }
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        if container.contains(.normal) {
-            self = .normal
-            return
-        }
-        self = .number(try container.decode(Double.self, forKey: .number))
-    }
+    // sourcery:inline:NumberOrNormal.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
+        case let .number(value):
+            try container.encode(value, forKey: .number)
         case .normal:
-            try container.encode(Optional<Double>.none, forKey: .normal)
-        case let .number(number):
-            try container.encode(number, forKey: .number)
+            try container.encodeNil(forKey: .normal)
         }
     }
+    // sourcery:end
+    // sourcery:inline:NumberOrNormal.AutoXMLChoiceDecoding
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+            return try container.decode(T.self, forKey: key)
+        }
+
+        if container.contains(.number) {
+            self = .number(try decode(.number))
+        } else if container.contains(.normal) {
+            _ = try container.decodeNil(forKey: .normal)
+            self = .normal
+        } else {
+            throw DecodingError.typeMismatch(
+                NumberOrNormal.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized choice"
+                )
+            )
+        }
+    }
+    // sourcery:end
 }
 
 extension NumberOrNormal.CodingKeys: XMLChoiceCodingKey {}

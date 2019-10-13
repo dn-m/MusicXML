@@ -21,28 +21,44 @@ extension PitchUnpitchedOrRest: Codable {
         case unpitched
         case rest
     }
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        if container.contains(.pitch) {
-            self = .pitch(try container.decode(Pitch.self, forKey: .pitch))
-        } else if container.contains(.unpitched) {
-            self = .unpitched(try container.decode(Unpitched.self, forKey: .unpitched))
-        } else {
-            self = .rest(try container.decode(Rest.self, forKey: .rest))
-        }
-    }
-
+    // sourcery:inline:PitchUnpitchedOrRest.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
-        case let .pitch(pitch):
-            try container.encode(pitch, forKey: .pitch)
-        case let .unpitched(unpitched):
-            try container.encode(unpitched, forKey: .unpitched)
-        case let .rest(rest):
-            try container.encode(rest, forKey: .rest)
+        case let .pitch(value):
+            try container.encode(value, forKey: .pitch)
+        case let .unpitched(value):
+            try container.encode(value, forKey: .unpitched)
+        case let .rest(value):
+            try container.encode(value, forKey: .rest)
         }
     }
+    // sourcery:end
+    // sourcery:inline:PitchUnpitchedOrRest.AutoXMLChoiceDecoding
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+            return try container.decode(T.self, forKey: key)
+        }
+
+        if container.contains(.pitch) {
+            self = .pitch(try decode(.pitch))
+        } else if container.contains(.unpitched) {
+            self = .unpitched(try decode(.unpitched))
+        } else if container.contains(.rest) {
+            self = .rest(try decode(.rest))
+        } else {
+            throw DecodingError.typeMismatch(
+                PitchUnpitchedOrRest.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized choice"
+                )
+            )
+        }
+    }
+    // sourcery:end
 }
 
 extension PitchUnpitchedOrRest.CodingKeys: XMLChoiceCodingKey { }

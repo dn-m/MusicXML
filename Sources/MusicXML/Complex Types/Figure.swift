@@ -34,4 +34,11 @@ public struct Figure {
 }
 
 extension Figure: Equatable { }
-extension Figure: Codable { }
+extension Figure: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case prefix
+        case figureNumber = "figure-number"
+        case suffix
+        case extend
+    }
+}

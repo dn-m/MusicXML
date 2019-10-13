@@ -28,17 +28,6 @@
 /// location is specified, the right barline is the default.
 public struct Barline {
 
-//    public struct Fermatas: Codable, Equatable {
-//        let above: Fermata?
-//        let below: Fermata?
-//    }
-//
-//    public enum Location: String, Decodable, Equatable {
-//        case right
-//        case left
-//        case middle
-//    }
-//
     /// Barlines have a location attribute to make it easier to process barlines independently of
     /// the other musical data in a score. It is often easier to set up measures separately from
     /// entering notes. The location attribute must match where the barline element occurs within

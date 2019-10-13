@@ -7,11 +7,23 @@
 
 /// The empty-placement type represents an empty element with print-style and placement attributes.
 public struct EmptyPlacement {
-    public var position: Position?
-    public var printStyle: PrintStyle?
+
+    // MARK: - Instance Properties
+
+    // MARK: One-off Attributes
+
     public var placement: AboveBelow?
 
-    public init(position: Position? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+    // MARK: Attribute Groups
+
+    public var position: Position
+    public var printStyle: PrintStyle
+
+    public init(
+        position: Position = Position(),
+        printStyle: PrintStyle = PrintStyle(),
+        placement: AboveBelow? = nil
+    ) {
         self.position = position
         self.printStyle = printStyle
         self.placement = placement
@@ -19,4 +31,13 @@ public struct EmptyPlacement {
 }
 
 extension EmptyPlacement: Equatable { }
-extension EmptyPlacement: Codable { }
+extension EmptyPlacement: Codable {
+    public init(from decoder: Decoder) throws {
+        // Decode attribute groups
+        self.position = try Position(from: decoder)
+        self.printStyle = try PrintStyle(from: decoder)
+        // Decode one-off attribute
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
+    }
+}
