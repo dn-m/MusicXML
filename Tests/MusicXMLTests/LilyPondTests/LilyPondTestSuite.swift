@@ -15,6 +15,8 @@ class LilyPondTests: XCTestCase {
     private let blacklist = [
         // This test requires our model to break the spec.
         "41g-PartNoId.xml",
+        // I don't think this is our job (at least at this point in time)
+        "90a-Compressed-MusicXML.mxl",
     ]
 
     func testAll() throws {
