@@ -71,7 +71,7 @@ extension ChordsFretsTests {
     // to regenerate.
     static let __allTests__ChordsFretsTests = [
         ("testFrame", testFrame),
-        ("testLilyPond", testLilyPond),
+        ("testString", testString),
     ]
 }
 
