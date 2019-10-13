@@ -34,7 +34,7 @@ extension Articulation: Codable {
         case accent
         case breathMark = "breath-mark"
         case caesura
-        case detachedLegato
+        case detachedLegato = "detached-legato"
         case doit
         case falloff
         case otherArticulation = "other-articulation"
