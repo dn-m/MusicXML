@@ -24,8 +24,11 @@ class LilyPondTests: XCTestCase {
             try sanitizedSources.forEach { source in
                 let sourceURL = sourceDir.appendingPathComponent(source)
                 do {
+                    let start = now()
                     let parsed = try MusicXML(url: sourceURL)
-                    publishSuccessfulParsing(for: "\(traversal)/\(source)")
+                    let duration = now() - start
+
+                    publishSuccessfulParsing(for: "\(traversal)/\(source)", in: duration)
                     let resultFileURL = resultsDir.appendingPathComponent("\(source).parsed")
                     try! String(describing: parsed).write(
                         to: resultFileURL,
@@ -62,8 +65,8 @@ class LilyPondTests: XCTestCase {
         print("❌ \(fileName)")
     }
 
-    func publishSuccessfulParsing(for fileName: String) {
-        print("✅ \(fileName)")
+    func publishSuccessfulParsing(for fileName: String, in secondsElapsed: Double) {
+        print("✅ \(secondsElapsed.formatted(decimalPlaces: 3))s \(fileName)")
     }
 
     func publishResultsDirectoryLocation(_ url: URL) {
@@ -100,4 +103,16 @@ private var testSuiteURL: URL {
         .deletingLastPathComponent() // => MusicXML/Tests/LilyPondTests
         .deletingLastPathComponent() // => MusicXML/Tests
         .appendingPathComponent("LilyPondTestSuite", isDirectory: true)
+}
+
+// MARK: - Benchmarking
+
+private func now() -> Double {
+    return Double(DispatchTime.now().uptimeNanoseconds) / 1_000_000_000
+}
+
+extension Double {
+    func formatted(decimalPlaces: Int) -> String {
+        return String(format: "%.\(decimalPlaces)f", self)
+    }
 }
