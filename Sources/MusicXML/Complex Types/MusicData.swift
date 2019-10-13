@@ -48,7 +48,6 @@ extension MusicData: Codable {
         case link
         case bookmark
     }
-    // sourcery:inline:MusicData.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -80,8 +79,6 @@ extension MusicData: Codable {
             try container.encode(value, forKey: .bookmark)
         }
     }
-    // sourcery:end
-    // sourcery:inline:MusicData.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -125,7 +122,6 @@ extension MusicData: Codable {
             )
         }
     }
-    // sourcery:end
 }
 
 extension MusicData.CodingKeys: XMLChoiceCodingKey { }

@@ -35,7 +35,6 @@ extension Play.Kind: Codable {
         case semiPitched
         case otherPlay
     }
-    // sourcery:inline:Play.Kind.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -49,8 +48,6 @@ extension Play.Kind: Codable {
             try container.encode(value, forKey: .otherPlay)
         }
     }
-    // sourcery:end
-    // sourcery:inline:Play.Kind.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -76,7 +73,6 @@ extension Play.Kind: Codable {
             )
         }
     }
-    // sourcery:end
 }
 
 extension Play.Kind.CodingKeys: XMLChoiceCodingKey { }

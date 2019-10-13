@@ -35,7 +35,6 @@ extension NameDisplay.Text: Codable {
         case displayText = "display-text"
         case accidentalText = "accidental-text"
     }
-    // sourcery:inline:NameDisplay.Text.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -45,8 +44,6 @@ extension NameDisplay.Text: Codable {
             try container.encode(value, forKey: .displayText)
         }
     }
-    // sourcery:end
-    // sourcery:inline:NameDisplay.Text.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -68,7 +65,6 @@ extension NameDisplay.Text: Codable {
             )
         }
     }
-    // sourcery:end
 }
 
 extension NameDisplay: Equatable { }

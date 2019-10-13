@@ -21,7 +21,6 @@ extension PitchUnpitchedOrRest: Codable {
         case unpitched
         case rest
     }
-    // sourcery:inline:PitchUnpitchedOrRest.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -33,8 +32,6 @@ extension PitchUnpitchedOrRest: Codable {
             try container.encode(value, forKey: .rest)
         }
     }
-    // sourcery:end
-    // sourcery:inline:PitchUnpitchedOrRest.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -58,7 +55,6 @@ extension PitchUnpitchedOrRest: Codable {
             )
         }
     }
-    // sourcery:end
 }
 
 extension PitchUnpitchedOrRest.CodingKeys: XMLChoiceCodingKey { }

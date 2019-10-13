@@ -17,7 +17,6 @@ public enum YesNoNumber {
 extension YesNoNumber: Equatable { }
 extension YesNoNumber: Codable {
     enum CodingKeys: String, CodingKey { case yes, no, number }
-    // sourcery:inline:YesNoNumber.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -29,8 +28,6 @@ extension YesNoNumber: Codable {
             try container.encode(value, forKey: .number)
         }
     }
-    // sourcery:end
-    // sourcery:inline:YesNoNumber.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -56,7 +53,6 @@ extension YesNoNumber: Codable {
             )
         }
     }
-    // sourcery:end
 }
 
 extension YesNoNumber.CodingKeys: XMLChoiceCodingKey {}

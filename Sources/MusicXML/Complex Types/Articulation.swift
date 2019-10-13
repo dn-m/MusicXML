@@ -48,7 +48,6 @@ extension Articulation: Codable {
         case tenuto
         case unstress
     }
-    // sourcery:inline:Articulation.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -86,8 +85,6 @@ extension Articulation: Codable {
             try container.encode(value, forKey: .unstress)
         }
     }
-    // sourcery:end
-    // sourcery:inline:Articulation.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -137,7 +134,6 @@ extension Articulation: Codable {
             )
         }
     }
-    // sourcery:end
 }
 
 extension Articulation.CodingKeys: XMLChoiceCodingKey { }

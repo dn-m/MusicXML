@@ -136,7 +136,6 @@ extension HarmonyChord.RootOrFunction: Codable {
         case root
         case function
     }
-    // sourcery:inline:HarmonyChord.RootOrFunction.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -146,8 +145,6 @@ extension HarmonyChord.RootOrFunction: Codable {
             try container.encode(value, forKey: .function)
         }
     }
-    // sourcery:end
-    // sourcery:inline:HarmonyChord.RootOrFunction.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -169,7 +166,6 @@ extension HarmonyChord.RootOrFunction: Codable {
             )
         }
     }
-    // sourcery:end
 }
 
 extension HarmonyChord.RootOrFunction.CodingKeys: XMLChoiceCodingKey { }
@@ -196,7 +192,6 @@ extension HarmonyChordComponent: Codable {
     func encode(to encoder: Encoder) throws {
         fatalError("should never be used")
     }
-    // sourcery:inline:HarmonyChordComponent.AutoXMLChoiceDecoding
     internal init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -226,7 +221,6 @@ extension HarmonyChordComponent: Codable {
             )
         }
     }
-    // sourcery:end
 }
 
 extension HarmonyChordComponent.CodingKeys: XMLChoiceCodingKey {}

@@ -38,7 +38,6 @@ extension Ornament: Codable {
         case verticalTurn = "vertical-turn"
         case wavyLine = "wavy-line"
     }
-    // sourcery:inline:Ornament.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -68,8 +67,6 @@ extension Ornament: Codable {
             try container.encode(value, forKey: .wavyLine)
         }
     }
-    // sourcery:end
-    // sourcery:inline:Ornament.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -111,7 +108,6 @@ extension Ornament: Codable {
             )
         }
     }
-    // sourcery:end
 }
 
 extension Ornament.CodingKeys: XMLChoiceCodingKey { }

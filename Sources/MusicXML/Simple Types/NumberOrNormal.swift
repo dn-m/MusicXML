@@ -18,7 +18,6 @@ extension NumberOrNormal: Equatable { }
 
 extension NumberOrNormal: Codable {
     enum CodingKeys: String, CodingKey { case number, normal }
-    // sourcery:inline:NumberOrNormal.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -28,8 +27,6 @@ extension NumberOrNormal: Codable {
             try container.encodeNil(forKey: .normal)
         }
     }
-    // sourcery:end
-    // sourcery:inline:NumberOrNormal.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -52,7 +49,6 @@ extension NumberOrNormal: Codable {
             )
         }
     }
-    // sourcery:end
 }
 
 extension NumberOrNormal.CodingKeys: XMLChoiceCodingKey {}

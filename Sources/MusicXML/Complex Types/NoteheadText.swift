@@ -25,7 +25,6 @@ extension NoteheadText.Kind: Codable {
         case displayText
         case accidentalText
     }
-    // sourcery:inline:NoteheadText.Kind.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -35,8 +34,6 @@ extension NoteheadText.Kind: Codable {
             try container.encode(value, forKey: .accidentalText)
         }
     }
-    // sourcery:end
-    // sourcery:inline:NoteheadText.Kind.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -58,7 +55,6 @@ extension NoteheadText.Kind: Codable {
             )
         }
     }
-    // sourcery:end
 }
 
 extension NoteheadText.Kind.CodingKeys: XMLChoiceCodingKey { }

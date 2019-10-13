@@ -78,7 +78,6 @@ extension Credit.Kind: Codable {
         case image
         case words
     }
-    // sourcery:inline:Credit.Kind.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -88,8 +87,6 @@ extension Credit.Kind: Codable {
             try container.encode(value, forKey: .words)
         }
     }
-    // sourcery:end
-    // sourcery:inline:Credit.Kind.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -111,7 +108,6 @@ extension Credit.Kind: Codable {
             )
         }
     }
-    // sourcery:end
 }
 
 extension Credit.Kind.CodingKeys: XMLChoiceCodingKey { }

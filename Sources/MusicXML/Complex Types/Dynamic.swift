@@ -69,7 +69,6 @@ extension Dynamic: Codable {
         case sfzp
         case other = "other-dynamics"
     }
-    // sourcery:inline:Dynamic.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -129,8 +128,6 @@ extension Dynamic: Codable {
             try container.encode(value, forKey: .other)
         }
     }
-    // sourcery:end
-    // sourcery:inline:Dynamic.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -228,7 +225,6 @@ extension Dynamic: Codable {
             )
         }
     }
-    // sourcery:end
 }
 
 extension Dynamic.CodingKeys: XMLChoiceCodingKey { }
