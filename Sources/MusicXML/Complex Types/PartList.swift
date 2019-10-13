@@ -37,7 +37,6 @@ extension PartList.Item: Codable {
         case group = "part-group"
         case part = "score-part"
     }
-    // sourcery:inline:PartList.Item.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -47,8 +46,6 @@ extension PartList.Item: Codable {
             try container.encode(value, forKey: .part)
         }
     }
-    // sourcery:end
-    // sourcery:inline:PartList.Item.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -70,7 +67,6 @@ extension PartList.Item: Codable {
             )
         }
     }
-    // sourcery:end
 }
 
 extension PartList.Item.CodingKeys: XMLChoiceCodingKey { }

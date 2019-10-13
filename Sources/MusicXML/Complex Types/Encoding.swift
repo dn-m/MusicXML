@@ -37,7 +37,6 @@ extension Encoding.Kind: Codable {
         case software
         case supports
     }
-    // sourcery:inline:Encoding.Kind.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -53,8 +52,6 @@ extension Encoding.Kind: Codable {
             try container.encode(value, forKey: .supports)
         }
     }
-    // sourcery:end
-    // sourcery:inline:Encoding.Kind.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -82,7 +79,6 @@ extension Encoding.Kind: Codable {
             )
         }
     }
-    // sourcery:end
 }
 extension Encoding.Kind.CodingKeys: XMLChoiceCodingKey {}
 

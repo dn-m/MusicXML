@@ -188,7 +188,6 @@ extension MetronomeRegularComponent: Codable {
     func encode(to encoder: Encoder) throws {
         fatalError("should never be used")
     }
-    // sourcery:inline:MetronomeRegularComponent.AutoXMLChoiceDecoding
     internal init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -212,7 +211,6 @@ extension MetronomeRegularComponent: Codable {
             )
         }
     }
-    // sourcery:end
 }
 
 extension MetronomeRegularComponent.CodingKeys: XMLChoiceCodingKey {}

@@ -141,7 +141,6 @@ extension DirectionType: Codable {
         case words
 
     }
-    // sourcery:inline:DirectionType.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -191,8 +190,6 @@ extension DirectionType: Codable {
             try container.encode(value, forKey: .words)
         }
     }
-    // sourcery:end
-    // sourcery:inline:DirectionType.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -254,7 +251,6 @@ extension DirectionType: Codable {
             )
         }
     }
-    // sourcery:end
 }
 
 extension DirectionType.CodingKeys: XMLChoiceCodingKey { }

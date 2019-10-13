@@ -69,7 +69,6 @@ extension Arrow.Kind: Codable {
         case circular
         case linear
     }
-    // sourcery:inline:Arrow.Kind.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -79,8 +78,6 @@ extension Arrow.Kind: Codable {
             try container.encode(value, forKey: .linear)
         }
     }
-    // sourcery:end
-    // sourcery:inline:Arrow.Kind.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -102,7 +99,6 @@ extension Arrow.Kind: Codable {
             )
         }
     }
-    // sourcery:end
 }
 
 extension Arrow.Kind.CodingKeys: XMLChoiceCodingKey {}
