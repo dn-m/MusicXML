@@ -53,10 +53,21 @@ extension MusicXML.String: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
         // Decode value
-        self.value = try container.decodeIfPresent(Int.self, forKey: .value) ?? 1
+        do {
+            self.value = try container.decode(Int.self, forKey: .value)
+        } catch {
+            self.value = 1
+        }
+
     }
 
     public func encode(to encoder: Encoder) throws {
         fatalError("TODO: MusicXML.String.encode(to:)")
+    }
+}
+
+extension MusicXML.String: ExpressibleByIntegerLiteral {
+    public init(integerLiteral value: Int) {
+        self.init(value)
     }
 }

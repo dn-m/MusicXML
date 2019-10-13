@@ -51,10 +51,20 @@ extension Fret: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.color = try container.decodeIfPresent(Color.self, forKey: .color)
         // Decode value
-        self.value = try container.decodeIfPresent(Int.self, forKey: .value) ?? 0
+        do {
+            self.value = try container.decode(Int.self, forKey: .value)
+        } catch {
+            self.value = 0
+        }
     }
 
     public func encode(to encoder: Encoder) throws {
         fatalError("TODO: Fret.encode(to:)")
+    }
+}
+
+extension Fret: ExpressibleByIntegerLiteral {
+    public init(integerLiteral value: Int) {
+        self.init(value)
     }
 }
