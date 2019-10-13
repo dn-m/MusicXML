@@ -45,5 +45,3 @@ extension Traversal: Codable {
         }
     }
 }
-
-extension Traversal.CodingKeys: XMLChoiceCodingKey { }
