@@ -1,0 +1,54 @@
+{# A template to generate initializer inline #}
+{# Example: $sourcery --sources Complex\ Types/Accidental.swift --templates Templates/AutoXMLChoiceCoding --output Output/ #}
+{% for choiceCodable in types.enums %}
+// sourcery:inline:{{ choiceCodable.name }}.AutoXMLChoiceEncoding
+{{ choiceCodable.accessLevel }} func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    switch self {
+    {% for key in choiceCodable.cases %}
+		{% if key.hasAssociatedValue == true %}
+    case let .{{ key.name }}(value):
+        try container.encode(value, forKey: .{{ key.name }})
+		{% else %}
+    case .{{ key.name }}:
+        try container.encodeNil(forKey: .{{ key.name }})
+		{% endif %}
+		{% endfor %}
+    }
+}
+// sourcery:end
+
+// sourcery:inline:{{ choiceCodable.name }}.AutoXMLChoiceDecoding
+{{ choiceCodable.accessLevel }} init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+
+    func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        return try container.decode(T.self, forKey: key)
+    }
+
+    if container.contains(.{{choiceCodable.cases.first.name}}) {
+{% if choiceCodable.cases.first.hasAssociatedValue == true %}
+        self = .{{choiceCodable.cases.first.name}}(try decode(.{{choiceCodable.cases.first.name}}))
+{% else %}
+        _ = try container.decodeNil(forKey: .{{choiceCodable.cases.first.name}})
+        self = .{{choiceCodable.cases.first.name}}
+{% endif %}
+    } else {% for key in choiceCodable.cases where key.name != choiceCodable.cases.first.name %}if container.contains(.{{ key.name }}) {
+{% if key.hasAssociatedValue == true %}
+        self = .{{ key.name }}(try decode(.{{ key.name }}))
+{% else %}
+        _ = try container.decodeNil(forKey: .{{ key.name }})
+        self = .{{ key.name }}
+{% endif %}
+    } else {% endfor %}{
+        throw DecodingError.typeMismatch(
+            {{ choiceCodable.name }}.self,
+            DecodingError.Context(
+                codingPath: decoder.codingPath,
+                debugDescription: "Unrecognized choice"
+            )
+        )
+    }
+}
+// sourcery:end
+{% endfor %}

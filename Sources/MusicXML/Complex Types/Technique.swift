@@ -30,10 +30,12 @@ public enum Technique {
     case toe(HeelToe)
     case tripleTongue(EmptyPlacement)
     case upBow(EmptyPlacement)
+
 }
 
 extension Technique: Equatable { }
 extension Technique: Codable {
+    
     enum CodingKeys: String, CodingKey {
         case arrow
         case bend
@@ -58,6 +60,8 @@ extension Technique: Codable {
         case tripleTongue
         case upBow
     }
+    
+    // sourcery:inline:Technique.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -107,15 +111,16 @@ extension Technique: Codable {
             try container.encode(value, forKey: .upBow)
         }
     }
+    // sourcery:end
+    
+    // sourcery:inline:Technique.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
-
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
-        // Touché Xcode
         if container.contains(.arrow) {
             self = .arrow(try decode(.arrow))
         } else if container.contains(.bend) {
@@ -170,6 +175,7 @@ extension Technique: Codable {
             )
         }
     }
+    // sourcery:end
 }
 
 extension Technique.CodingKeys: XMLChoiceCodingKey { }
