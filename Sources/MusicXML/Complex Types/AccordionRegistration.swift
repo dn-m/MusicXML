@@ -11,18 +11,36 @@
 /// presence of one or more dots in the registration diagram. An accordion-registration element
 /// needs to have at least one of the child elements present.
 public struct AccordionRegistration {
-    public let position: Position?
-    public let printStyle: PrintStyle?
-    public let hAlign: LeftCenterRight?
-    public let vAlaign: VAlign?
+    public let printStyleAlign: PrintStyleAlign
+    public let accordionHigh: Empty?
+    public let accordionMiddle: AccordionMiddle?
+    public let accordionLow: Empty?
 
-    public init(position: Position? = nil, printStyle: PrintStyle? = nil, hAlign: LeftCenterRight? = nil, vAlaign: VAlign? = nil) {
-        self.position = position
-        self.printStyle = printStyle
-        self.hAlign = hAlign
-        self.vAlaign = vAlaign
+    public init(printStyleAlign: PrintStyleAlign = PrintStyleAlign(), accordionHigh: Empty? = nil, accordionMiddle: AccordionMiddle? = nil, accordionLow: Empty? = nil) {
+        self.printStyleAlign = printStyleAlign
+        self.accordionHigh = accordionHigh
+        self.accordionMiddle = accordionMiddle
+        self.accordionLow = accordionLow
     }
 }
 
 extension AccordionRegistration: Equatable { }
-extension AccordionRegistration: Codable { }
+extension AccordionRegistration: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case accordionHigh = "accordion-high"
+        case accordionMiddle = "accordion-middle"
+        case accordionLow = "accordion-low"
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        fatalError()
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.printStyleAlign = try PrintStyleAlign(from: decoder)
+        self.accordionHigh = try container.decodeIfPresent(Empty.self, forKey: .accordionHigh)
+        self.accordionMiddle = try container.decodeIfPresent(AccordionMiddle.self, forKey: .accordionMiddle)
+        self.accordionLow = try container.decodeIfPresent(Empty.self, forKey: .accordionLow)
+    }
+}

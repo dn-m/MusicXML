@@ -13,12 +13,17 @@
 /// By default, all these attributes are set to yes. If print-object is set to no, the print-dot and
 /// print-lyric attributes are interpreted to also be set to no if they are not present.
 public struct Printout {
-    public let printObject: Bool
-    public let printDot: Bool
-    public let printSpacing: Bool
-    public let printLyric: Bool
+    public let printObject: Bool?
+    public let printDot: Bool?
+    public let printSpacing: Bool?
+    public let printLyric: Bool?
 
-    public init(printObject: Bool, printDot: Bool, printSpacing: Bool, printLyric: Bool) {
+    public init(
+        printObject: Bool? = nil,
+        printDot: Bool? = nil,
+        printSpacing: Bool? = nil,
+        printLyric: Bool? = nil
+    ) {
         self.printObject = printObject
         self.printDot = printDot
         self.printSpacing = printSpacing
