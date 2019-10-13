@@ -139,7 +139,7 @@ extension Time {
     // > available compared to the time element's symbol attribute,
     // > which applies to the first of the dual time signatures.
     public struct Measured {
-        #warning("Handle multiple time signatures in Time.Measured")
+        // FIXME: Handle multiple time signatures in Time.Measured
         var signature: Signature
         var interchangeable: Interchangeable?
 
@@ -239,7 +239,7 @@ extension Time: Codable {
         self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
         // Decode kind
         do {
-            #warning("Audit containers in Time.init(from: Decoder)")
+            // FIXME: Audit containers in Time.init(from: Decoder)
             let kindContainer = try decoder.container(keyedBy: Measured.CodingKeys.self)
             let signatureContainer = try decoder.container(keyedBy: Signature.CodingKeys.self)
             self.kind = .measured(

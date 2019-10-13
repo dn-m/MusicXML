@@ -33,7 +33,7 @@
 // <!ATTLIST score-partwise
 //    %document-attributes;
 // >
-#warning("TODO: Support Score document-attributes")
+// TODO: Support Score document-attributes
 public struct Score {
     public let traversal: Traversal
 

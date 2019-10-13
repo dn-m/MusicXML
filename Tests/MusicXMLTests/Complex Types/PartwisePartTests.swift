@@ -1383,7 +1383,7 @@ class PartwisePartTests: XCTestCase {
           </measure>
         </part>
         """
-        let decoded = try XMLDecoder().decode(Partwise.Part.self, from: xml.data(using: .utf8)!)
-        #warning("Add assertion to PatwisePartTests.testDecoding()")
+        let _ = try XMLDecoder().decode(Partwise.Part.self, from: xml.data(using: .utf8)!)
+        // FIXME: Add assertion to PatwisePartTests.testDecoding()
     }
 }

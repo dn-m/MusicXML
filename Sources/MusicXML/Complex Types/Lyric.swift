@@ -85,7 +85,7 @@ public struct Lyric {
 
 extension Lyric {
 
-    #warning("TODO: Verify Content Model of Lyric.Verbal")
+    // TODO: Verify Content Model of Lyric.Verbal
     public struct Verbal {
         public let text: TextElementData
         public let syllabic: Syllabic?
