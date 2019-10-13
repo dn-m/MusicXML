@@ -13,9 +13,11 @@ public struct Ornaments {
     // MARK: - Elements
 
     public var values: [Ornament]
+
+    // FIXME: Can this be `[]` instead of `[]?`
     public var accidentalMarks: [AccidentalMark]?
 
-    public init(values: [Ornament], accidentalMarks: [AccidentalMark]? = nil) {
+    public init(values: [Ornament] = [], accidentalMarks: [AccidentalMark]? = nil) {
         self.values = values
         self.accidentalMarks = accidentalMarks
     }
@@ -28,18 +30,23 @@ extension Ornaments: Codable {
     }
     
     public init(from decoder: Decoder) throws {
-        var valuesContainer = try decoder.unkeyedContainer()
-        var ornaments = [Ornament]()
-        while !valuesContainer.isAtEnd {
-            do {
-                ornaments.append(try valuesContainer.decode(Ornament.self))
-            } catch DecodingError.typeMismatch(let type, _) where type == Ornament.self {
-                // Error is caught when we try to read an accidental-mark as an ornament.
-                break
+        do {
+            var valuesContainer = try decoder.unkeyedContainer()
+            var ornaments = [Ornament]()
+            while !valuesContainer.isAtEnd {
+                do {
+                    ornaments.append(try valuesContainer.decode(Ornament.self))
+                } catch DecodingError.typeMismatch(let type, _) where type == Ornament.self {
+                    // Error is caught when we try to read an accidental-mark as an ornament.
+                    break
+                }
             }
+            self.values = ornaments
+            let elementsContainer = try decoder.container(keyedBy: CodingKeys.self)
+            self.accidentalMarks = try elementsContainer.decodeIfPresent([AccidentalMark].self, forKey: .accidentalMarks)
+        } catch {
+            self.values = []
+            self.accidentalMarks = nil
         }
-        self.values = ornaments
-        let elementsContainer = try decoder.container(keyedBy: CodingKeys.self)
-        self.accidentalMarks = try elementsContainer.decodeIfPresent([AccidentalMark].self, forKey: .accidentalMarks)
     }
 }
