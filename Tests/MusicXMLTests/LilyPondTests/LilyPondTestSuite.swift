@@ -53,8 +53,7 @@ class LilyPondTests: XCTestCase {
                         let parsedResultDirUrl = tempDirUrl.appendingPathComponent(subdir)
                         try FileManager.default.createDirectory(
                             at: parsedResultDirUrl,
-                            withIntermediateDirectories: true,
-                            attributes: nil
+                            withIntermediateDirectories: true
                         )
                         let parsedResultFileUrl = parsedResultDirUrl
                             .appendingPathComponent("\(fileName).parsed")
@@ -62,7 +61,7 @@ class LilyPondTests: XCTestCase {
                             try String(describing: parsed).write(
                                 to: parsedResultFileUrl,
                                 atomically: true,
-                                encoding: String.Encoding.utf8
+                                encoding: .utf8
                             )
                         } catch {
                             print("Failed to write result for \(fileName)")
