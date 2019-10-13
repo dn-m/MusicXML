@@ -25,6 +25,7 @@ class LilyPondTests: XCTestCase {
                 let sourceURL = sourceDir.appendingPathComponent(source)
                 do {
                     let parsed = try MusicXML(url: sourceURL)
+                    publishSuccessfulParsing(for: "\(traversal)/\(source)")
                     let resultFileURL = resultsDir.appendingPathComponent("\(source).parsed")
                     try! String(describing: parsed).write(
                         to: resultFileURL,
@@ -32,7 +33,7 @@ class LilyPondTests: XCTestCase {
                         encoding: .utf8
                     )
                 } catch {
-                    print("- Unable to parse \(traversal)/\(source)")
+                    publishFailedParsing(for: "\(traversal)/\(source)")
                     throw error
                 }
             }
@@ -55,6 +56,14 @@ class LilyPondTests: XCTestCase {
             .appendingPathComponent("LilyPondTestsResults")
         try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
         return url
+    }
+
+    func publishFailedParsing(for fileName: String) {
+        print("❌ \(fileName)")
+    }
+
+    func publishSuccessfulParsing(for fileName: String) {
+        print("✅ \(fileName)")
     }
 
     func publishResultsDirectoryLocation(_ url: URL) {
