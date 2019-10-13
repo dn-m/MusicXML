@@ -60,3 +60,9 @@ extension MusicXML.String: Codable {
         fatalError("TODO: MusicXML.String.encode(to:)")
     }
 }
+
+extension MusicXML.String: ExpressibleByIntegerLiteral {
+    public init(integerLiteral value: Int) {
+        self.init(value)
+    }
+}

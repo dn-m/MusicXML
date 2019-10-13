@@ -15,22 +15,40 @@
 /// harmony, but individual elements can override this with their own print-style values.
 public struct Harmony {
 
-    // MARK: - Attributes
+    // MARK: - Instance Properties
+
+    // MARK: Attributes
+
     public let type: HarmonyType?
+    public let placement: AboveBelow?
     public let printObject: Bool?
     /// The print-frame attribute controls printing of a frame or fretboard diagram.
     public let printFrame: Bool?
-    public let printStyle: PrintStyle
-    public let placement: AboveBelow?
 
-    // MARK: - Elements
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
+
+    // MARK:  Elements
+
     public let chords: [HarmonyChord] // NonEmpty
     public let frame: Frame?
     public let offset: Offset?
     public let editorial: Editorial
     public let staff: Int?
 
-    public init(type: HarmonyType? = nil, printObject: Bool? = nil, printFrame: Bool? = nil, printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil, chords: [HarmonyChord], frame: Frame? = nil, offset: Offset? = nil, editorial: Editorial = Editorial(), staff: Int? = nil) {
+    public init(
+        type: HarmonyType? = nil,
+        printObject: Bool? = nil,
+        printFrame: Bool? = nil,
+        printStyle: PrintStyle = PrintStyle(),
+        placement: AboveBelow? = nil,
+        chords: [HarmonyChord],
+        frame: Frame? = nil,
+        offset: Offset? = nil,
+        editorial: Editorial = Editorial(),
+        staff: Int? = nil
+    ) {
         self.type = type
         self.printObject = printObject
         self.printFrame = printFrame

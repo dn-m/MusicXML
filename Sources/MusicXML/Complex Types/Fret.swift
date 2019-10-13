@@ -58,3 +58,9 @@ extension Fret: Codable {
         fatalError("TODO: Fret.encode(to:)")
     }
 }
+
+extension Fret: ExpressibleByIntegerLiteral {
+    public init(integerLiteral value: Int) {
+        self.init(value)
+    }
+}
