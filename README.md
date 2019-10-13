@@ -19,11 +19,7 @@ Pre-release version **0.3.0** will be defined by completing the implementation o
 
 ### 0.4.0
 
-Pre-release version **0.4.0** will be defined by implementing decoding and encoding for attributes defined in attribute groups, which are generally used for graphical information. A standardized way of handling attributes (and attribute groups), elements, values will be chosen and implemented.
-
-### 0.5.0
-
-Pre-release version **0.5.0** will be defined by refining the public interfaces exposed by the `MusicXML` package. Up until this point, pubic initializers may be somewhat clumsy or completely non-existent.
+Pre-release version **0.4.0** will be defined by refining the public interfaces exposed by the `MusicXML` package. Up until this point, pubic initializers may be somewhat clumsy.
 
 ## Getting Started
 
