@@ -13,8 +13,8 @@ script:
   - swift package update
   - if [ $TRAVIS_OS_NAME = 'osx' ]; then 
       swift package generate-xcodeproj;
-      xcodebuild -quiet -project MusicXML.xcodeproj -scheme MusicXML-Package -enableCodeCoverage YES build test; 
+      xcodebuild -configuration release -quiet -project MusicXML.xcodeproj -scheme MusicXML-Package -enableCodeCoverage YES build test; 
       bash <(curl -s https://codecov.io/bash);
     else 
-      swift test; 
+      swift test -c release;
     fi
