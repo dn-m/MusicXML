@@ -7,7 +7,7 @@
 
 import XCTest
 import XMLCoder
-@testable import MusicXML
+import MusicXML
 
 class MiscellaneousTests: XCTestCase {
 

@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import MusicXML
+import MusicXML
 
 class HelloWorld: XCTestCase {
 

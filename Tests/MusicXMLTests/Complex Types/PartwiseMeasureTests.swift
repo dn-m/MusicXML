@@ -7,7 +7,7 @@
 
 import XCTest
 import XMLCoder
-@testable import MusicXML
+import MusicXML
 
 class PartwiseMeasureTests: XCTestCase {
 
@@ -49,7 +49,7 @@ class PartwiseMeasureTests: XCTestCase {
             .decode(Partwise.Measure.self, from: xml.data(using: .utf8)!)
         let expected = Partwise.Measure(
             number: "1",
-            width: Tenths(value: 123.4),
+            width: 123.4,
             musicData: [
                 .attributes(
                     Attributes(
