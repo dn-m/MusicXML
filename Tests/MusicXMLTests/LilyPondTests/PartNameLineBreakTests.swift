@@ -19,7 +19,7 @@ class PartNameLineBreakTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Partwise.Measure.self, from: xml.data(using: .utf8)!)
         let expected = Partwise.Measure(
-            number: 6,
+            number: "6",
             musicData: [.print(Print(newSystem: true))]
         )
         XCTAssertEqual(decoded, expected)

@@ -17,7 +17,7 @@ class PartwiseMeasureTests: XCTestCase {
         """
         let decoded = try XMLDecoder()
             .decode(Partwise.Measure.self, from: xml.data(using: .utf8)!)
-        let expected = Partwise.Measure(number: 1, musicData: [])
+        let expected = Partwise.Measure(number: "1", musicData: [])
         XCTAssertEqual(decoded, expected)
     }
 
@@ -48,7 +48,7 @@ class PartwiseMeasureTests: XCTestCase {
         let decoded = try XMLDecoder()
             .decode(Partwise.Measure.self, from: xml.data(using: .utf8)!)
         let expected = Partwise.Measure(
-            number: 1,
+            number: "1",
             width: Tenths(value: 123.4),
             musicData: [
                 .attributes(
@@ -124,7 +124,7 @@ class PartwiseMeasureTests: XCTestCase {
         let decoded = try XMLDecoder()
             .decode(Partwise.Measure.self, from: xml.data(using: .utf8)!)
         let expected = Partwise.Measure(
-            number: 1,
+            number: "1",
             musicData: [
                 .attributes(
                     Attributes(
