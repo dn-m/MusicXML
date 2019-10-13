@@ -69,6 +69,7 @@ extension Arrow.Kind: Codable {
         case circular
         case linear
     }
+    // sourcery:inline:Arrow.Kind.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -78,14 +79,30 @@ extension Arrow.Kind: Codable {
             try container.encode(value, forKey: .linear)
         }
     }
+    // sourcery:end
+    // sourcery:inline:Arrow.Kind.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        do {
-            self = .circular(try container.decode(CircularArrow.self, forKey: .circular))
-        } catch {
-            self = .linear(try container.decode(LinearArrow.self, forKey: .linear))
+
+        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+            return try container.decode(T.self, forKey: key)
+        }
+
+        if container.contains(.circular) {
+            self = .circular(try decode(.circular))
+        } else if container.contains(.linear) {
+            self = .linear(try decode(.linear))
+        } else {
+            throw DecodingError.typeMismatch(
+                Arrow.Kind.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized choice"
+                )
+            )
         }
     }
+    // sourcery:end
 }
 
 extension Arrow.Kind.CodingKeys: XMLChoiceCodingKey {}

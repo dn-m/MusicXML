@@ -136,7 +136,7 @@ extension HarmonyChord.RootOrFunction: Codable {
         case root
         case function
     }
-
+    // sourcery:inline:HarmonyChord.RootOrFunction.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -146,20 +146,30 @@ extension HarmonyChord.RootOrFunction: Codable {
             try container.encode(value, forKey: .function)
         }
     }
-
+    // sourcery:end
+    // sourcery:inline:HarmonyChord.RootOrFunction.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
-        let keyed = try decoder.container(keyedBy: CodingKeys.self)
-        if keyed.contains(.root) {
-            self = .root(try keyed.decode(Root.self, forKey: .root))
-        } else if keyed.contains(.function) {
-            self = .function(try keyed.decode(StyleText.self, forKey: .function))
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+            return try container.decode(T.self, forKey: key)
+        }
+
+        if container.contains(.root) {
+            self = .root(try decode(.root))
+        } else if container.contains(.function) {
+            self = .function(try decode(.function))
         } else {
             throw DecodingError.typeMismatch(
                 HarmonyChord.RootOrFunction.self,
-                DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Expect root or function")
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized choice"
+                )
             )
         }
     }
+    // sourcery:end
 }
 
 extension HarmonyChord.RootOrFunction.CodingKeys: XMLChoiceCodingKey { }
@@ -186,25 +196,37 @@ extension HarmonyChordComponent: Codable {
     func encode(to encoder: Encoder) throws {
         fatalError("should never be used")
     }
-
-    init(from decoder: Decoder) throws {
+    // sourcery:inline:HarmonyChordComponent.AutoXMLChoiceDecoding
+    internal init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+            return try container.decode(T.self, forKey: key)
+        }
+
         if container.contains(.root) {
-            self = .root(try container.decode(Root.self, forKey: .root))
+            self = .root(try decode(.root))
         } else if container.contains(.function) {
-            self = .function(try container.decode(StyleText.self, forKey: .function))
+            self = .function(try decode(.function))
         } else if container.contains(.kind) {
-            self = .kind(try container.decode(Kind.self, forKey: .kind))
+            self = .kind(try decode(.kind))
         } else if container.contains(.inversion) {
-            self = .inversion(try container.decode(Inversion.self, forKey: .inversion))
+            self = .inversion(try decode(.inversion))
         } else if container.contains(.bass) {
-            self = .bass(try container.decode(Bass.self, forKey: .bass))
+            self = .bass(try decode(.bass))
         } else if container.contains(.degree) {
-            self = .degree(try container.decode(Degree.self, forKey: .degree))
+            self = .degree(try decode(.degree))
         } else {
-            throw DecodingError.typeMismatch(HarmonyChordComponent.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Unrecognized key"))
+            throw DecodingError.typeMismatch(
+                HarmonyChordComponent.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized choice"
+                )
+            )
         }
     }
+    // sourcery:end
 }
 
 extension HarmonyChordComponent.CodingKeys: XMLChoiceCodingKey {}

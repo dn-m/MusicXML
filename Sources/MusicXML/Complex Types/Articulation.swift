@@ -34,7 +34,7 @@ extension Articulation: Codable {
         case accent
         case breathMark = "breath-mark"
         case caesura
-        case detatchedLegato = "detached-legato"
+        case detachedLegato
         case doit
         case falloff
         case otherArticulation = "other-articulation"
@@ -48,7 +48,7 @@ extension Articulation: Codable {
         case tenuto
         case unstress
     }
-
+    // sourcery:inline:Articulation.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -59,7 +59,7 @@ extension Articulation: Codable {
         case let .caesura(value):
             try container.encode(value, forKey: .caesura)
         case let .detachedLegato(value):
-            try container.encode(value, forKey: .detatchedLegato)
+            try container.encode(value, forKey: .detachedLegato)
         case let .doit(value):
             try container.encode(value, forKey: .doit)
         case let .falloff(value):
@@ -86,12 +86,13 @@ extension Articulation: Codable {
             try container.encode(value, forKey: .unstress)
         }
     }
-
+    // sourcery:end
+    // sourcery:inline:Articulation.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
-            try container.decode(T.self, forKey: key)
+            return try container.decode(T.self, forKey: key)
         }
 
         if container.contains(.accent) {
@@ -100,8 +101,8 @@ extension Articulation: Codable {
             self = .breathMark(try decode(.breathMark))
         } else if container.contains(.caesura) {
             self = .caesura(try decode(.caesura))
-        } else if container.contains(.detatchedLegato) {
-            self = .detachedLegato(try decode(.detatchedLegato))
+        } else if container.contains(.detachedLegato) {
+            self = .detachedLegato(try decode(.detachedLegato))
         } else if container.contains(.doit) {
             self = .doit(try decode(.doit))
         } else if container.contains(.falloff) {
@@ -136,6 +137,7 @@ extension Articulation: Codable {
             )
         }
     }
+    // sourcery:end
 }
 
 extension Articulation.CodingKeys: XMLChoiceCodingKey { }

@@ -35,6 +35,7 @@ extension Play.Kind: Codable {
         case semiPitched
         case otherPlay
     }
+    // sourcery:inline:Play.Kind.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -48,22 +49,34 @@ extension Play.Kind: Codable {
             try container.encode(value, forKey: .otherPlay)
         }
     }
+    // sourcery:end
+    // sourcery:inline:Play.Kind.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        do {
-            self = .ipa(try container.decode(String.self, forKey: .ipa))
-        } catch {
-            do {
-                self = .mute(try container.decode(Mute.self, forKey: .mute))
-            } catch {
-                do {
-                    self = .semiPitched(try container.decode(SemiPitched.self, forKey: .semiPitched))
-                } catch {
-                    self = .otherPlay(try container.decode(OtherPlay.self, forKey: .otherPlay))
-                }
-            }
+
+        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+            return try container.decode(T.self, forKey: key)
+        }
+
+        if container.contains(.ipa) {
+            self = .ipa(try decode(.ipa))
+        } else if container.contains(.mute) {
+            self = .mute(try decode(.mute))
+        } else if container.contains(.semiPitched) {
+            self = .semiPitched(try decode(.semiPitched))
+        } else if container.contains(.otherPlay) {
+            self = .otherPlay(try decode(.otherPlay))
+        } else {
+            throw DecodingError.typeMismatch(
+                Play.Kind.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized choice"
+                )
+            )
         }
     }
+    // sourcery:end
 }
 
 extension Play.Kind.CodingKeys: XMLChoiceCodingKey { }

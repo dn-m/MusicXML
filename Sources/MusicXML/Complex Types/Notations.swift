@@ -73,6 +73,7 @@ extension Notations.Notation: Codable {
         case accidentalMark = "accidental-mark"
         case other
     }
+    // sourcery:inline:Notations.Notation.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -106,7 +107,8 @@ extension Notations.Notation: Codable {
             try container.encode(value, forKey: .other)
         }
     }
-
+    // sourcery:end
+    // sourcery:inline:Notations.Notation.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -144,7 +146,7 @@ extension Notations.Notation: Codable {
             self = .other(try decode(.other))
         } else {
             throw DecodingError.typeMismatch(
-                Notations.self,
+                Notations.Notation.self,
                 DecodingError.Context(
                     codingPath: decoder.codingPath,
                     debugDescription: "Unrecognized choice"
@@ -152,6 +154,7 @@ extension Notations.Notation: Codable {
             )
         }
     }
+    // sourcery:end
 }
 
 extension Notations.Notation.CodingKeys: XMLChoiceCodingKey { }

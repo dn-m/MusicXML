@@ -54,6 +54,7 @@ extension Percussion.Kind: Codable {
         case timpani
         case wood
     }
+    // sourcery:inline:Percussion.Kind.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -81,9 +82,9 @@ extension Percussion.Kind: Codable {
             try container.encode(value, forKey: .wood)
         }
     }
-    
+    // sourcery:end
+    // sourcery:inline:Percussion.Kind.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
-
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
@@ -114,7 +115,7 @@ extension Percussion.Kind: Codable {
             self = .wood(try decode(.wood))
         } else {
             throw DecodingError.typeMismatch(
-                Percussion.self,
+                Percussion.Kind.self,
                 DecodingError.Context(
                     codingPath: decoder.codingPath,
                     debugDescription: "Unrecognized choice"
@@ -122,6 +123,7 @@ extension Percussion.Kind: Codable {
             )
         }
     }
+    // sourcery:end
 }
 
 extension Percussion.Kind.CodingKeys: XMLChoiceCodingKey { }

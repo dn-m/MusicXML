@@ -78,6 +78,7 @@ extension Credit.Kind: Codable {
         case image
         case words
     }
+    // sourcery:inline:Credit.Kind.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -87,14 +88,30 @@ extension Credit.Kind: Codable {
             try container.encode(value, forKey: .words)
         }
     }
+    // sourcery:end
+    // sourcery:inline:Credit.Kind.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        do {
-            self = .image(try container.decode(Image.self, forKey: .image))
-        } catch {
-            self = .words(try container.decode([Credit.Words].self, forKey: .words))
+
+        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+            return try container.decode(T.self, forKey: key)
+        }
+
+        if container.contains(.image) {
+            self = .image(try decode(.image))
+        } else if container.contains(.words) {
+            self = .words(try decode(.words))
+        } else {
+            throw DecodingError.typeMismatch(
+                Credit.Kind.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized choice"
+                )
+            )
         }
     }
+    // sourcery:end
 }
 
 extension Credit.Kind.CodingKeys: XMLChoiceCodingKey { }
