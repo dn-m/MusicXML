@@ -9,7 +9,7 @@ import Foundation
 
 import XCTest
 import XMLCoder
-@testable import MusicXML
+import MusicXML
 
 class MIDIDeviceTests: XCTestCase {
 

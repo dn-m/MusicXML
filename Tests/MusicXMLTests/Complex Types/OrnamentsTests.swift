@@ -7,7 +7,7 @@
 
 import XCTest
 import XMLCoder
-@testable import MusicXML
+import MusicXML
 
 class OrnamentsTests: XCTestCase {
     func testDecoding() throws {
