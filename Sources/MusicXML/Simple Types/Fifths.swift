@@ -5,4 +5,4 @@
 //  Created by James Bean on 5/14/19.
 //
 
-#warning("TODO: Audit whether Fifths should be its own type, or if `Int` is fine.")
+// FIXME: Audit whether Fifths should be its own type, or if `Int` is fine.

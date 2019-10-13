@@ -31,7 +31,7 @@ extension PageLayout {
         }
     }
 
-    #warning("FIXME: Refactor Margins a little better to encode logic")
+    // FIXME: Refactor Margins a little better to encode logic
     public struct Margins: Codable, Equatable {
         let even: PageMargins
         let odd: PageMargins?

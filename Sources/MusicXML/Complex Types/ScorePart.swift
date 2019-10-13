@@ -11,7 +11,7 @@ import XMLCoder
 /// elements are used when there are multiple instruments per track. The midi-device element is used
 /// to make a MIDI device or port assignment for the given track or specific MIDI instruments.
 /// Initial midi-instrument assignments may be made here as well.
-#warning("TODO: Add support for ScorePart print-style, print-object, and justify")
+// TODO: Add support for ScorePart print-style, print-object, and justify
 public struct ScorePart {
 
     // MARK: - Attributes

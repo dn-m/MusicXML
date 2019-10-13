@@ -21,7 +21,7 @@ public struct Font {
 
     // MARK: - Attributes
 
-    #warning("Font.family should be `CommaSeparatedText`")
+    // FIXME: Font.family should be `CommaSeparatedText`
     public let family: String?
 
     public let style: FontStyle?

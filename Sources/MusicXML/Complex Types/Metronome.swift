@@ -89,7 +89,7 @@ extension Metronome {
         }
     }
 
-    #warning("TODO: Consider renaming Metronome.Complicated")
+    // TODO: Consider renaming Metronome.Complicated
     public struct Complicated {
         public let metronomeNote: [MetronomeNote] // NonEmpty
         public let metronomeRelation: String

@@ -22,7 +22,8 @@ public enum DirectionType {
     case bracket(Bracket)
     /// The coda element is the visual indicator of a coda sign. A sound element is needed to guide
     /// playback applications reliably.
-    #warning("FIXME: #130 This should be `[EmptyPrintStyleAlign]`")
+
+    // FIXME: #130 This should be `[EmptyPrintStyleAlign]`
     case coda(EmptyPrintStyleAlign)
     /// The damp element specifies a harp damping mark.
     case damp(EmptyPrintStyleAlign)
@@ -44,7 +45,8 @@ public enum DirectionType {
     /// captures what is in the score, but does not try to be optimal for analysis or synthesis of
     /// dynamics.
     ///
-    #warning("FIXME: #130 This should be `[Dynamics]`")
+
+    // FIXME: #130 This should be `[Dynamics]`
     case dynamics(Dynamics)
     /// The eyeglasses element specifies the eyeglasses symbol, common in commercial music.
     case eyeglasses(EmptyPrintStyleAlign)
@@ -88,7 +90,8 @@ public enum DirectionType {
     case principleVoice(PrincipleVoice)
     /// The rehearsal type specifies a rehearsal mark. Language is Italian ("it") by default.
     /// Enclosure is square by default. Left justification is assumed if not specified.
-    #warning("FIXME: #130 This should be `[FormattedText]`")
+    
+    // FIXME: #130 This should be `[FormattedText]`
     case rehearsal(FormattedText)
     /// Scordatura string tunings are represented by a series of accord elements, similar to the
     /// staff-tuning elements. Strings are numbered from high to low.

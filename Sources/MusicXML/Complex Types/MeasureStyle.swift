@@ -96,13 +96,12 @@ extension MeasureStyle: Codable {
     }
     public init(from decoder: Decoder) throws {
         // Decode attributes
-        #warning("TODO: Add MeasureStyle attributes decoding")
+        // TODO: Add MeasureStyle attributes decoding
         // Decode kind
         let kindContainer = try decoder.singleValueContainer()
         self.kind = try kindContainer.decode(Kind.self)
     }
     public func encode(to encoder: Encoder) throws {
-        #warning("TODO: MeasureStyle.encode(to:)")
-        fatalError()
+        fatalError("TODO: MeasureStyle.encode(to:)")
     }
 }

@@ -7,7 +7,7 @@
 
 /// The opus type represents a link to a MusicXML opus document that composes multiple MusicXML
 /// scores into a collection.
-#warning("TODO: Flesh out Opus")
+// TODO: Flesh out Opus
 public struct Opus {
 
 

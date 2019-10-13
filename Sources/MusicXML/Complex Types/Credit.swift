@@ -61,7 +61,7 @@ extension Credit {
         }
     }
 
-    #warning("FIXME: Establish correct model for Credit.Kind.words")
+    // FIXME: Establish correct model for Credit.Kind.words
     public enum Kind {
         case image(Image)
         case words([Words])
