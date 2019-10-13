@@ -51,7 +51,7 @@ extension Timewise {
     //     %optional-unique-id;
     // >
     public struct Measure: Equatable {
-        let number: Int
+        let number: String
         let text: String?
         let implicit: Bool?
         let nonControlling: Bool?
@@ -59,7 +59,15 @@ extension Timewise {
         let optionalUniqueID: Int?
         let parts: [Part]
 
-        public init(number: Int, text: String? = nil, implicit: Bool? = nil, nonControlling: Bool? = nil, width: Tenths? = nil, optionalUniqueID: Int? = nil, parts: [Part]) {
+        public init(
+            number: String,
+            text: String? = nil,
+            implicit: Bool? = nil,
+            nonControlling: Bool? = nil,
+            width: Tenths? = nil,
+            optionalUniqueID: Int? = nil,
+            parts: [Part]
+        ) {
             self.number = number
             self.text = text
             self.implicit = implicit

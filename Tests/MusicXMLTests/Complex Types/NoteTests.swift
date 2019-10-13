@@ -98,7 +98,7 @@ class NoteTests: XCTestCase {
             voice: "1",
             type: .quarter,
             timeModification: TimeModification(actualNotes: 3, normalNotes: 2),
-            notations: Notations(values: [.tuplet(Tuplet(type: .start, number: 1))])
+            notations: Notations([.tuplet(Tuplet(type: .start, number: 1))])
         )
         XCTAssertEqual(decoded, expected)
     }
@@ -216,10 +216,7 @@ class NoteTests: XCTestCase {
             voice: "1",
             type: .quarter,
             stem: .up,
-            notations: Notations(values: [
-                .tied(Tied(type: .stop)),
-                .tied(Tied(type: .start))
-            ])
+            notations: Notations([.tied(Tied(type: .stop)), .tied(Tied(type: .start))])
         )
         XCTAssertEqual(decoded, expected)
     }

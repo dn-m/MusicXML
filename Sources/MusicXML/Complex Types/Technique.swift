@@ -10,27 +10,27 @@ import XMLCoder
 public enum Technique {
     case arrow(Arrow)
     case bend(Bend)
-    case doubleTongue(EmptyPlacement)
-    case downBow(EmptyPlacement)
-    case fingering(Fingering)
-    case fingernails(EmptyPlacement)
-    case fret(Fret)
+    case doubleTongue(EmptyPlacement = EmptyPlacement())
+    case downBow(EmptyPlacement = EmptyPlacement())
+    case fingering(Fingering = Fingering())
+    case fingernails(EmptyPlacement = EmptyPlacement())
+    case fret(Fret = Fret())
     case hammerOn(HammerOnPullOff)
     case handbell(Handbell)
     case harmonic(Harmonic)
     case heel(HeelToe)
-    case openString(EmptyPlacement)
+    case openString(EmptyPlacement = EmptyPlacement())
     case otherTechnical(PlacementText)
-    case pluck(PlacementText)
+    case pluck(PlacementText = PlacementText())
     case pullOff(HammerOnPullOff)
-    case snapPizzicato(EmptyPlacement)
-    case string(MusicXML.String) // FIXME: Swift.String vs. MusicXML.String
+    case snapPizzicato(EmptyPlacement = EmptyPlacement())
+    case stopped(EmptyPlacement = EmptyPlacement())
+    case string(MusicXML.String = MusicXML.String()) // FIXME: Swift.String vs. MusicXML.String
     case tap(PlacementText)
-    case thumbPosition(EmptyPlacement)
+    case thumbPosition(EmptyPlacement = EmptyPlacement())
     case toe(HeelToe)
-    case tripleTongue(EmptyPlacement)
-    case upBow(EmptyPlacement)
-
+    case tripleTongue(EmptyPlacement = EmptyPlacement())
+    case upBow(EmptyPlacement = EmptyPlacement())
 }
 
 extension Technique: Equatable { }
@@ -39,26 +39,27 @@ extension Technique: Codable {
     enum CodingKeys: String, CodingKey {
         case arrow
         case bend
-        case doubleTongue
-        case downBow
+        case doubleTongue = "double-tongue"
+        case downBow = "down-bow"
         case fingering
         case fingernails
         case fret
-        case hammerOn
+        case hammerOn = "hammer-on"
         case handbell
         case harmonic
         case heel
-        case openString
-        case otherTechnical
+        case openString = "open-string"
+        case otherTechnical = "other-technical"
         case pluck
-        case pullOff
-        case snapPizzicato
+        case pullOff = "pull-off"
+        case snapPizzicato = "snap-pizzicato"
+        case stopped
         case string
         case tap
-        case thumbPosition
+        case thumbPosition = "thumb-position"
         case toe
-        case tripleTongue
-        case upBow
+        case tripleTongue = "triple-tongue"
+        case upBow = "up-bow"
     }
     // sourcery:inline:Technique.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
@@ -96,6 +97,8 @@ extension Technique: Codable {
             try container.encode(value, forKey: .pullOff)
         case let .snapPizzicato(value):
             try container.encode(value, forKey: .snapPizzicato)
+        case let .stopped(value):
+            try container.encode(value, forKey: .stopped)
         case let .string(value):
             try container.encode(value, forKey: .string)
         case let .tap(value):
@@ -151,6 +154,8 @@ extension Technique: Codable {
             self = .pullOff(try decode(.pullOff))
         } else if container.contains(.snapPizzicato) {
             self = .snapPizzicato(try decode(.snapPizzicato))
+        } else if container.contains(.stopped) {
+            self = .stopped(try decode(.stopped))
         } else if container.contains(.string) {
             self = .string(try decode(.string))
         } else if container.contains(.tap) {

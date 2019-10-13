@@ -10,12 +10,20 @@
 /// fingering element represents the fretting finger; the pluck element represents the plucking
 /// finger.
 public struct Fingering {
-    public let substitution: Bool
-    public let alternate: Bool
+    public let value: String
+    public let substitution: Bool?
+    public let alternate: Bool?
+    public let placement: AboveBelow?
     public let printStyle: PrintStyle
-    public let placement: AboveBelow
 
-    public init(substitution: Bool, alternate: Bool, printStyle: PrintStyle, placement: AboveBelow) {
+    public init(
+        _ value: String = "",
+        substitution: Bool? = nil,
+        alternate: Bool? = nil,
+        placement: AboveBelow? = nil,
+        printStyle: PrintStyle = PrintStyle()
+    ) {
+        self.value = value
         self.substitution = substitution
         self.alternate = alternate
         self.printStyle = printStyle
@@ -24,4 +32,26 @@ public struct Fingering {
 }
 
 extension Fingering: Equatable { }
-extension Fingering: Codable { }
+extension Fingering: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case value = ""
+        case substitution
+        case alternate
+        case placement
+    }
+    public init(from decoder: Decoder) throws {
+        // Decode attribute groups
+        self.printStyle = try PrintStyle(from: decoder)
+        // Decode one-off attributes
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.substitution = try container.decodeIfPresent(Bool.self, forKey: .substitution)
+        self.alternate = try container.decodeIfPresent(Bool.self, forKey: .alternate)
+        self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
+        // Decode value
+        self.value = try container.decode(String.self, forKey: .value)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        fatalError("TODO: Fingering.encode(to:)")
+    }
+}

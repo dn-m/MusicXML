@@ -25,8 +25,7 @@ class DirectionTests: XCTestCase {
 
         let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
         let expected: Direction = Direction(
-            placement: .above,
-            directionType: [
+            [
                 .metronome(
                     Metronome(
                         position: Position(defaultX: -25.96, relativeY: 20.00),
@@ -42,6 +41,7 @@ class DirectionTests: XCTestCase {
                     )
                 )
             ],
+            placement: .above,
             sound: Sound(
                 tempo: 90
             )
@@ -58,9 +58,8 @@ class DirectionTests: XCTestCase {
         </direction>
         """
         let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
-        let expected: Direction = Direction(
-            placement: .above,
-            directionType: [.wedge(Wedge(type: .crescendo, spread: 0))]
+        let expected: Direction = Direction([.wedge(Wedge(type: .crescendo, spread: 0))],
+            placement: .above
         )
         XCTAssertEqual(decoded, expected)
     }
@@ -74,11 +73,7 @@ class DirectionTests: XCTestCase {
         </direction>
         """
         let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
-        let expected: Direction = Direction(
-            directionType: [
-                .octaveShift(OctaveShift(type: .down, size: 8))
-            ]
-        )
+        let expected: Direction = Direction([.octaveShift(OctaveShift(type: .down, size: 8))])
         XCTAssertEqual(decoded, expected)
     }
 
@@ -92,10 +87,8 @@ class DirectionTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
         let expected: Direction = Direction(
-            placement: .above,
-            directionType: [
-                .bracket(Bracket(type: .start, number: 1, lineEnd: .down, lineType: .solid))
-            ]
+            [.bracket(Bracket(type: .start, number: 1, lineEnd: .down, lineType: .solid))],
+            placement: .above
         )
         XCTAssertEqual(decoded, expected)
     }

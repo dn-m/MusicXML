@@ -11,7 +11,7 @@ import MusicXML
 class PartWiseInitializerTests: XCTestCase {
     func testPartWise() {
         _ = Partwise.Measure(
-            number: 2,
+            number: "2",
             width: 474.15,
             musicData: [
                 .attributes(
@@ -24,9 +24,7 @@ class PartWiseInitializerTests: XCTestCase {
                 ),
                 .direction(
                     Direction(
-                        placement: .above,
-                        directive: nil,
-                        directionType: [
+                        [
                             .metronome(
                                 Metronome(
                                     kind: .regular(
@@ -40,7 +38,9 @@ class PartWiseInitializerTests: XCTestCase {
                                     )
                                 )
                             )
-                        ]
+                        ],
+                        placement: .above,
+                        directive: nil
                     )
                 ),
                 .note(

@@ -51,7 +51,7 @@ extension Partwise {
     //     %optional-unique-id;
     // >
     public struct Measure: Equatable {
-        public let number: Int
+        public let number: String
         public let text: String?
         public let implicit: Bool?
         public let nonControlling: Bool?
@@ -59,7 +59,15 @@ extension Partwise {
         public let optionalUniqueID: Int?
         public let musicData: [MusicData]
 
-        public init(number: Int, text: String? = nil, implicit: Bool? = nil, nonControlling: Bool? = nil, width: Tenths? = nil, optionalUniqueID: Int? = nil, musicData: [MusicData] = []) {
+        public init(
+            number: String,
+            text: String? = nil,
+            implicit: Bool? = nil,
+            nonControlling: Bool? = nil,
+            width: Tenths? = nil,
+            optionalUniqueID: Int? = nil,
+            musicData: [MusicData] = []
+        ) {
             self.number = number
             self.text = text
             self.implicit = implicit
@@ -88,7 +96,7 @@ extension Partwise.Measure: Codable {
     public init(from decoder: Decoder) throws {
         // Decode attributes
         let attr = try decoder.container(keyedBy: CodingKeys.self)
-        self.number = try attr.decode(Int.self, forKey: .number)
+        self.number = try attr.decode(String.self, forKey: .number)
         self.text = try attr.decodeIfPresent(String.self, forKey: .text)
         self.implicit = try attr.decodeIfPresent(Bool.self, forKey: .implicit)
         self.nonControlling = try attr.decodeIfPresent(Bool.self, forKey: .nonControlling)
@@ -97,41 +105,5 @@ extension Partwise.Measure: Codable {
         // Decode music data elements
         let musicDataContainer = try decoder.singleValueContainer()
         self.musicData = try musicDataContainer.decode([MusicData].self)
-    }
-}
-
-extension Partwise.Measure: DynamicNodeDecoding {
-    public static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
-        switch key {
-        case
-        CodingKeys.number,
-        CodingKeys.text,
-        CodingKeys.implicit,
-        CodingKeys.nonControlling,
-        CodingKeys.width,
-        CodingKeys.optionalUniqueID
-            :
-            return .attribute
-        default:
-            return .element
-        }
-    }
-}
-
-extension Partwise.Measure: DynamicNodeEncoding {
-    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        switch key {
-        case
-        CodingKeys.number,
-        CodingKeys.text,
-        CodingKeys.implicit,
-        CodingKeys.nonControlling,
-        CodingKeys.width,
-        CodingKeys.optionalUniqueID
-            :
-            return .attribute
-        default:
-            return .element
-        }
     }
 }

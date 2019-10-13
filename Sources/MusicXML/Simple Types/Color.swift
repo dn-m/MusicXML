@@ -12,8 +12,39 @@
 /// "#40800080" would be a transparent purple.  As in SVG 1.1, colors are defined in terms of the
 /// sRGB color space (IEC 61966).
 public struct Color {
-    let value: Int // hexadecimal
+
+    public let hexValue: Int
+
+    public init(hexValue: Int) {
+        self.hexValue = hexValue
+    }
+
+    /// Create a `Color` with the given `hex` string.
+    public init?(hexString: String) {
+        guard let hex = Int(hexString.droppingLeadingHash(), radix: 16) else { return nil }
+        self.init(hexValue: hex)
+    }
 }
 
 extension Color: Equatable { }
-extension Color: Codable { }
+extension Color: Codable {
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        guard let color = Color.init(hexString: try container.decode(String.self)) else {
+            throw DecodingError.typeMismatch(
+                Color.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Could not create a `Color` from the given XML string."
+                )
+            )
+        }
+        self = color
+    }
+}
+
+extension String {
+    // Prepare this string for conversion to hexadecimally-represented integer value by dropping
+    // the leading octothorpe.
+    func droppingLeadingHash() -> Substring { first == "#" ? dropFirst() : self[...] }
+}
