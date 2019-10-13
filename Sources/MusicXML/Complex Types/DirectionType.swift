@@ -141,6 +141,7 @@ extension DirectionType: Codable {
         case words
 
     }
+    // sourcery:inline:DirectionType.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -190,53 +191,59 @@ extension DirectionType: Codable {
             try container.encode(value, forKey: .words)
         }
     }
+    // sourcery:end
+    // sourcery:inline:DirectionType.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+            return try container.decode(T.self, forKey: key)
+        }
+
         if container.contains(.accordionRegistration) {
-            self = .accordionRegistration(try container.decode(AccordionRegistration.self, forKey: .accordionRegistration))
+            self = .accordionRegistration(try decode(.accordionRegistration))
         } else if container.contains(.bracket) {
-            self = .bracket(try container.decode(Bracket.self, forKey: .bracket))
+            self = .bracket(try decode(.bracket))
         } else if container.contains(.coda) {
-            self = .coda(try container.decode(EmptyPrintStyleAlign.self, forKey: .coda))
+            self = .coda(try decode(.coda))
         } else if container.contains(.damp) {
-            self = .damp(try container.decode(EmptyPrintStyleAlign.self, forKey: .damp))
+            self = .damp(try decode(.damp))
         } else if container.contains(.dampAll) {
-            self = .dampAll(try container.decode(EmptyPrintStyleAlign.self, forKey: .dampAll))
+            self = .dampAll(try decode(.dampAll))
         } else if container.contains(.dashes) {
-            self = .dashes(try container.decode(Dashes.self, forKey: .dashes))
+            self = .dashes(try decode(.dashes))
         } else if container.contains(.dynamics) {
-            self = .dynamics(try container.decode(Dynamics.self, forKey: .dynamics))
+            self = .dynamics(try decode(.dynamics))
         } else if container.contains(.eyeglasses) {
-            self = .eyeglasses(try container.decode(EmptyPrintStyleAlign.self, forKey: .eyeglasses))
+            self = .eyeglasses(try decode(.eyeglasses))
         } else if container.contains(.harpPedals) {
-            self = .harpPedals(try container.decode(HarpPedals.self, forKey: .harpPedals))
+            self = .harpPedals(try decode(.harpPedals))
         } else if container.contains(.image) {
-            self = .image(try container.decode(Image.self, forKey: .image))
+            self = .image(try decode(.image))
         } else if container.contains(.metronome) {
-            self = .metronome(try container.decode(Metronome.self, forKey: .metronome))
+            self = .metronome(try decode(.metronome))
         } else if container.contains(.octaveShift) {
-            self = .octaveShift(try container.decode(OctaveShift.self, forKey: .octaveShift))
+            self = .octaveShift(try decode(.octaveShift))
         } else if container.contains(.otherDirection) {
-            self = .otherDirection(try container.decode(OtherDirection.self, forKey: .otherDirection))
+            self = .otherDirection(try decode(.otherDirection))
         } else if container.contains(.pedal) {
-            self = .pedal(try container.decode(Pedal.self, forKey: .pedal))
+            self = .pedal(try decode(.pedal))
         } else if container.contains(.percussion) {
-            self = .percussion(try container.decode([Percussion].self, forKey: .percussion))
+            self = .percussion(try decode(.percussion))
         } else if container.contains(.principleVoice) {
-            self = .principleVoice(try container.decode(PrincipleVoice.self, forKey: .principleVoice))
+            self = .principleVoice(try decode(.principleVoice))
         } else if container.contains(.rehearsal) {
-            self = .rehearsal(try container.decode(FormattedText.self, forKey: .rehearsal))
+            self = .rehearsal(try decode(.rehearsal))
         } else if container.contains(.scordatura) {
-            self = .scordatura(try container.decode(Scordatura.self, forKey: .scordatura))
+            self = .scordatura(try decode(.scordatura))
         } else if container.contains(.segno) {
-            self = .segno(try container.decode(EmptyPrintStyleAlign.self, forKey: .segno))
+            self = .segno(try decode(.segno))
         } else if container.contains(.stringMute) {
-            self = .stringMute(try container.decode(StringMute.self, forKey: .stringMute))
+            self = .stringMute(try decode(.stringMute))
         } else if container.contains(.wedge) {
-            self = .wedge(try container.decode(Wedge.self, forKey: .wedge))
+            self = .wedge(try decode(.wedge))
         } else if container.contains(.words) {
-            self = .words(try container.decode(FormattedText.self, forKey: .words))
+            self = .words(try decode(.words))
         } else {
             throw DecodingError.typeMismatch(
                 DirectionType.self,
@@ -247,6 +254,7 @@ extension DirectionType: Codable {
             )
         }
     }
+    // sourcery:end
 }
 
 extension DirectionType.CodingKeys: XMLChoiceCodingKey { }

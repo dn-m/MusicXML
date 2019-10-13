@@ -48,7 +48,7 @@ extension MusicData: Codable {
         case link
         case bookmark
     }
-
+    // sourcery:inline:MusicData.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -58,10 +58,10 @@ extension MusicData: Codable {
             try container.encode(value, forKey: .backup)
         case let .forward(value):
             try container.encode(value, forKey: .forward)
-        case let .direction(value):
-            try container.encode(value, forKey: .direction)
         case let .attributes(value):
             try container.encode(value, forKey: .attributes)
+        case let .direction(value):
+            try container.encode(value, forKey: .direction)
         case let .harmony(value):
             try container.encode(value, forKey: .harmony)
         case let .figuredBass(value):
@@ -80,9 +80,9 @@ extension MusicData: Codable {
             try container.encode(value, forKey: .bookmark)
         }
     }
-
+    // sourcery:end
+    // sourcery:inline:MusicData.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
-
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
@@ -113,10 +113,19 @@ extension MusicData: Codable {
             self = .grouping(try decode(.grouping))
         } else if container.contains(.link) {
             self = .link(try decode(.link))
-        } else {
+        } else if container.contains(.bookmark) {
             self = .bookmark(try decode(.bookmark))
+        } else {
+            throw DecodingError.typeMismatch(
+                MusicData.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized choice"
+                )
+            )
         }
     }
+    // sourcery:end
 }
 
 extension MusicData.CodingKeys: XMLChoiceCodingKey { }

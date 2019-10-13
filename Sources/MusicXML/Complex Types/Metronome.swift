@@ -188,19 +188,31 @@ extension MetronomeRegularComponent: Codable {
     func encode(to encoder: Encoder) throws {
         fatalError("should never be used")
     }
-
-    init(from decoder: Decoder) throws {
+    // sourcery:inline:MetronomeRegularComponent.AutoXMLChoiceDecoding
+    internal init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+            return try container.decode(T.self, forKey: key)
+        }
+
         if container.contains(.beatUnit) {
-            self = .beatUnit(try container.decode(NoteTypeValue.self, forKey: .beatUnit))
+            self = .beatUnit(try decode(.beatUnit))
         } else if container.contains(.beatUnitDot) {
-            self = .beatUnitDot(try container.decode(Empty.self, forKey: .beatUnitDot))
+            self = .beatUnitDot(try decode(.beatUnitDot))
         } else if container.contains(.perMinute) {
-            self = .perMinute(try container.decode(PerMinute.self, forKey: .perMinute))
+            self = .perMinute(try decode(.perMinute))
         } else {
-            throw DecodingError.typeMismatch(MetronomeRegularComponent.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Unrecognized key"))
+            throw DecodingError.typeMismatch(
+                MetronomeRegularComponent.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized choice"
+                )
+            )
         }
     }
+    // sourcery:end
 }
 
 extension MetronomeRegularComponent.CodingKeys: XMLChoiceCodingKey {}

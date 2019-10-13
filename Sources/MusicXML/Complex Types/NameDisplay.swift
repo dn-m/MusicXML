@@ -35,33 +35,40 @@ extension NameDisplay.Text: Codable {
         case displayText = "display-text"
         case accidentalText = "accidental-text"
     }
-
+    // sourcery:inline:NameDisplay.Text.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
-        case let .displayText(value):
-            try container.encode(value, forKey: .displayText)
         case let .accidentalText(value):
             try container.encode(value, forKey: .accidentalText)
+        case let .displayText(value):
+            try container.encode(value, forKey: .displayText)
         }
     }
-
+    // sourcery:end
+    // sourcery:inline:NameDisplay.Text.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        if container.contains(.displayText) {
-            self = .displayText(try container.decode(FormattedText.self, forKey: .displayText))
-        } else if container.contains(.accidentalText) {
-            self = .accidentalText(try container.decode(AccidentalText.self, forKey: .accidentalText))
+
+        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+            return try container.decode(T.self, forKey: key)
+        }
+
+        if container.contains(.accidentalText) {
+            self = .accidentalText(try decode(.accidentalText))
+        } else if container.contains(.displayText) {
+            self = .displayText(try decode(.displayText))
         } else {
             throw DecodingError.typeMismatch(
                 NameDisplay.Text.self,
                 DecodingError.Context(
                     codingPath: decoder.codingPath,
-                    debugDescription: "Cannot decode NameDisplay.Text"
+                    debugDescription: "Unrecognized choice"
                 )
             )
         }
     }
+    // sourcery:end
 }
 
 extension NameDisplay: Equatable { }

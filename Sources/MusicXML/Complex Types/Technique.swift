@@ -60,7 +60,6 @@ extension Technique: Codable {
         case tripleTongue
         case upBow
     }
-    
     // sourcery:inline:Technique.AutoXMLChoiceEncoding
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -112,7 +111,6 @@ extension Technique: Codable {
         }
     }
     // sourcery:end
-    
     // sourcery:inline:Technique.AutoXMLChoiceDecoding
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
