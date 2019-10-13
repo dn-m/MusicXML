@@ -11,7 +11,7 @@ import MusicXML
 class PartWiseInitializerTests: XCTestCase {
     func testPartWise() {
         _ = Partwise.Measure(
-            number: 2,
+            number: "2",
             width: 474.15,
             musicData: [
                 .attributes(

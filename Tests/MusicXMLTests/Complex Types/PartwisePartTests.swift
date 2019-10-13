@@ -74,7 +74,7 @@ class PartwisePartTests: XCTestCase {
             id: "P1",
             measures: [
                 Partwise.Measure(
-                    number: 1,
+                    number: "1",
                     musicData: [
                         .attributes(
                             Attributes(
