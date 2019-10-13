@@ -18,7 +18,11 @@ extension AccordionMiddle: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.value = try container.decode(Int.self)
+        do {
+            self.value = try container.decode(Int.self)
+        } catch {
+            self.value = 1
+        }
     }
 }
 
