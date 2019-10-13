@@ -19,10 +19,7 @@ class OrnamentsTests: XCTestCase {
         </ornaments>
         """
         let decoded = try XMLDecoder().decode(Ornaments.self, from: xml.data(using: .utf8)!)
-        let expected = Ornaments(
-            values: [
-                .turn(HorizontalTurn()),
-            ],
+        let expected = Ornaments([.turn(HorizontalTurn())],
             accidentalMarks: [
                 AccidentalMark(value: .sharp, placement: .above),
                 AccidentalMark(value: .threeQuartersFlat, placement: .above),
@@ -40,7 +37,7 @@ class OrnamentsTests: XCTestCase {
         </ornaments>
         """
         let decoded = try XMLDecoder().decode(Ornaments.self, from: xml.data(using: .utf8)!)
-        let expected = Ornaments(values: [
+        let expected = Ornaments([
             .trillMark(EmptyTrillSound()),
             .wavyLine(WavyLine(type: .start, number: 1))
         ])
