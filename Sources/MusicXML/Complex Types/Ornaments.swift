@@ -13,11 +13,9 @@ public struct Ornaments {
     // MARK: - Elements
 
     public var values: [Ornament]
+    public var accidentalMarks: [AccidentalMark]
 
-    // FIXME: Can this be `[]` instead of `[]?`
-    public var accidentalMarks: [AccidentalMark]?
-
-    public init(values: [Ornament] = [], accidentalMarks: [AccidentalMark]? = nil) {
+    public init(_ values: [Ornament] = [], accidentalMarks: [AccidentalMark] = []) {
         self.values = values
         self.accidentalMarks = accidentalMarks
     }
@@ -43,10 +41,10 @@ extension Ornaments: Codable {
             }
             self.values = ornaments
             let elementsContainer = try decoder.container(keyedBy: CodingKeys.self)
-            self.accidentalMarks = try elementsContainer.decodeIfPresent([AccidentalMark].self, forKey: .accidentalMarks)
+            self.accidentalMarks = try elementsContainer.decode([AccidentalMark].self, forKey: .accidentalMarks)
         } catch {
             self.values = []
-            self.accidentalMarks = nil
+            self.accidentalMarks = []
         }
     }
 }

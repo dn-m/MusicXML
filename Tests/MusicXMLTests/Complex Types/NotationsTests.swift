@@ -68,10 +68,7 @@ class NotationsTests: XCTestCase {
         """
         let expected = Notations([
             .ornaments(
-                Ornaments(
-                    values: [
-                        .turn(HorizontalTurn()),
-                    ],
+                Ornaments([.turn(HorizontalTurn())],
                     accidentalMarks: [
                         AccidentalMark(value: .sharp, placement: .above),
                         AccidentalMark(value: .threeQuartersFlat, placement: .above),
