@@ -23,13 +23,18 @@ class LilyPondTests: XCTestCase {
                 .sorted()
             try sanitizedSources.forEach { source in
                 let sourceURL = sourceDir.appendingPathComponent(source)
-                let parsed = try MusicXML(url: sourceURL)
-                let resultFileURL = resultsDir.appendingPathComponent("\(source).parsed")
-                try! String(describing: parsed).write(
-                    to: resultFileURL,
-                    atomically: true,
-                    encoding: .utf8
-                )
+                do {
+                    let parsed = try MusicXML(url: sourceURL)
+                    let resultFileURL = resultsDir.appendingPathComponent("\(source).parsed")
+                    try! String(describing: parsed).write(
+                        to: resultFileURL,
+                        atomically: true,
+                        encoding: .utf8
+                    )
+                } catch {
+                    print("- Unable to parse \(traversal)/\(source)")
+                    throw error
+                }
             }
         }
     }
