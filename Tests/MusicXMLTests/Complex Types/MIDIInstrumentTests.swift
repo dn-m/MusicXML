@@ -5,9 +5,6 @@
 //  Created by Ben Lu on 9/30/19.
 //
 
-
-import Foundation
-
 import XCTest
 import XMLCoder
 import MusicXML
