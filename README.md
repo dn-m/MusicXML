@@ -11,7 +11,7 @@ The goal of this project is to allow Swift users to read, manipulate, and write 
 
 ## Hello, world!
 
-Let's construct the "Hello, world!" score example from the [musicXML documentation](https://www.musicxml.com/tutorial/hello-world/). This musical composition consists of one measure that contains a whole note on middle C, based in 4/4 time:
+Let's construct the "Hello, world!" score example from the [musicXML documentation](https://www.musicxml.com/tutorial/hello-world/). This musical composition consists of one measure that contains a whole note on middle C, based in 4/4 time.
 
 ### Graphical Representation
 
