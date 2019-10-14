@@ -33,9 +33,7 @@ class DirectionTests: XCTestCase {
                         kind: .regular(
                             Metronome.Regular(
                                 beatUnit: .quarter,
-                                relation: .perMinute(
-                                    PerMinute(value: "90")
-                                )
+                                relation: .perMinute(PerMinute("90"))
                             )
                         )
                     )

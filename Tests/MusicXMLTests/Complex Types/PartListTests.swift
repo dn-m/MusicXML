@@ -46,8 +46,8 @@ class PartListTests: XCTestCase {
                 PartGroup(
                     type: .start,
                     number: 1,
-                    symbol: GroupSymbol(value: .bracket),
-                    barline: GroupBarline(value: .yes)
+                    symbol: GroupSymbol(.bracket),
+                    barline: GroupBarline(.yes)
                 )
             ),
             .part(ScorePart(id: "P1", name: "Part 1")),

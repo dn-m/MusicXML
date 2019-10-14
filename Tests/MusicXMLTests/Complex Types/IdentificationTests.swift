@@ -23,7 +23,7 @@ class IdentificationTests: XCTestCase {
         let expected = Identification(
             miscellaneous: Miscellaneous(
                 fields: [
-                    MiscellaneousField(name: "description", value: "Here is some text."),
+                    MiscellaneousField("Here is some text.", name: "description"),
                 ]
             )
         )

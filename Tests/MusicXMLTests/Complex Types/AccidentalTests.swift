@@ -24,7 +24,7 @@ class AccidentalTests: XCTestCase {
         let xml = """
         <accidental-mark placement="above">double-sharp</accidental-mark>
         """
-        let expected = AccidentalMark(value: .doubleSharp, placement: .above)
+        let expected = AccidentalMark(.doubleSharp, placement: .above)
         try assertDecoded(xml, equals: expected)
     }
 }

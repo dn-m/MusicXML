@@ -13,7 +13,7 @@ public struct PerMinute {
     public let value: String
     public let font: Font?
 
-    public init(value: String, font: Font? = nil) {
+    public init(_ value: String, font: Font? = nil) {
         self.value = value
         self.font = font
     }

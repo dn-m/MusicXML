@@ -24,11 +24,10 @@ class MiscellaneousTests: XCTestCase {
         let decoded = try XMLDecoder().decode(Miscellaneous.self, from: xml.data(using: .utf8)!)
         let expected = Miscellaneous(
             fields: [
-                MiscellaneousField(
-                    name: "description",
-                    value: """
+                MiscellaneousField("""
                     All pitches from G to c\'\'\'\' in\n      ascending steps; First without accidentals, then with a sharp and then\n      with a flat accidental, then with explicit natural accidentals.\n      Double alterations and cautionary accidentals\n      are tested at the end.
-                    """
+                    """,
+                    name: "description"
                 )
             ]
         )
@@ -38,9 +37,9 @@ class MiscellaneousTests: XCTestCase {
     func testMiscellaneousRoundTrip() throws {
         let misc = Miscellaneous(
             fields: [
-                MiscellaneousField(name: "one", value: "1"),
-                MiscellaneousField(name: "two", value: "2"),
-                MiscellaneousField(name: "three", value: "3"),
+                MiscellaneousField("1", name: "one"),
+                MiscellaneousField("2", name: "two"),
+                MiscellaneousField("3", name: "three"),
             ]
         )
         try testRoundTrip(misc)

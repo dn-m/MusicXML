@@ -18,7 +18,7 @@ public struct PartSymbol {
     let position: Position
     let color: Color
 
-    public init(value: GroupSymbolValue, kind: Kind, topStaff: Int, bottomStaff: Int, position: Position, color: Color) {
+    public init(_ value: GroupSymbolValue, kind: Kind, topStaff: Int, bottomStaff: Int, position: Position, color: Color) {
         self.value = value
         self.kind = kind
         self.topStaff = topStaff

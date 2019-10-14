@@ -13,7 +13,7 @@ public struct BassAlter {
     public let printStyle: PrintStyle?
     public let location: LeftRight?
 
-    public init(value: Double, printObject: Bool? = nil, printStyle: PrintStyle = PrintStyle(), location: LeftRight? = nil) {
+    public init(_ value: Double, printObject: Bool? = nil, printStyle: PrintStyle = PrintStyle(), location: LeftRight? = nil) {
         self.value = value
         self.printObject = printObject
         self.printStyle = printStyle
@@ -40,6 +40,6 @@ extension BassAlter: Codable {
 
 extension BassAlter: ExpressibleByFloatLiteral {
     public init(floatLiteral value: Double) {
-        self.init(value: value)
+        self.init(value)
     }
 }

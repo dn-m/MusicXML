@@ -25,7 +25,22 @@ public struct AccidentalText {
     // MARK: - Elements
     public let value: AccidentalValue
 
-    public init(justify: LeftCenterRight? = nil, printStyle: PrintStyle = PrintStyle(), hAlign: LeftCenterRight? = nil, vAlign: VAlign? = nil, underline: Int? = nil, overline: Int? = nil, lineThrough: Int? = nil, rotation: Double? = nil, letterSpacing: NumberOrNormal? = nil, lineHeight: NumberOrNormal? = nil, direction: TextDirection? = nil, enclosure: EnclosureShape? = nil, value: AccidentalValue) {
+    public init(
+        _ value: AccidentalValue,
+        justify: LeftCenterRight? = nil,
+        printStyle: PrintStyle = PrintStyle(),
+        hAlign: LeftCenterRight? = nil,
+        vAlign: VAlign? = nil,
+        underline: Int? = nil,
+        overline: Int? = nil,
+        lineThrough: Int? = nil,
+        rotation: Double? = nil,
+        letterSpacing: NumberOrNormal? = nil,
+        lineHeight: NumberOrNormal? = nil,
+        direction: TextDirection? = nil,
+        enclosure: EnclosureShape? = nil
+    ) {
+        self.value = value
         self.justify = justify
         self.printStyle = printStyle
         self.hAlign = hAlign
@@ -38,7 +53,6 @@ public struct AccidentalText {
         self.lineHeight = lineHeight
         self.direction = direction
         self.enclosure = enclosure
-        self.value = value
     }
 }
 
