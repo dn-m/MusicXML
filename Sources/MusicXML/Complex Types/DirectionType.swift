@@ -92,7 +92,7 @@ public enum DirectionType {
     /// Enclosure is square by default. Left justification is assumed if not specified.
     
     // FIXME: #130 This should be `[FormattedText]`
-    case rehearsal(FormattedText)
+    case rehearsal([FormattedText])
     /// Scordatura string tunings are represented by a series of accord elements, similar to the
     /// staff-tuning elements. Strings are numbered from high to low.
     case scordatura(Scordatura)
@@ -113,7 +113,7 @@ public enum DirectionType {
     /// The words element specifies a standard text direction. Left justification is
     /// assumed if not specified. Language is Italian ("it") by default. Enclosure is none
     /// by default.
-    case words(FormattedText)
+    case words([FormattedText])
 }
 
 extension DirectionType: Equatable { }
@@ -230,11 +230,13 @@ extension DirectionType: Codable {
         } else if container.contains(.pedal) {
             self = .pedal(try decode(.pedal))
         } else if container.contains(.percussion) {
-            self = .percussion(try decode(.percussion))
+            let singleValueContainer = try decoder.singleValueContainer()
+            self = .percussion(try singleValueContainer.decode([Percussion].self))
         } else if container.contains(.principleVoice) {
             self = .principleVoice(try decode(.principleVoice))
         } else if container.contains(.rehearsal) {
-            self = .rehearsal(try decode(.rehearsal))
+            let singleValueContainer = try decoder.singleValueContainer()
+            self = .rehearsal(try singleValueContainer.decode([FormattedText].self))
         } else if container.contains(.scordatura) {
             self = .scordatura(try decode(.scordatura))
         } else if container.contains(.segno) {
@@ -244,7 +246,8 @@ extension DirectionType: Codable {
         } else if container.contains(.wedge) {
             self = .wedge(try decode(.wedge))
         } else if container.contains(.words) {
-            self = .words(try decode(.words))
+            let singleValueContainer = try decoder.singleValueContainer()
+            self = .words(try singleValueContainer.decode([FormattedText].self))
         } else {
             throw DecodingError.typeMismatch(
                 DirectionType.self,

@@ -25,13 +25,13 @@ class ArticulationsTextsTests: XCTestCase {
         let expected = Direction(
             [
                 .words(
-                    FormattedText("Normal, Small, Colored, Below",
-                        printStyle: PrintStyle(
-                            position: Position(defaultX: 1, defaultY: -15),
-                            font: Font(size: FontSize(.small)),
-                            color: Color(hexString: "#FF8000")
+                    [FormattedText("Normal, Small, Colored, Below",
+                                   printStyle: PrintStyle(
+                                    position: Position(defaultX: 1, defaultY: -15),
+                                    font: Font(size: FontSize(.small)),
+                                    color: Color(hexString: "#FF8000")
                         )
-                    )
+                        )]
                 )
             ],
             placement: .below

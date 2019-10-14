@@ -356,7 +356,7 @@ class DirectionsTests: XCTestCase {
         </direction-type>
         """
         let decoded = try XMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
-        let expected = DirectionType.rehearsal(FormattedText("Crc", enclosure: .circle))
+        let expected = DirectionType.rehearsal([FormattedText("Crc", enclosure: .circle)])
         XCTAssertEqual(decoded, expected)
     }
 }
