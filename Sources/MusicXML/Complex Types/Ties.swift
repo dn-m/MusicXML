@@ -14,6 +14,11 @@ public struct Ties {
         self.stop = stop
     }
 
+    public init(start: Bool, stop: Bool) {
+        self.start = start ? Tie(.start) : nil
+        self.stop = stop ? Tie(.stop) : nil
+    }
+
     init(ties: [Tie]) {
         var startTie: Tie?
         var stopTie: Tie?
