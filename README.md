@@ -118,9 +118,9 @@ Almost there. We just need to declare all of the parts in our composition so tha
 
 ```Swift
 let header = Header(
-	partList: PartList([
-		.part(ScorePart(id: "P1", name: "Music"))
-	])
+    partList: PartList([
+        .part(ScorePart(id: "P1", name: "Music"))
+    ])
 )
 ```
 
