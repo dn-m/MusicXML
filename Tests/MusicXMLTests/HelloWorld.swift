@@ -57,14 +57,7 @@ class HelloWorld: XCTestCase {
                 traversal: .partwise(
                     Partwise(
                         header: Header(
-                            partList: PartList([
-                                .part(
-                                    ScorePart(
-                                        id: "P1",
-                                        name: PartName(value: "Music")
-                                    )
-                                )
-                            ])
+                            partList: PartList([.part(ScorePart(id: "P1", name: "Music"))])
                         ),
                         parts: [
                             Partwise.Part(

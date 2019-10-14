@@ -42,7 +42,7 @@ class ScorePartTests: XCTestCase {
         </score-part>
         """
         let decoded = try XMLDecoder().decode(ScorePart.self, from: xml.data(using: .utf8)!)
-        let expected = ScorePart(id: "P1", name: PartName(value: "MusicXML Part"))
+        let expected = ScorePart(id: "P1", name: "MusicXML Part")
         XCTAssertEqual(decoded, expected)
     }
 
@@ -50,12 +50,30 @@ class ScorePartTests: XCTestCase {
         let decoded = try XMLDecoder().decode(ScorePart.self, from: ScorePartTests.complexXml.data(using: .utf8)!)
         let expected = ScorePart(
             id: "P1",
-            name: PartName(value: "Piano"),
-            partAbbreviation: PartName(value: "Pno."),
+            name: "Piano",
+            partAbbreviation: "Pno.",
             scoreInstrument: [ScoreInstrument(id: "P1-I1", instrumentName: "Piano")],
             midi: [
-                ScorePart.MIDI(midiDevice: MIDIDevice(port: 1, id: "P1-I1"), midiInstrument: MIDIInstrument(id: "P1-I1", midiChannel: 1, midiProgram: 1, volume: 78.7402, pan: 0)),
-                ScorePart.MIDI(midiDevice: MIDIDevice(port: 2, id: "P1-I2"), midiInstrument: MIDIInstrument(id: "P1-I2", midiChannel: 1, midiProgram: 1, volume: 50, pan: -45))
+                ScorePart.MIDI(
+                    midiDevice: MIDIDevice(port: 1, id: "P1-I1"),
+                    midiInstrument: MIDIInstrument(
+                        id: "P1-I1",
+                        midiChannel: 1,
+                        midiProgram: 1,
+                        volume: 78.7402,
+                        pan: 0
+                    )
+                ),
+                ScorePart.MIDI(
+                    midiDevice: MIDIDevice(port: 2, id: "P1-I2"),
+                    midiInstrument: MIDIInstrument(
+                        id: "P1-I2",
+                        midiChannel: 1,
+                        midiProgram: 1,
+                        volume: 50,
+                        pan: -45
+                    )
+                )
             ]
         )
         XCTAssertEqual(decoded, expected)
