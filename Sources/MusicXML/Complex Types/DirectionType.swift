@@ -24,7 +24,7 @@ public enum DirectionType {
     /// playback applications reliably.
 
     // FIXME: #130 This should be `[EmptyPrintStyleAlign]`
-    case coda(EmptyPrintStyleAlign)
+    case coda([EmptyPrintStyleAlign])
     /// The damp element specifies a harp damping mark.
     case damp(EmptyPrintStyleAlign)
     /// The damp-all element specifies a harp damping mark for all strings.
@@ -205,7 +205,8 @@ extension DirectionType: Codable {
         } else if container.contains(.bracket) {
             self = .bracket(try decode(.bracket))
         } else if container.contains(.coda) {
-            self = .coda(try decode(.coda))
+            let singleValueContainer = try decoder.singleValueContainer()
+            self = .coda(try singleValueContainer.decode([EmptyPrintStyleAlign].self))
         } else if container.contains(.damp) {
             self = .damp(try decode(.damp))
         } else if container.contains(.dampAll) {

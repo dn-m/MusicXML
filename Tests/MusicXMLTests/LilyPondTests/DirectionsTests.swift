@@ -345,7 +345,19 @@ class DirectionsTests: XCTestCase {
         </direction-type>
         """
         let decoded = try XMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
-        let expected = DirectionType.coda(EmptyPrintStyleAlign())
+        let expected = DirectionType.coda([EmptyPrintStyleAlign()])
+        XCTAssertEqual(decoded, expected)
+    }
+    
+    func testCodaMultiple() throws {
+        let xml = """
+        <direction-type>
+           <coda/>
+           <coda/>
+        </direction-type>
+        """
+        let decoded = try XMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
+        let expected = DirectionType.coda([EmptyPrintStyleAlign(),EmptyPrintStyleAlign()])
         XCTAssertEqual(decoded, expected)
     }
 
