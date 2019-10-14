@@ -18,7 +18,7 @@ class PickupMeasureChordnamesFiguredBassTests: XCTestCase {
         </root>
         """
         let decoded = try XMLDecoder().decode(Root.self, from: xml.data(using: .utf8)!)
-        let expected = Root(step: RootStep(value: .c))
+        let expected = Root(step: .c)
         XCTAssertEqual(decoded, expected)
     }
 
@@ -36,8 +36,8 @@ class PickupMeasureChordnamesFiguredBassTests: XCTestCase {
             printFrame: false,
             chords: [
                 HarmonyChord(
-                    rootOrFunction: .root(Root(step: RootStep(value: .c))),
-                    kind: Kind(value: .major)
+                    rootOrFunction: .root(Root(step: .c)),
+                    kind: Kind(.major)
                 )
             ]
         )

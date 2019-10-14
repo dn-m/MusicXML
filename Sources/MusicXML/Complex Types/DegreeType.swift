@@ -10,15 +10,41 @@
 /// interpretation of the value of the degree-alter element. The text attribute specifies how the
 /// type of the degree should be displayed in a score.
 public struct DegreeType {
+
+    // MARK: - Instance Propertie
+
+    // MARK: Value
+
     let value: DegreeTypeValue
+
+    // MARK: Attributes
+
     let text: String?
+
+    // MARK: Attribute Groups
+
     let printStyle: PrintStyle
 
-    public init(value: DegreeTypeValue, text: String? = nil, printStyle: PrintStyle = PrintStyle()) {
+    // MARK: - Initializers
+
+    public init(
+        _ value: DegreeTypeValue,
+        text: String? = nil,
+        printStyle: PrintStyle = PrintStyle()
+    ) {
         self.value = value
         self.text = text
         self.printStyle = printStyle
     }
+}
+
+extension DegreeType {
+
+    // MARK: - Type Properties
+
+    public static let add = DegreeType(.add)
+    public static let alter = DegreeType(.alter)
+    public static let subtract = DegreeType(.subtract)
 }
 
 extension DegreeType: Equatable { }

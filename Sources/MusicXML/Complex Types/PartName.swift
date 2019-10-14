@@ -9,12 +9,30 @@
 /// attributes for the part-name element are deprecated in Version 2.0 in favor of the new
 /// part-name-display and part-abbreviation-display elements.
 public struct PartName {
+
+    // MARK: - Instance Properties
+
+    // MARK: Value
+
     public var value: String
-    public var printStyle: PrintStyle
+
+    // MARK: - Attributes
+
     public var printObject: Bool?
     public var justify: Justify?
 
-    public init(value: String, printStyle: PrintStyle = PrintStyle(), printObject: Bool? = nil, justify: Justify? = nil) {
+    // MARK: - Attribute Groups
+
+    public var printStyle: PrintStyle
+
+    // MARK: - Initializers
+
+    public init(
+        _ value: String,
+        printStyle: PrintStyle = PrintStyle(),
+        printObject: Bool? = nil,
+        justify: Justify? = nil
+    ) {
         self.value = value
         self.printStyle = printStyle
         self.printObject = printObject
@@ -40,7 +58,10 @@ extension PartName: Codable {
 }
 
 extension PartName: ExpressibleByStringLiteral {
+
+    // MARK: - ExpressibleByStringLiteral
+
     public init(stringLiteral value: String) {
-        self.init(value: value)
+        self.init(value)
     }
 }

@@ -12,11 +12,28 @@ public struct RootStep {
     public let text: String?
     public let printStyle: PrintStyle
 
-    public init(value: Step, text: String? = nil, printStyle: PrintStyle = PrintStyle()) {
+    public init(
+        _ value: Step,
+        text: String? = nil,
+        printStyle: PrintStyle = PrintStyle()
+    ) {
         self.value = value
         self.text = text
         self.printStyle = printStyle
     }
+}
+
+extension RootStep {
+
+    // MARK: - Type Properties
+
+    public static let a = RootStep(.a)
+    public static let b = RootStep(.b)
+    public static let c = RootStep(.c)
+    public static let d = RootStep(.d)
+    public static let e = RootStep(.e)
+    public static let f = RootStep(.f)
+    public static let g = RootStep(.g)
 }
 
 extension RootStep: Equatable { }

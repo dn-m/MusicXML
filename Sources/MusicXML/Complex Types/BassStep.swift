@@ -16,11 +16,24 @@ public struct BassStep {
     public let text: String?
     public let printStyle: PrintStyle
 
-    public init(value: Step, text: String? = nil, printStyle: PrintStyle = PrintStyle()) {
+    public init(_ value: Step, text: String? = nil, printStyle: PrintStyle = PrintStyle()) {
         self.value = value
         self.text = text
         self.printStyle = printStyle
     }
+}
+
+extension BassStep {
+
+    // MARK: - Type Properties
+
+    public static let a = BassStep(.a)
+    public static let b = BassStep(.b)
+    public static let c = BassStep(.c)
+    public static let d = BassStep(.d)
+    public static let e = BassStep(.e)
+    public static let f = BassStep(.f)
+    public static let g = BassStep(.g)
 }
 
 extension BassStep: Equatable { }

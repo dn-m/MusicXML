@@ -16,7 +16,12 @@ public struct DegreeValue {
     public let text: String?
     public let printStyle: PrintStyle
 
-    public init(value: Int, symbol: DegreeSymbolValue? = nil, text: String? = nil, printStyle: PrintStyle = PrintStyle()) {
+    public init(
+        _ value: Int,
+        symbol: DegreeSymbolValue? = nil,
+        text: String? = nil,
+        printStyle: PrintStyle = PrintStyle()
+    ) {
         self.value = value
         self.symbol = symbol
         self.text = text
@@ -38,5 +43,12 @@ extension DegreeValue: Codable {
         self.symbol = try container.decodeIfPresent(DegreeSymbolValue.self, forKey: .symbol)
         self.text = try container.decodeIfPresent(String.self, forKey: .text)
         self.printStyle = try PrintStyle(from: decoder)
+    }
+}
+
+extension DegreeValue: ExpressibleByIntegerLiteral {
+    // MARK: - ExpressibleByIntegerLiteral
+    public init(integerLiteral value: Int) {
+        self.init(value)
     }
 }

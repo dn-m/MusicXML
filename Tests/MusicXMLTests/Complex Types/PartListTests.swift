@@ -20,9 +20,7 @@ class PartListTests: XCTestCase {
         </part-list>
         """
         let decoded = try XMLDecoder().decode(PartList.self, from: xml.data(using: .utf8)!)
-        let expected = PartList([
-            .part(ScorePart(id: "P1", name: PartName(value: "MusicXML Part")))
-        ])
+        let expected = PartList([.part(ScorePart(id: "P1", name: "MusicXML Part"))])
         XCTAssertEqual(decoded, expected)
     }
 
@@ -52,8 +50,8 @@ class PartListTests: XCTestCase {
                     barline: GroupBarline(value: .yes)
                 )
             ),
-            .part(ScorePart(id: "P1", name: PartName(value: "Part 1"))),
-            .part(ScorePart(id: "P2", name: PartName(value: "Part 2"))),
+            .part(ScorePart(id: "P1", name: "Part 1")),
+            .part(ScorePart(id: "P2", name: "Part 2")),
             .group(PartGroup(type: .stop, number: 1)),
         ])
         XCTAssertEqual(decoded, expected)

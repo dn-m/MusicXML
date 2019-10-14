@@ -25,14 +25,9 @@ class HarmonyTests: XCTestCase {
         let expected: Harmony = Harmony(
             chords: [
                 HarmonyChord(
-                    rootOrFunction: .root(
-                        Root(
-                            step: RootStep(value: .f),
-                            alter: RootAlter(value: 1)
-                        )
-                    ),
-                    kind: Kind(value: .major),
-                    inversion: Inversion(value: 2)
+                    rootOrFunction: .root(Root(step: .f, alter: 1)),
+                    kind: .major,
+                    inversion: 2
                 )
             ]
         )
@@ -77,41 +72,20 @@ class HarmonyTests: XCTestCase {
         let expected: Harmony = Harmony(
             chords: [
                 HarmonyChord(
-                    rootOrFunction: .root(
-                        Root(
-                            step: RootStep(value: .f),
-                            alter: RootAlter(value: 1)
-                        )
-                    ),
-                    kind: Kind(value: .major),
-                    inversion: Inversion(value: 2),
-                    bass: Bass(bassStep: BassStep(value: .d), bassAlter: 1.0),
+                    rootOrFunction: .root(Root(step: .f, alter: 1)),
+                    kind: .major,
+                    inversion: 2,
+                    bass: Bass(step: .d, alter: 1.0),
                     degrees: [
-                        Degree(
-                            value: DegreeValue(value: 6),
-                            alter: DegreeAlter(value: -1),
-                            type: DegreeType(value: .add)
-                        )
+                        Degree(6, alter: -1, type: .add)
                     ]
                 ),
                 HarmonyChord(
-                    rootOrFunction: .root(
-                        Root(
-                            step: RootStep(value: .c)
-                        )
-                    ),
-                    kind: Kind(value: .neapolitan),
+                    rootOrFunction: .root(Root(step: .c)),
+                    kind: Kind(.neapolitan),
                     degrees: [
-                        Degree(
-                            value: DegreeValue(value: 3),
-                            alter: DegreeAlter(value: 0),
-                            type: DegreeType(value: .subtract)
-                        ),
-                        Degree(
-                            value: DegreeValue(value: 5),
-                            alter: DegreeAlter(value: -1),
-                            type: DegreeType(value: .alter)
-                        )
+                        Degree(3, alter: 0, type: .subtract),
+                        Degree(5, alter: -1, type: .alter)
                     ]
                 )
             ]
@@ -148,34 +122,16 @@ class HarmonyTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Harmony.self, from: xml.data(using: .utf8)!)
         let expected: Harmony = Harmony(
-            printStyle: PrintStyle(
-                position: Position(defaultY: 40)
-            ),
+            printStyle: PrintStyle(position: Position(defaultY: 40)),
             chords: [
                 HarmonyChord(
-                    rootOrFunction: .root(
-                        Root(
-                            step: RootStep(value: .a)
-                        )
-                    ),
-                    kind: Kind(value: .minorSeventh),
-                    bass: Bass(bassStep: BassStep(value: .g)),
+                    rootOrFunction: .root(Root(step: .a)),
+                    kind: Kind(.minorSeventh),
+                    bass: Bass(step: .g),
                     degrees: [
-                        Degree(
-                            value: DegreeValue(value: 13),
-                            alter: DegreeAlter(value: 1),
-                            type: DegreeType(value: .add)
-                        ),
-                        Degree(
-                            value: DegreeValue(value: 3),
-                            alter: DegreeAlter(value: 0),
-                            type: DegreeType(value: .subtract)
-                        ),
-                        Degree(
-                            value: DegreeValue(value: 5),
-                            alter: DegreeAlter(value: -1),
-                            type: DegreeType(value: .alter)
-                        )
+                        Degree(13, alter: 1, type: .add),
+                        Degree(3, alter: 0, type: .subtract),
+                        Degree(5, alter: -1, type: .alter)
                     ]
                 )
             ]
@@ -192,11 +148,7 @@ class HarmonyTests: XCTestCase {
         </degree>
         """
         let decoded = try XMLDecoder().decode(Degree.self, from: xml.data(using: .utf8)!)
-        let expected: Degree = Degree(
-            value: DegreeValue(value: 13),
-            alter: DegreeAlter(value: -1),
-            type: DegreeType(value: .add)
-        )
+        let expected: Degree = Degree(13, alter: -1, type: .add)
         XCTAssertEqual(decoded, expected)
     }
 
@@ -209,9 +161,7 @@ class HarmonyTests: XCTestCase {
         </wrapper>
         """
         let decoded = try XMLDecoder().decode(HarmonyChord.RootOrFunction.self, from: xml.data(using: .utf8)!)
-        let expected: HarmonyChord.RootOrFunction = .root(
-            Root(step: RootStep(value: .a))
-        )
+        let expected: HarmonyChord.RootOrFunction = .root(Root(step: .a))
         XCTAssertEqual(decoded, expected)
     }
 }

@@ -12,13 +12,30 @@
 /// harmony of kind "other" can be spelled explicitly by using a series of degree elements together
 /// with a root.
 public struct Degree {
-    public let printObject: Bool?
+
+    // MARK: - Instance Properties
+
+    // MARK: Value
 
     public let value: DegreeValue
+
+    // MARK: Attributes
+
+    public let printObject: Bool?
+
+    // MARK: Elements
+
     public let alter: DegreeAlter
     public let type: DegreeType
 
-    public init(printObject: Bool? = nil, value: DegreeValue, alter: DegreeAlter, type: DegreeType) {
+    // MARK: - Initializers
+
+    public init(
+        _ value: DegreeValue,
+        alter: DegreeAlter,
+        type: DegreeType,
+        printObject: Bool? = nil
+    ) {
         self.value = value
         self.alter = alter
         self.type = type
