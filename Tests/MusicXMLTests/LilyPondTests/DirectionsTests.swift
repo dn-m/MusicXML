@@ -25,12 +25,7 @@ class DirectionsTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
         let expected = Note(
-            kind: .normal(
-                Note.Normal(
-                    pitchUnpitchedOrRest: PitchUnpitchedOrRest.rest(Rest()),
-                    duration: 1
-                )
-            ),
+            kind: .normal(Note.Normal(.rest(Rest()), duration: 1)),
             voice: "1",
             type: NoteType(.quarter),
             lyrics: [

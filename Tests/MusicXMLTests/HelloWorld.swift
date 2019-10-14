@@ -51,51 +51,35 @@ class HelloWorld: XCTestCase {
         </score-partwise>
         """
         let decoded = try MusicXML(string: xml)
-        
-        let expected = MusicXML(
-            Score(
-                traversal: .partwise(
-                    Partwise(
-                        header: Header(
-                            partList: PartList([.part(ScorePart(id: "P1", name: "Music"))])
-                        ),
-                        parts: [
-                            Partwise.Part(
-                                id: "P1",
-                                measures: [
-                                    Partwise.Measure(
-                                        number: "1",
-                                        musicData: [
-                                            .attributes(
-                                                Attributes(
-                                                    divisions: 1,
-                                                    keys: [Key(fifths: 0)],
-                                                    times: [Time(4, 4)],
-                                                    clefs: [Clef(sign: .g, line: 2)]
-                                                )
-                                            ),
-                                            .note(
-                                                Note(
-                                                    kind: .normal(
-                                                        Note.Normal(
-                                                            pitchUnpitchedOrRest: .pitch(
-                                                                Pitch(step: .c, octave: 4)
-                                                            ),
-                                                            duration: 4
-                                                        )
-                                                    ),
-                                                    type: .whole
-                                                )
-                                            )
-                                        ]
-                                    )
-                                ]
-                            )
-                        ]
-                    )
-                )
-            )
+
+        // Create the note
+        let note = Note(pitch: Pitch(step: .c, octave: 4), duration: 4, type: .whole)
+        // Create measure attributes
+        let attributes = Attributes(
+            divisions: 1,
+            keys: [Key(fifths: 0)],
+            times: [Time(4,4)],
+            clefs: [Clef(sign: .g, line: 2)]
         )
-        XCTAssertEqual(decoded, expected)
+        // Create the measure
+        let measure = Partwise.Measure(
+            number: "1",
+            musicData: [
+                .attributes(attributes),
+                .note(note)
+            ]
+        )
+        // Create the part
+        let part = Partwise.Part(id: "P1", measures: [measure])
+        // Create the score header
+        let header = Header(partList: PartList([.part(ScorePart(id: "P1", name: "Music"))]))
+        // Create the traversal
+        let traversal = Partwise(header: header, parts: [part])
+        // Create the score
+        let score = Score(traversal: .partwise(traversal))
+        // Create the MusicXML
+        let musicXML = MusicXML(score)
+
+        XCTAssertEqual(decoded, musicXML)
     }
 }

@@ -138,48 +138,28 @@ class PartwiseMeasureTests: XCTestCase {
                 ),
                 .note(
                     Note(
-                        kind: .normal(
-                            Note.Normal(
-                                pitchUnpitchedOrRest: .pitch(Pitch(step: .g, octave: 2)),
-                                duration: 1
-                            )
-                        ),
+                        kind: .normal(Note.Normal(.pitch(Pitch(step: .g, octave: 2)), duration: 1)),
                         voice: "1",
                         type: .quarter
                     )
                 ),
                 .note(
                     Note(
-                        kind: .normal(
-                            Note.Normal(
-                                pitchUnpitchedOrRest: .pitch(Pitch(step: .a, octave: 2)),
-                                duration: 1
-                            )
-                        ),
+                        kind: .normal(Note.Normal(.pitch(Pitch(step: .a, octave: 2)), duration: 1)),
                         voice: "1",
                         type: .quarter
                     )
                 ),
                 .note(
                     Note(
-                        kind: .normal(
-                            Note.Normal(
-                                pitchUnpitchedOrRest: .pitch(Pitch(step: .b, octave: 2)),
-                                duration: 1
-                            )
-                        ),
+                        kind: .normal(Note.Normal(.pitch(Pitch(step: .b, octave: 2)), duration: 1)),
                         voice: "1",
                         type: .quarter
                     )
                 ),
                 .note(
                     Note(
-                        kind: .normal(
-                            Note.Normal(
-                                pitchUnpitchedOrRest: .pitch(Pitch(step: .c, octave: 3)),
-                                duration: 1
-                            )
-                        ),
+                        kind: .normal(Note.Normal(.pitch(Pitch(step: .c, octave: 3)), duration: 1)),
                         voice: "1",
                         type: .quarter
                     )
