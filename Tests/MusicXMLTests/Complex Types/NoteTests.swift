@@ -157,8 +157,8 @@ class NoteTests: XCTestCase {
             type: .sixteenth,
             stem: .down,
             beams: [
-                Beam(value: .begin, number: .one),
-                Beam(value: .begin, number: .two)
+                Beam(.begin, number: .one),
+                Beam(.begin, number: .two)
             ]
         )
         XCTAssertEqual(decoded, expected)
@@ -226,7 +226,7 @@ class NoteTests: XCTestCase {
             type: .eighth,
             stem: Stem(.down, position: Position(defaultY: -70)),
             beams: [
-                Beam(value: .begin, number: .one)
+                Beam(.begin, number: .one)
             ]
         )
         XCTAssertEqual(decoded, expected)
@@ -253,7 +253,7 @@ class NoteTests: XCTestCase {
             isChord: true,
             voice: "1",
             type: .quarter,
-            notehead: Notehead(value: .normal, parentheses: true)
+            notehead: Notehead(.normal, parentheses: true)
         )
         XCTAssertEqual(decoded, expected)
     }

@@ -10,17 +10,21 @@
 /// text is ignored when the type is stop.
 public struct MultipleRest {
 
-    // MARK: - Attributes
+    // MARK: - Instance Properties
+
+    // MARK: Attributes
 
     public var useSymbols: Bool?
 
-    // MARK: - Value
+    // MARK: Value
 
     public var value: Int
 
-    public init(useSymbols: Bool? = nil, value: Int) {
-        self.useSymbols = useSymbols
+    // MARK: - Initializers
+
+    public init(_ value: Int, useSymbols: Bool? = nil) {
         self.value = value
+        self.useSymbols = useSymbols
     }
 }
 

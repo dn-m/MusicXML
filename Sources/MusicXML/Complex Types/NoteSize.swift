@@ -15,7 +15,7 @@ public struct NoteSize {
     public let value: NonNegativeDecimal
     public let type: NoteSizeType
 
-    public init(value: NonNegativeDecimal, type: NoteSizeType) {
+    public init(_ value: NonNegativeDecimal, type: NoteSizeType) {
         self.value = value
         self.type = type
     }

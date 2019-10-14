@@ -40,7 +40,7 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         try assertDecoded(xml,
-            equals: Notations([.fermata(Fermata(value: .normal))])
+            equals: Notations([.fermata(Fermata(.normal))])
         )
     }
 
@@ -70,8 +70,8 @@ class NotationsTests: XCTestCase {
             .ornaments(
                 Ornaments([.turn(HorizontalTurn())],
                     accidentalMarks: [
-                        AccidentalMark(value: .sharp, placement: .above),
-                        AccidentalMark(value: .threeQuartersFlat, placement: .above),
+                        AccidentalMark(.sharp, placement: .above),
+                        AccidentalMark(.threeQuartersFlat, placement: .above),
                     ]
                 )
             )
@@ -108,7 +108,7 @@ class NotationsTests: XCTestCase {
         """
         try assertDecoded(xml,
             equals: Notations([
-                .accidentalMark(AccidentalMark(value: .doubleSharp, placement: .above))
+                .accidentalMark(AccidentalMark(.doubleSharp, placement: .above))
             ])
         )
     }
@@ -169,7 +169,7 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         try assertDecoded(xml,
-            equals: Notations([.fermata(Fermata(value: .normal, type: .upright))])
+            equals: Notations([.fermata(Fermata(.normal, type: .upright))])
         )
     }
 

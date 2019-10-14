@@ -11,7 +11,7 @@ public struct OtherPlay {
     public let value: String
     public let type: String
 
-    public init(value: String, type: String) {
+    public init(_ value: String, type: String) {
         self.value = value
         self.type = type
     }

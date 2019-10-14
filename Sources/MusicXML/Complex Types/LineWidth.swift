@@ -11,7 +11,7 @@ public struct LineWidth {
     public let value: Tenths
     public let type: LineWidthType
 
-    public init(value: Tenths, type: LineWidthType) {
+    public init(_ value: Tenths, type: LineWidthType) {
         self.value = value
         self.type = type
     }

@@ -29,7 +29,7 @@ class PartNameTests: XCTestCase {
         let decoded = try XMLDecoder(trimValueWhitespaces: false).decode(NameDisplay.self, from: xml.data(using: .utf8)!)
         let expected = NameDisplay(texts: [
             .displayText("Trumpet in B"),
-            .accidentalText(AccidentalText(value: .flat)),
+            .accidentalText(AccidentalText(.flat)),
             .displayText(" 1")
         ])
         XCTAssertEqual(decoded, expected)

@@ -11,12 +11,20 @@ import XMLCoder
 /// can go in a miscellaneous-field element. The required name attribute indicates the type of
 /// metadata the element content represents.
 public struct MiscellaneousField {
-    // MARK: - Attributes
+
+    // MARK: - Instance Properties
+
+    // MARK: Attributes
+
     public let name: String
-    // MARK: - Value
+
+    // MARK: Value
+
     public let value: String
 
-    public init(name: String, value: String) {
+    // MARK: - Initializers
+
+    public init(_ value: String, name: String) {
         self.name = name
         self.value = value
     }

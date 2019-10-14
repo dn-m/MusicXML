@@ -7,6 +7,10 @@
 
 public struct AccordionMiddle {
     public let value: Int
+
+    public init(_ value: Int) {
+        self.value = value
+    }
 }
 
 extension AccordionMiddle: Equatable {}
@@ -28,6 +32,6 @@ extension AccordionMiddle: Codable {
 
 extension AccordionMiddle: ExpressibleByIntegerLiteral {
     public init(integerLiteral value: Int) {
-        self.init(value: value)
+        self.init(value)
     }
 }

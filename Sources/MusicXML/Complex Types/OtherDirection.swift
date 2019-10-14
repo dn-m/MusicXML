@@ -13,7 +13,7 @@ public struct OtherDirection {
     public let printObject: Bool?
     public let printStyleAlign: PrintStyleAlign?
 
-    public init(value: String, printObject: Bool? = nil, printStyleAlign: PrintStyleAlign? = nil) {
+    public init(_ value: String, printObject: Bool? = nil, printStyleAlign: PrintStyleAlign? = nil) {
         self.value = value
         self.printObject = printObject
         self.printStyleAlign = printStyleAlign

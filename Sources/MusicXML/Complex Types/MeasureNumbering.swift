@@ -11,7 +11,7 @@ public struct MeasureNumbering {
     public let value: MeasureNumberingValue
     public let printStyleAlign: PrintStyleAlign?
 
-    public init(value: MeasureNumberingValue, printStyleAlign: PrintStyleAlign? = nil) {
+    public init(_ value: MeasureNumberingValue, printStyleAlign: PrintStyleAlign? = nil) {
         self.value = value
         self.printStyleAlign = printStyleAlign
     }

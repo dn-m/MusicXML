@@ -15,7 +15,7 @@ public struct PrincipleVoice {
     public let symbol: PrincipleVoiceSymbol
     public let printStyleAlign: PrintStyleAlign?
 
-    public init(value: String, type: StartStop, symbol: PrincipleVoiceSymbol, printStyleAlign: PrintStyleAlign? = nil) {
+    public init(_ value: String, type: StartStop, symbol: PrincipleVoiceSymbol, printStyleAlign: PrintStyleAlign? = nil) {
         self.value = value
         self.type = type
         self.symbol = symbol

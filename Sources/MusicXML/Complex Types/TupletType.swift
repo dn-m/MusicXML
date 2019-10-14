@@ -12,7 +12,7 @@ public struct TupletType {
     public let font: Font?
     public let color: Color?
 
-    public init(value: NoteTypeValue, font: Font? = nil, color: Color? = nil) {
+    public init(_ value: NoteTypeValue, font: Font? = nil, color: Color? = nil) {
         self.value = value
         self.font = font
         self.color = color

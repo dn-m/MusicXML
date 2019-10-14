@@ -17,7 +17,7 @@ public struct OtherNotation {
     public let printStyle: PrintStyle?
     public let placement: AboveBelow?
 
-    public init(value: String, type: StartStopSingle, number: Int? = nil, printObject: Bool? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+    public init(_ value: String, type: StartStopSingle, number: Int? = nil, printObject: Bool? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
         self.value = value
         self.type = type
         self.number = number

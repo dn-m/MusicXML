@@ -12,7 +12,7 @@ public struct HoleClosed {
     /// element value is half.
     public let location: HoleClosedLocation?
 
-    public init(value: HoleClosedValue, location: HoleClosedLocation? = nil) {
+    public init(_ value: HoleClosedValue, location: HoleClosedLocation? = nil) {
         self.value = value
         self.location = location
     }

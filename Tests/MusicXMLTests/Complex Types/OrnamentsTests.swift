@@ -21,8 +21,8 @@ class OrnamentsTests: XCTestCase {
         let decoded = try XMLDecoder().decode(Ornaments.self, from: xml.data(using: .utf8)!)
         let expected = Ornaments([.turn(HorizontalTurn())],
             accidentalMarks: [
-                AccidentalMark(value: .sharp, placement: .above),
-                AccidentalMark(value: .threeQuartersFlat, placement: .above),
+                AccidentalMark(.sharp, placement: .above),
+                AccidentalMark(.threeQuartersFlat, placement: .above),
             ]
         )
 

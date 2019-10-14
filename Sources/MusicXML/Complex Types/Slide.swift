@@ -19,7 +19,7 @@ public struct Slide {
     public let font: Font
     public let bendSound: BendSound
 
-    public init(value: String? = nil, type: StartStop, number: Int? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting = DashedFormatting(), printStyle: PrintStyle = PrintStyle(), font: Font = Font(), bendSound: BendSound = BendSound()) {
+    public init(_ value: String? = nil, type: StartStop, number: Int? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting = DashedFormatting(), printStyle: PrintStyle = PrintStyle(), font: Font = Font(), bendSound: BendSound = BendSound()) {
         self.value = value
         self.type = type
         self.number = number

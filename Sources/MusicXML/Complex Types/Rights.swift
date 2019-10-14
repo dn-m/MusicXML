@@ -23,11 +23,6 @@ public struct Rights {
         self.value = value
         self.type = type
     }
-
-    public init(value: String, type: String? = nil) {
-        self.value = value
-        self.type = type
-    }
 }
 
 extension Rights: Equatable { }
