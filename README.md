@@ -143,6 +143,21 @@ Et voilà, we have willed into being a `MusicXML` value which represents our rig
 let musicXML = MusicXML(score)
 ```
 
+### 🧬 Decoding musicXML into a `MusicXML.Score`
+
+You can decode a `MusicXML` structure in a variety of ways:
+
+```Swift
+let fromData: MusicXML = try MusicXML(data: data)
+let fromString: MusicXML = try MusicXML(string: string)
+let fromURL: MusicXML = try MusicXML(url: url)
+```
+
+If you decode the musicXML representation of our "Hello, world!" composition, you will get a value equivalent to the one you have built by hand above.
+
+### 🚧 Work-in-progress: Encoding a `MusicXML.Score` into musicXML
+
+[Pre-release version 0.3.0](https://github.com/dn-m/MusicXML/milestone/1) will see the completion of the encoding from a `MusicXML.Score` into the musicXML format.
 
 
 ## Getting Started
@@ -165,20 +180,6 @@ let package = Package(
     ],
     targets: [ ... ]
 )
-```
-
-Then, import the `MusicXML` module into a file which uses it:
-
-```Swift
-import MusicXML
-```
-
-You can decode a `MusicXML` structure in a variety of ways:
-
-```Swift
-let fromData: MusicXML = try MusicXML(data: data)
-let fromString: MusicXML = try MusicXML(string: string)
-let fromURL: MusicXML = try MusicXML(url: url)
 ```
 
 ### Development
