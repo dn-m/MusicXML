@@ -23,8 +23,7 @@ public enum DirectionType {
     /// The coda element is the visual indicator of a coda sign. A sound element is needed to guide
     /// playback applications reliably.
 
-    // FIXME: #130 This should be `[EmptyPrintStyleAlign]`
-    case coda(EmptyPrintStyleAlign)
+    case coda([EmptyPrintStyleAlign])
     /// The damp element specifies a harp damping mark.
     case damp(EmptyPrintStyleAlign)
     /// The damp-all element specifies a harp damping mark for all strings.
@@ -46,8 +45,7 @@ public enum DirectionType {
     /// dynamics.
     ///
 
-    // FIXME: #130 This should be `[Dynamics]`
-    case dynamics(Dynamics)
+    case dynamics([Dynamics])
     /// The eyeglasses element specifies the eyeglasses symbol, common in commercial music.
     case eyeglasses(EmptyPrintStyleAlign)
     /// The harp-pedals type is used to create harp pedal diagrams. The pedal-step and pedal-alter
@@ -91,8 +89,7 @@ public enum DirectionType {
     /// The rehearsal type specifies a rehearsal mark. Language is Italian ("it") by default.
     /// Enclosure is square by default. Left justification is assumed if not specified.
     
-    // FIXME: #130 This should be `[FormattedText]`
-    case rehearsal(FormattedText)
+    case rehearsal([FormattedText])
     /// Scordatura string tunings are represented by a series of accord elements, similar to the
     /// staff-tuning elements. Strings are numbered from high to low.
     case scordatura(Scordatura)
@@ -113,7 +110,7 @@ public enum DirectionType {
     /// The words element specifies a standard text direction. Left justification is
     /// assumed if not specified. Language is Italian ("it") by default. Enclosure is none
     /// by default.
-    case words(FormattedText)
+    case words([FormattedText])
 }
 
 extension DirectionType: Equatable { }
@@ -205,7 +202,8 @@ extension DirectionType: Codable {
         } else if container.contains(.bracket) {
             self = .bracket(try decode(.bracket))
         } else if container.contains(.coda) {
-            self = .coda(try decode(.coda))
+            let singleValueContainer = try decoder.singleValueContainer()
+            self = .coda(try singleValueContainer.decode([EmptyPrintStyleAlign].self))
         } else if container.contains(.damp) {
             self = .damp(try decode(.damp))
         } else if container.contains(.dampAll) {
@@ -213,7 +211,8 @@ extension DirectionType: Codable {
         } else if container.contains(.dashes) {
             self = .dashes(try decode(.dashes))
         } else if container.contains(.dynamics) {
-            self = .dynamics(try decode(.dynamics))
+            let singleValueContainer = try decoder.singleValueContainer()
+            self = .dynamics(try singleValueContainer.decode([Dynamics].self))
         } else if container.contains(.eyeglasses) {
             self = .eyeglasses(try decode(.eyeglasses))
         } else if container.contains(.harpPedals) {
@@ -229,11 +228,13 @@ extension DirectionType: Codable {
         } else if container.contains(.pedal) {
             self = .pedal(try decode(.pedal))
         } else if container.contains(.percussion) {
-            self = .percussion(try decode(.percussion))
+            let singleValueContainer = try decoder.singleValueContainer()
+            self = .percussion(try singleValueContainer.decode([Percussion].self))
         } else if container.contains(.principleVoice) {
             self = .principleVoice(try decode(.principleVoice))
         } else if container.contains(.rehearsal) {
-            self = .rehearsal(try decode(.rehearsal))
+            let singleValueContainer = try decoder.singleValueContainer()
+            self = .rehearsal(try singleValueContainer.decode([FormattedText].self))
         } else if container.contains(.scordatura) {
             self = .scordatura(try decode(.scordatura))
         } else if container.contains(.segno) {
@@ -243,7 +244,8 @@ extension DirectionType: Codable {
         } else if container.contains(.wedge) {
             self = .wedge(try decode(.wedge))
         } else if container.contains(.words) {
-            self = .words(try decode(.words))
+            let singleValueContainer = try decoder.singleValueContainer()
+            self = .words(try singleValueContainer.decode([FormattedText].self))
         } else {
             throw DecodingError.typeMismatch(
                 DirectionType.self,

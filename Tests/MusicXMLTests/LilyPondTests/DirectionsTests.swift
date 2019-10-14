@@ -81,7 +81,7 @@ class DirectionsTests: XCTestCase {
         </direction>
         """
         let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
-        let expected = Direction([.wedge(Wedge(type: .stop)), .dynamics(Dynamics([.fff]))],
+        let expected = Direction([.wedge(Wedge(type: .stop)), .dynamics([Dynamics([.fff])])],
             placement: .below,
             offset: 2
         )
@@ -345,7 +345,19 @@ class DirectionsTests: XCTestCase {
         </direction-type>
         """
         let decoded = try XMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
-        let expected = DirectionType.coda(EmptyPrintStyleAlign())
+        let expected = DirectionType.coda([EmptyPrintStyleAlign()])
+        XCTAssertEqual(decoded, expected)
+    }
+    
+    func testCodaMultiple() throws {
+        let xml = """
+        <direction-type>
+           <coda/>
+           <coda/>
+        </direction-type>
+        """
+        let decoded = try XMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
+        let expected = DirectionType.coda([EmptyPrintStyleAlign(),EmptyPrintStyleAlign()])
         XCTAssertEqual(decoded, expected)
     }
 
@@ -356,7 +368,22 @@ class DirectionsTests: XCTestCase {
         </direction-type>
         """
         let decoded = try XMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
-        let expected = DirectionType.rehearsal(FormattedText("Crc", enclosure: .circle))
+        let expected = DirectionType.rehearsal([FormattedText("Crc", enclosure: .circle)])
+        XCTAssertEqual(decoded, expected)
+    }
+    
+    func testRehearsalMultiple() throws {
+        let xml = """
+        <direction-type>
+           <rehearsal enclosure="circle">Crc</rehearsal>
+           <rehearsal enclosure="circle">Crc</rehearsal>
+        </direction-type>
+        """
+        let decoded = try XMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
+        let expected = DirectionType.rehearsal([
+            FormattedText("Crc", enclosure: .circle),
+            FormattedText("Crc", enclosure: .circle)
+        ])
         XCTAssertEqual(decoded, expected)
     }
 }
