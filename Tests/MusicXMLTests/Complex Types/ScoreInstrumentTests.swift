@@ -18,8 +18,7 @@ class ScoreInstrumentTests: XCTestCase {
         </score-instrument>
         """
         let decoded = try XMLDecoder().decode(ScoreInstrument.self, from: xml.data(using: .utf8)!)
-        let expected = ScoreInstrument(id: "P1-I1", instrumentName: "Piano")
-
+        let expected = ScoreInstrument(id: "P1-I1", name: "Piano")
         XCTAssertEqual(decoded, expected)
     }
 }

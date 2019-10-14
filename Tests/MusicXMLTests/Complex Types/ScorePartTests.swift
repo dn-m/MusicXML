@@ -52,7 +52,7 @@ class ScorePartTests: XCTestCase {
             id: "P1",
             name: "Piano",
             partAbbreviation: "Pno.",
-            scoreInstrument: [ScoreInstrument(id: "P1-I1", instrumentName: "Piano")],
+            scoreInstrument: [ScoreInstrument(id: "P1-I1", name: "Piano")],
             midi: [
                 ScorePart.MIDI(
                     midiDevice: MIDIDevice(port: 1, id: "P1-I1"),

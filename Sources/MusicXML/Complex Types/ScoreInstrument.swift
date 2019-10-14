@@ -15,17 +15,34 @@ import XMLCoder
 /// without these elements in simple cases, such as where part names match General MIDI instrument
 /// names.
 public struct ScoreInstrument {
+
+    // MARK: - Instance Properties
+
+    // MARK: Attributes
+
     public var id: String
-    public var instrumentName: String
-    public var instrumentAbbreviation: String?
+
+    // MARK: Elements
+
+    public var name: String
+    public var abbreviation: String?
     public var sound: String?
     public var soloOrEnsemble: SoloEnsemble?
     public var virtualInstrument: VirtualInstrument?
 
-    public init(id: String, instrumentName: String, instrumentAbbreviation: String? = nil, sound: String? = nil, soloOrEnsemble: SoloEnsemble? = nil, virtualInstrument: VirtualInstrument? = nil) {
+    // MARK: Initializers
+
+    public init(
+        id: String,
+        name: String,
+        abbreviation: String? = nil,
+        sound: String? = nil,
+        soloOrEnsemble: SoloEnsemble? = nil,
+        virtualInstrument: VirtualInstrument? = nil
+    ) {
         self.id = id
-        self.instrumentName = instrumentName
-        self.instrumentAbbreviation = instrumentAbbreviation
+        self.name = name
+        self.abbreviation = abbreviation
         self.sound = sound
         self.soloOrEnsemble = soloOrEnsemble
         self.virtualInstrument = virtualInstrument
@@ -56,11 +73,19 @@ extension ScoreInstrument.SoloEnsemble: Codable {
         }
     }
     public init(from decoder: Decoder) throws {
-        let keyed = try decoder.container(keyedBy: CodingKeys.self)
-        do {
-            self = .ensemble(try keyed.decode(String.self, forKey: .ensemble))
-        } catch {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if container.contains(.ensemble) {
+            self = .ensemble(try container.decode(String.self, forKey: .ensemble))
+        } else if container.contains(.solo) {
             self = .solo
+        } else {
+            throw DecodingError.typeMismatch(
+                ScoreInstrument.SoloEnsemble.self,
+                DecodingError.Context(
+                    codingPath: decoder.codingPath,
+                    debugDescription: "Unrecognized ScoreInstrument.SoloEnsemble"
+                )
+            )
         }
     }
 }
@@ -69,8 +94,8 @@ extension ScoreInstrument: Equatable { }
 extension ScoreInstrument: Codable {
     enum CodingKeys: String, CodingKey {
         case id
-        case instrumentName = "instrument-name"
-        case instrumentAbbreviation = "instrument-abbreviation"
+        case name = "instrument-name"
+        case abbreviation = "instrument-abbreviation"
         case sound
         case soloOrEnsemble
         case virtualInstrument = "virtual-instrument"
