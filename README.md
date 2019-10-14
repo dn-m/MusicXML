@@ -71,9 +71,9 @@ First, we will create our whole note:
 
 ```Swift
 let note = Note(
-	pitch: Pitch(step: .c, octave: 4), 
-	duration: 4, 
-	type: .whole
+    pitch: Pitch(step: .c, octave: 4), 
+    duration: 4, 
+    type: .whole
 )
 ```
 
