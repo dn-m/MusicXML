@@ -11,6 +11,12 @@
 /// attribute group.
 public struct Accidental {
 
+    // MARK: - Instance Properties
+
+    // MARK: Value
+
+    public let value: AccidentalValue
+
     // MARK: - Attributes
     
     public let cautionary: Bool?
@@ -18,23 +24,76 @@ public struct Accidental {
     public let parentheses: Bool?
     public let bracket: Bool?
     public let size: SymbolSize?
-    public let position: Position?
-    public let printStyle: PrintStyle?
 
-    // MARK: - Value
+    // MARK: Attribute Groups
 
-    public let value: AccidentalValue
+    public let printStyle: PrintStyle
 
-    public init(cautionary: Bool? = nil, editorial: Bool? = nil, parentheses: Bool? = nil, bracket: Bool? = nil, size: SymbolSize? = nil, position: Position? = nil, printStyle: PrintStyle? = nil, value: AccidentalValue) {
+    public init(
+        _ value: AccidentalValue,
+        cautionary: Bool? = nil,
+        editorial: Bool? = nil,
+        parentheses: Bool? = nil,
+        bracket: Bool? = nil,
+        size: SymbolSize? = nil,
+        printStyle: PrintStyle = PrintStyle()
+    ) {
+        self.value = value
         self.cautionary = cautionary
         self.editorial = editorial
         self.parentheses = parentheses
         self.bracket = bracket
         self.size = size
-        self.position = position
         self.printStyle = printStyle
-        self.value = value
     }
+}
+
+extension Accidental {
+
+    // MARK: - Type Properties
+
+    public static let sharp = Accidental(.sharp)
+    public static let natural = Accidental(.natural)
+    public static let flat = Accidental(.flat)
+    public static let doubleSharp = Accidental(.doubleSharp)
+    public static let sharpSharp = Accidental(.sharpSharp)
+    public static let flatFlat = Accidental(.flatFlat)
+    public static let doubleFlat = Accidental(.doubleFlat)
+    public static let naturalSharp = Accidental(.naturalSharp)
+    public static let naturalFlat = Accidental(.naturalFlat)
+    public static let quarterFlat = Accidental(.quarterFlat)
+    public static let quarterSharp = Accidental(.quarterSharp)
+    public static let threeQuartersFlat = Accidental(.threeQuartersFlat)
+    public static let threeQuartersSharp = Accidental(.threeQuartersSharp)
+    public static let sharpDown = Accidental(.sharpDown)
+    public static let sharpUp = Accidental(.sharpUp)
+    public static let naturalDown = Accidental(.naturalDown)
+    public static let naturalUp = Accidental(.naturalUp)
+    public static let flatDown = Accidental(.flatDown)
+    public static let flatUp = Accidental(.flatUp)
+    public static let doubleSharpDown = Accidental(.doubleSharpDown)
+    public static let doubleSharpUp = Accidental(.doubleSharpUp)
+    public static let flatFlatDown = Accidental(.flatFlatDown)
+    public static let flatFlatUp = Accidental(.flatFlatUp)
+    public static let arrowDown = Accidental(.arrowDown)
+    public static let arrowUp = Accidental(.arrowUp)
+    public static let tripleSharp = Accidental(.tripleSharp)
+    public static let tripleFlat = Accidental(.tripleFlat)
+    public static let slashQuarterSharp = Accidental(.slashQuarterSharp)
+    public static let slashSharp = Accidental(.slashSharp)
+    public static let slashFlat = Accidental(.slashFlat)
+    public static let doubleSlashFlat = Accidental(.doubleSlashFlat)
+    public static let sharp1 = Accidental(.sharp1)
+    public static let sharp2 = Accidental(.sharp2)
+    public static let sharp3 = Accidental(.sharp3)
+    public static let sharp5 = Accidental(.sharp5)
+    public static let flat1 = Accidental(.flat1)
+    public static let flat2 = Accidental(.flat2)
+    public static let flat3 = Accidental(.flat3)
+    public static let flat4 = Accidental(.flat4)
+    public static let sori = Accidental(.sori)
+    public static let koron = Accidental(.koron)
+    public static let other = Accidental(.other)
 }
 
 extension Accidental: Equatable { }
@@ -48,5 +107,21 @@ extension Accidental: Codable {
         case position
         case printStyle
         case value = ""
+    }
+    public init(from decoder: Decoder) throws {
+        // Decode attribute groups
+        self.printStyle = try PrintStyle(from: decoder)
+        // Decode attributes
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.cautionary = try container.decodeIfPresent(Bool.self, forKey: .cautionary)
+        self.editorial = try container.decodeIfPresent(Bool.self, forKey: .editorial)
+        self.parentheses = try container.decodeIfPresent(Bool.self, forKey: .parentheses)
+        self.bracket = try container.decodeIfPresent(Bool.self, forKey: .bracket)
+        self.size = try container.decodeIfPresent(SymbolSize.self, forKey: .size)
+        // Decode value
+        self.value = try container.decode(AccidentalValue.self, forKey: .value)
+    }
+    public func encode(to encoder: Encoder) throws {
+        fatalError("TODO: Accidental.encode(to:)")
     }
 }

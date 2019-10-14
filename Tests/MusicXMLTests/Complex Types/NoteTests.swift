@@ -26,13 +26,8 @@ class NoteTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
         let expected = Note(
-            kind: .normal(
-                Note.Normal(
-                    chord: false,
-                    pitchUnpitchedOrRest: .pitch(Pitch(step: .c, alter: -1.5, octave: 4)),
-                    duration: 1
-                )
-            ),
+            pitch: Pitch(step: .c, alter: -1.5, octave: 4),
+            duration: 1,
             voice: "1",
             type: .quarter
         )
@@ -55,15 +50,11 @@ class NoteTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
         let expected = Note(
-            kind: .normal(
-                Note.Normal(
-                    pitchUnpitchedOrRest: .pitch(Pitch(step: .g, alter: 1, octave: 2)),
-                    duration: 1
-                )
-            ),
+            pitch: Pitch(step: .g, alter: 1, octave: 2),
+            duration: 1,
             voice: "1",
             type: .quarter,
-            accidental: Accidental(value: .sharp)
+            accidental: .sharp
         )
         XCTAssertEqual(decoded, expected)
     }
@@ -89,12 +80,8 @@ class NoteTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
         let expected = Note(
-            kind: .normal(
-                Note.Normal(
-                    pitchUnpitchedOrRest: .pitch(Pitch(step: .c, octave: 4)),
-                    duration: 56
-                )
-            ),
+            pitch: Pitch(step: .c, octave: 4),
+            duration: 56,
             voice: "1",
             type: .quarter,
             timeModification: TimeModification(actualNotes: 3, normalNotes: 2),
@@ -115,7 +102,13 @@ class NoteTests: XCTestCase {
           <type>quarter</type>
         </note>
         """
-        let expected = Note(kind: .normal(Note.Normal(chord: true, pitchUnpitchedOrRest: .pitch(Pitch(step: .e, octave: 5)), duration: 1)), voice: "1", type: .quarter)
+        let expected = Note(
+            pitch: Pitch(step: .e, octave: 5),
+            duration: 1,
+            isChord: true,
+            voice: "1",
+            type: .quarter
+        )
         try assertDecoded(xml, equals: expected)
     }
 
@@ -131,12 +124,7 @@ class NoteTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
         let expected = Note(
-            kind: .normal(
-                Note.Normal(
-                    pitchUnpitchedOrRest: .rest(Rest()),
-                    duration: 48
-                )
-            ),
+            kind: .normal(Note.Normal(.rest(Rest()), duration: 48)),
             voice: "1",
             type: .quarter,
             dots: [EmptyPlacement()]
@@ -162,15 +150,9 @@ class NoteTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
         let expected = Note(
-            kind: .normal(
-                Note.Normal(
-                    pitchUnpitchedOrRest: .pitch(
-                        Pitch(step: .f, alter: 1, octave: 5)
-                    ),
-                    duration: 1
-                )
-            ),
-            position: Position(defaultX: 368.91, defaultY: 0),
+            pitch: Pitch(step: .f, alter: 1, octave: 5),
+            duration: 1,
+            printStyle: PrintStyle(position: Position(defaultX: 368.91, defaultY: 0)),
             voice: "1",
             type: .sixteenth,
             stem: .down,
@@ -203,20 +185,17 @@ class NoteTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
         let expected = Note(
-            kind: .normal(
-                Note.Normal(
-                    pitchUnpitchedOrRest: .pitch(
-                        Pitch(step: .a, octave: 4)
-                    ),
-                    duration: 4,
-                    ties: Ties(start: Tie(type: .start), stop: Tie(type: .stop))
-                )
-            ),
-            position: Position(defaultX: 483.50, defaultY: -25.00),
+            pitch: Pitch(step: .a, octave: 4),
+            duration: 4,
+            ties: Ties(start: true, stop: true),
+            printStyle: PrintStyle(position: Position(defaultX: 483.50, defaultY: -25.00)),
             voice: "1",
             type: .quarter,
             stem: .up,
-            notations: Notations([.tied(Tied(type: .stop)), .tied(Tied(type: .start))])
+            notations: [
+                .tied(Tied(type: .stop)),
+                .tied(Tied(type: .start))
+            ]
         )
         XCTAssertEqual(decoded, expected)
     }
@@ -239,22 +218,16 @@ class NoteTests: XCTestCase {
         let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
         let expected = Note(
             kind: .normal(
-                Note.Normal(
-                    pitchUnpitchedOrRest: .unpitched(
-                        Unpitched(
-                            displayStep: .f,
-                            displayOctave: 4
-                        )
-                    ),
-                    duration: 1
-                )
+                Note.Normal(.unpitched(Unpitched(displayStep: .f, displayOctave: 4)), duration: 1)
             ),
-            position: Position(defaultX: 68),
+            printStyle: PrintStyle(position: Position(defaultX: 68)),
             instrument: Instrument(id: "P1-X2"),
             voice: "1",
             type: .eighth,
             stem: Stem(.down, position: Position(defaultY: -70)),
-            beams: [Beam(value: .begin, number: .one)]
+            beams: [
+                Beam(value: .begin, number: .one)
+            ]
         )
         XCTAssertEqual(decoded, expected)
     }
@@ -275,15 +248,9 @@ class NoteTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
         let expected = Note(
-            kind: .normal(
-                Note.Normal(
-                    chord: true,
-                    pitchUnpitchedOrRest: .pitch(
-                        Pitch(step: .c, octave: 5)
-                    ),
-                    duration: 1
-                )
-            ),
+            pitch: Pitch(step: .c, octave: 5),
+            duration: 1,
+            isChord: true,
             voice: "1",
             type: .quarter,
             notehead: Notehead(value: .normal, parentheses: true)

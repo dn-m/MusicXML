@@ -168,3 +168,12 @@ extension Notations: Codable {
         self.printObject = try attributesContainer.decodeIfPresent(Bool.self, forKey: .printObject)
     }
 }
+
+extension Notations: ExpressibleByArrayLiteral {
+
+    // MARK: - ExpressibleByArrayLiteral
+
+    public init(arrayLiteral elements: Notation...) {
+        self.init(elements)
+    }
+}

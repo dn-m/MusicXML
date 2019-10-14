@@ -13,29 +13,13 @@
 /// easier, as some programs handle one type of information much more readily than the other.
 public struct Note {
 
+    // MARK: - Instance Properties
+
+    // MARK: Kind
+
     public let kind: Kind
 
-    // MARK: - Attributes
-
-    public let position: Position
-    public let fontFamily: CommaSeparatedText?
-    public let fontStyle: FontStyle?
-    public let fontSize: FontSize?
-    public let fontWeight: FontWeight?
-    public let color: Color?
-    public let printStyle: PrintStyle?
-    public let printObject: Bool?
-    public let printDot: Bool?
-    public let printSpacing: Bool?
-    public let printLyric: Bool?
-    public let dynamics: Double?
-    public let endDynamics: Double?
-    public let attack: Divisions?
-    public let release: Divisions?
-    public let timeOnly: TimeOnly?
-    public let pizzicato: Bool?
-
-    // MARK: - Elements
+    // MARK: Elements
 
     public let instrument: Instrument?
     public let footnote: FormattedText?
@@ -54,15 +38,26 @@ public struct Note {
     public let lyrics: [Lyric]
     public let play: Play?
 
+    // MARK: Attributes
+
+    public let printObject: Bool?
+    public let printDot: Bool?
+    public let printSpacing: Bool?
+    public let printLyric: Bool?
+    public let dynamics: Double?
+    public let endDynamics: Double?
+    public let attack: Divisions?
+    public let release: Divisions?
+    public let timeOnly: TimeOnly?
+    public let pizzicato: Bool?
+
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
+
     public init(
         kind: Kind,
-        position: Position = Position(),
-        fontFamily: CommaSeparatedText? = nil,
-        fontStyle: FontStyle? = nil,
-        fontSize: FontSize? = nil,
-        fontWeight: FontWeight? = nil,
-        color: Color? = nil,
-        printStyle: PrintStyle? = nil,
+        printStyle: PrintStyle = PrintStyle(),
         printObject: Bool? = nil,
         printDot: Bool? = nil,
         printSpacing: Bool? = nil,
@@ -91,12 +86,6 @@ public struct Note {
         play: Play? = nil
     ) {
         self.kind = kind
-        self.position = position
-        self.fontFamily = fontFamily
-        self.fontStyle = fontStyle
-        self.fontSize = fontSize
-        self.fontWeight = fontWeight
-        self.color = color
         self.printStyle = printStyle
         self.printObject = printObject
         self.printDot = printDot
@@ -128,39 +117,128 @@ public struct Note {
 }
 
 extension Note {
-    public struct Normal: Equatable {
-        public let chord: Bool
+
+    // MARK: - Initializers
+
+    // MARK: Normal
+
+    /// Creates a pitched, normal `Note`.
+    public init(
+        pitch: Pitch,
+        duration: Int,
+        ties: Ties = Ties(),
+        isChord: Bool = false,
+        printStyle: PrintStyle = PrintStyle(),
+        printObject: Bool? = nil,
+        printDot: Bool? = nil,
+        printSpacing: Bool? = nil,
+        printLyric: Bool? = nil,
+        dynamics: Double? = nil,
+        endDynamics: Double? = nil,
+        attack: Divisions? = nil,
+        release: Divisions? = nil,
+        timeOnly: TimeOnly? = nil,
+        pizzicato: Bool? = nil,
+        instrument: Instrument? = nil,
+        footnote: FormattedText? = nil,
+        level: Level? = nil,
+        voice: String? = nil,
+        type: NoteType? = nil,
+        dots: [EmptyPlacement]? = nil,
+        accidental: Accidental? = nil,
+        timeModification: TimeModification? = nil,
+        stem: Stem? = nil,
+        notehead: Notehead? = nil,
+        noteheadText: NoteheadText? = nil,
+        staff: Int? = nil,
+        beams: [Beam]? = nil,
+        notations: Notations? = nil,
+        lyrics: [Lyric] = [],
+        play: Play? = nil
+    ) {
+        self.kind = .normal(
+            Note.Normal(.pitch(pitch), duration: duration, ties: ties, isChord: isChord)
+        )
+        self.printStyle = printStyle
+        self.printObject = printObject
+        self.printDot = printDot
+        self.printSpacing = printSpacing
+        self.printLyric = printLyric
+        self.dynamics = dynamics
+        self.endDynamics = endDynamics
+        self.attack = attack
+        self.release = release
+        self.timeOnly = timeOnly
+        self.pizzicato = pizzicato
+        self.instrument = instrument
+        self.footnote = footnote
+        self.level = level
+        self.voice = voice
+        self.type = type
+        self.dots = dots
+        self.accidental = accidental
+        self.timeModification = timeModification
+        self.stem = stem
+        self.notehead = notehead
+        self.noteheadText = noteheadText
+        self.staff = staff
+        self.beams = beams
+        self.notations = notations
+        self.lyrics = lyrics
+        self.play = play
+    }
+}
+
+extension Note {
+
+    // MARK: Kinds of `Note`
+
+    public struct Normal {
+        public let isChord: Bool
         public let pitchUnpitchedOrRest: PitchUnpitchedOrRest
         public let duration: Int
-        public let ties: Ties?
+        public let ties: Ties
 
-        public init(chord: Bool = false, pitchUnpitchedOrRest: PitchUnpitchedOrRest, duration: Int, ties: Ties? = nil) {
-            self.chord = chord
+        public init(
+            _ pitchUnpitchedOrRest: PitchUnpitchedOrRest,
+            duration: Int,
+            ties: Ties = Ties(),
+            isChord: Bool = false
+        ) {
+            self.isChord = isChord
             self.pitchUnpitchedOrRest = pitchUnpitchedOrRest
             self.duration = duration
             self.ties = ties
         }
     }
 
-    public struct Cue: Equatable {
-        public let chord: Bool
+    public struct Cue {
+        public let isChord: Bool
         public let pitchUnpitchedOrRest: PitchUnpitchedOrRest
         public let duration: Int
 
-        public init(chord: Bool = false, pitchUnpitchedOrRest: PitchUnpitchedOrRest, duration: Int) {
-            self.chord = chord
+        public init(
+            _ pitchUnpitchedOrRest: PitchUnpitchedOrRest,
+            duration: Int,
+            isChord: Bool = false
+        ) {
+            self.isChord = isChord
             self.pitchUnpitchedOrRest = pitchUnpitchedOrRest
             self.duration = duration
         }
     }
 
-    public struct Grace: Equatable {
-        public let chord: Bool
+    public struct Grace {
+        public let isChord: Bool
         public let pitchUnpitchedOrRest: PitchUnpitchedOrRest
-        public let ties: Ties?
+        public let ties: Ties
 
-        public init(chord: Bool = false, pitchUnpitchedOrRest: PitchUnpitchedOrRest, ties: Ties? = nil) {
-            self.chord = chord
+        public init(
+            _ pitchUnpitchedOrRest: PitchUnpitchedOrRest,
+            ties: Ties = Ties(),
+            chord: Bool = false
+        ) {
+            self.isChord = chord
             self.pitchUnpitchedOrRest = pitchUnpitchedOrRest
             self.ties = ties
         }
@@ -173,15 +251,14 @@ extension Note {
     }
 }
 
+extension Note.Normal: Equatable { }
+extension Note.Cue: Equatable { }
+extension Note.Grace: Equatable { }
+
 extension Note: Equatable { }
 extension Note: Codable {
     enum CodingKeys: String, CodingKey {
         // Attributes
-        case fontFamily = "font-family"
-        case fontStyle = "font-style"
-        case fontSize = "font-size"
-        case fontWeight = "font-weight"
-        case color
         case printStyle = "print-style"
         case printObject = "print-object"
         case printDot = "print-dot"
@@ -216,22 +293,19 @@ extension Note: Codable {
         case chord
         case duration
         case tie
-        
+        // Kind
         case pitch
         case rest
         case unpitched
     }
 
     public init(from decoder: Decoder) throws {
+
+        // Decode attribute groups
+        self.printStyle = try PrintStyle(from: decoder)
+
+        // Decode attributes
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        // Attributes
-        self.position = try Position(from: decoder)
-        self.fontFamily = try container.decodeIfPresent(CommaSeparatedText.self, forKey: .fontFamily)
-        self.fontStyle = try container.decodeIfPresent(FontStyle.self, forKey: .fontStyle)
-        self.fontSize = try container.decodeIfPresent(FontSize.self, forKey: .fontSize)
-        self.fontWeight = try container.decodeIfPresent(FontWeight.self, forKey: .fontWeight)
-        self.color = try container.decodeIfPresent(Color.self, forKey: .color)
-        self.printStyle = try container.decodeIfPresent(PrintStyle.self, forKey: .printStyle)
         self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
         self.printDot = try container.decodeIfPresent(Bool.self, forKey: .printDot)
         self.printSpacing = try container.decodeIfPresent(Bool.self, forKey: .printSpacing)
@@ -242,13 +316,13 @@ extension Note: Codable {
         self.release = try container.decodeIfPresent(Divisions.self, forKey: .release)
         self.timeOnly = try container.decodeIfPresent(TimeOnly.self, forKey: .timeOnly)
         self.pizzicato = try container.decodeIfPresent(Bool.self, forKey: .pizzicato)
+
         // Decode elements
         self.instrument = try container.decodeIfPresent(Instrument.self, forKey: .instrument)
         self.footnote = try container.decodeIfPresent(FormattedText.self, forKey: .footnote)
         self.level = try container.decodeIfPresent(Level.self, forKey: .level)
         self.voice = try container.decodeIfPresent(String.self, forKey: .voice)
         self.type = try container.decodeIfPresent(NoteType.self, forKey: .type)
-
         self.dots = try container.decodeIfPresent([EmptyPlacement].self, forKey: .dots)
         self.accidental = try container.decodeIfPresent(Accidental.self, forKey: .accidental)
         self.timeModification = try container.decodeIfPresent(TimeModification.self, forKey: .timeModification)
@@ -261,8 +335,22 @@ extension Note: Codable {
         self.lyrics = try container.decode([Lyric].self, forKey: .lyrics)
         self.play = try container.decodeIfPresent(Play.self, forKey: .play)
 
-        let chordEmptyElement = try container.decodeIfPresent(Empty.self, forKey: .chord)
-        let ties = try container.decodeIfPresent([Tie].self, forKey: .tie).map(Ties.init)
+        // Decode kind
+
+        // Only `normal` and `grace` notes have ties, so defer `Tie` parsing and initialization
+        // until we know we need them.
+        func ties() throws -> Ties {
+            return Ties(ties: try container.decode([Tie].self, forKey: .tie))
+        }
+
+        // Only `normal` and `cue` notes have durations, so defer `duration` parsing until we know
+        // we need it.
+        func duration() throws -> Int {
+            return try container.decode(Int.self, forKey: .duration)
+        }
+
+        // The `Note` is a chord if it contains an empty `<chord/>` element.
+        let isChord = container.contains(.chord)
 
         // Decode pitch / unpitched / rest
         let pitchUnpitchedOrRest: PitchUnpitchedOrRest
@@ -277,35 +365,25 @@ extension Note: Codable {
             pitchUnpitchedOrRest = .unpitched(unpitched)
         }
 
-        // Decode kind
         if container.contains(.grace) {
             self.kind = .grace(
-                Note.Grace(
-                    chord: chordEmptyElement != nil,
-                    pitchUnpitchedOrRest: pitchUnpitchedOrRest,
-                    ties: ties
-                )
+                Note.Grace(pitchUnpitchedOrRest, ties: try ties(), chord: isChord)
             )
         } else if container.contains(.cue) {
             self.kind = .cue(
-                Note.Cue(
-                    chord: chordEmptyElement != nil,
-                    pitchUnpitchedOrRest: pitchUnpitchedOrRest,
-                    duration: try container.decode(Int.self, forKey: .duration)
-                )
+                Note.Cue(pitchUnpitchedOrRest, duration: try duration(), isChord: isChord)
             )
         } else {
             self.kind = .normal(
-                Normal(
-                    chord: chordEmptyElement != nil,
-                    pitchUnpitchedOrRest: pitchUnpitchedOrRest,
-                    duration: try container.decode(Int.self, forKey: .duration),
-                    ties: ties
+                Normal(pitchUnpitchedOrRest,
+                    duration: try duration(),
+                    ties: try ties(),
+                    isChord: isChord
                 )
             )
         }
     }
     public func encode(to encoder: Encoder) throws {
-        fatalError()
+        fatalError("TODO: Note.encode(to:)")
     }
 }
