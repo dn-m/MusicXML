@@ -81,7 +81,7 @@ class DirectionsTests: XCTestCase {
         </direction>
         """
         let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
-        let expected = Direction([.wedge(Wedge(type: .stop)), .dynamics(Dynamics([.fff]))],
+        let expected = Direction([.wedge(Wedge(type: .stop)), .dynamics([Dynamics([.fff])])],
             placement: .below,
             offset: 2
         )

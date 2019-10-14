@@ -47,7 +47,7 @@ public enum DirectionType {
     ///
 
     // FIXME: #130 This should be `[Dynamics]`
-    case dynamics(Dynamics)
+    case dynamics([Dynamics])
     /// The eyeglasses element specifies the eyeglasses symbol, common in commercial music.
     case eyeglasses(EmptyPrintStyleAlign)
     /// The harp-pedals type is used to create harp pedal diagrams. The pedal-step and pedal-alter
@@ -213,7 +213,8 @@ extension DirectionType: Codable {
         } else if container.contains(.dashes) {
             self = .dashes(try decode(.dashes))
         } else if container.contains(.dynamics) {
-            self = .dynamics(try decode(.dynamics))
+            let singleValueContainer = try decoder.singleValueContainer()
+            self = .dynamics(try singleValueContainer.decode([Dynamics].self))
         } else if container.contains(.eyeglasses) {
             self = .eyeglasses(try decode(.eyeglasses))
         } else if container.contains(.harpPedals) {
