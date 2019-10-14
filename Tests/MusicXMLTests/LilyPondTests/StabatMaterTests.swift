@@ -39,6 +39,23 @@ class StabatMaterTests: XCTestCase {
         )
         XCTAssertEqual(decoded, expected)
     }
+    
+    func testWordsMultipleInDirectionType() throws {
+        let xml = """
+        <direction-type>
+            <words font-weight="bold">Largo</words>
+            <words font-weight="bold">Largo</words>
+        </direction-type>
+        """
+        let decoded = try XMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
+        let expected = DirectionType.words(
+            [
+                FormattedText("Largo", printStyle: PrintStyle(font: Font(weight: .bold))),
+                FormattedText("Largo", printStyle: PrintStyle(font: Font(weight: .bold)))
+            ]
+        )
+        XCTAssertEqual(decoded, expected)
+    }
 
     func testDynamicsDirection() throws {
         let xml = """
