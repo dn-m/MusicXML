@@ -78,3 +78,12 @@ extension PartList: Codable {
         self.parts = try singleValue.decode([Item].self)
     }
 }
+
+extension PartList: ExpressibleByArrayLiteral {
+
+    // MARK: - ExpressibleByArrayLiteral
+    
+    public init(arrayLiteral elements: Item...) {
+        self.init(elements)
+    }
+}
