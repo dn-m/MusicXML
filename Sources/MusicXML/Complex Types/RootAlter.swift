@@ -10,13 +10,30 @@
 /// root-alter information. In that case, the print-object attribute of the root-alter element can
 /// be set to no.
 public struct RootAlter {
+
+    // MARK: - Instance Propertes
+
+    // MARK: Value
+
     public let value: Double
+
+    // MARK: Attributes
+
     public let printObject: Bool?
-    public let printStyle: PrintStyle
     public let location: LeftRight?
 
+    // MARK: Attribute Groups
 
-    public init(value: Double, printObject: Bool? = nil, printStyle: PrintStyle = PrintStyle(), location: LeftRight? = nil) {
+    public let printStyle: PrintStyle
+
+    // MARK: - Initializers
+
+    public init(
+        _ value: Double,
+        printObject: Bool? = nil,
+        printStyle: PrintStyle = PrintStyle(),
+        location: LeftRight? = nil
+    ) {
         self.value = value
         self.printObject = printObject
         self.printStyle = printStyle
@@ -43,6 +60,12 @@ extension RootAlter: Codable {
 
 extension RootAlter: ExpressibleByFloatLiteral {
     public init(floatLiteral value: Double) {
-        self.init(value: value)
+        self.init(value)
+    }
+}
+
+extension RootAlter: ExpressibleByIntegerLiteral {
+    public init(integerLiteral value: Int) {
+        self.init(Double(value))
     }
 }

@@ -12,11 +12,24 @@
 /// plus-minus attribute is used to indicate if plus and minus symbols should be used instead of
 /// sharp and flat symbols to display the degree alteration; it is no by default.
 public struct DegreeAlter {
+
+    // MARK: - Instance Properties
+
+    // MARK: Value
+
     public let value: Int
-    public let printStyle: PrintStyle
+
+    // MARK: Attributes
+
     public let plusMinus: Bool?
 
-    public init(value: Int, printStyle: PrintStyle = PrintStyle(), plusMinus: Bool? = nil) {
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
+
+    // MARK: - Initializers
+
+    public init(_ value: Int, printStyle: PrintStyle = PrintStyle(), plusMinus: Bool? = nil) {
         self.value = value
         self.printStyle = printStyle
         self.plusMinus = plusMinus
@@ -35,5 +48,12 @@ extension DegreeAlter: Codable {
         self.printStyle = try PrintStyle(from: decoder)
         self.value = try container.decode(Int.self, forKey: .value)
         self.plusMinus = try container.decodeIfPresent(Bool.self, forKey: .plusMinus)
+    }
+}
+
+extension DegreeAlter: ExpressibleByIntegerLiteral {
+    // MARK: - ExpressibleByIntegerLiteral
+    public init(integerLiteral value: Int) {
+        self.init(value)
     }
 }
