@@ -11,7 +11,15 @@ import XMLCoder
 /// be a part of either the score-instrument element at the start of a part, or the sound element
 /// within a part. The id attribute refers to the score-instrument affected by the change.
 public struct MIDIInstrument {
+
+    // MARK: - Instance Properties
+
+    // MARK: Attributes
+
     public var id: String
+
+    // MARK: Elements
+
     /// The midi-channel element specifies a MIDI 1.0 channel number ranging from 1 to 16.
     public var channel: Int?
     /// The midi-name element corresponds to a ProgramName meta-event within a Standard MIDI File.
