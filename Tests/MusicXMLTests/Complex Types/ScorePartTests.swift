@@ -58,8 +58,8 @@ class ScorePartTests: XCTestCase {
                     midiDevice: MIDIDevice(port: 1, id: "P1-I1"),
                     midiInstrument: MIDIInstrument(
                         id: "P1-I1",
-                        midiChannel: 1,
-                        midiProgram: 1,
+                        channel: 1,
+                        program: 1,
                         volume: 78.7402,
                         pan: 0
                     )
@@ -68,8 +68,8 @@ class ScorePartTests: XCTestCase {
                     midiDevice: MIDIDevice(port: 2, id: "P1-I2"),
                     midiInstrument: MIDIInstrument(
                         id: "P1-I2",
-                        midiChannel: 1,
-                        midiProgram: 1,
+                        channel: 1,
+                        program: 1,
                         volume: 50,
                         pan: -45
                     )

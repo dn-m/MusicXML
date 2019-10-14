@@ -51,21 +51,21 @@ public struct MIDIInstrument {
 
     public init(
         id: String,
-        midiChannel: Int? = nil,
-        midiName: String? = nil,
-        midiBank: Int? = nil,
-        midiProgram: Int? = nil,
-        midiUnpitched: Int? = nil,
+        channel: Int? = nil,
+        name: String? = nil,
+        bank: Int? = nil,
+        program: Int? = nil,
+        unpitched: Int? = nil,
         volume: Double? = nil,
         pan: Int? = nil,
         elevation: Int? = nil
     ) {
         self.id = id
-        self.channel = midiChannel
-        self.name = midiName
-        self.bank = midiBank
-        self.program = midiProgram
-        self.unpitched = midiUnpitched
+        self.channel = channel
+        self.name = name
+        self.bank = bank
+        self.program = program
+        self.unpitched = unpitched
         self.volume = volume
         self.pan = pan
         self.elevation = elevation
