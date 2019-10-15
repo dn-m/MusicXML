@@ -20,6 +20,15 @@ public struct Timewise {
     }
 }
 
+extension Timewise {
+
+    // MARK: - Instance Methods
+
+    public func toPartwise() -> Partwise {
+        fatalError()
+    }
+}
+
 extension Timewise: Equatable { }
 
 extension Timewise: Codable {
