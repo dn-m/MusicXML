@@ -24,7 +24,48 @@ extension Partwise {
     // MARK: - Instance Methods
 
     public func toTimewise() -> Timewise {
-        fatalError()
+        // FIXME: Consider sharing this across `Partwise.Measure` and `Timewise.Measure` under the
+        // hood.
+        struct MeasureAttributes: Equatable, Hashable {
+            let number: String
+            let text: String?
+            let implicit: Bool?
+            let nonControlling: Bool?
+            let width: Tenths?
+            let optionalUniqueID: Int?
+        }
+        var partsByMeasureAttributes: [MeasureAttributes: [Timewise.Part]] = [:]
+        for partwisePart in parts {
+            for partwiseMeasure in partwisePart.measures {
+                let attrs = MeasureAttributes(
+                    number: partwiseMeasure.number,
+                    text: partwiseMeasure.text,
+                    implicit: partwiseMeasure.implicit,
+                    nonControlling: partwiseMeasure.nonControlling,
+                    width: partwiseMeasure.width,
+                    optionalUniqueID: partwiseMeasure.optionalUniqueID
+                )
+                let timewisePart = Timewise.Part(
+                    id: partwisePart.id,
+                    musicData: partwiseMeasure.musicData
+                )
+                partsByMeasureAttributes[attrs, default: []].append(timewisePart)
+            }
+        }
+        return Timewise(
+            header: header,
+            measures: partsByMeasureAttributes.map { attrs, parts in
+                Timewise.Measure(
+                    number: attrs.number,
+                    text: attrs.text,
+                    implicit: attrs.implicit,
+                    nonControlling: attrs.nonControlling,
+                    width: attrs.width,
+                    optionalUniqueID: attrs.optionalUniqueID,
+                    parts: parts
+                )
+            }
+        )
     }
 }
 

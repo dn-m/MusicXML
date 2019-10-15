@@ -10,6 +10,8 @@ public struct Tenths {
 }
 
 extension Tenths: Equatable { }
+extension Tenths: Hashable { }
+
 extension Tenths: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
@@ -31,3 +33,5 @@ extension Tenths: ExpressibleByIntegerLiteral {
         self.value = Double(value)
     }
 }
+
+
