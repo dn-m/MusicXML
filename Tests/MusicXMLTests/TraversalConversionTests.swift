@@ -44,6 +44,8 @@ class TraversalConversionTests: XCTestCase {
         )
         let timewiseMeasure = Timewise.Measure(number: "1", parts: [timewisePart])
         let timewise = Timewise(header: header, measures: [timewiseMeasure])
+        XCTAssertEqual(timewise.toPartwise(), partwise)
+        XCTAssertEqual(partwise.toTimewise(), timewise)
         XCTAssertEqual(timewise.toPartwise().toTimewise(), timewise)
         XCTAssertEqual(partwise.toTimewise().toPartwise(), partwise)
     }
