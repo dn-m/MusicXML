@@ -28,19 +28,12 @@ extension Partwise {
         var partsByMeasureAttributes: [MeasureAttributes: [Timewise.Part]] = [:]
         for partwisePart in parts {
             for partwiseMeasure in partwisePart.measures {
-                let attrs = MeasureAttributes(
-                    number: partwiseMeasure.number,
-                    text: partwiseMeasure.text,
-                    implicit: partwiseMeasure.implicit,
-                    nonControlling: partwiseMeasure.nonControlling,
-                    width: partwiseMeasure.width,
-                    optionalUniqueID: partwiseMeasure.optionalUniqueID
-                )
                 let timewisePart = Timewise.Part(
                     id: partwisePart.id,
                     musicData: partwiseMeasure.musicData
                 )
-                partsByMeasureAttributes[attrs, default: []].append(timewisePart)
+                partsByMeasureAttributes[partwiseMeasure.attributes, default: []]
+                    .append(timewisePart)
             }
         }
         return Timewise(

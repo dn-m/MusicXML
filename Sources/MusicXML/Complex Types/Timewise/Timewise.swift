@@ -30,12 +30,7 @@ extension Timewise {
         for timewiseMeasure in measures {
             for timewisePart in timewiseMeasure.parts {
                 let partwiseMeasure = Partwise.Measure(
-                    number: timewiseMeasure.number,
-                    text: timewiseMeasure.text,
-                    implicit: timewiseMeasure.implicit,
-                    nonControlling: timewiseMeasure.nonControlling,
-                    width: timewiseMeasure.width,
-                    optionalUniqueID: timewiseMeasure.optionalUniqueID,
+                    attributes: timewiseMeasure.attributes,
                     musicData: timewisePart.musicData
                 )
                 measuresByPartID[timewisePart.id, default: []].append(partwiseMeasure)

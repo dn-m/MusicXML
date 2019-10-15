@@ -57,7 +57,7 @@ extension Partwise {
 
         // MARK: Attributes
 
-        private let attributes: MeasureAttributes
+        internal let attributes: MeasureAttributes
 
         // MARK: Elements
 
@@ -82,6 +82,11 @@ extension Partwise {
                 width: width,
                 optionalUniqueID: optionalUniqueID
             )
+            self.musicData = musicData
+        }
+
+        internal init(attributes: MeasureAttributes, musicData: [MusicData]) {
+            self.attributes = attributes
             self.musicData = musicData
         }
 

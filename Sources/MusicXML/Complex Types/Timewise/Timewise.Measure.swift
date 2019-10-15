@@ -57,7 +57,7 @@ extension Timewise {
 
         // MARK: Attributes
 
-        private let attributes: MeasureAttributes
+        internal let attributes: MeasureAttributes
 
         // MARK: Elements
 
@@ -83,6 +83,11 @@ extension Timewise {
                 width: width,
                 optionalUniqueID: optionalUniqueID
             )
+            self.parts = parts
+        }
+
+        internal init(attributes: MeasureAttributes, parts: [Part]) {
+            self.attributes = attributes
             self.parts = parts
         }
 
