@@ -23,6 +23,7 @@ extension Partwise {
 
     // MARK: - Instance Methods
 
+    /// - Returns: A `Timewise` representation of this `Partwise` traversal.
     public func toTimewise() -> Timewise {
         // FIXME: Consider sharing this across `Partwise.Measure` and `Timewise.Measure` under the
         // hood.
