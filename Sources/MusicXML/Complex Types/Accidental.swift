@@ -9,6 +9,7 @@
 /// are indicated by attributes. Values for these attributes are "no" if not present. Specific
 /// graphic display such as parentheses, brackets, and size are controlled by the level-display
 /// attribute group.
+@dynamicMemberLookup
 public struct Accidental {
 
     // MARK: - Instance Properties
@@ -45,6 +46,11 @@ public struct Accidental {
         self.bracket = bracket
         self.size = size
         self.printStyle = printStyle
+    }
+
+    /// - Returns: A `PrintStyle` attribute.
+    public subscript <T> (dynamicMember keyPath: KeyPath<PrintStyle, T>) -> T {
+        return printStyle[keyPath: keyPath]
     }
 }
 

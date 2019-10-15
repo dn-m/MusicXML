@@ -7,6 +7,7 @@
 
 /// The print-style attribute group collects the most popular combination of printing attributes:
 /// position, font, and color.
+@dynamicMemberLookup
 public struct PrintStyle {
     public let position: Position
     public let font: Font
@@ -16,6 +17,11 @@ public struct PrintStyle {
         self.position = position
         self.font = font
         self.color = color
+    }
+
+    /// - Returns: A `Position` attribute.
+    public subscript <T> (dynamicMember keyPath: KeyPath<Position, T>) -> T {
+        return position[keyPath: keyPath]
     }
 }
 
