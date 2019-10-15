@@ -12,7 +12,8 @@ let package = Package(
             targets: ["MusicXML"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/jsbean/XMLCoder", .branch("master"))
+        .package(url: "https://github.com/jsbean/XMLCoder", .branch("master")),
+        .package(url: "https://github.com/jpsim/Yams.git", from: "2.0.0")
     ],
     targets: [
         .target(
@@ -20,6 +21,6 @@ let package = Package(
             dependencies: ["XMLCoder"]),
         .testTarget(
             name: "MusicXMLTests",
-            dependencies: ["MusicXML"]),
+            dependencies: ["MusicXML", "Yams"]),
     ]
 )

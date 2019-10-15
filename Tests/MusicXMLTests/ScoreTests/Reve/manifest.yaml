@@ -1,0 +1,12 @@
+parsing:
+    xml_file_name: reve.musicxml
+    assert: false
+
+comparison:
+    expectation_class_name: ReveParsingExpectation
+    assert: false
+
+metadata:
+    display_name: Reve
+    description: First four bars of "Après un rêve" excerpted from "The MIDI-Compatible Part" tutorial of MusicXML.
+    source: https://www.musicxml.com/tutorial/the-midi-compatible-part/
