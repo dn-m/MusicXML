@@ -25,16 +25,6 @@ extension Partwise {
 
     /// - Returns: A `Timewise` representation of this `Partwise` traversal.
     public func toTimewise() -> Timewise {
-        // FIXME: Consider sharing this across `Partwise.Measure` and `Timewise.Measure` under the
-        // hood.
-        struct MeasureAttributes: Equatable, Hashable {
-            let number: String
-            let text: String?
-            let implicit: Bool?
-            let nonControlling: Bool?
-            let width: Tenths?
-            let optionalUniqueID: Int?
-        }
         var partsByMeasureAttributes: [MeasureAttributes: [Timewise.Part]] = [:]
         for partwisePart in parts {
             for partwiseMeasure in partwisePart.measures {

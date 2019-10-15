@@ -50,14 +50,20 @@ extension Partwise {
     //     width %tenths; #IMPLIED
     //     %optional-unique-id;
     // >
+    @dynamicMemberLookup
     public struct Measure: Equatable {
-        public let number: String
-        public let text: String?
-        public let implicit: Bool?
-        public let nonControlling: Bool?
-        public let width: Tenths?
-        public let optionalUniqueID: Int?
+
+        // MARK: Instance Properties
+
+        // MARK: Attributes
+
+        private let attributes: MeasureAttributes
+
+        // MARK: Elements
+
         public let musicData: [MusicData]
+
+        // MARK: - Initializers
 
         public init(
             number: String,
@@ -68,13 +74,20 @@ extension Partwise {
             optionalUniqueID: Int? = nil,
             musicData: [MusicData] = []
         ) {
-            self.number = number
-            self.text = text
-            self.implicit = implicit
-            self.nonControlling = nonControlling
-            self.width = width
-            self.optionalUniqueID = optionalUniqueID
+            self.attributes = MeasureAttributes(
+                number: number,
+                text: text,
+                implicit: implicit,
+                nonControlling: nonControlling,
+                width: width,
+                optionalUniqueID: optionalUniqueID
+            )
             self.musicData = musicData
+        }
+
+        /// - Returns: A measure attribute.
+        public subscript <T> (dynamicMember keyPath: KeyPath<MeasureAttributes, T>) -> T {
+            return attributes[keyPath: keyPath]
         }
     }
 }
@@ -83,27 +96,13 @@ extension Partwise.Measure: Codable {
 
     // MARK: - Codable
 
-    enum CodingKeys: String, CodingKey {
-        case number
-        case text
-        case implicit
-        case nonControlling = "non-controlling"
-        case width
-        case optionalUniqueID = "optional-unique-id"
+    private enum CodingKeys: String, CodingKey {
         case musicData
     }
 
     public init(from decoder: Decoder) throws {
-        // Decode attributes
-        let attr = try decoder.container(keyedBy: CodingKeys.self)
-        self.number = try attr.decode(String.self, forKey: .number)
-        self.text = try attr.decodeIfPresent(String.self, forKey: .text)
-        self.implicit = try attr.decodeIfPresent(Bool.self, forKey: .implicit)
-        self.nonControlling = try attr.decodeIfPresent(Bool.self, forKey: .nonControlling)
-        self.width = try attr.decodeIfPresent(Tenths.self, forKey: .width)
-        self.optionalUniqueID = try attr.decodeIfPresent(Int.self, forKey: .optionalUniqueID)
-        // Decode music data elements
-        let musicDataContainer = try decoder.singleValueContainer()
-        self.musicData = try musicDataContainer.decode([MusicData].self)
+        self.attributes = try MeasureAttributes(from: decoder)
+        let container = try decoder.singleValueContainer()
+        self.musicData = try container.decode([MusicData].self)
     }
 }
