@@ -18,7 +18,7 @@ public struct MeasureAttributes {
 extension MeasureAttributes: Equatable { }
 extension MeasureAttributes: Hashable { }
 
-extension MeasureAttributes: Decodable {
+extension MeasureAttributes: Codable {
     private enum CodingKeys: String, CodingKey {
         case number
         case text
