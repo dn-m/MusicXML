@@ -139,7 +139,7 @@ let score = Score(traversal: .partwise(traversal))
 
 Et voilà, we have willed into being a `MusicXML` value which represents our rigorous masterpiece.
 
-```
+```Swift
 let musicXML = MusicXML(score)
 ```
 
