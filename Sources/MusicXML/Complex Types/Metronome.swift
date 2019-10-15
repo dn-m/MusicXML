@@ -178,15 +178,11 @@ enum MetronomeRegularComponent {
     case perMinute(PerMinute)
 }
 
-extension MetronomeRegularComponent: Codable {
+extension MetronomeRegularComponent: Decodable {
     enum CodingKeys: String, CodingKey {
         case beatUnit = "beat-unit"
         case beatUnitDot = "beat-unit-dot"
         case perMinute = "per-minute"
-    }
-
-    func encode(to encoder: Encoder) throws {
-        fatalError("should never be used")
     }
     internal init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
