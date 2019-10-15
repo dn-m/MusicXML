@@ -24,8 +24,24 @@ extension Timewise {
 
     // MARK: - Instance Methods
 
+    /// - Returns: A `Partwise` representation of this `Timewise` traversal.
     public func toPartwise() -> Partwise {
-        fatalError()
+        var measuresByPartID: [String: [Partwise.Measure]] = [:]
+        for timewiseMeasure in measures {
+            for timewisePart in timewiseMeasure.parts {
+                let partwiseMeasure = Partwise.Measure(
+                    number: timewiseMeasure.number,
+                    text: timewiseMeasure.text,
+                    implicit: timewiseMeasure.implicit,
+                    nonControlling: timewiseMeasure.nonControlling,
+                    width: timewiseMeasure.width,
+                    optionalUniqueID: timewiseMeasure.optionalUniqueID,
+                    musicData: timewisePart.musicData
+                )
+                measuresByPartID[timewisePart.id, default: []].append(partwiseMeasure)
+            }
+        }
+        return Partwise(header: header, parts: measuresByPartID.map(Partwise.Part.init))
     }
 }
 
