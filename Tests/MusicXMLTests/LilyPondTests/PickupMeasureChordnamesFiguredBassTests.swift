@@ -44,7 +44,7 @@ class PickupMeasureChordnamesFiguredBassTests: XCTestCase {
         XCTAssertEqual(decoded, expected)
     }
 
-    func testFiguredBass() throws {
+    func testFiguredBassDecoding() throws {
         let xml = """
         <figured-bass>
           <figure><figure-number>3</figure-number></figure>
@@ -54,5 +54,9 @@ class PickupMeasureChordnamesFiguredBassTests: XCTestCase {
         let decoded = try XMLDecoder().decode(FiguredBass.self, from: xml.data(using: .utf8)!)
         let expected = FiguredBass([Figure(figureNumber: "3")], duration: 1)
         XCTAssertEqual(decoded, expected)
+    }
+    
+    func testFiguredBass() throws {
+        try testRoundTrip(FiguredBass([Figure(figureNumber: "3")], duration: 1))
     }
 }

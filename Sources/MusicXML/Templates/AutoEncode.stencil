@@ -1,0 +1,20 @@
+{# A template to generate generate encoders #}
+{# Example: $sourcery --sources Complex\ Types/Accidental.swift --templates Templates/AutoEncode.stencil --output Output/ #}
+{% for type in types.structs %}
+// sourcery:inline:{{ type.name }}.AutoEncodable
+{{ type.accessLevel }} func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    {% for var in type.storedVariables where var.name == "printStyle" %}
+    try self.printStyle.encode(to: encoder)
+		{% endfor %}
+    {% for var in type.storedVariables where var.name != "printStyle" %}
+    {% if var.isOptional %}
+    try container.encodeIfPresent({{var.name}}, forKey: .{{var.name}})
+		{% else %}
+    try container.encode({{var.name}}, forKey: .{{var.name}})
+		{% endif %}
+		{% endfor %}
+}
+// sourcery:end
+
+{% endfor %}

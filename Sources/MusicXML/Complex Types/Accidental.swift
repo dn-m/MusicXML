@@ -122,6 +122,13 @@ extension Accidental: Codable {
         self.value = try container.decode(AccidentalValue.self, forKey: .value)
     }
     public func encode(to encoder: Encoder) throws {
-        fatalError("TODO: Accidental.encode(to:)")
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try self.printStyle.encode(to: encoder)
+        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(cautionary, forKey: .cautionary)
+        try container.encodeIfPresent(editorial, forKey: .editorial)
+        try container.encodeIfPresent(parentheses, forKey: .parentheses)
+        try container.encodeIfPresent(bracket, forKey: .bracket)
+        try container.encodeIfPresent(size, forKey: .size)
     }
 }
