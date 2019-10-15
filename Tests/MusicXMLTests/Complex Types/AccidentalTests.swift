@@ -19,6 +19,10 @@ class AccidentalTests: XCTestCase {
         let expected = Accidental.sharp
         XCTAssertEqual(decoded, expected)
     }
+    
+    func testSimple() throws {
+        try testRoundTrip(Accidental.sharp)
+    }
 
     func testDecodingPlacement() throws {
         let xml = """

@@ -50,8 +50,12 @@ extension Fingering: Codable {
         // Decode value
         self.value = try container.decode(String.self, forKey: .value)
     }
-
     public func encode(to encoder: Encoder) throws {
-        fatalError("TODO: Fingering.encode(to:)")
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try self.printStyle.encode(to: encoder)
+        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(substitution, forKey: .substitution)
+        try container.encodeIfPresent(alternate, forKey: .alternate)
+        try container.encodeIfPresent(placement, forKey: .placement)
     }
 }

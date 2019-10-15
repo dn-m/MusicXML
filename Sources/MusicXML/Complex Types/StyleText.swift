@@ -29,7 +29,9 @@ extension StyleText: Codable {
         self.value = try container.decode(String.self, forKey: .value)
     }
     public func encode(to encoder: Encoder) throws {
-        fatalError("TODO: StyleText.encode(to:)")
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try self.printStyle.encode(to: encoder)
+        try container.encode(value, forKey: .value)
     }
 }
 

@@ -285,4 +285,12 @@ class NotationsTests: XCTestCase {
         let expected = Technical([.string()])
         XCTAssertEqual(decoded, expected)
     }
+    
+    func testFingeringValueRoundTrip() throws {
+        try testRoundTrip(Technical([.fingering(Fingering("1"))]))
+    }
+    
+    func testFingeringEmptyRoundTrip() throws {
+        try testRoundTrip(Technical([.fingering()]))
+    }
 }

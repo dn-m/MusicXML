@@ -27,7 +27,10 @@ extension PrintStyleAlign: Codable {
     }
 
     public func encode(to encoder: Encoder) throws {
-        fatalError()
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try self.printStyle.encode(to: encoder)
+        try container.encodeIfPresent(hAlign, forKey: .hAlign)
+        try container.encodeIfPresent(vAlign, forKey: .vAlign)
     }
 
     public init(from decoder: Decoder) throws {

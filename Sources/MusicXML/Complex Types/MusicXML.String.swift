@@ -62,7 +62,10 @@ extension MusicXML.String: Codable {
     }
 
     public func encode(to encoder: Encoder) throws {
-        fatalError("TODO: MusicXML.String.encode(to:)")
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try self.printStyle.encode(to: encoder)
+        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(placement, forKey: .placement)
     }
 }
 

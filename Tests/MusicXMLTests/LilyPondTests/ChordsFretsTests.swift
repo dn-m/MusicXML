@@ -64,4 +64,8 @@ class ChordsFretsTests: XCTestCase {
         let expected = MusicXML.String(3)
         XCTAssertEqual(decoded, expected)
     }
+    
+    func testStringRoundTrip() throws {
+        try testRoundTrip(MusicXML.String(3))
+    }
 }
