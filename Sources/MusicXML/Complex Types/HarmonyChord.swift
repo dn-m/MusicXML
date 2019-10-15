@@ -179,7 +179,7 @@ enum HarmonyChordComponent {
     case degree(Degree)
 }
 
-extension HarmonyChordComponent: Codable {
+extension HarmonyChordComponent: Decodable {
     enum CodingKeys: String, CodingKey {
         case root
         case function
@@ -187,10 +187,6 @@ extension HarmonyChordComponent: Codable {
         case inversion
         case bass
         case degree
-    }
-
-    func encode(to encoder: Encoder) throws {
-        fatalError("should never be used")
     }
     internal init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
