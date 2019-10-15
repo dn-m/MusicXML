@@ -38,17 +38,7 @@ extension Partwise {
         }
         return Timewise(
             header: header,
-            measures: partsByMeasureAttributes.map { attrs, parts in
-                Timewise.Measure(
-                    number: attrs.number,
-                    text: attrs.text,
-                    implicit: attrs.implicit,
-                    nonControlling: attrs.nonControlling,
-                    width: attrs.width,
-                    optionalUniqueID: attrs.optionalUniqueID,
-                    parts: parts
-                )
-            }
+            measures: partsByMeasureAttributes.map(Timewise.Measure.init)
         )
     }
 }
