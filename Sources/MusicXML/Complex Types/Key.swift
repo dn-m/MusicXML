@@ -165,10 +165,10 @@ extension Key: Codable {
                         } else {
                             // The previous value was also a key-step
                             throw DecodingError.typeMismatch(
-                            Key.self,
-                            DecodingError.Context(
-                                codingPath: decoder.codingPath,
-                                debugDescription: "Two key-step values in a row in non-traditional key"
+                                Key.self,
+                                DecodingError.Context(
+                                    codingPath: decoder.codingPath,
+                                    debugDescription: "Two key-step values in a row in non-traditional key"
                                 )
                             )
                         }
