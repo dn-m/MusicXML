@@ -100,7 +100,7 @@ private let blacklist = [
 private var testSuiteURL: URL {
     return URL(fileURLWithPath: "\(#file)")
         .deletingLastPathComponent() // => MusicXML/Tests/MusicXMLTests/LilyPondTests
-        .deletingLastPathComponent() // => MusicXML/Tests/LilyPondTests
+        .deletingLastPathComponent() // => MusicXML/Tests/MusicXMLTests
         .deletingLastPathComponent() // => MusicXML/Tests
         .appendingPathComponent("LilyPondTestSuite", isDirectory: true)
 }
