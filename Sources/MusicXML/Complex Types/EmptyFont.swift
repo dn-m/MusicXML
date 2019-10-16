@@ -7,9 +7,9 @@
 
 /// The empty-font type represents an empty element with font attributes.
 public struct EmptyFont {
-    public let font: Font?
+    public let font: Font
 
-    public init(font: Font? = nil) {
+    public init(_ font: Font) {
         self.font = font
     }
 }
