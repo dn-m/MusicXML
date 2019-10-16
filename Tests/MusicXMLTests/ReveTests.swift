@@ -48,6 +48,15 @@ class ReveTests: XCTestCase {
         XCTAssertEqual(decoded, expected)
     }
 
+    func testRights() throws {
+        let xml = """
+        <rights>Copyright © 2002 MakeMusic, Inc.</rights>
+        """
+        let decoded = try XMLDecoder().decode(Rights.self, from: xml.data(using: .utf8)!)
+        let expected = Rights("Copyright © 2002 MakeMusic, Inc.")
+        XCTAssertEqual(decoded, expected)
+    }
+
     func testEncoding() throws {
         let xml = """
         <encoding>
