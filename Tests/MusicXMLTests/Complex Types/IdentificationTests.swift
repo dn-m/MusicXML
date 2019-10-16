@@ -54,14 +54,12 @@ class IdentificationTests: XCTestCase {
             rights: [
                 Rights("Copyright 2001 Recordare LLC")
             ],
-            encoding: Encoding(
-                values: [
-                    .date("2002-02-16"),
-                    .encoder("Michael Good"),
-                    .software("Finale 2002 for Windows"),
-                    .description("MusicXML 1.0 example")
-                ]
-            ),
+            encoding: Encoding([
+                .date("2002-02-16"),
+                .encoder("Michael Good"),
+                .software("Finale 2002 for Windows"),
+                .description("MusicXML 1.0 example")
+            ]),
             source: "Based on Breitkopf and Härtel edition of 1895"
         )
         XCTAssertEqual(decoded, expected)

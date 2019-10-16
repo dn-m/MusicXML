@@ -22,7 +22,7 @@ public struct Play {
 
     public let values: [Kind]
 
-    public init(values: [Kind]) {
+    public init(_ values: [Kind]) {
         self.values = values
     }
 }

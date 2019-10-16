@@ -12,15 +12,16 @@
 /// particular values. This lets applications communicate, for example, that all system and/or page
 /// breaks are contained in the MusicXML file.
 public struct Supports {
-    public let type: Bool
-    public let element: String
+
     public let attribute: String?
+    public let element: String
+    public let type: Bool
     public let value: String?
 
-    public init(type: Bool, element: String, attribute: String? = nil, value: String? = nil) {
-        self.type = type
-        self.element = element
+    public init(attribute: String? = nil, element: String, type: Bool, value: String? = nil) {
         self.attribute = attribute
+        self.element = element
+        self.type = type
         self.value = value
     }
 }
