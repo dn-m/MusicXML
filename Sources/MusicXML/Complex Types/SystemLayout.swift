@@ -18,11 +18,16 @@
 public struct SystemLayout {
 
     public let margins: SystemMargins?
-    public let distance: Tenths
+    public let distance: Tenths?
     public let topSystemDistance: Int?
     public let dividers: SystemDividers?
 
-    public init(margins: SystemMargins? = nil, distance: Tenths, topSystemDistance: Int? = nil, dividers: SystemDividers? = nil) {
+    public init(
+        margins: SystemMargins? = nil,
+        distance: Tenths? = nil,
+        topSystemDistance: Int? = nil,
+        dividers: SystemDividers? = nil
+    ) {
         self.margins = margins
         self.distance = distance
         self.topSystemDistance = topSystemDistance
