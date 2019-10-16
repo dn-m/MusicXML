@@ -27,7 +27,9 @@ class ReveTests: XCTestCase {
           </encoding>
         </identification>
         """
-        let decoded = try XMLDecoder().decode(Identification.self, from: xml.data(using: .utf8)!)
+        let decoder = XMLDecoder()
+        decoder.trimValueWhitespaces = false
+        let decoded = try decoder.decode(Identification.self, from: xml.data(using: .utf8)!)
         let expected = Identification(
             creators: [Creator("Gabriel Fauré", type: "composer")],
             rights: [Rights("Copyright © 2002 MakeMusic, Inc.")],
@@ -52,7 +54,9 @@ class ReveTests: XCTestCase {
         let xml = """
         <rights>Copyright © 2002 MakeMusic, Inc.</rights>
         """
-        let decoded = try XMLDecoder().decode(Rights.self, from: xml.data(using: .utf8)!)
+        let decoder = XMLDecoder()
+        decoder.trimValueWhitespaces = false
+        let decoded = try decoder.decode(Rights.self, from: xml.data(using: .utf8)!)
         let expected = Rights("Copyright © 2002 MakeMusic, Inc.")
         XCTAssertEqual(decoded, expected)
     }
