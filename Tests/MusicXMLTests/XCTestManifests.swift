@@ -445,11 +445,20 @@ extension ReveTests {
     //   `swift test --generate-linuxmain`
     // to regenerate.
     static let __allTests__ReveTests = [
+        ("testAppearance", testAppearance),
+        ("testDefaults", testDefaults),
         ("testEncoding", testEncoding),
         ("testIdentification", testIdentification),
+        ("testLyricFonts", testLyricFonts),
+        ("testMusicFont", testMusicFont),
+        ("testPageLayout", testPageLayout),
         ("testRights", testRights),
+        ("testScaling", testScaling),
+        ("testStaffLayout", testStaffLayout),
         ("testSupportsAttributeElementTypeValue", testSupportsAttributeElementTypeValue),
         ("testSupportsElementType", testSupportsElementType),
+        ("testSystemLayout", testSystemLayout),
+        ("testWordFont", testWordFont),
     ]
 }
 
