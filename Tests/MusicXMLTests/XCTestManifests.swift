@@ -452,7 +452,6 @@ extension ReveTests {
         ("testLyricFonts", testLyricFonts),
         ("testMusicFont", testMusicFont),
         ("testPageLayout", testPageLayout),
-        ("testPart1", testPart1),
         ("testPartListDecoding", testPartListDecoding),
         ("testPrint", testPrint),
         ("testRights", testRights),
