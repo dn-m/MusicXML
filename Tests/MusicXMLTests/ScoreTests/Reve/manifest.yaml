@@ -4,7 +4,7 @@ parsing:
 
 comparison:
     expectation_class_name: ReveParsingExpectation
-    assert: true
+    assert: false
 
 metadata:
     display_name: Reve
