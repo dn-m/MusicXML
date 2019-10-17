@@ -12,10 +12,11 @@
 /// large size. The text content represents the numeric percentage. A value of 100 would be
 /// identical to the size of a regular note as defined by the music font.
 public struct NoteSize {
-    public let value: NonNegativeDecimal
+    // FIXME: Use `NonNegativeDecimal` if that is wise.
+    public let value: Double
     public let type: NoteSizeType
 
-    public init(_ value: NonNegativeDecimal, type: NoteSizeType) {
+    public init(_ value: Double, type: NoteSizeType) {
         self.value = value
         self.type = type
     }

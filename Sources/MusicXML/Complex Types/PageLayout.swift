@@ -10,38 +10,23 @@
 /// values. The type is not needed when used as part of a print element. If omitted when used in the
 /// defaults element, "both" is the default.
 public struct PageLayout {
-    public let size: Size?
-    public let margins: [Margins]
 
-    public init(size: Size? = nil, margins: [Margins]) {
-        self.size = size
+    public let height: Double?
+    public let width: Double?
+    public let margins: [PageMargins]
+
+    public init(height: Double? = nil, width: Double? = nil, margins: [PageMargins]) {
+        self.height = height
+        self.width = width
         self.margins = margins
     }
 }
 
-extension PageLayout {
-
-    public struct Size: Codable, Equatable {
-        let height: Tenths
-        let width: Tenths
-
-        public init(height: Tenths, width: Tenths) {
-            self.height = height
-            self.width = width
-        }
-    }
-
-    // FIXME: Refactor Margins a little better to encode logic
-    public struct Margins: Codable, Equatable {
-        let even: PageMargins
-        let odd: PageMargins?
-
-        public init(even: PageMargins, odd: PageMargins? = nil) {
-            self.even = even
-            self.odd = odd
-        }
+extension PageLayout: Equatable { }
+extension PageLayout: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case height = "page-height"
+        case width = "page-width"
+        case margins = "page-margins"
     }
 }
-
-extension PageLayout: Equatable { }
-extension PageLayout: Codable { }

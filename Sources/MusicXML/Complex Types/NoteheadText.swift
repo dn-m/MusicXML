@@ -14,7 +14,7 @@ public struct NoteheadText {
     }
     public let values: [Kind] // NonEmpty
 
-    public init(values: [Kind]) {
+    public init(_ values: [Kind]) {
         self.values = values
     }
 }

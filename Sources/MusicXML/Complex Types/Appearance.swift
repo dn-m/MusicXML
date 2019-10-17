@@ -10,17 +10,31 @@
 /// and standard distances between notation elements, plus an extension element for other aspects of
 /// appearance.
 public struct Appearance {
-    public let lineWidth: LineWidth?
-    public let noteSize: NoteSizeType?
-    public let distance: Distance?
-    // TODO: other-appearance?
+    
+    public let lineWidths: [LineWidth]
+    public let noteSizes: [NoteSize]
+    public let distances: [Distance]
+    public let otherAppearances: [OtherAppearance]
 
-    public init(lineWidth: LineWidth? = nil, noteSize: NoteSizeType? = nil, distance: Distance? = nil) {
-        self.lineWidth = lineWidth
-        self.noteSize = noteSize
-        self.distance = distance
+    public init(
+        lineWidths: [LineWidth] = [],
+        noteSizes: [NoteSize] = [],
+        distances: [Distance] = [],
+        otherAppearances: [OtherAppearance] = []
+    ) {
+        self.lineWidths = lineWidths
+        self.noteSizes = noteSizes
+        self.distances = distances
+        self.otherAppearances = otherAppearances
     }
 }
 
 extension Appearance: Equatable { }
-extension Appearance: Codable { }
+extension Appearance: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case lineWidths = "line-width"
+        case noteSizes = "note-size"
+        case distances = "distance"
+        case otherAppearances = "other-appearance"
+    }
+}
