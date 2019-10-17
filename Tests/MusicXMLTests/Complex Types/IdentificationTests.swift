@@ -66,4 +66,43 @@ class IdentificationTests: XCTestCase {
         )
         XCTAssertEqual(decoded, expected)
     }
+
+    func testDecoding_supports() throws {
+        let xml = """
+        <identification>
+          <creator type="composer">Gabriel Fauré</creator>
+          <rights>Copyright © 2002 MakeMusic, Inc.</rights>
+          <encoding>
+            <software>Finale v25 for Mac</software>
+            <encoding-date>2017-12-15</encoding-date>
+            <supports attribute="new-system" element="print" type="yes" value="yes"/>
+            <supports attribute="new-page" element="print" type="yes" value="yes"/>
+            <supports element="accidental" type="yes"/>
+            <supports element="beam" type="yes"/>
+            <supports element="stem" type="yes"/>
+          </encoding>
+        </identification>
+        """
+        let decoded = try XMLDecoder(trimValueWhitespaces: false).decode(Identification.self, from: xml.data(using: .utf8)!)
+        let expected = Identification(
+            creators: [
+                Creator("Gabriel Fauré", type: "composer")
+            ],
+            rights: [
+                Rights("Copyright © 2002 MakeMusic, Inc.")
+            ],
+            encoding: Encoding(
+                values: [
+                    .software("Finale v25 for Mac"),
+                    .date("2017-12-15"),
+                    .supports(Supports(type: true, element: "print", attribute: "new-system", value: "yes")),
+                    .supports(Supports(type: true, element: "print", attribute: "new-page", value: "yes")),
+                    .supports(Supports(type: true, element: "accidental")),
+                    .supports(Supports(type: true, element: "beam")),
+                    .supports(Supports(type: true, element: "stem"))
+                ]
+            )
+        )
+        XCTAssertEqual(decoded, expected)
+    }
 }
