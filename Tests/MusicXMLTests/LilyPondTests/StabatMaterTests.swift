@@ -19,7 +19,7 @@ class StabatMaterTests: XCTestCase {
             </direction-type>
         </direction>
         """
-        let decoded = try MusicXMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Direction.self, from: xml)
         let expected = Direction(
             [.words([FormattedText("Largo", printStyle: PrintStyle(font: Font(weight: .bold)))])],
             placement: .above
@@ -33,7 +33,7 @@ class StabatMaterTests: XCTestCase {
             <words font-weight="bold">Largo</words>
         </direction-type>
         """
-        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml)
         let expected = DirectionType.words(
             [FormattedText("Largo", printStyle: PrintStyle(font: Font(weight: .bold)))]
         )
@@ -47,7 +47,7 @@ class StabatMaterTests: XCTestCase {
             <words font-weight="bold">Largo</words>
         </direction-type>
         """
-        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml)
         let expected = DirectionType.words(
             [
                 FormattedText("Largo", printStyle: PrintStyle(font: Font(weight: .bold))),
@@ -68,7 +68,7 @@ class StabatMaterTests: XCTestCase {
             <offset>3</offset>
         </direction>
         """
-        let decoded = try MusicXMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Direction.self, from: xml)
         let expected = Direction([.dynamics([Dynamics([.fp])])],
             placement: .below,
             offset: Offset(3)
@@ -84,7 +84,7 @@ class StabatMaterTests: XCTestCase {
             </dynamics>
         </direction-type>
         """
-        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml)
         let expected = DirectionType.dynamics([Dynamics([.fp])])
         XCTAssertEqual(decoded, expected)
     }
@@ -100,7 +100,7 @@ class StabatMaterTests: XCTestCase {
             </dynamics>
         </direction-type>
         """
-        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml)
         let expected = DirectionType.dynamics([Dynamics([.fp]), Dynamics([.fp])])
         XCTAssertEqual(decoded, expected)
     }
@@ -111,7 +111,7 @@ class StabatMaterTests: XCTestCase {
             <fp/>
         </dynamics>
         """
-        let decoded = try MusicXMLDecoder().decode(Dynamics.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Dynamics.self, from: xml)
         let expected = Dynamics([.fp])
         XCTAssertEqual(decoded, expected)
     }

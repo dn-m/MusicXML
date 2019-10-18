@@ -23,7 +23,7 @@ class DirectionsTests: XCTestCase {
            </lyric>
         </note>
         """
-        let decoded = try MusicXMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Note.self, from: xml)
         let expected = Note(
             kind: .normal(Note.Normal(.rest(Rest()), duration: 1)),
             voice: "1",
@@ -41,7 +41,7 @@ class DirectionsTests: XCTestCase {
             <text>subp</text>
         </lyric>
         """
-        let decoded = try MusicXMLDecoder().decode(Lyric.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Lyric.self, from: xml)
         let expected = Lyric(kind: .verbal(Lyric.Verbal(text: "subp")), number: "1")
         XCTAssertEqual(decoded, expected)
     }
@@ -53,7 +53,7 @@ class DirectionsTests: XCTestCase {
            <text>to fff</text>
         </lyric>
         """
-        let decoded = try MusicXMLDecoder().decode(Lyric.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Lyric.self, from: xml)
         let expected = Lyric(
             kind: .verbal(Lyric.Verbal(text: "to fff", syllabic: .end)),
             number: "1"
@@ -75,7 +75,7 @@ class DirectionsTests: XCTestCase {
            <offset>2</offset>
         </direction>
         """
-        let decoded = try MusicXMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Direction.self, from: xml)
         let expected = Direction([.wedge(Wedge(type: .stop)), .dynamics([Dynamics([.fff])])],
             placement: .below,
             offset: 2
@@ -90,7 +90,7 @@ class DirectionsTests: XCTestCase {
             font-size="10.25"
             font-style="italic">subito</words>
         """
-        let decoded = try MusicXMLDecoder().decode(FormattedText.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(FormattedText.self, from: xml)
         let expected = FormattedText("subito",
             printStyle: PrintStyle(
                 position: Position(defaultY: -80),
@@ -123,7 +123,7 @@ class DirectionsTests: XCTestCase {
            </scordatura>
         </direction-type>
         """
-        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml)
         let expected = DirectionType.scordatura(
             Scordatura([
                 Accord(string: 3, tuningStep: .c, tuningOctave: 3),
@@ -151,7 +151,7 @@ class DirectionsTests: XCTestCase {
             </accord>
         </scordatura>
         """
-        let decoded = try MusicXMLDecoder().decode(Scordatura.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Scordatura.self, from: xml)
         let expected = Scordatura([
             Accord(string: 3, tuningStep: .c, tuningOctave: 3),
             Accord(string: 2, tuningStep: .g, tuningOctave: 5),
@@ -195,7 +195,7 @@ class DirectionsTests: XCTestCase {
            </harp-pedals>
         </direction-type>
         """
-        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml)
         let expected = DirectionType.harpPedals(
             HarpPedals([
                 PedalTuning(step: .d, alter: 0),
@@ -243,7 +243,7 @@ class DirectionsTests: XCTestCase {
            </pedal-tuning>
         </harp-pedals>
         """
-        let decoded = try MusicXMLDecoder().decode(HarpPedals.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(HarpPedals.self, from: xml)
         let expected = HarpPedals([
             PedalTuning(step: .d, alter: 0),
             PedalTuning(step: .c, alter: -1),
@@ -264,7 +264,7 @@ class DirectionsTests: XCTestCase {
            </direction-type>
         </direction>
         """
-        let decoded = try MusicXMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Direction.self, from: xml)
         let expected = Direction([.pedal(Pedal(type: .change))])
         XCTAssertEqual(decoded, expected)
     }
@@ -273,7 +273,7 @@ class DirectionsTests: XCTestCase {
         let xml = """
         <pedal type="change"/>
         """
-        let decoded = try MusicXMLDecoder().decode(Pedal.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Pedal.self, from: xml)
         let expected = Pedal(type: .change)
         XCTAssertEqual(decoded, expected)
     }
@@ -286,7 +286,7 @@ class DirectionsTests: XCTestCase {
            </direction-type>
         </direction>
         """
-        let decoded = try MusicXMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Direction.self, from: xml)
         let expected = Direction([.dashes(Dashes(type: .stop))])
         XCTAssertEqual(decoded, expected)
     }
@@ -295,7 +295,7 @@ class DirectionsTests: XCTestCase {
         let xml = """
         <dashes type="stop"/>
         """
-        let decoded = try MusicXMLDecoder().decode(Dashes.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Dashes.self, from: xml)
         let expected = Dashes(type: .stop)
         XCTAssertEqual(decoded, expected)
     }
@@ -306,7 +306,7 @@ class DirectionsTests: XCTestCase {
            <other-dynamics>abc-ffz</other-dynamics>
         </dynamics>
         """
-        let decoded = try MusicXMLDecoder().decode(Dynamics.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Dynamics.self, from: xml)
         let expected = Dynamics([.other("abc-ffz")])
         XCTAssertEqual(decoded, expected)
     }
@@ -317,7 +317,7 @@ class DirectionsTests: XCTestCase {
            <eyeglasses/>
         </direction-type>
         """
-        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml)
         let expected = DirectionType.eyeglasses(EmptyPrintStyleAlign())
         XCTAssertEqual(decoded, expected)
     }
@@ -328,7 +328,7 @@ class DirectionsTests: XCTestCase {
            <segno/>
         </direction-type>
         """
-        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml)
         let expected = DirectionType.segno(EmptyPrintStyleAlign())
         XCTAssertEqual(decoded, expected)
     }
@@ -339,7 +339,7 @@ class DirectionsTests: XCTestCase {
            <coda/>
         </direction-type>
         """
-        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml)
         let expected = DirectionType.coda([EmptyPrintStyleAlign()])
         XCTAssertEqual(decoded, expected)
     }
@@ -351,7 +351,7 @@ class DirectionsTests: XCTestCase {
            <coda/>
         </direction-type>
         """
-        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml)
         let expected = DirectionType.coda([EmptyPrintStyleAlign(),EmptyPrintStyleAlign()])
         XCTAssertEqual(decoded, expected)
     }
@@ -362,7 +362,7 @@ class DirectionsTests: XCTestCase {
            <rehearsal enclosure="circle">Crc</rehearsal>
         </direction-type>
         """
-        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml)
         let expected = DirectionType.rehearsal([FormattedText("Crc", enclosure: .circle)])
         XCTAssertEqual(decoded, expected)
     }
@@ -374,7 +374,7 @@ class DirectionsTests: XCTestCase {
            <rehearsal enclosure="circle">Crc</rehearsal>
         </direction-type>
         """
-        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(DirectionType.self, from: xml)
         let expected = DirectionType.rehearsal([
             FormattedText("Crc", enclosure: .circle),
             FormattedText("Crc", enclosure: .circle)

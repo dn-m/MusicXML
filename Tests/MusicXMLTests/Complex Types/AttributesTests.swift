@@ -29,7 +29,7 @@ class AttributesTests: XCTestCase {
           </clef>
         </attributes>
         """
-        let decoded = try MusicXMLDecoder().decode(Attributes.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Attributes.self, from: xml)
         let expected = Attributes(
             divisions: 1,
             keys: [Key(fifths: 0, mode: .major)],

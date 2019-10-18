@@ -17,7 +17,7 @@ class MIDIDeviceTests: XCTestCase {
         let xml = """
         <midi-device id="P1-I1" port="1"></midi-device>
         """
-        let decoded = try MusicXMLDecoder().decode(MIDIDevice.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(MIDIDevice.self, from: xml)
         let expected = MIDIDevice(port: 1, id: "P1-I1")
 
         XCTAssertEqual(decoded, expected)

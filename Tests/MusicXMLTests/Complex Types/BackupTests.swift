@@ -17,7 +17,7 @@ class BackupTests: XCTestCase {
           <duration>4</duration>
         </backup>
         """
-        let decoded = try MusicXMLDecoder().decode(Backup.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Backup.self, from: xml)
         let expected = Backup(duration: 4)
         XCTAssertEqual(decoded, expected)
     }

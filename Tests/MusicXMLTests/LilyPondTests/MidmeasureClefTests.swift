@@ -15,7 +15,7 @@ class MidmeasureClefTests: XCTestCase {
         let xml = """
         <measure implicit="yes" number="X1"></measure>
         """
-        let decoded = try MusicXMLDecoder().decode(Partwise.Measure.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Partwise.Measure.self, from: xml)
         let expected = Partwise.Measure(number: "X1", implicit: true)
         XCTAssertEqual(decoded, expected)
     }

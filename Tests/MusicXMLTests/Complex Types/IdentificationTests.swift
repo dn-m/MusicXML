@@ -19,7 +19,7 @@ class IdentificationTests: XCTestCase {
             </miscellaneous>
         </identification>
         """
-        let decoded = try MusicXMLDecoder().decode(Identification.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Identification.self, from: xml)
         let expected = Identification(
             miscellaneous: Miscellaneous(
                 fields: [
@@ -45,7 +45,7 @@ class IdentificationTests: XCTestCase {
             <source>Based on Breitkopf and Härtel edition of 1895</source>
         </identification>
         """
-        let decoded = try MusicXMLDecoder().decode(Identification.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Identification.self, from: xml)
         let expected = Identification(
             creators: [
                 Creator("Franz Schubert", type: "composer"),

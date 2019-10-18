@@ -13,7 +13,7 @@ class PartNameTests: XCTestCase {
 
     func testDecoding() throws {
         let xml = "<part-name>MusicXML Part</part-name>"
-        let decoded = try MusicXMLDecoder().decode(PartName.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(PartName.self, from: xml)
         let expected = PartName("MusicXML Part")
         XCTAssertEqual(decoded, expected)
     }
@@ -26,7 +26,7 @@ class PartNameTests: XCTestCase {
           <display-text> 1</display-text>
         </part-name-display>
         """
-        let decoded = try XMLDecoder(trimValueWhitespaces: false).decode(NameDisplay.self, from: xml.data(using: .utf8)!)
+        let decoded = try XMLDecoder(trimValueWhitespaces: false).decode(NameDisplay.self, from: xml)
         let expected = NameDisplay(texts: [
             .displayText("Trumpet in B"),
             .accidentalText(AccidentalText(.flat)),

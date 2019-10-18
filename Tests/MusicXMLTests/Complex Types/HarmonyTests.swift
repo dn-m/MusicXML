@@ -21,7 +21,7 @@ class HarmonyTests: XCTestCase {
           <inversion>2</inversion>
         </harmony>
         """
-        let decoded = try MusicXMLDecoder().decode(Harmony.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Harmony.self, from: xml)
         let expected: Harmony = Harmony(
             chords: [
                 HarmonyChord(
@@ -68,7 +68,7 @@ class HarmonyTests: XCTestCase {
           </degree>
         </harmony>
         """
-        let decoded = try MusicXMLDecoder().decode(Harmony.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Harmony.self, from: xml)
         let expected: Harmony = Harmony(
             chords: [
                 HarmonyChord(
@@ -120,7 +120,7 @@ class HarmonyTests: XCTestCase {
           </degree>
         </harmony>
         """
-        let decoded = try MusicXMLDecoder().decode(Harmony.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Harmony.self, from: xml)
         let expected: Harmony = Harmony(
             printStyle: PrintStyle(position: Position(defaultY: 40)),
             chords: [
@@ -147,7 +147,7 @@ class HarmonyTests: XCTestCase {
           <degree-type>add</degree-type>
         </degree>
         """
-        let decoded = try MusicXMLDecoder().decode(Degree.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Degree.self, from: xml)
         let expected: Degree = Degree(13, alter: -1, type: .add)
         XCTAssertEqual(decoded, expected)
     }
@@ -160,7 +160,7 @@ class HarmonyTests: XCTestCase {
             </root>
         </wrapper>
         """
-        let decoded = try MusicXMLDecoder().decode(HarmonyChord.RootOrFunction.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(HarmonyChord.RootOrFunction.self, from: xml)
         let expected: HarmonyChord.RootOrFunction = .root(Root(step: .a))
         XCTAssertEqual(decoded, expected)
     }

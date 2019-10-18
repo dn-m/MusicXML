@@ -15,7 +15,7 @@ class AccidentalTests: XCTestCase {
         let xml = """
         <accidental>sharp</accidental>
         """
-        let decoded = try MusicXMLDecoder().decode(Accidental.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Accidental.self, from: xml)
         let expected = Accidental.sharp
         XCTAssertEqual(decoded, expected)
     }

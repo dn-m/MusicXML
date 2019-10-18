@@ -18,7 +18,7 @@ class SimpleRepeatTests: XCTestCase {
           <repeat direction="backward" times="5"/>
         </barline>
         """
-        let decoded = try MusicXMLDecoder().decode(Barline.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Barline.self, from: xml)
         let expected = Barline(
             location: .right,
             barStyle: .lightHeavy,

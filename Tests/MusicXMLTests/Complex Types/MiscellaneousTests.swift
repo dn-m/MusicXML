@@ -21,7 +21,7 @@ class MiscellaneousTests: XCTestCase {
               are tested at the end.</miscellaneous-field>
         </miscellaneous>
         """
-        let decoded = try MusicXMLDecoder().decode(Miscellaneous.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Miscellaneous.self, from: xml)
         let expected = Miscellaneous(
             fields: [
                 MiscellaneousField("""

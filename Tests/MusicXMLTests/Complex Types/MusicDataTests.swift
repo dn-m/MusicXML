@@ -17,7 +17,7 @@ class MusicDataTests: XCTestCase {
           <divisions>1</divisions>
         </attributes>
         """
-        let decoded = try MusicXMLDecoder().decode(Attributes.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Attributes.self, from: xml)
         let expected = Attributes(divisions: 1)
         XCTAssertEqual(decoded, expected)
     }
@@ -42,7 +42,7 @@ class MusicDataTests: XCTestCase {
           </attributes>
         </music-data>
         """
-        let decoded = try MusicXMLDecoder().decode([MusicData].self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode([MusicData].self, from: xml)
         let expected: [MusicData] = [
             .attributes(
                 Attributes(

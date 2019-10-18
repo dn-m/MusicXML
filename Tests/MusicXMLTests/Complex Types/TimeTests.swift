@@ -18,7 +18,7 @@ class TimeTests: XCTestCase {
             <beat-type>4</beat-type>
         </time>
         """
-        let decoded = try MusicXMLDecoder().decode(Time.Measured.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Time.Measured.self, from: xml)
         let expected = Time.Measured(signature: Time.Signature(beats: 4, beatType: 4))
         XCTAssertEqual(decoded, expected)
     }
@@ -30,7 +30,7 @@ class TimeTests: XCTestCase {
             <beat-type>4</beat-type>
         </time>
         """
-        let decoded = try MusicXMLDecoder().decode(Time.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Time.self, from: xml)
         let expected = Time(4, 4, symbol: .common)
         XCTAssertEqual(decoded, expected)
     }

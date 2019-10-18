@@ -12,7 +12,7 @@ import MusicXML
 extension XCTestCase {
 
     func assertDecoded<T: Decodable & Equatable>(_ xmlString: String, equals expected: T) throws {
-        let decoded = try MusicXMLDecoder().decode(T.self, from: xmlString.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(T.self, from: xmlString)
         XCTAssertEqual(decoded, expected)
     }
 

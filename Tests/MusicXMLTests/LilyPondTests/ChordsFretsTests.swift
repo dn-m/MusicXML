@@ -42,7 +42,7 @@ class ChordsFretsTests: XCTestCase {
           </frame-note>
         </frame>
         """
-        let decoded = try MusicXMLDecoder().decode(Frame.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Frame.self, from: xml)
         let expected = Frame(
             frameStrings: 6,
             frameFrets: 4,
@@ -60,7 +60,7 @@ class ChordsFretsTests: XCTestCase {
 
     func testString() throws {
         let xml = "<string>3</string>"
-        let decoded = try MusicXMLDecoder().decode(MusicXML.String.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(MusicXML.String.self, from: xml)
         let expected = MusicXML.String(3)
         XCTAssertEqual(decoded, expected)
     }

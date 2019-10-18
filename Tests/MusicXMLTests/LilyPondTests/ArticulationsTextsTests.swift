@@ -21,16 +21,16 @@ class ArticulationsTextsTests: XCTestCase {
             </direction-type>
         </direction>
         """
-        let decoded = try MusicXMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Direction.self, from: xml)
         let expected = Direction(
             [
                 .words(
                     [
                         FormattedText("Normal, Small, Colored, Below",
-                                      printStyle: PrintStyle(
-                                        position: Position(defaultX: 1, defaultY: -15),
-                                        font: Font(size: FontSize(.small)),
-                                        color: Color(hexString: "#FF8000")
+                            printStyle: PrintStyle(
+                                position: Position(defaultX: 1, defaultY: -15),
+                                font: Font(size: FontSize(.small)),
+                                color: Color(hexString: "#FF8000")
                             )
                         )
                     ]

@@ -482,7 +482,7 @@ class TupletsTremoloTest: XCTestCase {
         let xml = """
         <tremolo>1</tremolo>
         """
-        let decoded = try MusicXMLDecoder().decode(Tremolo.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Tremolo.self, from: xml)
         let expected = Tremolo(marks: 1)
         XCTAssertEqual(decoded, expected)
     }
