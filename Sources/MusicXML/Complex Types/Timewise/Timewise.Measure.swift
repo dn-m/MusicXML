@@ -50,14 +50,21 @@ extension Timewise {
     //     width %tenths; #IMPLIED
     //     %optional-unique-id;
     // >
+    @dynamicMemberLookup
     public struct Measure: Equatable {
-        let number: String
-        let text: String?
-        let implicit: Bool?
-        let nonControlling: Bool?
-        let width: Tenths?
-        let optionalUniqueID: Int?
-        let parts: [Part]
+
+        // MARK: Instance Properties
+
+        // MARK: Attributes
+
+        internal let attributes: MeasureAttributes
+
+        // MARK: Elements
+
+        public let parts: [Part]
+
+
+        // MARK: - Initializers
 
         public init(
             number: String,
@@ -68,13 +75,25 @@ extension Timewise {
             optionalUniqueID: Int? = nil,
             parts: [Part]
         ) {
-            self.number = number
-            self.text = text
-            self.implicit = implicit
-            self.nonControlling = nonControlling
-            self.width = width
-            self.optionalUniqueID = optionalUniqueID
+            self.attributes = MeasureAttributes(
+                number: number,
+                text: text,
+                implicit: implicit,
+                nonControlling: nonControlling,
+                width: width,
+                optionalUniqueID: optionalUniqueID
+            )
             self.parts = parts
+        }
+
+        internal init(attributes: MeasureAttributes, parts: [Part]) {
+            self.attributes = attributes
+            self.parts = parts
+        }
+
+        /// - Returns: A measure attribute.
+        public subscript <T> (dynamicMember keyPath: KeyPath<MeasureAttributes, T>) -> T {
+            return attributes[keyPath: keyPath]
         }
     }
 }
@@ -83,13 +102,17 @@ extension Timewise.Measure: Codable {
 
     // MARK: - Codable
 
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case parts = "part"
-        case number
-        case text
-        case implicit
-        case nonControlling = "non-controlling"
-        case width
-        case optionalUniqueID = "optional-unique-id"
+    }
+
+    public init(from decoder: Decoder) throws {
+        self.attributes = try MeasureAttributes(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.parts = try container.decode([Timewise.Part].self, forKey: .parts)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        fatalError()
     }
 }

@@ -20,6 +20,26 @@ public struct Timewise {
     }
 }
 
+extension Timewise {
+
+    // MARK: - Instance Methods
+
+    /// - Returns: A `Partwise` representation of this `Timewise` traversal.
+    public func toPartwise() -> Partwise {
+        var measuresByPartID: [String: [Partwise.Measure]] = [:]
+        for timewiseMeasure in measures {
+            for timewisePart in timewiseMeasure.parts {
+                let partwiseMeasure = Partwise.Measure(
+                    attributes: timewiseMeasure.attributes,
+                    musicData: timewisePart.musicData
+                )
+                measuresByPartID[timewisePart.id, default: []].append(partwiseMeasure)
+            }
+        }
+        return Partwise(header: header, parts: measuresByPartID.map(Partwise.Part.init))
+    }
+}
+
 extension Timewise: Equatable { }
 
 extension Timewise: Codable {
