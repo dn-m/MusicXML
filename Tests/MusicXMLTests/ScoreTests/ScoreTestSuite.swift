@@ -43,7 +43,7 @@ class ScoreTests: XCTestCase {
         }
 
         do {
-            let parsed = try MusicXML(url: musicXMLURL)
+            let parsed = try Score(url: musicXMLURL)
             print("  ✅ Parsing succeeded")
 
             guard let comparison = manifest.comparison,
@@ -53,7 +53,7 @@ class ScoreTests: XCTestCase {
 
             let expected = expectationClazz.expected
 
-            #warning("TODO: Maybe generate a diff")
+            // TODO: Generate diff
 
             if comparison.assert {
                 XCTAssertEqual(parsed, expected, "Parsed \(manifest.metadata.displayName) is not equal to expected")

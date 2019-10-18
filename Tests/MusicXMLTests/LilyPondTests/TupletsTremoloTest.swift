@@ -475,7 +475,7 @@ class TupletsTremoloTest: XCTestCase {
           <!--=========================================================-->
         </score-partwise>
         """
-        let _ = try MusicXML(string: xml)
+        let _ = try Score(string: xml)
     }
 
     func testTremolo() throws {

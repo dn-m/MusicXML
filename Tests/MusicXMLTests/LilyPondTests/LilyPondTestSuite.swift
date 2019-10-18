@@ -25,7 +25,7 @@ class LilyPondTests: XCTestCase {
                 let sourceURL = sourceDir.appendingPathComponent(source)
                 do {
                     let start = now()
-                    let parsed = try MusicXML(url: sourceURL)
+                    let parsed = try Score(url: sourceURL)
                     let duration = now() - start
 
                     publishSuccessfulParsing(for: "\(traversal)/\(source)", in: duration)

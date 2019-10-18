@@ -8,7 +8,7 @@
 import Foundation
 import XMLCoder
 
-extension MusicXML {
+extension Score {
 
     public enum Error: Swift.Error {
         case invalidMusicXMLString(Swift.String)
@@ -29,6 +29,6 @@ extension MusicXML {
 
     /// Creates a `MusicXML` model from the given MusicXML-formatted `data`.
     public init(data: Data) throws {
-        self.score = try XMLDecoder(trimValueWhitespaces: false).decode(Score.self, from: data)
+        self = try XMLDecoder(trimValueWhitespaces: false).decode(Score.self, from: data)
     }
 }

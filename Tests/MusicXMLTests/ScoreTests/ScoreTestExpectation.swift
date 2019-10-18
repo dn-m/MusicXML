@@ -9,5 +9,5 @@ import XCTest
 import MusicXML
 
 protocol ScoreTestExpectation: AnyObject {
-    static var expected: MusicXML { get }
+    static var expected: Score { get }
 }
