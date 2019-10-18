@@ -69,7 +69,7 @@ class ReveTests: XCTestCase {
           <supports element="stem" type="yes"/>
         </encoding>
         """
-        let decoded = try XMLDecoder().decode(Encoding.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Encoding.self, from: xml.data(using: .utf8)!)
         let expected = Encoding([
             .software("Finale v25 for Mac"),
             .date("2017-12-15"),
@@ -88,7 +88,7 @@ class ReveTests: XCTestCase {
         let xml = """
         <supports attribute="new-system" element="print" type="yes" value="yes"/>
         """
-        let decoded = try XMLDecoder().decode(Supports.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Supports.self, from: xml.data(using: .utf8)!)
         let expected = Supports(
             attribute: "new-system",
             element: "print",
@@ -102,7 +102,7 @@ class ReveTests: XCTestCase {
         let xml = """
         <supports element="beam" type="yes"/>
         """
-        let decoded = try XMLDecoder().decode(Supports.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Supports.self, from: xml.data(using: .utf8)!)
         let expected = Supports(element: "beam", type: true)
         XCTAssertEqual(decoded, expected)
     }
@@ -156,7 +156,7 @@ class ReveTests: XCTestCase {
             <lyric-font font-family="Times New Roman" font-size="10"/>
         </defaults>
         """
-        let decoded = try XMLDecoder().decode(Defaults.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Defaults.self, from: xml.data(using: .utf8)!)
         let expected = Defaults(
             scaling: Scaling(millimeters: 6.35, tenths: 40),
             pageLayout: PageLayout(
@@ -210,7 +210,7 @@ class ReveTests: XCTestCase {
             <tenths>40</tenths>
         </scaling>
         """
-        let decoded = try XMLDecoder().decode(Scaling.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Scaling.self, from: xml.data(using: .utf8)!)
         let expected = Scaling(millimeters: 6.35, tenths: 40)
         XCTAssertEqual(decoded, expected)
     }
@@ -228,7 +228,7 @@ class ReveTests: XCTestCase {
             </page-margins>
         </page-layout>
         """
-        let decoded = try XMLDecoder().decode(PageLayout.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(PageLayout.self, from: xml.data(using: .utf8)!)
         let expected = PageLayout(
             height: 1760,
             width: 1360,
@@ -250,7 +250,7 @@ class ReveTests: XCTestCase {
             <top-system-distance>127</top-system-distance>
         </system-layout>
         """
-        let decoded = try XMLDecoder().decode(SystemLayout.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(SystemLayout.self, from: xml.data(using: .utf8)!)
         let expected = SystemLayout(
             margins: SystemMargins(left: 0, right: 0),
             distance: 127,
@@ -269,7 +269,7 @@ class ReveTests: XCTestCase {
             <top-system-distance>280</top-system-distance>
           </system-layout>
         """
-        let decoded = try XMLDecoder().decode(SystemLayout.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(SystemLayout.self, from: xml.data(using: .utf8)!)
         let expected = SystemLayout(
             margins: SystemMargins(left: 3, right: 0),
             topSystemDistance: 280
@@ -283,7 +283,7 @@ class ReveTests: XCTestCase {
             <staff-distance>80</staff-distance>
         </staff-layout>
         """
-        let decoded = try XMLDecoder().decode(StaffLayout.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(StaffLayout.self, from: xml.data(using: .utf8)!)
         let expected = StaffLayout(staffDistance: 80)
         XCTAssertEqual(decoded, expected)
     }
@@ -307,7 +307,7 @@ class ReveTests: XCTestCase {
             <distance type="beam">8</distance>
         </appearance>
         """
-        let decoded = try XMLDecoder().decode(Appearance.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Appearance.self, from: xml.data(using: .utf8)!)
         let expected = Appearance(
             lineWidths: [
                 LineWidth(1.25, type: .stem),
@@ -338,7 +338,7 @@ class ReveTests: XCTestCase {
         let xml = """
         <music-font font-family="Maestro,engraved" font-size="18"/>
         """
-        let decoded = try XMLDecoder().decode(Font.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Font.self, from: xml.data(using: .utf8)!)
         let expected = Font(family: "Maestro,engraved", size: 18)
         XCTAssertEqual(decoded, expected)
     }
@@ -347,7 +347,7 @@ class ReveTests: XCTestCase {
         let xml = """
         <word-font font-family="Times New Roman" font-size="8.25"/>
         """
-        let decoded = try XMLDecoder().decode(Font.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Font.self, from: xml.data(using: .utf8)!)
         let expected = Font(family: "Times New Roman", size: 8.25)
         XCTAssertEqual(decoded, expected)
     }
@@ -358,7 +358,7 @@ class ReveTests: XCTestCase {
             <lyric-font font-family="Times New Roman" font-size="10"/>
         </container>
         """
-        let decoded = try XMLDecoder().decode([LyricFont].self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode([LyricFont].self, from: xml.data(using: .utf8)!)
         let expected = [LyricFont(Font(family: "Times New Roman", size: 10))]
         XCTAssertEqual(decoded, expected)
     }
@@ -395,7 +395,7 @@ class ReveTests: XCTestCase {
             </score-part>
         </part-list>
         """
-        let _ = try XMLDecoder().decode(PartList.self, from: xml.data(using: .utf8)!)
+        let _ = try MusicXMLDecoder().decode(PartList.self, from: xml.data(using: .utf8)!)
     }
 
     func testPrint() throws {
@@ -411,7 +411,7 @@ class ReveTests: XCTestCase {
           <measure-numbering>system</measure-numbering>
         </print>
         """
-        let decoded = try XMLDecoder().decode(Print.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Print.self, from: xml.data(using: .utf8)!)
         let expected = Print(
             systemLayout: SystemLayout(
                 margins: SystemMargins(left: 3, right: 0),

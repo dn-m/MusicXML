@@ -23,7 +23,7 @@ class DirectionTests: XCTestCase {
         </direction>
         """
 
-        let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
         let expected: Direction = Direction(
             [
                 .metronome(
@@ -55,7 +55,7 @@ class DirectionTests: XCTestCase {
           </direction-type>
         </direction>
         """
-        let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
         let expected: Direction = Direction([.wedge(Wedge(type: .crescendo, spread: 0))],
             placement: .above
         )
@@ -70,7 +70,7 @@ class DirectionTests: XCTestCase {
           </direction-type>
         </direction>
         """
-        let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
         let expected: Direction = Direction([.octaveShift(OctaveShift(type: .down, size: 8))])
         XCTAssertEqual(decoded, expected)
     }
@@ -83,7 +83,7 @@ class DirectionTests: XCTestCase {
           </direction-type>
         </direction>
         """
-        let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
         let expected: Direction = Direction(
             [.bracket(Bracket(type: .start, number: 1, lineEnd: .down, lineType: .solid))],
             placement: .above

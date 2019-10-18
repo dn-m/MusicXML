@@ -18,7 +18,7 @@ class OrnamentsTests: XCTestCase {
           <accidental-mark placement="above">three-quarters-flat</accidental-mark>
         </ornaments>
         """
-        let decoded = try XMLDecoder().decode(Ornaments.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Ornaments.self, from: xml.data(using: .utf8)!)
         let expected = Ornaments([.turn(HorizontalTurn())],
             accidentalMarks: [
                 AccidentalMark(.sharp, placement: .above),
@@ -36,7 +36,7 @@ class OrnamentsTests: XCTestCase {
           <wavy-line number="1" type="start"/>
         </ornaments>
         """
-        let decoded = try XMLDecoder().decode(Ornaments.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Ornaments.self, from: xml.data(using: .utf8)!)
         let expected = Ornaments([
             .trillMark(EmptyTrillSound()),
             .wavyLine(WavyLine(type: .start, number: 1))

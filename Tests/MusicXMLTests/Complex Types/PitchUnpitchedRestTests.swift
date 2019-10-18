@@ -21,7 +21,7 @@ class PitchUnpitchedRestTests: XCTestCase {
             </pitch>
         </container>
         """
-        let decoded = try XMLDecoder().decode(PitchUnpitchedOrRest.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(PitchUnpitchedOrRest.self, from: xml.data(using: .utf8)!)
         let expected = PitchUnpitchedOrRest.pitch(Pitch(step: .c, alter: -1.5, octave: 4))
         XCTAssertEqual(decoded, expected)
     }
@@ -36,7 +36,7 @@ class PitchUnpitchedRestTests: XCTestCase {
             <rest></rest>
         </container>
         """
-        let decoded = try XMLDecoder().decode(PitchUnpitchedOrRest.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(PitchUnpitchedOrRest.self, from: xml.data(using: .utf8)!)
         let expected = PitchUnpitchedOrRest.rest(Rest(/*displayStep: nil, displayOctave: nil, measure: nil*/))
         XCTAssertEqual(decoded, expected)
     }

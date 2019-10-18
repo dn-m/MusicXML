@@ -69,7 +69,7 @@ class PartwisePartTests: XCTestCase {
           </measure>
         </part>
         """
-        let decoded = try XMLDecoder().decode(Partwise.Part.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Partwise.Part.self, from: xml.data(using: .utf8)!)
         let expected = Partwise.Part(
             id: "P1",
             measures: [
@@ -1367,7 +1367,7 @@ class PartwisePartTests: XCTestCase {
           </measure>
         </part>
         """
-        let _ = try XMLDecoder().decode(Partwise.Part.self, from: xml.data(using: .utf8)!)
+        let _ = try MusicXMLDecoder().decode(Partwise.Part.self, from: xml.data(using: .utf8)!)
         // FIXME: Add assertion to PatwisePartTests.testDecoding()
     }
 }

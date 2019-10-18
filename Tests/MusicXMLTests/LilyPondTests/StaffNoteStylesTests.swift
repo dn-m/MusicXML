@@ -19,7 +19,7 @@ class StaffNoteStylesTests: XCTestCase {
             </measure-style>
         </attributes>
         """
-        let decoded = try XMLDecoder().decode(Attributes.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Attributes.self, from: xml.data(using: .utf8)!)
         let expected = Attributes(measureStyles: [
             MeasureStyle(kind: .slash(Slash(type: .start, useStems: false)))
         ])
@@ -32,7 +32,7 @@ class StaffNoteStylesTests: XCTestCase {
             <slash type="start" use-stems="no"/>
         </measure-style>
         """
-        let decoded = try XMLDecoder().decode(MeasureStyle.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(MeasureStyle.self, from: xml.data(using: .utf8)!)
         let expected = MeasureStyle(kind: .slash(Slash(type: .start, useStems: false)))
         XCTAssertEqual(decoded, expected)
     }
@@ -41,7 +41,7 @@ class StaffNoteStylesTests: XCTestCase {
         let xml = """
         <slash type="start" use-stems="no"/>
         """
-        let decoded = try XMLDecoder().decode(Slash.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Slash.self, from: xml.data(using: .utf8)!)
         let expected = Slash(type: .start, useStems: false)
         XCTAssertEqual(decoded, expected)
     }

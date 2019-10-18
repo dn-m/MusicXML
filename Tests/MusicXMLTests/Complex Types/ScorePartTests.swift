@@ -41,13 +41,13 @@ class ScorePartTests: XCTestCase {
             <part-name>MusicXML Part</part-name>
         </score-part>
         """
-        let decoded = try XMLDecoder().decode(ScorePart.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(ScorePart.self, from: xml.data(using: .utf8)!)
         let expected = ScorePart(id: "P1", name: "MusicXML Part")
         XCTAssertEqual(decoded, expected)
     }
 
     func testDecoding_complex() throws {
-        let decoded = try XMLDecoder().decode(ScorePart.self, from: ScorePartTests.complexXml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(ScorePart.self, from: ScorePartTests.complexXml.data(using: .utf8)!)
         let expected = ScorePart(
             id: "P1",
             name: "Piano",
@@ -80,9 +80,9 @@ class ScorePartTests: XCTestCase {
     }
 
     func testRoundTrip() throws {
-        let decoded = try XMLDecoder().decode(ScorePart.self, from: ScorePartTests.complexXml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(ScorePart.self, from: ScorePartTests.complexXml.data(using: .utf8)!)
         let encodedData = try XMLEncoder().encode(decoded, withRootKey: "score-part")
-        let decoded2 = try XMLDecoder().decode(ScorePart.self, from: encodedData)
+        let decoded2 = try MusicXMLDecoder().decode(ScorePart.self, from: encodedData)
 
         XCTAssertEqual(decoded, decoded2)
     }
@@ -96,7 +96,7 @@ class ScorePartTests: XCTestCase {
           <part-abbreviation-display><display-text>Overr.abbrv.</display-text></part-abbreviation-display>
         </score-part>
         """
-        let decoded = try XMLDecoder().decode(ScorePart.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(ScorePart.self, from: xml.data(using: .utf8)!)
         let expected = ScorePart(
             id: "P2",
             name: "Part name",

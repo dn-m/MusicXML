@@ -7,11 +7,12 @@
 
 import XCTest
 import XMLCoder
+import MusicXML
 
 extension XCTestCase {
 
     func assertDecoded<T: Decodable & Equatable>(_ xmlString: String, equals expected: T) throws {
-        let decoded = try XMLDecoder().decode(T.self, from: xmlString.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(T.self, from: xmlString.data(using: .utf8)!)
         XCTAssertEqual(decoded, expected)
     }
 
@@ -24,7 +25,7 @@ extension XCTestCase {
         encoder.outputFormatting = .prettyPrinted
         let encoded = try encoder.encode(value, withRootKey: rootKey)
         if loggingEncoded { print(String(data: encoded, encoding: .utf8)!) }
-        let decoded = try XMLDecoder().decode(Value.self, from: encoded)
+        let decoded = try MusicXMLDecoder().decode(Value.self, from: encoded)
         XCTAssertEqual(decoded, value)
     }
 }

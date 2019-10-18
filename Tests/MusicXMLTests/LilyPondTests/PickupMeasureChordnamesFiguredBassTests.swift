@@ -17,7 +17,7 @@ class PickupMeasureChordnamesFiguredBassTests: XCTestCase {
           <root-step>C</root-step>
         </root>
         """
-        let decoded = try XMLDecoder().decode(Root.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Root.self, from: xml.data(using: .utf8)!)
         let expected = Root(step: .c)
         XCTAssertEqual(decoded, expected)
     }
@@ -31,7 +31,7 @@ class PickupMeasureChordnamesFiguredBassTests: XCTestCase {
             <kind>major</kind>
         </harmony>
         """
-        let decoded = try XMLDecoder().decode(Harmony.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Harmony.self, from: xml.data(using: .utf8)!)
         let expected = Harmony(
             printFrame: false,
             chords: [
@@ -51,7 +51,7 @@ class PickupMeasureChordnamesFiguredBassTests: XCTestCase {
           <duration>1</duration>
         </figured-bass>
         """
-        let decoded = try XMLDecoder().decode(FiguredBass.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(FiguredBass.self, from: xml.data(using: .utf8)!)
         let expected = FiguredBass([Figure(figureNumber: "3")], duration: 1)
         XCTAssertEqual(decoded, expected)
     }

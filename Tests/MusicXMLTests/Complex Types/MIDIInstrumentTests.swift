@@ -20,7 +20,7 @@ class MIDIInstrumentTests: XCTestCase {
             <pan>-45</pan>
         </midi-instrument>
         """
-        let decoded = try XMLDecoder().decode(MIDIInstrument.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(MIDIInstrument.self, from: xml.data(using: .utf8)!)
         let expected = MIDIInstrument(id: "P1-I2", channel: 1, program: 1, volume: 50, pan: -45)
 
         XCTAssertEqual(decoded, expected)

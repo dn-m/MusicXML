@@ -17,7 +17,7 @@ class MeasureStyleTests: XCTestCase {
           <multiple-rest>2</multiple-rest>
         </measure-style>
         """
-        let decoded = try XMLDecoder().decode(MeasureStyle.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(MeasureStyle.self, from: xml.data(using: .utf8)!)
         let expected = MeasureStyle(kind: .multipleRest(MultipleRest(2)))
         XCTAssertEqual(decoded, expected)
     }

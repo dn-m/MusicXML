@@ -24,7 +24,7 @@ class NoteTests: XCTestCase {
             <type>quarter</type>
         </note>
         """
-        let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
         let expected = Note(
             pitch: Pitch(step: .c, alter: -1.5, octave: 4),
             duration: 1,
@@ -48,7 +48,7 @@ class NoteTests: XCTestCase {
           <accidental>sharp</accidental>
         </note>
         """
-        let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
         let expected = Note(
             pitch: Pitch(step: .g, alter: 1, octave: 2),
             duration: 1,
@@ -78,7 +78,7 @@ class NoteTests: XCTestCase {
           </notations>
         </note>
         """
-        let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
         let expected = Note(
             pitch: Pitch(step: .c, octave: 4),
             duration: 56,
@@ -122,7 +122,7 @@ class NoteTests: XCTestCase {
           <dot/>
         </note>
         """
-        let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
         let expected = Note(
             kind: .normal(Note.Normal(.rest(Rest()), duration: 48)),
             voice: "1",
@@ -148,7 +148,7 @@ class NoteTests: XCTestCase {
           <beam number="2">begin</beam>
         </note>
         """
-        let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
         let expected = Note(
             pitch: Pitch(step: .f, alter: 1, octave: 5),
             duration: 1,
@@ -183,7 +183,7 @@ class NoteTests: XCTestCase {
           </notations>
         </note>
         """
-        let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
         let expected = Note(
             pitch: Pitch(step: .a, octave: 4),
             duration: 4,
@@ -215,7 +215,7 @@ class NoteTests: XCTestCase {
           <beam number="1">begin</beam>
         </note>
         """
-        let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
         let expected = Note(
             kind: .normal(
                 Note.Normal(.unpitched(Unpitched(displayStep: .f, displayOctave: 4)), duration: 1)
@@ -246,7 +246,7 @@ class NoteTests: XCTestCase {
           <notehead parentheses="yes">normal</notehead>
         </note>
         """
-        let decoded = try XMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Note.self, from: xml.data(using: .utf8)!)
         let expected = Note(
             pitch: Pitch(step: .c, octave: 5),
             duration: 1,

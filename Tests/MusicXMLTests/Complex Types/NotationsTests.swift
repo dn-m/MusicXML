@@ -16,7 +16,7 @@ class NotationsTests: XCTestCase {
             <tied type="start"/>
         </notations>
         """
-        let decoded = try XMLDecoder().decode(Notations.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Notations.self, from: xml.data(using: .utf8)!)
         let expected = Notations([.tied(Tied(type: .start))])
 
         XCTAssertEqual(decoded, expected)
@@ -28,7 +28,7 @@ class NotationsTests: XCTestCase {
           <tuplet number="1" type="start"/>
         </notations>
         """
-        let decoded = try XMLDecoder().decode(Notations.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Notations.self, from: xml.data(using: .utf8)!)
         let expected = Notations([.tuplet(Tuplet(type: .start, number: 1))])
         XCTAssertEqual(decoded, expected)
     }
@@ -48,12 +48,12 @@ class NotationsTests: XCTestCase {
         let xml = """
         <accidental-mark placement="above">sharp</accidental-mark>
         """
-        let _ = try XMLDecoder().decode(AccidentalMark.self, from: xml.data(using: .utf8)!)
+        let _ = try MusicXMLDecoder().decode(AccidentalMark.self, from: xml.data(using: .utf8)!)
     }
 
     func testTurn() throws {
         let xml = "<turn/>"
-        let _ = try XMLDecoder().decode(HorizontalTurn.self, from: xml.data(using: .utf8)!)
+        let _ = try MusicXMLDecoder().decode(HorizontalTurn.self, from: xml.data(using: .utf8)!)
     }
 
     func testOrnamentsNotation() throws {
@@ -186,7 +186,7 @@ class NotationsTests: XCTestCase {
 
     func testStaccatoArticulations() throws {
         let xml = "<articulations><staccato/></articulations>"
-        let decoded = try XMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
         let expected = Articulations([.staccato()])
         XCTAssertEqual(decoded, expected)
     }
@@ -197,91 +197,91 @@ class NotationsTests: XCTestCase {
           <articulations><tenuto/></articulations>
         </notations>
         """
-        let decoded = try XMLDecoder().decode(Notations.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Notations.self, from: xml.data(using: .utf8)!)
         let expected = Notations([.articulations(Articulations([.tenuto()]))])
         XCTAssertEqual(decoded, expected)
     }
 
     func testStrongAccentArticulations() throws {
         let xml = "<articulations><strong-accent/></articulations>"
-        let decoded = try XMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
         let expected = Articulations([.strongAccent()])
         XCTAssertEqual(decoded, expected)
     }
 
     func testSpiccatoArticulations() throws {
         let xml = "<articulations><spiccato/></articulations>"
-        let decoded = try XMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
         let expected = Articulations([.spiccato()])
         XCTAssertEqual(decoded, expected)
     }
 
     func testBreathMarkArticulations() throws {
         let xml = "<articulations><breath-mark/></articulations>"
-        let decoded = try XMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
         let expected = Articulations([.breathMark()])
         XCTAssertEqual(decoded, expected)
     }
 
     func testStressArticulations() throws {
         let xml = "<articulations><stress/></articulations>"
-        let decoded = try XMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Articulations.self, from: xml.data(using: .utf8)!)
         let expected = Articulations([.stress()])
         XCTAssertEqual(decoded, expected)
     }
 
     func testUpBowTechnical() throws {
         let xml = "<technical><up-bow/></technical>"
-        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
         let expected = Technical([.upBow()])
         XCTAssertEqual(decoded, expected)
     }
 
     func testDownBowTechnical() throws {
         let xml = "<technical><down-bow/></technical>"
-        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
         let expected = Technical([.downBow()])
         XCTAssertEqual(decoded, expected)
     }
 
     func testFingeringEmpty() throws {
         let xml = "<technical><fingering/></technical>"
-        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
         let expected = Technical([.fingering()])
         XCTAssertEqual(decoded, expected)
     }
 
     func testFingeringValue() throws {
         let xml = "<technical><fingering>1</fingering></technical>"
-        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
         let expected = Technical([.fingering(Fingering("1"))])
         XCTAssertEqual(decoded, expected)
     }
 
     func testPluckTechnical() throws {
         let xml = "<technical><pluck/></technical>"
-        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
         let expected = Technical([.pluck()])
         XCTAssertEqual(decoded, expected)
     }
 
     func testStoppedTechnical() throws {
         let xml = "<technical><stopped/></technical>"
-        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
         let expected = Technical([.stopped()])
         XCTAssertEqual(decoded, expected)
     }
 
     func testFretTechnical() throws {
         let xml = "<technical><fret/></technical>"
-        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
         let expected = Technical([.fret()])
         XCTAssertEqual(decoded, expected)
     }
 
     func testStringTechnical() throws {
         let xml = "<technical><string/></technical>"
-        let decoded = try XMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Technical.self, from: xml.data(using: .utf8)!)
         let expected = Technical([.string()])
         XCTAssertEqual(decoded, expected)
     }

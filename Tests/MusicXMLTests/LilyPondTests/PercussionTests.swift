@@ -18,7 +18,7 @@ class PercussionTests: XCTestCase {
           <ornaments/>
         </notations>
         """
-        let decoded = try XMLDecoder().decode(Notations.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Notations.self, from: xml.data(using: .utf8)!)
         let expected = Notations([
             .tied(Tied(type: .stop)),
             .ornaments(Ornaments())

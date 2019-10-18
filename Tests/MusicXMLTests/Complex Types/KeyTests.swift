@@ -18,7 +18,7 @@ class KeyTests: XCTestCase {
           <mode>major</mode>
         </key>
         """
-        let decoded = try XMLDecoder().decode(Key.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Key.self, from: xml.data(using: .utf8)!)
         let expected = Key(fifths: 0, mode: .major)
         XCTAssertEqual(decoded, expected)
     }
@@ -27,7 +27,7 @@ class KeyTests: XCTestCase {
         let xml = """
         <key-octave number="1">2</key-octave>
         """
-        let decoded = try XMLDecoder().decode(KeyOctave.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(KeyOctave.self, from: xml.data(using: .utf8)!)
         let expected = KeyOctave(2, number: 1)
         XCTAssertEqual(decoded, expected)
     }
@@ -52,7 +52,7 @@ class KeyTests: XCTestCase {
           <key-octave number="5">6</key-octave>
         </key>
         """
-        let decoded = try XMLDecoder().decode(Key.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Key.self, from: xml.data(using: .utf8)!)
         let expected = Key(
             kind: .nonTraditional([
                 Key.AlteredTone(step: .c, alter: -2),
@@ -93,7 +93,7 @@ class KeyTests: XCTestCase {
           <key-octave number="5">6</key-octave>
         </key>
         """
-        let decoded = try XMLDecoder().decode(Key.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Key.self, from: xml.data(using: .utf8)!)
         let expected = Key(
             kind: .nonTraditional([
                 Key.AlteredTone(step: .c, alter: -2),
@@ -130,7 +130,7 @@ class KeyTests: XCTestCase {
           <key-accidental>sharp</key-accidental>
         </key>
         """
-        let decoded = try XMLDecoder().decode(Key.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Key.self, from: xml.data(using: .utf8)!)
         let expected = Key(
             kind: .nonTraditional([
                 Key.AlteredTone(step: .b, alter: -1, accidental: .quarterFlat),
@@ -158,7 +158,7 @@ class KeyTests: XCTestCase {
           <key-accidental>sharp</key-accidental>
         </key>
         """
-        let decoded = try XMLDecoder().decode(Key.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Key.self, from: xml.data(using: .utf8)!)
         let expected = Key(
             kind: .nonTraditional([
                 Key.AlteredTone(step: .b, alter: -1, accidental: .quarterFlat),

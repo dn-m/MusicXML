@@ -18,7 +18,7 @@ class MetronomeTests: XCTestCase {
         </metronome>
         """
 
-        let decoded = try XMLDecoder().decode(Metronome.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Metronome.self, from: xml.data(using: .utf8)!)
         let expected: Metronome = Metronome(
             position: Position(defaultX: -25.96, relativeY: 20.00),
             parentheses: false,
@@ -41,7 +41,7 @@ class MetronomeTests: XCTestCase {
         </metronome>
         """
 
-        let decoded = try XMLDecoder().decode(Metronome.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Metronome.self, from: xml.data(using: .utf8)!)
         let expected: Metronome = Metronome(
             parentheses: true,
             kind: .regular(
@@ -65,7 +65,7 @@ class MetronomeTests: XCTestCase {
         </metronome>
         """
 
-        let decoded = try XMLDecoder().decode(Metronome.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Metronome.self, from: xml.data(using: .utf8)!)
         let expected: Metronome = Metronome(
             kind: .regular(
                 Metronome.Regular(
@@ -87,7 +87,7 @@ class MetronomeTests: XCTestCase {
         </metronome>
         """
 
-        let decoded = try XMLDecoder().decode(Metronome.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Metronome.self, from: xml.data(using: .utf8)!)
         let expected: Metronome = Metronome(
             parentheses: true,
             kind: .regular(

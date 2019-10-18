@@ -19,7 +19,7 @@ class PartListTests: XCTestCase {
             </score-part>
         </part-list>
         """
-        let decoded = try XMLDecoder().decode(PartList.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(PartList.self, from: xml.data(using: .utf8)!)
         let expected = PartList([.part(ScorePart(id: "P1", name: "MusicXML Part"))])
         XCTAssertEqual(decoded, expected)
     }
@@ -40,7 +40,7 @@ class PartListTests: XCTestCase {
             <part-group number="1" type="stop"/>
         </part-list>
         """
-        let decoded = try XMLDecoder().decode(PartList.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(PartList.self, from: xml.data(using: .utf8)!)
         let expected = PartList([
             .group(
                 PartGroup(

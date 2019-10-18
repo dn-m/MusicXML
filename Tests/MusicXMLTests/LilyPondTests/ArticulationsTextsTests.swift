@@ -21,7 +21,7 @@ class ArticulationsTextsTests: XCTestCase {
             </direction-type>
         </direction>
         """
-        let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
+        let decoded = try MusicXMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
         let expected = Direction(
             [
                 .words(
