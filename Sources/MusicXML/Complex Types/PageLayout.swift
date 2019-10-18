@@ -15,7 +15,7 @@ public struct PageLayout {
     public let width: Double?
     public let margins: [PageMargins]
 
-    public init(height: Double? = nil, width: Double? = nil, margins: [PageMargins]) {
+    public init(height: Double? = nil, width: Double? = nil, margins: [PageMargins] = []) {
         self.height = height
         self.width = width
         self.margins = margins
