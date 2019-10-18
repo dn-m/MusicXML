@@ -80,7 +80,7 @@ class HelloWorld: XCTestCase {
         // Create the traversal
         let traversal = Partwise(header: header, parts: [part])
         // Create the score
-        let score = Score(traversal: .partwise(traversal))
+        let score: Score = .partwise(traversal)
 
         XCTAssertEqual(decoded, score)
     }
