@@ -12,7 +12,7 @@ public struct LyricFont {
     public let number: Int?
     public let name: String?
 
-    public init(_ font: Font, number: Int? = nil, name: String? = nil) {
+    public init(_ font: Font = Font(), number: Int? = nil, name: String? = nil) {
         self.font = font
         self.number = number
         self.name = name
@@ -32,6 +32,6 @@ extension LyricFont: Codable {
         self.name = try container.decodeIfPresent(String.self, forKey: .name)
     }
     public func encode(to encoder: Encoder) throws {
-        fatalError()
+        fatalError("TODO: LyricFont.encode(to:)")
     }
 }
