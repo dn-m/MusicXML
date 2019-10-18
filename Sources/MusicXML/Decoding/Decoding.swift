@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import XMLCoder
 
 extension MusicXML {
 
@@ -29,6 +28,6 @@ extension MusicXML {
 
     /// Creates a `MusicXML` model from the given MusicXML-formatted `data`.
     public init(data: Data) throws {
-        self.score = try XMLDecoder(trimValueWhitespaces: false).decode(Score.self, from: data)
+        self.score = try MusicXMLDecoder().decode(Score.self, from: data)
     }
 }

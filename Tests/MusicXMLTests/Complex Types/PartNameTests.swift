@@ -26,7 +26,7 @@ class PartNameTests: XCTestCase {
           <display-text> 1</display-text>
         </part-name-display>
         """
-        let decoded = try XMLDecoder(trimValueWhitespaces: false).decode(NameDisplay.self, from: xml)
+        let decoded = try MusicXMLDecoder().decode(NameDisplay.self, from: xml)
         let expected = NameDisplay(texts: [
             .displayText("Trumpet in B"),
             .accidentalText(AccidentalText(.flat)),
