@@ -99,9 +99,9 @@ let traversal = Partwise(header: header, parts: [part])
 let score = Score.partwise(traversal)
 ```
 
-### 🧬 Decoding musicXML into a `MusicXML.Score`
+### 🧬 Decoding musicXML into a `Score`
 
-You can decode a `MusicXML` structure in a variety of ways:
+You can decode a `Score` in a variety of ways:
 
 ```Swift
 let fromData = try Score(data: data)
@@ -109,7 +109,7 @@ let fromString = try Score(string: string)
 let fromURL = try Score(url: url)
 ```
 
-### 🚧 Work-in-progress: Encoding a `MusicXML.Score` into musicXML
+### 🚧 Work-in-progress: Encoding a `Score` into musicXML
 
 [Pre-release version 0.3.0](https://github.com/dn-m/MusicXML/milestone/1) will see the completion of the encoding from a `MusicXML.Score` into the musicXML format.
 
