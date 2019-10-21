@@ -18,7 +18,7 @@ class AccordionRegistrationTests: XCTestCase {
         </accordion-registration>
         """
         let decoded = try XMLDecoder().decode(AccordionRegistration.self, from: xml.data(using: .utf8)!)
-        let expected = AccordionRegistration(accordionHigh: Empty(), accordionMiddle: 2)
+        let expected = AccordionRegistration(accordionHigh: true, accordionMiddle: 2)
         XCTAssertEqual(decoded, expected)
     }
 }
