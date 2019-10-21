@@ -13,6 +13,12 @@ import XMLCoder
 /// relationships, such as swing tempo marks where two eighths are equated to a quarter note /
 /// eighth note triplet.
 public struct Metronome {
+
+    // MARK: - Instance Properties
+
+    // MARK: Kind
+    public let kind: Kind
+
     // MARK: - Attributes
     public let position: Position
     public let printStyleAlign: PrintStyleAlign?
@@ -21,15 +27,20 @@ public struct Metronome {
     /// its value is no if not specified.
     public let parentheses: Bool?
 
-    // MARK: - Elements
-    public let kind: Kind
+    // MARK: - Initializers
 
-    public init(position: Position = Position(), printStyleAlign: PrintStyleAlign? = nil, justify: Justify? = nil, parentheses: Bool? = nil, kind: Kind) {
+    public init(
+        kind: Kind,
+        position: Position = Position(),
+        printStyleAlign: PrintStyleAlign? = nil,
+        justify: Justify? = nil,
+        parentheses: Bool? = nil
+    ) {
+        self.kind = kind
         self.position = position
         self.printStyleAlign = printStyleAlign
         self.justify = justify
         self.parentheses = parentheses
-        self.kind = kind
     }
 }
 
