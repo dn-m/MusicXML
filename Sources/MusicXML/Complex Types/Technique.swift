@@ -25,7 +25,7 @@ public enum Technique {
     case pullOff(HammerOnPullOff)
     case snapPizzicato(EmptyPlacement = EmptyPlacement())
     case stopped(EmptyPlacement = EmptyPlacement())
-    case string(MusicXML.String = MusicXML.String()) // FIXME: Swift.String vs. MusicXML.String
+    case string(MusicXML.String = MusicXML.String())
     case tap(PlacementText)
     case thumbPosition(EmptyPlacement = EmptyPlacement())
     case toe(HeelToe)

@@ -50,7 +50,7 @@ class HelloWorld: XCTestCase {
           </part>
         </score-partwise>
         """
-        let decoded = try MusicXML(string: xml)
+        let decoded = try Score(string: xml)
 
         // Create the note
         let note = Note(pitch: Pitch(step: .c, octave: 4), duration: 4, type: .whole)
@@ -80,10 +80,8 @@ class HelloWorld: XCTestCase {
         // Create the traversal
         let traversal = Partwise(header: header, parts: [part])
         // Create the score
-        let score = Score(traversal: .partwise(traversal))
-        // Create the MusicXML
-        let musicXML = MusicXML(score)
+        let score: Score = .partwise(traversal)
 
-        XCTAssertEqual(decoded, musicXML)
+        XCTAssertEqual(decoded, score)
     }
 }
