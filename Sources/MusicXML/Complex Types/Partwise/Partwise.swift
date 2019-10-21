@@ -58,7 +58,7 @@ extension Partwise: Codable {
         self.header = try Header(from: decoder)
         self.parts = try container.decode([Part].self, forKey: .parts)
         // There is not currently a way for the `XMLDecoder` to check against the case of the
-        // `Traversal` type at the top-level. A `Partwise` traversal must have at least one part.
+        // `Score` type at the top-level. A `Partwise` traversal must have at least one part.
         guard !self.parts.isEmpty else {
             throw DecodingError.typeMismatch(
                 Partwise.self,

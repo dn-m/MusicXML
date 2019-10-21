@@ -55,7 +55,7 @@ extension Timewise: Codable {
         self.header = try Header(from: decoder)
         self.measures = try container.decode([Measure].self, forKey: .measures)
         // There is not currently a way for the `XMLDecoder` to check against the case of the
-        // `Traversal` type at the top-level. A `Timewise` traversal must have at least one measure.
+        // `Score` type at the top-level. A `Timewise` traversal must have at least one measure.
         guard !self.measures.isEmpty else {
             throw DecodingError.typeMismatch(
                 Partwise.self,

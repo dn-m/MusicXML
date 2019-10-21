@@ -19,7 +19,7 @@ When rendered graphically, this score example should look something like this:
 
 ![Hello, world!](Documentation/hello_world.gif)
 
-### musicXML Representation
+### XML Representation
 
 The musicXML representation looks like this:
 
@@ -63,11 +63,9 @@ The musicXML representation looks like this:
 </score-partwise>
 ```
 
-### Constructing the "Hello, world!" example using the `MusicXML` library
+### `MusicXML` Representation
 
-Let's build up this musical example from the ground up, using the `MusicXML` library. 
-
-First, we will create our whole note:
+To construct the "Hello, world!" example in Swift looks like this:
 
 ```Swift
 let note = Note(
@@ -75,30 +73,15 @@ let note = Note(
     duration: 4, 
     type: .whole
 )
-```
-
-Let's establish our `Key`, `Time`, and `Clef`:
-
-```Swift
 let key = Key(fifths: 0)
 let time = Time(4,4)
 let clef = Clef(sign: .g, line: 2)
-```
-
-We can bundle these attributes up:
-
-```Swift
 let attributes = Attributes(
     divisions: 1,
     keys: [key],
     times: [time],
     clefs: [clef]
 )
-```
-
-Now, we have all the information we need to put together our single measure. In this case, we are traversing the score in a partwise fashion, so we will create a `Partwise.Measure`. Otherwise, we would create a `Timewise.Measure`.
-
-```Swift
 let measure = Partwise.Measure(
     number: "1",
     musicData: [
@@ -106,58 +89,29 @@ let measure = Partwise.Measure(
         .note(note)
     ]
 )
-```
-
-We have all of the musical information under control, so let's do some administrative work to declare who is playing this music. We will start by creating a single part. Again, as we are traversing the score in a partwise fashion, we will create a `Partwise.Part`, rather than a `Timewise.Part`. We can keep track of this part by its identifier, `"P1"`.
-
-```Swift
 let part = Partwise.Part(id: "P1", measures: [measure])
-```
-
-Almost there. We just need to declare all of the parts in our composition so that we can keep track of things at a high level.
-
-```Swift
 let header = Header(
     partList: [
         .part(ScorePart(id: "P1", name: "Music"))
     ]
 )
-```
-
-We can package up our `header` and our solo `part` into a `Partwise` traversal of the work.
-
-```Swift
 let traversal = Partwise(header: header, parts: [part])
+let score = Score.partwise(traversal)
 ```
 
-And then place our traversal inside a `Score`.
+### 🧬 Decoding musicXML into a `Score`
+
+You can decode a `Score` in a variety of ways:
 
 ```Swift
-let score = Score(traversal: .partwise(traversal))
-
+let fromData = try Score(data: data)
+let fromString = try Score(string: string)
+let fromURL = try Score(url: url)
 ```
 
-Et voilà, we have willed into being a `MusicXML` value which represents our rigorous masterpiece.
+### 🚧 Work-in-progress: Encoding a `Score` into musicXML
 
-```Swift
-let musicXML = MusicXML(score)
-```
-
-### 🧬 Decoding musicXML into a `MusicXML.Score`
-
-You can decode a `MusicXML` structure in a variety of ways:
-
-```Swift
-let fromData: MusicXML = try MusicXML(data: data)
-let fromString: MusicXML = try MusicXML(string: string)
-let fromURL: MusicXML = try MusicXML(url: url)
-```
-
-If you decode the musicXML representation of our "Hello, world!" composition, you will get a value equivalent to the one you have built by hand above.
-
-### 🚧 Work-in-progress: Encoding a `MusicXML.Score` into musicXML
-
-[Pre-release version 0.3.0](https://github.com/dn-m/MusicXML/milestone/1) will see the completion of the encoding from a `MusicXML.Score` into the musicXML format.
+[Pre-release version 0.3.0](https://github.com/dn-m/MusicXML/milestone/1) will see the completion of the encoding from a `Score` into the musicXML format.
 
 
 ## Getting Started
