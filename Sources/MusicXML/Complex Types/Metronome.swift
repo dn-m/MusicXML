@@ -49,7 +49,7 @@ extension Metronome {
     public struct Regular {
         public enum Relation {
             case perMinute(PerMinute)
-            case beatUnit(NoteTypeValue, [Empty]? = nil)
+            case beatUnit(NoteTypeValue, dots: Int)
         }
         
         /// The beat-unit element indicates the graphical note type to use in a metronome mark.
@@ -92,8 +92,10 @@ extension Metronome {
                     self.relation = .perMinute(perMinute)
                 case let .beatUnit(beatUnit):
                     componentsCopy.removeFirst()
-                    let beatUnitDotInRelation = componentsCopy.prefix(while: isBeatUnitDot).map { _ in Empty() }
-                    self.relation = .beatUnit(beatUnit, beatUnitDotInRelation.isEmpty ? nil : beatUnitDotInRelation)
+                    let beatUnitDotInRelation = componentsCopy
+                        .prefix(while: isBeatUnitDot)
+                        .map { _ in Empty() }
+                    self.relation = .beatUnit(beatUnit, dots: beatUnitDotInRelation.count)
                 default:
                     throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Requires per-minute or beat-unit to be present"))
             }
