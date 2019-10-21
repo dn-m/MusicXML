@@ -47,7 +47,7 @@ class MetronomeTests: XCTestCase {
             kind: .regular(
                 Metronome.Regular(
                     beatUnit: .quarter,
-                    beatUnitDot: 1,
+                    beatUnitDots: 1,
                     relation: .perMinute(PerMinute("77"))
                 )
             )
@@ -70,7 +70,7 @@ class MetronomeTests: XCTestCase {
             kind: .regular(
                 Metronome.Regular(
                     beatUnit: .quarter,
-                    beatUnitDot: 1,
+                    beatUnitDots: 1,
                     relation: .beatUnit(.half, [Empty()])
                 )
             )

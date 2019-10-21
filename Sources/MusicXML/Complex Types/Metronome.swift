@@ -45,12 +45,12 @@ extension Metronome {
         public let beatUnit: NoteTypeValue
         /// The beat-unit-dot element is used to specify any augmentation dots for a metronome mark
         /// note.
-        public let beatUnitDot: Int
+        public let beatUnitDots: Int
         public let relation: Relation
 
-        public init(beatUnit: NoteTypeValue, beatUnitDot: Int = 0, relation: Relation) {
+        public init(beatUnit: NoteTypeValue, beatUnitDots: Int = 0, relation: Relation) {
             self.beatUnit = beatUnit
-            self.beatUnitDot = beatUnitDot
+            self.beatUnitDots = beatUnitDots
             self.relation = relation
         }
 
@@ -70,7 +70,7 @@ extension Metronome {
             }
 
             let beatUnitDot = componentsCopy.prefix(while: isBeatUnitDot).map { _ in Empty() }
-            self.beatUnitDot = beatUnitDot.count
+            self.beatUnitDots = beatUnitDot.count
             componentsCopy = [MetronomeRegularComponent](componentsCopy.drop(while: isBeatUnitDot))
             guard let firstRelationComponent = componentsCopy.first else {
                 throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Requires per-minute or beat-unit to be present"))
