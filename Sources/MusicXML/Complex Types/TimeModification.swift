@@ -22,9 +22,14 @@ public struct TimeModification {
     /// normal-notes type (e.g. eighth) is specified in the normal-type and normal-dot elements.
     public var normalType: NoteTypeValue?
     /// The normal-dot element is used to specify dotted normal tuplet types.
-    public var normalDot: [Empty]?
+    public var normalDot: Int
 
-    public init(actualNotes: Int, normalNotes: Int, normalType: NoteTypeValue? = nil, normalDot: [Empty]? = nil) {
+    public init(
+        actualNotes: Int,
+        normalNotes: Int,
+        normalType: NoteTypeValue? = nil,
+        normalDot: Int = 0
+    ) {
         self.actualNotes = actualNotes
         self.normalNotes = normalNotes
         self.normalType = normalType
@@ -39,5 +44,12 @@ extension TimeModification: Codable {
         case normalNotes = "normal-notes"
         case normalType = "normal-type"
         case normalDot = "normal-dot"
+    }
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.actualNotes = try container.decode(Int.self, forKey: .actualNotes)
+        self.normalNotes = try container.decode(Int.self, forKey: .normalNotes)
+        self.normalType = try container.decodeIfPresent(NoteTypeValue.self, forKey: .normalType)
+        self.normalDot = try container.decode([Empty].self, forKey: .normalDot).count
     }
 }
