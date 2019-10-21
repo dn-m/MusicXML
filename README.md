@@ -111,7 +111,7 @@ let fromURL = try Score(url: url)
 
 ### 🚧 Work-in-progress: Encoding a `Score` into musicXML
 
-[Pre-release version 0.3.0](https://github.com/dn-m/MusicXML/milestone/1) will see the completion of the encoding from a `MusicXML.Score` into the musicXML format.
+[Pre-release version 0.3.0](https://github.com/dn-m/MusicXML/milestone/1) will see the completion of the encoding from a `Score` into the musicXML format.
 
 
 ## Getting Started
