@@ -5,9 +5,8 @@
 //  Created by James Bean on 5/15/19.
 //
 
-public struct Empty {
-    public init() {
-    }
+internal struct Empty {
+    internal init() { }
  }
 
 extension Empty: Equatable { }
