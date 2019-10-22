@@ -20,14 +20,14 @@ class MetronomeTests: XCTestCase {
 
         let decoded = try XMLDecoder().decode(Metronome.self, from: xml.data(using: .utf8)!)
         let expected: Metronome = Metronome(
-            position: Position(defaultX: -25.96, relativeY: 20.00),
-            parentheses: false,
             kind: .regular(
                 Metronome.Regular(
                     beatUnit: .quarter,
                     relation: .perMinute(PerMinute("90"))
                 )
-            )
+            ),
+            position: Position(defaultX: -25.96, relativeY: 20.00),
+            parentheses: false
         )
         XCTAssertEqual(decoded, expected)
     }
@@ -43,14 +43,14 @@ class MetronomeTests: XCTestCase {
 
         let decoded = try XMLDecoder().decode(Metronome.self, from: xml.data(using: .utf8)!)
         let expected: Metronome = Metronome(
-            parentheses: true,
             kind: .regular(
                 Metronome.Regular(
                     beatUnit: .quarter,
-                    beatUnitDot: [Empty()],
+                    beatUnitDotCount: 1,
                     relation: .perMinute(PerMinute("77"))
                 )
-            )
+            ),
+            parentheses: true
         )
         XCTAssertEqual(decoded, expected)
     }
@@ -70,8 +70,8 @@ class MetronomeTests: XCTestCase {
             kind: .regular(
                 Metronome.Regular(
                     beatUnit: .quarter,
-                    beatUnitDot: [Empty()],
-                    relation: .beatUnit(.half, [Empty()])
+                    beatUnitDotCount: 1,
+                    relation: .beatUnit(.half, dotCount: 1)
                 )
             )
         )
@@ -89,13 +89,13 @@ class MetronomeTests: XCTestCase {
 
         let decoded = try XMLDecoder().decode(Metronome.self, from: xml.data(using: .utf8)!)
         let expected: Metronome = Metronome(
-            parentheses: true,
             kind: .regular(
                 Metronome.Regular(
                     beatUnit: .long,
-                    relation: .beatUnit(.thirysecond, [Empty()])
+                    relation: .beatUnit(.thirysecond, dotCount: 1)
                 )
-            )
+            ),
+            parentheses: true
         )
         XCTAssertEqual(decoded, expected)
     }

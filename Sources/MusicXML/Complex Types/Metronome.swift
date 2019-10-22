@@ -13,6 +13,12 @@ import XMLCoder
 /// relationships, such as swing tempo marks where two eighths are equated to a quarter note /
 /// eighth note triplet.
 public struct Metronome {
+
+    // MARK: - Instance Properties
+
+    // MARK: Kind
+    public let kind: Kind
+
     // MARK: - Attributes
     public let position: Position
     public let printStyleAlign: PrintStyleAlign?
@@ -21,15 +27,20 @@ public struct Metronome {
     /// its value is no if not specified.
     public let parentheses: Bool?
 
-    // MARK: - Elements
-    public let kind: Kind
+    // MARK: - Initializers
 
-    public init(position: Position = Position(), printStyleAlign: PrintStyleAlign? = nil, justify: Justify? = nil, parentheses: Bool? = nil, kind: Kind) {
+    public init(
+        kind: Kind,
+        position: Position = Position(),
+        printStyleAlign: PrintStyleAlign? = nil,
+        justify: Justify? = nil,
+        parentheses: Bool? = nil
+    ) {
+        self.kind = kind
         self.position = position
         self.printStyleAlign = printStyleAlign
         self.justify = justify
         self.parentheses = parentheses
-        self.kind = kind
     }
 }
 
@@ -38,19 +49,19 @@ extension Metronome {
     public struct Regular {
         public enum Relation {
             case perMinute(PerMinute)
-            case beatUnit(NoteTypeValue, [Empty]? = nil)
+            case beatUnit(NoteTypeValue, dotCount: Int)
         }
         
         /// The beat-unit element indicates the graphical note type to use in a metronome mark.
         public let beatUnit: NoteTypeValue
         /// The beat-unit-dot element is used to specify any augmentation dots for a metronome mark
         /// note.
-        public let beatUnitDot: [Empty]?
+        public let beatUnitDotCount: Int
         public let relation: Relation
 
-        public init(beatUnit: NoteTypeValue, beatUnitDot: [Empty]? = nil, relation: Relation) {
+        public init(beatUnit: NoteTypeValue, beatUnitDotCount: Int = 0, relation: Relation) {
             self.beatUnit = beatUnit
-            self.beatUnitDot = beatUnitDot
+            self.beatUnitDotCount = beatUnitDotCount
             self.relation = relation
         }
 
@@ -70,7 +81,7 @@ extension Metronome {
             }
 
             let beatUnitDot = componentsCopy.prefix(while: isBeatUnitDot).map { _ in Empty() }
-            self.beatUnitDot = beatUnitDot.isEmpty ? nil : beatUnitDot
+            self.beatUnitDotCount = beatUnitDot.count
             componentsCopy = [MetronomeRegularComponent](componentsCopy.drop(while: isBeatUnitDot))
             guard let firstRelationComponent = componentsCopy.first else {
                 throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Requires per-minute or beat-unit to be present"))
@@ -81,8 +92,10 @@ extension Metronome {
                     self.relation = .perMinute(perMinute)
                 case let .beatUnit(beatUnit):
                     componentsCopy.removeFirst()
-                    let beatUnitDotInRelation = componentsCopy.prefix(while: isBeatUnitDot).map { _ in Empty() }
-                    self.relation = .beatUnit(beatUnit, beatUnitDotInRelation.isEmpty ? nil : beatUnitDotInRelation)
+                    let beatUnitDotInRelation = componentsCopy
+                        .prefix(while: isBeatUnitDot)
+                        .map { _ in Empty() }
+                    self.relation = .beatUnit(beatUnit, dotCount: beatUnitDotInRelation.count)
                 default:
                     throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Requires per-minute or beat-unit to be present"))
             }

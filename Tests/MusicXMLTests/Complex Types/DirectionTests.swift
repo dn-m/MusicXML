@@ -28,14 +28,14 @@ class DirectionTests: XCTestCase {
             [
                 .metronome(
                     Metronome(
-                        position: Position(defaultX: -25.96, relativeY: 20.00),
-                        parentheses: false,
                         kind: .regular(
                             Metronome.Regular(
                                 beatUnit: .quarter,
                                 relation: .perMinute(PerMinute("90"))
                             )
-                        )
+                        ),
+                        position: Position(defaultX: -25.96, relativeY: 20.00),
+                        parentheses: false
                     )
                 )
             ],

@@ -20,17 +20,17 @@ public struct AccordionRegistration {
 
     // MARK: Elements
 
-    public let high: Empty?
+    public let high: Bool
     public let middle: AccordionMiddle?
-    public let low: Empty?
+    public let low: Bool
 
     // MARK: - Initializers
 
     public init(
         printStyleAlign: PrintStyleAlign = PrintStyleAlign(),
-        accordionHigh: Empty? = nil,
+        accordionHigh: Bool = false,
         accordionMiddle: AccordionMiddle? = nil,
-        accordionLow: Empty? = nil
+        accordionLow: Bool = false
     ) {
         self.printStyleAlign = printStyleAlign
         self.high = accordionHigh
@@ -52,10 +52,10 @@ extension AccordionRegistration: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
         self.printStyleAlign = try PrintStyleAlign(from: decoder)
-        self.high = try container.decodeIfPresent(Empty.self, forKey: .high)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.high = container.contains(.high)
+        self.low = container.contains(.low)
         self.middle = try container.decodeIfPresent(AccordionMiddle.self, forKey: .middle)
-        self.low = try container.decodeIfPresent(Empty.self, forKey: .low)
     }
 }
