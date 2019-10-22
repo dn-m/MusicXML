@@ -6,7 +6,7 @@
 //
 
 internal struct Empty {
-    internal init() { }
+    init() { }
  }
 
 extension Empty: Equatable { }

@@ -34,7 +34,7 @@ extension Percussion {
         case pitched(Pitched)
         case stick(Stick)
         case stickLocation(StickLocation)
-        case timpani(Empty)
+        case timpani
         case wood(Wood)
     }
 }
@@ -75,8 +75,8 @@ extension Percussion.Kind: Codable {
             try container.encode(value, forKey: .stick)
         case let .stickLocation(value):
             try container.encode(value, forKey: .stickLocation)
-        case let .timpani(value):
-            try container.encode(value, forKey: .timpani)
+        case .timpani:
+            try container.encode(Empty(), forKey: .timpani)
         case let .wood(value):
             try container.encode(value, forKey: .wood)
         }
@@ -107,7 +107,7 @@ extension Percussion.Kind: Codable {
         } else if container.contains(.stickLocation) {
             self = .stickLocation(try decode(.stickLocation))
         } else if container.contains(.timpani) {
-            self = .timpani(try decode(.timpani))
+            self = .timpani
         } else if container.contains(.wood) {
             self = .wood(try decode(.wood))
         } else {
