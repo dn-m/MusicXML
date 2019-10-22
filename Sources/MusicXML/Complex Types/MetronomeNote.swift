@@ -7,18 +7,42 @@
 
 /// The metronome-note type defines the appearance of a note within a metric relationship mark.
 public struct MetronomeNote {
+
+    // MARK: - Instance Properties
+
     public let metronomeType: NoteTypeValue
-    public let metronomeDot: [Empty]
-    public let metronomeBeam: [MetronomeBeam]
+    public let metronomeDotCount: Int
+    public let metronomeBeams: [MetronomeBeam]
     public let metronomeTuplet: MetronomeTuplet?
 
-    public init(metronomeType: NoteTypeValue, metronomeDot: [Empty], metronomeBeam: [MetronomeBeam], metronomeTuplet: MetronomeTuplet? = nil) {
+    // MARK: - Initializers
+
+    public init(
+        metronomeType: NoteTypeValue,
+        metronomeDotCount: Int = 0,
+        metronomeBeams: [MetronomeBeam] = [],
+        metronomeTuplet: MetronomeTuplet? = nil
+    ) {
         self.metronomeType = metronomeType
-        self.metronomeDot = metronomeDot
-        self.metronomeBeam = metronomeBeam
+        self.metronomeDotCount = metronomeDotCount
+        self.metronomeBeams = metronomeBeams
         self.metronomeTuplet = metronomeTuplet
     }
 }
 
 extension MetronomeNote: Equatable { }
-extension MetronomeNote: Codable { }
+extension MetronomeNote: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case metronomeType = "metronome-type"
+        case metronomeDotCount = "metronome-dot"
+        case metronomeBeams = "metronome-beam"
+        case metronomeTuplet = "metronome-tuplet"
+    }
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.metronomeType = try container.decode(NoteTypeValue.self, forKey: .metronomeType)
+        self.metronomeDotCount = try container.decode([Empty].self, forKey: .metronomeDotCount).count
+        self.metronomeBeams = try container.decode([MetronomeBeam].self, forKey: .metronomeBeams)
+        self.metronomeTuplet = try container.decodeIfPresent(MetronomeTuplet.self, forKey: .metronomeTuplet)
+    }
+}
