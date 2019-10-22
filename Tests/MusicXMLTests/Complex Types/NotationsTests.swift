@@ -122,7 +122,7 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         try assertDecoded(xml,
-            equals: Notations([.articulations(Articulations([.plop(EmptyLine())]))])
+            equals: Notations([.articulations(Articulations([.plop(Line())]))])
         )
     }
 

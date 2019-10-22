@@ -1,5 +1,5 @@
 //
-//  EmptyLine.swift
+//  Line.swift
 //  MusicXML
 //
 //  Created by James Bean on 5/15/19.
@@ -7,7 +7,7 @@
 
 /// The empty-line type represents an empty element with line-shape, line-type, dashed-formatting,
 /// print-style and placement attributes.
-public struct EmptyLine {
+public struct Line {
     public var lineShape: LineShape?
     public var lineType: LineType?
     public var dashedFormatting: DashedFormatting?
@@ -25,5 +25,5 @@ public struct EmptyLine {
     }
 }
 
-extension EmptyLine: Equatable { }
-extension EmptyLine: Codable { }
+extension Line: Equatable { }
+extension Line: Codable { }
