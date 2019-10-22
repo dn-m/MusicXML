@@ -1,12 +1,12 @@
 //
-//  EmptyPlacement.swift
+//  PlacementPrintStyle.swift
 //  MusicXML
 //
 //  Created by James Bean on 5/15/19.
 //
 
 /// The empty-placement type represents an empty element with print-style and placement attributes.
-public struct EmptyPlacement {
+public struct PlacementPrintStyle {
 
     // MARK: - Instance Properties
 
@@ -30,8 +30,8 @@ public struct EmptyPlacement {
     }
 }
 
-extension EmptyPlacement: Equatable { }
-extension EmptyPlacement: Codable {
+extension PlacementPrintStyle: Equatable { }
+extension PlacementPrintStyle: Codable {
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
         self.position = try Position(from: decoder)

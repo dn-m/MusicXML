@@ -139,9 +139,9 @@ class NotationsTests: XCTestCase {
         let expected = Notations([
             .articulations(
                 Articulations([
-                    .accent(EmptyPlacement(placement: .below)),
-                    .tenuto(EmptyPlacement(placement: .below)),
-                    .staccato(EmptyPlacement(placement: .above)),
+                    .accent(PlacementPrintStyle(placement: .below)),
+                    .tenuto(PlacementPrintStyle(placement: .below)),
+                    .staccato(PlacementPrintStyle(placement: .above)),
                 ])
             )
         ])

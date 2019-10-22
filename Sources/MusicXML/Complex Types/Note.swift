@@ -26,7 +26,7 @@ public struct Note {
     public let level: Level?
     public let voice: String?
     public let type: NoteType?
-    public let dots: [EmptyPlacement]?
+    public let dots: [PlacementPrintStyle]?
     public let accidental: Accidental?
     public let timeModification: TimeModification?
     public let stem: Stem?
@@ -73,7 +73,7 @@ public struct Note {
         level: Level? = nil,
         voice: String? = nil,
         type: NoteType? = nil,
-        dots: [EmptyPlacement]? = nil,
+        dots: [PlacementPrintStyle]? = nil,
         accidental: Accidental? = nil,
         timeModification: TimeModification? = nil,
         stem: Stem? = nil,
@@ -144,7 +144,7 @@ extension Note {
         level: Level? = nil,
         voice: String? = nil,
         type: NoteType? = nil,
-        dots: [EmptyPlacement]? = nil,
+        dots: [PlacementPrintStyle]? = nil,
         accidental: Accidental? = nil,
         timeModification: TimeModification? = nil,
         stem: Stem? = nil,
@@ -323,7 +323,7 @@ extension Note: Codable {
         self.level = try container.decodeIfPresent(Level.self, forKey: .level)
         self.voice = try container.decodeIfPresent(String.self, forKey: .voice)
         self.type = try container.decodeIfPresent(NoteType.self, forKey: .type)
-        self.dots = try container.decodeIfPresent([EmptyPlacement].self, forKey: .dots)
+        self.dots = try container.decodeIfPresent([PlacementPrintStyle].self, forKey: .dots)
         self.accidental = try container.decodeIfPresent(Accidental.self, forKey: .accidental)
         self.timeModification = try container.decodeIfPresent(TimeModification.self, forKey: .timeModification)
         self.stem = try container.decodeIfPresent(Stem.self, forKey: .stem)

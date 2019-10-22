@@ -9,22 +9,22 @@ import XMLCoder
 
 /// Articulations and accents are grouped together here.
 public enum Articulation {
-    case accent(EmptyPlacement = EmptyPlacement())
+    case accent(PlacementPrintStyle = PlacementPrintStyle())
     case breathMark(BreathMark = BreathMark())
-    case caesura(EmptyPlacement = EmptyPlacement())
-    case detachedLegato(EmptyPlacement = EmptyPlacement())
+    case caesura(PlacementPrintStyle = PlacementPrintStyle())
+    case detachedLegato(PlacementPrintStyle = PlacementPrintStyle())
     case doit(Line = Line())
     case falloff(Line = Line())
     case otherArticulation(PlacementText)
     case plop(Line = Line())
     case scoop(Line = Line())
-    case spiccato(EmptyPlacement = EmptyPlacement())
-    case staccatissimo(EmptyPlacement = EmptyPlacement())
-    case staccato(EmptyPlacement = EmptyPlacement())
-    case stress(EmptyPlacement = EmptyPlacement())
+    case spiccato(PlacementPrintStyle = PlacementPrintStyle())
+    case staccatissimo(PlacementPrintStyle = PlacementPrintStyle())
+    case staccato(PlacementPrintStyle = PlacementPrintStyle())
+    case stress(PlacementPrintStyle = PlacementPrintStyle())
     case strongAccent(StrongAccent = StrongAccent())
-    case tenuto(EmptyPlacement = EmptyPlacement())
-    case unstress(EmptyPlacement = EmptyPlacement())
+    case tenuto(PlacementPrintStyle = PlacementPrintStyle())
+    case unstress(PlacementPrintStyle = PlacementPrintStyle())
 }
 
 extension Articulation: Equatable { }
