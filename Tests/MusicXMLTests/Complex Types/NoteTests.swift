@@ -127,7 +127,7 @@ class NoteTests: XCTestCase {
             kind: .normal(Note.Normal(.rest(Rest()), duration: 48)),
             voice: "1",
             type: .quarter,
-            dots: [EmptyPlacement()]
+            dots: [PlacementPrintStyle()]
         )
         XCTAssertEqual(decoded, expected)
     }

@@ -318,7 +318,7 @@ class DirectionsTests: XCTestCase {
         </direction-type>
         """
         let decoded = try XMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
-        let expected = DirectionType.eyeglasses(EmptyPrintStyleAlign())
+        let expected = DirectionType.eyeglasses(PrintStyleAlign())
         XCTAssertEqual(decoded, expected)
     }
 
@@ -329,7 +329,7 @@ class DirectionsTests: XCTestCase {
         </direction-type>
         """
         let decoded = try XMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
-        let expected = DirectionType.segno(EmptyPrintStyleAlign())
+        let expected = DirectionType.segno(PrintStyleAlign())
         XCTAssertEqual(decoded, expected)
     }
 
@@ -340,7 +340,7 @@ class DirectionsTests: XCTestCase {
         </direction-type>
         """
         let decoded = try XMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
-        let expected = DirectionType.coda([EmptyPrintStyleAlign()])
+        let expected = DirectionType.coda([PrintStyleAlign()])
         XCTAssertEqual(decoded, expected)
     }
     
@@ -352,7 +352,7 @@ class DirectionsTests: XCTestCase {
         </direction-type>
         """
         let decoded = try XMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
-        let expected = DirectionType.coda([EmptyPrintStyleAlign(),EmptyPrintStyleAlign()])
+        let expected = DirectionType.coda([PrintStyleAlign(),PrintStyleAlign()])
         XCTAssertEqual(decoded, expected)
     }
 

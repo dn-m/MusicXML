@@ -38,7 +38,7 @@ class OrnamentsTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Ornaments.self, from: xml.data(using: .utf8)!)
         let expected = Ornaments([
-            .trillMark(EmptyTrillSound()),
+            .trillMark(PrintStyleTrillSound()),
             .wavyLine(WavyLine(type: .start, number: 1))
         ])
 

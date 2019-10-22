@@ -14,11 +14,11 @@ public enum Ornament {
     case invertedTurn(HorizontalTurn)
     case mordent(Mordent)
     case otherOrnament(PlacementText)
-    case shake(EmptyTrillSound)
+    case shake(PrintStyleTrillSound)
     case tremolo(Tremolo)
-    case trillMark(EmptyTrillSound)
+    case trillMark(PrintStyleTrillSound)
     case turn(HorizontalTurn)
-    case verticalTurn(EmptyTrillSound)
+    case verticalTurn(PrintStyleTrillSound)
     case wavyLine(WavyLine)
 }
 

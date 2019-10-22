@@ -39,11 +39,11 @@ public struct Barline {
 
     /// The segno attribute works the same way as the one in the sound element. It is used for
     /// playback when barline elements contain a segno element.
-    public var segno: EmptyPrintStyleAlign?
+    public var segno: PrintStyleAlign?
 
     /// The coda attribute works the same way as the one in the sound element. It is used for
     /// playback when a barline element contains a coda child element.
-    public var coda: EmptyPrintStyleAlign?
+    public var coda: PrintStyleAlign?
 
     /// The divisions attribute works the same way as the one in the sound element. It is used for
     /// playback when a barline element contains a divisions element.
@@ -60,7 +60,18 @@ public struct Barline {
     public var ending: Ending?
     public var `repeat`: Repeat?
 
-    public init(location: RightLeftMiddle? = nil, segno: EmptyPrintStyleAlign? = nil, coda: EmptyPrintStyleAlign? = nil, divisions: Int? = nil, barStyle: BarStyleColor? = nil, editorial: Editorial? = nil, wavyLine: WavyLine? = nil, fermata: Fermata? = nil, ending: Ending? = nil, `repeat`: Repeat? = nil) {
+    public init(
+        location: RightLeftMiddle? = nil,
+        segno: PrintStyleAlign? = nil,
+        coda: PrintStyleAlign? = nil,
+        divisions: Int? = nil,
+        barStyle: BarStyleColor? = nil,
+        editorial: Editorial? = nil,
+        wavyLine: WavyLine? = nil,
+        fermata: Fermata? = nil,
+        ending: Ending? = nil,
+        `repeat`: Repeat? = nil
+    ) {
         self.location = location
         self.segno = segno
         self.coda = coda

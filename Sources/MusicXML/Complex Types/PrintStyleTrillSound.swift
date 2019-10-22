@@ -1,13 +1,13 @@
 //
-//  EmptyTrillSound.swift
+//  PrintStyleTrillSound
 //  MusicXML
 //
 //  Created by James Bean on 5/16/19.
 //
 
-/// The empty-trill-sound type represents an empty element with print-style, placement, and
+/// The `PrintStyleTrillSound` type represents an empty element with print-style, placement, and
 /// trill-sound attributes.
-public struct EmptyTrillSound {
+public struct PrintStyleTrillSound {
     public let printStyle: PrintStyle
     public let placement: AboveBelow?
     public let trillSound: TrillSound
@@ -19,8 +19,8 @@ public struct EmptyTrillSound {
     }
 }
 
-extension EmptyTrillSound: Equatable { }
-extension EmptyTrillSound: Codable {
+extension PrintStyleTrillSound: Equatable { }
+extension PrintStyleTrillSound: Codable {
     private enum CodingKeys: String, CodingKey {
         case placement
     }
