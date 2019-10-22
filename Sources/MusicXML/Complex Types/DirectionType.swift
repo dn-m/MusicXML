@@ -23,11 +23,11 @@ public enum DirectionType {
     /// The coda element is the visual indicator of a coda sign. A sound element is needed to guide
     /// playback applications reliably.
 
-    case coda([EmptyPrintStyleAlign])
+    case coda([PrintStyleAlign])
     /// The damp element specifies a harp damping mark.
-    case damp(EmptyPrintStyleAlign)
+    case damp(PrintStyleAlign)
     /// The damp-all element specifies a harp damping mark for all strings.
-    case dampAll(EmptyPrintStyleAlign)
+    case dampAll(PrintStyleAlign)
     /// The dashes type represents dashes, used for instance with cresc. and dim. marks.
     case dashes(Dashes)
     /// Dynamics can be associated either with a note or a general musical direction. To avoid
@@ -47,7 +47,7 @@ public enum DirectionType {
 
     case dynamics([Dynamics])
     /// The eyeglasses element specifies the eyeglasses symbol, common in commercial music.
-    case eyeglasses(EmptyPrintStyleAlign)
+    case eyeglasses(PrintStyleAlign)
     /// The harp-pedals type is used to create harp pedal diagrams. The pedal-step and pedal-alter
     /// elements use the same values as the step and alter elements. For easiest reading, the
     /// pedal-tuning elements should follow standard harp pedal order, with pedal-step values of D,
@@ -95,7 +95,7 @@ public enum DirectionType {
     case scordatura(Scordatura)
     /// The segno element is the visual indicator of a segno sign. A sound element is needed to
     /// guide playback applications reliably.
-    case segno(EmptyPrintStyleAlign)
+    case segno(PrintStyleAlign)
     /// The string-mute type represents string mute on and mute off symbols.
     case stringMute(StringMute)
     /// The wedge type represents crescendo and diminuendo wedge symbols. The type attribute is
@@ -203,7 +203,7 @@ extension DirectionType: Codable {
             self = .bracket(try decode(.bracket))
         } else if container.contains(.coda) {
             let singleValueContainer = try decoder.singleValueContainer()
-            self = .coda(try singleValueContainer.decode([EmptyPrintStyleAlign].self))
+            self = .coda(try singleValueContainer.decode([PrintStyleAlign].self))
         } else if container.contains(.damp) {
             self = .damp(try decode(.damp))
         } else if container.contains(.dampAll) {
