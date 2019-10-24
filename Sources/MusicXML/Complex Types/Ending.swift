@@ -89,6 +89,15 @@ extension Ending: Codable {
     }
 
     public func encode(to encoder: Encoder) throws {
-        fatalError("TODO: Ending.encode(to:)")
+        var singleValueContainer = encoder.singleValueContainer()
+        try singleValueContainer.encode(printStyle)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(value, forKey: .value)
+        try container.encode(number, forKey: .number)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(printObject, forKey: .printObject)
+        try container.encodeIfPresent(endLength, forKey: .endLength)
+        try container.encodeIfPresent(textX, forKey: .textX)
+        try container.encodeIfPresent(textY, forKey: .textY)
     }
 }
