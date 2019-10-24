@@ -32,9 +32,21 @@ extension MeasureNumbering: Codable {
         self.value = try container.decode(MeasureNumberingValue.self, forKey: .value)
     }
     public func encode(to encoder: Encoder) throws {
-        var singleValueContainer = encoder.singleValueContainer()
-        try singleValueContainer.encode(printStyleAlign)
+        try printStyleAlign.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)
+    }
+}
+
+import XMLCoder
+
+extension MeasureNumbering: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }
