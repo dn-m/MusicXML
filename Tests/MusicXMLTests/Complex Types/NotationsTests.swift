@@ -287,7 +287,7 @@ class NotationsTests: XCTestCase {
     }
     
     func testFingeringValueRoundTrip() throws {
-        try testRoundTrip(Technical([.fingering(Fingering("1"))]))
+        try testRoundTrip(Technical([.fingering(Fingering("1"))]), loggingEncoded: true)
     }
     
     func testFingeringEmptyRoundTrip() throws {
