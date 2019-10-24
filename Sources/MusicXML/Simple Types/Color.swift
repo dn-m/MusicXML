@@ -28,6 +28,9 @@ public struct Color {
 
 extension Color: Equatable { }
 extension Color: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case hexValue = ""
+    }
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         guard let color = Color.init(hexString: try container.decode(String.self)) else {
@@ -40,6 +43,10 @@ extension Color: Codable {
             )
         }
         self = color
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(String(hexValue, radix: 16, uppercase: true))
     }
 }
 

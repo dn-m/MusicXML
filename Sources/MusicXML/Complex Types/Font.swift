@@ -49,4 +49,11 @@ extension Font: Codable {
         case size = "font-size"
         case weight = "font-weight"
     }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(family, forKey: .family)
+        try container.encodeIfPresent(style, forKey: .style)
+        try container.encodeIfPresent(size, forKey: .size)
+        try container.encodeIfPresent(weight, forKey: .weight)
+    }
 }
