@@ -32,6 +32,9 @@ extension MeasureNumbering: Codable {
         self.value = try container.decode(MeasureNumberingValue.self, forKey: .value)
     }
     public func encode(to encoder: Encoder) throws {
-        fatalError()
+        var singleValueContainer = encoder.singleValueContainer()
+        try singleValueContainer.encode(printStyleAlign)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
     }
 }
