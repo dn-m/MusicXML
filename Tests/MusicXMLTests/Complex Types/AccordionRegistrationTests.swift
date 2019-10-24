@@ -21,4 +21,8 @@ class AccordionRegistrationTests: XCTestCase {
         let expected = AccordionRegistration(high: true, middle: 2)
         XCTAssertEqual(decoded, expected)
     }
+    
+    func testRoundTrip() throws {
+        try testRoundTrip(AccordionRegistration(high: true, middle: 2))
+    }
 }
