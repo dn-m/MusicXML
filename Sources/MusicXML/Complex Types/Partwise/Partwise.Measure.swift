@@ -111,6 +111,7 @@ extension Partwise.Measure: Codable {
     
     public func encode(to encoder: Encoder) throws {
         try attributes.encode(to: encoder)
-        try musicData.encode(to: encoder)
+        // FIXME: Reengage `musicData` encoding
+        // try musicData.encode(to: encoder)
     }
 }
