@@ -27,15 +27,15 @@ public struct AccordionRegistration {
     // MARK: - Initializers
 
     public init(
-        printStyleAlign: PrintStyleAlign = PrintStyleAlign(),
-        accordionHigh: Bool = false,
-        accordionMiddle: AccordionMiddle? = nil,
-        accordionLow: Bool = false
+        high: Bool = false,
+        middle: AccordionMiddle? = nil,
+        low: Bool = false,
+        printStyleAlign: PrintStyleAlign = PrintStyleAlign()
     ) {
+        self.high = high
+        self.middle = middle
+        self.low = low
         self.printStyleAlign = printStyleAlign
-        self.high = accordionHigh
-        self.middle = accordionMiddle
-        self.low = accordionLow
     }
 }
 
@@ -46,16 +46,19 @@ extension AccordionRegistration: Codable {
         case middle = "accordion-middle"
         case low = "accordion-low"
     }
-
-    public func encode(to encoder: Encoder) throws {
-        fatalError()
-    }
-
     public init(from decoder: Decoder) throws {
         self.printStyleAlign = try PrintStyleAlign(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.high = container.contains(.high)
         self.low = container.contains(.low)
         self.middle = try container.decodeIfPresent(AccordionMiddle.self, forKey: .middle)
+    }
+    public func encode(to encoder: Encoder) throws {
+        var singleValueContainer = encoder.singleValueContainer()
+        try singleValueContainer.encode(printStyleAlign)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        if high { try container.encode(Empty(), forKey: .high) }
+        if low { try container.encode(Empty(), forKey: .low) }
+        try container.encodeIfPresent(middle, forKey: .middle)
     }
 }

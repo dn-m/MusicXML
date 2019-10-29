@@ -21,10 +21,20 @@ public struct Harmonic {
     // MARK: - Attributes
 
     public var printObject: Bool?
-    public var printStyle: PrintStyle?
+    
     public var placement: AboveBelow?
+    
+    // MARK: - Attribute Groups
+    
+    public var printStyle: PrintStyle
 
-    public init(naturalArtificial: NaturalArtificial? = nil, baseSoundingTouchingPitch: BaseSoundingTouchingPitch? = nil, printObject: Bool? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+    public init(
+        naturalArtificial: NaturalArtificial? = nil,
+        baseSoundingTouchingPitch: BaseSoundingTouchingPitch? = nil,
+        printObject: Bool? = nil,
+        placement: AboveBelow? = nil,
+        printStyle: PrintStyle = PrintStyle()
+    ) {
         self.naturalArtificial = naturalArtificial
         self.baseSoundingTouchingPitch = baseSoundingTouchingPitch
         self.printObject = printObject
@@ -74,6 +84,7 @@ extension Harmonic: Codable {
     }
     
     public init(from decoder: Decoder) throws {
+        self.printStyle = try PrintStyle(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if container.contains(.natural) {
             self.naturalArtificial = .natural
@@ -92,12 +103,33 @@ extension Harmonic: Codable {
         }
         
         self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
-        self.printStyle = try container.decodeIfPresent(PrintStyle.self, forKey: .printStyle)
         self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
     }
     
     public func encode(to encoder: Encoder) throws {
-        fatalError()
+        var singleValueContainer = encoder.singleValueContainer()
+        try singleValueContainer.encode(printStyle)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        if let baseSoundingTouchingPitch = self.baseSoundingTouchingPitch {
+            switch baseSoundingTouchingPitch {
+            case .base:
+                try container.encode(Empty(), forKey: .base)
+            case .sounding:
+                try container.encode(Empty(), forKey: .sounding)
+            case .touching:
+                try container.encode(Empty(), forKey: .touching)
+            }
+        }
+        if let naturalArtificial = self.naturalArtificial {
+            switch naturalArtificial {
+            case .natural:
+                try container.encode(Empty(), forKey: .natural)
+            case .artificial:
+                try container.encode(Empty(), forKey: .artificial)
+            }
+        }
+        try container.encodeIfPresent(printObject, forKey: .printObject)
+        try container.encodeIfPresent(placement, forKey: .placement)
     }
 }
 

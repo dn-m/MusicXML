@@ -36,7 +36,7 @@ public struct Ending {
 
     // MARK: Attribute Groups
 
-    public let printStyle: PrintStyle?
+    public let printStyle: PrintStyle
 
     // MARK: - Initializers
 
@@ -89,6 +89,27 @@ extension Ending: Codable {
     }
 
     public func encode(to encoder: Encoder) throws {
-        fatalError("TODO: Ending.encode(to:)")
+        try printStyle.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try container.encode(number, forKey: .number)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(printObject, forKey: .printObject)
+        try container.encodeIfPresent(endLength, forKey: .endLength)
+        try container.encodeIfPresent(textX, forKey: .textX)
+        try container.encodeIfPresent(textY, forKey: .textY)
+    }
+}
+
+import XMLCoder
+
+extension Ending: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

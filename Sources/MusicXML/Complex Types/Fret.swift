@@ -36,14 +36,18 @@ public struct Fret {
     }
 }
 
+extension Fret: ExpressibleByIntegerLiteral {
+    public init(integerLiteral value: Int) {
+        self.init(value)
+    }
+}
+
 extension Fret: Equatable { }
 extension Fret: Codable {
-
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case color
     }
-
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
         self.font = try Font(from: decoder)
@@ -57,14 +61,23 @@ extension Fret: Codable {
             self.value = 0
         }
     }
-
     public func encode(to encoder: Encoder) throws {
-        fatalError("TODO: Fret.encode(to:)")
+        try font.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(color, forKey: .color)
     }
 }
 
-extension Fret: ExpressibleByIntegerLiteral {
-    public init(integerLiteral value: Int) {
-        self.init(value)
+import XMLCoder
+
+extension Fret: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

@@ -24,11 +24,24 @@ extension PrintStyle: Codable {
     private enum CodingKeys: String, CodingKey {
         case color
     }
-
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.position = try Position(from: decoder)
         self.font = try Font(from: decoder)
         self.color = try container.decodeIfPresent(Color.self, forKey: .color)
+    }
+    public func encode(to encoder: Encoder) throws {
+        try position.encode(to: encoder)
+        try font.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(color, forKey: .color)
+    }
+}
+
+import XMLCoder
+
+extension PrintStyle: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .attribute
     }
 }
