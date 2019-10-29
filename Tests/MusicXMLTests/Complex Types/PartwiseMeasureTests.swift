@@ -18,6 +18,7 @@ class PartwiseMeasureTests: XCTestCase {
             .decode(Partwise.Measure.self, from: xml.data(using: .utf8)!)
         let expected = Partwise.Measure(number: "1", musicData: [])
         XCTAssertEqual(decoded, expected)
+        try testRoundTrip(expected)
     }
 
     func testDecodingAttributes() throws {

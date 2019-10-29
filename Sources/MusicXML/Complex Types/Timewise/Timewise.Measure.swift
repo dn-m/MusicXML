@@ -110,6 +110,7 @@ extension Timewise.Measure: Codable {
     }
 
     public func encode(to encoder: Encoder) throws {
-        fatalError()
+        try attributes.encode(to: encoder)
+        try parts.encode(to: encoder)
     }
 }
