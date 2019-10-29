@@ -37,11 +37,3 @@ extension PrintStyle: Codable {
         try container.encodeIfPresent(color, forKey: .color)
     }
 }
-
-import XMLCoder
-
-extension PrintStyle: DynamicNodeEncoding {
-    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        return .attribute
-    }
-}
