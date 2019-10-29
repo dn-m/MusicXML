@@ -45,8 +45,7 @@ extension Color: Codable {
         self = color
     }
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encode(String(hexValue, radix: 16, uppercase: true))
+        try String(hexValue, radix: 16, uppercase: true).encode(to: encoder)
     }
 }
 

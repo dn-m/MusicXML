@@ -32,8 +32,7 @@ extension LyricFont: Codable {
         self.name = try container.decodeIfPresent(String.self, forKey: .name)
     }
     public func encode(to encoder: Encoder) throws {
-        var singleValueContainer = encoder.singleValueContainer()
-        try singleValueContainer.encode(font)
+        try font.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(number, forKey: .number)
         try container.encodeIfPresent(name, forKey: .name)

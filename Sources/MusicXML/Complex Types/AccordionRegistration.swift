@@ -54,8 +54,7 @@ extension AccordionRegistration: Codable {
         self.middle = try container.decodeIfPresent(AccordionMiddle.self, forKey: .middle)
     }
     public func encode(to encoder: Encoder) throws {
-        var singleValueContainer = encoder.singleValueContainer()
-        try singleValueContainer.encode(printStyleAlign)
+        try printStyleAlign.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         if high { try container.encode(Empty(), forKey: .high) }
         if low { try container.encode(Empty(), forKey: .low) }

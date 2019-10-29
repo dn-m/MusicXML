@@ -107,8 +107,7 @@ extension Harmonic: Codable {
     }
     
     public func encode(to encoder: Encoder) throws {
-        var singleValueContainer = encoder.singleValueContainer()
-        try singleValueContainer.encode(printStyle)
+        try printStyle.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         if let baseSoundingTouchingPitch = self.baseSoundingTouchingPitch {
             switch baseSoundingTouchingPitch {
