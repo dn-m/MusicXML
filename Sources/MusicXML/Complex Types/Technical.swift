@@ -22,7 +22,6 @@ extension Technical: Codable {
         values = try container.decode([Technique].self)
     }
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encode(values)
+        try values.encode(to: encoder)
     }
 }

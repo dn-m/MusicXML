@@ -46,12 +46,11 @@ extension FontSize: Codable {
         }
     }
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
         switch self {
         case let .css(size):
-            try container.encode(size)
+            try size.encode(to: encoder)
         case let .numeric(size):
-            try container.encode(size)
+            try size.encode(to: encoder)
         }
     }
 }

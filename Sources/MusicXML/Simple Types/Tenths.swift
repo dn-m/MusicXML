@@ -14,8 +14,7 @@ extension Tenths: Hashable { }
 
 extension Tenths: Codable {
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encode(value)
+        try value.encode(to: encoder)
     }
 
     public init(from decoder: Decoder) throws {
