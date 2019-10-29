@@ -110,4 +110,9 @@ extension Partwise.Measure: Codable {
         let container = try decoder.singleValueContainer()
         self.musicData = try container.decode([MusicData].self)
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        try attributes.encode(to: encoder)
+        try musicData.encode(to: encoder)
+    }
 }
