@@ -21,4 +21,12 @@ public struct OtherDirection {
 }
 
 extension OtherDirection: Equatable { }
-extension OtherDirection: Codable { }
+extension OtherDirection: Codable {
+    // sourcery:inline:OtherDirection.ExplicitCodingKey
+    enum CodingKeys: String, CodingKey {
+        case printObject
+        case printStyleAlign
+        case value = ""
+    }
+    // sourcery:end
+}

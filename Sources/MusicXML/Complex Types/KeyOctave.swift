@@ -38,6 +38,14 @@ extension KeyOctave {
 
 extension KeyOctave: Equatable { }
 extension KeyOctave: Codable {
+    // sourcery:inline:KeyOctave.ExplicitCodingKey
+    enum CodingKeys: String, CodingKey {
+        case number
+        case cancel
+        case value = ""
+    }
+    // sourcery:end
+    
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.value = try container.decode(Int.self, forKey: .value)

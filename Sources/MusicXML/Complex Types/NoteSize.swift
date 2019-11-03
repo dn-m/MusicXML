@@ -23,4 +23,11 @@ public struct NoteSize {
 }
 
 extension NoteSize: Equatable { }
-extension NoteSize: Codable { }
+extension NoteSize: Codable {
+    // sourcery:inline:NoteSize.ExplicitCodingKey
+    enum CodingKeys: String, CodingKey {
+        case type
+        case value = ""
+    }
+    // sourcery:end
+}

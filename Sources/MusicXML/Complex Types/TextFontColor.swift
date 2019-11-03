@@ -28,4 +28,16 @@ public struct TextFontColor {
 }
 
 extension TextFontColor: Equatable { }
-extension TextFontColor: Codable { }
+extension TextFontColor: Codable {
+    // sourcery:inline:TextFontColor.ExplicitCodingKey
+    enum CodingKeys: String, CodingKey {
+        case font
+        case color
+        case textDecoration
+        case textRotation
+        case letterSpacing
+        case dir
+        case value = ""
+    }
+    // sourcery:end
+}

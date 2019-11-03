@@ -19,4 +19,11 @@ public struct OtherAppearance {
 }
 
 extension OtherAppearance: Equatable { }
-extension OtherAppearance: Codable { }
+extension OtherAppearance: Codable {
+    // sourcery:inline:OtherAppearance.ExplicitCodingKey
+    enum CodingKeys: String, CodingKey {
+        case type
+        case value = ""
+    }
+    // sourcery:end
+}

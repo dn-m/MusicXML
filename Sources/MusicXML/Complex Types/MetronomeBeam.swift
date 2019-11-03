@@ -18,4 +18,11 @@ public struct MetronomeBeam {
 }
 
 extension MetronomeBeam: Equatable { }
-extension MetronomeBeam: Codable { }
+extension MetronomeBeam: Codable {
+    // sourcery:inline:MetronomeBeam.ExplicitCodingKey
+    enum CodingKeys: String, CodingKey {
+        case number
+        case value = ""
+    }
+    // sourcery:end
+}

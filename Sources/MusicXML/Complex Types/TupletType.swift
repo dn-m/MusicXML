@@ -20,4 +20,12 @@ public struct TupletType {
 }
 
 extension TupletType: Equatable { }
-extension TupletType: Codable { }
+extension TupletType: Codable {
+    // sourcery:inline:TupletType.ExplicitCodingKey
+    enum CodingKeys: String, CodingKey {
+        case font
+        case color
+        case value = ""
+    }
+    // sourcery:end
+}

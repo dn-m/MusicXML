@@ -20,4 +20,11 @@ public struct PerMinute {
 }
 
 extension PerMinute: Equatable { }
-extension PerMinute: Codable { }
+extension PerMinute: Codable {
+    // sourcery:inline:PerMinute.ExplicitCodingKey
+    enum CodingKeys: String, CodingKey {
+        case font
+        case value = ""
+    }
+    // sourcery:end
+}

@@ -29,4 +29,15 @@ public struct PartSymbol {
 }
 
 extension PartSymbol: Equatable { }
-extension PartSymbol: Codable { }
+extension PartSymbol: Codable {
+    // sourcery:inline:PartSymbol.ExplicitCodingKey
+    enum CodingKeys: String, CodingKey {
+        case kind
+        case topStaff
+        case bottomStaff
+        case position
+        case color
+        case value = ""
+    }
+    // sourcery:end
+}

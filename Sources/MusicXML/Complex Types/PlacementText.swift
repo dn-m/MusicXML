@@ -41,6 +41,14 @@ public struct PlacementText {
 
 extension PlacementText: Equatable { }
 extension PlacementText: Codable {
+    // sourcery:inline:PlacementText.ExplicitCodingKey
+    enum CodingKeys: String, CodingKey {
+        case placement
+        case position
+        case printStyle
+        case value = ""
+    }
+    // sourcery:end
 
     public init(from decoder: Decoder) throws {
         // Decode attribute groups

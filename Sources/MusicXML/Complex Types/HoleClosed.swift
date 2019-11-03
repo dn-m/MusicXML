@@ -19,4 +19,11 @@ public struct HoleClosed {
 }
 
 extension HoleClosed: Equatable { }
-extension HoleClosed: Codable { }
+extension HoleClosed: Codable {
+    // sourcery:inline:HoleClosed.ExplicitCodingKey
+    enum CodingKeys: String, CodingKey {
+        case location
+        case value = ""
+    }
+    // sourcery:end
+}

@@ -28,4 +28,14 @@ public struct Beam {
 }
 
 extension Beam: Equatable { }
-extension Beam: Codable { }
+extension Beam: Codable {
+    // sourcery:inline:Beam.ExplicitCodingKey
+    enum CodingKeys: String, CodingKey {
+        case number
+        case repeater
+        case fan
+        case color
+        case value = ""
+    }
+    // sourcery:end
+}

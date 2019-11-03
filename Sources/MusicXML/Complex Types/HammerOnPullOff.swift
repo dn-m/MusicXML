@@ -27,4 +27,14 @@ public struct HammerOnPullOff {
 }
 
 extension HammerOnPullOff: Equatable { }
-extension HammerOnPullOff: Codable { }
+extension HammerOnPullOff: Codable {
+    // sourcery:inline:HammerOnPullOff.ExplicitCodingKey
+    enum CodingKeys: String, CodingKey {
+        case type
+        case number
+        case printStyle
+        case placement
+        case value = ""
+    }
+    // sourcery:end
+}

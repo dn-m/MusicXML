@@ -13,6 +13,12 @@ extension Tenths: Equatable { }
 extension Tenths: Hashable { }
 
 extension Tenths: Codable {
+    // sourcery:inline:Tenths.ExplicitCodingKey
+    enum CodingKeys: String, CodingKey {
+        case value = ""
+    }
+    // sourcery:end
+    
     public func encode(to encoder: Encoder) throws {
         try value.encode(to: encoder)
     }
