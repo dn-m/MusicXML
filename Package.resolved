@@ -3,11 +3,11 @@
     "pins": [
       {
         "package": "XMLCoder",
-        "repositoryURL": "https://github.com/jsbean/XMLCoder",
+        "repositoryURL": "https://github.com/bwetherfield/XMLCoder",
         "state": {
-          "branch": null,
-          "revision": "51c791f9523ce78efd742067fb32f29214d3082a",
-          "version": "0.8.1"
+          "branch": "value-coding-key-empty",
+          "revision": "f35a28a5093dc7952116422f3bff05fcb08e8324",
+          "version": null
         }
       },
       {

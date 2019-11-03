@@ -12,7 +12,7 @@ let package = Package(
             targets: ["MusicXML"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/jsbean/XMLCoder", from: "0.8.1"),
+        .package(url: "https://github.com/bwetherfield/XMLCoder", .branch("value-coding-key-empty")),
         .package(url: "https://github.com/jpsim/Yams.git", from: "2.0.0")
     ],
     targets: [
