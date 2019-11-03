@@ -29,7 +29,6 @@ public struct OtherNotation {
 
 extension OtherNotation: Equatable { }
 extension OtherNotation: Codable {
-    // sourcery:inline:OtherNotation.ExplicitCodingKey
     enum CodingKeys: String, CodingKey {
         case type
         case number
@@ -38,5 +37,4 @@ extension OtherNotation: Codable {
         case placement
         case value = ""
     }
-    // sourcery:end
 }

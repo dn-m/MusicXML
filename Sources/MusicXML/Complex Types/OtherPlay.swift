@@ -19,10 +19,8 @@ public struct OtherPlay {
 
 extension OtherPlay: Equatable { }
 extension OtherPlay: Codable {
-    // sourcery:inline:OtherPlay.ExplicitCodingKey
     enum CodingKeys: String, CodingKey {
         case type
         case value = ""
     }
-    // sourcery:end
 }

@@ -43,10 +43,8 @@ extension NoteType {
 
 extension NoteType: Equatable { }
 extension NoteType: Codable {
-    // sourcery:inline:NoteType.ExplicitCodingKey
     enum CodingKeys: String, CodingKey {
         case size
         case value = ""
     }
-    // sourcery:end
 }

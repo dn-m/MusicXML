@@ -30,10 +30,8 @@ public struct MultipleRest {
 
 extension MultipleRest: Equatable { }
 extension MultipleRest: Codable {
-    // sourcery:inline:MultipleRest.ExplicitCodingKey
     enum CodingKeys: String, CodingKey {
         case useSymbols
         case value = ""
     }
-    // sourcery:end
 }

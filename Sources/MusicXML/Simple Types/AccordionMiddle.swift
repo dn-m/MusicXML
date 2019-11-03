@@ -15,11 +15,9 @@ public struct AccordionMiddle {
 
 extension AccordionMiddle: Equatable {}
 extension AccordionMiddle: Codable {
-    // sourcery:inline:AccordionMiddle.ExplicitCodingKey
     enum CodingKeys: String, CodingKey {
         case value = ""
     }
-    // sourcery:end
     
     public func encode(to encoder: Encoder) throws {
         try value.encode(to: encoder)

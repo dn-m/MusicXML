@@ -29,7 +29,6 @@ public struct Glissando {
 
 extension Glissando: Equatable { }
 extension Glissando: Codable {
-    // sourcery:inline:Glissando.ExplicitCodingKey
     enum CodingKeys: String, CodingKey {
         case type
         case number
@@ -38,5 +37,4 @@ extension Glissando: Codable {
         case printStyle
         case value = ""
     }
-    // sourcery:end
 }

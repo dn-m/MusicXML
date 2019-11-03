@@ -19,10 +19,8 @@ public struct LineWidth {
 
 extension LineWidth: Equatable { }
 extension LineWidth: Codable {
-    // sourcery:inline:LineWidth.ExplicitCodingKey
     enum CodingKeys: String, CodingKey {
         case type
         case value = ""
     }
-    // sourcery:end
 }

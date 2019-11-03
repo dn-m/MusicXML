@@ -28,12 +28,10 @@ public struct Mordent {
 
 extension Mordent: Equatable { }
 extension Mordent: Codable {
-    // sourcery:inline:Mordent.ExplicitCodingKey
     enum CodingKeys: String, CodingKey {
         case long
         case approach
         case departure
         case value = ""
     }
-    // sourcery:end
 }

@@ -11,9 +11,7 @@ public struct NonNegativeDecimal {
 
 extension NonNegativeDecimal: Equatable { }
 extension NonNegativeDecimal: Codable {
-    // sourcery:inline:NonNegativeDecimal.ExplicitCodingKey
     enum CodingKeys: String, CodingKey {
         case value = ""
     }
-    // sourcery:end
 }

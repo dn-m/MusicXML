@@ -23,12 +23,10 @@ public struct MetronomeTuplet {
 
 extension MetronomeTuplet: Equatable { }
 extension MetronomeTuplet: Codable {
-    // sourcery:inline:MetronomeTuplet.ExplicitCodingKey
     enum CodingKeys: String, CodingKey {
         case type
         case bracket
         case showNumber
         case value = ""
     }
-    // sourcery:end
 }

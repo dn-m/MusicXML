@@ -25,12 +25,10 @@ public struct PrincipleVoice {
 
 extension PrincipleVoice: Equatable { }
 extension PrincipleVoice: Codable {
-    // sourcery:inline:PrincipleVoice.ExplicitCodingKey
     enum CodingKeys: String, CodingKey {
         case type
         case symbol
         case printStyleAlign
         case value = ""
     }
-    // sourcery:end
 }

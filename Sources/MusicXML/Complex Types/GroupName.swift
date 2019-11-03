@@ -22,11 +22,9 @@ public struct GroupName {
 
 extension GroupName: Equatable { }
 extension GroupName: Codable {
-    // sourcery:inline:GroupName.ExplicitCodingKey
     enum CodingKeys: String, CodingKey {
         case printStyle
         case justify
         case value = ""
     }
-    // sourcery:end
 }

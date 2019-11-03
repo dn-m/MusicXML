@@ -29,7 +29,6 @@ public struct TextFontColor {
 
 extension TextFontColor: Equatable { }
 extension TextFontColor: Codable {
-    // sourcery:inline:TextFontColor.ExplicitCodingKey
     enum CodingKeys: String, CodingKey {
         case font
         case color
@@ -39,5 +38,4 @@ extension TextFontColor: Codable {
         case dir
         case value = ""
     }
-    // sourcery:end
 }

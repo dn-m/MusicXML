@@ -50,7 +50,6 @@ public struct TextElementData {
 
 extension TextElementData: Equatable { }
 extension TextElementData: Codable {
-    // sourcery:inline:TextElementData.ExplicitCodingKey
     enum CodingKeys: String, CodingKey {
         case font
         case textDecoration
@@ -60,7 +59,6 @@ extension TextElementData: Codable {
         case direction
         case value = ""
     }
-    // sourcery:end
 }
 
 extension TextElementData: ExpressibleByStringLiteral {

@@ -15,9 +15,7 @@ public struct EndingNumber {
 
 extension EndingNumber: Equatable { }
 extension EndingNumber: Codable {
-    // sourcery:inline:EndingNumber.ExplicitCodingKey
     enum CodingKeys: String, CodingKey {
         case value = ""
     }
-    // sourcery:end
 }
