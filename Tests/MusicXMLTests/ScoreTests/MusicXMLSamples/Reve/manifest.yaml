@@ -2,9 +2,9 @@ parsing:
     xml_file_name: reve.musicxml
     assert: true
 
-comparison:
-    expectation_class_name: null
-    assert: false
+# comparison:
+    # expectation_class_name: TODO
+    # assert: false
 
 metadata:
     display_name: Reve

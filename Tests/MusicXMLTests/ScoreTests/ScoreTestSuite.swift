@@ -10,23 +10,25 @@ import MusicXML
 import Yams
 
 class ScoreTests: XCTestCase {
-
     func testAll() throws {
-        let paths = try FileManager.default.contentsOfDirectory(atPath: testSuiteURL.path)
+        try runTest(inDirectory: testSuiteURL)
+    }
+
+    private func runTest(inDirectory directoryURL: URL) throws {
+        let paths = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
         for path in paths {
-            let testCaseURL = testSuiteURL.appendingPathComponent(path)
-            guard directoryExists(at: testSuiteURL.path) else {
+            guard directoryExists(at: directoryURL.path) else {
                 continue
             }
-            let manifestURL = testSuiteURL
-                .appendingPathComponent(path)
-                .appendingPathComponent("manifest.yaml")
-            guard let manifestData = FileManager.default.contents(atPath: manifestURL.path),
-                let manifestString = String(data: manifestData, encoding: .utf8) else {
-                continue
+            let subpathURL = directoryURL.appendingPathComponent(path)
+            let manifestURL = subpathURL.appendingPathComponent("manifest.yaml")
+            if let manifestData = FileManager.default.contents(atPath: manifestURL.path),
+                let manifestString = String(data: manifestData, encoding: .utf8) {
+                let manifest = try YAMLDecoder().decode(ScoreTestCaseManifest.self, from: manifestString)
+                try runTest(forManifest: manifest, testCaseURL: subpathURL)
+            } else if directoryExists(at: subpathURL.path) {
+                try runTest(inDirectory: subpathURL)
             }
-            let manifest = try YAMLDecoder().decode(ScoreTestCaseManifest.self, from: manifestString)
-            try runTest(forManifest: manifest, testCaseURL: testCaseURL)
         }
     }
 
@@ -77,7 +79,10 @@ class ScoreTests: XCTestCase {
     }
 
     private func expectationClass(forManifest manifest: ScoreTestCaseManifest) -> ScoreTestExpectation.Type? {
-        guard let comparisonTestSpecs = manifest.comparison, let clazz = Bundle(for: Self.self).classNamed("MusicXMLTests.\(comparisonTestSpecs.expectationClassName)"), let expectationClazz = clazz as? ScoreTestExpectation.Type else {
+        guard let comparisonTestSpecs = manifest.comparison else {
+            return nil
+        }
+        guard let clazz = Bundle(for: Self.self).classNamed("MusicXMLTests.\(comparisonTestSpecs.expectationClassName)"), let expectationClazz = clazz as? ScoreTestExpectation.Type else {
             print("  - ❓ Expectation class not found. Make sure to specify SwiftClassName in the manifest and make the class conform to ScoreTestExpectation.")
             return nil
         }
