@@ -20,4 +20,9 @@ public struct PerMinute {
 }
 
 extension PerMinute: Equatable { }
-extension PerMinute: Codable { }
+extension PerMinute: Codable {
+    enum CodingKeys: String, CodingKey {
+        case font
+        case value = ""
+    }
+}

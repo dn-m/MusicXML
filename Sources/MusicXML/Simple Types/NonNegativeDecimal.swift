@@ -10,4 +10,8 @@ public struct NonNegativeDecimal {
 }
 
 extension NonNegativeDecimal: Equatable { }
-extension NonNegativeDecimal: Codable { }
+extension NonNegativeDecimal: Codable {
+    enum CodingKeys: String, CodingKey {
+        case value = ""
+    }
+}

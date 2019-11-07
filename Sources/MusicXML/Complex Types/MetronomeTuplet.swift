@@ -22,4 +22,11 @@ public struct MetronomeTuplet {
 }
 
 extension MetronomeTuplet: Equatable { }
-extension MetronomeTuplet: Codable { }
+extension MetronomeTuplet: Codable {
+    enum CodingKeys: String, CodingKey {
+        case type
+        case bracket
+        case showNumber
+        case value = ""
+    }
+}

@@ -38,6 +38,12 @@ extension KeyOctave {
 
 extension KeyOctave: Equatable { }
 extension KeyOctave: Codable {
+    enum CodingKeys: String, CodingKey {
+        case number
+        case cancel
+        case value = ""
+    }
+    
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.value = try container.decode(Int.self, forKey: .value)

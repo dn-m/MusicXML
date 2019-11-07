@@ -21,4 +21,10 @@ public struct GroupName {
 }
 
 extension GroupName: Equatable { }
-extension GroupName: Codable { }
+extension GroupName: Codable {
+    enum CodingKeys: String, CodingKey {
+        case printStyle
+        case justify
+        case value = ""
+    }
+}

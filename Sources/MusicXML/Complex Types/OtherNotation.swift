@@ -28,4 +28,13 @@ public struct OtherNotation {
 }
 
 extension OtherNotation: Equatable { }
-extension OtherNotation: Codable { }
+extension OtherNotation: Codable {
+    enum CodingKeys: String, CodingKey {
+        case type
+        case number
+        case printObject
+        case printStyle
+        case placement
+        case value = ""
+    }
+}

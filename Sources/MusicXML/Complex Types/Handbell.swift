@@ -20,4 +20,10 @@ public struct Handbell {
 }
 
 extension Handbell: Equatable { }
-extension Handbell: Codable { }
+extension Handbell: Codable {
+    enum CodingKeys: String, CodingKey {
+        case printStyle
+        case placement
+        case value = ""
+    }
+}

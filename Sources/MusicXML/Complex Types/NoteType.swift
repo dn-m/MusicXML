@@ -42,4 +42,9 @@ extension NoteType {
 }
 
 extension NoteType: Equatable { }
-extension NoteType: Codable { }
+extension NoteType: Codable {
+    enum CodingKeys: String, CodingKey {
+        case size
+        case value = ""
+    }
+}

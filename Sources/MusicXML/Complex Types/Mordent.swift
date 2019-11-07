@@ -27,4 +27,11 @@ public struct Mordent {
 }
 
 extension Mordent: Equatable { }
-extension Mordent: Codable { }
+extension Mordent: Codable {
+    enum CodingKeys: String, CodingKey {
+        case long
+        case approach
+        case departure
+        case value = ""
+    }
+}

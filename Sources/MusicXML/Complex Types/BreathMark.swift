@@ -47,6 +47,7 @@ extension BreathMark: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
         // Decode value
-        self.value = try container.decodeIfPresent(BreathMarkValue.self, forKey: .value) ?? .comma
+        let breathMarkValue = try container.decode(BreathMarkValue.self, forKey: .value)
+        self.value = breathMarkValue == .default ? .comma : breathMarkValue
     }
 }

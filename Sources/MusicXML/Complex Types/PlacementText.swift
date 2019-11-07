@@ -41,6 +41,12 @@ public struct PlacementText {
 
 extension PlacementText: Equatable { }
 extension PlacementText: Codable {
+    enum CodingKeys: String, CodingKey {
+        case placement
+        case position
+        case printStyle
+        case value = ""
+    }
 
     public init(from decoder: Decoder) throws {
         // Decode attribute groups

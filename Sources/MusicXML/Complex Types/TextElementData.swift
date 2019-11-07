@@ -49,7 +49,17 @@ public struct TextElementData {
 }
 
 extension TextElementData: Equatable { }
-extension TextElementData: Codable { }
+extension TextElementData: Codable {
+    enum CodingKeys: String, CodingKey {
+        case font
+        case textDecoration
+        case color
+        case textRotation
+        case letterSpacing
+        case direction
+        case value = ""
+    }
+}
 
 extension TextElementData: ExpressibleByStringLiteral {
 

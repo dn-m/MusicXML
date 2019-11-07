@@ -29,4 +29,9 @@ public struct MultipleRest {
 }
 
 extension MultipleRest: Equatable { }
-extension MultipleRest: Codable { }
+extension MultipleRest: Codable {
+    enum CodingKeys: String, CodingKey {
+        case useSymbols
+        case value = ""
+    }
+}

@@ -20,4 +20,10 @@ public struct TupletType {
 }
 
 extension TupletType: Equatable { }
-extension TupletType: Codable { }
+extension TupletType: Codable {
+    enum CodingKeys: String, CodingKey {
+        case font
+        case color
+        case value = ""
+    }
+}

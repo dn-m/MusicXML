@@ -28,4 +28,13 @@ public struct Glissando {
 }
 
 extension Glissando: Equatable { }
-extension Glissando: Codable { }
+extension Glissando: Codable {
+    enum CodingKeys: String, CodingKey {
+        case type
+        case number
+        case lineType
+        case dashedFormatting
+        case printStyle
+        case value = ""
+    }
+}

@@ -19,4 +19,9 @@ public struct OtherAppearance {
 }
 
 extension OtherAppearance: Equatable { }
-extension OtherAppearance: Codable { }
+extension OtherAppearance: Codable {
+    enum CodingKeys: String, CodingKey {
+        case type
+        case value = ""
+    }
+}

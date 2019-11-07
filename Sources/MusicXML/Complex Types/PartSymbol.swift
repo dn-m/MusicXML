@@ -29,4 +29,13 @@ public struct PartSymbol {
 }
 
 extension PartSymbol: Equatable { }
-extension PartSymbol: Codable { }
+extension PartSymbol: Codable {
+    enum CodingKeys: String, CodingKey {
+        case kind
+        case topStaff
+        case bottomStaff
+        case position
+        case color
+        case value = ""
+    }
+}

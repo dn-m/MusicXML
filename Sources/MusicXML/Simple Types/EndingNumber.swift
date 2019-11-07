@@ -14,4 +14,8 @@ public struct EndingNumber {
 }
 
 extension EndingNumber: Equatable { }
-extension EndingNumber: Codable { }
+extension EndingNumber: Codable {
+    enum CodingKeys: String, CodingKey {
+        case value = ""
+    }
+}

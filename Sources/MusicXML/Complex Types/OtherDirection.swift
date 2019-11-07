@@ -21,4 +21,10 @@ public struct OtherDirection {
 }
 
 extension OtherDirection: Equatable { }
-extension OtherDirection: Codable { }
+extension OtherDirection: Codable {
+    enum CodingKeys: String, CodingKey {
+        case printObject
+        case printStyleAlign
+        case value = ""
+    }
+}
