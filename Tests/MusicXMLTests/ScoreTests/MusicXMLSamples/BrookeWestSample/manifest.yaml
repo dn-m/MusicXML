@@ -1,0 +1,13 @@
+  parsing:
+      xml_file_name: BrookeWestSample.musicxml
+      assert: false
+
+  # comparison:
+      # expectation_class_name: TODO
+      # assert: false
+
+  metadata:
+      display_name: BrookeWestSample
+      # description: TODO
+      source: https://www.musicxml.com/music-in-musicxml/example-set/
+  
