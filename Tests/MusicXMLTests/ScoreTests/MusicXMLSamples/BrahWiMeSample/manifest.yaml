@@ -1,0 +1,13 @@
+  parsing:
+      xml_file_name: BrahWiMeSample.musicxml
+      assert: true
+
+  # comparison:
+      # expectation_class_name: TODO
+      # assert: false
+
+  metadata:
+      display_name: BrahWiMeSample
+      # description: TODO
+      source: https://www.musicxml.com/music-in-musicxml/example-set/
+  
