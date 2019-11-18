@@ -50,10 +50,20 @@ extension Score: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        do {
-            self = .partwise(try container.decode(Partwise.self))
-        } catch {
-            self = .timewise(try container.decode(Timewise.self))
+        if let codingKey = decoder.userInfo[CodingUserInfoKey(rawValue: Score.topLevelTagKey)!] as? CodingKeys {
+            switch codingKey {
+            case .partwise:
+                self = .partwise(try container.decode(Partwise.self))
+            case .timewise:
+                self = .timewise(try container.decode(Timewise.self))
+            }
+        } else {
+            // Fall back to try each top level tag
+            do {
+                self = .partwise(try container.decode(Partwise.self))
+            } catch {
+                self = .timewise(try container.decode(Timewise.self))
+            }
         }
     }
 }
