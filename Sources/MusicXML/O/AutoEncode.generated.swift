@@ -1729,8 +1729,29 @@ public init(from decoder: Decoder) throws {
     size = try container.decode(SymbolSize.self, forKey: .size)
 }
 // sourcery:end
+// sourcery:inline:Line.AutoEncodable
+public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(lineShape, forKey: .lineShape)
+    try container.encodeIfPresent(lineType, forKey: .lineType)
+    try dashedFormatting.encode(to: encoder)
+    try position.encode(to: encoder)
+    try printStyle.encode(to: encoder)
+    try container.encodeIfPresent(placement, forKey: .placement)
+}
+// sourcery:end
 
-
+// sourcery:inline:Line.AutoDecodable
+public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    lineShape = try container.decodeIfPresent(LineShape.self, forKey: .lineShape)
+    lineType = try container.decodeIfPresent(LineType.self, forKey: .lineType)
+    dashedFormatting = try DashedFormatting(from: decoder)
+    position = try Position(from: decoder)
+    printStyle = try PrintStyle(from: decoder)
+    placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
+}
+// sourcery:end
 // sourcery:inline:LineWidth.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
@@ -2524,29 +2545,8 @@ public init(from decoder: Decoder) throws {
     smufl = try container.decode(SMuFL.self, forKey: .smufl)
 }
 // sourcery:end
-// sourcery:inline:OtherNotation.AutoEncodable
-public func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(value, forKey: .value)
-    try container.encode(type, forKey: .type)
-    try container.encodeIfPresent(number, forKey: .number)
-    try container.encodeIfPresent(printObject, forKey: .printObject)
-    try printStyle.encode(to: encoder)
-    try container.encodeIfPresent(placement, forKey: .placement)
-}
-// sourcery:end
 
-// sourcery:inline:OtherNotation.AutoDecodable
-public init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    value = try container.decode(String.self, forKey: .value)
-    type = try container.decode(StartStopSingle.self, forKey: .type)
-    number = try container.decodeIfPresent(Int.self, forKey: .number)
-    printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
-    printStyle = try PrintStyle?(from: decoder)
-    placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
-}
-// sourcery:end
+
 // sourcery:inline:OtherPlay.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
