@@ -11,7 +11,7 @@ public enum BeamValue: String {
     case begin
     case `continue`
     case end
-    case forwardHook = "foreward hook"
+    case forwardHook = "forward hook"
     case backwardHook = "backward hook"
 }
 
