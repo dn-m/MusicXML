@@ -8,13 +8,13 @@
 /// The mordent type is used for both represents the mordent sign with the vertical line and the
 /// inverted-mordent sign without the line. The long attribute is "no" by default.
 public struct Mordent {
-    public let value: PrintStyleTrillSound?
+    public let value: PrintStyleTrillSound
     public let long: Bool?
     public let approach: AboveBelow?
     public let departure: AboveBelow?
 
     public init(
-        value: PrintStyleTrillSound? = nil,
+        value: PrintStyleTrillSound = PrintStyleTrillSound(),
         long: Bool? = nil,
         approach: AboveBelow? = nil,
         departure: AboveBelow? = nil
@@ -33,5 +33,19 @@ extension Mordent: Codable {
         case approach
         case departure
         case value = ""
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try value.encode(to: encoder)
+        try container.encodeIfPresent(long, forKey: .long)
+        try container.encodeIfPresent(approach, forKey: .approach)
+        try container.encodeIfPresent(departure, forKey: .departure)
+    }
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        value = try PrintStyleTrillSound(from: decoder)
+        long = try container.decodeIfPresent(Bool.self, forKey: .long)
+        approach = try container.decodeIfPresent(AboveBelow.self, forKey: .approach)
+        departure = try container.decodeIfPresent(AboveBelow.self, forKey: .departure)
     }
 }
