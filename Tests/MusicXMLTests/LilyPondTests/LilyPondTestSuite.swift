@@ -111,7 +111,7 @@ private func now() -> Double {
     return Double(DispatchTime.now().uptimeNanoseconds) / 1_000_000_000
 }
 
-extension Double {
+fileprivate extension Double {
     func formatted(decimalPlaces: Int) -> String {
         return String(format: "%.\(decimalPlaces)f", self)
     }
