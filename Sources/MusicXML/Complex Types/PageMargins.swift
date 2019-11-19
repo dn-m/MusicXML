@@ -8,13 +8,13 @@
 /// Page margins are specified either for both even and odd pages, or via separate odd and even page
 /// number values.
 public struct PageMargins {
-    public let type: Kind
+    public let type: Kind?
     public let left: Tenths
     public let right: Tenths
     public let top: Tenths
     public let bottom: Tenths
 
-    public init(type: Kind, left: Tenths, right: Tenths, top: Tenths, bottom: Tenths) {
+    public init(type: Kind? = nil, left: Tenths, right: Tenths, top: Tenths, bottom: Tenths) {
         self.type = type
         self.left = left
         self.right = right
