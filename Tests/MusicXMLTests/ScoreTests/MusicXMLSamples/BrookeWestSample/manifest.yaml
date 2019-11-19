@@ -1,6 +1,6 @@
   parsing:
       xml_file_name: BrookeWestSample.musicxml
-      assert: false
+      assert: true
 
   # comparison:
       # expectation_class_name: TODO
