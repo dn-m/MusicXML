@@ -19,13 +19,13 @@ public struct SystemLayout {
 
     public let margins: SystemMargins?
     public let distance: Tenths?
-    public let topSystemDistance: Int?
+    public let topSystemDistance: Tenths?
     public let dividers: SystemDividers?
 
     public init(
         margins: SystemMargins? = nil,
         distance: Tenths? = nil,
-        topSystemDistance: Int? = nil,
+        topSystemDistance: Tenths? = nil,
         dividers: SystemDividers? = nil
     ) {
         self.margins = margins
