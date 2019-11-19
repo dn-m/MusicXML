@@ -10,11 +10,11 @@ import XMLCoder
 /// The arrow element represents an arrow used for a musical technical indication.
 public struct Arrow {
     public let kind: Kind
-    public let position: Position?
+    public let position: Position
     public let printStyle: PrintStyle
     public let placement: AboveBelow?
 
-    public init(kind: Kind, position: Position? = nil, printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil) {
+    public init(kind: Kind, position: Position = Position(), printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil) {
         self.kind = kind
         self.position = position
         self.printStyle = printStyle
@@ -39,7 +39,7 @@ extension Arrow {
     /// Create a circular `Arrow`.
     public init(
         direction: CircularArrow,
-        position: Position? = nil,
+        position: Position = Position(),
         printStyle: PrintStyle = PrintStyle(),
         placement: AboveBelow? = nil
     ) {
@@ -53,7 +53,7 @@ extension Arrow {
     public init(
         direction: ArrowDirection,
         style: ArrowStyle? = nil,
-        position: Position? = nil,
+        position:  Position = Position(),
         printStyle: PrintStyle = PrintStyle(),
         placement: AboveBelow? = nil
     ) {
@@ -108,13 +108,12 @@ extension Arrow: Equatable { }
 extension Arrow: Codable {
     enum CodingKeys: String, CodingKey {
         case kind
-        case position
         case placement
     }
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         kind = try container.decode(Kind.self, forKey: .kind)
-        self.position = try Position?(from: decoder)
+        self.position = try Position(from: decoder)
         self.printStyle = try PrintStyle(from: decoder)
         placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
     }
