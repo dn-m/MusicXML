@@ -20,8 +20,7 @@ public struct Metronome {
     public let kind: Kind
 
     // MARK: - Attributes
-    public let position: Position
-    public let printStyleAlign: PrintStyleAlign?
+    public let printStyleAlign: PrintStyleAlign
     public let justify: Justify?
     /// The parentheses attribute indicates whether or not to put the metronome mark in parentheses;
     /// its value is no if not specified.
@@ -31,13 +30,11 @@ public struct Metronome {
 
     public init(
         kind: Kind,
-        position: Position = Position(),
-        printStyleAlign: PrintStyleAlign? = nil,
+        printStyleAlign: PrintStyleAlign = PrintStyleAlign(),
         justify: Justify? = nil,
         parentheses: Bool? = nil
     ) {
         self.kind = kind
-        self.position = position
         self.printStyleAlign = printStyleAlign
         self.justify = justify
         self.parentheses = parentheses
@@ -163,8 +160,7 @@ extension Metronome: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.position = try Position(from: decoder)
-        self.printStyleAlign = try container.decodeIfPresent(PrintStyleAlign.self, forKey: .printStyleAlign)
+        self.printStyleAlign = try PrintStyleAlign(from: decoder)
         self.justify = try container.decodeIfPresent(Justify.self, forKey: .justify)
         self.parentheses = try container.decodeIfPresent(Bool.self, forKey: .parentheses)
 

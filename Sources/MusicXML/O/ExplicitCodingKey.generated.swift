@@ -1258,12 +1258,6 @@ enum CodingKeys: String, CodingKey {
 }
 // sourcery:end
 
-// sourcery:inline:Percussion.ExplicitCodingKey
-enum CodingKeys: String, CodingKey {
-    case enclosure
-    case kind
-}
-// sourcery:end
 
 // sourcery:inline:Pitch.ExplicitCodingKey
 enum CodingKeys: String, CodingKey {
@@ -1575,11 +1569,6 @@ enum CodingKeys: String, CodingKey {
 }
 // sourcery:end
 
-// sourcery:inline:StringMute.ExplicitCodingKey
-enum CodingKeys: String, CodingKey {
-    case type
-}
-// sourcery:end
 
 // sourcery:inline:StrongAccent.ExplicitCodingKey
 enum CodingKeys: String, CodingKey {
@@ -1831,6 +1820,14 @@ enum CodingKeys: String, CodingKey {
 }
 // sourcery:end
 
+// sourcery:inline:WavyLine.ExplicitCodingKey
+enum CodingKeys: String, CodingKey {
+    case type
+    case number
+    case placement
+    case color
+}
+// sourcery:end
 
 // sourcery:inline:Wedge.ExplicitCodingKey
 enum CodingKeys: String, CodingKey {

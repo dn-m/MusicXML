@@ -11,9 +11,9 @@
 public struct OtherDirection {
     public let value: String
     public let printObject: Bool?
-    public let printStyleAlign: PrintStyleAlign?
+    public let printStyleAlign: PrintStyleAlign
 
-    public init(_ value: String, printObject: Bool? = nil, printStyleAlign: PrintStyleAlign? = nil) {
+    public init(_ value: String, printObject: Bool? = nil, printStyleAlign: PrintStyleAlign = PrintStyleAlign()) {
         self.value = value
         self.printObject = printObject
         self.printStyleAlign = printStyleAlign
@@ -24,7 +24,18 @@ extension OtherDirection: Equatable { }
 extension OtherDirection: Codable {
     enum CodingKeys: String, CodingKey {
         case printObject
-        case printStyleAlign
         case value = ""
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(printObject, forKey: .printObject)
+        try printStyleAlign.encode(to: encoder)
+    }
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        value = try container.decode(String.self, forKey: .value)
+        printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
+        printStyleAlign = try PrintStyleAlign(from: decoder)
     }
 }

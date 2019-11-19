@@ -13,9 +13,9 @@ public struct PrincipleVoice {
     public let value: String
     public let type: StartStop
     public let symbol: PrincipleVoiceSymbol
-    public let printStyleAlign: PrintStyleAlign?
+    public let printStyleAlign: PrintStyleAlign
 
-    public init(_ value: String, type: StartStop, symbol: PrincipleVoiceSymbol, printStyleAlign: PrintStyleAlign? = nil) {
+    public init(_ value: String, type: StartStop, symbol: PrincipleVoiceSymbol, printStyleAlign: PrintStyleAlign = PrintStyleAlign()) {
         self.value = value
         self.type = type
         self.symbol = symbol
@@ -28,7 +28,20 @@ extension PrincipleVoice: Codable {
     enum CodingKeys: String, CodingKey {
         case type
         case symbol
-        case printStyleAlign
         case value = ""
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try container.encode(type, forKey: .type)
+        try container.encode(symbol, forKey: .symbol)
+        try printStyleAlign.encode(to: encoder)
+    }
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        value = try container.decode(String.self, forKey: .value)
+        type = try container.decode(StartStop.self, forKey: .type)
+        symbol = try container.decode(PrincipleVoiceSymbol.self, forKey: .symbol)
+        printStyleAlign = try PrintStyleAlign(from: decoder)
     }
 }
