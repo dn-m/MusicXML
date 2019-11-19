@@ -4,7 +4,10 @@
 // sourcery:inline:{{ type.name }}.ExplicitCodingKey
 enum CodingKeys: String, CodingKey {
 {% for var in type.storedVariables where var.name != "value" %}
+		{% if var.type.based.AttributeGroup %}
+		{% else %}
     case {{ var.name }}
+		{% endif %}
 {% endfor %}
 {% for var in type.storedVariables where var.name == "value" %}
     case value = ""

@@ -18,14 +18,14 @@ public struct MeasureStyle {
     // MARK: - Attributes
 
     public var number: Int?
-    public var font: Font?
+    public var font: Font
     public var color: Color?
 
     // MARK: - Elements
 
     public var kind: Kind
 
-    public init(number: Int? = nil, font: Font? = nil, color: Color? = nil, kind: Kind) {
+    public init(number: Int? = nil, font: Font = Font(), color: Color? = nil, kind: Kind) {
         self.number = number
         self.font = font
         self.color = color
@@ -89,17 +89,16 @@ extension MeasureStyle.Kind.CodingKeys: XMLChoiceCodingKey { }
 
 extension MeasureStyle: Equatable { }
 extension MeasureStyle: Codable {
-    enum CodingKeys: String, Codable {
+    enum CodingKeys: String, CodingKey {
         case number
-        case font
         case color
     }
     public init(from decoder: Decoder) throws {
-        // Decode attributes
-        // TODO: Add MeasureStyle attributes decoding
-        // Decode kind
-        let kindContainer = try decoder.singleValueContainer()
-        self.kind = try kindContainer.decode(Kind.self)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        number = try container.decodeIfPresent(Int.self, forKey: .number)
+        font = try Font(from: decoder)
+        color = try container.decodeIfPresent(Color.self, forKey: .color)
+        kind = try Kind(from: decoder)
     }
     public func encode(to encoder: Encoder) throws {
         fatalError("TODO: MeasureStyle.encode(to:)")

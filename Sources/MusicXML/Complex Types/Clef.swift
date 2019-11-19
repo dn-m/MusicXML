@@ -18,7 +18,7 @@ public struct Clef {
     public let additional: Bool?
     public let size: SymbolSize?
     public let afterBarline: Bool?
-    public let printStyle: PrintStyle?
+    public let printStyle: PrintStyle
     public let printObject: Bool?
 
     // MARK: - Elements
@@ -27,7 +27,7 @@ public struct Clef {
     public let line: Int?
     public let clefOctaveChange: Int?
 
-    public init(number: Int? = nil, additional: Bool? = nil, size: SymbolSize? = nil, afterBarline: Bool? = nil, printStyle: PrintStyle? = nil, printObject: Bool? = nil, sign: ClefSign, line: Int? = nil, clefOctaveChange: Int? = nil) {
+    public init(number: Int? = nil, additional: Bool? = nil, size: SymbolSize? = nil, afterBarline: Bool? = nil, printStyle: PrintStyle = PrintStyle(), printObject: Bool? = nil, sign: ClefSign, line: Int? = nil, clefOctaveChange: Int? = nil) {
         self.number = number
         self.additional = additional
         self.size = size
@@ -52,6 +52,31 @@ extension Clef: Codable {
         case sign
         case line
         case clefOctaveChange = "clef-octave-change"
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        number = try container.decodeIfPresent(Int.self, forKey: .number)
+        additional = try container.decodeIfPresent(Bool.self, forKey: .additional)
+        size = try container.decodeIfPresent(SymbolSize.self, forKey: .size)
+        afterBarline = try container.decodeIfPresent(Bool.self, forKey: .afterBarline)
+        printStyle = try PrintStyle(from: decoder)
+        printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
+        sign = try container.decode(ClefSign.self, forKey: .sign)
+        line = try container.decodeIfPresent(Int.self, forKey: .line)
+        clefOctaveChange = try container.decodeIfPresent(Int.self, forKey: .clefOctaveChange)
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(number, forKey: .number)
+        try container.encodeIfPresent(additional, forKey: .additional)
+        try container.encodeIfPresent(size, forKey: .size)
+        try container.encodeIfPresent(afterBarline, forKey: .afterBarline)
+        try printStyle.encode(to: encoder)
+        try container.encodeIfPresent(printObject, forKey: .printObject)
+        try container.encode(sign, forKey: .sign)
+        try container.encodeIfPresent(line, forKey: .line)
+        try container.encodeIfPresent(clefOctaveChange, forKey: .clefOctaveChange)
     }
 }
 

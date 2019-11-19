@@ -4,11 +4,10 @@
 // sourcery:inline:{{ type.name }}.AutoEncodable
 {{ type.accessLevel }} func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    {% for var in type.storedVariables where var.name == "printStyle" %}
-    try self.printStyle.encode(to: encoder)
-		{% endfor %}
-    {% for var in type.storedVariables where var.name != "printStyle" %}
-    {% if var.isOptional %}
+    {% for var in type.storedVariables %}
+		{% if var.type.based.AttributeGroup %}
+    try {{ var.name }}.encode(to: encoder)
+		{% elif var.isOptional %}
     try container.encodeIfPresent({{var.name}}, forKey: .{{var.name}})
 		{% else %}
     try container.encode({{var.name}}, forKey: .{{var.name}})
@@ -17,4 +16,18 @@
 }
 // sourcery:end
 
+// sourcery:inline:{{ type.name }}.AutoDecodable
+{{ type.accessLevel }} init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    {% for var in type.storedVariables %}
+		{% if var.type.based.AttributeGroup %}
+    {{ var.name }} = try {{ var.typeName }}(from: decoder)
+		{% elif var.isOptional %}
+    {{var.name}} = try container.decodeIfPresent({{var.unwrappedTypeName}}.self, forKey: .{{var.name}})
+		{% else %}
+    {{var.name}} = try container.decode({{var.typeName}}.self, forKey: .{{var.name}})
+		{% endif %}
+		{% endfor %}
+}
+// sourcery:end
 {% endfor %}

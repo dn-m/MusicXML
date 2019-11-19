@@ -14,10 +14,10 @@ public struct OtherNotation {
     public let type: StartStopSingle
     public let number: Int?
     public let printObject: Bool?
-    public let printStyle: PrintStyle?
+    public let printStyle: PrintStyle
     public let placement: AboveBelow?
 
-    public init(_ value: String, type: StartStopSingle, number: Int? = nil, printObject: Bool? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+    public init(_ value: String, type: StartStopSingle, number: Int? = nil, printObject: Bool? = nil, printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil) {
         self.value = value
         self.type = type
         self.number = number
@@ -33,8 +33,25 @@ extension OtherNotation: Codable {
         case type
         case number
         case printObject
-        case printStyle
         case placement
         case value = ""
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(number, forKey: .number)
+        try container.encodeIfPresent(printObject, forKey: .printObject)
+        try printStyle.encode(to: encoder)
+        try container.encodeIfPresent(placement, forKey: .placement)
+    }
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        value = try container.decode(String.self, forKey: .value)
+        type = try container.decode(StartStopSingle.self, forKey: .type)
+        number = try container.decodeIfPresent(Int.self, forKey: .number)
+        printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
+        printStyle = try PrintStyle(from: decoder)
+        placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
     }
 }

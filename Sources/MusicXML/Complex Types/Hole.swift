@@ -18,10 +18,10 @@ public struct Hole {
     /// The optional hole-shape element indicates the shape of the hole symbol; the default is a
     /// circle.
     public let holeShape: String?
-    public let printStyle: PrintStyle?
+    public let printStyle: PrintStyle
     public let placement: AboveBelow?
 
-    public init(holeType: String? = nil, holeClosed: HoleClosed, holeShape: String? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+    public init(holeType: String? = nil, holeClosed: HoleClosed, holeShape: String? = nil, printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil) {
         self.holeType = holeType
         self.holeClosed = holeClosed
         self.holeShape = holeShape
@@ -31,4 +31,27 @@ public struct Hole {
 }
 
 extension Hole: Equatable { }
-extension Hole: Codable { }
+extension Hole: Codable {
+    enum CodingKeys: String, CodingKey {
+        case holeType
+        case holeClosed
+        case holeShape
+        case placement
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(holeType, forKey: .holeType)
+        try container.encode(holeClosed, forKey: .holeClosed)
+        try container.encodeIfPresent(holeShape, forKey: .holeShape)
+        try printStyle.encode(to: encoder)
+        try container.encodeIfPresent(placement, forKey: .placement)
+    }
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        holeType = try container.decodeIfPresent(String.self, forKey: .holeType)
+        holeClosed = try container.decode(HoleClosed.self, forKey: .holeClosed)
+        holeShape = try container.decodeIfPresent(String.self, forKey: .holeShape)
+        printStyle = try PrintStyle(from: decoder)
+        placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
+    }
+}
