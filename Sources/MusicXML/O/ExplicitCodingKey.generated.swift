@@ -665,6 +665,12 @@ enum CodingKeys: String, CodingKey {
 }
 // sourcery:end
 
+// sourcery:inline:HorizontalTurn.ExplicitCodingKey
+enum CodingKeys: String, CodingKey {
+    case placement
+    case slash
+}
+// sourcery:end
 
 // sourcery:inline:Identification.ExplicitCodingKey
 enum CodingKeys: String, CodingKey {
@@ -766,13 +772,6 @@ enum CodingKeys: String, CodingKey {
 }
 // sourcery:end
 
-// sourcery:inline:Line.ExplicitCodingKey
-enum CodingKeys: String, CodingKey {
-    case lineShape
-    case lineType
-    case placement
-}
-// sourcery:end
 
 // sourcery:inline:LineWidth.ExplicitCodingKey
 enum CodingKeys: String, CodingKey {

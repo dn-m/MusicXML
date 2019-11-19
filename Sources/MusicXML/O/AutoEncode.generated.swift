@@ -1490,8 +1490,25 @@ public init(from decoder: Decoder) throws {
     location = try container.decodeIfPresent(HoleClosedLocation.self, forKey: .location)
 }
 // sourcery:end
+// sourcery:inline:HorizontalTurn.AutoEncodable
+public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try printStyle.encode(to: encoder)
+    try container.encodeIfPresent(placement, forKey: .placement)
+    try trillSound.encode(to: encoder)
+    try container.encodeIfPresent(slash, forKey: .slash)
+}
+// sourcery:end
 
-
+// sourcery:inline:HorizontalTurn.AutoDecodable
+public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    printStyle = try PrintStyle(from: decoder)
+    placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
+    trillSound = try TrillSound(from: decoder)
+    slash = try container.decodeIfPresent(Bool.self, forKey: .slash)
+}
+// sourcery:end
 // sourcery:inline:Identification.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
@@ -1712,29 +1729,8 @@ public init(from decoder: Decoder) throws {
     size = try container.decode(SymbolSize.self, forKey: .size)
 }
 // sourcery:end
-// sourcery:inline:Line.AutoEncodable
-public func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encodeIfPresent(lineShape, forKey: .lineShape)
-    try container.encodeIfPresent(lineType, forKey: .lineType)
-    try dashedFormatting.encode(to: encoder)
-    try position.encode(to: encoder)
-    try printStyle.encode(to: encoder)
-    try container.encodeIfPresent(placement, forKey: .placement)
-}
-// sourcery:end
 
-// sourcery:inline:Line.AutoDecodable
-public init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    lineShape = try container.decodeIfPresent(LineShape.self, forKey: .lineShape)
-    lineType = try container.decodeIfPresent(LineType.self, forKey: .lineType)
-    dashedFormatting = try DashedFormatting?(from: decoder)
-    position = try Position?(from: decoder)
-    printStyle = try PrintStyle?(from: decoder)
-    placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
-}
-// sourcery:end
+
 // sourcery:inline:LineWidth.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
