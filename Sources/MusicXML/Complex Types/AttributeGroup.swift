@@ -9,7 +9,7 @@ internal protocol AttributeGroup { }
 
 extension BendSound: AttributeGroup { }
 extension Bezier: AttributeGroup { }
-extension DashFormatting: AttributeGroup { }
+extension DashedFormatting: AttributeGroup { }
 extension Font: AttributeGroup { }
 extension PlacementPrintStyle { }
 extension Position: AttributeGroup { }

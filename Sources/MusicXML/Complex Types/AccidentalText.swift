@@ -89,4 +89,23 @@ extension AccidentalText: Codable {
         self.enclosure = try container.decodeIfPresent(EnclosureShape.self, forKey: .enclosure)
         self.value = try container.decode(AccidentalValue.self, forKey: .value)
     }
+    
+    // sourcery:inline:AccidentalText.AutoEncodable
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(justify, forKey: .justify)
+        try printStyle.encode(to: encoder)
+        try container.encodeIfPresent(hAlign, forKey: .hAlign)
+        try container.encodeIfPresent(vAlign, forKey: .vAlign)
+        try container.encodeIfPresent(underline, forKey: .underline)
+        try container.encodeIfPresent(overline, forKey: .overline)
+        try container.encodeIfPresent(lineThrough, forKey: .lineThrough)
+        try container.encodeIfPresent(rotation, forKey: .rotation)
+        try container.encodeIfPresent(letterSpacing, forKey: .letterSpacing)
+        try container.encodeIfPresent(lineHeight, forKey: .lineHeight)
+        try container.encodeIfPresent(direction, forKey: .direction)
+        try container.encodeIfPresent(enclosure, forKey: .enclosure)
+        try container.encode(value, forKey: .value)
+    }
+    // sourcery:end
 }

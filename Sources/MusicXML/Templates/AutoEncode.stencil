@@ -4,11 +4,10 @@
 // sourcery:inline:{{ type.name }}.AutoEncodable
 {{ type.accessLevel }} func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    {% for var in type.storedVariables where var.name|hasPrefix:"printStyle" %}
+    {% for var in type.storedVariables %}
+		{% if var.type.based.AttributeGroup %}
     try {{ var.name }}.encode(to: encoder)
-		{% endfor %}
-    {% for var in type.storedVariables where var.name|!hasPrefix:"printStyle" %}
-    {% if var.isOptional %}
+		{% elif var.isOptional %}
     try container.encodeIfPresent({{var.name}}, forKey: .{{var.name}})
 		{% else %}
     try container.encode({{var.name}}, forKey: .{{var.name}})
