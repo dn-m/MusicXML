@@ -90,7 +90,6 @@ extension AccidentalText: Codable {
         self.value = try container.decode(AccidentalValue.self, forKey: .value)
     }
     
-    // sourcery:inline:AccidentalText.AutoEncodable
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(justify, forKey: .justify)
@@ -107,5 +106,4 @@ extension AccidentalText: Codable {
         try container.encodeIfPresent(enclosure, forKey: .enclosure)
         try container.encode(value, forKey: .value)
     }
-    // sourcery:end
 }

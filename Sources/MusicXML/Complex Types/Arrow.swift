@@ -11,10 +11,10 @@ import XMLCoder
 public struct Arrow {
     public let kind: Kind
     public let position: Position?
-    public let printStyle: PrintStyle?
+    public let printStyle: PrintStyle
     public let placement: AboveBelow?
 
-    public init(kind: Kind, position: Position? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+    public init(kind: Kind, position: Position? = nil, printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil) {
         self.kind = kind
         self.position = position
         self.printStyle = printStyle
@@ -40,7 +40,7 @@ extension Arrow {
     public init(
         direction: CircularArrow,
         position: Position? = nil,
-        printStyle: PrintStyle? = nil,
+        printStyle: PrintStyle = PrintStyle(),
         placement: AboveBelow? = nil
     ) {
         self.kind = .circular(direction)
@@ -54,7 +54,7 @@ extension Arrow {
         direction: ArrowDirection,
         style: ArrowStyle? = nil,
         position: Position? = nil,
-        printStyle: PrintStyle? = nil,
+        printStyle: PrintStyle = PrintStyle(),
         placement: AboveBelow? = nil
     ) {
         self.kind = .linear(LinearArrow(direction: direction, style: style))
@@ -105,4 +105,24 @@ extension Arrow.Kind.CodingKeys: XMLChoiceCodingKey {}
 
 extension Arrow.Kind: Equatable { }
 extension Arrow: Equatable { }
-extension Arrow: Codable { }
+extension Arrow: Codable {
+    enum CodingKeys: String, CodingKey {
+        case kind
+        case position
+        case placement
+    }
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        kind = try container.decode(Kind.self, forKey: .kind)
+        self.position = try Position?(from: decoder)
+        self.printStyle = try PrintStyle(from: decoder)
+        placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(kind, forKey: .kind)
+        try position.encode(to: encoder)
+        try printStyle.encode(to: encoder)
+        try container.encodeIfPresent(placement, forKey: .placement)
+    }
+}

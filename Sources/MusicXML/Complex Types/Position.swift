@@ -84,4 +84,14 @@ extension Position: Codable {
         case relativeX = "relative-x"
         case relativeY = "relative-y"
     }
+    
+    // sourcery:inline:Position.AutoDecodable
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        defaultX = try container.decodeIfPresent(Tenths.self, forKey: .defaultX)
+        defaultY = try container.decodeIfPresent(Tenths.self, forKey: .defaultY)
+        relativeX = try container.decodeIfPresent(Tenths.self, forKey: .relativeX)
+        relativeY = try container.decodeIfPresent(Tenths.self, forKey: .relativeY)
+    }
+    // sourcery:end
 }

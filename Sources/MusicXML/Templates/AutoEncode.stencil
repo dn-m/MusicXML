@@ -16,4 +16,18 @@
 }
 // sourcery:end
 
+// sourcery:inline:{{ type.name }}.AutoDecodable
+{{ type.accessLevel }} init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    {% for var in type.storedVariables %}
+		{% if var.type.based.AttributeGroup %}
+    self.{{ var.name }} = try {{ var.typeName }}(from: decoder)
+		{% elif var.isOptional %}
+    {{var.name}} = try container.decodeIfPresent({{var.unwrappedTypeName}}.self, forKey: .{{var.name}})
+		{% else %}
+    {{var.name}} = try container.decode({{var.typeName}}.self, forKey: .{{var.name}})
+		{% endif %}
+		{% endfor %}
+}
+// sourcery:end
 {% endfor %}
