@@ -14,10 +14,10 @@ public struct HammerOnPullOff {
     public let value: String
     public let type: StartStop
     public let number: Int?
-    public let printStyle: PrintStyle?
+    public let printStyle: PrintStyle
     public let placement: AboveBelow?
 
-    public init(_ value: String, type: StartStop, number: Int? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+    public init(_ value: String, type: StartStop, number: Int? = nil, printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil) {
         self.value = value
         self.type = type
         self.number = number
@@ -31,8 +31,23 @@ extension HammerOnPullOff: Codable {
     enum CodingKeys: String, CodingKey {
         case type
         case number
-        case printStyle
         case placement
         case value = ""
+    }
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        value = try container.decode(String.self, forKey: .value)
+        type = try container.decode(StartStop.self, forKey: .type)
+        number = try container.decodeIfPresent(Int.self, forKey: .number)
+        printStyle = try PrintStyle(from: decoder)
+        placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(number, forKey: .number)
+        try printStyle.encode(to: encoder)
+        try container.encodeIfPresent(placement, forKey: .placement)
     }
 }

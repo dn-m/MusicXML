@@ -1235,8 +1235,23 @@ public init(from decoder: Decoder) throws {
     color = try container.decodeIfPresent(Color.self, forKey: .color)
 }
 // sourcery:end
+// sourcery:inline:GroupName.AutoEncodable
+public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(value, forKey: .value)
+    try printStyle.encode(to: encoder)
+    try container.encodeIfPresent(justify, forKey: .justify)
+}
+// sourcery:end
 
-
+// sourcery:inline:GroupName.AutoDecodable
+public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    value = try container.decode(String.self, forKey: .value)
+    printStyle = try PrintStyle(from: decoder)
+    justify = try container.decodeIfPresent(Justify.self, forKey: .justify)
+}
+// sourcery:end
 // sourcery:inline:GroupSymbol.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
@@ -1273,27 +1288,8 @@ public init(from decoder: Decoder) throws {
     memberOf = try container.decodeIfPresent(String.self, forKey: .memberOf)
 }
 // sourcery:end
-// sourcery:inline:HammerOnPullOff.AutoEncodable
-public func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(value, forKey: .value)
-    try container.encode(type, forKey: .type)
-    try container.encodeIfPresent(number, forKey: .number)
-    try printStyle.encode(to: encoder)
-    try container.encodeIfPresent(placement, forKey: .placement)
-}
-// sourcery:end
 
-// sourcery:inline:HammerOnPullOff.AutoDecodable
-public init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    value = try container.decode(String.self, forKey: .value)
-    type = try container.decode(StartStop.self, forKey: .type)
-    number = try container.decodeIfPresent(Int.self, forKey: .number)
-    printStyle = try PrintStyle?(from: decoder)
-    placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
-}
-// sourcery:end
+
 // sourcery:inline:Handbell.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
