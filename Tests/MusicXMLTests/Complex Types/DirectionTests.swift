@@ -31,10 +31,10 @@ class DirectionTests: XCTestCase {
                         kind: .regular(
                             Metronome.Regular(
                                 beatUnit: .quarter,
-                                relation: .perMinute(PerMinute("90"))
+                                relation: .perMinute(PerMinute(value: "90"))
                             )
                         ),
-                        position: Position(defaultX: -25.96, relativeY: 20.00),
+                        printStyleAlign: PrintStyleAlign(printStyle: PrintStyle(position: Position(defaultX: -25.96, relativeY: 20.00))),
                         parentheses: false
                     )
                 )
