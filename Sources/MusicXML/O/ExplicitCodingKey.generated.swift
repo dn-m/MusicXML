@@ -1487,6 +1487,16 @@ enum CodingKeys: String, CodingKey {
 }
 // sourcery:end
 
+// sourcery:inline:Slur.ExplicitCodingKey
+enum CodingKeys: String, CodingKey {
+    case type
+    case number
+    case lineType
+    case placement
+    case orientation
+    case color
+}
+// sourcery:end
 
 // sourcery:inline:Sound.ExplicitCodingKey
 enum CodingKeys: String, CodingKey {
@@ -1830,16 +1840,6 @@ enum CodingKeys: String, CodingKey {
 }
 // sourcery:end
 
-// sourcery:inline:Wedge.ExplicitCodingKey
-enum CodingKeys: String, CodingKey {
-    case type
-    case number
-    case spread
-    case niente
-    case lineType
-    case color
-}
-// sourcery:end
 
 // sourcery:inline:Work.ExplicitCodingKey
 enum CodingKeys: String, CodingKey {

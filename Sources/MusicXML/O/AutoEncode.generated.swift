@@ -3322,8 +3322,35 @@ public init(from decoder: Decoder) throws {
     bendSound = try BendSound(from: decoder)
 }
 // sourcery:end
+// sourcery:inline:Slur.AutoEncodable
+public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(type, forKey: .type)
+    try container.encodeIfPresent(number, forKey: .number)
+    try container.encodeIfPresent(lineType, forKey: .lineType)
+    try dashedFormatting.encode(to: encoder)
+    try position.encode(to: encoder)
+    try container.encodeIfPresent(placement, forKey: .placement)
+    try container.encodeIfPresent(orientation, forKey: .orientation)
+    try bezier.encode(to: encoder)
+    try container.encodeIfPresent(color, forKey: .color)
+}
+// sourcery:end
 
-
+// sourcery:inline:Slur.AutoDecodable
+public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    type = try container.decode(StartStopContinue.self, forKey: .type)
+    number = try container.decodeIfPresent(Int.self, forKey: .number)
+    lineType = try container.decodeIfPresent(LineType.self, forKey: .lineType)
+    dashedFormatting = try DashedFormatting?(from: decoder)
+    position = try Position(from: decoder)
+    placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
+    orientation = try container.decodeIfPresent(OverUnder.self, forKey: .orientation)
+    bezier = try Bezier(from: decoder)
+    color = try container.decodeIfPresent(Color.self, forKey: .color)
+}
+// sourcery:end
 // sourcery:inline:Sound.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
@@ -3720,11 +3747,11 @@ public init(from decoder: Decoder) throws {
     type = try container.decode(StartStopContinue.self, forKey: .type)
     number = try container.decodeIfPresent(Int.self, forKey: .number)
     lineType = try container.decodeIfPresent(LineType.self, forKey: .lineType)
-    dashedFormatting = try DashedFormatting?(from: decoder)
-    position = try Position?(from: decoder)
+    dashedFormatting = try DashedFormatting(from: decoder)
+    position = try Position(from: decoder)
     placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
     orientation = try container.decodeIfPresent(OverUnder.self, forKey: .orientation)
-    bezier = try Bezier?(from: decoder)
+    bezier = try Bezier(from: decoder)
     color = try container.decodeIfPresent(Color.self, forKey: .color)
 }
 // sourcery:end
@@ -4092,33 +4119,8 @@ public init(from decoder: Decoder) throws {
     trillSound = try TrillSound(from: decoder)
 }
 // sourcery:end
-// sourcery:inline:Wedge.AutoEncodable
-public func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(type, forKey: .type)
-    try container.encodeIfPresent(number, forKey: .number)
-    try container.encodeIfPresent(spread, forKey: .spread)
-    try container.encodeIfPresent(niente, forKey: .niente)
-    try container.encodeIfPresent(lineType, forKey: .lineType)
-    try dashedFormatting.encode(to: encoder)
-    try position.encode(to: encoder)
-    try container.encodeIfPresent(color, forKey: .color)
-}
-// sourcery:end
 
-// sourcery:inline:Wedge.AutoDecodable
-public init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    type = try container.decode(WedgeType.self, forKey: .type)
-    number = try container.decodeIfPresent(Int.self, forKey: .number)
-    spread = try container.decodeIfPresent(Tenths.self, forKey: .spread)
-    niente = try container.decodeIfPresent(Bool.self, forKey: .niente)
-    lineType = try container.decodeIfPresent(LineType.self, forKey: .lineType)
-    dashedFormatting = try DashedFormatting?(from: decoder)
-    position = try Position?(from: decoder)
-    color = try container.decodeIfPresent(Color.self, forKey: .color)
-}
-// sourcery:end
+
 // sourcery:inline:Work.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
