@@ -907,8 +907,21 @@ public init(from decoder: Decoder) throws {
     printStyle = try PrintStyle(from: decoder)
 }
 // sourcery:end
+// sourcery:inline:Extend.AutoEncodable
+public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(type, forKey: .type)
+    try printStyle.encode(to: encoder)
+}
+// sourcery:end
 
-
+// sourcery:inline:Extend.AutoDecodable
+public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    type = try container.decodeIfPresent(StartStopContinue.self, forKey: .type)
+    printStyle = try PrintStyle(from: decoder)
+}
+// sourcery:end
 // sourcery:inline:Feature.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
@@ -1165,29 +1178,8 @@ public init(from decoder: Decoder) throws {
     font = try Font(from: decoder)
 }
 // sourcery:end
-// sourcery:inline:Glissando.AutoEncodable
-public func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(value, forKey: .value)
-    try container.encode(type, forKey: .type)
-    try container.encodeIfPresent(number, forKey: .number)
-    try container.encodeIfPresent(lineType, forKey: .lineType)
-    try dashedFormatting.encode(to: encoder)
-    try printStyle.encode(to: encoder)
-}
-// sourcery:end
 
-// sourcery:inline:Glissando.AutoDecodable
-public init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    value = try container.decode(String.self, forKey: .value)
-    type = try container.decode(StartStop.self, forKey: .type)
-    number = try container.decodeIfPresent(Int.self, forKey: .number)
-    lineType = try container.decodeIfPresent(LineType.self, forKey: .lineType)
-    dashedFormatting = try DashedFormatting?(from: decoder)
-    printStyle = try PrintStyle?(from: decoder)
-}
-// sourcery:end
+
 // sourcery:inline:Grace.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
