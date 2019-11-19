@@ -34,7 +34,7 @@ public struct Time {
     /// beat-type arranged horizontally.
     public let separator: TimeSeparator?
 
-    public let printStyle: PrintStyle?
+    public let printStyle: PrintStyle
     public let hAlign: LeftCenterRight?
     public let vAlign: VAlign?
     public let printObject: Bool?
@@ -43,7 +43,7 @@ public struct Time {
 
     public let kind: Kind
 
-    public init(number: Int? = nil, symbol: TimeSymbol? = nil, separator: TimeSeparator? = nil, printStyle: PrintStyle? = nil, hAlign: LeftCenterRight? = nil, vAlign: VAlign? = nil, printObject: Bool? = nil, kind: Kind) {
+    public init(number: Int? = nil, symbol: TimeSymbol? = nil, separator: TimeSeparator? = nil, printStyle: PrintStyle = PrintStyle(), hAlign: LeftCenterRight? = nil, vAlign: VAlign? = nil, printObject: Bool? = nil, kind: Kind) {
         self.number = number
         self.symbol = symbol
         self.separator = separator
@@ -84,7 +84,7 @@ extension Time {
         )
         // TODO: Add remaining attributes and elements
         self.separator = nil
-        self.printStyle = nil
+        self.printStyle = PrintStyle()
         self.hAlign = nil
         self.vAlign = nil
         self.printObject = nil
@@ -103,7 +103,7 @@ extension Time {
         // TODO: correct symbol
         self.symbol = nil
         self.separator = nil
-        self.printStyle = nil
+        self.printStyle = PrintStyle()
         self.hAlign = nil
         self.vAlign = nil
         self.printObject = nil
@@ -233,7 +233,7 @@ extension Time: Codable {
         self.number = try container.decodeIfPresent(Int.self, forKey: .number)
         self.symbol = try container.decodeIfPresent(TimeSymbol.self, forKey: .symbol)
         self.separator = try container.decodeIfPresent(TimeSeparator.self, forKey: .separator)
-        self.printStyle = try container.decodeIfPresent(PrintStyle.self, forKey: .printStyle)
+        self.printStyle = try PrintStyle(from: decoder)
         self.hAlign = try container.decodeIfPresent(LeftCenterRight.self, forKey: .hAlign)
         self.vAlign = try container.decodeIfPresent(VAlign.self, forKey: .vAlign)
         self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
