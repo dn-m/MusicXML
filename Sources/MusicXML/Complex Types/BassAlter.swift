@@ -10,7 +10,7 @@
 public struct BassAlter {
     public let value: Double
     public let printObject: Bool?
-    public let printStyle: PrintStyle?
+    public let printStyle: PrintStyle
     public let location: LeftRight?
 
     public init(_ value: Double, printObject: Bool? = nil, printStyle: PrintStyle = PrintStyle(), location: LeftRight? = nil) {

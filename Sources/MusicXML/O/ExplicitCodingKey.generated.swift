@@ -72,6 +72,12 @@ enum CodingKeys: String, CodingKey {
 }
 // sourcery:end
 
+// sourcery:inline:Arrow.ExplicitCodingKey
+enum CodingKeys: String, CodingKey {
+    case kind
+    case placement
+}
+// sourcery:end
 
 // sourcery:inline:Articulations.ExplicitCodingKey
 enum CodingKeys: String, CodingKey {
@@ -177,17 +183,6 @@ enum CodingKeys: String, CodingKey {
 }
 // sourcery:end
 
-// sourcery:inline:Bend.ExplicitCodingKey
-enum CodingKeys: String, CodingKey {
-    case accelerate
-    case beats
-    case firstBeat
-    case lastBeat
-    case bendAlter
-    case prependOrRelease
-    case withBar
-}
-// sourcery:end
 
 // sourcery:inline:BendSound.ExplicitCodingKey
 enum CodingKeys: String, CodingKey {

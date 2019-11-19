@@ -21,7 +21,7 @@
     let container = try decoder.container(keyedBy: CodingKeys.self)
     {% for var in type.storedVariables %}
 		{% if var.type.based.AttributeGroup %}
-    self.{{ var.name }} = try {{ var.typeName }}(from: decoder)
+    {{ var.name }} = try {{ var.typeName }}(from: decoder)
 		{% elif var.isOptional %}
     {{var.name}} = try container.decodeIfPresent({{var.unwrappedTypeName}}.self, forKey: .{{var.name}})
 		{% else %}
