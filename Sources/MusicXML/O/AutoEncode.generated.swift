@@ -2003,6 +2003,15 @@ public func encode(to encoder: Encoder) throws {
 }
 // sourcery:end
 
+// sourcery:inline:MeasureStyle.AutoDecodable
+public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    number = try container.decodeIfPresent(Int.self, forKey: .number)
+    font = try Font(from: decoder)
+    color = try container.decodeIfPresent(Color.self, forKey: .color)
+    kind = try container.decode(Kind.self, forKey: .kind)
+}
+// sourcery:end
 // sourcery:inline:Metronome.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
@@ -2787,7 +2796,7 @@ public func encode(to encoder: Encoder) throws {
 public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     value = try container.decode(String.self, forKey: .value)
-    font = try Font?(from: decoder)
+    font = try Font(from: decoder)
 }
 // sourcery:end
 // sourcery:inline:Percussion.AutoEncodable
@@ -3991,38 +4000,10 @@ public init(from decoder: Decoder) throws {
     normalNotes = try container.decodeIfPresent(TupletPortion.self, forKey: .normalNotes)
 }
 // sourcery:end
-// sourcery:inline:TupletDot.AutoEncodable
-public func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    try font.encode(to: encoder)
-    try container.encodeIfPresent(color, forKey: .color)
-}
-// sourcery:end
 
-// sourcery:inline:TupletDot.AutoDecodable
-public init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    font = try Font?(from: decoder)
-    color = try container.decodeIfPresent(Color.self, forKey: .color)
-}
-// sourcery:end
-// sourcery:inline:TupletNumber.AutoEncodable
-public func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(value, forKey: .value)
-    try font.encode(to: encoder)
-    try container.encodeIfPresent(color, forKey: .color)
-}
-// sourcery:end
 
-// sourcery:inline:TupletNumber.AutoDecodable
-public init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    value = try container.decode(Int.self, forKey: .value)
-    font = try Font?(from: decoder)
-    color = try container.decodeIfPresent(Color.self, forKey: .color)
-}
-// sourcery:end
+
+
 // sourcery:inline:TupletPortion.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
@@ -4040,23 +4021,8 @@ public init(from decoder: Decoder) throws {
     tupletDots = try container.decode([TupletDot].self, forKey: .tupletDots)
 }
 // sourcery:end
-// sourcery:inline:TupletType.AutoEncodable
-public func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(value, forKey: .value)
-    try font.encode(to: encoder)
-    try container.encodeIfPresent(color, forKey: .color)
-}
-// sourcery:end
 
-// sourcery:inline:TupletType.AutoDecodable
-public init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    value = try container.decode(NoteTypeValue.self, forKey: .value)
-    font = try Font?(from: decoder)
-    color = try container.decodeIfPresent(Color.self, forKey: .color)
-}
-// sourcery:end
+
 // sourcery:inline:Unpitched.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
