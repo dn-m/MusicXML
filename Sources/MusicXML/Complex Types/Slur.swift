@@ -12,7 +12,7 @@ public struct Slur {
     public let type: StartStopContinue
     public let number: Int?
     public let lineType: LineType?
-    public let dashedFormatting: DashedFormatting?
+    public let dashedFormatting: DashedFormatting
     public let position: Position
     public let placement: AboveBelow?
     public let orientation: OverUnder?
@@ -59,7 +59,7 @@ extension Slur: Codable {
         type = try container.decode(StartStopContinue.self, forKey: .type)
         number = try container.decodeIfPresent(Int.self, forKey: .number)
         lineType = try container.decodeIfPresent(LineType.self, forKey: .lineType)
-        dashedFormatting = try DashedFormatting?(from: decoder)
+        dashedFormatting = try DashedFormatting(from: decoder)
         position = try Position(from: decoder)
         placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
         orientation = try container.decodeIfPresent(OverUnder.self, forKey: .orientation)
