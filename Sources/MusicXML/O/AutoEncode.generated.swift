@@ -559,8 +559,35 @@ public init(from decoder: Decoder) throws {
     location = try container.decode(CancelLocation.self, forKey: .location)
 }
 // sourcery:end
+// sourcery:inline:Clef.AutoEncodable
+public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encodeIfPresent(number, forKey: .number)
+    try container.encodeIfPresent(additional, forKey: .additional)
+    try container.encodeIfPresent(size, forKey: .size)
+    try container.encodeIfPresent(afterBarline, forKey: .afterBarline)
+    try printStyle.encode(to: encoder)
+    try container.encodeIfPresent(printObject, forKey: .printObject)
+    try container.encode(sign, forKey: .sign)
+    try container.encodeIfPresent(line, forKey: .line)
+    try container.encodeIfPresent(clefOctaveChange, forKey: .clefOctaveChange)
+}
+// sourcery:end
 
-
+// sourcery:inline:Clef.AutoDecodable
+public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    number = try container.decodeIfPresent(Int.self, forKey: .number)
+    additional = try container.decodeIfPresent(Bool.self, forKey: .additional)
+    size = try container.decodeIfPresent(SymbolSize.self, forKey: .size)
+    afterBarline = try container.decodeIfPresent(Bool.self, forKey: .afterBarline)
+    printStyle = try PrintStyle(from: decoder)
+    printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
+    sign = try container.decode(ClefSign.self, forKey: .sign)
+    line = try container.decodeIfPresent(Int.self, forKey: .line)
+    clefOctaveChange = try container.decodeIfPresent(Int.self, forKey: .clefOctaveChange)
+}
+// sourcery:end
 // sourcery:inline:Creator.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
@@ -880,21 +907,8 @@ public init(from decoder: Decoder) throws {
     printStyle = try PrintStyle(from: decoder)
 }
 // sourcery:end
-// sourcery:inline:Extend.AutoEncodable
-public func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encodeIfPresent(type, forKey: .type)
-    try printStyle.encode(to: encoder)
-}
-// sourcery:end
 
-// sourcery:inline:Extend.AutoDecodable
-public init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    type = try container.decodeIfPresent(StartStopContinue.self, forKey: .type)
-    printStyle = try PrintStyle?(from: decoder)
-}
-// sourcery:end
+
 // sourcery:inline:Feature.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
