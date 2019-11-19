@@ -44,9 +44,16 @@ class ScoreTests: XCTestCase {
             print("  Source: \(source)")
         }
 
+        if manifest.disabled {
+            print("  ⚠️ Skipped disabled test")
+            return
+        }
+
         do {
+            let start = now()
             let parsed = try Score(url: musicXMLURL)
-            print("  ✅ Parsing succeeded")
+            let duration = now() - start
+            print("  ✅ Parsing succeeded in \(duration.formatted(decimalPlaces: 3))s")
 
             guard let comparison = manifest.comparison,
                 let expectationClazz = expectationClass(forManifest: manifest) else {
@@ -99,4 +106,16 @@ private func directoryExists(at path: String) -> Bool {
     var isDirectory = ObjCBool(true)
     let exists = FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory)
     return exists && isDirectory.boolValue
+}
+
+// MARK: - Benchmarking
+
+private func now() -> Double {
+    return Double(DispatchTime.now().uptimeNanoseconds) / 1_000_000_000
+}
+
+fileprivate extension Double {
+    func formatted(decimalPlaces: Int) -> String {
+        return String(format: "%.\(decimalPlaces)f", self)
+    }
 }
