@@ -1178,8 +1178,29 @@ public init(from decoder: Decoder) throws {
     font = try Font(from: decoder)
 }
 // sourcery:end
+// sourcery:inline:Glissando.AutoEncodable
+public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(value, forKey: .value)
+    try container.encode(type, forKey: .type)
+    try container.encodeIfPresent(number, forKey: .number)
+    try container.encodeIfPresent(lineType, forKey: .lineType)
+    try dashedFormatting.encode(to: encoder)
+    try printStyle.encode(to: encoder)
+}
+// sourcery:end
 
-
+// sourcery:inline:Glissando.AutoDecodable
+public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    value = try container.decode(String.self, forKey: .value)
+    type = try container.decode(StartStop.self, forKey: .type)
+    number = try container.decodeIfPresent(Int.self, forKey: .number)
+    lineType = try container.decodeIfPresent(LineType.self, forKey: .lineType)
+    dashedFormatting = try DashedFormatting?(from: decoder)
+    printStyle = try PrintStyle(from: decoder)
+}
+// sourcery:end
 // sourcery:inline:Grace.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
@@ -1214,23 +1235,8 @@ public init(from decoder: Decoder) throws {
     color = try container.decodeIfPresent(Color.self, forKey: .color)
 }
 // sourcery:end
-// sourcery:inline:GroupName.AutoEncodable
-public func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(value, forKey: .value)
-    try printStyle.encode(to: encoder)
-    try container.encodeIfPresent(justify, forKey: .justify)
-}
-// sourcery:end
 
-// sourcery:inline:GroupName.AutoDecodable
-public init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    value = try container.decode(String.self, forKey: .value)
-    printStyle = try PrintStyle?(from: decoder)
-    justify = try container.decodeIfPresent(Justify.self, forKey: .justify)
-}
-// sourcery:end
+
 // sourcery:inline:GroupSymbol.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
