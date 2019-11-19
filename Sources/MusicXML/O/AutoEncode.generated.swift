@@ -156,7 +156,7 @@ public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     number = try container.decodeIfPresent(Int.self, forKey: .number)
     direction = try container.decodeIfPresent(UpDown.self, forKey: .direction)
-    position = try Position?(from: decoder)
+    position = try Position(from: decoder)
     placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
     color = try container.decodeIfPresent(Color.self, forKey: .color)
 }
@@ -457,24 +457,24 @@ public init(from decoder: Decoder) throws {
 // sourcery:inline:Bezier.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(bezierX, forKey: .bezierX)
-    try container.encode(bezierY, forKey: .bezierY)
-    try container.encode(bezierX2, forKey: .bezierX2)
-    try container.encode(bezierY2, forKey: .bezierY2)
-    try container.encode(bezierOffset, forKey: .bezierOffset)
-    try container.encode(bezierOffset2, forKey: .bezierOffset2)
+    try container.encodeIfPresent(bezierX, forKey: .bezierX)
+    try container.encodeIfPresent(bezierY, forKey: .bezierY)
+    try container.encodeIfPresent(bezierX2, forKey: .bezierX2)
+    try container.encodeIfPresent(bezierY2, forKey: .bezierY2)
+    try container.encodeIfPresent(bezierOffset, forKey: .bezierOffset)
+    try container.encodeIfPresent(bezierOffset2, forKey: .bezierOffset2)
 }
 // sourcery:end
 
 // sourcery:inline:Bezier.AutoDecodable
 public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
-    bezierX = try container.decode(Int.self, forKey: .bezierX)
-    bezierY = try container.decode(Int.self, forKey: .bezierY)
-    bezierX2 = try container.decode(Int.self, forKey: .bezierX2)
-    bezierY2 = try container.decode(Int.self, forKey: .bezierY2)
-    bezierOffset = try container.decode(Int.self, forKey: .bezierOffset)
-    bezierOffset2 = try container.decode(Int.self, forKey: .bezierOffset2)
+    bezierX = try container.decodeIfPresent(Tenths.self, forKey: .bezierX)
+    bezierY = try container.decodeIfPresent(Tenths.self, forKey: .bezierY)
+    bezierX2 = try container.decodeIfPresent(Tenths.self, forKey: .bezierX2)
+    bezierY2 = try container.decodeIfPresent(Tenths.self, forKey: .bezierY2)
+    bezierOffset = try container.decodeIfPresent(Int.self, forKey: .bezierOffset)
+    bezierOffset2 = try container.decodeIfPresent(Int.self, forKey: .bezierOffset2)
 }
 // sourcery:end
 // sourcery:inline:Bookmark.AutoEncodable
@@ -1265,7 +1265,7 @@ public func encode(to encoder: Encoder) throws {
 public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     value = try container.decode(GroupSymbolValue.self, forKey: .value)
-    position = try Position?(from: decoder)
+    position = try Position(from: decoder)
     color = try container.decodeIfPresent(Color.self, forKey: .color)
 }
 // sourcery:end
@@ -1548,7 +1548,7 @@ public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     source = try container.decode(String.self, forKey: .source)
     type = try container.decode(String.self, forKey: .type)
-    position = try Position?(from: decoder)
+    position = try Position(from: decoder)
     hAlign = try container.decodeIfPresent(LeftCenterRight.self, forKey: .hAlign)
     vAlign = try container.decodeIfPresent(VAlignImage.self, forKey: .vAlign)
 }
@@ -2228,7 +2228,7 @@ public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     type = try container.decode(TopBottom.self, forKey: .type)
     number = try container.decodeIfPresent(Int.self, forKey: .number)
-    position = try Position?(from: decoder)
+    position = try Position(from: decoder)
     placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
     color = try container.decodeIfPresent(Color.self, forKey: .color)
 }
@@ -2799,8 +2799,23 @@ public init(from decoder: Decoder) throws {
     font = try Font?(from: decoder)
 }
 // sourcery:end
+// sourcery:inline:Percussion.AutoEncodable
+public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try printStyleAlign.encode(to: encoder)
+    try container.encodeIfPresent(enclosure, forKey: .enclosure)
+    try container.encode(kind, forKey: .kind)
+}
+// sourcery:end
 
-
+// sourcery:inline:Percussion.AutoDecodable
+public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    printStyleAlign = try PrintStyleAlign(from: decoder)
+    enclosure = try container.decodeIfPresent(EnclosureShape.self, forKey: .enclosure)
+    kind = try container.decode(Kind.self, forKey: .kind)
+}
+// sourcery:end
 // sourcery:inline:Pitch.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
@@ -2886,8 +2901,25 @@ public init(from decoder: Decoder) throws {
     relativeY = try container.decodeIfPresent(Tenths.self, forKey: .relativeY)
 }
 // sourcery:end
+// sourcery:inline:PrincipleVoice.AutoEncodable
+public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(value, forKey: .value)
+    try container.encode(type, forKey: .type)
+    try container.encode(symbol, forKey: .symbol)
+    try printStyleAlign.encode(to: encoder)
+}
+// sourcery:end
 
-
+// sourcery:inline:PrincipleVoice.AutoDecodable
+public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    value = try container.decode(String.self, forKey: .value)
+    type = try container.decode(StartStop.self, forKey: .type)
+    symbol = try container.decode(PrincipleVoiceSymbol.self, forKey: .symbol)
+    printStyleAlign = try PrintStyleAlign(from: decoder)
+}
+// sourcery:end
 // sourcery:inline:Print.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
@@ -3290,35 +3322,8 @@ public init(from decoder: Decoder) throws {
     bendSound = try BendSound(from: decoder)
 }
 // sourcery:end
-// sourcery:inline:Slur.AutoEncodable
-public func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(type, forKey: .type)
-    try container.encodeIfPresent(number, forKey: .number)
-    try container.encodeIfPresent(lineType, forKey: .lineType)
-    try dashedFormatting.encode(to: encoder)
-    try position.encode(to: encoder)
-    try container.encodeIfPresent(placement, forKey: .placement)
-    try container.encodeIfPresent(orientation, forKey: .orientation)
-    try bezier.encode(to: encoder)
-    try container.encodeIfPresent(color, forKey: .color)
-}
-// sourcery:end
 
-// sourcery:inline:Slur.AutoDecodable
-public init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    type = try container.decode(StartStopContinue.self, forKey: .type)
-    number = try container.decodeIfPresent(Int.self, forKey: .number)
-    lineType = try container.decodeIfPresent(LineType.self, forKey: .lineType)
-    dashedFormatting = try DashedFormatting?(from: decoder)
-    position = try Position?(from: decoder)
-    placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
-    orientation = try container.decodeIfPresent(OverUnder.self, forKey: .orientation)
-    bezier = try Bezier?(from: decoder)
-    color = try container.decodeIfPresent(Color.self, forKey: .color)
-}
-// sourcery:end
+
 // sourcery:inline:Sound.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
@@ -3482,8 +3487,21 @@ public init(from decoder: Decoder) throws {
     stickMaterial = try container.decode(StickMaterial.self, forKey: .stickMaterial)
 }
 // sourcery:end
+// sourcery:inline:StringMute.AutoEncodable
+public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try container.encode(type, forKey: .type)
+    try printStyleAlign.encode(to: encoder)
+}
+// sourcery:end
 
-
+// sourcery:inline:StringMute.AutoDecodable
+public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    type = try container.decode(OnOff.self, forKey: .type)
+    printStyleAlign = try PrintStyleAlign(from: decoder)
+}
+// sourcery:end
 // sourcery:inline:StrongAccent.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)

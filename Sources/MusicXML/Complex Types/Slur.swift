@@ -13,13 +13,13 @@ public struct Slur {
     public let number: Int?
     public let lineType: LineType?
     public let dashedFormatting: DashedFormatting?
-    public let position: Position?
+    public let position: Position
     public let placement: AboveBelow?
     public let orientation: OverUnder?
-    public let bezier: Bezier?
+    public let bezier: Bezier
     public let color: Color?
 
-    public init(type: StartStopContinue, number: Int? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting? = nil, position: Position? = nil, placement: AboveBelow? = nil, orientation: OverUnder? = nil, bezier: Bezier? = nil, color: Color? = nil) {
+    public init(type: StartStopContinue, number: Int? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting = DashedFormatting(), position: Position = Position(), placement: AboveBelow? = nil, orientation: OverUnder? = nil, bezier: Bezier = Bezier(), color: Color? = nil) {
         self.type = type
         self.number = number
         self.lineType = lineType
@@ -33,4 +33,37 @@ public struct Slur {
 }
 
 extension Slur: Equatable { }
-extension Slur: Codable { }
+extension Slur: Codable {
+    enum CodingKeys: String, CodingKey {
+        case type
+        case number
+        case lineType
+        case placement
+        case orientation
+        case color
+    }
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(number, forKey: .number)
+        try container.encodeIfPresent(lineType, forKey: .lineType)
+        try dashedFormatting.encode(to: encoder)
+        try position.encode(to: encoder)
+        try container.encodeIfPresent(placement, forKey: .placement)
+        try container.encodeIfPresent(orientation, forKey: .orientation)
+        try bezier.encode(to: encoder)
+        try container.encodeIfPresent(color, forKey: .color)
+    }
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        type = try container.decode(StartStopContinue.self, forKey: .type)
+        number = try container.decodeIfPresent(Int.self, forKey: .number)
+        lineType = try container.decodeIfPresent(LineType.self, forKey: .lineType)
+        dashedFormatting = try DashedFormatting?(from: decoder)
+        position = try Position(from: decoder)
+        placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
+        orientation = try container.decodeIfPresent(OverUnder.self, forKey: .orientation)
+        bezier = try Bezier(from: decoder)
+        color = try container.decodeIfPresent(Color.self, forKey: .color)
+    }
+}
