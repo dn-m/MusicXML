@@ -2148,8 +2148,25 @@ public init(from decoder: Decoder) throws {
     value = try container.decode(String.self, forKey: .value)
 }
 // sourcery:end
+// sourcery:inline:Mordent.AutoEncodable
+public func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+    try value.encode(to: encoder)
+    try container.encodeIfPresent(long, forKey: .long)
+    try container.encodeIfPresent(approach, forKey: .approach)
+    try container.encodeIfPresent(departure, forKey: .departure)
+}
+// sourcery:end
 
-
+// sourcery:inline:Mordent.AutoDecodable
+public init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    value = try PrintStyleTrillSound(from: decoder)
+    long = try container.decodeIfPresent(Bool.self, forKey: .long)
+    approach = try container.decodeIfPresent(AboveBelow.self, forKey: .approach)
+    departure = try container.decodeIfPresent(AboveBelow.self, forKey: .departure)
+}
+// sourcery:end
 // sourcery:inline:MultipleRest.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
@@ -3663,39 +3680,16 @@ public func encode(to encoder: Encoder) throws {
 public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
     value = try container.decode(String.self, forKey: .value)
-    font = try Font?(from: decoder)
-    textDecoration = try TextDecoration?(from: decoder)
+    font = try Font(from: decoder)
+    textDecoration = try TextDecoration(from: decoder)
     color = try container.decodeIfPresent(Color.self, forKey: .color)
     textRotation = try container.decodeIfPresent(Double.self, forKey: .textRotation)
     letterSpacing = try container.decodeIfPresent(NumberOrNormal.self, forKey: .letterSpacing)
     direction = try container.decodeIfPresent(TextDirection.self, forKey: .direction)
 }
 // sourcery:end
-// sourcery:inline:TextFontColor.AutoEncodable
-public func encode(to encoder: Encoder) throws {
-    var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(value, forKey: .value)
-    try font.encode(to: encoder)
-    try container.encodeIfPresent(color, forKey: .color)
-    try textDecoration.encode(to: encoder)
-    try container.encodeIfPresent(textRotation, forKey: .textRotation)
-    try container.encodeIfPresent(letterSpacing, forKey: .letterSpacing)
-    try container.encodeIfPresent(dir, forKey: .dir)
-}
-// sourcery:end
 
-// sourcery:inline:TextFontColor.AutoDecodable
-public init(from decoder: Decoder) throws {
-    let container = try decoder.container(keyedBy: CodingKeys.self)
-    value = try container.decode(String.self, forKey: .value)
-    font = try Font?(from: decoder)
-    color = try container.decodeIfPresent(Color.self, forKey: .color)
-    textDecoration = try TextDecoration?(from: decoder)
-    textRotation = try container.decodeIfPresent(Double.self, forKey: .textRotation)
-    letterSpacing = try container.decodeIfPresent(NumberOrNormal.self, forKey: .letterSpacing)
-    dir = try container.decodeIfPresent(TextDirection.self, forKey: .dir)
-}
-// sourcery:end
+
 // sourcery:inline:Tie.AutoEncodable
 public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
