@@ -13,7 +13,7 @@ public enum PitchUnpitchedOrRest {
     case rest(Rest)
 }
 
-extension PitchUnpitchedOrRest: Equatable { }
+extension PitchUnpitchedOrRest: Equatable {}
 
 extension PitchUnpitchedOrRest: Codable {
     enum CodingKeys: String, CodingKey {
@@ -21,6 +21,7 @@ extension PitchUnpitchedOrRest: Codable {
         case unpitched
         case rest
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -32,10 +33,11 @@ extension PitchUnpitchedOrRest: Codable {
             try container.encode(value, forKey: .rest)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
@@ -57,4 +59,4 @@ extension PitchUnpitchedOrRest: Codable {
     }
 }
 
-extension PitchUnpitchedOrRest.CodingKeys: XMLChoiceCodingKey { }
+extension PitchUnpitchedOrRest.CodingKeys: XMLChoiceCodingKey {}

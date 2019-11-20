@@ -12,7 +12,6 @@
 /// elements. Having these two types of information available can make interchange considerably
 /// easier, as some programs handle one type of information much more readily than the other.
 public struct Note {
-
     // MARK: - Instance Properties
 
     // MARK: Kind
@@ -117,7 +116,6 @@ public struct Note {
 }
 
 extension Note {
-
     // MARK: - Initializers
 
     // MARK: Normal
@@ -190,7 +188,6 @@ extension Note {
 }
 
 extension Note {
-
     // MARK: Kinds of `Note`
 
     public struct Normal {
@@ -251,11 +248,11 @@ extension Note {
     }
 }
 
-extension Note.Normal: Equatable { }
-extension Note.Cue: Equatable { }
-extension Note.Grace: Equatable { }
+extension Note.Normal: Equatable {}
+extension Note.Cue: Equatable {}
+extension Note.Grace: Equatable {}
 
-extension Note: Equatable { }
+extension Note: Equatable {}
 extension Note: Codable {
     enum CodingKeys: String, CodingKey {
         // Attributes
@@ -300,7 +297,6 @@ extension Note: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-
         // Decode attribute groups
         self.printStyle = try PrintStyle(from: decoder)
 
@@ -359,7 +355,7 @@ extension Note: Codable {
             pitchUnpitchedOrRest = .pitch(pitch)
         } else if container.contains(.rest) {
             let rest = try container.decode(Rest.self, forKey: .rest)
-            pitchUnpitchedOrRest =  .rest(rest)
+            pitchUnpitchedOrRest = .rest(rest)
         } else {
             let unpitched = try container.decode(Unpitched.self, forKey: .unpitched)
             pitchUnpitchedOrRest = .unpitched(unpitched)
@@ -376,13 +372,13 @@ extension Note: Codable {
         } else {
             self.kind = .normal(
                 Normal(pitchUnpitchedOrRest,
-                    duration: try duration(),
-                    ties: try ties(),
-                    isChord: isChord
-                )
+                       duration: try duration(),
+                       ties: try ties(),
+                       isChord: isChord)
             )
         }
     }
+
     public func encode(to encoder: Encoder) throws {
         fatalError("TODO: Note.encode(to:)")
     }

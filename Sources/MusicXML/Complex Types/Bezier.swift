@@ -35,5 +35,5 @@ public struct Bezier {
     }
 }
 
-extension Bezier: Equatable { }
-extension Bezier: Codable { }
+extension Bezier: Equatable {}
+extension Bezier: Codable {}

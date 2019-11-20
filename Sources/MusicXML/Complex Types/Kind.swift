@@ -10,7 +10,6 @@
 /// make up a polychord, many formatting attributes are here. The alignment attributes are for the
 /// entire harmony-chord group of which this kind element is a part.
 public struct Kind {
-
     // MARK: - Instance Properties
 
     // MARK: Value
@@ -30,7 +29,6 @@ public struct Kind {
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
-
 
     public init(
         _ value: KindValue,
@@ -56,7 +54,6 @@ public struct Kind {
 }
 
 extension Kind {
-
     // MARK: - Type Properties
 
     public static let major = Kind(.major)
@@ -100,7 +97,7 @@ extension Kind: Codable {
         case useSymbols = "use-symbols"
         case text
         case stackDegrees = "stack-degrees"
-        case parenthesesDegrees = "parenthesesDegrees"
+        case parenthesesDegrees
         case bracketDegrees = "bracket-degrees"
         case hAlign = "halign"
         case vAlign = "valign"

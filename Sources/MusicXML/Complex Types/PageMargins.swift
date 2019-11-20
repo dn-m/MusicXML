@@ -31,10 +31,10 @@ extension PageMargins {
     }
 }
 
-extension PageMargins.Kind: Equatable { }
-extension PageMargins.Kind: Codable { }
+extension PageMargins.Kind: Equatable {}
+extension PageMargins.Kind: Codable {}
 
-extension PageMargins: Equatable { }
+extension PageMargins: Equatable {}
 extension PageMargins: Codable {
     private enum CodingKeys: String, CodingKey {
         case type

@@ -24,7 +24,6 @@ public struct RootStep {
 }
 
 extension RootStep {
-
     // MARK: - Type Properties
 
     public static let a = RootStep(.a)
@@ -36,7 +35,7 @@ extension RootStep {
     public static let g = RootStep(.g)
 }
 
-extension RootStep: Equatable { }
+extension RootStep: Equatable {}
 extension RootStep: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""

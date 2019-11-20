@@ -28,7 +28,7 @@ public struct PartSymbol {
     }
 }
 
-extension PartSymbol: Equatable { }
+extension PartSymbol: Equatable {}
 extension PartSymbol: Codable {
     enum CodingKeys: String, CodingKey {
         case kind

@@ -7,8 +7,8 @@
 
 /// The `timewise` traversal of a `MusicXML` score.
 public struct Timewise {
-
     // MARK: Elements
+
     public let header: Header
 
     /// The `Measure` values which comprise a `Timewise` traversal of a `MusicXML` score.
@@ -21,7 +21,6 @@ public struct Timewise {
 }
 
 extension Timewise {
-
     // MARK: - Instance Methods
 
     /// - Returns: A `Partwise` representation of this `Timewise` traversal.
@@ -40,10 +39,9 @@ extension Timewise {
     }
 }
 
-extension Timewise: Equatable { }
+extension Timewise: Equatable {}
 
 extension Timewise: Codable {
-
     // MARK: - Codable
 
     enum CodingKeys: String, CodingKey {
@@ -56,7 +54,7 @@ extension Timewise: Codable {
         self.measures = try container.decode([Measure].self, forKey: .measures)
         // There is not currently a way for the `XMLDecoder` to check against the case of the
         // `Score` type at the top-level. A `Timewise` traversal must have at least one measure.
-        guard !self.measures.isEmpty else {
+        guard !measures.isEmpty else {
             throw DecodingError.typeMismatch(
                 Partwise.self,
                 DecodingError.Context(

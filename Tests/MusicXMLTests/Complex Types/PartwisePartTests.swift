@@ -5,12 +5,11 @@
 //  Created by James Bean on 8/4/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class PartwisePartTests: XCTestCase {
-
     func testDecodingSingleMeasure() throws {
         let xml = """
         <part id="P1">
@@ -115,9 +114,9 @@ class PartwisePartTests: XCTestCase {
                                 voice: "1",
                                 type: .quarter
                             )
-                        )
+                        ),
                     ]
-                )
+                ),
             ]
         )
         XCTAssertEqual(decoded, expected)
@@ -1367,7 +1366,7 @@ class PartwisePartTests: XCTestCase {
           </measure>
         </part>
         """
-        let _ = try XMLDecoder().decode(Partwise.Part.self, from: xml.data(using: .utf8)!)
+        _ = try XMLDecoder().decode(Partwise.Part.self, from: xml.data(using: .utf8)!)
         // FIXME: Add assertion to PatwisePartTests.testDecoding()
     }
 }

@@ -27,7 +27,6 @@
 /// elements allow for fermatas on both sides of the barline (the lower one inverted). If no
 /// location is specified, the right barline is the default.
 public struct Barline {
-
     /// Barlines have a location attribute to make it easier to process barlines independently of
     /// the other musical data in a score. It is often easier to set up measures separately from
     /// entering notes. The location attribute must match where the barline element occurs within
@@ -70,7 +69,7 @@ public struct Barline {
         wavyLine: WavyLine? = nil,
         fermata: Fermata? = nil,
         ending: Ending? = nil,
-        `repeat`: Repeat? = nil
+        repeat: Repeat? = nil
     ) {
         self.location = location
         self.segno = segno
@@ -81,11 +80,11 @@ public struct Barline {
         self.wavyLine = wavyLine
         self.fermata = fermata
         self.ending = ending
-        self.`repeat` = `repeat`
+        self.repeat = `repeat`
     }
 }
 
-extension Barline: Equatable { }
+extension Barline: Equatable {}
 extension Barline: Codable {
     enum CodingKeys: String, CodingKey {
         case location

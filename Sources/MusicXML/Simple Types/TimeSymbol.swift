@@ -13,13 +13,13 @@
 /// with a dotted downstem note that corresponds to three times the beat-type value, and a numerator
 /// that is one third the beats value.
 public enum TimeSymbol: String {
-    case common = "common"
-    case cut = "cut"
+    case common
+    case cut
     case singleNumber = "single-number"
-    case note = "note"
+    case note
     case dottedNote = "dotted-note"
-    case normal = "normal"
+    case normal
 }
 
-extension TimeSymbol: Equatable { }
-extension TimeSymbol: Codable { }
+extension TimeSymbol: Equatable {}
+extension TimeSymbol: Codable {}

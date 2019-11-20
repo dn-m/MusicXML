@@ -31,12 +31,13 @@ extension PartList {
     }
 }
 
-extension PartList.Item: Equatable { }
+extension PartList.Item: Equatable {}
 extension PartList.Item: Codable {
     enum CodingKeys: String, CodingKey {
         case group = "part-group"
         case part = "score-part"
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -46,10 +47,11 @@ extension PartList.Item: Codable {
             try container.encode(value, forKey: .part)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
@@ -69,9 +71,9 @@ extension PartList.Item: Codable {
     }
 }
 
-extension PartList.Item.CodingKeys: XMLChoiceCodingKey { }
+extension PartList.Item.CodingKeys: XMLChoiceCodingKey {}
 
-extension PartList: Equatable { }
+extension PartList: Equatable {}
 extension PartList: Codable {
     public init(from decoder: Decoder) throws {
         let singleValue = try decoder.singleValueContainer()
@@ -80,9 +82,8 @@ extension PartList: Codable {
 }
 
 extension PartList: ExpressibleByArrayLiteral {
-
     // MARK: - ExpressibleByArrayLiteral
-    
+
     public init(arrayLiteral elements: Item...) {
         self.init(elements)
     }

@@ -27,7 +27,7 @@ public struct OtherNotation {
     }
 }
 
-extension OtherNotation: Equatable { }
+extension OtherNotation: Equatable {}
 extension OtherNotation: Codable {
     enum CodingKeys: String, CodingKey {
         case type
@@ -36,6 +36,7 @@ extension OtherNotation: Codable {
         case placement
         case value = ""
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)
@@ -45,6 +46,7 @@ extension OtherNotation: Codable {
         try printStyle.encode(to: encoder)
         try container.encodeIfPresent(placement, forKey: .placement)
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         value = try container.decode(String.self, forKey: .value)

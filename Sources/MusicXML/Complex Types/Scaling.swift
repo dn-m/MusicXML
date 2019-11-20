@@ -11,7 +11,6 @@
 /// height of 7 mm, millimeters would be set to 7 while tenths is set to 40. The ability to set a
 /// formula rather than a single scaling factor helps avoid roundoff errors.
 public struct Scaling {
-
     // MARK: - Instance Properties
 
     // MARK: Elements
@@ -38,5 +37,5 @@ public struct Scaling {
     }
 }
 
-extension Scaling: Equatable { }
-extension Scaling: Codable { }
+extension Scaling: Equatable {}
+extension Scaling: Codable {}

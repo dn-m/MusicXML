@@ -11,7 +11,6 @@ import XMLCoder
 /// be a part of either the score-instrument element at the start of a part, or the sound element
 /// within a part. The id attribute refers to the score-instrument affected by the change.
 public struct MIDIInstrument {
-
     // MARK: - Instance Properties
 
     // MARK: Attributes
@@ -72,9 +71,8 @@ public struct MIDIInstrument {
     }
 }
 
-extension MIDIInstrument: Equatable { }
+extension MIDIInstrument: Equatable {}
 extension MIDIInstrument: Codable {
-
     enum CodingKeys: String, CodingKey {
         case id
         case channel = "midi-channel"

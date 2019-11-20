@@ -13,5 +13,5 @@ public enum StartNote: String {
     case below
 }
 
-extension StartNote: Equatable { }
-extension StartNote: Codable { }
+extension StartNote: Equatable {}
+extension StartNote: Codable {}

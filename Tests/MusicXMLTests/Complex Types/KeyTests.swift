@@ -5,12 +5,11 @@
 //  Created by James Bean on 8/2/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class KeyTests: XCTestCase {
-
     func testDecodingTraditional() throws {
         let xml = """
         <key>
@@ -71,7 +70,7 @@ class KeyTests: XCTestCase {
         )
         XCTAssertEqual(decoded, expected)
     }
-    
+
     func testDecodingNonTraditionalMixed() throws {
         let xml = """
         <key>
@@ -141,7 +140,7 @@ class KeyTests: XCTestCase {
         )
         XCTAssertEqual(decoded, expected)
     }
-    
+
     func testDeocdingNonTraditionalWithAccidentalSomeMissing() throws {
         let xml = """
         <key>

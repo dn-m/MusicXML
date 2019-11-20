@@ -21,7 +21,7 @@ public struct MetronomeTuplet {
     }
 }
 
-extension MetronomeTuplet: Equatable { }
+extension MetronomeTuplet: Equatable {}
 extension MetronomeTuplet: Codable {
     enum CodingKeys: String, CodingKey {
         case type

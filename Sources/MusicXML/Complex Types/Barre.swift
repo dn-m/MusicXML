@@ -18,5 +18,5 @@ public struct Barre {
     }
 }
 
-extension Barre: Equatable { }
-extension Barre: Codable { }
+extension Barre: Equatable {}
+extension Barre: Codable {}

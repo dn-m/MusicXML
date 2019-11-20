@@ -5,12 +5,11 @@
 //  Created by James Bean on 8/8/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class PitchUnpitchedRestTests: XCTestCase {
-
     func testPitch() throws {
         let xml = """
         <container>
@@ -26,9 +25,7 @@ class PitchUnpitchedRestTests: XCTestCase {
         XCTAssertEqual(decoded, expected)
     }
 
-    func testUnpitched() throws {
-
-    }
+    func testUnpitched() throws {}
 
     func testRest() throws {
         let xml = """
@@ -37,7 +34,7 @@ class PitchUnpitchedRestTests: XCTestCase {
         </container>
         """
         let decoded = try XMLDecoder().decode(PitchUnpitchedOrRest.self, from: xml.data(using: .utf8)!)
-        let expected = PitchUnpitchedOrRest.rest(Rest(/*displayStep: nil, displayOctave: nil, measure: nil*/))
+        let expected = PitchUnpitchedOrRest.rest(Rest( /* displayStep: nil, displayOctave: nil, measure: nil */ ))
         XCTAssertEqual(decoded, expected)
     }
 }

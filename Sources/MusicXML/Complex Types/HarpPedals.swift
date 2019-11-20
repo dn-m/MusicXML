@@ -10,7 +10,6 @@
 /// pedal-tuning elements should follow standard harp pedal order, with pedal-step values of D, C,
 /// B, E, F, G, and A.
 public struct HarpPedals {
-
     // MARK: - Instance Properties
 
     // MARK: Attribute Groups
@@ -28,14 +27,13 @@ public struct HarpPedals {
     }
 }
 
-extension HarpPedals: Equatable { }
+extension HarpPedals: Equatable {}
 extension HarpPedals: Codable {
     private enum CodingKeys: String, CodingKey {
         case pedalTunings = "pedal-tuning"
     }
 
     public init(from decoder: Decoder) throws {
-
         // Decode attribute groups
         self.printStyleAlign = try PrintStyleAlign(from: decoder)
 

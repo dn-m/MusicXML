@@ -5,12 +5,11 @@
 //  Created by James Bean on 8/2/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class PartListTests: XCTestCase {
-
     func testScorePartDecoding() throws {
         let xml = """
         <part-list>

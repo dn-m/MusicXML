@@ -31,7 +31,7 @@ public struct Slide {
     }
 }
 
-extension Slide: Equatable { }
+extension Slide: Equatable {}
 extension Slide: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""

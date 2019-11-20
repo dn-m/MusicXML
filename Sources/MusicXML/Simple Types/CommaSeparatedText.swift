@@ -11,8 +11,8 @@ public struct CommaSeparatedText {
     let values: [String]
 }
 
-extension CommaSeparatedText: Equatable { }
-extension CommaSeparatedText: Codable { }
+extension CommaSeparatedText: Equatable {}
+extension CommaSeparatedText: Codable {}
 
 extension CommaSeparatedText: ExpressibleByArrayLiteral {
     public init(arrayLiteral values: String...) {

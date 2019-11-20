@@ -12,7 +12,6 @@ public struct NoteType {
 }
 
 extension NoteType {
-
     // MARK: Initializers
 
     public init(_ value: NoteTypeValue, size: SymbolSize? = nil) {
@@ -22,7 +21,6 @@ extension NoteType {
 }
 
 extension NoteType {
-
     // MARK: - Type Properties
 
     public static let maxima = NoteType(.maxima)
@@ -41,7 +39,7 @@ extension NoteType {
     public static let onethousandtwentyfourth = NoteType(.onehundredtwentyeighth)
 }
 
-extension NoteType: Equatable { }
+extension NoteType: Equatable {}
 extension NoteType: Codable {
     enum CodingKeys: String, CodingKey {
         case size

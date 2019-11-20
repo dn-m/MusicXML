@@ -48,7 +48,7 @@ public struct Identification {
     }
 }
 
-extension Identification: Equatable { }
+extension Identification: Equatable {}
 extension Identification: Codable {
     enum CodingKeys: String, CodingKey {
         case creators = "creator"

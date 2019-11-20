@@ -5,12 +5,11 @@
 //  Created by James Bean on 10/9/19.
 //
 
-import XCTest
 import MusicXML
+import XCTest
 import XMLCoder
 
 class StabatMaterTests: XCTestCase {
-
     func testWordsDirection() throws {
         let xml = """
         <direction placement="above">
@@ -39,7 +38,7 @@ class StabatMaterTests: XCTestCase {
         )
         XCTAssertEqual(decoded, expected)
     }
-    
+
     func testWordsMultipleInDirectionType() throws {
         let xml = """
         <direction-type>
@@ -51,7 +50,7 @@ class StabatMaterTests: XCTestCase {
         let expected = DirectionType.words(
             [
                 FormattedText("Largo", printStyle: PrintStyle(font: Font(weight: .bold))),
-                FormattedText("Largo", printStyle: PrintStyle(font: Font(weight: .bold)))
+                FormattedText("Largo", printStyle: PrintStyle(font: Font(weight: .bold))),
             ]
         )
         XCTAssertEqual(decoded, expected)
@@ -70,9 +69,8 @@ class StabatMaterTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
         let expected = Direction([.dynamics([Dynamics([.fp])])],
-            placement: .below,
-            offset: Offset(3)
-        )
+                                 placement: .below,
+                                 offset: Offset(3))
         XCTAssertEqual(decoded, expected)
     }
 
@@ -88,7 +86,7 @@ class StabatMaterTests: XCTestCase {
         let expected = DirectionType.dynamics([Dynamics([.fp])])
         XCTAssertEqual(decoded, expected)
     }
-    
+
     func testDynamicsMultipleInDirectionType() throws {
         let xml = """
         <direction-type>

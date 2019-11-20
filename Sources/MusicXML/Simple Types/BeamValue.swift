@@ -15,5 +15,5 @@ public enum BeamValue: String {
     case backwardHook = "backward hook"
 }
 
-extension BeamValue: Equatable { }
-extension BeamValue: Codable { }
+extension BeamValue: Equatable {}
+extension BeamValue: Codable {}

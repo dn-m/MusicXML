@@ -15,5 +15,5 @@ public enum NoteSizeType: String {
     case large
 }
 
-extension NoteSizeType: Equatable { }
-extension NoteSizeType: Codable { }
+extension NoteSizeType: Equatable {}
+extension NoteSizeType: Codable {}

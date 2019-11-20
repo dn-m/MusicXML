@@ -24,5 +24,5 @@ public enum NoteTypeValue: String {
     case onethousandtwentyfourth = "1024th"
 }
 
-extension NoteTypeValue: Equatable { }
-extension NoteTypeValue: Codable { }
+extension NoteTypeValue: Equatable {}
+extension NoteTypeValue: Codable {}

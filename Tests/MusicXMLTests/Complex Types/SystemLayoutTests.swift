@@ -5,12 +5,11 @@
 //  Created by Sihao Lu on 11/17/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class SystemLayoutTests: XCTestCase {
-
     func testDecoding() throws {
         let xml = """
         <system-layout>

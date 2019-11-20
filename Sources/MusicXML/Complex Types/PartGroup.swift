@@ -41,7 +41,7 @@ public struct PartGroup {
     }
 }
 
-extension PartGroup: Equatable { }
+extension PartGroup: Equatable {}
 extension PartGroup: Codable {
     enum CodingKeys: String, CodingKey {
         case type

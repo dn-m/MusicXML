@@ -16,16 +16,18 @@ public struct StringMute {
     }
 }
 
-extension StringMute: Equatable { }
+extension StringMute: Equatable {}
 extension StringMute: Codable {
     enum CodingKeys: String, CodingKey {
         case type
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
         try printStyleAlign.encode(to: encoder)
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decode(OnOff.self, forKey: .type)

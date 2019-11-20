@@ -17,7 +17,6 @@ public struct BarStyleColor {
 }
 
 extension BarStyleColor {
-
     // MARK: - Type Properties
 
     public static let regular = BarStyleColor(.regular)
@@ -33,7 +32,7 @@ extension BarStyleColor {
     public static let none = BarStyleColor(.none)
 }
 
-extension BarStyleColor: Equatable { }
+extension BarStyleColor: Equatable {}
 extension BarStyleColor: Codable {
     enum CodingKeys: String, CodingKey {
         case value = ""

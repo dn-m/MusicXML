@@ -15,7 +15,6 @@ extension Partwise {
     //    id IDREF #REQUIRED
     // >
     public struct Part {
-
         // MARK: - Properties
 
         // MARK: Attributes
@@ -36,10 +35,9 @@ extension Partwise {
     }
 }
 
-extension Partwise.Part: Equatable { }
+extension Partwise.Part: Equatable {}
 
 extension Partwise.Part: Codable {
-
     // MARK: - Codable
 
     enum CodingKeys: String, CodingKey {

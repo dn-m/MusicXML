@@ -14,7 +14,7 @@ public struct Articulations {
     }
 }
 
-extension Articulations: Equatable { }
+extension Articulations: Equatable {}
 
 extension Articulations: Codable {
     public init(from decoder: Decoder) throws {
@@ -22,4 +22,3 @@ extension Articulations: Codable {
         self.values = try container.decode([Articulation].self)
     }
 }
-

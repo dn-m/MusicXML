@@ -7,7 +7,6 @@
 
 /// The arpeggiate type indicates that this note is part of an arpeggiated chord.
 public struct Arpeggiate {
-
     // MARK: - Attributes
 
     public var number: Int?
@@ -25,7 +24,7 @@ public struct Arpeggiate {
     }
 }
 
-extension Arpeggiate: Equatable { }
+extension Arpeggiate: Equatable {}
 extension Arpeggiate: Codable {
     enum CodingKeys: String, CodingKey {
         case number
@@ -33,6 +32,7 @@ extension Arpeggiate: Codable {
         case placement
         case color
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(number, forKey: .number)
@@ -41,6 +41,7 @@ extension Arpeggiate: Codable {
         try container.encodeIfPresent(placement, forKey: .placement)
         try container.encodeIfPresent(color, forKey: .color)
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         number = try container.decodeIfPresent(Int.self, forKey: .number)

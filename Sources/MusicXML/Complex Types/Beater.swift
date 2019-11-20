@@ -15,7 +15,7 @@ public struct Beater {
     }
 }
 
-extension Beater: Equatable { }
+extension Beater: Equatable {}
 extension Beater: Codable {
     enum CodingKeys: String, CodingKey {
         case tip

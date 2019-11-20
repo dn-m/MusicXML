@@ -18,5 +18,5 @@ public struct EditorialVoice {
     }
 }
 
-extension EditorialVoice: Equatable { }
-extension EditorialVoice: Codable { }
+extension EditorialVoice: Equatable {}
+extension EditorialVoice: Codable {}

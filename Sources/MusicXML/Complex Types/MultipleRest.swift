@@ -9,7 +9,6 @@
 /// Multiple rests may use the 1-bar / 2-bar / 4-bar rest symbols, or a single shape. The element
 /// text is ignored when the type is stop.
 public struct MultipleRest {
-
     // MARK: - Instance Properties
 
     // MARK: Attributes
@@ -28,7 +27,7 @@ public struct MultipleRest {
     }
 }
 
-extension MultipleRest: Equatable { }
+extension MultipleRest: Equatable {}
 extension MultipleRest: Codable {
     enum CodingKeys: String, CodingKey {
         case useSymbols

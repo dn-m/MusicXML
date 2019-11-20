@@ -25,7 +25,7 @@ public struct WavyLine {
     }
 }
 
-extension WavyLine: Equatable { }
+extension WavyLine: Equatable {}
 extension WavyLine: Codable {
     enum CodingKeys: String, CodingKey {
         case type
@@ -33,6 +33,7 @@ extension WavyLine: Codable {
         case placement
         case color
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
@@ -42,6 +43,7 @@ extension WavyLine: Codable {
         try container.encodeIfPresent(color, forKey: .color)
         try trillSound.encode(to: encoder)
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decode(StartStopContinue.self, forKey: .type)

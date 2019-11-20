@@ -9,7 +9,6 @@
 /// attributes for the part-name element are deprecated in Version 2.0 in favor of the new
 /// part-name-display and part-abbreviation-display elements.
 public struct PartName {
-
     // MARK: - Instance Properties
 
     // MARK: Value
@@ -40,7 +39,7 @@ public struct PartName {
     }
 }
 
-extension PartName: Equatable { }
+extension PartName: Equatable {}
 extension PartName: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""
@@ -58,7 +57,6 @@ extension PartName: Codable {
 }
 
 extension PartName: ExpressibleByStringLiteral {
-
     // MARK: - ExpressibleByStringLiteral
 
     public init(stringLiteral value: String) {

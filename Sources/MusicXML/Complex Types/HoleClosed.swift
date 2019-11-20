@@ -18,7 +18,7 @@ public struct HoleClosed {
     }
 }
 
-extension HoleClosed: Equatable { }
+extension HoleClosed: Equatable {}
 extension HoleClosed: Codable {
     enum CodingKeys: String, CodingKey {
         case location

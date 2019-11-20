@@ -7,7 +7,6 @@
 
 /// The strong-accent type indicates a vertical accent mark.
 public struct StrongAccent {
-
     // MARK: - Instance Properties
 
     /// The type attribute indicates if the point of the accent is down or up.
@@ -29,7 +28,7 @@ public struct StrongAccent {
     }
 }
 
-extension StrongAccent: Equatable { }
+extension StrongAccent: Equatable {}
 extension StrongAccent: Codable {
     public init(from decoder: Decoder) throws {
         // Decode attribute groups

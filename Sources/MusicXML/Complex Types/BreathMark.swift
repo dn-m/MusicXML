@@ -7,7 +7,6 @@
 
 /// The breath-mark element indicates a place to take a breath.
 public struct BreathMark {
-
     // MARK: - Instance Properties
 
     // MARK: Value
@@ -33,12 +32,13 @@ public struct BreathMark {
     }
 }
 
-extension BreathMark: Equatable { }
+extension BreathMark: Equatable {}
 extension BreathMark: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case placement
     }
+
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
         self.position = try Position(from: decoder)

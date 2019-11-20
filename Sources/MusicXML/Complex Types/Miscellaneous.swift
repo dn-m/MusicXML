@@ -16,7 +16,7 @@ public struct Miscellaneous {
     }
 }
 
-extension Miscellaneous: Equatable { }
+extension Miscellaneous: Equatable {}
 extension Miscellaneous: Codable {
     enum CodingKeys: String, CodingKey {
         case fields = "miscellaneous-field"

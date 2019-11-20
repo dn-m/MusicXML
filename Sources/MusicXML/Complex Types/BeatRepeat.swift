@@ -22,5 +22,5 @@ public struct BeatRepeat {
     }
 }
 
-extension BeatRepeat: Equatable { }
-extension BeatRepeat: Codable { }
+extension BeatRepeat: Equatable {}
+extension BeatRepeat: Codable {}

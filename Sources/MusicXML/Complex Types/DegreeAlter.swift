@@ -12,7 +12,6 @@
 /// plus-minus attribute is used to indicate if plus and minus symbols should be used instead of
 /// sharp and flat symbols to display the degree alteration; it is no by default.
 public struct DegreeAlter {
-
     // MARK: - Instance Properties
 
     // MARK: Value
@@ -36,7 +35,7 @@ public struct DegreeAlter {
     }
 }
 
-extension DegreeAlter: Equatable { }
+extension DegreeAlter: Equatable {}
 extension DegreeAlter: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""
@@ -53,6 +52,7 @@ extension DegreeAlter: Codable {
 
 extension DegreeAlter: ExpressibleByIntegerLiteral {
     // MARK: - ExpressibleByIntegerLiteral
+
     public init(integerLiteral value: Int) {
         self.init(value)
     }

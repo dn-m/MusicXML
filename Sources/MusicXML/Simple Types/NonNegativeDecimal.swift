@@ -9,7 +9,7 @@ public struct NonNegativeDecimal {
     public let value: Double
 }
 
-extension NonNegativeDecimal: Equatable { }
+extension NonNegativeDecimal: Equatable {}
 extension NonNegativeDecimal: Codable {
     enum CodingKeys: String, CodingKey {
         case value = ""

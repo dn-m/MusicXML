@@ -10,7 +10,6 @@
 /// system breaks and for more complex pedaling lines. The alignment attributes are ignored if the
 /// line attribute is yes.
 public struct Pedal {
-
     // MARK: - Instance Properties
 
     // MARK: Attribute Groups
@@ -36,7 +35,7 @@ public struct Pedal {
     }
 }
 
-extension Pedal: Equatable { }
+extension Pedal: Equatable {}
 extension Pedal: Codable {
     public init(from decoder: Decoder) throws {
         self.printStyleAlign = try PrintStyleAlign(from: decoder)

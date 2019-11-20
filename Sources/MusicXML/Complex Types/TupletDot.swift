@@ -16,16 +16,18 @@ public struct TupletDot {
     }
 }
 
-extension TupletDot: Equatable { }
+extension TupletDot: Equatable {}
 extension TupletDot: Codable {
     enum CodingKeys: String, CodingKey {
         case color
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try font.encode(to: encoder)
         try container.encodeIfPresent(color, forKey: .color)
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         font = try Font(from: decoder)

@@ -8,7 +8,6 @@
 /// The fret element is used with tablature notation and chord diagrams. Fret numbers start with 0
 /// for an open string and 1 for the first fret.
 public struct Fret {
-
     // MARK: - Instance Properties
 
     // MARK: Value
@@ -42,12 +41,13 @@ extension Fret: ExpressibleByIntegerLiteral {
     }
 }
 
-extension Fret: Equatable { }
+extension Fret: Equatable {}
 extension Fret: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case color
     }
+
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
         self.font = try Font(from: decoder)
@@ -61,6 +61,7 @@ extension Fret: Codable {
             self.value = 0
         }
     }
+
     public func encode(to encoder: Encoder) throws {
         try font.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)

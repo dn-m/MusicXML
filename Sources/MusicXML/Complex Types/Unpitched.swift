@@ -17,7 +17,7 @@ public struct Unpitched {
     }
 }
 
-extension Unpitched: Equatable { }
+extension Unpitched: Equatable {}
 extension Unpitched: Codable {
     private enum CodingKeys: String, CodingKey {
         case displayStep = "display-step"

@@ -15,8 +15,8 @@ public struct MeasureAttributes {
     public let optionalUniqueID: Int?
 }
 
-extension MeasureAttributes: Equatable { }
-extension MeasureAttributes: Hashable { }
+extension MeasureAttributes: Equatable {}
+extension MeasureAttributes: Hashable {}
 
 extension MeasureAttributes: Codable {
     private enum CodingKeys: String, CodingKey {

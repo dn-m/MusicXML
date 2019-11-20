@@ -17,7 +17,6 @@ import XMLCoder
 /// display the elision. Common values are a no-break space (Unicode 00A0), an underscore (Unicode
 /// 005F), or an undertie (Unicode 203F).
 public struct Lyric {
-
     // MARK: - Instance Properties
 
     // MARK: Kind
@@ -84,7 +83,6 @@ public struct Lyric {
 }
 
 extension Lyric {
-
     // TODO: Verify Content Model of Lyric.Verbal
     public struct Verbal {
         public let text: TextElementData
@@ -110,16 +108,15 @@ extension Lyric {
     }
 }
 
-extension Lyric.Verbal: Equatable { }
-extension Lyric.Verbal: Codable { }
+extension Lyric.Verbal: Equatable {}
+extension Lyric.Verbal: Codable {}
 
-extension Lyric.NonVerbal: Equatable { }
+extension Lyric.NonVerbal: Equatable {}
 
-extension Lyric.Kind: Equatable { }
+extension Lyric.Kind: Equatable {}
 
-extension Lyric: Equatable { }
+extension Lyric: Equatable {}
 extension Lyric: Codable {
-
     enum CodingKeys: String, CodingKey {
         case kind
         case number
@@ -141,7 +138,6 @@ extension Lyric: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         // Decode attribute groups

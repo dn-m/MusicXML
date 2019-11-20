@@ -20,18 +20,20 @@ public struct OtherDirection {
     }
 }
 
-extension OtherDirection: Equatable { }
+extension OtherDirection: Equatable {}
 extension OtherDirection: Codable {
     enum CodingKeys: String, CodingKey {
         case printObject
         case value = ""
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)
         try container.encodeIfPresent(printObject, forKey: .printObject)
         try printStyleAlign.encode(to: encoder)
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         value = try container.decode(String.self, forKey: .value)

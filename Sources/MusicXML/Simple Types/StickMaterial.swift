@@ -14,5 +14,5 @@ public enum StickMaterial: String {
     case x
 }
 
-extension StickMaterial: Equatable { }
-extension StickMaterial: Codable { }
+extension StickMaterial: Equatable {}
+extension StickMaterial: Codable {}

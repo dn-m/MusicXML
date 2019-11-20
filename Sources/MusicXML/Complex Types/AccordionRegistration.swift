@@ -11,7 +11,6 @@
 /// presence of one or more dots in the registration diagram. An accordion-registration element
 /// needs to have at least one of the child elements present.
 public struct AccordionRegistration {
-
     // MARK: - Instance Properties
 
     // MARK: Attribute Groups
@@ -39,13 +38,14 @@ public struct AccordionRegistration {
     }
 }
 
-extension AccordionRegistration: Equatable { }
+extension AccordionRegistration: Equatable {}
 extension AccordionRegistration: Codable {
     private enum CodingKeys: String, CodingKey {
         case high = "accordion-high"
         case middle = "accordion-middle"
         case low = "accordion-low"
     }
+
     public init(from decoder: Decoder) throws {
         self.printStyleAlign = try PrintStyleAlign(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -53,6 +53,7 @@ extension AccordionRegistration: Codable {
         self.low = container.contains(.low)
         self.middle = try container.decodeIfPresent(AccordionMiddle.self, forKey: .middle)
     }
+
     public func encode(to encoder: Encoder) throws {
         try printStyleAlign.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)

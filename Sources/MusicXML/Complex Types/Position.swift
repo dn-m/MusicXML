@@ -76,7 +76,7 @@ public struct Position {
     }
 }
 
-extension Position: Equatable { }
+extension Position: Equatable {}
 extension Position: Codable {
     enum CodingKeys: String, CodingKey {
         case defaultX = "default-x"
@@ -84,7 +84,7 @@ extension Position: Codable {
         case relativeX = "relative-x"
         case relativeY = "relative-y"
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         defaultX = try container.decodeIfPresent(Tenths.self, forKey: .defaultX)

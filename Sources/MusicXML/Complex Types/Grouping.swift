@@ -26,5 +26,5 @@ public struct Grouping {
     }
 }
 
-extension Grouping: Equatable { }
-extension Grouping: Codable { }
+extension Grouping: Equatable {}
+extension Grouping: Codable {}

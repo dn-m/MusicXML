@@ -5,9 +5,9 @@
 //  Created by Sihao Lu on 10/12/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class AccordionRegistrationTests: XCTestCase {
     func testDecoding() throws {
@@ -21,7 +21,7 @@ class AccordionRegistrationTests: XCTestCase {
         let expected = AccordionRegistration(high: true, middle: 2)
         XCTAssertEqual(decoded, expected)
     }
-    
+
     func testRoundTrip() throws {
         try testRoundTrip(AccordionRegistration(high: true, middle: 2))
     }

@@ -19,5 +19,5 @@ public struct Stick {
     }
 }
 
-extension Stick: Equatable { }
-extension Stick: Codable { }
+extension Stick: Equatable {}
+extension Stick: Codable {}

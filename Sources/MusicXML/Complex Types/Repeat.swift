@@ -24,5 +24,5 @@ public struct Repeat {
     }
 }
 
-extension Repeat: Equatable { }
-extension Repeat: Codable { }
+extension Repeat: Equatable {}
+extension Repeat: Codable {}

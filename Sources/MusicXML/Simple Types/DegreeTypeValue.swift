@@ -16,5 +16,5 @@ public enum DegreeTypeValue: String {
     case subtract
 }
 
-extension DegreeTypeValue: Equatable { }
-extension DegreeTypeValue: Codable { }
+extension DegreeTypeValue: Equatable {}
+extension DegreeTypeValue: Codable {}

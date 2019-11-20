@@ -16,5 +16,5 @@ public enum PrincipleVoiceSymbol: String {
     case none
 }
 
-extension PrincipleVoiceSymbol: Equatable { }
-extension PrincipleVoiceSymbol: Codable { }
+extension PrincipleVoiceSymbol: Equatable {}
+extension PrincipleVoiceSymbol: Codable {}

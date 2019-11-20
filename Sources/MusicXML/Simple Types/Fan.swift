@@ -13,5 +13,5 @@ public enum Fan: String {
     case none
 }
 
-extension Fan: Equatable { }
-extension Fan: Codable { }
+extension Fan: Equatable {}
+extension Fan: Codable {}

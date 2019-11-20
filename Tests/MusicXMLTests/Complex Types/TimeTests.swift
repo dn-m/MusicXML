@@ -5,12 +5,11 @@
 //  Created by James Bean on 8/4/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class TimeTests: XCTestCase {
-
     func testDecodingMeasured() throws {
         let xml = """
         <time>

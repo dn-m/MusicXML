@@ -11,7 +11,6 @@ import XMLCoder
 /// appear at the start of each system unless the print-object attribute has been set to "no" or the
 /// additional attribute has been set to "yes".
 public struct Clef {
-
     // MARK: - Attributes
 
     public let number: Int?
@@ -40,7 +39,7 @@ public struct Clef {
     }
 }
 
-extension Clef: Equatable { }
+extension Clef: Equatable {}
 extension Clef: Codable {
     enum CodingKeys: String, CodingKey {
         case number
@@ -53,7 +52,7 @@ extension Clef: Codable {
         case line
         case clefOctaveChange = "clef-octave-change"
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         number = try container.decodeIfPresent(Int.self, forKey: .number)
@@ -66,6 +65,7 @@ extension Clef: Codable {
         line = try container.decodeIfPresent(Int.self, forKey: .line)
         clefOctaveChange = try container.decodeIfPresent(Int.self, forKey: .clefOctaveChange)
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(number, forKey: .number)

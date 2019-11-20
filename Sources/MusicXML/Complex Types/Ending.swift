@@ -16,7 +16,6 @@
 /// attribute. The print-object element is used to indicate when an ending is present but not
 /// printed, as is often the case for many parts in a full score.
 public struct Ending {
-
     // MARK: - Instance Properties
 
     // MARK: Value
@@ -61,7 +60,7 @@ public struct Ending {
     }
 }
 
-extension Ending: Equatable { }
+extension Ending: Equatable {}
 extension Ending: Codable {
     enum CodingKeys: String, CodingKey {
         case value = ""

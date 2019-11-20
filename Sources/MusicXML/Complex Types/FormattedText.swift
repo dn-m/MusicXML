@@ -7,7 +7,6 @@
 
 /// The formatted-text type represents a text element with text-formatting attributes.
 public struct FormattedText {
-
     // MARK: - Instance Properties
 
     // MARK: Value
@@ -57,11 +56,10 @@ public struct FormattedText {
         self.lineHeight = lineHeight
         self.direction = direction
         self.enclosure = enclosure
-
     }
 }
 
-extension FormattedText: Equatable { }
+extension FormattedText: Equatable {}
 extension FormattedText: Codable {
     private enum CodingKeys: String, CodingKey {
         case justify
@@ -99,7 +97,6 @@ extension FormattedText: Codable {
         self.lineHeight = try container.decodeIfPresent(NumberOrNormal.self, forKey: .lineHeight)
         self.direction = try container.decodeIfPresent(TextDirection.self, forKey: .direction)
         self.enclosure = try container.decodeIfPresent(EnclosureShape.self, forKey: .enclosure)
-
     }
 }
 

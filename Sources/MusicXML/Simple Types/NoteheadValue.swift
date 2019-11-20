@@ -44,5 +44,5 @@ public enum NoteheadValue: String {
     case ti
 }
 
-extension NoteheadValue: Equatable { }
-extension NoteheadValue: Codable { }
+extension NoteheadValue: Equatable {}
+extension NoteheadValue: Codable {}

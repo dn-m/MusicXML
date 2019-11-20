@@ -32,7 +32,7 @@ public struct Slur {
     }
 }
 
-extension Slur: Equatable { }
+extension Slur: Equatable {}
 extension Slur: Codable {
     enum CodingKeys: String, CodingKey {
         case type
@@ -42,6 +42,7 @@ extension Slur: Codable {
         case orientation
         case color
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
@@ -54,6 +55,7 @@ extension Slur: Codable {
         try bezier.encode(to: encoder)
         try container.encodeIfPresent(color, forKey: .color)
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decode(StartStopContinue.self, forKey: .type)

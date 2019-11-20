@@ -5,12 +5,11 @@
 //  Created by James Bean on 10/11/19.
 //
 
-import XCTest
 import MusicXML
+import XCTest
 import XMLCoder
 
 class StaffNoteStylesTests: XCTestCase {
-
     func testMeasureStylesAttributes() throws {
         let xml = """
         <attributes>
@@ -21,7 +20,7 @@ class StaffNoteStylesTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Attributes.self, from: xml.data(using: .utf8)!)
         let expected = Attributes(measureStyles: [
-            MeasureStyle(kind: .slash(Slash(type: .start, useStems: false)))
+            MeasureStyle(kind: .slash(Slash(type: .start, useStems: false))),
         ])
         XCTAssertEqual(decoded, expected)
     }

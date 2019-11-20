@@ -5,9 +5,9 @@
 //  Created by Ben Lu on 10/8/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class OrnamentsTests: XCTestCase {
     func testDecoding() throws {
@@ -20,11 +20,10 @@ class OrnamentsTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Ornaments.self, from: xml.data(using: .utf8)!)
         let expected = Ornaments([.turn(HorizontalTurn())],
-            accidentalMarks: [
-                AccidentalMark(.sharp, placement: .above),
-                AccidentalMark(.threeQuartersFlat, placement: .above),
-            ]
-        )
+                                 accidentalMarks: [
+                                     AccidentalMark(.sharp, placement: .above),
+                                     AccidentalMark(.threeQuartersFlat, placement: .above),
+                                 ])
 
         XCTAssertEqual(decoded, expected)
     }
@@ -39,7 +38,7 @@ class OrnamentsTests: XCTestCase {
         let decoded = try XMLDecoder().decode(Ornaments.self, from: xml.data(using: .utf8)!)
         let expected = Ornaments([
             .trillMark(PrintStyleTrillSound()),
-            .wavyLine(WavyLine(type: .start, number: 1))
+            .wavyLine(WavyLine(type: .start, number: 1)),
         ])
 
         XCTAssertEqual(decoded, expected)

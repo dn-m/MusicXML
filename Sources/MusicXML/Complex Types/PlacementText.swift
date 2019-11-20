@@ -8,7 +8,6 @@
 /// The placement-text type represents a text element with print-style and placement attribute
 /// groups.
 public struct PlacementText {
-
     // MARK: - Instance Properties
 
     // MARK: Value
@@ -39,7 +38,7 @@ public struct PlacementText {
     }
 }
 
-extension PlacementText: Equatable { }
+extension PlacementText: Equatable {}
 extension PlacementText: Codable {
     enum CodingKeys: String, CodingKey {
         case placement

@@ -22,7 +22,7 @@ public enum Ornament {
     case wavyLine(WavyLine)
 }
 
-extension Ornament: Equatable { }
+extension Ornament: Equatable {}
 extension Ornament: Codable {
     enum CodingKeys: String, CodingKey {
         case delayedInvertedTurn = "delayed-inverted-turn"
@@ -38,6 +38,7 @@ extension Ornament: Codable {
         case verticalTurn = "vertical-turn"
         case wavyLine = "wavy-line"
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -67,10 +68,11 @@ extension Ornament: Codable {
             try container.encode(value, forKey: .wavyLine)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
@@ -110,4 +112,4 @@ extension Ornament: Codable {
     }
 }
 
-extension Ornament.CodingKeys: XMLChoiceCodingKey { }
+extension Ornament.CodingKeys: XMLChoiceCodingKey {}

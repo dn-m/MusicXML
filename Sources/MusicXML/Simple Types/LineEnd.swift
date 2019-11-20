@@ -15,5 +15,5 @@ public enum LineEnd: String {
     case none
 }
 
-extension LineEnd: Equatable { }
-extension LineEnd: Codable { }
+extension LineEnd: Equatable {}
+extension LineEnd: Codable {}

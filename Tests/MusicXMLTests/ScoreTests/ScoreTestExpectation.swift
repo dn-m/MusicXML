@@ -5,8 +5,8 @@
 //  Created by Ben Lu on 10/13/19.
 //
 
-import XCTest
 import MusicXML
+import XCTest
 
 protocol ScoreTestExpectation: AnyObject {
     static var expected: Score { get }

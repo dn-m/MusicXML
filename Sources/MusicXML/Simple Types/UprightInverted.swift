@@ -12,5 +12,5 @@ public enum UprightInverted: String {
     case inverted
 }
 
-extension UprightInverted: Equatable { }
-extension UprightInverted: Codable { }
+extension UprightInverted: Equatable {}
+extension UprightInverted: Codable {}

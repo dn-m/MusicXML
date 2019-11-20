@@ -15,5 +15,5 @@ public enum Syllabic: String {
     case middle
 }
 
-extension Syllabic: Equatable { }
-extension Syllabic: Codable { }
+extension Syllabic: Equatable {}
+extension Syllabic: Codable {}

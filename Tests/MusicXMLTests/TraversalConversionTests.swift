@@ -5,23 +5,22 @@
 //  Created by James Bean on 10/15/19.
 //
 
-import XCTest
 import MusicXML
+import XCTest
 
 class TraversalConversionTests: XCTestCase {
-
     func testHelloWorldRoundTrip() throws {
         // Shared values
         let note = Note(pitch: Pitch(step: .c, octave: 4), duration: 4, type: .whole)
         let attributes = Attributes(
             divisions: 1,
             keys: [Key(fifths: 0)],
-            times: [Time(4,4)],
+            times: [Time(4, 4)],
             clefs: [Clef(sign: .g, line: 2)]
         )
         let header = Header(
             partList: [
-                .part(ScorePart(id: "P1", name: "Music"))
+                .part(ScorePart(id: "P1", name: "Music")),
             ]
         )
         // Create `Partwise` traversal
@@ -29,7 +28,7 @@ class TraversalConversionTests: XCTestCase {
             number: "1",
             musicData: [
                 .attributes(attributes),
-                .note(note)
+                .note(note),
             ]
         )
         let partwisePart = Partwise.Part(id: "P1", measures: [partwiseMeasure])
@@ -39,7 +38,7 @@ class TraversalConversionTests: XCTestCase {
             id: "P1",
             musicData: [
                 .attributes(attributes),
-                .note(note)
+                .note(note),
             ]
         )
         let timewiseMeasure = Timewise.Measure(number: "1", parts: [timewisePart])

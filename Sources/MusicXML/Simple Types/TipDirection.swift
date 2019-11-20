@@ -22,5 +22,5 @@ public enum TipDirection: String {
     case northeastSouthwest = "northeast southwest"
 }
 
-extension TipDirection: Equatable { }
-extension TipDirection: Codable { }
+extension TipDirection: Equatable {}
+extension TipDirection: Codable {}

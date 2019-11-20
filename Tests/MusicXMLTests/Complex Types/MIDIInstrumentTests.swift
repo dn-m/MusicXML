@@ -5,12 +5,11 @@
 //  Created by Ben Lu on 9/30/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class MIDIInstrumentTests: XCTestCase {
-
     func testDecoding() throws {
         let xml = """
         <midi-instrument id="P1-I2">

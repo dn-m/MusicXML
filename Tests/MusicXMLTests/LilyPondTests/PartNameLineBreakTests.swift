@@ -5,12 +5,11 @@
 //  Created by James Bean on 10/12/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class PartNameLineBreakTests: XCTestCase {
-
     func testMeasurePrintNewSystem() throws {
         let xml = """
         <measure number="6">

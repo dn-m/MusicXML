@@ -7,7 +7,6 @@
 
 /// The pedal-tuning type specifies the tuning of a single harp pedal.
 public struct PedalTuning {
-    
     public let step: Step
     public let alter: Int
 
@@ -17,7 +16,7 @@ public struct PedalTuning {
     }
 }
 
-extension PedalTuning: Equatable { }
+extension PedalTuning: Equatable {}
 extension PedalTuning: Codable {
     private enum CodingKeys: String, CodingKey {
         case step = "pedal-step"

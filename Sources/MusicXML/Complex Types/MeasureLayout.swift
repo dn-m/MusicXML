@@ -18,5 +18,5 @@ public struct MeasureLayout {
     }
 }
 
-extension MeasureLayout: Equatable { }
-extension MeasureLayout: Codable { }
+extension MeasureLayout: Equatable {}
+extension MeasureLayout: Codable {}

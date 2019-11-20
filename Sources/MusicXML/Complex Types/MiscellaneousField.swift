@@ -11,7 +11,6 @@ import XMLCoder
 /// can go in a miscellaneous-field element. The required name attribute indicates the type of
 /// metadata the element content represents.
 public struct MiscellaneousField {
-
     // MARK: - Instance Properties
 
     // MARK: Attributes
@@ -30,7 +29,7 @@ public struct MiscellaneousField {
     }
 }
 
-extension MiscellaneousField: Equatable { }
+extension MiscellaneousField: Equatable {}
 extension MiscellaneousField: Codable {
     enum CodingKeys: String, CodingKey {
         case name

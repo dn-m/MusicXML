@@ -5,12 +5,11 @@
 //  Created by James Bean on 7/25/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class PitchTests: XCTestCase {
-
     func testMiddleCRoundTrip() throws {
         let middleC = Pitch(step: .c, alter: nil, octave: 4)
         try testRoundTrip(middleC, rootKey: "pitch")

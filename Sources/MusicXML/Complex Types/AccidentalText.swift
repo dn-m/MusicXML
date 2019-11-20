@@ -9,6 +9,7 @@
 /// attributes.
 public struct AccidentalText {
     // MARK: - Attributes
+
     public let justify: LeftCenterRight?
     public let printStyle: PrintStyle
     public let hAlign: LeftCenterRight?
@@ -23,6 +24,7 @@ public struct AccidentalText {
     public let enclosure: EnclosureShape?
 
     // MARK: - Elements
+
     public let value: AccidentalValue
 
     public init(
@@ -56,7 +58,7 @@ public struct AccidentalText {
     }
 }
 
-extension AccidentalText: Equatable { }
+extension AccidentalText: Equatable {}
 extension AccidentalText: Codable {
     private enum CodingKeys: String, CodingKey {
         case justify
@@ -89,7 +91,7 @@ extension AccidentalText: Codable {
         self.enclosure = try container.decodeIfPresent(EnclosureShape.self, forKey: .enclosure)
         self.value = try container.decode(AccidentalValue.self, forKey: .value)
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(justify, forKey: .justify)

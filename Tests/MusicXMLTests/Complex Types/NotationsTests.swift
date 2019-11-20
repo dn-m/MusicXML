@@ -5,9 +5,9 @@
 //  Created by James Bean on 8/8/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class NotationsTests: XCTestCase {
     func testTied() throws {
@@ -40,20 +40,19 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         try assertDecoded(xml,
-            equals: Notations([.fermata(Fermata(.normal))])
-        )
+                          equals: Notations([.fermata(Fermata(.normal))]))
     }
 
     func testAccidentalMark() throws {
         let xml = """
         <accidental-mark placement="above">sharp</accidental-mark>
         """
-        let _ = try XMLDecoder().decode(AccidentalMark.self, from: xml.data(using: .utf8)!)
+        _ = try XMLDecoder().decode(AccidentalMark.self, from: xml.data(using: .utf8)!)
     }
 
     func testTurn() throws {
         let xml = "<turn/>"
-        let _ = try XMLDecoder().decode(HorizontalTurn.self, from: xml.data(using: .utf8)!)
+        _ = try XMLDecoder().decode(HorizontalTurn.self, from: xml.data(using: .utf8)!)
     }
 
     func testOrnamentsNotation() throws {
@@ -69,12 +68,11 @@ class NotationsTests: XCTestCase {
         let expected = Notations([
             .ornaments(
                 Ornaments([.turn(HorizontalTurn())],
-                    accidentalMarks: [
-                        AccidentalMark(.sharp, placement: .above),
-                        AccidentalMark(.threeQuartersFlat, placement: .above),
-                    ]
-                )
-            )
+                          accidentalMarks: [
+                              AccidentalMark(.sharp, placement: .above),
+                              AccidentalMark(.threeQuartersFlat, placement: .above),
+                          ])
+            ),
         ])
         try assertDecoded(xml, equals: expected)
     }
@@ -93,9 +91,9 @@ class NotationsTests: XCTestCase {
                             naturalArtificial: .natural,
                             baseSoundingTouchingPitch: .base
                         )
-                    )
+                    ),
                 ])
-            )
+            ),
         ])
         try assertDecoded(xml, equals: expected)
     }
@@ -107,10 +105,9 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         try assertDecoded(xml,
-            equals: Notations([
-                .accidentalMark(AccidentalMark(.doubleSharp, placement: .above))
-            ])
-        )
+                          equals: Notations([
+                              .accidentalMark(AccidentalMark(.doubleSharp, placement: .above)),
+                          ]))
     }
 
     func testArticulations() throws {
@@ -122,8 +119,7 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         try assertDecoded(xml,
-            equals: Notations([.articulations(Articulations([.plop(Line())]))])
-        )
+                          equals: Notations([.articulations(Articulations([.plop(Line())]))]))
     }
 
     func testMultipleArticulations() throws {
@@ -143,7 +139,7 @@ class NotationsTests: XCTestCase {
                     .tenuto(PlacementPrintStyle(placement: .below)),
                     .staccato(PlacementPrintStyle(placement: .above)),
                 ])
-            )
+            ),
         ])
         try assertDecoded(xml, equals: expected)
     }
@@ -169,8 +165,7 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         try assertDecoded(xml,
-            equals: Notations([.fermata(Fermata(.normal, type: .upright))])
-        )
+                          equals: Notations([.fermata(Fermata(.normal, type: .upright))]))
     }
 
     func testSlideNoValue() throws {
@@ -180,8 +175,7 @@ class NotationsTests: XCTestCase {
         </notations>
         """
         try assertDecoded(xml,
-            equals: Notations([.slide(Slide(type: .stop, number: 1, lineType: .solid))])
-        )
+                          equals: Notations([.slide(Slide(type: .stop, number: 1, lineType: .solid))]))
     }
 
     func testStaccatoArticulations() throws {
@@ -285,11 +279,11 @@ class NotationsTests: XCTestCase {
         let expected = Technical([.string()])
         XCTAssertEqual(decoded, expected)
     }
-    
+
     func testFingeringValueRoundTrip() throws {
         try testRoundTrip(Technical([.fingering(Fingering("1"))]), loggingEncoded: true)
     }
-    
+
     func testFingeringEmptyRoundTrip() throws {
         try testRoundTrip(Technical([.fingering()]))
     }

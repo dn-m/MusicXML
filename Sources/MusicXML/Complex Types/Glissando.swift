@@ -27,7 +27,7 @@ public struct Glissando {
     }
 }
 
-extension Glissando: Equatable { }
+extension Glissando: Equatable {}
 extension Glissando: Codable {
     enum CodingKeys: String, CodingKey {
         case type
@@ -36,6 +36,7 @@ extension Glissando: Codable {
         case dashedFormatting
         case value = ""
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         value = try container.decode(String.self, forKey: .value)
@@ -45,6 +46,7 @@ extension Glissando: Codable {
         dashedFormatting = try DashedFormatting(from: decoder)
         printStyle = try PrintStyle(from: decoder)
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)

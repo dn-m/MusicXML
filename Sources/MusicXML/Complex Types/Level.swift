@@ -16,5 +16,5 @@ public struct Level {
     }
 }
 
-extension Level: Equatable { }
-extension Level: Codable { }
+extension Level: Equatable {}
+extension Level: Codable {}

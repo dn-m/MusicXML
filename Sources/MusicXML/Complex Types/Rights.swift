@@ -8,7 +8,6 @@
 import XMLCoder
 
 public struct Rights {
-
     // MARK: - Value
 
     public var value: String
@@ -25,7 +24,7 @@ public struct Rights {
     }
 }
 
-extension Rights: Equatable { }
+extension Rights: Equatable {}
 
 extension Rights: Codable {
     enum CodingKeys: String, CodingKey {

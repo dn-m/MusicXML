@@ -19,5 +19,5 @@ public struct Work {
     }
 }
 
-extension Work: Equatable { }
-extension Work: Codable { }
+extension Work: Equatable {}
+extension Work: Codable {}

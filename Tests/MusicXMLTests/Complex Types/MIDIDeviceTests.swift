@@ -7,12 +7,11 @@
 
 import Foundation
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class MIDIDeviceTests: XCTestCase {
-
     func testDecoding() throws {
         let xml = """
         <midi-device id="P1-I1" port="1"></midi-device>

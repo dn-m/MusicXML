@@ -39,7 +39,7 @@ extension Percussion {
     }
 }
 
-extension Percussion.Kind: Equatable { }
+extension Percussion.Kind: Equatable {}
 extension Percussion.Kind: Codable {
     enum CodingKeys: String, CodingKey {
         case beater
@@ -54,6 +54,7 @@ extension Percussion.Kind: Codable {
         case timpani
         case wood
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -81,10 +82,11 @@ extension Percussion.Kind: Codable {
             try container.encode(value, forKey: .wood)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
@@ -122,20 +124,22 @@ extension Percussion.Kind: Codable {
     }
 }
 
-extension Percussion.Kind.CodingKeys: XMLChoiceCodingKey { }
+extension Percussion.Kind.CodingKeys: XMLChoiceCodingKey {}
 
-extension Percussion: Equatable { }
+extension Percussion: Equatable {}
 extension Percussion: Codable {
     enum CodingKeys: String, CodingKey {
         case enclosure
         case kind
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try printStyleAlign.encode(to: encoder)
         try container.encodeIfPresent(enclosure, forKey: .enclosure)
         try container.encode(kind, forKey: .kind)
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         printStyleAlign = try PrintStyleAlign(from: decoder)

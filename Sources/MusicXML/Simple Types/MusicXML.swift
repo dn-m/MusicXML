@@ -6,4 +6,4 @@
 //
 
 /// The `MusicXML` "namespace".
-public enum MusicXML { }
+public enum MusicXML {}

@@ -13,5 +13,5 @@ public enum SymbolSize: String {
     case large
 }
 
-extension SymbolSize: Equatable { }
-extension SymbolSize: Codable { }
+extension SymbolSize: Equatable {}
+extension SymbolSize: Codable {}

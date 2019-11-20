@@ -19,7 +19,7 @@ public struct FirstFret {
     }
 }
 
-extension FirstFret: Equatable { }
+extension FirstFret: Equatable {}
 extension FirstFret: Codable {
     enum CodingKeys: String, CodingKey {
         case text

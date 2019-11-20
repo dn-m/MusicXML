@@ -12,5 +12,5 @@ public enum ShowFrets: String {
     case letters
 }
 
-extension ShowFrets: Equatable { }
-extension ShowFrets: Codable { }
+extension ShowFrets: Equatable {}
+extension ShowFrets: Codable {}

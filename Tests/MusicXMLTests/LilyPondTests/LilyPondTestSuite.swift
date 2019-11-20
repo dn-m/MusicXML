@@ -5,11 +5,10 @@
 //  Created by James Bean on 9/28/19.
 //
 
-import XCTest
 import MusicXML
+import XCTest
 
 class LilyPondTests: XCTestCase {
-
     func testAll() throws {
         let rootDir = try! prepareResultsDirectory()
         publishResultsDirectoryLocation(rootDir)
@@ -111,7 +110,7 @@ private func now() -> Double {
     return Double(DispatchTime.now().uptimeNanoseconds) / 1_000_000_000
 }
 
-fileprivate extension Double {
+private extension Double {
     func formatted(decimalPlaces: Int) -> String {
         return String(format: "%.\(decimalPlaces)f", self)
     }

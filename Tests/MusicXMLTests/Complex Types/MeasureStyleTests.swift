@@ -5,12 +5,11 @@
 //  Created by James Bean on 8/8/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class MeasureStyleTests: XCTestCase {
-
     func testMultipleRest() throws {
         let xml = """
         <measure-style>

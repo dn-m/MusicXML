@@ -57,7 +57,7 @@ public struct Frame {
     }
 }
 
-extension Frame: Equatable { }
+extension Frame: Equatable {}
 extension Frame: Codable {
     private enum CodingKeys: String, CodingKey {
         case position
@@ -73,6 +73,7 @@ extension Frame: Codable {
         case frameNotes = "frame-note"
         case firstFret = "first-fret"
     }
+
     public init(from decoder: Decoder) throws {
         // Decdode attribute groups
         self.position = try Position(from: decoder)

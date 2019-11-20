@@ -20,5 +20,5 @@ public struct TextDecoration {
     }
 }
 
-extension TextDecoration: Equatable { }
-extension TextDecoration: Codable { }
+extension TextDecoration: Equatable {}
+extension TextDecoration: Codable {}

@@ -18,18 +18,20 @@ public struct TupletNumber {
     }
 }
 
-extension TupletNumber: Equatable { }
+extension TupletNumber: Equatable {}
 extension TupletNumber: Codable {
     enum CodingKeys: String, CodingKey {
         case color
         case value = ""
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         value = try container.decode(Int.self, forKey: .value)
         font = try Font(from: decoder)
         color = try container.decodeIfPresent(Color.self, forKey: .color)
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)

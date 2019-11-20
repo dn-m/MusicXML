@@ -9,14 +9,14 @@ public struct Tenths {
     public let value: Double
 }
 
-extension Tenths: Equatable { }
-extension Tenths: Hashable { }
+extension Tenths: Equatable {}
+extension Tenths: Hashable {}
 
 extension Tenths: Codable {
     enum CodingKeys: String, CodingKey {
         case value = ""
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         try value.encode(to: encoder)
     }
@@ -26,15 +26,15 @@ extension Tenths: Codable {
         value = try container.decode(Double.self)
     }
 }
+
 extension Tenths: ExpressibleByFloatLiteral {
     public init(floatLiteral value: Double) {
         self.value = value
     }
 }
+
 extension Tenths: ExpressibleByIntegerLiteral {
     public init(integerLiteral value: Int) {
         self.value = Double(value)
     }
 }
-
-

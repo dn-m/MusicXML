@@ -10,10 +10,10 @@
 /// left by default. For mid-measure key elements, a cancel location of before-barline should be
 /// treated like a cancel location of left.
 public enum CancelLocation: String {
-    case left = "left"
-    case right = "right"
+    case left
+    case right
     case beforeBarline = "before-barline"
 }
 
-extension CancelLocation: Equatable { }
-extension CancelLocation: Codable { }
+extension CancelLocation: Equatable {}
+extension CancelLocation: Codable {}
