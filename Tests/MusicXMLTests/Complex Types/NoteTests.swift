@@ -34,15 +34,12 @@ class NoteTests: XCTestCase {
     }
 
     func testNoteRoundTrip() throws {
-        let start = Note(
+        try testRoundTrip(Note(
             pitch: Pitch(step: .c, alter: -1.5, octave: 4),
             duration: 1,
             voice: "1",
             type: .quarter
-        )
-        let encoded = try XMLEncoder().encode(start, withRootKey: "note")
-        let decoded = try XMLDecoder().decode(Note.self, from: encoded)
-        XCTAssertEqual(start, decoded)
+        ))
     }
 
     func testNoteAccidentalDecoding() throws {
@@ -71,16 +68,13 @@ class NoteTests: XCTestCase {
     }
 
     func testNoteAccidentalRoundTrip() throws {
-        let start = Note(
+        try testRoundTrip(Note(
             pitch: Pitch(step: .g, alter: 1, octave: 2),
             duration: 1,
             voice: "1",
             type: .quarter,
             accidental: .sharp
-        )
-        let encoded = try XMLEncoder().encode(start, withRootKey: "note")
-        let decoded = try XMLDecoder().decode(Note.self, from: encoded)
-        XCTAssertEqual(start, decoded)
+        ))
     }
 
     func testTuplet() throws {
@@ -115,17 +109,14 @@ class NoteTests: XCTestCase {
     }
 
     func testTupletRoundTrip() throws {
-        let start = Note(
+        try testRoundTrip(Note(
             pitch: Pitch(step: .c, octave: 4),
             duration: 56,
             voice: "1",
             type: .quarter,
             timeModification: TimeModification(actualNotes: 3, normalNotes: 2),
             notations: Notations([.tuplet(Tuplet(type: .start, number: 1))])
-        )
-        let encoded = try XMLEncoder().encode(start, withRootKey: "note")
-        let decoded = try XMLDecoder().decode(Note.self, from: encoded)
-        XCTAssertEqual(start, decoded)
+        ))
     }
 
     func testChord() throws {
@@ -151,16 +142,13 @@ class NoteTests: XCTestCase {
     }
 
     func testChordRoundTrip() throws {
-        let start = Note(
+        try testRoundTrip(Note(
             pitch: Pitch(step: .e, octave: 5),
             duration: 1,
             isChord: true,
             voice: "1",
             type: .quarter
-        )
-        let encoded = try XMLEncoder().encode(start, withRootKey: "note")
-        let decoded = try XMLDecoder().decode(Note.self, from: encoded)
-        XCTAssertEqual(start, decoded)
+        ))
     }
 
     func testNoteDottedRestDecoding() throws {
@@ -184,15 +172,12 @@ class NoteTests: XCTestCase {
     }
 
     func testNoteDottedRestRoundTrip() throws {
-        let start = Note(
+        try testRoundTrip(Note(
             kind: .normal(Note.Normal(.rest(Rest()), duration: 48)),
             voice: "1",
             type: .quarter,
             dots: [PlacementPrintStyle()]
-        )
-        let encoded = try XMLEncoder().encode(start, withRootKey: "note")
-        let decoded = try XMLDecoder().decode(Note.self, from: encoded)
-        XCTAssertEqual(start, decoded)
+        ))
     }
 
     func testBeam() throws {
@@ -228,7 +213,7 @@ class NoteTests: XCTestCase {
     }
 
     func testBeamRoundtrip() throws {
-        let start = Note(
+        try testRoundTrip(Note(
             pitch: Pitch(step: .f, alter: 1, octave: 5),
             duration: 1,
             printStyle: PrintStyle(position: Position(defaultX: 368.91, defaultY: 0)),
@@ -239,10 +224,7 @@ class NoteTests: XCTestCase {
                 Beam(.begin, number: .one),
                 Beam(.begin, number: .two),
             ]
-        )
-        let encoded = try XMLEncoder().encode(start, withRootKey: "note")
-        let decoded = try XMLDecoder().decode(Note.self, from: encoded)
-        XCTAssertEqual(start, decoded)
+        ))
     }
 
     func testTies() throws {
@@ -282,7 +264,7 @@ class NoteTests: XCTestCase {
     }
 
     func testTiesRoundTrip() throws {
-        let start = Note(
+        try testRoundTrip(Note(
             pitch: Pitch(step: .a, octave: 4),
             duration: 4,
             ties: Ties(start: true, stop: true),
@@ -294,10 +276,7 @@ class NoteTests: XCTestCase {
                 .tied(Tied(type: .stop)),
                 .tied(Tied(type: .start)),
             ]
-        )
-        let encoded = try XMLEncoder().encode(start, withRootKey: "note")
-        let decoded = try XMLDecoder().decode(Note.self, from: encoded)
-        XCTAssertEqual(start, decoded)
+        ))
     }
 
     func testUnpitched() throws {
@@ -333,7 +312,7 @@ class NoteTests: XCTestCase {
     }
 
     func testUnpitchedRoundTrip() throws {
-        let start = Note(
+        try testRoundTrip(Note(
             kind: .normal(
                 Note.Normal(.unpitched(Unpitched(displayStep: .f, displayOctave: 4)), duration: 1)
             ),
@@ -345,10 +324,7 @@ class NoteTests: XCTestCase {
             beams: [
                 Beam(.begin, number: .one),
             ]
-        )
-        let encoded = try XMLEncoder().encode(start, withRootKey: "note")
-        let decoded = try XMLDecoder().decode(Note.self, from: encoded)
-        XCTAssertEqual(start, decoded)
+        ))
     }
 
     func testNoteheads() throws {
@@ -378,16 +354,13 @@ class NoteTests: XCTestCase {
     }
 
     func testNoteheadsRoundTrip() throws {
-        let start = Note(
+        try testRoundTrip(Note(
             pitch: Pitch(step: .c, octave: 5),
             duration: 1,
             isChord: true,
             voice: "1",
             type: .quarter,
             notehead: Notehead(.normal, parentheses: true)
-        )
-        let encoded = try XMLEncoder().encode(start, withRootKey: "note")
-        let decoded = try XMLDecoder().decode(Note.self, from: encoded)
-        XCTAssertEqual(start, decoded)
+        ))
     }
 }
