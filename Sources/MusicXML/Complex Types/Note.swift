@@ -248,6 +248,71 @@ extension Note {
     }
 }
 
+extension Note.Kind: Decodable {
+    public enum CodingKeys: String, CodingKey {
+            // Normal Note, Cue and Grace
+            case grace
+            case cue
+            case chord
+            case duration
+            case tie
+            // Kind
+            case pitch
+            case rest
+            case unpitched
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        // Decode kind
+
+        // Only `normal` and `grace` notes have ties, so defer `Tie` parsing and initialization
+        // until we know we need them.
+        func ties() throws -> Ties {
+            return Ties(ties: try container.decode([Tie].self, forKey: .tie))
+        }
+
+        // Only `normal` and `cue` notes have durations, so defer `duration` parsing until we know
+        // we need it.
+        func duration() throws -> Int {
+            return try container.decode(Int.self, forKey: .duration)
+        }
+
+        // The `Note` is a chord if it contains an empty `<chord/>` element.
+        let isChord = container.contains(.chord)
+
+        // Decode pitch / unpitched / rest
+        let pitchUnpitchedOrRest: PitchUnpitchedOrRest
+        if container.contains(.pitch) {
+            let pitch = try container.decode(Pitch.self, forKey: .pitch)
+            pitchUnpitchedOrRest = .pitch(pitch)
+        } else if container.contains(.rest) {
+            let rest = try container.decode(Rest.self, forKey: .rest)
+            pitchUnpitchedOrRest = .rest(rest)
+        } else {
+            let unpitched = try container.decode(Unpitched.self, forKey: .unpitched)
+            pitchUnpitchedOrRest = .unpitched(unpitched)
+        }
+
+        if container.contains(.grace) {
+            self = .grace(
+                Note.Grace(pitchUnpitchedOrRest, ties: try ties(), chord: isChord)
+            )
+        } else if container.contains(.cue) {
+            self = .cue(
+                Note.Cue(pitchUnpitchedOrRest, duration: try duration(), isChord: isChord)
+            )
+        } else {
+            self = .normal(
+                Note.Normal(pitchUnpitchedOrRest,
+                       duration: try duration(),
+                       ties: try ties(),
+                       isChord: isChord)
+            )
+        }
+    }
+}
+
 extension Note.Normal: Equatable {}
 extension Note.Cue: Equatable {}
 extension Note.Grace: Equatable {}
@@ -284,16 +349,6 @@ extension Note: Codable {
         case notations
         case lyrics = "lyric"
         case play
-        // Normal Note, Cue and Grace
-        case grace
-        case cue
-        case chord
-        case duration
-        case tie
-        // Kind
-        case pitch
-        case rest
-        case unpitched
     }
 
     public init(from decoder: Decoder) throws {
@@ -330,53 +385,9 @@ extension Note: Codable {
         self.notations = try container.decodeIfPresent(Notations.self, forKey: .notations)
         self.lyrics = try container.decode([Lyric].self, forKey: .lyrics)
         self.play = try container.decodeIfPresent(Play.self, forKey: .play)
-
-        // Decode kind
-
-        // Only `normal` and `grace` notes have ties, so defer `Tie` parsing and initialization
-        // until we know we need them.
-        func ties() throws -> Ties {
-            return Ties(ties: try container.decode([Tie].self, forKey: .tie))
-        }
-
-        // Only `normal` and `cue` notes have durations, so defer `duration` parsing until we know
-        // we need it.
-        func duration() throws -> Int {
-            return try container.decode(Int.self, forKey: .duration)
-        }
-
-        // The `Note` is a chord if it contains an empty `<chord/>` element.
-        let isChord = container.contains(.chord)
-
-        // Decode pitch / unpitched / rest
-        let pitchUnpitchedOrRest: PitchUnpitchedOrRest
-        if container.contains(.pitch) {
-            let pitch = try container.decode(Pitch.self, forKey: .pitch)
-            pitchUnpitchedOrRest = .pitch(pitch)
-        } else if container.contains(.rest) {
-            let rest = try container.decode(Rest.self, forKey: .rest)
-            pitchUnpitchedOrRest = .rest(rest)
-        } else {
-            let unpitched = try container.decode(Unpitched.self, forKey: .unpitched)
-            pitchUnpitchedOrRest = .unpitched(unpitched)
-        }
-
-        if container.contains(.grace) {
-            self.kind = .grace(
-                Note.Grace(pitchUnpitchedOrRest, ties: try ties(), chord: isChord)
-            )
-        } else if container.contains(.cue) {
-            self.kind = .cue(
-                Note.Cue(pitchUnpitchedOrRest, duration: try duration(), isChord: isChord)
-            )
-        } else {
-            self.kind = .normal(
-                Normal(pitchUnpitchedOrRest,
-                       duration: try duration(),
-                       ties: try ties(),
-                       isChord: isChord)
-            )
-        }
+        
+        // Decode Kind
+        self.kind = try Kind(from: decoder)
     }
 
     public func encode(to encoder: Encoder) throws {
