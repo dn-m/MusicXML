@@ -165,16 +165,7 @@ extension Metronome: Codable {
         self.parentheses = try container.decodeIfPresent(Bool.self, forKey: .parentheses)
 
         if container.contains(.beatUnit) {
-            var metronomeRegularComponents = [MetronomeRegularComponent]()
-            var valuesContainer = try decoder.unkeyedContainer()
-            while !valuesContainer.isAtEnd {
-                do {
-                    metronomeRegularComponents.append(try valuesContainer.decode(MetronomeRegularComponent.self))
-                } catch DecodingError.typeMismatch(let type, _) where type == MetronomeRegularComponent.self {
-                    break
-                }
-            }
-            self.kind = .regular(try Metronome.Regular(components: metronomeRegularComponents))
+            self.kind = .regular(try Metronome.Regular(components: decoder.collectArray()))
         } else {
             self.kind = .relative(try Metronome.Complicated(from: decoder))
         }

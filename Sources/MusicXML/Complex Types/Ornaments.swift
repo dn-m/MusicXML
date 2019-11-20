@@ -28,17 +28,7 @@ extension Ornaments: Codable {
 
     public init(from decoder: Decoder) throws {
         do {
-            var valuesContainer = try decoder.unkeyedContainer()
-            var ornaments = [Ornament]()
-            while !valuesContainer.isAtEnd {
-                do {
-                    ornaments.append(try valuesContainer.decode(Ornament.self))
-                } catch DecodingError.typeMismatch(let type, _) where type == Ornament.self {
-                    // Error is caught when we try to read an accidental-mark as an ornament.
-                    break
-                }
-            }
-            self.values = ornaments
+            self.values = try decoder.collectArray()
             let elementsContainer = try decoder.container(keyedBy: CodingKeys.self)
             self.accidentalMarks = try elementsContainer.decode([AccidentalMark].self, forKey: .accidentalMarks)
         } catch {
