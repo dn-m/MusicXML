@@ -248,7 +248,7 @@ extension Note {
     }
 }
 
-extension Note.Kind: Decodable {
+extension Note.Kind: Codable {
     public enum CodingKeys: String, CodingKey {
             // Normal Note, Cue and Grace
             case grace
@@ -311,6 +311,30 @@ extension Note.Kind: Decodable {
             )
         }
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case let .cue(cue):
+            try container.encode(Empty(), forKey: .cue)
+            if cue.isChord { try container.encode(Empty(), forKey: .chord) }
+            try cue.pitchUnpitchedOrRest.encode(to: encoder)
+            try container.encode(cue.duration, forKey: .duration)
+        case let .grace(grace):
+            try container.encode(Empty(), forKey: .grace)
+            if grace.isChord { try container.encode(Empty(), forKey: .chord) }
+            try grace.pitchUnpitchedOrRest.encode(to: encoder)
+            try container.encodeIfPresent(grace.ties.start, forKey: .tie)
+            try container.encodeIfPresent(grace.ties.stop, forKey: .tie)
+        case let .normal(normal):
+            if normal.isChord { try container.encode(Empty(), forKey: .chord) }
+            try normal.pitchUnpitchedOrRest.encode(to: encoder)
+            try container.encode(normal.duration, forKey: .duration)
+            try container.encodeIfPresent(normal.ties.start, forKey: .tie)
+            try container.encodeIfPresent(normal.ties.stop, forKey: .tie)
+        }
+    }
+    
 }
 
 extension Note.Normal: Equatable {}
@@ -391,6 +415,36 @@ extension Note: Codable {
     }
 
     public func encode(to encoder: Encoder) throws {
-        fatalError("TODO: Note.encode(to:)")
+        try printStyle.encode(to: encoder)
+
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(instrument, forKey: .instrument)
+        try container.encodeIfPresent(footnote, forKey: .footnote)
+        try container.encodeIfPresent(level, forKey: .level)
+        try container.encodeIfPresent(voice, forKey: .voice)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(dots, forKey: .dots)
+        try container.encodeIfPresent(accidental, forKey: .accidental)
+        try container.encodeIfPresent(timeModification, forKey: .timeModification)
+        try container.encodeIfPresent(stem, forKey: .stem)
+        try container.encodeIfPresent(notehead, forKey: .notehead)
+        try container.encodeIfPresent(noteheadText, forKey: .noteheadText)
+        try container.encodeIfPresent(staff, forKey: .staff)
+        try container.encodeIfPresent(beams, forKey: .beams)
+        try container.encodeIfPresent(notations, forKey: .notations)
+        try container.encode(lyrics, forKey: .lyrics)
+        try container.encodeIfPresent(play, forKey: .play)
+        try container.encodeIfPresent(printObject, forKey: .printObject)
+        try container.encodeIfPresent(printDot, forKey: .printDot)
+        try container.encodeIfPresent(printSpacing, forKey: .printSpacing)
+        try container.encodeIfPresent(printLyric, forKey: .printLyric)
+        try container.encodeIfPresent(dynamics, forKey: .dynamics)
+        try container.encodeIfPresent(endDynamics, forKey: .endDynamics)
+        try container.encodeIfPresent(attack, forKey: .attack)
+        try container.encodeIfPresent(release, forKey: .release)
+        try container.encodeIfPresent(timeOnly, forKey: .timeOnly)
+        try container.encodeIfPresent(pizzicato, forKey: .pizzicato)
+        
+        try kind.encode(to: encoder)
     }
 }
