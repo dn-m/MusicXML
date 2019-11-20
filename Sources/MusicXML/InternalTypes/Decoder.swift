@@ -6,7 +6,7 @@
 //
 
 internal extension Decoder {
-    func gatherArray <T: Decodable>() throws -> [T] {
+    func collectArray <T: Decodable>() throws -> [T] {
         var array = [T]()
         var container = try unkeyedContainer()
         while !container.isAtEnd {

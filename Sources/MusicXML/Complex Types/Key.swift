@@ -138,7 +138,7 @@ extension Key: Codable {
         } catch {
             // Attempt to decode non-traditional `Key`.
             var alteredTones = [AlteredTone]()
-            let components: [KeyComponent] = try decoder.gatherArray()
+            let components: [KeyComponent] = try decoder.collectArray()
             var previousStep: Step?
             var previousAlter: Double?
             for component in components {

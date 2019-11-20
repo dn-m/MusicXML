@@ -28,7 +28,7 @@ extension Ornaments: Codable {
 
     public init(from decoder: Decoder) throws {
         do {
-            self.values = try decoder.gatherArray()
+            self.values = try decoder.collectArray()
             let elementsContainer = try decoder.container(keyedBy: CodingKeys.self)
             self.accidentalMarks = try elementsContainer.decode([AccidentalMark].self, forKey: .accidentalMarks)
         } catch {

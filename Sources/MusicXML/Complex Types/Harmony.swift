@@ -84,7 +84,7 @@ extension Harmony: Codable {
 
         // Imploded list of harmony-chords are difficult to decode.
         // The final way is to break down into individual elements and reassemble them back to harmony-chords
-        self.chords = try HarmonyChord.assemble(from: decoder.gatherArray())
+        self.chords = try HarmonyChord.assemble(from: decoder.collectArray())
 
         self.frame = try container.decodeIfPresent(Frame.self, forKey: .frame)
         self.offset = try container.decodeIfPresent(Offset.self, forKey: .offset)
