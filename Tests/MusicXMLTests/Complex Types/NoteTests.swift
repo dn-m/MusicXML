@@ -32,7 +32,7 @@ class NoteTests: XCTestCase {
         )
         XCTAssertEqual(decoded, expected)
     }
-    
+
     func testNoteRoundTrip() throws {
         let start = Note(
             pitch: Pitch(step: .c, alter: -1.5, octave: 4),
@@ -69,7 +69,7 @@ class NoteTests: XCTestCase {
         )
         XCTAssertEqual(decoded, expected)
     }
-    
+
     func testNoteAccidentalRoundTrip() throws {
         let start = Note(
             pitch: Pitch(step: .g, alter: 1, octave: 2),
@@ -113,7 +113,7 @@ class NoteTests: XCTestCase {
         )
         XCTAssertEqual(decoded, expected)
     }
-    
+
     func testTupletRoundTrip() throws {
         let start = Note(
             pitch: Pitch(step: .c, octave: 4),
@@ -149,7 +149,7 @@ class NoteTests: XCTestCase {
         )
         try assertDecoded(xml, equals: expected)
     }
-    
+
     func testChordRoundTrip() throws {
         let start = Note(
             pitch: Pitch(step: .e, octave: 5),
@@ -182,7 +182,7 @@ class NoteTests: XCTestCase {
         )
         XCTAssertEqual(decoded, expected)
     }
-    
+
     func testNoteDottedRestRoundTrip() throws {
         let start = Note(
             kind: .normal(Note.Normal(.rest(Rest()), duration: 48)),
@@ -244,7 +244,7 @@ class NoteTests: XCTestCase {
         let decoded = try XMLDecoder().decode(Note.self, from: encoded)
         XCTAssertEqual(start, decoded)
     }
-    
+
     func testTies() throws {
         let xml = """
         <note default-x="483.50" default-y="-25.00">
@@ -280,7 +280,7 @@ class NoteTests: XCTestCase {
         )
         XCTAssertEqual(decoded, expected)
     }
-    
+
     func testTiesRoundTrip() throws {
         let start = Note(
             pitch: Pitch(step: .a, octave: 4),
@@ -331,7 +331,7 @@ class NoteTests: XCTestCase {
         )
         XCTAssertEqual(decoded, expected)
     }
-    
+
     func testUnpitchedRoundTrip() throws {
         let start = Note(
             kind: .normal(
@@ -376,7 +376,7 @@ class NoteTests: XCTestCase {
         )
         XCTAssertEqual(decoded, expected)
     }
-    
+
     func testNoteheadsRoundTrip() throws {
         let start = Note(
             pitch: Pitch(step: .c, octave: 5),
