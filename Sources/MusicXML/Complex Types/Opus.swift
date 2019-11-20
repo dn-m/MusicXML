@@ -9,11 +9,8 @@
 /// scores into a collection.
 // TODO: Flesh out Opus
 public struct Opus {
-
-
-    public init() {
-    }
+    public init() {}
 }
 
-extension Opus: Equatable { }
-extension Opus: Codable { }
+extension Opus: Equatable {}
+extension Opus: Codable {}

@@ -5,9 +5,9 @@
 //  Created by Ben Lu on 10/6/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class MetronomeTests: XCTestCase {
     func testDecodingMetronome_perMinute() throws {
@@ -100,4 +100,3 @@ class MetronomeTests: XCTestCase {
         XCTAssertEqual(decoded, expected)
     }
 }
-

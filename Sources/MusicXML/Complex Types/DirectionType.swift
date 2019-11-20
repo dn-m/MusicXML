@@ -79,7 +79,7 @@ public enum DirectionType {
     /// symbols can be found in Kurt Stone's "Music Notation in the Twentieth Century" on pages
     /// 206-212 and 223. Some values are added to these based on how usage has evolved in the 30
     /// years since Stone's book was published.
-    case percussion([Percussion] /* NonEmpty */)
+    case percussion([Percussion] /* NonEmpty */ )
     /// The principal-voice element represents principal and secondary voices in a score, either for
     /// analysis or for square bracket symbols that appear in a score. The content of the
     /// principal-voice element is used for analysis and may be any text value. When used for
@@ -88,7 +88,7 @@ public enum DirectionType {
     case principleVoice(PrincipleVoice)
     /// The rehearsal type specifies a rehearsal mark. Language is Italian ("it") by default.
     /// Enclosure is square by default. Left justification is assumed if not specified.
-    
+
     case rehearsal([FormattedText])
     /// Scordatura string tunings are represented by a series of accord elements, similar to the
     /// staff-tuning elements. Strings are numbered from high to low.
@@ -113,7 +113,7 @@ public enum DirectionType {
     case words([FormattedText])
 }
 
-extension DirectionType: Equatable { }
+extension DirectionType: Equatable {}
 
 extension DirectionType: Codable {
     enum CodingKeys: String, CodingKey {
@@ -139,8 +139,8 @@ extension DirectionType: Codable {
         case stringMute = "string-mute"
         case wedge
         case words
-
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -190,10 +190,11 @@ extension DirectionType: Codable {
             try container.encode(value, forKey: .words)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
@@ -258,4 +259,4 @@ extension DirectionType: Codable {
     }
 }
 
-extension DirectionType.CodingKeys: XMLChoiceCodingKey { }
+extension DirectionType.CodingKeys: XMLChoiceCodingKey {}

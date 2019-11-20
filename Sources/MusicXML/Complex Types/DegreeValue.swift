@@ -29,7 +29,7 @@ public struct DegreeValue {
     }
 }
 
-extension DegreeValue: Equatable { }
+extension DegreeValue: Equatable {}
 extension DegreeValue: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""
@@ -48,6 +48,7 @@ extension DegreeValue: Codable {
 
 extension DegreeValue: ExpressibleByIntegerLiteral {
     // MARK: - ExpressibleByIntegerLiteral
+
     public init(integerLiteral value: Int) {
         self.init(value)
     }

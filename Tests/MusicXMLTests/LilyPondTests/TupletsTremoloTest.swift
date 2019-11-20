@@ -5,12 +5,11 @@
 //  Created by James Bean on 10/11/19.
 //
 
-import XCTest
 import MusicXML
+import XCTest
 import XMLCoder
 
 class TupletsTremoloTest: XCTestCase {
-
     func testTupletsTremolo() throws {
         let xml = """
         <?xml version="1.0" encoding="UTF-8"?>
@@ -475,7 +474,7 @@ class TupletsTremoloTest: XCTestCase {
           <!--=========================================================-->
         </score-partwise>
         """
-        let _ = try Score(string: xml)
+        _ = try Score(string: xml)
     }
 
     func testTremolo() throws {

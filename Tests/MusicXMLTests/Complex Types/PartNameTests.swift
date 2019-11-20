@@ -5,12 +5,11 @@
 //  Created by James Bean on 8/2/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class PartNameTests: XCTestCase {
-
     func testDecoding() throws {
         let xml = "<part-name>MusicXML Part</part-name>"
         let decoded = try XMLDecoder().decode(PartName.self, from: xml.data(using: .utf8)!)
@@ -30,7 +29,7 @@ class PartNameTests: XCTestCase {
         let expected = NameDisplay(texts: [
             .displayText("Trumpet in B"),
             .accidentalText(AccidentalText(.flat)),
-            .displayText(" 1")
+            .displayText(" 1"),
         ])
         XCTAssertEqual(decoded, expected)
     }

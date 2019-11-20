@@ -27,7 +27,7 @@ public enum Articulation {
     case unstress(PlacementPrintStyle = PlacementPrintStyle())
 }
 
-extension Articulation: Equatable { }
+extension Articulation: Equatable {}
 
 extension Articulation: Codable {
     enum CodingKeys: String, CodingKey {
@@ -48,6 +48,7 @@ extension Articulation: Codable {
         case tenuto
         case unstress
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -85,10 +86,11 @@ extension Articulation: Codable {
             try container.encode(value, forKey: .unstress)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
@@ -136,4 +138,4 @@ extension Articulation: Codable {
     }
 }
 
-extension Articulation.CodingKeys: XMLChoiceCodingKey { }
+extension Articulation.CodingKeys: XMLChoiceCodingKey {}

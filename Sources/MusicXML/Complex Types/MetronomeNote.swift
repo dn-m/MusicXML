@@ -7,7 +7,6 @@
 
 /// The metronome-note type defines the appearance of a note within a metric relationship mark.
 public struct MetronomeNote {
-
     // MARK: - Instance Properties
 
     public let metronomeType: NoteTypeValue
@@ -30,7 +29,7 @@ public struct MetronomeNote {
     }
 }
 
-extension MetronomeNote: Equatable { }
+extension MetronomeNote: Equatable {}
 extension MetronomeNote: Codable {
     private enum CodingKeys: String, CodingKey {
         case metronomeType = "metronome-type"
@@ -38,6 +37,7 @@ extension MetronomeNote: Codable {
         case metronomeBeams = "metronome-beam"
         case metronomeTuplet = "metronome-tuplet"
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.metronomeType = try container.decode(NoteTypeValue.self, forKey: .metronomeType)

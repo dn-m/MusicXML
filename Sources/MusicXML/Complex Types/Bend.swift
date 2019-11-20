@@ -42,10 +42,10 @@ extension Bend {
     }
 }
 
-extension Bend.PreBendOrRelease: Equatable { }
-extension Bend.PreBendOrRelease: Codable { }
+extension Bend.PreBendOrRelease: Equatable {}
+extension Bend.PreBendOrRelease: Codable {}
 
-extension Bend: Equatable { }
+extension Bend: Equatable {}
 extension Bend: Codable {
     enum CodingKeys: String, CodingKey {
         case accelerate
@@ -56,6 +56,7 @@ extension Bend: Codable {
         case prependOrRelease
         case withBar
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         printStyle = try PrintStyle(from: decoder)
@@ -67,6 +68,7 @@ extension Bend: Codable {
         prependOrRelease = try container.decodeIfPresent(PreBendOrRelease.self, forKey: .prependOrRelease)
         withBar = try container.decodeIfPresent(PlacementText.self, forKey: .withBar)
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try printStyle.encode(to: encoder)

@@ -21,7 +21,6 @@
 
 /// Either a `partwise` or `timewise` traversal of a MusicXML score.
 public enum Score: Equatable {
-
     /// The `partwise` traversal of a MusicXML score.
     case partwise(Partwise)
 
@@ -30,7 +29,6 @@ public enum Score: Equatable {
 }
 
 extension Score: Codable {
-
     // MARK: - Codable
 
     enum CodingKeys: String, CodingKey {

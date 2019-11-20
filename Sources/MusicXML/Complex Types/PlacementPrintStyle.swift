@@ -7,7 +7,6 @@
 
 /// The empty-placement type represents an empty element with print-style and placement attributes.
 public struct PlacementPrintStyle {
-
     // MARK: - Instance Properties
 
     // MARK: One-off Attributes
@@ -30,7 +29,7 @@ public struct PlacementPrintStyle {
     }
 }
 
-extension PlacementPrintStyle: Equatable { }
+extension PlacementPrintStyle: Equatable {}
 extension PlacementPrintStyle: Codable {
     public init(from decoder: Decoder) throws {
         // Decode attribute groups

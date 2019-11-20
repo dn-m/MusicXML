@@ -8,7 +8,6 @@
 /// The fermata text content represents the shape of the fermata sign. An empty fermata element
 /// represents a normal fermata. The fermata type is upright if not specified.
 public struct Fermata {
-
     // MARK: - Value
 
     public var value: FermataShape
@@ -25,7 +24,7 @@ public struct Fermata {
     }
 }
 
-extension Fermata: Equatable { }
+extension Fermata: Equatable {}
 extension Fermata: Codable {
     enum CodingKeys: String, CodingKey {
         case value = ""

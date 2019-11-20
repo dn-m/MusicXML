@@ -18,5 +18,5 @@ public enum Pitched: String {
     case xylophone
 }
 
-extension Pitched: Equatable { }
-extension Pitched: Codable { }
+extension Pitched: Equatable {}
+extension Pitched: Codable {}

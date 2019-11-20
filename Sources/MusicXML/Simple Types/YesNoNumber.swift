@@ -14,7 +14,7 @@ public enum YesNoNumber {
     case number(Double)
 }
 
-extension YesNoNumber: Equatable { }
+extension YesNoNumber: Equatable {}
 extension YesNoNumber: Codable {
     enum CodingKeys: String, CodingKey { case yes, no, number }
     public func encode(to encoder: Encoder) throws {
@@ -28,10 +28,11 @@ extension YesNoNumber: Codable {
             try container.encode(value, forKey: .number)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 

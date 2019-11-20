@@ -16,7 +16,7 @@ public struct Distance {
     }
 }
 
-extension Distance: Equatable { }
+extension Distance: Equatable {}
 extension Distance: Codable {
     enum CodingKeys: String, CodingKey {
         case type

@@ -21,7 +21,7 @@ public struct BassAlter {
     }
 }
 
-extension BassAlter: Equatable { }
+extension BassAlter: Equatable {}
 extension BassAlter: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""

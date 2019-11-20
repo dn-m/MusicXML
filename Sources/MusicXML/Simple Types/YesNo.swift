@@ -12,5 +12,5 @@ public enum YesNo: String {
     case no
 }
 
-extension YesNo: Equatable { }
-extension YesNo: Codable { }
+extension YesNo: Equatable {}
+extension YesNo: Codable {}

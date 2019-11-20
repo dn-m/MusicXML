@@ -8,9 +8,7 @@
 import Foundation
 
 struct ScoreTestCaseManifest {
-
     struct Parsing: Codable {
-
         private enum CodingKeys: String, CodingKey {
             case xmlFileName = "xml_file_name"
             case assert

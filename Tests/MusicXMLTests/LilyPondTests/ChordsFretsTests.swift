@@ -5,12 +5,11 @@
 //  Created by James Bean on 10/12/19.
 //
 
-import XCTest
 import MusicXML
+import XCTest
 import XMLCoder
 
 class ChordsFretsTests: XCTestCase {
-
     func testFrame() throws {
         let xml = """
         <frame>
@@ -64,7 +63,7 @@ class ChordsFretsTests: XCTestCase {
         let expected = MusicXML.String(3)
         XCTAssertEqual(decoded, expected)
     }
-    
+
     func testStringRoundTrip() throws {
         try testRoundTrip(MusicXML.String(3))
     }

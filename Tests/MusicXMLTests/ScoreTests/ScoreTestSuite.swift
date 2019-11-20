@@ -5,8 +5,8 @@
 //  Created by Ben Lu on 10/14/19.
 //
 
-import XCTest
 import MusicXML
+import XCTest
 import Yams
 
 class ScoreTests: XCTestCase {
@@ -114,7 +114,7 @@ private func now() -> Double {
     return Double(DispatchTime.now().uptimeNanoseconds) / 1_000_000_000
 }
 
-fileprivate extension Double {
+private extension Double {
     func formatted(decimalPlaces: Int) -> String {
         return String(format: "%.\(decimalPlaces)f", self)
     }

@@ -16,5 +16,5 @@ public enum TimeRelation: String {
     case hyphen
 }
 
-extension TimeRelation: Equatable { }
-extension TimeRelation: Codable { }
+extension TimeRelation: Equatable {}
+extension TimeRelation: Codable {}

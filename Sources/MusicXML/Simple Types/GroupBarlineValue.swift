@@ -12,5 +12,5 @@ public enum GroupBarlineValue: String {
     case mensurstrich = "Mensurstrich"
 }
 
-extension GroupBarlineValue: Equatable { }
-extension GroupBarlineValue: Codable { }
+extension GroupBarlineValue: Equatable {}
+extension GroupBarlineValue: Codable {}

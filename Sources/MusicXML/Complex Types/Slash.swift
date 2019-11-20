@@ -7,7 +7,6 @@
 
 /// The slash type is used to indicate that slash notation is to be used.
 public struct Slash {
-
     // MARK: - Instance Properties
 
     // MARK: Attributes
@@ -52,7 +51,7 @@ extension Slash {
     }
 }
 
-extension Slash: Equatable { }
+extension Slash: Equatable {}
 extension Slash: Codable {
     enum CodingKeys: String, CodingKey {
         case type
@@ -61,8 +60,8 @@ extension Slash: Codable {
         case slashType = "slash-type"
         case slashDot = "slash-dot"
     }
-    public init(from decoder: Decoder) throws {
 
+    public init(from decoder: Decoder) throws {
         // Decode attributes
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.type = try container.decode(StartStop.self, forKey: .type)
@@ -71,8 +70,7 @@ extension Slash: Codable {
 
         // Decode item
         if let slashType = try container
-            .decodeIfPresent(NoteTypeValue.self, forKey: .slashType)
-        {
+            .decodeIfPresent(NoteTypeValue.self, forKey: .slashType) {
             let dotsContainer = try container.decode([Empty].self, forKey: .slashDot)
             self.item = Item(type: slashType, dotsCount: dotsContainer.count)
         } else {

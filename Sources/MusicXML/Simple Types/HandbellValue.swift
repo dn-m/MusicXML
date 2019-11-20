@@ -20,5 +20,5 @@ public enum HandbellValue: String {
     case swing
 }
 
-extension HandbellValue: Equatable { }
-extension HandbellValue: Codable { }
+extension HandbellValue: Equatable {}
+extension HandbellValue: Codable {}

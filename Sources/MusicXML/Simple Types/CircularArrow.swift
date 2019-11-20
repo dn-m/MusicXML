@@ -12,5 +12,5 @@ public enum CircularArrow: String {
     case anticlockwise
 }
 
-extension CircularArrow: Equatable { }
-extension CircularArrow: Codable { }
+extension CircularArrow: Equatable {}
+extension CircularArrow: Codable {}

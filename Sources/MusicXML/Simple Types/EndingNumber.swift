@@ -13,7 +13,7 @@ public struct EndingNumber {
     let value: String
 }
 
-extension EndingNumber: Equatable { }
+extension EndingNumber: Equatable {}
 extension EndingNumber: Codable {
     enum CodingKeys: String, CodingKey {
         case value = ""

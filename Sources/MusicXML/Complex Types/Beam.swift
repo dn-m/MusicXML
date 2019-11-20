@@ -27,7 +27,7 @@ public struct Beam {
     }
 }
 
-extension Beam: Equatable { }
+extension Beam: Equatable {}
 extension Beam: Codable {
     enum CodingKeys: String, CodingKey {
         case number

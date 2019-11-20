@@ -23,5 +23,5 @@ public enum ArrowDirection: String {
     case other
 }
 
-extension ArrowDirection: Equatable { }
-extension ArrowDirection: Codable { }
+extension ArrowDirection: Equatable {}
+extension ArrowDirection: Codable {}

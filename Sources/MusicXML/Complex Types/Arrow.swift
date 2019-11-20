@@ -23,7 +23,6 @@ public struct Arrow {
 }
 
 extension Arrow {
-
     // MARK: - Nested Types
 
     public enum Kind {
@@ -33,7 +32,6 @@ extension Arrow {
 }
 
 extension Arrow {
-
     // MARK: - Initializers
 
     /// Create a circular `Arrow`.
@@ -53,7 +51,7 @@ extension Arrow {
     public init(
         direction: ArrowDirection,
         style: ArrowStyle? = nil,
-        position:  Position = Position(),
+        position: Position = Position(),
         printStyle: PrintStyle = PrintStyle(),
         placement: AboveBelow? = nil
     ) {
@@ -69,6 +67,7 @@ extension Arrow.Kind: Codable {
         case circular
         case linear
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -78,10 +77,11 @@ extension Arrow.Kind: Codable {
             try container.encode(value, forKey: .linear)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
@@ -103,20 +103,22 @@ extension Arrow.Kind: Codable {
 
 extension Arrow.Kind.CodingKeys: XMLChoiceCodingKey {}
 
-extension Arrow.Kind: Equatable { }
-extension Arrow: Equatable { }
+extension Arrow.Kind: Equatable {}
+extension Arrow: Equatable {}
 extension Arrow: Codable {
     enum CodingKeys: String, CodingKey {
         case kind
         case placement
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         kind = try container.decode(Kind.self, forKey: .kind)
         self.position = try Position(from: decoder)
         self.printStyle = try PrintStyle(from: decoder)
-        placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
+        self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(kind, forKey: .kind)

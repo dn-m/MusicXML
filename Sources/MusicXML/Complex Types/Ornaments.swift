@@ -9,7 +9,6 @@
 /// element's content is represented the same as an accidental element, but with a different name to
 /// reflect the different musical meaning.
 public struct Ornaments {
-
     // MARK: - Elements
 
     public var values: [Ornament]
@@ -21,12 +20,12 @@ public struct Ornaments {
     }
 }
 
-extension Ornaments: Equatable { }
+extension Ornaments: Equatable {}
 extension Ornaments: Codable {
     enum CodingKeys: String, CodingKey {
         case accidentalMarks = "accidental-mark"
     }
-    
+
     public init(from decoder: Decoder) throws {
         do {
             var valuesContainer = try decoder.unkeyedContainer()

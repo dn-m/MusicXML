@@ -13,5 +13,5 @@ public enum FermataShape: String {
     case square
 }
 
-extension FermataShape: Equatable { }
-extension FermataShape: Codable { }
+extension FermataShape: Equatable {}
+extension FermataShape: Codable {}

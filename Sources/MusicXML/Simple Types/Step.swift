@@ -17,5 +17,5 @@ public enum Step: String {
     case g = "G"
 }
 
-extension Step: Equatable { }
-extension Step: Codable { }
+extension Step: Equatable {}
+extension Step: Codable {}

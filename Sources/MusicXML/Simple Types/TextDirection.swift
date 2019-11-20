@@ -18,5 +18,5 @@ public enum TextDirection: String {
     case rightToLeftOverride = "rlo"
 }
 
-extension TextDirection: Equatable { }
-extension TextDirection: Codable { }
+extension TextDirection: Equatable {}
+extension TextDirection: Codable {}

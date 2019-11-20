@@ -25,5 +25,5 @@ public enum EnclosureShape: String {
     case none
 }
 
-extension EnclosureShape: Equatable { }
-extension EnclosureShape: Codable { }
+extension EnclosureShape: Equatable {}
+extension EnclosureShape: Codable {}

@@ -16,7 +16,7 @@ public struct GroupBarline {
     }
 }
 
-extension GroupBarline: Equatable { }
+extension GroupBarline: Equatable {}
 extension GroupBarline: Codable {
     enum CodingKeys: String, CodingKey {
         case value = ""

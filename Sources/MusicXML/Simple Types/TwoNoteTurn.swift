@@ -13,5 +13,5 @@ public enum TwoNoteTurn: String {
     case none
 }
 
-extension TwoNoteTurn: Equatable { }
-extension TwoNoteTurn: Codable { }
+extension TwoNoteTurn: Equatable {}
+extension TwoNoteTurn: Codable {}

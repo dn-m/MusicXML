@@ -19,18 +19,20 @@ public struct Handbell {
     }
 }
 
-extension Handbell: Equatable { }
+extension Handbell: Equatable {}
 extension Handbell: Codable {
     enum CodingKeys: String, CodingKey {
         case placement
         case value = ""
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         value = try container.decode(HandbellValue.self, forKey: .value)
         printStyle = try PrintStyle(from: decoder)
         placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)

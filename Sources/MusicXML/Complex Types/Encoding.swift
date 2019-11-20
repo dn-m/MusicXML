@@ -12,7 +12,6 @@ import XMLCoder
 /// and arrangement, but other types may be used. The type attribute is only needed when there are
 /// multiple encoder elements.
 public struct Encoding {
-
     public enum Kind {
         case encoder(String)
         case date(String)
@@ -28,7 +27,7 @@ public struct Encoding {
     }
 }
 
-extension Encoding.Kind: Equatable { }
+extension Encoding.Kind: Equatable {}
 extension Encoding.Kind: Codable {
     enum CodingKeys: String, CodingKey {
         case encoder
@@ -37,6 +36,7 @@ extension Encoding.Kind: Codable {
         case software
         case supports
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -52,10 +52,11 @@ extension Encoding.Kind: Codable {
             try container.encode(value, forKey: .supports)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
@@ -80,9 +81,10 @@ extension Encoding.Kind: Codable {
         }
     }
 }
+
 extension Encoding.Kind.CodingKeys: XMLChoiceCodingKey {}
 
-extension Encoding: Equatable { }
+extension Encoding: Equatable {}
 
 extension Encoding: Codable {
     public init(from decoder: Decoder) throws {

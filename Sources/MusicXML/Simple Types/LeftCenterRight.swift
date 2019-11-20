@@ -12,5 +12,5 @@ public enum LeftCenterRight: String {
     case right
 }
 
-extension LeftCenterRight: Equatable { }
-extension LeftCenterRight: Codable { }
+extension LeftCenterRight: Equatable {}
+extension LeftCenterRight: Codable {}

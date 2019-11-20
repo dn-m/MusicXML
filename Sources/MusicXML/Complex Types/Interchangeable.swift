@@ -17,5 +17,5 @@ public struct Interchangeable {
     }
 }
 
-extension Interchangeable: Equatable { }
-extension Interchangeable: Codable { }
+extension Interchangeable: Equatable {}
+extension Interchangeable: Codable {}

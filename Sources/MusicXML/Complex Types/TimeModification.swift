@@ -37,7 +37,7 @@ public struct TimeModification {
     }
 }
 
-extension TimeModification: Equatable { }
+extension TimeModification: Equatable {}
 extension TimeModification: Codable {
     enum CodingKeys: String, CodingKey {
         case actualNotes = "actual-notes"
@@ -45,6 +45,7 @@ extension TimeModification: Codable {
         case normalType = "normal-type"
         case normalDotCount = "normal-dot"
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.actualNotes = try container.decode(Int.self, forKey: .actualNotes)

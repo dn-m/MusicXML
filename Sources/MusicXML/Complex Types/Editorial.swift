@@ -5,7 +5,6 @@
 //  Created by James Bean on 5/15/19.
 //
 
-
 // > Two entities for editorial information in notes. These
 // > entities, and their elements defined below, are used
 // > across all the different component DTD modules.
@@ -21,5 +20,5 @@ public struct Editorial {
     }
 }
 
-extension Editorial: Equatable { }
-extension Editorial: Codable { }
+extension Editorial: Equatable {}
+extension Editorial: Codable {}

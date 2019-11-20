@@ -17,7 +17,7 @@ public struct PrintStyleAlignObject {
     }
 }
 
-extension PrintStyleAlignObject: Equatable { }
+extension PrintStyleAlignObject: Equatable {}
 extension PrintStyleAlignObject: Codable {
     private enum CodingKeys: String, CodingKey {
         case printObject = "print-object"
@@ -25,7 +25,7 @@ extension PrintStyleAlignObject: Codable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try self.printStyleAlign.encode(to: encoder)
+        try printStyleAlign.encode(to: encoder)
         try container.encodeIfPresent(printObject, forKey: .printObject)
     }
 

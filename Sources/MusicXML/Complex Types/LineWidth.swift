@@ -17,7 +17,7 @@ public struct LineWidth {
     }
 }
 
-extension LineWidth: Equatable { }
+extension LineWidth: Equatable {}
 extension LineWidth: Codable {
     enum CodingKeys: String, CodingKey {
         case type

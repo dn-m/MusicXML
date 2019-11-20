@@ -13,5 +13,5 @@ public enum VAlignImage: String {
     case bottom
 }
 
-extension VAlignImage: Equatable { }
-extension VAlignImage: Codable { }
+extension VAlignImage: Equatable {}
+extension VAlignImage: Codable {}

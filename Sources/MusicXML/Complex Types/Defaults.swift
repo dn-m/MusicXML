@@ -7,7 +7,6 @@
 
 /// The defaults type specifies score-wide defaults for scaling, layout, and appearance.
 public struct Defaults {
-
     public let scaling: Scaling?
     public let pageLayout: PageLayout?
     public let systemLayout: SystemLayout?
@@ -41,7 +40,7 @@ public struct Defaults {
     }
 }
 
-extension Defaults: Equatable { }
+extension Defaults: Equatable {}
 
 extension Defaults: Codable {
     private enum CodingKeys: String, CodingKey {
@@ -56,4 +55,3 @@ extension Defaults: Codable {
         case lyricLanguages = "lyric-language"
     }
 }
-

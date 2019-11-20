@@ -12,7 +12,6 @@
 /// harmony of kind "other" can be spelled explicitly by using a series of degree elements together
 /// with a root.
 public struct Degree {
-
     // MARK: - Instance Properties
 
     // MARK: Value
@@ -53,4 +52,3 @@ extension Degree: Codable {
         case alter = "degree-alter"
     }
 }
-

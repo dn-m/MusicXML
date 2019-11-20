@@ -5,12 +5,11 @@
 //  Created by James Bean on 8/8/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class ClefTests: XCTestCase {
-
     func testSimple() throws {
         let xml = """
         <clef>

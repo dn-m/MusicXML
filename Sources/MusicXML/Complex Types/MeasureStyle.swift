@@ -14,7 +14,6 @@ import XMLCoder
 /// partial measures. All but the multiple-rest element use a type attribute to indicate starting
 /// and stopping the use of the style.
 public struct MeasureStyle {
-
     // MARK: - Attributes
 
     public var number: Int?
@@ -42,7 +41,7 @@ extension MeasureStyle {
     }
 }
 
-extension MeasureStyle.Kind: Equatable { }
+extension MeasureStyle.Kind: Equatable {}
 extension MeasureStyle.Kind: Codable {
     enum CodingKeys: String, CodingKey {
         case beatRepeat = "beat-repeat"
@@ -50,6 +49,7 @@ extension MeasureStyle.Kind: Codable {
         case multipleRest = "multiple-rest"
         case slash
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -63,6 +63,7 @@ extension MeasureStyle.Kind: Codable {
             try container.encode(value, forKey: .slash)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if container.contains(.beatRepeat) {
@@ -85,14 +86,15 @@ extension MeasureStyle.Kind: Codable {
     }
 }
 
-extension MeasureStyle.Kind.CodingKeys: XMLChoiceCodingKey { }
+extension MeasureStyle.Kind.CodingKeys: XMLChoiceCodingKey {}
 
-extension MeasureStyle: Equatable { }
+extension MeasureStyle: Equatable {}
 extension MeasureStyle: Codable {
     enum CodingKeys: String, CodingKey {
         case number
         case color
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         number = try container.decodeIfPresent(Int.self, forKey: .number)
@@ -100,6 +102,7 @@ extension MeasureStyle: Codable {
         color = try container.decodeIfPresent(Color.self, forKey: .color)
         kind = try Kind(from: decoder)
     }
+
     public func encode(to encoder: Encoder) throws {
         fatalError("TODO: MeasureStyle.encode(to:)")
     }

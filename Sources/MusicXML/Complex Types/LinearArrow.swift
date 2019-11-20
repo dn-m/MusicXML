@@ -15,5 +15,5 @@ public struct LinearArrow {
     }
 }
 
-extension LinearArrow: Equatable { }
-extension LinearArrow: Codable { } 
+extension LinearArrow: Equatable {}
+extension LinearArrow: Codable {}

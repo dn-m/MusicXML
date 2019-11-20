@@ -5,12 +5,11 @@
 //  Created by James Bean on 10/16/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class ReveTests: XCTestCase {
-
     func testIdentification() throws {
         let xml = """
         <identification>
@@ -44,7 +43,7 @@ class ReveTests: XCTestCase {
                 ),
                 .supports(Supports(element: "accidental", type: true)),
                 .supports(Supports(element: "beam", type: true)),
-                .supports(Supports(element: "stem", type: true))
+                .supports(Supports(element: "stem", type: true)),
             ])
         )
         XCTAssertEqual(decoded, expected)
@@ -83,7 +82,7 @@ class ReveTests: XCTestCase {
             .supports(Supports(attribute: "new-page", element: "print", type: true, value: "yes")),
             .supports(Supports(element: "accidental", type: true)),
             .supports(Supports(element: "beam", type: true)),
-            .supports(Supports(element: "stem", type: true))
+            .supports(Supports(element: "stem", type: true)),
         ])
         XCTAssertEqual(decoded, expected)
     }
@@ -167,7 +166,7 @@ class ReveTests: XCTestCase {
                 height: 1760,
                 width: 1360,
                 margins: [
-                    PageMargins(type: .both, left: 80, right: 80, top: 80, bottom: 80)
+                    PageMargins(type: .both, left: 80, right: 80, top: 80, bottom: 80),
                 ]
             ),
             systemLayout: SystemLayout(
@@ -201,7 +200,7 @@ class ReveTests: XCTestCase {
             musicFont: Font(family: "Maestro,engraved", size: 18),
             wordFont: Font(family: "Times New Roman", size: 8.25),
             lyricFonts: [
-                LyricFont(Font(family: "Times New Roman", size: 10))
+                LyricFont(Font(family: "Times New Roman", size: 10)),
             ]
         )
         XCTAssertEqual(decoded, expected)
@@ -237,7 +236,7 @@ class ReveTests: XCTestCase {
             height: 1760,
             width: 1360,
             margins: [
-                PageMargins(type: .both, left: 80, right: 80, top: 80, bottom: 80)
+                PageMargins(type: .both, left: 80, right: 80, top: 80, bottom: 80),
             ]
         )
         XCTAssertEqual(decoded, expected)
@@ -332,7 +331,6 @@ class ReveTests: XCTestCase {
             distances: [
                 Distance(60, type: .hyphen),
                 Distance(8, type: .beam),
-
             ]
         )
         XCTAssertEqual(decoded, expected)
@@ -399,7 +397,7 @@ class ReveTests: XCTestCase {
             </score-part>
         </part-list>
         """
-        let _ = try XMLDecoder().decode(PartList.self, from: xml.data(using: .utf8)!)
+        _ = try XMLDecoder().decode(PartList.self, from: xml.data(using: .utf8)!)
     }
 
     func testPrint() throws {

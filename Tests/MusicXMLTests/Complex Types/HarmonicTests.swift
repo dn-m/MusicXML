@@ -5,11 +5,10 @@
 //  Created by James Bean on 10/24/19.
 //
 
-import XCTest
 import MusicXML
+import XCTest
 
 class HarmonicTests: XCTestCase {
-
     func testRoundTrip() throws {
         let harmonic = Harmonic(
             naturalArtificial: .natural,

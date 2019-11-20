@@ -17,5 +17,5 @@ public enum StartStopDiscontinue: String {
     case discontinue
 }
 
-extension StartStopDiscontinue: Equatable { }
-extension StartStopDiscontinue: Codable { }
+extension StartStopDiscontinue: Equatable {}
+extension StartStopDiscontinue: Codable {}

@@ -13,5 +13,5 @@ public enum ShowTuplet: String {
     case none
 }
 
-extension ShowTuplet: Equatable { }
-extension ShowTuplet: Codable { }
+extension ShowTuplet: Equatable {}
+extension ShowTuplet: Codable {}

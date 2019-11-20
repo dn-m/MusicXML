@@ -17,5 +17,5 @@ public enum CSSFontSize: String {
     case xxLarge = "xx-large"
 }
 
-extension CSSFontSize: Equatable { }
-extension CSSFontSize: Codable { }
+extension CSSFontSize: Equatable {}
+extension CSSFontSize: Codable {}

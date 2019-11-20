@@ -10,7 +10,6 @@
 /// root-alter information. In that case, the print-object attribute of the root-alter element can
 /// be set to no.
 public struct RootAlter {
-
     // MARK: - Instance Propertes
 
     // MARK: Value
@@ -41,7 +40,7 @@ public struct RootAlter {
     }
 }
 
-extension RootAlter: Equatable { }
+extension RootAlter: Equatable {}
 extension RootAlter: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""

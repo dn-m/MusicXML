@@ -20,18 +20,20 @@ public struct GroupName {
     }
 }
 
-extension GroupName: Equatable { }
+extension GroupName: Equatable {}
 extension GroupName: Codable {
     enum CodingKeys: String, CodingKey {
         case justify
         case value = ""
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         value = try container.decode(String.self, forKey: .value)
         printStyle = try PrintStyle(from: decoder)
         justify = try container.decodeIfPresent(Justify.self, forKey: .justify)
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)

@@ -32,5 +32,5 @@ public enum LineWidthType: String {
     case wedge
 }
 
-extension LineWidthType: Equatable { }
-extension LineWidthType: Codable { }
+extension LineWidthType: Equatable {}
+extension LineWidthType: Codable {}

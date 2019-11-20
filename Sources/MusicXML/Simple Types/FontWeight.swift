@@ -11,5 +11,5 @@ public enum FontWeight: String {
     case bold
 }
 
-extension FontWeight: Equatable { }
-extension FontWeight: Codable { }
+extension FontWeight: Equatable {}
+extension FontWeight: Codable {}

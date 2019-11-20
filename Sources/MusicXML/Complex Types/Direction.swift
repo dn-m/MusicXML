@@ -13,10 +13,12 @@
 /// default.
 public struct Direction {
     // MARK: - Attributes
+
     public let placement: AboveBelow?
     public let directive: Bool?
 
     // MARK: - Elements
+
     public let directionTypes: [DirectionType]
     public let offset: Offset?
     public let footnote: FormattedText?
@@ -50,7 +52,7 @@ public struct Direction {
     }
 }
 
-extension Direction: Equatable { }
+extension Direction: Equatable {}
 extension Direction: Codable {
     private enum CodingKeys: String, CodingKey {
         case placement

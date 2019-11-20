@@ -19,5 +19,5 @@ public struct Cancel {
     }
 }
 
-extension Cancel: Equatable { }
-extension Cancel: Codable { }
+extension Cancel: Equatable {}
+extension Cancel: Codable {}

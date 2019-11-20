@@ -15,5 +15,5 @@ public enum SemiPitched: String {
     case veryLow = "very-low"
 }
 
-extension SemiPitched: Equatable { }
-extension SemiPitched: Codable { }
+extension SemiPitched: Equatable {}
+extension SemiPitched: Codable {}

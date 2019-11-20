@@ -13,7 +13,6 @@
 /// staff, or measure. Music that follows continues to take the default values from the layout
 /// included in the defaults element.
 public struct Print {
-
     // MARK: - Instance Properties
 
     // MARK: Attributes
@@ -105,7 +104,7 @@ public struct Print {
     }
 }
 
-extension Print: Equatable { }
+extension Print: Equatable {}
 
 extension Print: Codable {
     enum CodingKeys: String, CodingKey {

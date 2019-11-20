@@ -23,5 +23,5 @@ public enum Effect: String {
     case windWhistle = "wind whistle"
 }
 
-extension Effect: Equatable { }
-extension Effect: Codable { }
+extension Effect: Equatable {}
+extension Effect: Codable {}

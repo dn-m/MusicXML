@@ -21,12 +21,13 @@ public struct HorizontalTurn {
     }
 }
 
-extension HorizontalTurn: Equatable { }
+extension HorizontalTurn: Equatable {}
 extension HorizontalTurn: Codable {
     enum CodingKeys: String, CodingKey {
         case placement
         case slash
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         printStyle = try PrintStyle(from: decoder)
@@ -34,6 +35,7 @@ extension HorizontalTurn: Codable {
         trillSound = try TrillSound(from: decoder)
         slash = try container.decodeIfPresent(Bool.self, forKey: .slash)
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try printStyle.encode(to: encoder)

@@ -10,7 +10,6 @@
 /// interpretation of the value of the degree-alter element. The text attribute specifies how the
 /// type of the degree should be displayed in a score.
 public struct DegreeType {
-
     // MARK: - Instance Propertie
 
     // MARK: Value
@@ -39,7 +38,6 @@ public struct DegreeType {
 }
 
 extension DegreeType {
-
     // MARK: - Type Properties
 
     public static let add = DegreeType(.add)
@@ -47,7 +45,7 @@ extension DegreeType {
     public static let subtract = DegreeType(.subtract)
 }
 
-extension DegreeType: Equatable { }
+extension DegreeType: Equatable {}
 extension DegreeType: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""

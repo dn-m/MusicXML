@@ -11,5 +11,5 @@ public enum FontStyle: String {
     case italic
 }
 
-extension FontStyle: Equatable { }
-extension FontStyle: Codable { }
+extension FontStyle: Equatable {}
+extension FontStyle: Codable {}

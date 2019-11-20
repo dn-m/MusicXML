@@ -30,7 +30,7 @@ public struct Hole {
     }
 }
 
-extension Hole: Equatable { }
+extension Hole: Equatable {}
 extension Hole: Codable {
     enum CodingKeys: String, CodingKey {
         case holeType
@@ -38,6 +38,7 @@ extension Hole: Codable {
         case holeShape
         case placement
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(holeType, forKey: .holeType)
@@ -46,6 +47,7 @@ extension Hole: Codable {
         try printStyle.encode(to: encoder)
         try container.encodeIfPresent(placement, forKey: .placement)
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         holeType = try container.decodeIfPresent(String.self, forKey: .holeType)

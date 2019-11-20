@@ -11,5 +11,5 @@ public enum LineShape: String {
     case curved
 }
 
-extension LineShape: Equatable { }
-extension LineShape: Codable { }
+extension LineShape: Equatable {}
+extension LineShape: Codable {}

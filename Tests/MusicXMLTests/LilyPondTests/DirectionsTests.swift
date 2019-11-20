@@ -5,12 +5,11 @@
 //  Created by James Bean on 10/11/19.
 //
 
-import XCTest
 import MusicXML
+import XCTest
 import XMLCoder
 
 class DirectionsTests: XCTestCase {
-
     func testNoteWithLyric() throws {
         let xml = """
         <note>
@@ -29,7 +28,7 @@ class DirectionsTests: XCTestCase {
             voice: "1",
             type: NoteType(.quarter),
             lyrics: [
-                Lyric(kind: .verbal(Lyric.Verbal(text: "subp")), number: "1")
+                Lyric(kind: .verbal(Lyric.Verbal(text: "subp")), number: "1"),
             ]
         )
         XCTAssertEqual(decoded, expected)
@@ -77,9 +76,8 @@ class DirectionsTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
         let expected = Direction([.wedge(Wedge(type: .stop)), .dynamics([Dynamics([.fff])])],
-            placement: .below,
-            offset: 2
-        )
+                                 placement: .below,
+                                 offset: 2)
         XCTAssertEqual(decoded, expected)
     }
 
@@ -92,15 +90,14 @@ class DirectionsTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(FormattedText.self, from: xml.data(using: .utf8)!)
         let expected = FormattedText("subito",
-            printStyle: PrintStyle(
-                position: Position(defaultY: -80),
-                font: Font(
-                    family: "Times New Roman",
-                    style: .italic,
-                    size: 10.25
-                )
-            )
-        )
+                                     printStyle: PrintStyle(
+                                         position: Position(defaultY: -80),
+                                         font: Font(
+                                             family: "Times New Roman",
+                                             style: .italic,
+                                             size: 10.25
+                                         )
+                                     ))
         XCTAssertEqual(decoded, expected)
     }
 
@@ -343,7 +340,7 @@ class DirectionsTests: XCTestCase {
         let expected = DirectionType.coda([PrintStyleAlign()])
         XCTAssertEqual(decoded, expected)
     }
-    
+
     func testCodaMultiple() throws {
         let xml = """
         <direction-type>
@@ -352,7 +349,7 @@ class DirectionsTests: XCTestCase {
         </direction-type>
         """
         let decoded = try XMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
-        let expected = DirectionType.coda([PrintStyleAlign(),PrintStyleAlign()])
+        let expected = DirectionType.coda([PrintStyleAlign(), PrintStyleAlign()])
         XCTAssertEqual(decoded, expected)
     }
 
@@ -366,7 +363,7 @@ class DirectionsTests: XCTestCase {
         let expected = DirectionType.rehearsal([FormattedText("Crc", enclosure: .circle)])
         XCTAssertEqual(decoded, expected)
     }
-    
+
     func testRehearsalMultiple() throws {
         let xml = """
         <direction-type>
@@ -377,7 +374,7 @@ class DirectionsTests: XCTestCase {
         let decoded = try XMLDecoder().decode(DirectionType.self, from: xml.data(using: .utf8)!)
         let expected = DirectionType.rehearsal([
             FormattedText("Crc", enclosure: .circle),
-            FormattedText("Crc", enclosure: .circle)
+            FormattedText("Crc", enclosure: .circle),
         ])
         XCTAssertEqual(decoded, expected)
     }

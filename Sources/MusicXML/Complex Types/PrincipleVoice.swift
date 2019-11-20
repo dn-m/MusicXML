@@ -23,13 +23,14 @@ public struct PrincipleVoice {
     }
 }
 
-extension PrincipleVoice: Equatable { }
+extension PrincipleVoice: Equatable {}
 extension PrincipleVoice: Codable {
     enum CodingKeys: String, CodingKey {
         case type
         case symbol
         case value = ""
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)
@@ -37,6 +38,7 @@ extension PrincipleVoice: Codable {
         try container.encode(symbol, forKey: .symbol)
         try printStyleAlign.encode(to: encoder)
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         value = try container.decode(String.self, forKey: .value)

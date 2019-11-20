@@ -18,7 +18,7 @@ public struct Feature {
     }
 }
 
-extension Feature: Equatable { }
+extension Feature: Equatable {}
 extension Feature: Codable {
     enum CodingKeys: String, CodingKey {
         case type

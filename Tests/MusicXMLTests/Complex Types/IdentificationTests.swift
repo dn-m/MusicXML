@@ -5,12 +5,11 @@
 //  Created by James Bean on 8/2/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class IdentificationTests: XCTestCase {
-
     func testDecodingSimple() throws {
         let xml = """
         <identification>
@@ -52,13 +51,13 @@ class IdentificationTests: XCTestCase {
                 Creator("Wilhelm Müller", type: "poet"),
             ],
             rights: [
-                Rights("Copyright 2001 Recordare LLC")
+                Rights("Copyright 2001 Recordare LLC"),
             ],
             encoding: Encoding([
                 .date("2002-02-16"),
                 .encoder("Michael Good"),
                 .software("Finale 2002 for Windows"),
-                .description("MusicXML 1.0 example")
+                .description("MusicXML 1.0 example"),
             ]),
             source: "Based on Breitkopf and Härtel edition of 1895"
         )

@@ -22,5 +22,5 @@ public enum Membrane: String {
     case tomtom
 }
 
-extension Membrane: Equatable { }
-extension Membrane: Codable { }
+extension Membrane: Equatable {}
+extension Membrane: Codable {}

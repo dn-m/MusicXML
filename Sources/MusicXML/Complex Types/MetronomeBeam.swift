@@ -17,7 +17,7 @@ public struct MetronomeBeam {
     }
 }
 
-extension MetronomeBeam: Equatable { }
+extension MetronomeBeam: Equatable {}
 extension MetronomeBeam: Codable {
     enum CodingKeys: String, CodingKey {
         case number

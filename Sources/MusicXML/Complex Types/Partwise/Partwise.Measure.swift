@@ -52,7 +52,6 @@ extension Partwise {
     // >
     @dynamicMemberLookup
     public struct Measure: Equatable {
-
         // MARK: Instance Properties
 
         // MARK: Attributes
@@ -91,14 +90,13 @@ extension Partwise {
         }
 
         /// - Returns: A measure attribute.
-        public subscript <T> (dynamicMember keyPath: KeyPath<MeasureAttributes, T>) -> T {
+        public subscript <T>(dynamicMember keyPath: KeyPath<MeasureAttributes, T>) -> T {
             return attributes[keyPath: keyPath]
         }
     }
 }
 
 extension Partwise.Measure: Codable {
-
     // MARK: - Codable
 
     private enum CodingKeys: String, CodingKey {

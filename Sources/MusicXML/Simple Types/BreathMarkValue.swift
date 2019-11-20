@@ -12,5 +12,5 @@ public enum BreathMarkValue: String {
     case `default` = ""
 }
 
-extension BreathMarkValue: Equatable { }
-extension BreathMarkValue: Codable { }
+extension BreathMarkValue: Equatable {}
+extension BreathMarkValue: Codable {}

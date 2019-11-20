@@ -33,5 +33,5 @@ public enum Metal: String {
     case vietnameseHat = "Vietnamese hat"
 }
 
-extension Metal: Equatable { }
-extension Metal: Codable { }
+extension Metal: Equatable {}
+extension Metal: Codable {}

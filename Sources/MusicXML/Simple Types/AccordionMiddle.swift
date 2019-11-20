@@ -18,7 +18,7 @@ extension AccordionMiddle: Codable {
     enum CodingKeys: String, CodingKey {
         case value = ""
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         try value.encode(to: encoder)
     }

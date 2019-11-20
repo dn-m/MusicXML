@@ -15,5 +15,5 @@ public enum DegreeSymbolValue: String {
     case halfDiminished = "half-diminished"
 }
 
-extension DegreeSymbolValue: Equatable { }
-extension DegreeSymbolValue: Codable { }
+extension DegreeSymbolValue: Equatable {}
+extension DegreeSymbolValue: Codable {}

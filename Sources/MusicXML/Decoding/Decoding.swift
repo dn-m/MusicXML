@@ -55,7 +55,7 @@ extension Score {
 
         while input.hasBytesAvailable {
             let read = input.read(buffer, maxLength: bufferSize)
-            if (read == 0) {
+            if read == 0 {
                 return nil
             }
             data.append(buffer, count: read)

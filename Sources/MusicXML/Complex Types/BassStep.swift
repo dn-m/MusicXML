@@ -24,7 +24,6 @@ public struct BassStep {
 }
 
 extension BassStep {
-
     // MARK: - Type Properties
 
     public static let a = BassStep(.a)
@@ -36,7 +35,7 @@ extension BassStep {
     public static let g = BassStep(.g)
 }
 
-extension BassStep: Equatable { }
+extension BassStep: Equatable {}
 extension BassStep: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""

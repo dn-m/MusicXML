@@ -9,13 +9,12 @@ import XCTest
 import XMLCoder
 
 extension XCTestCase {
-
     func assertDecoded<T: Decodable & Equatable>(_ xmlString: String, equals expected: T) throws {
         let decoded = try XMLDecoder().decode(T.self, from: xmlString.data(using: .utf8)!)
         XCTAssertEqual(decoded, expected)
     }
 
-    func testRoundTrip <Value: Codable & Equatable> (
+    func testRoundTrip <Value: Codable & Equatable>(
         _ value: Value,
         rootKey: String = "container",
         loggingEncoded: Bool = false

@@ -26,7 +26,7 @@ public struct MIDIDevice {
     }
 }
 
-extension MIDIDevice: Equatable { }
+extension MIDIDevice: Equatable {}
 extension MIDIDevice: Codable {
     enum CodingKeys: String, CodingKey {
         case id

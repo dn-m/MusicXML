@@ -8,7 +8,6 @@
 /// The inversion type represents harmony inversions. The value is a number indicating which
 /// inversion is used: 0 for root position, 1 for first inversion, etc.
 public struct Inversion {
-
     // MARK: - Instance Properties
 
     // MARK: Value
@@ -25,7 +24,7 @@ public struct Inversion {
     }
 }
 
-extension Inversion: Equatable { }
+extension Inversion: Equatable {}
 extension Inversion: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""

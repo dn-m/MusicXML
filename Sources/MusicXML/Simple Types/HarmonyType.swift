@@ -14,5 +14,5 @@ public enum HarmonyType: String {
     case alternate
 }
 
-extension HarmonyType: Equatable { }
-extension HarmonyType: Codable { }
+extension HarmonyType: Equatable {}
+extension HarmonyType: Codable {}

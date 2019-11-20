@@ -13,5 +13,5 @@ public enum DistanceType: String {
     case hyphen
 }
 
-extension DistanceType: Equatable { }
-extension DistanceType: Codable { }
+extension DistanceType: Equatable {}
+extension DistanceType: Codable {}

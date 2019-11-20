@@ -12,7 +12,6 @@ public struct StaffTuning {
     public let tuningAlter: Double?
     public let tuningOctave: Int
 
-
     public init(line: Int? = nil, tuningStep: Step, tuningAlter: Double? = nil, tuningOctave: Int) {
         self.line = line
         self.tuningStep = tuningStep
@@ -21,5 +20,5 @@ public struct StaffTuning {
     }
 }
 
-extension StaffTuning: Equatable { }
-extension StaffTuning: Codable { }
+extension StaffTuning: Equatable {}
+extension StaffTuning: Codable {}

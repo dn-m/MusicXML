@@ -12,6 +12,7 @@ public struct NoteheadText {
         case displayText(FormattedText)
         case accidentalText(AccidentalText)
     }
+
     public let values: [Kind] // NonEmpty
 
     public init(_ values: [Kind]) {
@@ -19,12 +20,13 @@ public struct NoteheadText {
     }
 }
 
-extension NoteheadText.Kind: Equatable { }
+extension NoteheadText.Kind: Equatable {}
 extension NoteheadText.Kind: Codable {
     enum CodingKeys: String, CodingKey {
         case displayText
         case accidentalText
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -34,10 +36,11 @@ extension NoteheadText.Kind: Codable {
             try container.encode(value, forKey: .accidentalText)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
@@ -57,7 +60,7 @@ extension NoteheadText.Kind: Codable {
     }
 }
 
-extension NoteheadText.Kind.CodingKeys: XMLChoiceCodingKey { }
+extension NoteheadText.Kind.CodingKeys: XMLChoiceCodingKey {}
 
-extension NoteheadText: Equatable { }
-extension NoteheadText: Codable { }
+extension NoteheadText: Equatable {}
+extension NoteheadText: Codable {}

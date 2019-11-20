@@ -32,7 +32,7 @@ public struct Bracket {
     }
 }
 
-extension Bracket: Equatable { }
+extension Bracket: Equatable {}
 extension Bracket: Codable {
     private enum CodingKeys: String, CodingKey {
         case type
@@ -42,7 +42,7 @@ extension Bracket: Codable {
         case lineType = "line-type"
         case dashLength = "dash-length"
         case spaceLength = "space-length"
-        case color = "color"
+        case color
     }
 
     public init(from decoder: Decoder) throws {

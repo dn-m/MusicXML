@@ -11,7 +11,6 @@
 /// relative-y that would flip a stem instead of shortening it are ignored. A stem element
 /// associated with a rest refers to a stemlet.
 public struct Stem {
-
     // MARK: - Instance Properties
 
     public let value: StemValue
@@ -20,7 +19,6 @@ public struct Stem {
 }
 
 extension Stem {
-
     // MARK: Initializers
 
     public init(_ value: StemValue, position: Position = Position(), color: Color? = nil) {
@@ -31,7 +29,6 @@ extension Stem {
 }
 
 extension Stem {
-
     // MARK: Type Properties
 
     public static let up = Stem(.up)
@@ -40,7 +37,7 @@ extension Stem {
     public static let none = Stem(.none)
 }
 
-extension Stem: Equatable { }
+extension Stem: Equatable {}
 extension Stem: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""

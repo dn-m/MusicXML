@@ -14,5 +14,5 @@ public enum VAlign: String {
     case baseline
 }
 
-extension VAlign: Equatable { }
-extension VAlign: Codable { }
+extension VAlign: Equatable {}
+extension VAlign: Codable {}

@@ -14,7 +14,6 @@
 /// printed due to the harmony element. The print-style attribute group sets the default for the
 /// harmony, but individual elements can override this with their own print-style values.
 public struct Harmony {
-
     // MARK: - Instance Properties
 
     // MARK: Attributes
@@ -29,7 +28,7 @@ public struct Harmony {
 
     public let printStyle: PrintStyle
 
-    // MARK:  Elements
+    // MARK: Elements
 
     public let chords: [HarmonyChord] // NonEmpty
     public let frame: Frame?
@@ -62,7 +61,7 @@ public struct Harmony {
     }
 }
 
-extension Harmony: Equatable { }
+extension Harmony: Equatable {}
 extension Harmony: Codable {
     private enum CodingKeys: String, CodingKey {
         case type

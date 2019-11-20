@@ -8,7 +8,6 @@
 /// The accord type represents the tuning of a single string in the scordatura element. It uses the
 /// same group of elements as the staff-tuning element.
 public struct Accord {
-
     // MARK: - Instance Properties
 
     // MARK: Attributes
@@ -20,7 +19,6 @@ public struct Accord {
     public let tuningStep: Step
     public let tuningAlter: Double?
     public let tuningOctave: Int?
-
 
     public init(
         string: Int,
@@ -35,7 +33,7 @@ public struct Accord {
     }
 }
 
-extension Accord: Equatable { }
+extension Accord: Equatable {}
 extension Accord: Codable {
     private enum CodingKeys: String, CodingKey {
         case string

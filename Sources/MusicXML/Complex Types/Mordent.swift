@@ -26,7 +26,7 @@ public struct Mordent {
     }
 }
 
-extension Mordent: Equatable { }
+extension Mordent: Equatable {}
 extension Mordent: Codable {
     enum CodingKeys: String, CodingKey {
         case long
@@ -34,6 +34,7 @@ extension Mordent: Codable {
         case departure
         case value = ""
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try value.encode(to: encoder)
@@ -41,6 +42,7 @@ extension Mordent: Codable {
         try container.encodeIfPresent(approach, forKey: .approach)
         try container.encodeIfPresent(departure, forKey: .departure)
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         value = try PrintStyleTrillSound(from: decoder)

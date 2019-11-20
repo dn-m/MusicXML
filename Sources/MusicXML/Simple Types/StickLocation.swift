@@ -14,5 +14,5 @@ public enum StickLocation: String {
     case cymbalEdge = "cymbal edge"
 }
 
-extension StickLocation: Equatable { }
-extension StickLocation: Codable { }
+extension StickLocation: Equatable {}
+extension StickLocation: Codable {}

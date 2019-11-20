@@ -20,5 +20,5 @@ public enum BeamLevel: String {
     case eight = "8"
 }
 
-extension BeamLevel: Equatable { }
-extension BeamLevel: Codable { }
+extension BeamLevel: Equatable {}
+extension BeamLevel: Codable {}

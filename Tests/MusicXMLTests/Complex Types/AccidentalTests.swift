@@ -5,12 +5,11 @@
 //  Created by James Bean on 8/4/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class AccidentalTests: XCTestCase {
-
     func testDecodingSimple() throws {
         let xml = """
         <accidental>sharp</accidental>
@@ -19,7 +18,7 @@ class AccidentalTests: XCTestCase {
         let expected = Accidental.sharp
         XCTAssertEqual(decoded, expected)
     }
-    
+
     func testSimple() throws {
         try testRoundTrip(Accidental.sharp)
     }

@@ -12,7 +12,6 @@ import XMLCoder
 /// notations to represent details of performance technique, such as fingerings, without having them
 /// appear in the score.
 public struct Notations {
-
     // MARK: - Attributes
 
     public var printObject: Bool?
@@ -55,7 +54,7 @@ extension Notations {
     }
 }
 
-extension Notations.Notation: Equatable { }
+extension Notations.Notation: Equatable {}
 extension Notations.Notation: Codable {
     enum CodingKeys: String, CodingKey {
         case tied
@@ -73,6 +72,7 @@ extension Notations.Notation: Codable {
         case accidentalMark = "accidental-mark"
         case other
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -106,10 +106,11 @@ extension Notations.Notation: Codable {
             try container.encode(value, forKey: .other)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
@@ -153,9 +154,9 @@ extension Notations.Notation: Codable {
     }
 }
 
-extension Notations.Notation.CodingKeys: XMLChoiceCodingKey { }
+extension Notations.Notation.CodingKeys: XMLChoiceCodingKey {}
 
-extension Notations: Equatable { }
+extension Notations: Equatable {}
 extension Notations: Codable {
     public init(from decoder: Decoder) throws {
         // Decode values
@@ -170,7 +171,6 @@ extension Notations: Codable {
 }
 
 extension Notations: ExpressibleByArrayLiteral {
-
     // MARK: - ExpressibleByArrayLiteral
 
     public init(arrayLiteral elements: Notation...) {

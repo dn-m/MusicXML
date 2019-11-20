@@ -5,12 +5,11 @@
 //  Created by James Bean on 7/31/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class NoteTests: XCTestCase {
-
     func testNoteDecoding() throws {
         let xml = """
         <note>
@@ -158,7 +157,7 @@ class NoteTests: XCTestCase {
             stem: .down,
             beams: [
                 Beam(.begin, number: .one),
-                Beam(.begin, number: .two)
+                Beam(.begin, number: .two),
             ]
         )
         XCTAssertEqual(decoded, expected)
@@ -194,7 +193,7 @@ class NoteTests: XCTestCase {
             stem: .up,
             notations: [
                 .tied(Tied(type: .stop)),
-                .tied(Tied(type: .start))
+                .tied(Tied(type: .start)),
             ]
         )
         XCTAssertEqual(decoded, expected)
@@ -226,7 +225,7 @@ class NoteTests: XCTestCase {
             type: .eighth,
             stem: Stem(.down, position: Position(defaultY: -70)),
             beams: [
-                Beam(.begin, number: .one)
+                Beam(.begin, number: .one),
             ]
         )
         XCTAssertEqual(decoded, expected)

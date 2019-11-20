@@ -24,7 +24,7 @@ public struct Notehead {
     }
 }
 
-extension Notehead: Equatable { }
+extension Notehead: Equatable {}
 extension Notehead: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""

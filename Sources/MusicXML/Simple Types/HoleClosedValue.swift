@@ -12,5 +12,5 @@ public enum HoleClosedValue: String {
     case half
 }
 
-extension HoleClosedValue: Equatable { }
-extension HoleClosedValue: Codable { }
+extension HoleClosedValue: Equatable {}
+extension HoleClosedValue: Codable {}

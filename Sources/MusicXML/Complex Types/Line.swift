@@ -25,13 +25,14 @@ public struct Line {
     }
 }
 
-extension Line: Equatable { }
+extension Line: Equatable {}
 extension Line: Codable {
     enum CodingKeys: String, CodingKey {
         case lineShape
         case lineType
         case placement
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(lineShape, forKey: .lineShape)
@@ -41,6 +42,7 @@ extension Line: Codable {
         try printStyle.encode(to: encoder)
         try container.encodeIfPresent(placement, forKey: .placement)
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         lineShape = try container.decodeIfPresent(LineShape.self, forKey: .lineShape)

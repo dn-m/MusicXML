@@ -5,12 +5,11 @@
 //  Created by James Bean on 10/12/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class SimpleRepeatTests: XCTestCase {
-
     func testBarlineRepeatBackward() throws {
         let xml = """
         <barline location="right">
