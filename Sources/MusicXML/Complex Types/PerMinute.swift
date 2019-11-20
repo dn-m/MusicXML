@@ -37,3 +37,15 @@ extension PerMinute: Codable {
         font = try Font(from: decoder)
     }
 }
+
+import XMLCoder
+extension PerMinute: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

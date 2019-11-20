@@ -38,3 +38,15 @@ extension Fermata: Codable {
         self.printStyle = try PrintStyle(from: decoder)
     }
 }
+
+import XMLCoder
+extension Fermata: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

@@ -25,3 +25,15 @@ extension Feature: Codable {
         case value = ""
     }
 }
+
+import XMLCoder
+extension Feature: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

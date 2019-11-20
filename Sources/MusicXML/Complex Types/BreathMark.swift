@@ -51,3 +51,15 @@ extension BreathMark: Codable {
         self.value = breathMarkValue == .default ? .comma : breathMarkValue
     }
 }
+
+import XMLCoder
+extension BreathMark: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

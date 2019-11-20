@@ -57,3 +57,15 @@ extension Glissando: Codable {
         try printStyle.encode(to: encoder)
     }
 }
+
+import XMLCoder
+extension Glissando: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

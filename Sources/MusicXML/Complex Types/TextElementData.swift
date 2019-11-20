@@ -87,3 +87,15 @@ extension TextElementData: ExpressibleByStringLiteral {
         self.init(value)
     }
 }
+
+import XMLCoder
+extension TextElementData: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

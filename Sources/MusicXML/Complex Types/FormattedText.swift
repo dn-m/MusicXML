@@ -105,3 +105,15 @@ extension FormattedText: ExpressibleByStringLiteral {
         self.init(value)
     }
 }
+
+import XMLCoder
+extension FormattedText: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

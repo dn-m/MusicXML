@@ -52,3 +52,15 @@ extension Slide: Codable {
         self.bendSound = try BendSound(from: decoder)
     }
 }
+
+import XMLCoder
+extension Slide: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

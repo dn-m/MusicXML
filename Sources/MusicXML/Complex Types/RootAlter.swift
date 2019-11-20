@@ -68,3 +68,15 @@ extension RootAlter: ExpressibleByIntegerLiteral {
         self.init(Double(value))
     }
 }
+
+import XMLCoder
+extension RootAlter: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}
