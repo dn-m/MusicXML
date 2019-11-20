@@ -250,18 +250,18 @@ extension Note {
 
 extension Note.Kind: Codable {
     public enum CodingKeys: String, CodingKey {
-            // Normal Note, Cue and Grace
-            case grace
-            case cue
-            case chord
-            case duration
-            case tie
-            // Kind
-            case pitch
-            case rest
-            case unpitched
+        // Normal Note, Cue and Grace
+        case grace
+        case cue
+        case chord
+        case duration
+        case tie
+        // Kind
+        case pitch
+        case rest
+        case unpitched
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         // Decode kind
@@ -306,20 +306,20 @@ extension Note.Kind: Codable {
         } else {
             self = .normal(
                 Note.Normal(pitchUnpitchedOrRest,
-                       duration: try duration(),
-                       ties: try ties(),
-                       isChord: isChord)
+                            duration: try duration(),
+                            ties: try ties(),
+                            isChord: isChord)
             )
         }
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
         case let .cue(cue):
             try container.encode(Empty(), forKey: .cue)
             if cue.isChord { try container.encode(Empty(), forKey: .chord) }
-            
+
             // FIXME: (upstream) `cue.pitchUnpitchedOrRest.encode(to: encoder)` should work here
             switch cue.pitchUnpitchedOrRest {
             case let .pitch(pitch):
@@ -333,7 +333,7 @@ extension Note.Kind: Codable {
         case let .grace(grace):
             try container.encode(Empty(), forKey: .grace)
             if grace.isChord { try container.encode(Empty(), forKey: .chord) }
-            
+
             // FIXME: (upstream) `grace.pitchUnpitchedOrRest.encode(to: encoder)` should work here
             switch grace.pitchUnpitchedOrRest {
             case let .pitch(pitch):
@@ -347,7 +347,7 @@ extension Note.Kind: Codable {
             try container.encodeIfPresent(grace.ties.stop, forKey: .tie)
         case let .normal(normal):
             if normal.isChord { try container.encode(Empty(), forKey: .chord) }
-            
+
             // FIXME: (upstream) `normal.pitchUnpitchedOrRest.encode(to: encoder)` should work here
             switch normal.pitchUnpitchedOrRest {
             case let .pitch(pitch):
@@ -436,7 +436,7 @@ extension Note: Codable {
         self.notations = try container.decodeIfPresent(Notations.self, forKey: .notations)
         self.lyrics = try container.decode([Lyric].self, forKey: .lyrics)
         self.play = try container.decodeIfPresent(Play.self, forKey: .play)
-        
+
         // Decode Kind
         self.kind = try Kind(from: decoder)
     }
@@ -471,7 +471,7 @@ extension Note: Codable {
         try container.encodeIfPresent(release, forKey: .release)
         try container.encodeIfPresent(timeOnly, forKey: .timeOnly)
         try container.encodeIfPresent(pizzicato, forKey: .pizzicato)
-        
+
         try kind.encode(to: encoder)
     }
 }
