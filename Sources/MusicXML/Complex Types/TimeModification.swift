@@ -53,4 +53,12 @@ extension TimeModification: Codable {
         self.normalType = try container.decodeIfPresent(NoteTypeValue.self, forKey: .normalType)
         self.normalDotCount = try container.decode([Empty].self, forKey: .normalDotCount).count
     }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(actualNotes, forKey: .actualNotes)
+        try container.encode(normalNotes, forKey: .normalNotes)
+        try container.encodeIfPresent(normalType, forKey: .normalType)
+        try container.encode([Empty](repeating: Empty(), count: normalDotCount), forKey: .normalDotCount)
+    }
 }

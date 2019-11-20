@@ -248,6 +248,122 @@ extension Note {
     }
 }
 
+extension Note.Kind: Codable {
+    public enum CodingKeys: String, CodingKey {
+        // Normal Note, Cue and Grace
+        case grace
+        case cue
+        case chord
+        case duration
+        case tie
+        // Kind
+        case pitch
+        case rest
+        case unpitched
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        // Decode kind
+
+        // Only `normal` and `grace` notes have ties, so defer `Tie` parsing and initialization
+        // until we know we need them.
+        func ties() throws -> Ties {
+            return Ties(ties: try container.decode([Tie].self, forKey: .tie))
+        }
+
+        // Only `normal` and `cue` notes have durations, so defer `duration` parsing until we know
+        // we need it.
+        func duration() throws -> Int {
+            return try container.decode(Int.self, forKey: .duration)
+        }
+
+        // The `Note` is a chord if it contains an empty `<chord/>` element.
+        let isChord = container.contains(.chord)
+
+        // Decode pitch / unpitched / rest
+        // FIXME: (upstream) `let pitchUnpitchedOrRest = PitchUnpitchedOrRest(from: decoder)` should work here
+        let pitchUnpitchedOrRest: PitchUnpitchedOrRest
+        if container.contains(.pitch) {
+            let pitch = try container.decode(Pitch.self, forKey: .pitch)
+            pitchUnpitchedOrRest = .pitch(pitch)
+        } else if container.contains(.rest) {
+            let rest = try container.decode(Rest.self, forKey: .rest)
+            pitchUnpitchedOrRest = .rest(rest)
+        } else {
+            let unpitched = try container.decode(Unpitched.self, forKey: .unpitched)
+            pitchUnpitchedOrRest = .unpitched(unpitched)
+        }
+
+        if container.contains(.grace) {
+            self = .grace(
+                Note.Grace(pitchUnpitchedOrRest, ties: try ties(), chord: isChord)
+            )
+        } else if container.contains(.cue) {
+            self = .cue(
+                Note.Cue(pitchUnpitchedOrRest, duration: try duration(), isChord: isChord)
+            )
+        } else {
+            self = .normal(
+                Note.Normal(pitchUnpitchedOrRest,
+                            duration: try duration(),
+                            ties: try ties(),
+                            isChord: isChord)
+            )
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case let .cue(cue):
+            try container.encode(Empty(), forKey: .cue)
+            if cue.isChord { try container.encode(Empty(), forKey: .chord) }
+
+            // FIXME: (upstream) `cue.pitchUnpitchedOrRest.encode(to: encoder)` should work here
+            switch cue.pitchUnpitchedOrRest {
+            case let .pitch(pitch):
+                try container.encode(pitch, forKey: .pitch)
+            case let .unpitched(unpitched):
+                try container.encode(unpitched, forKey: .unpitched)
+            case let .rest(rest):
+                try container.encode(rest, forKey: .rest)
+            }
+            try container.encode(cue.duration, forKey: .duration)
+        case let .grace(grace):
+            try container.encode(Empty(), forKey: .grace)
+            if grace.isChord { try container.encode(Empty(), forKey: .chord) }
+
+            // FIXME: (upstream) `grace.pitchUnpitchedOrRest.encode(to: encoder)` should work here
+            switch grace.pitchUnpitchedOrRest {
+            case let .pitch(pitch):
+                try container.encode(pitch, forKey: .pitch)
+            case let .unpitched(unpitched):
+                try container.encode(unpitched, forKey: .unpitched)
+            case let .rest(rest):
+                try container.encode(rest, forKey: .rest)
+            }
+            try container.encodeIfPresent(grace.ties.start, forKey: .tie)
+            try container.encodeIfPresent(grace.ties.stop, forKey: .tie)
+        case let .normal(normal):
+            if normal.isChord { try container.encode(Empty(), forKey: .chord) }
+
+            // FIXME: (upstream) `normal.pitchUnpitchedOrRest.encode(to: encoder)` should work here
+            switch normal.pitchUnpitchedOrRest {
+            case let .pitch(pitch):
+                try container.encode(pitch, forKey: .pitch)
+            case let .unpitched(unpitched):
+                try container.encode(unpitched, forKey: .unpitched)
+            case let .rest(rest):
+                try container.encode(rest, forKey: .rest)
+            }
+            try container.encode(normal.duration, forKey: .duration)
+            try container.encodeIfPresent(normal.ties.start, forKey: .tie)
+            try container.encodeIfPresent(normal.ties.stop, forKey: .tie)
+        }
+    }
+}
+
 extension Note.Normal: Equatable {}
 extension Note.Cue: Equatable {}
 extension Note.Grace: Equatable {}
@@ -284,16 +400,6 @@ extension Note: Codable {
         case notations
         case lyrics = "lyric"
         case play
-        // Normal Note, Cue and Grace
-        case grace
-        case cue
-        case chord
-        case duration
-        case tie
-        // Kind
-        case pitch
-        case rest
-        case unpitched
     }
 
     public init(from decoder: Decoder) throws {
@@ -331,55 +437,41 @@ extension Note: Codable {
         self.lyrics = try container.decode([Lyric].self, forKey: .lyrics)
         self.play = try container.decodeIfPresent(Play.self, forKey: .play)
 
-        // Decode kind
-
-        // Only `normal` and `grace` notes have ties, so defer `Tie` parsing and initialization
-        // until we know we need them.
-        func ties() throws -> Ties {
-            return Ties(ties: try container.decode([Tie].self, forKey: .tie))
-        }
-
-        // Only `normal` and `cue` notes have durations, so defer `duration` parsing until we know
-        // we need it.
-        func duration() throws -> Int {
-            return try container.decode(Int.self, forKey: .duration)
-        }
-
-        // The `Note` is a chord if it contains an empty `<chord/>` element.
-        let isChord = container.contains(.chord)
-
-        // Decode pitch / unpitched / rest
-        let pitchUnpitchedOrRest: PitchUnpitchedOrRest
-        if container.contains(.pitch) {
-            let pitch = try container.decode(Pitch.self, forKey: .pitch)
-            pitchUnpitchedOrRest = .pitch(pitch)
-        } else if container.contains(.rest) {
-            let rest = try container.decode(Rest.self, forKey: .rest)
-            pitchUnpitchedOrRest = .rest(rest)
-        } else {
-            let unpitched = try container.decode(Unpitched.self, forKey: .unpitched)
-            pitchUnpitchedOrRest = .unpitched(unpitched)
-        }
-
-        if container.contains(.grace) {
-            self.kind = .grace(
-                Note.Grace(pitchUnpitchedOrRest, ties: try ties(), chord: isChord)
-            )
-        } else if container.contains(.cue) {
-            self.kind = .cue(
-                Note.Cue(pitchUnpitchedOrRest, duration: try duration(), isChord: isChord)
-            )
-        } else {
-            self.kind = .normal(
-                Normal(pitchUnpitchedOrRest,
-                       duration: try duration(),
-                       ties: try ties(),
-                       isChord: isChord)
-            )
-        }
+        // Decode Kind
+        self.kind = try Kind(from: decoder)
     }
 
     public func encode(to encoder: Encoder) throws {
-        fatalError("TODO: Note.encode(to:)")
+        try printStyle.encode(to: encoder)
+
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(instrument, forKey: .instrument)
+        try container.encodeIfPresent(footnote, forKey: .footnote)
+        try container.encodeIfPresent(level, forKey: .level)
+        try container.encodeIfPresent(voice, forKey: .voice)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(dots, forKey: .dots)
+        try container.encodeIfPresent(accidental, forKey: .accidental)
+        try container.encodeIfPresent(timeModification, forKey: .timeModification)
+        try container.encodeIfPresent(stem, forKey: .stem)
+        try container.encodeIfPresent(notehead, forKey: .notehead)
+        try container.encodeIfPresent(noteheadText, forKey: .noteheadText)
+        try container.encodeIfPresent(staff, forKey: .staff)
+        try container.encodeIfPresent(beams, forKey: .beams)
+        try container.encodeIfPresent(notations, forKey: .notations)
+        try container.encode(lyrics, forKey: .lyrics)
+        try container.encodeIfPresent(play, forKey: .play)
+        try container.encodeIfPresent(printObject, forKey: .printObject)
+        try container.encodeIfPresent(printDot, forKey: .printDot)
+        try container.encodeIfPresent(printSpacing, forKey: .printSpacing)
+        try container.encodeIfPresent(printLyric, forKey: .printLyric)
+        try container.encodeIfPresent(dynamics, forKey: .dynamics)
+        try container.encodeIfPresent(endDynamics, forKey: .endDynamics)
+        try container.encodeIfPresent(attack, forKey: .attack)
+        try container.encodeIfPresent(release, forKey: .release)
+        try container.encodeIfPresent(timeOnly, forKey: .timeOnly)
+        try container.encodeIfPresent(pizzicato, forKey: .pizzicato)
+
+        try kind.encode(to: encoder)
     }
 }

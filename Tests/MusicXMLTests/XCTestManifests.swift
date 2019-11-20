@@ -354,14 +354,23 @@ extension NoteTests {
     // to regenerate.
     static let __allTests__NoteTests = [
         ("testBeam", testBeam),
+        ("testBeamRoundtrip", testBeamRoundtrip),
         ("testChord", testChord),
+        ("testChordRoundTrip", testChordRoundTrip),
         ("testNoteAccidentalDecoding", testNoteAccidentalDecoding),
+        ("testNoteAccidentalRoundTrip", testNoteAccidentalRoundTrip),
         ("testNoteDecoding", testNoteDecoding),
         ("testNoteDottedRestDecoding", testNoteDottedRestDecoding),
+        ("testNoteDottedRestRoundTrip", testNoteDottedRestRoundTrip),
         ("testNoteheads", testNoteheads),
+        ("testNoteheadsRoundTrip", testNoteheadsRoundTrip),
+        ("testNoteRoundTrip", testNoteRoundTrip),
         ("testTies", testTies),
+        ("testTiesRoundTrip", testTiesRoundTrip),
         ("testTuplet", testTuplet),
+        ("testTupletRoundTrip", testTupletRoundTrip),
         ("testUnpitched", testUnpitched),
+        ("testUnpitchedRoundTrip", testUnpitchedRoundTrip),
     ]
 }
 

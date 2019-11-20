@@ -34,11 +34,30 @@ extension Notehead: Codable {
     }
 
     public init(from decoder: Decoder) throws {
+        self.font = try Font(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.value = try container.decode(NoteheadValue.self, forKey: .value)
         self.filled = try container.decodeIfPresent(Bool.self, forKey: .filled)
         self.parentheses = try container.decodeIfPresent(Bool.self, forKey: .parentheses)
-        self.font = try Font(from: decoder)
         self.color = try container.decodeIfPresent(Color.self, forKey: .color)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        try font.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(filled, forKey: .filled)
+        try container.encodeIfPresent(parentheses, forKey: .parentheses)
+        try container.encodeIfPresent(color, forKey: .color)
+    }
+}
+
+import XMLCoder
+extension Notehead: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value: return .element
+        default: return .attribute
+        }
     }
 }
