@@ -50,4 +50,21 @@ extension Stem: Codable {
         self.position = try Position(from: decoder)
         self.color = try container.decodeIfPresent(Color.self, forKey: .color)
     }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try position.encode(to: encoder)
+        try container.encodeIfPresent(color, forKey: .color)
+    }
+}
+
+import XMLCoder
+extension Stem: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value: return .element
+        default: return .attribute
+        }
+    }
 }

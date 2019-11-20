@@ -325,7 +325,7 @@ extension Note.Kind: Codable {
             case let .pitch(pitch):
                 try container.encode(pitch, forKey: .pitch)
             case let .unpitched(unpitched):
-                try container.encode(unpitched, forKey: .pitch)
+                try container.encode(unpitched, forKey: .unpitched)
             case let .rest(rest):
                 try container.encode(rest, forKey: .rest)
             }
@@ -339,7 +339,7 @@ extension Note.Kind: Codable {
             case let .pitch(pitch):
                 try container.encode(pitch, forKey: .pitch)
             case let .unpitched(unpitched):
-                try container.encode(unpitched, forKey: .pitch)
+                try container.encode(unpitched, forKey: .unpitched)
             case let .rest(rest):
                 try container.encode(rest, forKey: .rest)
             }
@@ -353,7 +353,7 @@ extension Note.Kind: Codable {
             case let .pitch(pitch):
                 try container.encode(pitch, forKey: .pitch)
             case let .unpitched(unpitched):
-                try container.encode(unpitched, forKey: .pitch)
+                try container.encode(unpitched, forKey: .unpitched)
             case let .rest(rest):
                 try container.encode(rest, forKey: .rest)
             }
