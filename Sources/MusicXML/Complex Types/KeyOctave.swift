@@ -48,4 +48,20 @@ extension KeyOctave: Codable {
         self.number = try container.decode(Int.self, forKey: .number)
         self.cancel = try container.decodeIfPresent(Bool.self, forKey: .cancel) ?? false
     }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try container.encode(number, forKey: .number)
+        try container.encode(YesNo(cancel), forKey: .cancel)
+    }
+}
+
+extension KeyOctave: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value: return .element
+        default: return .attribute
+        }
+    }
 }

@@ -92,7 +92,6 @@ extension Key {
 }
 
 extension Key.AlteredTone: Equatable {}
-extension Key.AlteredTone: Codable {}
 
 extension Key.Traditional: Equatable {}
 extension Key.Traditional: Codable {}
@@ -103,8 +102,13 @@ extension Key.Kind: Encodable {
         switch self {
         case let .traditional(key):
             try key.encode(to: encoder)
-        case let .nonTraditional(key):
-            try key.encode(to: encoder)
+        case let .nonTraditional(alteredTones):
+            var container = encoder.container(keyedBy: Key.CodingKeys.self)
+            try alteredTones.forEach {
+                try container.encode($0.step, forKey: .keyStep)
+                try container.encode($0.alter, forKey: .keyAlter)
+                try container.encodeIfPresent($0.accidental, forKey: .keyAccidental)
+            }
         }
     }
 }

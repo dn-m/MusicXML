@@ -22,6 +22,10 @@ class KeyTests: XCTestCase {
         XCTAssertEqual(decoded, expected)
     }
 
+    func testRoundTripTraditional() throws {
+        try testRoundTrip(Key(fifths: 0, mode: .major))
+    }
+
     func testDecodingKeyOctave() throws {
         let xml = """
         <key-octave number="1">2</key-octave>
@@ -29,6 +33,10 @@ class KeyTests: XCTestCase {
         let decoded = try XMLDecoder().decode(KeyOctave.self, from: xml.data(using: .utf8)!)
         let expected = KeyOctave(2, number: 1)
         XCTAssertEqual(decoded, expected)
+    }
+
+    func testRoundTripKeyOctave() throws {
+        try testRoundTrip(KeyOctave(2, number: 1))
     }
 
     func testDecodingNonTraditional() throws {
@@ -69,6 +77,25 @@ class KeyTests: XCTestCase {
             ]
         )
         XCTAssertEqual(decoded, expected)
+    }
+
+    func testRoundTripNonTraditional() throws {
+        try testRoundTrip(Key(
+            kind: .nonTraditional([
+                Key.AlteredTone(step: .c, alter: -2),
+                Key.AlteredTone(step: .g, alter: 2),
+                Key.AlteredTone(step: .d, alter: -1),
+                Key.AlteredTone(step: .b, alter: 1),
+                Key.AlteredTone(step: .f, alter: 0),
+            ]),
+            keyOctaves: [
+                KeyOctave(2, number: 1),
+                KeyOctave(3, number: 2),
+                KeyOctave(4, number: 3),
+                KeyOctave(5, number: 4),
+                KeyOctave(6, number: 5),
+            ]
+        ))
     }
 
     func testDecodingNonTraditionalMixed() throws {
@@ -112,7 +139,26 @@ class KeyTests: XCTestCase {
         XCTAssertEqual(decoded, expected)
     }
 
-    func testDeocdingNonTraditionalWithAccidental() throws {
+    func testRoundTripNonTraditionalMixed() throws {
+        try testRoundTrip(Key(
+            kind: .nonTraditional([
+                Key.AlteredTone(step: .c, alter: -2),
+                Key.AlteredTone(step: .g, alter: 2),
+                Key.AlteredTone(step: .d, alter: -1, accidental: .arrowUp),
+                Key.AlteredTone(step: .b, alter: 1),
+                Key.AlteredTone(step: .f, alter: 0),
+            ]),
+            keyOctaves: [
+                KeyOctave(2, number: 1),
+                KeyOctave(3, number: 2),
+                KeyOctave(4, number: 3),
+                KeyOctave(5, number: 4),
+                KeyOctave(6, number: 5),
+            ]
+        ))
+    }
+
+    func testDecodingNonTraditionalWithAccidental() throws {
         let xml = """
         <key>
           <key-step>B</key-step>
@@ -141,7 +187,18 @@ class KeyTests: XCTestCase {
         XCTAssertEqual(decoded, expected)
     }
 
-    func testDeocdingNonTraditionalWithAccidentalSomeMissing() throws {
+    func testRoundTripNonTraditionalWithAccidental() throws {
+        try testRoundTrip(Key(
+            kind: .nonTraditional([
+                Key.AlteredTone(step: .b, alter: -1, accidental: .quarterFlat),
+                Key.AlteredTone(step: .e, alter: -2, accidental: .slashFlat),
+                Key.AlteredTone(step: .a, alter: -2, accidental: .slashFlat),
+                Key.AlteredTone(step: .f, alter: 2, accidental: .sharp),
+            ])
+        ))
+    }
+
+    func testDecodingNonTraditionalWithAccidentalSomeMissing() throws {
         let xml = """
         <key>
           <key-step>B</key-step>
@@ -167,5 +224,16 @@ class KeyTests: XCTestCase {
             ])
         )
         XCTAssertEqual(decoded, expected)
+    }
+
+    func testRoundTripNonTraditionalWithAccidentalSomeMissing() throws {
+        try testRoundTrip(Key(
+            kind: .nonTraditional([
+                Key.AlteredTone(step: .b, alter: -1, accidental: .quarterFlat),
+                Key.AlteredTone(step: .e, alter: -2, accidental: .slashFlat),
+                Key.AlteredTone(step: .a, alter: -2, accidental: nil),
+                Key.AlteredTone(step: .f, alter: 2, accidental: .sharp),
+            ])
+        ))
     }
 }

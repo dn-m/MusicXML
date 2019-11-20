@@ -207,9 +207,15 @@ extension KeyTests {
         ("testDecodingKeyOctave", testDecodingKeyOctave),
         ("testDecodingNonTraditional", testDecodingNonTraditional),
         ("testDecodingNonTraditionalMixed", testDecodingNonTraditionalMixed),
+        ("testDecodingNonTraditionalWithAccidental", testDecodingNonTraditionalWithAccidental),
+        ("testDecodingNonTraditionalWithAccidentalSomeMissing", testDecodingNonTraditionalWithAccidentalSomeMissing),
         ("testDecodingTraditional", testDecodingTraditional),
-        ("testDeocdingNonTraditionalWithAccidental", testDeocdingNonTraditionalWithAccidental),
-        ("testDeocdingNonTraditionalWithAccidentalSomeMissing", testDeocdingNonTraditionalWithAccidentalSomeMissing),
+        ("testRoundTripKeyOctave", testRoundTripKeyOctave),
+        ("testRoundTripNonTraditional", testRoundTripNonTraditional),
+        ("testRoundTripNonTraditionalMixed", testRoundTripNonTraditionalMixed),
+        ("testRoundTripNonTraditionalWithAccidental", testRoundTripNonTraditionalWithAccidental),
+        ("testRoundTripNonTraditionalWithAccidentalSomeMissing", testRoundTripNonTraditionalWithAccidentalSomeMissing),
+        ("testRoundTripTraditional", testRoundTripTraditional),
     ]
 }
 

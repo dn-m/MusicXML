@@ -12,5 +12,11 @@ public enum YesNo: String {
     case no
 }
 
+extension YesNo {
+    public init(_ bool: Bool) {
+        self = bool ? .yes : .no
+    }
+}
+
 extension YesNo: Equatable {}
 extension YesNo: Codable {}
