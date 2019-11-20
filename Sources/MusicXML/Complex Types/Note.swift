@@ -282,6 +282,7 @@ extension Note.Kind: Codable {
         let isChord = container.contains(.chord)
 
         // Decode pitch / unpitched / rest
+        // FIXME: (upstream) `let pitchUnpitchedOrRest = PitchUnpitchedOrRest(from: decoder)` should work here
         let pitchUnpitchedOrRest: PitchUnpitchedOrRest
         if container.contains(.pitch) {
             let pitch = try container.decode(Pitch.self, forKey: .pitch)
@@ -318,6 +319,8 @@ extension Note.Kind: Codable {
         case let .cue(cue):
             try container.encode(Empty(), forKey: .cue)
             if cue.isChord { try container.encode(Empty(), forKey: .chord) }
+            
+            // FIXME: (upstream) `cue.pitchUnpitchedOrRest.encode(to: encoder)` should work here
             switch cue.pitchUnpitchedOrRest {
             case let .pitch(pitch):
                 try container.encode(pitch, forKey: .pitch)
@@ -330,6 +333,8 @@ extension Note.Kind: Codable {
         case let .grace(grace):
             try container.encode(Empty(), forKey: .grace)
             if grace.isChord { try container.encode(Empty(), forKey: .chord) }
+            
+            // FIXME: (upstream) `grace.pitchUnpitchedOrRest.encode(to: encoder)` should work here
             switch grace.pitchUnpitchedOrRest {
             case let .pitch(pitch):
                 try container.encode(pitch, forKey: .pitch)
@@ -342,6 +347,8 @@ extension Note.Kind: Codable {
             try container.encodeIfPresent(grace.ties.stop, forKey: .tie)
         case let .normal(normal):
             if normal.isChord { try container.encode(Empty(), forKey: .chord) }
+            
+            // FIXME: (upstream) `normal.pitchUnpitchedOrRest.encode(to: encoder)` should work here
             switch normal.pitchUnpitchedOrRest {
             case let .pitch(pitch):
                 try container.encode(pitch, forKey: .pitch)
@@ -355,7 +362,6 @@ extension Note.Kind: Codable {
             try container.encodeIfPresent(normal.ties.stop, forKey: .tie)
         }
     }
-    
 }
 
 extension Note.Normal: Equatable {}
