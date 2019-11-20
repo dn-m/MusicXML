@@ -59,9 +59,9 @@ extension Key {
 
 extension Key {
     public struct Traditional {
-        public var cancel: Cancel?
-        public var fifths: Int
-        public var mode: Mode?
+        public let cancel: Cancel?
+        public let fifths: Int
+        public let mode: Mode?
 
         public init(cancel: Cancel? = nil, fifths: Int, mode: Mode? = nil) {
             self.cancel = cancel
@@ -74,9 +74,9 @@ extension Key {
     /// of altered tones. The key-step element indicates the pitch step to be altered, represented
     /// using the same names as in the step element.
     public struct AlteredTone {
-        public var step: Step
-        public var alter: Double
-        public var accidental: AccidentalValue?
+        public let step: Step
+        public let alter: Double
+        public let accidental: AccidentalValue?
 
         public init(step: Step, alter: Double, accidental: AccidentalValue? = nil) {
             self.step = step
@@ -97,6 +97,21 @@ extension Key.Traditional: Equatable {}
 extension Key.Traditional: Codable {}
 
 extension Key.Kind: Equatable {}
+extension Key.Kind: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        switch self {
+        case let .traditional(key):
+            try key.encode(to: encoder)
+        case let .nonTraditional(alteredTones):
+            var container = encoder.container(keyedBy: Key.CodingKeys.self)
+            try alteredTones.forEach {
+                try container.encode($0.step, forKey: .keyStep)
+                try container.encode($0.alter, forKey: .keyAlter)
+                try container.encodeIfPresent($0.accidental, forKey: .keyAccidental)
+            }
+        }
+    }
+}
 
 extension Key: Equatable {}
 extension Key: Codable {
@@ -213,7 +228,12 @@ extension Key: Codable {
     }
 
     public func encode(to encoder: Encoder) throws {
-        fatalError("TODO: Implement Key.encode(to: Encoder)")
+        try printStyle.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(number, forKey: .number)
+        try container.encodeIfPresent(printObject, forKey: .printObject)
+        try kind.encode(to: encoder)
+        try container.encode(keyOctaves, forKey: .keyOctaves)
     }
 }
 
