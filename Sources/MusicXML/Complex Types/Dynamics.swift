@@ -57,12 +57,7 @@ extension Dynamics: Equatable {}
 extension Dynamics: Codable {
     public init(from decoder: Decoder) throws {
         // Decode values
-        var values: [Dynamic] = []
-        var valuesContainer = try decoder.unkeyedContainer()
-        while !valuesContainer.isAtEnd {
-            values.append(try valuesContainer.decode(Dynamic.self))
-        }
-        self.values = values
+        self.values = try decoder.collectArray()
 
         // Decode attribute groups
         self.printStyleAlign = try PrintStyleAlign(from: decoder)
