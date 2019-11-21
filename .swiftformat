@@ -9,3 +9,4 @@
 --self init-only
 --disable andOperator
 --disable spaceAroundGenerics
+--disable blankLinesBetweenScopes
