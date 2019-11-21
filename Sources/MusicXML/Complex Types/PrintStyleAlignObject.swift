@@ -23,11 +23,14 @@ extension PrintStyleAlignObject: Codable {
         case printObject = "print-object"
     }
 
+    // sourcery:inline:PrintStyleAlignObject.AutoEncodable
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(YesNo(printObject), forKey: .printObject)
         try printStyleAlign.encode(to: encoder)
-        try container.encodeIfPresent(printObject, forKey: .printObject)
     }
+
+    // sourcery:end
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

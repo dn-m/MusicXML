@@ -116,6 +116,22 @@ extension Kind: Codable {
         self.vAlign = try container.decodeIfPresent(VAlign.self, forKey: .vAlign)
         self.value = try container.decode(KindValue.self, forKey: .value)
     }
+
+    // sourcery:inline:Kind.AutoEncodable
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(YesNo(useSymbols), forKey: .useSymbols)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(YesNo(stackDegrees), forKey: .stackDegrees)
+        try container.encodeIfPresent(YesNo(parenthesesDegrees), forKey: .parenthesesDegrees)
+        try container.encodeIfPresent(YesNo(bracketDegrees), forKey: .bracketDegrees)
+        try container.encodeIfPresent(hAlign, forKey: .hAlign)
+        try container.encodeIfPresent(vAlign, forKey: .vAlign)
+        try printStyle.encode(to: encoder)
+    }
+
+    // sourcery:end
 }
 
 import XMLCoder

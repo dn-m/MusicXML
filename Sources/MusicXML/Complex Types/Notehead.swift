@@ -42,14 +42,17 @@ extension Notehead: Codable {
         self.color = try container.decodeIfPresent(Color.self, forKey: .color)
     }
 
+    // sourcery:inline:Notehead.AutoEncodable
     public func encode(to encoder: Encoder) throws {
-        try font.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)
-        try container.encodeIfPresent(filled, forKey: .filled)
-        try container.encodeIfPresent(parentheses, forKey: .parentheses)
+        try container.encodeIfPresent(YesNo(filled), forKey: .filled)
+        try container.encodeIfPresent(YesNo(parentheses), forKey: .parentheses)
+        try font.encode(to: encoder)
         try container.encodeIfPresent(color, forKey: .color)
     }
+
+    // sourcery:end
 }
 
 import XMLCoder

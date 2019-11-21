@@ -52,14 +52,17 @@ extension Fingering: Codable {
         self.value = try container.decode(String.self, forKey: .value)
     }
 
+    // sourcery:inline:Fingering.AutoEncodable
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try printStyle.encode(to: encoder)
         try container.encode(value, forKey: .value)
-        try container.encodeIfPresent(substitution, forKey: .substitution)
-        try container.encodeIfPresent(alternate, forKey: .alternate)
+        try container.encodeIfPresent(YesNo(substitution), forKey: .substitution)
+        try container.encodeIfPresent(YesNo(alternate), forKey: .alternate)
         try container.encodeIfPresent(placement, forKey: .placement)
+        try printStyle.encode(to: encoder)
     }
+
+    // sourcery:end
 }
 
 import XMLCoder

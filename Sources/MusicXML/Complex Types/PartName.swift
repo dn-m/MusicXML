@@ -54,6 +54,17 @@ extension PartName: Codable {
         self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
         self.justify = try container.decodeIfPresent(Justify.self, forKey: .justify)
     }
+
+    // sourcery:inline:PartName.AutoEncodable
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(YesNo(printObject), forKey: .printObject)
+        try container.encodeIfPresent(justify, forKey: .justify)
+        try printStyle.encode(to: encoder)
+    }
+
+    // sourcery:end
 }
 
 extension PartName: ExpressibleByStringLiteral {

@@ -36,11 +36,14 @@ extension HorizontalTurn: Codable {
         slash = try container.decodeIfPresent(Bool.self, forKey: .slash)
     }
 
+    // sourcery:inline:HorizontalTurn.AutoEncodable
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try printStyle.encode(to: encoder)
         try container.encodeIfPresent(placement, forKey: .placement)
         try trillSound.encode(to: encoder)
-        try container.encodeIfPresent(slash, forKey: .slash)
+        try container.encodeIfPresent(YesNo(slash), forKey: .slash)
     }
+
+    // sourcery:end
 }

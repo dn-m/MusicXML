@@ -48,6 +48,9 @@ extension DegreeAlter: Codable {
         self.value = try container.decode(Int.self, forKey: .value)
         self.plusMinus = try container.decodeIfPresent(Bool.self, forKey: .plusMinus)
     }
+
+    // sourcery:inline:Accidental.AutoEncodable
+    // sourcery:end
 }
 
 extension DegreeAlter: ExpressibleByIntegerLiteral {

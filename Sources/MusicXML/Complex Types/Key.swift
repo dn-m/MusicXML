@@ -231,7 +231,7 @@ extension Key: Codable {
         try printStyle.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(number, forKey: .number)
-        try container.encodeIfPresent(printObject, forKey: .printObject)
+        try container.encodeIfPresent(YesNo(printObject), forKey: .printObject)
         try kind.encode(to: encoder)
         try container.encode(keyOctaves, forKey: .keyOctaves)
     }

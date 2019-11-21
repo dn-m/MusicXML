@@ -69,15 +69,18 @@ extension Bend: Codable {
         withBar = try container.decodeIfPresent(PlacementText.self, forKey: .withBar)
     }
 
+    // sourcery:inline:Bend.AutoEncodable
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try printStyle.encode(to: encoder)
-        try container.encodeIfPresent(accelerate, forKey: .accelerate)
-        try container.encodeIfPresent(beats, forKey: .beats)
+        try container.encodeIfPresent(YesNo(accelerate), forKey: .accelerate)
+        try container.encodeIfPresent(YesNo(beats), forKey: .beats)
         try container.encodeIfPresent(firstBeat, forKey: .firstBeat)
         try container.encodeIfPresent(lastBeat, forKey: .lastBeat)
         try container.encodeIfPresent(bendAlter, forKey: .bendAlter)
         try container.encodeIfPresent(prependOrRelease, forKey: .prependOrRelease)
         try container.encodeIfPresent(withBar, forKey: .withBar)
     }
+
+    // sourcery:end
 }

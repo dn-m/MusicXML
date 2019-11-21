@@ -91,4 +91,8 @@ extension Harmony: Codable {
         self.editorial = try Editorial(from: decoder)
         self.staff = try container.decodeIfPresent(Int.self, forKey: .staff)
     }
+
+    public func encode(to encoder: Encoder) throws {
+        fatalError("TODO")
+    }
 }

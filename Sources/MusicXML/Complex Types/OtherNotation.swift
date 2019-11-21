@@ -37,15 +37,18 @@ extension OtherNotation: Codable {
         case value = ""
     }
 
+    // sourcery:inline:OtherNotation.AutoEncodable
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(number, forKey: .number)
-        try container.encodeIfPresent(printObject, forKey: .printObject)
+        try container.encodeIfPresent(YesNo(printObject), forKey: .printObject)
         try printStyle.encode(to: encoder)
         try container.encodeIfPresent(placement, forKey: .placement)
     }
+
+    // sourcery:end
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

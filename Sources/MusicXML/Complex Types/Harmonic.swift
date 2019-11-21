@@ -126,7 +126,7 @@ extension Harmonic: Codable {
                 try container.encode(Empty(), forKey: .artificial)
             }
         }
-        try container.encodeIfPresent(printObject, forKey: .printObject)
+        try container.encodeIfPresent(YesNo(printObject), forKey: .printObject)
         try container.encodeIfPresent(placement, forKey: .placement)
     }
 }

@@ -38,7 +38,7 @@ extension Mordent: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try value.encode(to: encoder)
-        try container.encodeIfPresent(long, forKey: .long)
+        try container.encodeIfPresent(YesNo(long), forKey: .long)
         try container.encodeIfPresent(approach, forKey: .approach)
         try container.encodeIfPresent(departure, forKey: .departure)
     }

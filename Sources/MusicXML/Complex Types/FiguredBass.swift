@@ -82,14 +82,17 @@ extension FiguredBass: Codable {
         self.figures = try container.decode([Figure].self, forKey: .figures)
     }
 
+    // sourcery:inline:FiguredBass.AutoEncodable
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try printStyle.encode(to: encoder)
         try printout.encode(to: encoder)
-        try container.encodeIfPresent(parentheses, forKey: .parentheses)
+        try container.encodeIfPresent(YesNo(parentheses), forKey: .parentheses)
         try container.encode(figures, forKey: .figures)
         try container.encodeIfPresent(duration, forKey: .duration)
         try container.encodeIfPresent(footnote, forKey: .footnote)
         try container.encodeIfPresent(level, forKey: .level)
     }
+
+    // sourcery:end
 }
