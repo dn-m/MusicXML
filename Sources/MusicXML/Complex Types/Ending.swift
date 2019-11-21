@@ -99,7 +99,6 @@ extension Ending: Codable {
         try container.encodeIfPresent(textY, forKey: .textY)
         try printStyle.encode(to: encoder)
     }
-
     // sourcery:end
 }
 

@@ -49,7 +49,7 @@ extension DegreeAlter: Codable {
         self.plusMinus = try container.decodeIfPresent(Bool.self, forKey: .plusMinus)
     }
 
-    // sourcery:inline:Accidental.AutoEncodable
+    // sourcery:inline:DegreeAlter.AutoEncodable
     // sourcery:end
 }
 

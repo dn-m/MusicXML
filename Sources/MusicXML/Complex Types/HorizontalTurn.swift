@@ -44,6 +44,5 @@ extension HorizontalTurn: Codable {
         try trillSound.encode(to: encoder)
         try container.encodeIfPresent(YesNo(slash), forKey: .slash)
     }
-
     // sourcery:end
 }

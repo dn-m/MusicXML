@@ -63,7 +63,6 @@ extension PartName: Codable {
         try container.encodeIfPresent(justify, forKey: .justify)
         try printStyle.encode(to: encoder)
     }
-
     // sourcery:end
 }
 

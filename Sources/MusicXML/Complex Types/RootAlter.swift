@@ -64,7 +64,6 @@ extension RootAlter: Codable {
         try container.encodeIfPresent(location, forKey: .location)
         try printStyle.encode(to: encoder)
     }
-
     // sourcery:end
 }
 

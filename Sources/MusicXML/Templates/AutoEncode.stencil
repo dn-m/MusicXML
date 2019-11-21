@@ -19,7 +19,6 @@
 		{% endfor %}
 }
 // sourcery:end
-
 // sourcery:inline:{{ type.name }}.AutoDecodable
 {{ type.accessLevel }} init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)

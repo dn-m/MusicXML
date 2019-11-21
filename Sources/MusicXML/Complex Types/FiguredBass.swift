@@ -93,6 +93,5 @@ extension FiguredBass: Codable {
         try container.encodeIfPresent(footnote, forKey: .footnote)
         try container.encodeIfPresent(level, forKey: .level)
     }
-
     // sourcery:end
 }

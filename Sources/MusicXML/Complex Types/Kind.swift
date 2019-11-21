@@ -130,7 +130,6 @@ extension Kind: Codable {
         try container.encodeIfPresent(vAlign, forKey: .vAlign)
         try printStyle.encode(to: encoder)
     }
-
     // sourcery:end
 }
 

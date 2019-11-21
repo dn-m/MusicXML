@@ -34,7 +34,6 @@ extension OtherDirection: Codable {
         try container.encodeIfPresent(YesNo(printObject), forKey: .printObject)
         try printStyleAlign.encode(to: encoder)
     }
-
     // sourcery:end
 
     public init(from decoder: Decoder) throws {

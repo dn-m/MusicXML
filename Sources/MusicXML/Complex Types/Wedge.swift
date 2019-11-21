@@ -60,7 +60,6 @@ extension Wedge: Codable {
         try position.encode(to: encoder)
         try container.encodeIfPresent(color, forKey: .color)
     }
-
     // sourcery:end
 
     public init(from decoder: Decoder) throws {

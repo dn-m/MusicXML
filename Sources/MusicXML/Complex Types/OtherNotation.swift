@@ -47,7 +47,6 @@ extension OtherNotation: Codable {
         try printStyle.encode(to: encoder)
         try container.encodeIfPresent(placement, forKey: .placement)
     }
-
     // sourcery:end
 
     public init(from decoder: Decoder) throws {

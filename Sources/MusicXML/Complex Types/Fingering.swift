@@ -61,7 +61,6 @@ extension Fingering: Codable {
         try container.encodeIfPresent(placement, forKey: .placement)
         try printStyle.encode(to: encoder)
     }
-
     // sourcery:end
 }
 

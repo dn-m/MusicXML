@@ -132,7 +132,6 @@ extension Accidental: Codable {
         try container.encodeIfPresent(size, forKey: .size)
         try printStyle.encode(to: encoder)
     }
-
     // sourcery:end
 }
 

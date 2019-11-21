@@ -51,7 +51,6 @@ extension Notehead: Codable {
         try font.encode(to: encoder)
         try container.encodeIfPresent(color, forKey: .color)
     }
-
     // sourcery:end
 }
 

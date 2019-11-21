@@ -45,7 +45,6 @@ extension BassAlter: Codable {
         try printStyle.encode(to: encoder)
         try container.encodeIfPresent(location, forKey: .location)
     }
-
     // sourcery:end
 }
 

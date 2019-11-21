@@ -81,6 +81,5 @@ extension Bend: Codable {
         try container.encodeIfPresent(prependOrRelease, forKey: .prependOrRelease)
         try container.encodeIfPresent(withBar, forKey: .withBar)
     }
-
     // sourcery:end
 }
