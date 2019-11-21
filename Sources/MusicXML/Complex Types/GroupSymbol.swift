@@ -41,3 +41,15 @@ extension GroupSymbol: Codable {
         color = try container.decodeIfPresent(Color.self, forKey: .color)
     }
 }
+
+import XMLCoder
+extension GroupSymbol: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

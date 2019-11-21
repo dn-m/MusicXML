@@ -40,3 +40,15 @@ extension Handbell: Codable {
         try container.encodeIfPresent(placement, forKey: .placement)
     }
 }
+
+import XMLCoder
+extension Handbell: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

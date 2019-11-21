@@ -59,3 +59,15 @@ extension TextFontColor: Codable {
         dir = try container.decodeIfPresent(TextDirection.self, forKey: .dir)
     }
 }
+
+import XMLCoder
+extension TextFontColor: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

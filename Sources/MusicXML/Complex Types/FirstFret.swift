@@ -27,3 +27,15 @@ extension FirstFret: Codable {
         case value = ""
     }
 }
+
+import XMLCoder
+extension FirstFret: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

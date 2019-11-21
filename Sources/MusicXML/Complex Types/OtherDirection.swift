@@ -41,3 +41,15 @@ extension OtherDirection: Codable {
         printStyleAlign = try PrintStyleAlign(from: decoder)
     }
 }
+
+import XMLCoder
+extension OtherDirection: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

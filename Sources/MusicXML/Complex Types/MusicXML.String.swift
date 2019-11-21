@@ -71,3 +71,15 @@ extension MusicXML.String: ExpressibleByIntegerLiteral {
         self.init(value)
     }
 }
+
+import XMLCoder
+extension MusicXML.String: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

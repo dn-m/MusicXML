@@ -59,3 +59,15 @@ extension DegreeType: Codable {
         self.value = try container.decode(DegreeTypeValue.self, forKey: .value)
     }
 }
+
+import XMLCoder
+extension DegreeType: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

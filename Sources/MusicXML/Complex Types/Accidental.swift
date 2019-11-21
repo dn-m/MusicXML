@@ -132,3 +132,15 @@ extension Accidental: Codable {
         try container.encodeIfPresent(size, forKey: .size)
     }
 }
+
+import XMLCoder
+extension Accidental: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

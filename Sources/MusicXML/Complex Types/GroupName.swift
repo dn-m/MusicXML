@@ -41,3 +41,15 @@ extension GroupName: Codable {
         try container.encodeIfPresent(justify, forKey: .justify)
     }
 }
+
+import XMLCoder
+extension GroupName: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}
