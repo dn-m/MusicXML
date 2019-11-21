@@ -66,18 +66,20 @@ extension Clef: Codable {
         clefOctaveChange = try container.decodeIfPresent(Int.self, forKey: .clefOctaveChange)
     }
 
+    // sourcery:inline:Clef.AutoEncodable
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(number, forKey: .number)
-        try container.encodeIfPresent(additional, forKey: .additional)
+        try container.encodeIfPresent(YesNo(additional), forKey: .additional)
         try container.encodeIfPresent(size, forKey: .size)
-        try container.encodeIfPresent(afterBarline, forKey: .afterBarline)
+        try container.encodeIfPresent(YesNo(afterBarline), forKey: .afterBarline)
         try printStyle.encode(to: encoder)
-        try container.encodeIfPresent(printObject, forKey: .printObject)
+        try container.encodeIfPresent(YesNo(printObject), forKey: .printObject)
         try container.encode(sign, forKey: .sign)
         try container.encodeIfPresent(line, forKey: .line)
         try container.encodeIfPresent(clefOctaveChange, forKey: .clefOctaveChange)
     }
+    // sourcery:end
 }
 
 extension Clef: DynamicNodeDecoding {

@@ -48,17 +48,19 @@ extension Wedge: Codable {
         case color
     }
 
+    // sourcery:inline:Wedge.AutoEncodable
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
         try container.encodeIfPresent(number, forKey: .number)
         try container.encodeIfPresent(spread, forKey: .spread)
-        try container.encodeIfPresent(niente, forKey: .niente)
+        try container.encodeIfPresent(YesNo(niente), forKey: .niente)
         try container.encodeIfPresent(lineType, forKey: .lineType)
         try dashedFormatting.encode(to: encoder)
         try position.encode(to: encoder)
         try container.encodeIfPresent(color, forKey: .color)
     }
+    // sourcery:end
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

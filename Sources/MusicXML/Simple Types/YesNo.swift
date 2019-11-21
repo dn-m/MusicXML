@@ -16,6 +16,13 @@ extension YesNo {
     public init(_ bool: Bool) {
         self = bool ? .yes : .no
     }
+
+    public init?(_ bool: Bool?) {
+        guard let bool = bool else {
+            return nil
+        }
+        self.init(bool)
+    }
 }
 
 extension YesNo: Equatable {}

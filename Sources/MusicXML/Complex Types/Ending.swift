@@ -87,17 +87,19 @@ extension Ending: Codable {
         self.value = try container.decode(String.self, forKey: .value)
     }
 
+    // sourcery:inline:Ending.AutoEncodable
     public func encode(to encoder: Encoder) throws {
-        try printStyle.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)
         try container.encode(number, forKey: .number)
         try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(printObject, forKey: .printObject)
+        try container.encodeIfPresent(YesNo(printObject), forKey: .printObject)
         try container.encodeIfPresent(endLength, forKey: .endLength)
         try container.encodeIfPresent(textX, forKey: .textX)
         try container.encodeIfPresent(textY, forKey: .textY)
+        try printStyle.encode(to: encoder)
     }
+    // sourcery:end
 }
 
 import XMLCoder

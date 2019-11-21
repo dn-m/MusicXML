@@ -81,6 +81,10 @@ extension NameDisplay: Codable {
         let textsContainer = try decoder.singleValueContainer()
         self.texts = try textsContainer.decode([Text].self)
     }
+
+    public func encode(to encoder: Encoder) throws {
+        fatalError("TODO")
+    }
 }
 
 extension NameDisplay.Text.CodingKeys: XMLChoiceCodingKey {}

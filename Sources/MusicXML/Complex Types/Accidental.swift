@@ -121,16 +121,18 @@ extension Accidental: Codable {
         self.value = try container.decode(AccidentalValue.self, forKey: .value)
     }
 
+    // sourcery:inline:Accidental.AutoEncodable
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try printStyle.encode(to: encoder)
         try container.encode(value, forKey: .value)
-        try container.encodeIfPresent(cautionary, forKey: .cautionary)
-        try container.encodeIfPresent(editorial, forKey: .editorial)
-        try container.encodeIfPresent(parentheses, forKey: .parentheses)
-        try container.encodeIfPresent(bracket, forKey: .bracket)
+        try container.encodeIfPresent(YesNo(cautionary), forKey: .cautionary)
+        try container.encodeIfPresent(YesNo(editorial), forKey: .editorial)
+        try container.encodeIfPresent(YesNo(parentheses), forKey: .parentheses)
+        try container.encodeIfPresent(YesNo(bracket), forKey: .bracket)
         try container.encodeIfPresent(size, forKey: .size)
+        try printStyle.encode(to: encoder)
     }
+    // sourcery:end
 }
 
 import XMLCoder

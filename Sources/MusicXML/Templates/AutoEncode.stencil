@@ -8,14 +8,17 @@
 		{% if var.type.based.AttributeGroup %}
     try {{ var.name }}.encode(to: encoder)
 		{% elif var.isOptional %}
+		{% if var.typeName.unwrappedTypeName == "Bool" %}
+    try container.encodeIfPresent(YesNo({{var.name}}), forKey: .{{var.name}})
+		{% else %}
     try container.encodeIfPresent({{var.name}}, forKey: .{{var.name}})
+		{% endif %}
 		{% else %}
     try container.encode({{var.name}}, forKey: .{{var.name}})
 		{% endif %}
 		{% endfor %}
 }
 // sourcery:end
-
 // sourcery:inline:{{ type.name }}.AutoDecodable
 {{ type.accessLevel }} init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)

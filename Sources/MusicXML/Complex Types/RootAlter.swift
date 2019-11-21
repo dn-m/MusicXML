@@ -55,6 +55,16 @@ extension RootAlter: Codable {
         self.printStyle = try PrintStyle(from: decoder)
         self.location = try container.decodeIfPresent(LeftRight.self, forKey: .location)
     }
+
+    // sourcery:inline:RootAlter.AutoEncodable
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(YesNo(printObject), forKey: .printObject)
+        try container.encodeIfPresent(location, forKey: .location)
+        try printStyle.encode(to: encoder)
+    }
+    // sourcery:end
 }
 
 extension RootAlter: ExpressibleByFloatLiteral {
