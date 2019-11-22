@@ -31,8 +31,8 @@ extension Play.Kind: Codable {
     enum CodingKeys: String, CodingKey {
         case ipa
         case mute
-        case semiPitched
-        case otherPlay
+        case semiPitched = "semi-pitched"
+        case otherPlay = "other-play"
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -79,4 +79,9 @@ extension Play.Kind: Codable {
 extension Play.Kind.CodingKeys: XMLChoiceCodingKey {}
 
 extension Play: Equatable {}
-extension Play: Codable {}
+extension Play: Codable {
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.values = try container.decode([Kind].self)
+    }
+}
