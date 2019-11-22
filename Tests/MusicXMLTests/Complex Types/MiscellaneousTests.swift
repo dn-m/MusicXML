@@ -5,12 +5,11 @@
 //  Created by James Bean on 7/31/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class MiscellaneousTests: XCTestCase {
-
     func testDecoding() throws {
         let xml = """
         <miscellaneous>
@@ -25,10 +24,9 @@ class MiscellaneousTests: XCTestCase {
         let expected = Miscellaneous(
             fields: [
                 MiscellaneousField("""
-                    All pitches from G to c\'\'\'\' in\n      ascending steps; First without accidentals, then with a sharp and then\n      with a flat accidental, then with explicit natural accidentals.\n      Double alterations and cautionary accidentals\n      are tested at the end.
-                    """,
-                    name: "description"
-                )
+                All pitches from G to c\'\'\'\' in\n      ascending steps; First without accidentals, then with a sharp and then\n      with a flat accidental, then with explicit natural accidentals.\n      Double alterations and cautionary accidentals\n      are tested at the end.
+                """,
+                                   name: "description"),
             ]
         )
         XCTAssertEqual(decoded, expected)

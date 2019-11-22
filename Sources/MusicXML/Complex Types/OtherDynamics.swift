@@ -13,5 +13,5 @@ public struct OtherDynamics {
     }
 }
 
-extension OtherDynamics: Equatable { }
-extension OtherDynamics: Codable { }
+extension OtherDynamics: Equatable {}
+extension OtherDynamics: Codable {}

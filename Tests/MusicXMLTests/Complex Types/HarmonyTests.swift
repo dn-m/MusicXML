@@ -5,9 +5,9 @@
 //  Created by Ben Lu on 10/8/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class HarmonyTests: XCTestCase {
     func testDecoding_inversion() throws {
@@ -28,7 +28,7 @@ class HarmonyTests: XCTestCase {
                     rootOrFunction: .root(Root(step: .f, alter: 1)),
                     kind: .major,
                     inversion: 2
-                )
+                ),
             ]
         )
         XCTAssertEqual(decoded, expected)
@@ -77,7 +77,7 @@ class HarmonyTests: XCTestCase {
                     inversion: 2,
                     bass: Bass(step: .d, alter: 1.0),
                     degrees: [
-                        Degree(6, alter: -1, type: .add)
+                        Degree(6, alter: -1, type: .add),
                     ]
                 ),
                 HarmonyChord(
@@ -85,9 +85,9 @@ class HarmonyTests: XCTestCase {
                     kind: Kind(.neapolitan),
                     degrees: [
                         Degree(3, alter: 0, type: .subtract),
-                        Degree(5, alter: -1, type: .alter)
+                        Degree(5, alter: -1, type: .alter),
                     ]
-                )
+                ),
             ]
         )
         XCTAssertEqual(decoded, expected)
@@ -131,9 +131,9 @@ class HarmonyTests: XCTestCase {
                     degrees: [
                         Degree(13, alter: 1, type: .add),
                         Degree(3, alter: 0, type: .subtract),
-                        Degree(5, alter: -1, type: .alter)
+                        Degree(5, alter: -1, type: .alter),
                     ]
-                )
+                ),
             ]
         )
         XCTAssertEqual(decoded, expected)

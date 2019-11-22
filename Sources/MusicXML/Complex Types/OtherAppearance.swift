@@ -18,5 +18,22 @@ public struct OtherAppearance {
     }
 }
 
-extension OtherAppearance: Equatable { }
-extension OtherAppearance: Codable { }
+extension OtherAppearance: Equatable {}
+extension OtherAppearance: Codable {
+    enum CodingKeys: String, CodingKey {
+        case type
+        case value = ""
+    }
+}
+
+import XMLCoder
+extension OtherAppearance: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

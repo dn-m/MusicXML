@@ -31,7 +31,7 @@ public struct Slide {
     }
 }
 
-extension Slide: Equatable { }
+extension Slide: Equatable {}
 extension Slide: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""
@@ -50,5 +50,17 @@ extension Slide: Codable {
         self.printStyle = try PrintStyle(from: decoder)
         self.font = try Font(from: decoder)
         self.bendSound = try BendSound(from: decoder)
+    }
+}
+
+import XMLCoder
+extension Slide: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

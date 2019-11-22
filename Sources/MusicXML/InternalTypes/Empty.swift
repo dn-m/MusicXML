@@ -6,8 +6,8 @@
 //
 
 internal struct Empty {
-    init() { }
- }
+    init() {}
+}
 
-extension Empty: Equatable { }
-extension Empty: Codable { }
+extension Empty: Equatable {}
+extension Empty: Codable {}

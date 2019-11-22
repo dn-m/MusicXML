@@ -16,5 +16,5 @@ public enum StartStop: String {
     case stop
 }
 
-extension StartStop: Equatable { }
-extension StartStop: Codable { }
+extension StartStop: Equatable {}
+extension StartStop: Codable {}

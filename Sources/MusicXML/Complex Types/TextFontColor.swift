@@ -9,14 +9,14 @@
 /// for the elision element.
 public struct TextFontColor {
     public let value: String
-    public let font: Font?
+    public let font: Font
     public let color: Color?
-    public let textDecoration: TextDecoration?
+    public let textDecoration: TextDecoration
     public let textRotation: Double?
     public let letterSpacing: NumberOrNormal?
     public let dir: TextDirection?
 
-    public init(_ value: String, font: Font? = nil, color: Color? = nil, textDecoration: TextDecoration? = nil, textRotation: Double? = nil, letterSpacing: NumberOrNormal? = nil, dir: TextDirection? = nil) {
+    public init(_ value: String, font: Font = Font(), color: Color? = nil, textDecoration: TextDecoration = TextDecoration(), textRotation: Double? = nil, letterSpacing: NumberOrNormal? = nil, dir: TextDirection? = nil) {
         self.value = value
         self.font = font
         self.color = color
@@ -27,5 +27,47 @@ public struct TextFontColor {
     }
 }
 
-extension TextFontColor: Equatable { }
-extension TextFontColor: Codable { }
+extension TextFontColor: Equatable {}
+extension TextFontColor: Codable {
+    enum CodingKeys: String, CodingKey {
+        case color
+        case textRotation
+        case letterSpacing
+        case dir
+        case value = ""
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try font.encode(to: encoder)
+        try container.encodeIfPresent(color, forKey: .color)
+        try textDecoration.encode(to: encoder)
+        try container.encodeIfPresent(textRotation, forKey: .textRotation)
+        try container.encodeIfPresent(letterSpacing, forKey: .letterSpacing)
+        try container.encodeIfPresent(dir, forKey: .dir)
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        value = try container.decode(String.self, forKey: .value)
+        font = try Font(from: decoder)
+        color = try container.decodeIfPresent(Color.self, forKey: .color)
+        textDecoration = try TextDecoration(from: decoder)
+        textRotation = try container.decodeIfPresent(Double.self, forKey: .textRotation)
+        letterSpacing = try container.decodeIfPresent(NumberOrNormal.self, forKey: .letterSpacing)
+        dir = try container.decodeIfPresent(TextDirection.self, forKey: .dir)
+    }
+}
+
+import XMLCoder
+extension TextFontColor: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

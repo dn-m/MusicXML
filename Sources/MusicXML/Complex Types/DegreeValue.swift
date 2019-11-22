@@ -29,7 +29,7 @@ public struct DegreeValue {
     }
 }
 
-extension DegreeValue: Equatable { }
+extension DegreeValue: Equatable {}
 extension DegreeValue: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""
@@ -48,7 +48,20 @@ extension DegreeValue: Codable {
 
 extension DegreeValue: ExpressibleByIntegerLiteral {
     // MARK: - ExpressibleByIntegerLiteral
+
     public init(integerLiteral value: Int) {
         self.init(value)
+    }
+}
+
+import XMLCoder
+extension DegreeValue: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

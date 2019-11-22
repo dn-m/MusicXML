@@ -15,9 +15,12 @@ public struct AccordionMiddle {
 
 extension AccordionMiddle: Equatable {}
 extension AccordionMiddle: Codable {
+    enum CodingKeys: String, CodingKey {
+        case value = ""
+    }
+
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encode(value)
+        try value.encode(to: encoder)
     }
 
     public init(from decoder: Decoder) throws {
@@ -33,5 +36,17 @@ extension AccordionMiddle: Codable {
 extension AccordionMiddle: ExpressibleByIntegerLiteral {
     public init(integerLiteral value: Int) {
         self.init(value)
+    }
+}
+
+import XMLCoder
+extension AccordionMiddle: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

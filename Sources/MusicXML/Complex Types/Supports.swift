@@ -12,7 +12,6 @@
 /// particular values. This lets applications communicate, for example, that all system and/or page
 /// breaks are contained in the MusicXML file.
 public struct Supports {
-
     public let attribute: String?
     public let element: String
     public let type: Bool
@@ -26,5 +25,5 @@ public struct Supports {
     }
 }
 
-extension Supports: Equatable { }
-extension Supports: Codable { }
+extension Supports: Equatable {}
+extension Supports: Codable {}

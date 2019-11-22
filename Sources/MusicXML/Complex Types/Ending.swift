@@ -16,7 +16,6 @@
 /// attribute. The print-object element is used to indicate when an ending is present but not
 /// printed, as is often the case for many parts in a full score.
 public struct Ending {
-
     // MARK: - Instance Properties
 
     // MARK: Value
@@ -61,7 +60,7 @@ public struct Ending {
     }
 }
 
-extension Ending: Equatable { }
+extension Ending: Equatable {}
 extension Ending: Codable {
     enum CodingKeys: String, CodingKey {
         case value = ""
@@ -88,17 +87,19 @@ extension Ending: Codable {
         self.value = try container.decode(String.self, forKey: .value)
     }
 
+    // sourcery:inline:Ending.AutoEncodable
     public func encode(to encoder: Encoder) throws {
-        try printStyle.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)
         try container.encode(number, forKey: .number)
         try container.encode(type, forKey: .type)
-        try container.encodeIfPresent(printObject, forKey: .printObject)
+        try container.encodeIfPresent(YesNo(printObject), forKey: .printObject)
         try container.encodeIfPresent(endLength, forKey: .endLength)
         try container.encodeIfPresent(textX, forKey: .textX)
         try container.encodeIfPresent(textY, forKey: .textY)
+        try printStyle.encode(to: encoder)
     }
+    // sourcery:end
 }
 
 import XMLCoder

@@ -12,7 +12,6 @@
 /// plus-minus attribute is used to indicate if plus and minus symbols should be used instead of
 /// sharp and flat symbols to display the degree alteration; it is no by default.
 public struct DegreeAlter {
-
     // MARK: - Instance Properties
 
     // MARK: Value
@@ -36,7 +35,7 @@ public struct DegreeAlter {
     }
 }
 
-extension DegreeAlter: Equatable { }
+extension DegreeAlter: Equatable {}
 extension DegreeAlter: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""
@@ -49,11 +48,33 @@ extension DegreeAlter: Codable {
         self.value = try container.decode(Int.self, forKey: .value)
         self.plusMinus = try container.decodeIfPresent(Bool.self, forKey: .plusMinus)
     }
+
+    // sourcery:inline:DegreeAlter.AutoEncodable
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(YesNo(plusMinus), forKey: .plusMinus)
+        try printStyle.encode(to: encoder)
+    }
+    // sourcery:end
 }
 
 extension DegreeAlter: ExpressibleByIntegerLiteral {
     // MARK: - ExpressibleByIntegerLiteral
+
     public init(integerLiteral value: Int) {
         self.init(value)
+    }
+}
+
+import XMLCoder
+extension DegreeAlter: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

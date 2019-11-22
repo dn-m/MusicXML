@@ -10,7 +10,6 @@
 /// graphic display such as parentheses, brackets, and size are controlled by the level-display
 /// attribute group.
 public struct Accidental {
-
     // MARK: - Instance Properties
 
     // MARK: Value
@@ -18,7 +17,7 @@ public struct Accidental {
     public let value: AccidentalValue
 
     // MARK: - Attributes
-    
+
     public let cautionary: Bool?
     public let editorial: Bool?
     public let parentheses: Bool?
@@ -49,7 +48,6 @@ public struct Accidental {
 }
 
 extension Accidental {
-
     // MARK: - Type Properties
 
     public static let sharp = Accidental(.sharp)
@@ -96,7 +94,7 @@ extension Accidental {
     public static let other = Accidental(.other)
 }
 
-extension Accidental: Equatable { }
+extension Accidental: Equatable {}
 extension Accidental: Codable {
     enum CodingKeys: String, CodingKey {
         case cautionary
@@ -108,6 +106,7 @@ extension Accidental: Codable {
         case printStyle
         case value = ""
     }
+
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
         self.printStyle = try PrintStyle(from: decoder)
@@ -121,14 +120,29 @@ extension Accidental: Codable {
         // Decode value
         self.value = try container.decode(AccidentalValue.self, forKey: .value)
     }
+
+    // sourcery:inline:Accidental.AutoEncodable
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try self.printStyle.encode(to: encoder)
         try container.encode(value, forKey: .value)
-        try container.encodeIfPresent(cautionary, forKey: .cautionary)
-        try container.encodeIfPresent(editorial, forKey: .editorial)
-        try container.encodeIfPresent(parentheses, forKey: .parentheses)
-        try container.encodeIfPresent(bracket, forKey: .bracket)
+        try container.encodeIfPresent(YesNo(cautionary), forKey: .cautionary)
+        try container.encodeIfPresent(YesNo(editorial), forKey: .editorial)
+        try container.encodeIfPresent(YesNo(parentheses), forKey: .parentheses)
+        try container.encodeIfPresent(YesNo(bracket), forKey: .bracket)
         try container.encodeIfPresent(size, forKey: .size)
+        try printStyle.encode(to: encoder)
+    }
+    // sourcery:end
+}
+
+import XMLCoder
+extension Accidental: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

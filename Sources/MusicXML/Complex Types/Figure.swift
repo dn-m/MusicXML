@@ -33,7 +33,7 @@ public struct Figure {
     }
 }
 
-extension Figure: Equatable { }
+extension Figure: Equatable {}
 extension Figure: Codable {
     private enum CodingKeys: String, CodingKey {
         case prefix

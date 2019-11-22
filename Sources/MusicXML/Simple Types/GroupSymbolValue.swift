@@ -15,5 +15,5 @@ public enum GroupSymbolValue: String {
     case square
 }
 
-extension GroupSymbolValue: Equatable { }
-extension GroupSymbolValue: Codable { }
+extension GroupSymbolValue: Equatable {}
+extension GroupSymbolValue: Codable {}

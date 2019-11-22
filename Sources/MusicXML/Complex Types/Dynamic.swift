@@ -37,9 +37,8 @@ public enum Dynamic {
     case other(String)
 }
 
-extension Dynamic: Equatable { }
+extension Dynamic: Equatable {}
 extension Dynamic: Codable {
-
     enum CodingKeys: String, CodingKey {
         case p
         case pp
@@ -69,6 +68,7 @@ extension Dynamic: Codable {
         case sfzp
         case other = "other-dynamics"
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -128,10 +128,11 @@ extension Dynamic: Codable {
             try container.encode(value, forKey: .other)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
@@ -227,4 +228,4 @@ extension Dynamic: Codable {
     }
 }
 
-extension Dynamic.CodingKeys: XMLChoiceCodingKey { }
+extension Dynamic.CodingKeys: XMLChoiceCodingKey {}

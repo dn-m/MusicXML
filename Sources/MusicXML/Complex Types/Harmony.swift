@@ -14,7 +14,6 @@
 /// printed due to the harmony element. The print-style attribute group sets the default for the
 /// harmony, but individual elements can override this with their own print-style values.
 public struct Harmony {
-
     // MARK: - Instance Properties
 
     // MARK: Attributes
@@ -29,7 +28,7 @@ public struct Harmony {
 
     public let printStyle: PrintStyle
 
-    // MARK:  Elements
+    // MARK: Elements
 
     public let chords: [HarmonyChord] // NonEmpty
     public let frame: Frame?
@@ -62,7 +61,7 @@ public struct Harmony {
     }
 }
 
-extension Harmony: Equatable { }
+extension Harmony: Equatable {}
 extension Harmony: Codable {
     private enum CodingKeys: String, CodingKey {
         case type
@@ -85,20 +84,15 @@ extension Harmony: Codable {
 
         // Imploded list of harmony-chords are difficult to decode.
         // The final way is to break down into individual elements and reassemble them back to harmony-chords
-        var chordComponents = [HarmonyChordComponent]()
-        var valuesContainer = try decoder.unkeyedContainer()
-        while !valuesContainer.isAtEnd {
-            do {
-                chordComponents.append(try valuesContainer.decode(HarmonyChordComponent.self))
-            } catch DecodingError.typeMismatch(let type, _) where type == HarmonyChordComponent.self {
-                break
-            }
-        }
-        self.chords = try HarmonyChord.assemble(from: chordComponents)
+        self.chords = try HarmonyChord.assemble(from: decoder.collectArray())
 
         self.frame = try container.decodeIfPresent(Frame.self, forKey: .frame)
         self.offset = try container.decodeIfPresent(Offset.self, forKey: .offset)
         self.editorial = try Editorial(from: decoder)
         self.staff = try container.decodeIfPresent(Int.self, forKey: .staff)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        fatalError("TODO")
     }
 }

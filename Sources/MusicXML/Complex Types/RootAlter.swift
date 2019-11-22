@@ -10,7 +10,6 @@
 /// root-alter information. In that case, the print-object attribute of the root-alter element can
 /// be set to no.
 public struct RootAlter {
-
     // MARK: - Instance Propertes
 
     // MARK: Value
@@ -41,7 +40,7 @@ public struct RootAlter {
     }
 }
 
-extension RootAlter: Equatable { }
+extension RootAlter: Equatable {}
 extension RootAlter: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""
@@ -56,6 +55,16 @@ extension RootAlter: Codable {
         self.printStyle = try PrintStyle(from: decoder)
         self.location = try container.decodeIfPresent(LeftRight.self, forKey: .location)
     }
+
+    // sourcery:inline:RootAlter.AutoEncodable
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(YesNo(printObject), forKey: .printObject)
+        try container.encodeIfPresent(location, forKey: .location)
+        try printStyle.encode(to: encoder)
+    }
+    // sourcery:end
 }
 
 extension RootAlter: ExpressibleByFloatLiteral {
@@ -67,5 +76,17 @@ extension RootAlter: ExpressibleByFloatLiteral {
 extension RootAlter: ExpressibleByIntegerLiteral {
     public init(integerLiteral value: Int) {
         self.init(Double(value))
+    }
+}
+
+import XMLCoder
+extension RootAlter: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

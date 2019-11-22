@@ -14,10 +14,10 @@ public struct OtherNotation {
     public let type: StartStopSingle
     public let number: Int?
     public let printObject: Bool?
-    public let printStyle: PrintStyle?
+    public let printStyle: PrintStyle
     public let placement: AboveBelow?
 
-    public init(_ value: String, type: StartStopSingle, number: Int? = nil, printObject: Bool? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+    public init(_ value: String, type: StartStopSingle, number: Int? = nil, printObject: Bool? = nil, printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil) {
         self.value = value
         self.type = type
         self.number = number
@@ -27,5 +27,47 @@ public struct OtherNotation {
     }
 }
 
-extension OtherNotation: Equatable { }
-extension OtherNotation: Codable { }
+extension OtherNotation: Equatable {}
+extension OtherNotation: Codable {
+    enum CodingKeys: String, CodingKey {
+        case type
+        case number
+        case printObject
+        case placement
+        case value = ""
+    }
+
+    // sourcery:inline:OtherNotation.AutoEncodable
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(number, forKey: .number)
+        try container.encodeIfPresent(YesNo(printObject), forKey: .printObject)
+        try printStyle.encode(to: encoder)
+        try container.encodeIfPresent(placement, forKey: .placement)
+    }
+    // sourcery:end
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        value = try container.decode(String.self, forKey: .value)
+        type = try container.decode(StartStopSingle.self, forKey: .type)
+        number = try container.decodeIfPresent(Int.self, forKey: .number)
+        printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
+        printStyle = try PrintStyle(from: decoder)
+        placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
+    }
+}
+
+import XMLCoder
+extension OtherNotation: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

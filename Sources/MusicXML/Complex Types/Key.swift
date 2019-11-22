@@ -11,7 +11,6 @@ import XMLCoder
 /// supported. If absent, the key signature applies to all staves in the part. Key signatures appear
 /// at the start of each system unless the print-object attribute has been set to "no".
 public struct Key {
-
     // MARK: - Attributes
 
     /// The optional number attribute refers to staff numbers.
@@ -34,7 +33,6 @@ public struct Key {
 }
 
 extension Key {
-
     // MARK: - Initializers
 
     /// Creates a `Traditional` type `Key`.
@@ -60,11 +58,10 @@ extension Key {
 }
 
 extension Key {
-
     public struct Traditional {
-        public var cancel: Cancel?
-        public var fifths: Int
-        public var mode: Mode?
+        public let cancel: Cancel?
+        public let fifths: Int
+        public let mode: Mode?
 
         public init(cancel: Cancel? = nil, fifths: Int, mode: Mode? = nil) {
             self.cancel = cancel
@@ -77,9 +74,9 @@ extension Key {
     /// of altered tones. The key-step element indicates the pitch step to be altered, represented
     /// using the same names as in the step element.
     public struct AlteredTone {
-        public var step: Step
-        public var alter: Double
-        public var accidental: AccidentalValue?
+        public let step: Step
+        public let alter: Double
+        public let accidental: AccidentalValue?
 
         public init(step: Step, alter: Double, accidental: AccidentalValue? = nil) {
             self.step = step
@@ -94,16 +91,30 @@ extension Key {
     }
 }
 
-extension Key.AlteredTone: Equatable { }
+extension Key.AlteredTone: Equatable {}
 
-extension Key.Traditional: Equatable { }
-extension Key.Traditional: Codable { }
+extension Key.Traditional: Equatable {}
+extension Key.Traditional: Codable {}
 
-extension Key.Kind: Equatable { }
+extension Key.Kind: Equatable {}
+extension Key.Kind: Encodable {
+    public func encode(to encoder: Encoder) throws {
+        switch self {
+        case let .traditional(key):
+            try key.encode(to: encoder)
+        case let .nonTraditional(alteredTones):
+            var container = encoder.container(keyedBy: Key.CodingKeys.self)
+            try alteredTones.forEach {
+                try container.encode($0.step, forKey: .keyStep)
+                try container.encode($0.alter, forKey: .keyAlter)
+                try container.encodeIfPresent($0.accidental, forKey: .keyAccidental)
+            }
+        }
+    }
+}
 
-extension Key: Equatable { }
+extension Key: Equatable {}
 extension Key: Codable {
-
     enum CodingKeys: String, CodingKey {
         case number
         case position
@@ -120,7 +131,6 @@ extension Key: Codable {
     }
 
     public init(from decoder: Decoder) throws {
-
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         // Decode attributes
@@ -142,18 +152,10 @@ extension Key: Codable {
             )
         } catch {
             // Attempt to decode non-traditional `Key`.
-            var unkeyed = try decoder.unkeyedContainer()
             var alteredTones = [AlteredTone]()
-            var components = [KeyComponent]()
-            while !unkeyed.isAtEnd {
-                do {
-                    components.append(try unkeyed.decode(KeyComponent.self))
-                } catch DecodingError.typeMismatch (let type, _) where type == KeyComponent.self {
-                    break
-                }
-            }
-            var previousStep: Step? = nil
-            var previousAlter: Double? = nil
+            let components: [KeyComponent] = try decoder.collectArray()
+            var previousStep: Step?
+            var previousAlter: Double?
             for component in components {
                 switch component {
                 case let .keyStep(step):
@@ -181,10 +183,10 @@ extension Key: Codable {
                     } else {
                         // The preceding value was not a key-step
                         throw DecodingError.typeMismatch(
-                        Key.self,
-                        DecodingError.Context(
-                            codingPath: decoder.codingPath,
-                            debugDescription: "key-alter value not preceded by key-step value in non-traditional key"
+                            Key.self,
+                            DecodingError.Context(
+                                codingPath: decoder.codingPath,
+                                debugDescription: "key-alter value not preceded by key-step value in non-traditional key"
                             )
                         )
                     }
@@ -197,10 +199,10 @@ extension Key: Codable {
                     } else {
                         // This accidental was not preceded by a key-step and a key-alter
                         throw DecodingError.typeMismatch(
-                        Key.self,
-                        DecodingError.Context(
-                            codingPath: decoder.codingPath,
-                            debugDescription: "key-accidental not preceded by key-step and key-alter in non-traditional key"
+                            Key.self,
+                            DecodingError.Context(
+                                codingPath: decoder.codingPath,
+                                debugDescription: "key-accidental not preceded by key-step and key-alter in non-traditional key"
                             )
                         )
                     }
@@ -214,10 +216,10 @@ extension Key: Codable {
             guard previousStep == nil, previousAlter == nil else {
                 // Should not have leftover previous step or previous alter
                 throw DecodingError.typeMismatch(
-                Key.self,
-                DecodingError.Context(
-                    codingPath: decoder.codingPath,
-                    debugDescription: "Whole number of altered tones not represented in non-traditional key"
+                    Key.self,
+                    DecodingError.Context(
+                        codingPath: decoder.codingPath,
+                        debugDescription: "Whole number of altered tones not represented in non-traditional key"
                     )
                 )
             }
@@ -226,22 +228,26 @@ extension Key: Codable {
     }
 
     public func encode(to encoder: Encoder) throws {
-        fatalError("TODO: Implement Key.encode(to: Encoder)")
+        try printStyle.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(number, forKey: .number)
+        try container.encodeIfPresent(YesNo(printObject), forKey: .printObject)
+        try kind.encode(to: encoder)
+        try container.encode(keyOctaves, forKey: .keyOctaves)
     }
 }
 
 enum KeyComponent: Decodable {
-    
     enum CodingKeys: String, CodingKey {
         case keyStep = "key-step"
         case keyAlter = "key-alter"
         case keyAccidental = "key-accidental"
     }
-    
+
     internal init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
@@ -261,7 +267,7 @@ enum KeyComponent: Decodable {
             )
         }
     }
-    
+
     case keyStep(Step)
     case keyAlter(Double)
     case keyAccidental(AccidentalValue)

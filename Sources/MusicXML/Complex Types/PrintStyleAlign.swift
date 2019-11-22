@@ -19,7 +19,7 @@ public struct PrintStyleAlign {
     }
 }
 
-extension PrintStyleAlign: Equatable { }
+extension PrintStyleAlign: Equatable {}
 extension PrintStyleAlign: Codable {
     private enum CodingKeys: String, CodingKey {
         case hAlign = "halign"
@@ -28,7 +28,7 @@ extension PrintStyleAlign: Codable {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try self.printStyle.encode(to: encoder)
+        try printStyle.encode(to: encoder)
         try container.encodeIfPresent(hAlign, forKey: .hAlign)
         try container.encodeIfPresent(vAlign, forKey: .vAlign)
     }

@@ -15,7 +15,6 @@ import XMLCoder
 /// without these elements in simple cases, such as where part names match General MIDI instrument
 /// names.
 public struct ScoreInstrument {
-
     // MARK: - Instance Properties
 
     // MARK: Attributes
@@ -56,13 +55,14 @@ extension ScoreInstrument {
     }
 }
 
-extension ScoreInstrument.SoloEnsemble: Equatable { }
+extension ScoreInstrument.SoloEnsemble: Equatable {}
 
 extension ScoreInstrument.SoloEnsemble: Codable {
     enum CodingKeys: String, CodingKey {
         case solo
         case ensemble
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -72,6 +72,7 @@ extension ScoreInstrument.SoloEnsemble: Codable {
             try container.encode(value, forKey: .ensemble)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         if container.contains(.ensemble) {
@@ -90,7 +91,7 @@ extension ScoreInstrument.SoloEnsemble: Codable {
     }
 }
 
-extension ScoreInstrument: Equatable { }
+extension ScoreInstrument: Equatable {}
 extension ScoreInstrument: Codable {
     enum CodingKeys: String, CodingKey {
         case id

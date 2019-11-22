@@ -21,11 +21,11 @@ public struct Wedge {
     /// type is crescendo, or the type is stop for a wedge that began with a diminuendo type.
     public let niente: Bool?
     public let lineType: LineType?
-    public let dashedFormatting: DashedFormatting?
-    public let position: Position?
+    public let dashedFormatting: DashedFormatting
+    public let position: Position
     public let color: Color?
 
-    public init(type: WedgeType, number: Int? = nil, spread: Tenths? = nil, niente: Bool? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting? = nil, position: Position? = nil, color: Color? = nil) {
+    public init(type: WedgeType, number: Int? = nil, spread: Tenths? = nil, niente: Bool? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting = DashedFormatting(), position: Position = Position(), color: Color? = nil) {
         self.type = type
         self.number = number
         self.spread = spread
@@ -37,5 +37,40 @@ public struct Wedge {
     }
 }
 
-extension Wedge: Equatable { }
-extension Wedge: Codable { }
+extension Wedge: Equatable {}
+extension Wedge: Codable {
+    enum CodingKeys: String, CodingKey {
+        case type
+        case number
+        case spread
+        case niente
+        case lineType
+        case color
+    }
+
+    // sourcery:inline:Wedge.AutoEncodable
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(number, forKey: .number)
+        try container.encodeIfPresent(spread, forKey: .spread)
+        try container.encodeIfPresent(YesNo(niente), forKey: .niente)
+        try container.encodeIfPresent(lineType, forKey: .lineType)
+        try dashedFormatting.encode(to: encoder)
+        try position.encode(to: encoder)
+        try container.encodeIfPresent(color, forKey: .color)
+    }
+    // sourcery:end
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        type = try container.decode(WedgeType.self, forKey: .type)
+        number = try container.decodeIfPresent(Int.self, forKey: .number)
+        spread = try container.decodeIfPresent(Tenths.self, forKey: .spread)
+        niente = try container.decodeIfPresent(Bool.self, forKey: .niente)
+        lineType = try container.decodeIfPresent(LineType.self, forKey: .lineType)
+        dashedFormatting = try DashedFormatting(from: decoder)
+        position = try Position(from: decoder)
+        color = try container.decodeIfPresent(Color.self, forKey: .color)
+    }
+}

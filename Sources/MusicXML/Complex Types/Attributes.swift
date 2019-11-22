@@ -51,7 +51,8 @@ public struct Attributes {
         clefs: [Clef]? = nil,
         staffDetails: [StaffDetails]? = nil,
         transpose: [Transpose]? = nil,
-        measureStyles: [MeasureStyle]? = nil) {
+        measureStyles: [MeasureStyle]? = nil
+    ) {
         self.footnote = footnote
         self.level = level
         self.divisions = divisions
@@ -67,7 +68,7 @@ public struct Attributes {
     }
 }
 
-extension Attributes: Equatable { }
+extension Attributes: Equatable {}
 extension Attributes: Codable {
     enum CodingKeys: String, CodingKey {
         case footnote

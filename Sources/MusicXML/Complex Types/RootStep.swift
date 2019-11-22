@@ -24,7 +24,6 @@ public struct RootStep {
 }
 
 extension RootStep {
-
     // MARK: - Type Properties
 
     public static let a = RootStep(.a)
@@ -36,7 +35,7 @@ extension RootStep {
     public static let g = RootStep(.g)
 }
 
-extension RootStep: Equatable { }
+extension RootStep: Equatable {}
 extension RootStep: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""
@@ -48,5 +47,17 @@ extension RootStep: Codable {
         self.value = try container.decode(Step.self, forKey: .value)
         self.text = try container.decodeIfPresent(String.self, forKey: .text)
         self.printStyle = try PrintStyle(from: decoder)
+    }
+}
+
+import XMLCoder
+extension RootStep: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

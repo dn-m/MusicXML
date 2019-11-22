@@ -5,12 +5,11 @@
 //  Created by James Bean on 8/8/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class MeasureStyleTests: XCTestCase {
-
     func testMultipleRest() throws {
         let xml = """
         <measure-style>
@@ -20,5 +19,9 @@ class MeasureStyleTests: XCTestCase {
         let decoded = try XMLDecoder().decode(MeasureStyle.self, from: xml.data(using: .utf8)!)
         let expected = MeasureStyle(kind: .multipleRest(MultipleRest(2)))
         XCTAssertEqual(decoded, expected)
+    }
+    
+    func testRoundTripMultipleRest() throws {
+        try testRoundTrip(MeasureStyle(kind: .multipleRest(MultipleRest(2))))
     }
 }

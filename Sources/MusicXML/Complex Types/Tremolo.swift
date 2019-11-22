@@ -16,7 +16,6 @@
 /// 2/1 ratio should be multiplied by the existing tuplet ratio.  Using repeater beams for
 /// indicating tremolos is deprecated as of MusicXML 3.0.
 public struct Tremolo {
-
     // MARK: - Instance Properties
 
     // MARK: Value
@@ -47,7 +46,7 @@ public struct Tremolo {
     }
 }
 
-extension Tremolo: Equatable { }
+extension Tremolo: Equatable {}
 extension Tremolo: Codable {
     enum CodingKeys: String, CodingKey {
         case marks = ""
@@ -55,6 +54,7 @@ extension Tremolo: Codable {
         case printStyle
         case placement
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         // Decode value

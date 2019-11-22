@@ -5,11 +5,10 @@
 //  Created by James Bean on 8/9/19.
 //
 
-import XCTest
 import MusicXML
+import XCTest
 
 class HelloWorld: XCTestCase {
-
     func testHelloWorldDecoding() throws {
         let xml = """
         <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -58,7 +57,7 @@ class HelloWorld: XCTestCase {
         let attributes = Attributes(
             divisions: 1,
             keys: [Key(fifths: 0)],
-            times: [Time(4,4)],
+            times: [Time(4, 4)],
             clefs: [Clef(sign: .g, line: 2)]
         )
         // Create the measure
@@ -66,7 +65,7 @@ class HelloWorld: XCTestCase {
             number: "1",
             musicData: [
                 .attributes(attributes),
-                .note(note)
+                .note(note),
             ]
         )
         // Create the part
@@ -74,7 +73,7 @@ class HelloWorld: XCTestCase {
         // Create the score header
         let header = Header(
             partList: [
-                .part(ScorePart(id: "P1", name: "Music"))
+                .part(ScorePart(id: "P1", name: "Music")),
             ]
         )
         // Create the traversal

@@ -5,12 +5,11 @@
 //  Created by James Bean on 10/12/19.
 //
 
-import XCTest
 import MusicXML
+import XCTest
 import XMLCoder
 
 class ArticulationsTextsTests: XCTestCase {
-
     func testColorHex() throws {
         let xml = """
         <direction placement="below">
@@ -28,13 +27,12 @@ class ArticulationsTextsTests: XCTestCase {
                     [
                         FormattedText("Normal, Small, Colored, Below",
                                       printStyle: PrintStyle(
-                                        position: Position(defaultX: 1, defaultY: -15),
-                                        font: Font(size: FontSize(.small)),
-                                        color: Color(hexString: "#FF8000")
-                            )
-                        )
+                                          position: Position(defaultX: 1, defaultY: -15),
+                                          font: Font(size: FontSize(.small)),
+                                          color: Color(hexString: "#FF8000")
+                                      )),
                     ]
-                )
+                ),
             ],
             placement: .below
         )

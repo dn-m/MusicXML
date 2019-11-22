@@ -14,5 +14,5 @@ public enum HoleClosedLocation: String {
     case top
 }
 
-extension HoleClosedLocation: Equatable { }
-extension HoleClosedLocation: Codable { }
+extension HoleClosedLocation: Equatable {}
+extension HoleClosedLocation: Codable {}

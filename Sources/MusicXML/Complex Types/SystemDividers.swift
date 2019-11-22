@@ -22,5 +22,10 @@ public struct SystemDividers {
     }
 }
 
-extension SystemDividers: Equatable { }
-extension SystemDividers: Codable { }
+extension SystemDividers: Equatable {}
+extension SystemDividers: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case left = "left-divider"
+        case right = "right-divider"
+    }
+}

@@ -15,5 +15,5 @@ public enum Justify: String {
     case right
 }
 
-extension Justify: Equatable { }
-extension Justify: Codable { }
+extension Justify: Equatable {}
+extension Justify: Codable {}

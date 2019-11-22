@@ -24,7 +24,6 @@ public struct BassStep {
 }
 
 extension BassStep {
-
     // MARK: - Type Properties
 
     public static let a = BassStep(.a)
@@ -36,7 +35,7 @@ extension BassStep {
     public static let g = BassStep(.g)
 }
 
-extension BassStep: Equatable { }
+extension BassStep: Equatable {}
 extension BassStep: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""
@@ -48,5 +47,17 @@ extension BassStep: Codable {
         self.value = try container.decode(Step.self, forKey: .value)
         self.text = try container.decodeIfPresent(String.self, forKey: .text)
         self.printStyle = try PrintStyle(from: decoder)
+    }
+}
+
+import XMLCoder
+extension BassStep: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

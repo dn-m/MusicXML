@@ -5,12 +5,11 @@
 //  Created by James Bean on 10/12/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class PercussionTests: XCTestCase {
-
     func testOrnamentsEmpty() throws {
         let xml = """
         <notations>
@@ -21,7 +20,7 @@ class PercussionTests: XCTestCase {
         let decoded = try XMLDecoder().decode(Notations.self, from: xml.data(using: .utf8)!)
         let expected = Notations([
             .tied(Tied(type: .stop)),
-            .ornaments(Ornaments())
+            .ornaments(Ornaments()),
         ])
         XCTAssertEqual(decoded, expected)
     }

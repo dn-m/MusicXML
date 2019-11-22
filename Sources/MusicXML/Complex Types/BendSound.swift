@@ -31,7 +31,7 @@ public struct BendSound {
     }
 }
 
-extension BendSound: Equatable { }
+extension BendSound: Equatable {}
 extension BendSound: Codable {
     private enum CodingKeys: String, CodingKey {
         case accelerate

@@ -5,9 +5,9 @@
 //  Created by Ben Lu on 10/6/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class MetronomeTests: XCTestCase {
     func testDecodingMetronome_perMinute() throws {
@@ -23,10 +23,10 @@ class MetronomeTests: XCTestCase {
             kind: .regular(
                 Metronome.Regular(
                     beatUnit: .quarter,
-                    relation: .perMinute(PerMinute("90"))
+                    relation: .perMinute(PerMinute(value: "90"))
                 )
             ),
-            position: Position(defaultX: -25.96, relativeY: 20.00),
+            printStyleAlign: PrintStyleAlign(printStyle: PrintStyle(position: Position(defaultX: -25.96, relativeY: 20.00))),
             parentheses: false
         )
         XCTAssertEqual(decoded, expected)
@@ -47,7 +47,7 @@ class MetronomeTests: XCTestCase {
                 Metronome.Regular(
                     beatUnit: .quarter,
                     beatUnitDotCount: 1,
-                    relation: .perMinute(PerMinute("77"))
+                    relation: .perMinute(PerMinute(value: "77"))
                 )
             ),
             parentheses: true
@@ -100,4 +100,3 @@ class MetronomeTests: XCTestCase {
         XCTAssertEqual(decoded, expected)
     }
 }
-

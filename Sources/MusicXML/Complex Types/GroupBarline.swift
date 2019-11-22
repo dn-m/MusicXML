@@ -16,10 +16,22 @@ public struct GroupBarline {
     }
 }
 
-extension GroupBarline: Equatable { }
+extension GroupBarline: Equatable {}
 extension GroupBarline: Codable {
     enum CodingKeys: String, CodingKey {
         case value = ""
         case color
+    }
+}
+
+import XMLCoder
+extension GroupBarline: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

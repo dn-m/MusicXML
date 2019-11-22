@@ -14,10 +14,10 @@ public struct Glissando {
     public let type: StartStop
     public let number: Int?
     public let lineType: LineType?
-    public let dashedFormatting: DashedFormatting?
-    public let printStyle: PrintStyle?
+    public let dashedFormatting: DashedFormatting
+    public let printStyle: PrintStyle
 
-    public init(_ value: String, type: StartStop, number: Int? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting? = nil, printStyle: PrintStyle? = nil) {
+    public init(_ value: String, type: StartStop, number: Int? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting = DashedFormatting(), printStyle: PrintStyle = PrintStyle()) {
         self.value = value
         self.type = type
         self.number = number
@@ -27,5 +27,45 @@ public struct Glissando {
     }
 }
 
-extension Glissando: Equatable { }
-extension Glissando: Codable { }
+extension Glissando: Equatable {}
+extension Glissando: Codable {
+    enum CodingKeys: String, CodingKey {
+        case type
+        case number
+        case lineType
+        case dashedFormatting
+        case value = ""
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        value = try container.decode(String.self, forKey: .value)
+        type = try container.decode(StartStop.self, forKey: .type)
+        number = try container.decodeIfPresent(Int.self, forKey: .number)
+        lineType = try container.decodeIfPresent(LineType.self, forKey: .lineType)
+        dashedFormatting = try DashedFormatting(from: decoder)
+        printStyle = try PrintStyle(from: decoder)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(number, forKey: .number)
+        try container.encodeIfPresent(lineType, forKey: .lineType)
+        try dashedFormatting.encode(to: encoder)
+        try printStyle.encode(to: encoder)
+    }
+}
+
+import XMLCoder
+extension Glissando: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

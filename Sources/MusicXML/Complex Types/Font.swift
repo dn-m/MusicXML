@@ -16,7 +16,6 @@
 /// numeric point size. The font-weight can be normal or bold. The default is application-dependent,
 /// but is a text font vs. a music font.
 public struct Font {
-
     // MARK: - Instance Properties
 
     // MARK: - Attributes
@@ -41,7 +40,7 @@ public struct Font {
     }
 }
 
-extension Font: Equatable { }
+extension Font: Equatable {}
 extension Font: Codable {
     private enum CodingKeys: String, CodingKey {
         case family = "font-family"
@@ -49,6 +48,7 @@ extension Font: Codable {
         case size = "font-size"
         case weight = "font-weight"
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(family, forKey: .family)

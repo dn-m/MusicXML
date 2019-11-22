@@ -9,7 +9,6 @@
 /// attributes for the part-name element are deprecated in Version 2.0 in favor of the new
 /// part-name-display and part-abbreviation-display elements.
 public struct PartName {
-
     // MARK: - Instance Properties
 
     // MARK: Value
@@ -40,7 +39,7 @@ public struct PartName {
     }
 }
 
-extension PartName: Equatable { }
+extension PartName: Equatable {}
 extension PartName: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""
@@ -55,13 +54,34 @@ extension PartName: Codable {
         self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
         self.justify = try container.decodeIfPresent(Justify.self, forKey: .justify)
     }
+
+    // sourcery:inline:PartName.AutoEncodable
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(YesNo(printObject), forKey: .printObject)
+        try container.encodeIfPresent(justify, forKey: .justify)
+        try printStyle.encode(to: encoder)
+    }
+    // sourcery:end
 }
 
 extension PartName: ExpressibleByStringLiteral {
-
     // MARK: - ExpressibleByStringLiteral
 
     public init(stringLiteral value: String) {
         self.init(value)
+    }
+}
+
+import XMLCoder
+extension PartName: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

@@ -28,13 +28,14 @@ extension NameDisplay {
     }
 }
 
-extension NameDisplay.Text: Equatable { }
+extension NameDisplay.Text: Equatable {}
 
 extension NameDisplay.Text: Codable {
     enum CodingKeys: String, CodingKey {
         case displayText = "display-text"
         case accidentalText = "accidental-text"
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -44,10 +45,11 @@ extension NameDisplay.Text: Codable {
             try container.encode(value, forKey: .displayText)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
@@ -67,7 +69,7 @@ extension NameDisplay.Text: Codable {
     }
 }
 
-extension NameDisplay: Equatable { }
+extension NameDisplay: Equatable {}
 extension NameDisplay: Codable {
     enum CodingKeys: String, CodingKey {
         case printObject = "print-object"
@@ -79,6 +81,10 @@ extension NameDisplay: Codable {
         let textsContainer = try decoder.singleValueContainer()
         self.texts = try textsContainer.decode([Text].self)
     }
+
+    public func encode(to encoder: Encoder) throws {
+        fatalError("TODO")
+    }
 }
 
-extension NameDisplay.Text.CodingKeys: XMLChoiceCodingKey { }
+extension NameDisplay.Text.CodingKeys: XMLChoiceCodingKey {}

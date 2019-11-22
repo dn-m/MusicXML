@@ -5,12 +5,11 @@
 //  Created by James Bean on 7/31/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class NoteTests: XCTestCase {
-
     func testNoteDecoding() throws {
         let xml = """
         <note>
@@ -32,6 +31,15 @@ class NoteTests: XCTestCase {
             type: .quarter
         )
         XCTAssertEqual(decoded, expected)
+    }
+
+    func testNoteRoundTrip() throws {
+        try testRoundTrip(Note(
+            pitch: Pitch(step: .c, alter: -1.5, octave: 4),
+            duration: 1,
+            voice: "1",
+            type: .quarter
+        ))
     }
 
     func testNoteAccidentalDecoding() throws {
@@ -57,6 +65,16 @@ class NoteTests: XCTestCase {
             accidental: .sharp
         )
         XCTAssertEqual(decoded, expected)
+    }
+
+    func testNoteAccidentalRoundTrip() throws {
+        try testRoundTrip(Note(
+            pitch: Pitch(step: .g, alter: 1, octave: 2),
+            duration: 1,
+            voice: "1",
+            type: .quarter,
+            accidental: .sharp
+        ))
     }
 
     func testTuplet() throws {
@@ -90,6 +108,17 @@ class NoteTests: XCTestCase {
         XCTAssertEqual(decoded, expected)
     }
 
+    func testTupletRoundTrip() throws {
+        try testRoundTrip(Note(
+            pitch: Pitch(step: .c, octave: 4),
+            duration: 56,
+            voice: "1",
+            type: .quarter,
+            timeModification: TimeModification(actualNotes: 3, normalNotes: 2),
+            notations: Notations([.tuplet(Tuplet(type: .start, number: 1))])
+        ))
+    }
+
     func testChord() throws {
         let xml = """
         <note>
@@ -112,6 +141,16 @@ class NoteTests: XCTestCase {
         try assertDecoded(xml, equals: expected)
     }
 
+    func testChordRoundTrip() throws {
+        try testRoundTrip(Note(
+            pitch: Pitch(step: .e, octave: 5),
+            duration: 1,
+            isChord: true,
+            voice: "1",
+            type: .quarter
+        ))
+    }
+
     func testNoteDottedRestDecoding() throws {
         let xml = """
         <note>
@@ -130,6 +169,15 @@ class NoteTests: XCTestCase {
             dots: [PlacementPrintStyle()]
         )
         XCTAssertEqual(decoded, expected)
+    }
+
+    func testNoteDottedRestRoundTrip() throws {
+        try testRoundTrip(Note(
+            kind: .normal(Note.Normal(.rest(Rest()), duration: 48)),
+            voice: "1",
+            type: .quarter,
+            dots: [PlacementPrintStyle()]
+        ))
     }
 
     func testBeam() throws {
@@ -158,10 +206,25 @@ class NoteTests: XCTestCase {
             stem: .down,
             beams: [
                 Beam(.begin, number: .one),
-                Beam(.begin, number: .two)
+                Beam(.begin, number: .two),
             ]
         )
         XCTAssertEqual(decoded, expected)
+    }
+
+    func testBeamRoundtrip() throws {
+        try testRoundTrip(Note(
+            pitch: Pitch(step: .f, alter: 1, octave: 5),
+            duration: 1,
+            printStyle: PrintStyle(position: Position(defaultX: 368.91, defaultY: 0)),
+            voice: "1",
+            type: .sixteenth,
+            stem: .down,
+            beams: [
+                Beam(.begin, number: .one),
+                Beam(.begin, number: .two),
+            ]
+        ))
     }
 
     func testTies() throws {
@@ -194,10 +257,26 @@ class NoteTests: XCTestCase {
             stem: .up,
             notations: [
                 .tied(Tied(type: .stop)),
-                .tied(Tied(type: .start))
+                .tied(Tied(type: .start)),
             ]
         )
         XCTAssertEqual(decoded, expected)
+    }
+
+    func testTiesRoundTrip() throws {
+        try testRoundTrip(Note(
+            pitch: Pitch(step: .a, octave: 4),
+            duration: 4,
+            ties: Ties(start: true, stop: true),
+            printStyle: PrintStyle(position: Position(defaultX: 483.50, defaultY: -25.00)),
+            voice: "1",
+            type: .quarter,
+            stem: .up,
+            notations: [
+                .tied(Tied(type: .stop)),
+                .tied(Tied(type: .start)),
+            ]
+        ))
     }
 
     func testUnpitched() throws {
@@ -226,10 +305,26 @@ class NoteTests: XCTestCase {
             type: .eighth,
             stem: Stem(.down, position: Position(defaultY: -70)),
             beams: [
-                Beam(.begin, number: .one)
+                Beam(.begin, number: .one),
             ]
         )
         XCTAssertEqual(decoded, expected)
+    }
+
+    func testUnpitchedRoundTrip() throws {
+        try testRoundTrip(Note(
+            kind: .normal(
+                Note.Normal(.unpitched(Unpitched(displayStep: .f, displayOctave: 4)), duration: 1)
+            ),
+            printStyle: PrintStyle(position: Position(defaultX: 68)),
+            instrument: Instrument(id: "P1-X2"),
+            voice: "1",
+            type: .eighth,
+            stem: Stem(.down, position: Position(defaultY: -70)),
+            beams: [
+                Beam(.begin, number: .one),
+            ]
+        ))
     }
 
     func testNoteheads() throws {
@@ -256,5 +351,16 @@ class NoteTests: XCTestCase {
             notehead: Notehead(.normal, parentheses: true)
         )
         XCTAssertEqual(decoded, expected)
+    }
+
+    func testNoteheadsRoundTrip() throws {
+        try testRoundTrip(Note(
+            pitch: Pitch(step: .c, octave: 5),
+            duration: 1,
+            isChord: true,
+            voice: "1",
+            type: .quarter,
+            notehead: Notehead(.normal, parentheses: true)
+        ))
     }
 }

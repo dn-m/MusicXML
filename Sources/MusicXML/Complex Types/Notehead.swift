@@ -24,7 +24,7 @@ public struct Notehead {
     }
 }
 
-extension Notehead: Equatable { }
+extension Notehead: Equatable {}
 extension Notehead: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""
@@ -34,11 +34,34 @@ extension Notehead: Codable {
     }
 
     public init(from decoder: Decoder) throws {
+        self.font = try Font(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.value = try container.decode(NoteheadValue.self, forKey: .value)
         self.filled = try container.decodeIfPresent(Bool.self, forKey: .filled)
         self.parentheses = try container.decodeIfPresent(Bool.self, forKey: .parentheses)
-        self.font = try Font(from: decoder)
         self.color = try container.decodeIfPresent(Color.self, forKey: .color)
+    }
+
+    // sourcery:inline:Notehead.AutoEncodable
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(YesNo(filled), forKey: .filled)
+        try container.encodeIfPresent(YesNo(parentheses), forKey: .parentheses)
+        try font.encode(to: encoder)
+        try container.encodeIfPresent(color, forKey: .color)
+    }
+    // sourcery:end
+}
+
+import XMLCoder
+extension Notehead: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

@@ -1,0 +1,13 @@
+parsing:
+    xml_file_name: 03爷爷的大钟.xml
+    assert: true
+
+# comparison:
+    # expectation_class_name: TODO
+    # assert: false
+
+metadata:
+    display_name: 03爷爷的大钟.xml
+    # description: TODO
+    source: https://github.com/dn-m/MusicXML/issues/192
+

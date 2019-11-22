@@ -13,5 +13,5 @@ public enum MeasureNumberingValue: String {
     case system
 }
 
-extension MeasureNumberingValue: Equatable { }
-extension MeasureNumberingValue: Codable { }
+extension MeasureNumberingValue: Equatable {}
+extension MeasureNumberingValue: Codable {}

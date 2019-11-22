@@ -22,5 +22,5 @@ public enum BarStyle: String {
     case none
 }
 
-extension BarStyle: Equatable { }
-extension BarStyle: Codable { }
+extension BarStyle: Equatable {}
+extension BarStyle: Codable {}

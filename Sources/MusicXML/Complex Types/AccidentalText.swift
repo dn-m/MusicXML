@@ -9,6 +9,7 @@
 /// attributes.
 public struct AccidentalText {
     // MARK: - Attributes
+
     public let justify: LeftCenterRight?
     public let printStyle: PrintStyle
     public let hAlign: LeftCenterRight?
@@ -23,6 +24,7 @@ public struct AccidentalText {
     public let enclosure: EnclosureShape?
 
     // MARK: - Elements
+
     public let value: AccidentalValue
 
     public init(
@@ -56,7 +58,7 @@ public struct AccidentalText {
     }
 }
 
-extension AccidentalText: Equatable { }
+extension AccidentalText: Equatable {}
 extension AccidentalText: Codable {
     private enum CodingKeys: String, CodingKey {
         case justify
@@ -88,5 +90,34 @@ extension AccidentalText: Codable {
         self.direction = try container.decodeIfPresent(TextDirection.self, forKey: .direction)
         self.enclosure = try container.decodeIfPresent(EnclosureShape.self, forKey: .enclosure)
         self.value = try container.decode(AccidentalValue.self, forKey: .value)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(justify, forKey: .justify)
+        try printStyle.encode(to: encoder)
+        try container.encodeIfPresent(hAlign, forKey: .hAlign)
+        try container.encodeIfPresent(vAlign, forKey: .vAlign)
+        try container.encodeIfPresent(underline, forKey: .underline)
+        try container.encodeIfPresent(overline, forKey: .overline)
+        try container.encodeIfPresent(lineThrough, forKey: .lineThrough)
+        try container.encodeIfPresent(rotation, forKey: .rotation)
+        try container.encodeIfPresent(letterSpacing, forKey: .letterSpacing)
+        try container.encodeIfPresent(lineHeight, forKey: .lineHeight)
+        try container.encodeIfPresent(direction, forKey: .direction)
+        try container.encodeIfPresent(enclosure, forKey: .enclosure)
+        try container.encode(value, forKey: .value)
+    }
+}
+
+import XMLCoder
+extension AccidentalText: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

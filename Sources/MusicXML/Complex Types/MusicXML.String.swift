@@ -9,7 +9,6 @@ extension MusicXML {
     /// The string type is used with tablature notation, regular notation (where it is often
     /// circled), and chord diagrams. String numbers start with 1 for the highest string.
     public struct String {
-
         // MARK: - Instance Properties
 
         // MARK: Value
@@ -38,9 +37,8 @@ extension MusicXML {
     }
 }
 
-extension MusicXML.String: Equatable { }
+extension MusicXML.String: Equatable {}
 extension MusicXML.String: Codable {
-
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case placement
@@ -58,12 +56,11 @@ extension MusicXML.String: Codable {
         } catch {
             self.value = 1
         }
-
     }
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try self.printStyle.encode(to: encoder)
+        try printStyle.encode(to: encoder)
         try container.encode(value, forKey: .value)
         try container.encodeIfPresent(placement, forKey: .placement)
     }
@@ -72,5 +69,17 @@ extension MusicXML.String: Codable {
 extension MusicXML.String: ExpressibleByIntegerLiteral {
     public init(integerLiteral value: Int) {
         self.init(value)
+    }
+}
+
+import XMLCoder
+extension MusicXML.String: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

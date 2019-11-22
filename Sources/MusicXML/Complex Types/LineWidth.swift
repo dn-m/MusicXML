@@ -17,5 +17,22 @@ public struct LineWidth {
     }
 }
 
-extension LineWidth: Equatable { }
-extension LineWidth: Codable { }
+extension LineWidth: Equatable {}
+extension LineWidth: Codable {
+    enum CodingKeys: String, CodingKey {
+        case type
+        case value = ""
+    }
+}
+
+import XMLCoder
+extension LineWidth: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

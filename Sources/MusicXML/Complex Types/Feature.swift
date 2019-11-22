@@ -18,5 +18,22 @@ public struct Feature {
     }
 }
 
-extension Feature: Equatable { }
-extension Feature: Codable { }
+extension Feature: Equatable {}
+extension Feature: Codable {
+    enum CodingKeys: String, CodingKey {
+        case type
+        case value = ""
+    }
+}
+
+import XMLCoder
+extension Feature: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

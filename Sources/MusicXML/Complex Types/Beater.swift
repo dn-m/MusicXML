@@ -15,5 +15,22 @@ public struct Beater {
     }
 }
 
-extension Beater: Equatable { }
-extension Beater: Codable { }
+extension Beater: Equatable {}
+extension Beater: Codable {
+    enum CodingKeys: String, CodingKey {
+        case tip
+        case value = ""
+    }
+}
+
+import XMLCoder
+extension Beater: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

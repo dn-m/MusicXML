@@ -26,5 +26,5 @@ public enum Mute: String {
     case palm
 }
 
-extension Mute: Equatable { }
-extension Mute: Codable { }
+extension Mute: Equatable {}
+extension Mute: Codable {}

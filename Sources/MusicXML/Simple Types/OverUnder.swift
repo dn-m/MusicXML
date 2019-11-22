@@ -12,5 +12,5 @@ public enum OverUnder: String {
     case under
 }
 
-extension OverUnder: Equatable { }
-extension OverUnder: Codable { }
+extension OverUnder: Equatable {}
+extension OverUnder: Codable {}

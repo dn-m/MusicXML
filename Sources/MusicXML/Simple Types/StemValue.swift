@@ -13,5 +13,5 @@ public enum StemValue: String {
     case none
 }
 
-extension StemValue: Equatable { }
-extension StemValue: Codable { }
+extension StemValue: Equatable {}
+extension StemValue: Codable {}

@@ -12,7 +12,6 @@
 /// harmonic element refer to the use of the circular harmonic symbol, typically but not always used
 /// with natural harmonics.
 public struct Harmonic {
-
     // MARK: - Elements
 
     public var naturalArtificial: NaturalArtificial?
@@ -21,11 +20,11 @@ public struct Harmonic {
     // MARK: - Attributes
 
     public var printObject: Bool?
-    
+
     public var placement: AboveBelow?
-    
+
     // MARK: - Attribute Groups
-    
+
     public var printStyle: PrintStyle
 
     public init(
@@ -44,7 +43,7 @@ public struct Harmonic {
 }
 
 extension Harmonic {
-    /// TODO: Consider renaming
+    // TODO: Consider renaming
     public enum NaturalArtificial: String {
         /// The natural element indicates that this is a natural harmonic. These are usually notated
         /// at base pitch rather than sounding pitch.
@@ -53,7 +52,7 @@ extension Harmonic {
         case artificial
     }
 
-    /// TODO: Consider renaming
+    // TODO: Consider renaming
     public enum BaseSoundingTouchingPitch: String {
         /// The base pitch is the pitch at which the string is played before touching to create the
         /// harmonic.
@@ -70,19 +69,19 @@ extension Harmonic: Codable {
     public enum CodingKeys: String, CodingKey {
         case naturalArtificial
         case baseSoundingTouchingPitch
-        
+
         case printObject
         case printStyle
         case placement
-        
+
         case natural
         case artificial
-        
+
         case base = "base-pitch"
         case sounding = "sounding-pitch"
         case touching = "touching-pitch"
     }
-    
+
     public init(from decoder: Decoder) throws {
         self.printStyle = try PrintStyle(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -93,7 +92,7 @@ extension Harmonic: Codable {
         } else {
             self.naturalArtificial = nil
         }
-        
+
         if container.contains(.base) {
             self.baseSoundingTouchingPitch = .base
         } else if container.contains(.sounding) {
@@ -101,14 +100,13 @@ extension Harmonic: Codable {
         } else if container.contains(.touching) {
             self.baseSoundingTouchingPitch = .touching
         }
-        
+
         self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
         self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
     }
-    
+
     public func encode(to encoder: Encoder) throws {
-        var singleValueContainer = encoder.singleValueContainer()
-        try singleValueContainer.encode(printStyle)
+        try printStyle.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         if let baseSoundingTouchingPitch = self.baseSoundingTouchingPitch {
             switch baseSoundingTouchingPitch {
@@ -128,15 +126,15 @@ extension Harmonic: Codable {
                 try container.encode(Empty(), forKey: .artificial)
             }
         }
-        try container.encodeIfPresent(printObject, forKey: .printObject)
+        try container.encodeIfPresent(YesNo(printObject), forKey: .printObject)
         try container.encodeIfPresent(placement, forKey: .placement)
     }
 }
 
-extension Harmonic.NaturalArtificial: Equatable { }
-extension Harmonic.NaturalArtificial: Codable { }
+extension Harmonic.NaturalArtificial: Equatable {}
+extension Harmonic.NaturalArtificial: Codable {}
 
-extension Harmonic.BaseSoundingTouchingPitch: Equatable { }
-extension Harmonic.BaseSoundingTouchingPitch: Codable { }
+extension Harmonic.BaseSoundingTouchingPitch: Equatable {}
+extension Harmonic.BaseSoundingTouchingPitch: Codable {}
 
-extension Harmonic: Equatable { }
+extension Harmonic: Equatable {}

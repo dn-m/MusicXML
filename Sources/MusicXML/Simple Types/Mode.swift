@@ -20,5 +20,5 @@ public enum Mode: String {
     case none
 }
 
-extension Mode: Equatable { }
-extension Mode: Codable { }
+extension Mode: Equatable {}
+extension Mode: Codable {}

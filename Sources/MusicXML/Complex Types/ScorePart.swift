@@ -13,7 +13,6 @@ import XMLCoder
 /// Initial midi-instrument assignments may be made here as well.
 // TODO: Add support for ScorePart print-style, print-object, and justify
 public struct ScorePart {
-
     // MARK: - Attributes
 
     public var id: String
@@ -105,10 +104,10 @@ extension ScorePart {
     }
 }
 
-extension ScorePart.MIDI: Equatable { }
-extension ScorePart.MIDI: Codable { }
+extension ScorePart.MIDI: Equatable {}
+extension ScorePart.MIDI: Codable {}
 
-extension ScorePart: Equatable { }
+extension ScorePart: Equatable {}
 extension ScorePart: Codable {
     enum CodingKeys: String, CodingKey {
         case id
@@ -155,7 +154,7 @@ extension ScorePart: Codable {
         let midiInstrument = try container.decodeIfPresent([MIDIInstrument].self, forKey: .midiInstrument)
         if let midiDevice = midiDevice, let midiInstrument = midiInstrument {
             self.midi = zip(midiDevice, midiInstrument).map { (device, instrument) -> MIDI in
-                return MIDI(midiDevice: device, midiInstrument: instrument)
+                MIDI(midiDevice: device, midiInstrument: instrument)
             }
         }
     }

@@ -58,5 +58,5 @@ public enum KindValue: String {
     case none
 }
 
-extension KindValue: Equatable { }
-extension KindValue: Codable { }
+extension KindValue: Equatable {}
+extension KindValue: Codable {}

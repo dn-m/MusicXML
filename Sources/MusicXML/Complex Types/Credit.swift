@@ -19,7 +19,6 @@ import XMLCoder
 /// be combined in a single credit, so multiple elements may be used. Standard values include page
 /// number, title, subtitle, composer, arranger, lyricist, and rights.
 public struct Credit {
-
     /// The page attribute for the credit element specifies the page number where the credit should
     /// appear. This is an integer value that starts with 1 for the first page. Its value is 1 by
     /// default. Since credits occur before the music, these page numbers do not refer to the page
@@ -48,7 +47,6 @@ public struct Credit {
 }
 
 extension Credit {
-
     public struct Words {
         public let words: FormattedText
         public let links: [Link]
@@ -69,15 +67,16 @@ extension Credit {
     }
 }
 
-extension Credit.Words: Equatable { }
-extension Credit.Words: Codable { }
+extension Credit.Words: Equatable {}
+extension Credit.Words: Codable {}
 
-extension Credit.Kind: Equatable { }
+extension Credit.Kind: Equatable {}
 extension Credit.Kind: Codable {
     enum CodingKeys: String, CodingKey {
         case image
         case words
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -87,10 +86,11 @@ extension Credit.Kind: Codable {
             try container.encode(value, forKey: .words)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
@@ -110,7 +110,7 @@ extension Credit.Kind: Codable {
     }
 }
 
-extension Credit.Kind.CodingKeys: XMLChoiceCodingKey { }
+extension Credit.Kind.CodingKeys: XMLChoiceCodingKey {}
 
-extension Credit: Equatable { }
-extension Credit: Codable { }
+extension Credit: Equatable {}
+extension Credit: Codable {}

@@ -10,7 +10,6 @@
 /// interpretation of the value of the degree-alter element. The text attribute specifies how the
 /// type of the degree should be displayed in a score.
 public struct DegreeType {
-
     // MARK: - Instance Propertie
 
     // MARK: Value
@@ -39,7 +38,6 @@ public struct DegreeType {
 }
 
 extension DegreeType {
-
     // MARK: - Type Properties
 
     public static let add = DegreeType(.add)
@@ -47,7 +45,7 @@ extension DegreeType {
     public static let subtract = DegreeType(.subtract)
 }
 
-extension DegreeType: Equatable { }
+extension DegreeType: Equatable {}
 extension DegreeType: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""
@@ -59,5 +57,17 @@ extension DegreeType: Codable {
         self.text = try container.decodeIfPresent(String.self, forKey: .text)
         self.printStyle = try PrintStyle(from: decoder)
         self.value = try container.decode(DegreeTypeValue.self, forKey: .value)
+    }
+}
+
+import XMLCoder
+extension DegreeType: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

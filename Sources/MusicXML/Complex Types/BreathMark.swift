@@ -7,7 +7,6 @@
 
 /// The breath-mark element indicates a place to take a breath.
 public struct BreathMark {
-
     // MARK: - Instance Properties
 
     // MARK: Value
@@ -33,12 +32,13 @@ public struct BreathMark {
     }
 }
 
-extension BreathMark: Equatable { }
+extension BreathMark: Equatable {}
 extension BreathMark: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case placement
     }
+
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
         self.position = try Position(from: decoder)
@@ -47,6 +47,19 @@ extension BreathMark: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
         // Decode value
-        self.value = try container.decodeIfPresent(BreathMarkValue.self, forKey: .value) ?? .comma
+        let breathMarkValue = try container.decode(BreathMarkValue.self, forKey: .value)
+        self.value = breathMarkValue == .default ? .comma : breathMarkValue
+    }
+}
+
+import XMLCoder
+extension BreathMark: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

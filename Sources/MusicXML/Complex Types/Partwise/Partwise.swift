@@ -7,9 +7,8 @@
 
 /// The `partwise` traversal of a MusicXML score.
 public struct Partwise {
-
     // MARK: Elements
-    
+
     public let header: Header
     public var parts: [Part]
 
@@ -20,7 +19,6 @@ public struct Partwise {
 }
 
 extension Partwise {
-
     // MARK: - Instance Methods
 
     /// - Returns: A `Timewise` representation of this `Partwise` traversal.
@@ -43,10 +41,9 @@ extension Partwise {
     }
 }
 
-extension Partwise: Equatable { }
+extension Partwise: Equatable {}
 
 extension Partwise: Codable {
-
     // MARK: - Decodable
 
     enum CodingKeys: String, CodingKey {
@@ -59,7 +56,7 @@ extension Partwise: Codable {
         self.parts = try container.decode([Part].self, forKey: .parts)
         // There is not currently a way for the `XMLDecoder` to check against the case of the
         // `Score` type at the top-level. A `Partwise` traversal must have at least one part.
-        guard !self.parts.isEmpty else {
+        guard !parts.isEmpty else {
             throw DecodingError.typeMismatch(
                 Partwise.self,
                 DecodingError.Context(

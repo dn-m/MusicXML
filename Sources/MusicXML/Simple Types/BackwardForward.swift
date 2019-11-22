@@ -12,5 +12,5 @@ public enum BackwardForward: String {
     case forward
 }
 
-extension BackwardForward: Equatable { }
-extension BackwardForward: Codable { }
+extension BackwardForward: Equatable {}
+extension BackwardForward: Codable {}

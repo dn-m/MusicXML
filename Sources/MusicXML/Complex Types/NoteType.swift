@@ -12,7 +12,6 @@ public struct NoteType {
 }
 
 extension NoteType {
-
     // MARK: Initializers
 
     public init(_ value: NoteTypeValue, size: SymbolSize? = nil) {
@@ -22,7 +21,6 @@ extension NoteType {
 }
 
 extension NoteType {
-
     // MARK: - Type Properties
 
     public static let maxima = NoteType(.maxima)
@@ -41,5 +39,22 @@ extension NoteType {
     public static let onethousandtwentyfourth = NoteType(.onehundredtwentyeighth)
 }
 
-extension NoteType: Equatable { }
-extension NoteType: Codable { }
+extension NoteType: Equatable {}
+extension NoteType: Codable {
+    enum CodingKeys: String, CodingKey {
+        case size
+        case value = ""
+    }
+}
+
+import XMLCoder
+extension NoteType: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

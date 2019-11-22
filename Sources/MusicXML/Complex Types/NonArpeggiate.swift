@@ -9,16 +9,15 @@
 /// to not arpeggiate these notes. Since this does not involve playback, it is only used on the top
 /// or bottom notes, not on each note as for the arpeggiate type.
 public struct NonArpeggiate {
-
     // MARK: - Attributes
 
     public var type: TopBottom
     public var number: Int?
-    public var position: Position?
+    public var position: Position
     public var placement: AboveBelow?
     public var color: Color?
 
-    public init(type: TopBottom, number: Int? = nil, position: Position? = nil, placement: AboveBelow? = nil, color: Color? = nil) {
+    public init(type: TopBottom, number: Int? = nil, position: Position = Position(), placement: AboveBelow? = nil, color: Color? = nil) {
         self.type = type
         self.number = number
         self.position = position
@@ -27,5 +26,30 @@ public struct NonArpeggiate {
     }
 }
 
-extension NonArpeggiate: Equatable { }
-extension NonArpeggiate: Codable { }
+extension NonArpeggiate: Equatable {}
+extension NonArpeggiate: Codable {
+    enum CodingKeys: String, CodingKey {
+        case type
+        case number
+        case placement
+        case color
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(number, forKey: .number)
+        try position.encode(to: encoder)
+        try container.encodeIfPresent(placement, forKey: .placement)
+        try container.encodeIfPresent(color, forKey: .color)
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        type = try container.decode(TopBottom.self, forKey: .type)
+        number = try container.decodeIfPresent(Int.self, forKey: .number)
+        position = try Position(from: decoder)
+        placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
+        color = try container.decodeIfPresent(Color.self, forKey: .color)
+    }
+}

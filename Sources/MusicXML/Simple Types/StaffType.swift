@@ -16,5 +16,5 @@ public enum StaffType: String {
     case alternate
 }
 
-extension StaffType: Equatable { }
-extension StaffType: Codable { }
+extension StaffType: Equatable {}
+extension StaffType: Codable {}

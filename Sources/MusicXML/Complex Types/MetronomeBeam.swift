@@ -17,5 +17,22 @@ public struct MetronomeBeam {
     }
 }
 
-extension MetronomeBeam: Equatable { }
-extension MetronomeBeam: Codable { }
+extension MetronomeBeam: Equatable {}
+extension MetronomeBeam: Codable {
+    enum CodingKeys: String, CodingKey {
+        case number
+        case value = ""
+    }
+}
+
+import XMLCoder
+extension MetronomeBeam: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

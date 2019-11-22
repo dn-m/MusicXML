@@ -5,12 +5,11 @@
 //  Created by James Bean on 10/12/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class PickupMeasureChordnamesFiguredBassTests: XCTestCase {
-
     func testRoot() throws {
         let xml = """
         <root>
@@ -38,7 +37,7 @@ class PickupMeasureChordnamesFiguredBassTests: XCTestCase {
                 HarmonyChord(
                     rootOrFunction: .root(Root(step: .c)),
                     kind: Kind(.major)
-                )
+                ),
             ]
         )
         XCTAssertEqual(decoded, expected)
@@ -55,7 +54,7 @@ class PickupMeasureChordnamesFiguredBassTests: XCTestCase {
         let expected = FiguredBass([Figure(figureNumber: "3")], duration: 1)
         XCTAssertEqual(decoded, expected)
     }
-    
+
     func testFiguredBass() throws {
         try testRoundTrip(FiguredBass([Figure(figureNumber: "3")], duration: 1))
     }

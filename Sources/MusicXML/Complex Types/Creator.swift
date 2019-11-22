@@ -8,7 +8,6 @@
 import XMLCoder
 
 public struct Creator {
-
     // MARK: - Value
 
     public var value: String
@@ -25,7 +24,7 @@ public struct Creator {
     }
 }
 
-extension Creator: Equatable { }
+extension Creator: Equatable {}
 
 extension Creator: Codable {
     enum CodingKeys: String, CodingKey {

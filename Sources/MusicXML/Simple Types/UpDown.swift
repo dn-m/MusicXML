@@ -12,5 +12,5 @@ public enum UpDown: String {
     case down
 }
 
-extension UpDown: Equatable { }
-extension UpDown: Codable { }
+extension UpDown: Equatable {}
+extension UpDown: Codable {}

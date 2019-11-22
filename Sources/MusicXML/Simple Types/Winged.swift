@@ -17,5 +17,5 @@ public enum Winged: String {
     case doubleCurved = "double-curved"
 }
 
-extension Winged: Equatable { }
-extension Winged: Codable { }
+extension Winged: Equatable {}
+extension Winged: Codable {}

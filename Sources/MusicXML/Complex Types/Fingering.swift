@@ -31,7 +31,7 @@ public struct Fingering {
     }
 }
 
-extension Fingering: Equatable { }
+extension Fingering: Equatable {}
 extension Fingering: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""
@@ -39,6 +39,7 @@ extension Fingering: Codable {
         case alternate
         case placement
     }
+
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
         self.printStyle = try PrintStyle(from: decoder)
@@ -50,12 +51,27 @@ extension Fingering: Codable {
         // Decode value
         self.value = try container.decode(String.self, forKey: .value)
     }
+
+    // sourcery:inline:Fingering.AutoEncodable
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try self.printStyle.encode(to: encoder)
         try container.encode(value, forKey: .value)
-        try container.encodeIfPresent(substitution, forKey: .substitution)
-        try container.encodeIfPresent(alternate, forKey: .alternate)
+        try container.encodeIfPresent(YesNo(substitution), forKey: .substitution)
+        try container.encodeIfPresent(YesNo(alternate), forKey: .alternate)
         try container.encodeIfPresent(placement, forKey: .placement)
+        try printStyle.encode(to: encoder)
+    }
+    // sourcery:end
+}
+
+import XMLCoder
+extension Fingering: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

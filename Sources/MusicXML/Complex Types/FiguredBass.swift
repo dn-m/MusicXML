@@ -10,7 +10,6 @@
 /// order. The optional duration element is used to indicate changes of figures under a note.
 /// Figures are ordered from top to bottom. The value of parentheses is "no" if not present.
 public struct FiguredBass {
-
     // MARK: - Instance Properties
 
     // MARK: Attribute Groups
@@ -59,7 +58,7 @@ public struct FiguredBass {
     }
 }
 
-extension FiguredBass: Equatable { }
+extension FiguredBass: Equatable {}
 extension FiguredBass: Codable {
     private enum CodingKeys: String, CodingKey {
         case figures = "figure"
@@ -68,6 +67,7 @@ extension FiguredBass: Codable {
         case level
         case parentheses
     }
+
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
         self.printStyle = try PrintStyle(from: decoder)
@@ -81,14 +81,17 @@ extension FiguredBass: Codable {
         // Decode elements
         self.figures = try container.decode([Figure].self, forKey: .figures)
     }
+
+    // sourcery:inline:FiguredBass.AutoEncodable
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try self.printStyle.encode(to: encoder)
-        try self.printout.encode(to: encoder)
-        try container.encodeIfPresent(parentheses, forKey: .parentheses)
+        try printStyle.encode(to: encoder)
+        try printout.encode(to: encoder)
+        try container.encodeIfPresent(YesNo(parentheses), forKey: .parentheses)
         try container.encode(figures, forKey: .figures)
         try container.encodeIfPresent(duration, forKey: .duration)
         try container.encodeIfPresent(footnote, forKey: .footnote)
         try container.encodeIfPresent(level, forKey: .level)
     }
+    // sourcery:end
 }

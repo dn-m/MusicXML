@@ -12,11 +12,11 @@ import XMLCoder
 /// and 223. Some values are added to these based on how usage has evolved in the 30 years since
 /// Stone's book was published.
 public struct Percussion {
-    public let printStyleAlign: PrintStyleAlign?
+    public let printStyleAlign: PrintStyleAlign
     public let enclosure: EnclosureShape?
     public let kind: Kind
 
-    public init(printStyleAlign: PrintStyleAlign? = nil, enclosure: EnclosureShape? = nil, kind: Kind) {
+    public init(printStyleAlign: PrintStyleAlign = PrintStyleAlign(), enclosure: EnclosureShape? = nil, kind: Kind) {
         self.printStyleAlign = printStyleAlign
         self.enclosure = enclosure
         self.kind = kind
@@ -39,7 +39,7 @@ extension Percussion {
     }
 }
 
-extension Percussion.Kind: Equatable { }
+extension Percussion.Kind: Equatable {}
 extension Percussion.Kind: Codable {
     enum CodingKeys: String, CodingKey {
         case beater
@@ -54,6 +54,7 @@ extension Percussion.Kind: Codable {
         case timpani
         case wood
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -81,10 +82,11 @@ extension Percussion.Kind: Codable {
             try container.encode(value, forKey: .wood)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
@@ -122,7 +124,26 @@ extension Percussion.Kind: Codable {
     }
 }
 
-extension Percussion.Kind.CodingKeys: XMLChoiceCodingKey { }
+extension Percussion.Kind.CodingKeys: XMLChoiceCodingKey {}
 
-extension Percussion: Equatable { }
-extension Percussion: Codable { }
+extension Percussion: Equatable {}
+extension Percussion: Codable {
+    enum CodingKeys: String, CodingKey {
+        case enclosure
+        case kind
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try printStyleAlign.encode(to: encoder)
+        try container.encodeIfPresent(enclosure, forKey: .enclosure)
+        try container.encode(kind, forKey: .kind)
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        printStyleAlign = try PrintStyleAlign(from: decoder)
+        enclosure = try container.decodeIfPresent(EnclosureShape.self, forKey: .enclosure)
+        kind = try container.decode(Kind.self, forKey: .kind)
+    }
+}

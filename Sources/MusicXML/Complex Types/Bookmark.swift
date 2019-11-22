@@ -20,5 +20,5 @@ public struct Bookmark {
     }
 }
 
-extension Bookmark: Equatable { }
-extension Bookmark: Codable { }
+extension Bookmark: Equatable {}
+extension Bookmark: Codable {}

@@ -8,7 +8,6 @@
 /// The placement-text type represents a text element with print-style and placement attribute
 /// groups.
 public struct PlacementText {
-
     // MARK: - Instance Properties
 
     // MARK: Value
@@ -39,8 +38,14 @@ public struct PlacementText {
     }
 }
 
-extension PlacementText: Equatable { }
+extension PlacementText: Equatable {}
 extension PlacementText: Codable {
+    enum CodingKeys: String, CodingKey {
+        case placement
+        case position
+        case printStyle
+        case value = ""
+    }
 
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
@@ -51,5 +56,17 @@ extension PlacementText: Codable {
         self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
         // Decode value
         self.value = try container.decode(String.self, forKey: .value)
+    }
+}
+
+import XMLCoder
+extension PlacementText: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

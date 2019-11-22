@@ -34,4 +34,4 @@ public struct Ties {
     }
 }
 
-extension Ties: Equatable { }
+extension Ties: Equatable {}

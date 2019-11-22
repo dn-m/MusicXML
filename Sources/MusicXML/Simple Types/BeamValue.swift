@@ -11,9 +11,9 @@ public enum BeamValue: String {
     case begin
     case `continue`
     case end
-    case forwardHook = "foreward hook"
+    case forwardHook = "forward hook"
     case backwardHook = "backward hook"
 }
 
-extension BeamValue: Equatable { }
-extension BeamValue: Codable { }
+extension BeamValue: Equatable {}
+extension BeamValue: Codable {}

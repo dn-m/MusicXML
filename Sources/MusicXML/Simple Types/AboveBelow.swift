@@ -12,5 +12,5 @@ public enum AboveBelow: String {
     case below
 }
 
-extension AboveBelow: Equatable { }
-extension AboveBelow: Codable { }
+extension AboveBelow: Equatable {}
+extension AboveBelow: Codable {}

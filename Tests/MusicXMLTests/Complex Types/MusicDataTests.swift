@@ -5,12 +5,11 @@
 //  Created by James Bean on 8/2/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class MusicDataTests: XCTestCase {
-
     func testDecodingDivisions() throws {
         let xml = """
         <attributes>
@@ -50,12 +49,12 @@ class MusicDataTests: XCTestCase {
                     keys: [
                         Key(
                             kind: .traditional(Key.Traditional(fifths: 0, mode: .major))
-                        )
+                        ),
                     ],
                     times: [Time(4, 4, symbol: .common)],
                     clefs: [Clef(sign: .g, line: 2)]
                 )
-            )
+            ),
         ]
         XCTAssertEqual(decoded, expected)
     }

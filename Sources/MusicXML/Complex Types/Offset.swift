@@ -10,7 +10,6 @@
 /// If an element within a direction includes a default-x attribute, the offset value will be
 /// ignored when determining the appearance of that element.
 public struct Offset {
-
     // MARK: - Value
 
     public let value: Divisions
@@ -21,7 +20,6 @@ public struct Offset {
 }
 
 extension Offset {
-
     // MARK: - Initializers
 
     public init(_ value: Divisions, sound: Bool? = nil) {
@@ -30,7 +28,7 @@ extension Offset {
     }
 }
 
-extension Offset: Equatable { }
+extension Offset: Equatable {}
 extension Offset: Codable {
     enum CodingKeys: String, CodingKey {
         case value = ""
@@ -39,10 +37,21 @@ extension Offset: Codable {
 }
 
 extension Offset: ExpressibleByIntegerLiteral {
-
     // MARK: - ExpressibleByIntegerLiteral
 
     public init(integerLiteral value: Int) {
         self.init(value)
+    }
+}
+
+import XMLCoder
+extension Offset: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

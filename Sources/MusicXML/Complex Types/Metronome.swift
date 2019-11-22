@@ -13,15 +13,15 @@ import XMLCoder
 /// relationships, such as swing tempo marks where two eighths are equated to a quarter note /
 /// eighth note triplet.
 public struct Metronome {
-
     // MARK: - Instance Properties
 
     // MARK: Kind
+
     public let kind: Kind
 
     // MARK: - Attributes
-    public let position: Position
-    public let printStyleAlign: PrintStyleAlign?
+
+    public let printStyleAlign: PrintStyleAlign
     public let justify: Justify?
     /// The parentheses attribute indicates whether or not to put the metronome mark in parentheses;
     /// its value is no if not specified.
@@ -31,13 +31,11 @@ public struct Metronome {
 
     public init(
         kind: Kind,
-        position: Position = Position(),
-        printStyleAlign: PrintStyleAlign? = nil,
+        printStyleAlign: PrintStyleAlign = PrintStyleAlign(),
         justify: Justify? = nil,
         parentheses: Bool? = nil
     ) {
         self.kind = kind
-        self.position = position
         self.printStyleAlign = printStyleAlign
         self.justify = justify
         self.parentheses = parentheses
@@ -45,13 +43,12 @@ public struct Metronome {
 }
 
 extension Metronome {
-
     public struct Regular {
         public enum Relation {
             case perMinute(PerMinute)
             case beatUnit(NoteTypeValue, dotCount: Int)
         }
-        
+
         /// The beat-unit element indicates the graphical note type to use in a metronome mark.
         public let beatUnit: NoteTypeValue
         /// The beat-unit-dot element is used to specify any augmentation dots for a metronome mark
@@ -88,16 +85,16 @@ extension Metronome {
             }
 
             switch firstRelationComponent {
-                case let .perMinute(perMinute):
-                    self.relation = .perMinute(perMinute)
-                case let .beatUnit(beatUnit):
-                    componentsCopy.removeFirst()
-                    let beatUnitDotInRelation = componentsCopy
-                        .prefix(while: isBeatUnitDot)
-                        .map { _ in Empty() }
-                    self.relation = .beatUnit(beatUnit, dotCount: beatUnitDotInRelation.count)
-                default:
-                    throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Requires per-minute or beat-unit to be present"))
+            case let .perMinute(perMinute):
+                self.relation = .perMinute(perMinute)
+            case let .beatUnit(beatUnit):
+                componentsCopy.removeFirst()
+                let beatUnitDotInRelation = componentsCopy
+                    .prefix(while: isBeatUnitDot)
+                    .map { _ in Empty() }
+                self.relation = .beatUnit(beatUnit, dotCount: beatUnitDotInRelation.count)
+            default:
+                throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Requires per-minute or beat-unit to be present"))
             }
         }
     }
@@ -121,11 +118,11 @@ extension Metronome {
     }
 }
 
-extension Metronome.Regular.Relation: Equatable { }
+extension Metronome.Regular.Relation: Equatable {}
 
-extension Metronome.Regular: Equatable { }
+extension Metronome.Regular: Equatable {}
 
-extension Metronome.Complicated: Equatable { }
+extension Metronome.Complicated: Equatable {}
 extension Metronome.Complicated: Codable {
     enum CodingKeys: String, CodingKey {
         case metronomeNote = "metronome-note"
@@ -141,9 +138,9 @@ extension Metronome.Complicated: Codable {
     }
 }
 
-extension Metronome.Kind: Equatable { }
+extension Metronome.Kind: Equatable {}
 
-extension Metronome: Equatable { }
+extension Metronome: Equatable {}
 extension Metronome: Codable {
     private enum CodingKeys: String, CodingKey {
         case position
@@ -163,22 +160,12 @@ extension Metronome: Codable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.position = try Position(from: decoder)
-        self.printStyleAlign = try container.decodeIfPresent(PrintStyleAlign.self, forKey: .printStyleAlign)
+        self.printStyleAlign = try PrintStyleAlign(from: decoder)
         self.justify = try container.decodeIfPresent(Justify.self, forKey: .justify)
         self.parentheses = try container.decodeIfPresent(Bool.self, forKey: .parentheses)
 
         if container.contains(.beatUnit) {
-            var metronomeRegularComponents = [MetronomeRegularComponent]()
-            var valuesContainer = try decoder.unkeyedContainer()
-            while !valuesContainer.isAtEnd {
-                do {
-                    metronomeRegularComponents.append(try valuesContainer.decode(MetronomeRegularComponent.self))
-                } catch DecodingError.typeMismatch(let type, _) where type == MetronomeRegularComponent.self {
-                    break
-                }
-            }
-            self.kind = .regular(try Metronome.Regular(components: metronomeRegularComponents))
+            self.kind = .regular(try Metronome.Regular(components: decoder.collectArray()))
         } else {
             self.kind = .relative(try Metronome.Complicated(from: decoder))
         }
@@ -197,10 +184,11 @@ extension MetronomeRegularComponent: Decodable {
         case beatUnitDot = "beat-unit-dot"
         case perMinute = "per-minute"
     }
+
     internal init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 

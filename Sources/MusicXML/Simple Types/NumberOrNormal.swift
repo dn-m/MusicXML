@@ -14,7 +14,7 @@ public enum NumberOrNormal {
     case normal
 }
 
-extension NumberOrNormal: Equatable { }
+extension NumberOrNormal: Equatable {}
 
 extension NumberOrNormal: Codable {
     enum CodingKeys: String, CodingKey { case number, normal }
@@ -27,10 +27,11 @@ extension NumberOrNormal: Codable {
             try container.encodeNil(forKey: .normal)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 

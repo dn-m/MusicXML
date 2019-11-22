@@ -25,7 +25,7 @@ public struct OctaveShift {
     }
 }
 
-extension OctaveShift: Equatable { }
+extension OctaveShift: Equatable {}
 extension OctaveShift: Codable {
     private enum CodingKeys: String, CodingKey {
         case type

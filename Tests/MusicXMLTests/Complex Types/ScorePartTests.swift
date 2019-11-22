@@ -5,9 +5,9 @@
 //  Created by James Bean on 8/2/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class ScorePartTests: XCTestCase {
     // Adopted from MuseScore export
@@ -73,7 +73,7 @@ class ScorePartTests: XCTestCase {
                         volume: 50,
                         pan: -45
                     )
-                )
+                ),
             ]
         )
         XCTAssertEqual(decoded, expected)

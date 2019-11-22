@@ -25,5 +25,5 @@ public enum Wood: String {
     case woodBlock = "wood block"
 }
 
-extension Wood: Equatable { }
-extension Wood: Codable { }
+extension Wood: Equatable {}
+extension Wood: Codable {}

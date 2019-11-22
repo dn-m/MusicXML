@@ -16,5 +16,5 @@ public enum WedgeType: String {
     case `continue`
 }
 
-extension WedgeType: Equatable { }
-extension WedgeType: Codable { }
+extension WedgeType: Equatable {}
+extension WedgeType: Codable {}

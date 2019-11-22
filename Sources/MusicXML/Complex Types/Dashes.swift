@@ -7,7 +7,6 @@
 
 /// The dashes type represents dashes, used for instance with cresc. and dim. marks.
 public struct Dashes {
-
     // MARK: - Instance Properties
 
     // MARK: Attribute Groups
@@ -29,7 +28,7 @@ public struct Dashes {
     }
 }
 
-extension Dashes: Equatable { }
+extension Dashes: Equatable {}
 extension Dashes: Codable {
     public init(from decoder: Decoder) throws {
         // Decode attribute groups

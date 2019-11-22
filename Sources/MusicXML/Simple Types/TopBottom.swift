@@ -12,5 +12,5 @@ public enum TopBottom: String {
     case bottom
 }
 
-extension TopBottom: Equatable { }
-extension TopBottom: Codable { }
+extension TopBottom: Equatable {}
+extension TopBottom: Codable {}

@@ -14,5 +14,5 @@ public enum UpDownStopContinue: String {
     case `continue`
 }
 
-extension UpDownStopContinue: Equatable { }
-extension UpDownStopContinue: Codable { }
+extension UpDownStopContinue: Equatable {}
+extension UpDownStopContinue: Codable {}

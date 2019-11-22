@@ -13,5 +13,5 @@ public enum TrillStep: String {
     case unison
 }
 
-extension TrillStep: Equatable { }
-extension TrillStep: Codable { }
+extension TrillStep: Equatable {}
+extension TrillStep: Codable {}

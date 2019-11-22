@@ -10,5 +10,5 @@ public enum Glass: String {
     case windChimes = "wind chimes"
 }
 
-extension Glass: Equatable { }
-extension Glass: Codable { }
+extension Glass: Equatable {}
+extension Glass: Codable {}

@@ -27,5 +27,5 @@ public enum BeaterValue: String {
     case wireBrush = "wire brush"
 }
 
-extension BeaterValue: Equatable { }
-extension BeaterValue: Codable { }
+extension BeaterValue: Equatable {}
+extension BeaterValue: Codable {}

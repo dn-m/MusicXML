@@ -5,12 +5,11 @@
 //  Created by James Bean on 10/12/19.
 //
 
-import XCTest
 import MusicXML
+import XCTest
 import XMLCoder
 
 class MidmeasureClefTests: XCTestCase {
-
     func testImplicitMeasureStringNumber() throws {
         let xml = """
         <measure implicit="yes" number="X1"></measure>

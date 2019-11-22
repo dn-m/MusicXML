@@ -5,9 +5,9 @@
 //  Created by James Bean on 8/2/19.
 //
 
+import MusicXML
 import XCTest
 import XMLCoder
-import MusicXML
 
 class DirectionTests: XCTestCase {
     func testDecodingDirection_metronome() throws {
@@ -31,13 +31,13 @@ class DirectionTests: XCTestCase {
                         kind: .regular(
                             Metronome.Regular(
                                 beatUnit: .quarter,
-                                relation: .perMinute(PerMinute("90"))
+                                relation: .perMinute(PerMinute(value: "90"))
                             )
                         ),
-                        position: Position(defaultX: -25.96, relativeY: 20.00),
+                        printStyleAlign: PrintStyleAlign(printStyle: PrintStyle(position: Position(defaultX: -25.96, relativeY: 20.00))),
                         parentheses: false
                     )
-                )
+                ),
             ],
             placement: .above,
             sound: Sound(
@@ -57,8 +57,7 @@ class DirectionTests: XCTestCase {
         """
         let decoded = try XMLDecoder().decode(Direction.self, from: xml.data(using: .utf8)!)
         let expected: Direction = Direction([.wedge(Wedge(type: .crescendo, spread: 0))],
-            placement: .above
-        )
+                                            placement: .above)
         XCTAssertEqual(decoded, expected)
     }
 

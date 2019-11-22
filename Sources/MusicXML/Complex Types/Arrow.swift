@@ -10,11 +10,11 @@ import XMLCoder
 /// The arrow element represents an arrow used for a musical technical indication.
 public struct Arrow {
     public let kind: Kind
-    public let position: Position?
-    public let printStyle: PrintStyle?
+    public let position: Position
+    public let printStyle: PrintStyle
     public let placement: AboveBelow?
 
-    public init(kind: Kind, position: Position? = nil, printStyle: PrintStyle? = nil, placement: AboveBelow? = nil) {
+    public init(kind: Kind, position: Position = Position(), printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil) {
         self.kind = kind
         self.position = position
         self.printStyle = printStyle
@@ -23,7 +23,6 @@ public struct Arrow {
 }
 
 extension Arrow {
-
     // MARK: - Nested Types
 
     public enum Kind {
@@ -33,14 +32,13 @@ extension Arrow {
 }
 
 extension Arrow {
-
     // MARK: - Initializers
 
     /// Create a circular `Arrow`.
     public init(
         direction: CircularArrow,
-        position: Position? = nil,
-        printStyle: PrintStyle? = nil,
+        position: Position = Position(),
+        printStyle: PrintStyle = PrintStyle(),
         placement: AboveBelow? = nil
     ) {
         self.kind = .circular(direction)
@@ -53,8 +51,8 @@ extension Arrow {
     public init(
         direction: ArrowDirection,
         style: ArrowStyle? = nil,
-        position: Position? = nil,
-        printStyle: PrintStyle? = nil,
+        position: Position = Position(),
+        printStyle: PrintStyle = PrintStyle(),
         placement: AboveBelow? = nil
     ) {
         self.kind = .linear(LinearArrow(direction: direction, style: style))
@@ -69,6 +67,7 @@ extension Arrow.Kind: Codable {
         case circular
         case linear
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -78,10 +77,11 @@ extension Arrow.Kind: Codable {
             try container.encode(value, forKey: .linear)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
@@ -103,6 +103,27 @@ extension Arrow.Kind: Codable {
 
 extension Arrow.Kind.CodingKeys: XMLChoiceCodingKey {}
 
-extension Arrow.Kind: Equatable { }
-extension Arrow: Equatable { }
-extension Arrow: Codable { }
+extension Arrow.Kind: Equatable {}
+extension Arrow: Equatable {}
+extension Arrow: Codable {
+    enum CodingKeys: String, CodingKey {
+        case kind
+        case placement
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        kind = try container.decode(Kind.self, forKey: .kind)
+        self.position = try Position(from: decoder)
+        self.printStyle = try PrintStyle(from: decoder)
+        self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(kind, forKey: .kind)
+        try position.encode(to: encoder)
+        try printStyle.encode(to: encoder)
+        try container.encodeIfPresent(placement, forKey: .placement)
+    }
+}

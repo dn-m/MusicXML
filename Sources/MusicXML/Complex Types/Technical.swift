@@ -14,15 +14,14 @@ public struct Technical {
     }
 }
 
-extension Technical: Equatable { }
+extension Technical: Equatable {}
 extension Technical: Codable {
-    
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         values = try container.decode([Technique].self)
     }
+
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        try container.encode(values)
+        try values.encode(to: encoder)
     }
 }

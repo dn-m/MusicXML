@@ -16,7 +16,7 @@ public struct Scordatura {
     }
 }
 
-extension Scordatura: Equatable { }
+extension Scordatura: Equatable {}
 extension Scordatura: Codable {
     private enum CodingKeys: String, CodingKey {
         case accords = "accord"

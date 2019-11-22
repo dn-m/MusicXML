@@ -12,5 +12,5 @@ public enum MarginType: String {
     case both
 }
 
-extension MarginType: Equatable { }
-extension MarginType: Codable { }
+extension MarginType: Equatable {}
+extension MarginType: Codable {}

@@ -16,5 +16,5 @@ public struct TimeOnly {
     public let values: [Int]
 }
 
-extension TimeOnly: Equatable { }
-extension TimeOnly: Codable { }
+extension TimeOnly: Equatable {}
+extension TimeOnly: Codable {}

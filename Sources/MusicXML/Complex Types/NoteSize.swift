@@ -22,5 +22,22 @@ public struct NoteSize {
     }
 }
 
-extension NoteSize: Equatable { }
-extension NoteSize: Codable { }
+extension NoteSize: Equatable {}
+extension NoteSize: Codable {
+    enum CodingKeys: String, CodingKey {
+        case type
+        case value = ""
+    }
+}
+
+import XMLCoder
+extension NoteSize: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

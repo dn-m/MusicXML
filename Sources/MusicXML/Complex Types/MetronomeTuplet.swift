@@ -21,5 +21,24 @@ public struct MetronomeTuplet {
     }
 }
 
-extension MetronomeTuplet: Equatable { }
-extension MetronomeTuplet: Codable { }
+extension MetronomeTuplet: Equatable {}
+extension MetronomeTuplet: Codable {
+    enum CodingKeys: String, CodingKey {
+        case type
+        case bracket
+        case showNumber
+        case value = ""
+    }
+}
+
+import XMLCoder
+extension MetronomeTuplet: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

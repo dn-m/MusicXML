@@ -18,5 +18,22 @@ public struct HoleClosed {
     }
 }
 
-extension HoleClosed: Equatable { }
-extension HoleClosed: Codable { }
+extension HoleClosed: Equatable {}
+extension HoleClosed: Codable {
+    enum CodingKeys: String, CodingKey {
+        case location
+        case value = ""
+    }
+}
+
+import XMLCoder
+extension HoleClosed: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

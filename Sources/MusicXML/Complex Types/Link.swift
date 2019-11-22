@@ -33,7 +33,6 @@
 /// with a MusicXML opus. If a relative link is used within a document that is part of a compressed
 /// MusicXML file, the link is relative to the root folder of the zip file.
 public struct Link {
-
     public let name: String?
 
     // > The element attribute specifies an
@@ -59,5 +58,5 @@ public struct Link {
     }
 }
 
-extension Link: Equatable { }
-extension Link: Codable { }
+extension Link: Equatable {}
+extension Link: Codable {}

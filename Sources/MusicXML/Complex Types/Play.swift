@@ -12,7 +12,6 @@ import XMLCoder
 /// going forward in score order. When used as part of a note element, it applies to the current
 /// note only.
 public struct Play {
-
     public enum Kind {
         case ipa(String)
         case mute(Mute)
@@ -27,7 +26,7 @@ public struct Play {
     }
 }
 
-extension Play.Kind: Equatable { }
+extension Play.Kind: Equatable {}
 extension Play.Kind: Codable {
     enum CodingKeys: String, CodingKey {
         case ipa
@@ -35,6 +34,7 @@ extension Play.Kind: Codable {
         case semiPitched
         case otherPlay
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -48,10 +48,11 @@ extension Play.Kind: Codable {
             try container.encode(value, forKey: .otherPlay)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
@@ -75,7 +76,7 @@ extension Play.Kind: Codable {
     }
 }
 
-extension Play.Kind.CodingKeys: XMLChoiceCodingKey { }
+extension Play.Kind.CodingKeys: XMLChoiceCodingKey {}
 
-extension Play: Equatable { }
-extension Play: Codable { }
+extension Play: Equatable {}
+extension Play: Codable {}

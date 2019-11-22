@@ -18,7 +18,6 @@
 /// formats related to dynamics. The MusicXML format captures what is in the score, but does not
 /// try to be optimal for analysis or synthesis of dynamics.
 public struct Dynamics {
-
     // MARK: - Instance Properties
 
     // MARK: Values
@@ -37,7 +36,6 @@ public struct Dynamics {
 }
 
 extension Dynamics {
-
     // MARK: - Initializers
 
     public init(
@@ -55,17 +53,11 @@ extension Dynamics {
     }
 }
 
-extension Dynamics: Equatable { }
+extension Dynamics: Equatable {}
 extension Dynamics: Codable {
     public init(from decoder: Decoder) throws {
-
         // Decode values
-        var values: [Dynamic] = []
-        var valuesContainer = try decoder.unkeyedContainer()
-        while !valuesContainer.isAtEnd {
-            values.append(try valuesContainer.decode(Dynamic.self))
-        }
-        self.values = values
+        self.values = try decoder.collectArray()
 
         // Decode attribute groups
         self.printStyleAlign = try PrintStyleAlign(from: decoder)

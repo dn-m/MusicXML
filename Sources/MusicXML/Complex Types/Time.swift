@@ -14,7 +14,6 @@ import XMLCoder
 /// but not printed, as is the case for excerpts from the middle of a score. The value is "yes" if
 /// not present.
 public struct Time {
-
     // MARK: - Attributes
 
     /// The optional number attribute refers to staff numbers within the part. If absent, the
@@ -34,7 +33,7 @@ public struct Time {
     /// beat-type arranged horizontally.
     public let separator: TimeSeparator?
 
-    public let printStyle: PrintStyle?
+    public let printStyle: PrintStyle
     public let hAlign: LeftCenterRight?
     public let vAlign: VAlign?
     public let printObject: Bool?
@@ -43,7 +42,7 @@ public struct Time {
 
     public let kind: Kind
 
-    public init(number: Int? = nil, symbol: TimeSymbol? = nil, separator: TimeSeparator? = nil, printStyle: PrintStyle? = nil, hAlign: LeftCenterRight? = nil, vAlign: VAlign? = nil, printObject: Bool? = nil, kind: Kind) {
+    public init(number: Int? = nil, symbol: TimeSymbol? = nil, separator: TimeSeparator? = nil, printStyle: PrintStyle = PrintStyle(), hAlign: LeftCenterRight? = nil, vAlign: VAlign? = nil, printObject: Bool? = nil, kind: Kind) {
         self.number = number
         self.symbol = symbol
         self.separator = separator
@@ -56,7 +55,6 @@ public struct Time {
 }
 
 extension Time {
-
     // MARK: - Initializers
 
     /// Creates a `Measured` type `Time`.
@@ -72,8 +70,7 @@ extension Time {
         symbol: TimeSymbol? = nil,
         staff: Int? = nil,
         interchangeable: Interchangeable? = nil
-    )
-    {
+    ) {
         self.number = staff
         self.symbol = symbol
         self.kind = .measured(
@@ -84,7 +81,7 @@ extension Time {
         )
         // TODO: Add remaining attributes and elements
         self.separator = nil
-        self.printStyle = nil
+        self.printStyle = PrintStyle()
         self.hAlign = nil
         self.vAlign = nil
         self.printObject = nil
@@ -103,7 +100,7 @@ extension Time {
         // TODO: correct symbol
         self.symbol = nil
         self.separator = nil
-        self.printStyle = nil
+        self.printStyle = PrintStyle()
         self.hAlign = nil
         self.vAlign = nil
         self.printObject = nil
@@ -111,7 +108,6 @@ extension Time {
 }
 
 extension Time {
-
     public struct Signature {
         let beats: Int
         let beatType: Int
@@ -168,7 +164,7 @@ extension Time {
     }
 }
 
-extension Time.Signature: Equatable { }
+extension Time.Signature: Equatable {}
 extension Time.Signature: Codable {
     enum CodingKeys: String, CodingKey {
         case beats
@@ -176,12 +172,13 @@ extension Time.Signature: Codable {
     }
 }
 
-extension Time.Measured: Equatable { }
+extension Time.Measured: Equatable {}
 extension Time.Measured: Codable {
     enum CodingKeys: String, CodingKey {
         case signature
         case interchangeable
     }
+
     public init(from decoder: Decoder) throws {
         let signatureContainer = try decoder.container(keyedBy: Time.Signature.CodingKeys.self)
         self.signature = Time.Signature(
@@ -193,19 +190,20 @@ extension Time.Measured: Codable {
     }
 }
 
-extension Time.Unmeasured: Equatable { }
+extension Time.Unmeasured: Equatable {}
 extension Time.Unmeasured: Codable {
     enum CodingKeys: String, CodingKey {
         case symbol
     }
 }
 
-extension Time.Kind: Equatable { }
+extension Time.Kind: Equatable {}
 extension Time.Kind: Codable {
     enum CodingKeys: String, CodingKey {
         case measured
         case unmeasured
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -215,6 +213,7 @@ extension Time.Kind: Codable {
             try container.encode(value, forKey: .unmeasured)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         do {
@@ -225,7 +224,7 @@ extension Time.Kind: Codable {
     }
 }
 
-extension Time: Equatable { }
+extension Time: Equatable {}
 extension Time: Codable {
     public init(from decoder: Decoder) throws {
         // Decode attributes
@@ -233,7 +232,7 @@ extension Time: Codable {
         self.number = try container.decodeIfPresent(Int.self, forKey: .number)
         self.symbol = try container.decodeIfPresent(TimeSymbol.self, forKey: .symbol)
         self.separator = try container.decodeIfPresent(TimeSeparator.self, forKey: .separator)
-        self.printStyle = try container.decodeIfPresent(PrintStyle.self, forKey: .printStyle)
+        self.printStyle = try PrintStyle(from: decoder)
         self.hAlign = try container.decodeIfPresent(LeftCenterRight.self, forKey: .hAlign)
         self.vAlign = try container.decodeIfPresent(VAlign.self, forKey: .vAlign)
         self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
@@ -249,8 +248,7 @@ extension Time: Codable {
                         beatType: try signatureContainer.decode(Int.self, forKey: .beatType)
                     ),
                     interchangeable: try kindContainer.decodeIfPresent(Interchangeable.self,
-                        forKey: .interchangeable
-                    )
+                                                                       forKey: .interchangeable)
                 )
             )
         } catch {

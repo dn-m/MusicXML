@@ -19,5 +19,5 @@ public enum ArrowStyle: String {
     case other
 }
 
-extension ArrowStyle: Equatable { }
-extension ArrowStyle: Codable { }
+extension ArrowStyle: Equatable {}
+extension ArrowStyle: Codable {}

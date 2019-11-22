@@ -15,5 +15,5 @@ public enum StickType: String {
     case yarn
 }
 
-extension StickType: Equatable { }
-extension StickType: Codable { }
+extension StickType: Equatable {}
+extension StickType: Codable {}

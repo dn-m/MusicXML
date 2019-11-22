@@ -23,11 +23,11 @@ public enum ClefSign: String {
     case g = "G"
     case f = "F"
     case c = "C"
-    case percussion = "percussion"
-    case TAB = "TAB"
-    case jianpu = "jianpu"
-    case none = "none"
+    case percussion
+    case TAB
+    case jianpu
+    case none
 }
 
-extension ClefSign: Equatable { }
-extension ClefSign: Codable { }
+extension ClefSign: Equatable {}
+extension ClefSign: Codable {}

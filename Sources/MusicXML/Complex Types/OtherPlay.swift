@@ -17,5 +17,22 @@ public struct OtherPlay {
     }
 }
 
-extension OtherPlay: Equatable { }
-extension OtherPlay: Codable { }
+extension OtherPlay: Equatable {}
+extension OtherPlay: Codable {
+    enum CodingKeys: String, CodingKey {
+        case type
+        case value = ""
+    }
+}
+
+import XMLCoder
+extension OtherPlay: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

@@ -13,5 +13,5 @@ public enum LineType: String {
     case wavy
 }
 
-extension LineType: Equatable { }
-extension LineType: Codable { }
+extension LineType: Equatable {}
+extension LineType: Codable {}

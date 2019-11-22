@@ -12,5 +12,5 @@ public enum RightLeftMiddle: String {
     case middle
 }
 
-extension RightLeftMiddle: Equatable { }
-extension RightLeftMiddle: Codable { }
+extension RightLeftMiddle: Equatable {}
+extension RightLeftMiddle: Codable {}

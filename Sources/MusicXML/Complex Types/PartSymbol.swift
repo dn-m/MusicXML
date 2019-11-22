@@ -28,5 +28,26 @@ public struct PartSymbol {
     }
 }
 
-extension PartSymbol: Equatable { }
-extension PartSymbol: Codable { }
+extension PartSymbol: Equatable {}
+extension PartSymbol: Codable {
+    enum CodingKeys: String, CodingKey {
+        case kind
+        case topStaff
+        case bottomStaff
+        case position
+        case color
+        case value = ""
+    }
+}
+
+import XMLCoder
+extension PartSymbol: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
+    }
+}

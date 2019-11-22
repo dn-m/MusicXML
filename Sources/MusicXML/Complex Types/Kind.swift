@@ -10,7 +10,6 @@
 /// make up a polychord, many formatting attributes are here. The alignment attributes are for the
 /// entire harmony-chord group of which this kind element is a part.
 public struct Kind {
-
     // MARK: - Instance Properties
 
     // MARK: Value
@@ -30,7 +29,6 @@ public struct Kind {
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
-
 
     public init(
         _ value: KindValue,
@@ -56,7 +54,6 @@ public struct Kind {
 }
 
 extension Kind {
-
     // MARK: - Type Properties
 
     public static let major = Kind(.major)
@@ -100,7 +97,7 @@ extension Kind: Codable {
         case useSymbols = "use-symbols"
         case text
         case stackDegrees = "stack-degrees"
-        case parenthesesDegrees = "parenthesesDegrees"
+        case parenthesesDegrees
         case bracketDegrees = "bracket-degrees"
         case hAlign = "halign"
         case vAlign = "valign"
@@ -118,5 +115,32 @@ extension Kind: Codable {
         self.hAlign = try container.decodeIfPresent(LeftCenterRight.self, forKey: .hAlign)
         self.vAlign = try container.decodeIfPresent(VAlign.self, forKey: .vAlign)
         self.value = try container.decode(KindValue.self, forKey: .value)
+    }
+
+    // sourcery:inline:Kind.AutoEncodable
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(YesNo(useSymbols), forKey: .useSymbols)
+        try container.encodeIfPresent(text, forKey: .text)
+        try container.encodeIfPresent(YesNo(stackDegrees), forKey: .stackDegrees)
+        try container.encodeIfPresent(YesNo(parenthesesDegrees), forKey: .parenthesesDegrees)
+        try container.encodeIfPresent(YesNo(bracketDegrees), forKey: .bracketDegrees)
+        try container.encodeIfPresent(hAlign, forKey: .hAlign)
+        try container.encodeIfPresent(vAlign, forKey: .vAlign)
+        try printStyle.encode(to: encoder)
+    }
+    // sourcery:end
+}
+
+import XMLCoder
+extension Kind: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

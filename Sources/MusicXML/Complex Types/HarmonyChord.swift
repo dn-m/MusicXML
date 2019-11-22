@@ -59,30 +59,30 @@ public struct HarmonyChord {
         for (i, component) in components.enumerated() {
             if i == 0 {
                 switch component {
-                    case let .root(root):
-                        aRootOrFunction = .root(root)
-                    case let .function(function):
-                        aRootOrFunction = .function(function)
-                    default:
-                        throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Requires first element to be either root or function"))
+                case let .root(root):
+                    aRootOrFunction = .root(root)
+                case let .function(function):
+                    aRootOrFunction = .function(function)
+                default:
+                    throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Requires first element to be either root or function"))
                 }
             } else if i == 1 {
                 switch component {
-                    case let .kind(kind):
-                        aKind = kind
-                    default:
-                        throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Requires second component to be kind"))
+                case let .kind(kind):
+                    aKind = kind
+                default:
+                    throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Requires second component to be kind"))
                 }
             } else {
                 switch component {
-                    case let .inversion(inversion):
-                        aInversion = inversion
-                    case let .bass(bass):
-                        aBass = bass
-                    case let .degree(degree):
-                        aDegrees.append(degree)
-                    default:
-                        throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Expects inversion, bass or degree"))
+                case let .inversion(inversion):
+                    aInversion = inversion
+                case let .bass(bass):
+                    aBass = bass
+                case let .degree(degree):
+                    aDegrees.append(degree)
+                default:
+                    throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Expects inversion, bass or degree"))
                 }
             }
         }
@@ -106,13 +106,13 @@ public struct HarmonyChord {
         var previousComponents = [HarmonyChordComponent]()
         for component in components {
             switch component {
-                case .root, .function:
-                    if previousComponents.isEmpty == false {
-                        harmonyChords.append(try HarmonyChord(components: previousComponents))
-                        previousComponents.removeAll()
-                    }
-                default:
-                    break
+            case .root, .function:
+                if previousComponents.isEmpty == false {
+                    harmonyChords.append(try HarmonyChord(components: previousComponents))
+                    previousComponents.removeAll()
+                }
+            default:
+                break
             }
             previousComponents.append(component)
         }
@@ -130,12 +130,13 @@ extension HarmonyChord {
 
 extension HarmonyChord: Equatable {}
 
-extension HarmonyChord.RootOrFunction: Equatable { }
+extension HarmonyChord.RootOrFunction: Equatable {}
 extension HarmonyChord.RootOrFunction: Codable {
     enum CodingKeys: String, CodingKey {
         case root
         case function
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -145,10 +146,11 @@ extension HarmonyChord.RootOrFunction: Codable {
             try container.encode(value, forKey: .function)
         }
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
@@ -168,7 +170,7 @@ extension HarmonyChord.RootOrFunction: Codable {
     }
 }
 
-extension HarmonyChord.RootOrFunction.CodingKeys: XMLChoiceCodingKey { }
+extension HarmonyChord.RootOrFunction.CodingKeys: XMLChoiceCodingKey {}
 
 enum HarmonyChordComponent {
     case root(Root)
@@ -188,10 +190,11 @@ extension HarmonyChordComponent: Decodable {
         case bass
         case degree
     }
+
     internal init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 

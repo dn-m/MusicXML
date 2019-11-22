@@ -14,7 +14,6 @@ public enum FontSize {
 }
 
 extension FontSize {
-
     // MARK: - Initializers
 
     public init(_ numeric: Double) {
@@ -26,7 +25,7 @@ extension FontSize {
     }
 }
 
-extension FontSize: Equatable { }
+extension FontSize: Equatable {}
 
 extension FontSize: Codable {
     public init(from decoder: Decoder) throws {
@@ -45,13 +44,13 @@ extension FontSize: Codable {
             )
         }
     }
+
     public func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
         switch self {
         case let .css(size):
-            try container.encode(size)
+            try size.encode(to: encoder)
         case let .numeric(size):
-            try container.encode(size)
+            try size.encode(to: encoder)
         }
     }
 }

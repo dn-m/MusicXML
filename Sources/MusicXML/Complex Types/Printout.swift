@@ -31,5 +31,5 @@ public struct Printout {
     }
 }
 
-extension Printout: Equatable { }
-extension Printout: Codable { }
+extension Printout: Equatable {}
+extension Printout: Codable {}

@@ -10,7 +10,7 @@
 public struct BassAlter {
     public let value: Double
     public let printObject: Bool?
-    public let printStyle: PrintStyle?
+    public let printStyle: PrintStyle
     public let location: LeftRight?
 
     public init(_ value: Double, printObject: Bool? = nil, printStyle: PrintStyle = PrintStyle(), location: LeftRight? = nil) {
@@ -21,7 +21,7 @@ public struct BassAlter {
     }
 }
 
-extension BassAlter: Equatable { }
+extension BassAlter: Equatable {}
 extension BassAlter: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""
@@ -36,10 +36,32 @@ extension BassAlter: Codable {
         self.printStyle = try PrintStyle(from: decoder)
         self.location = try container.decodeIfPresent(LeftRight.self, forKey: .location)
     }
+
+    // sourcery:inline:BassAlter.AutoEncodable
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(YesNo(printObject), forKey: .printObject)
+        try printStyle.encode(to: encoder)
+        try container.encodeIfPresent(location, forKey: .location)
+    }
+    // sourcery:end
 }
 
 extension BassAlter: ExpressibleByFloatLiteral {
     public init(floatLiteral value: Double) {
         self.init(value)
+    }
+}
+
+import XMLCoder
+extension BassAlter: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }

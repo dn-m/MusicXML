@@ -5,15 +5,14 @@
 //  Created by James Bean on 9/5/19.
 //
 
-import XCTest
 import MusicXML
+import XCTest
 
 class ArrowTests: XCTestCase {
-
     func testAPI() {
         // Circular
-        let _ = Arrow(direction: .anticlockwise)
+        _ = Arrow(direction: .anticlockwise)
         // Linear
-        let _ = Arrow(direction: .northeastSouthwest, style: .hollow)
+        _ = Arrow(direction: .northeastSouthwest, style: .hollow)
     }
 }

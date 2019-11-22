@@ -21,5 +21,5 @@ public struct MeasureRepeat {
     }
 }
 
-extension MeasureRepeat: Equatable { }
-extension MeasureRepeat: Codable { }
+extension MeasureRepeat: Equatable {}
+extension MeasureRepeat: Codable {}

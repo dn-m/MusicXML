@@ -9,7 +9,8 @@
 public enum BreathMarkValue: String {
     case comma
     case tick
+    case `default` = ""
 }
 
-extension BreathMarkValue: Equatable { }
-extension BreathMarkValue: Codable { }
+extension BreathMarkValue: Equatable {}
+extension BreathMarkValue: Codable {}

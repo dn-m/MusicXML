@@ -10,7 +10,6 @@
 /// and standard distances between notation elements, plus an extension element for other aspects of
 /// appearance.
 public struct Appearance {
-    
     public let lineWidths: [LineWidth]
     public let noteSizes: [NoteSize]
     public let distances: [Distance]
@@ -29,7 +28,7 @@ public struct Appearance {
     }
 }
 
-extension Appearance: Equatable { }
+extension Appearance: Equatable {}
 extension Appearance: Codable {
     private enum CodingKeys: String, CodingKey {
         case lineWidths = "line-width"

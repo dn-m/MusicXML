@@ -37,7 +37,7 @@ public struct TimeModification {
     }
 }
 
-extension TimeModification: Equatable { }
+extension TimeModification: Equatable {}
 extension TimeModification: Codable {
     enum CodingKeys: String, CodingKey {
         case actualNotes = "actual-notes"
@@ -45,11 +45,20 @@ extension TimeModification: Codable {
         case normalType = "normal-type"
         case normalDotCount = "normal-dot"
     }
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.actualNotes = try container.decode(Int.self, forKey: .actualNotes)
         self.normalNotes = try container.decode(Int.self, forKey: .normalNotes)
         self.normalType = try container.decodeIfPresent(NoteTypeValue.self, forKey: .normalType)
         self.normalDotCount = try container.decode([Empty].self, forKey: .normalDotCount).count
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(actualNotes, forKey: .actualNotes)
+        try container.encode(normalNotes, forKey: .normalNotes)
+        try container.encodeIfPresent(normalType, forKey: .normalType)
+        try container.encode([Empty](repeating: Empty(), count: normalDotCount), forKey: .normalDotCount)
     }
 }

@@ -10,7 +10,6 @@
 /// values. The type is not needed when used as part of a print element. If omitted when used in the
 /// defaults element, "both" is the default.
 public struct PageLayout {
-
     public let height: Double?
     public let width: Double?
     public let margins: [PageMargins]
@@ -22,7 +21,7 @@ public struct PageLayout {
     }
 }
 
-extension PageLayout: Equatable { }
+extension PageLayout: Equatable {}
 extension PageLayout: Codable {
     private enum CodingKeys: String, CodingKey {
         case height = "page-height"

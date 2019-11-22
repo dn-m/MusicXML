@@ -20,5 +20,5 @@ public enum TimeSeparator: String {
     case adjacent
 }
 
-extension TimeSeparator: Equatable { }
-extension TimeSeparator: Codable { }
+extension TimeSeparator: Equatable {}
+extension TimeSeparator: Codable {}

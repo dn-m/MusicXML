@@ -16,11 +16,12 @@ public struct StyleText {
     }
 }
 
-extension StyleText: Equatable { }
+extension StyleText: Equatable {}
 extension StyleText: Codable {
     private enum CodingKeys: String, CodingKey {
         case value = ""
     }
+
     public init(from decoder: Decoder) throws {
         // Decode attribute group
         self.printStyle = try PrintStyle(from: decoder)
@@ -28,9 +29,10 @@ extension StyleText: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.value = try container.decode(String.self, forKey: .value)
     }
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try self.printStyle.encode(to: encoder)
+        try printStyle.encode(to: encoder)
         try container.encode(value, forKey: .value)
     }
 }
@@ -38,5 +40,17 @@ extension StyleText: Codable {
 extension StyleText: ExpressibleByStringLiteral {
     public init(stringLiteral value: String) {
         self.init(value)
+    }
+}
+
+import XMLCoder
+extension StyleText: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.value:
+            return .element
+        default:
+            return .attribute
+        }
     }
 }
