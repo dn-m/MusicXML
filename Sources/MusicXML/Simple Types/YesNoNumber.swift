@@ -16,7 +16,7 @@ public enum YesNoNumber {
 extension YesNoNumber: Equatable {}
 extension YesNoNumber: Codable {
     enum CodingKeys: CodingKey {}
-    
+
     public func encode(to encoder: Encoder) throws {
         switch self {
         case let .yesNo(value):

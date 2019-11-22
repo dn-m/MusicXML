@@ -202,7 +202,7 @@ enum KeyComponent: Decodable {
     case keyAccidental(AccidentalValue)
 }
 
-fileprivate extension Decoder {
+private extension Decoder {
     func assemble(from components: [KeyComponent]) throws -> [Key.AlteredTone] {
         var alteredTones = [Key.AlteredTone]()
         var previousStep: Step?
@@ -220,7 +220,7 @@ fileprivate extension Decoder {
                         throw DecodingError.typeMismatch(
                             Key.self,
                             DecodingError.Context(
-                                codingPath: self.codingPath,
+                                codingPath: codingPath,
                                 debugDescription: "Two key-step values in a row in non-traditional key"
                             )
                         )
@@ -236,7 +236,7 @@ fileprivate extension Decoder {
                     throw DecodingError.typeMismatch(
                         Key.self,
                         DecodingError.Context(
-                            codingPath: self.codingPath,
+                            codingPath: codingPath,
                             debugDescription: "key-alter value not preceded by key-step value in non-traditional key"
                         )
                     )
@@ -252,7 +252,7 @@ fileprivate extension Decoder {
                     throw DecodingError.typeMismatch(
                         Key.self,
                         DecodingError.Context(
-                            codingPath: self.codingPath,
+                            codingPath: codingPath,
                             debugDescription: "key-accidental not preceded by key-step and key-alter in non-traditional key"
                         )
                     )
@@ -269,7 +269,7 @@ fileprivate extension Decoder {
             throw DecodingError.typeMismatch(
                 Key.self,
                 DecodingError.Context(
-                    codingPath: self.codingPath,
+                    codingPath: codingPath,
                     debugDescription: "Whole number of altered tones not represented in non-traditional key"
                 )
             )
