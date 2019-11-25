@@ -319,44 +319,17 @@ extension Note.Kind: Codable {
         case let .cue(cue):
             try container.encode(Empty(), forKey: .cue)
             if cue.isChord { try container.encode(Empty(), forKey: .chord) }
-
-            // FIXME: (upstream) `cue.pitchUnpitchedOrRest.encode(to: encoder)` should work here
-            switch cue.pitchUnpitchedOrRest {
-            case let .pitch(pitch):
-                try container.encode(pitch, forKey: .pitch)
-            case let .unpitched(unpitched):
-                try container.encode(unpitched, forKey: .unpitched)
-            case let .rest(rest):
-                try container.encode(rest, forKey: .rest)
-            }
+            try cue.pitchUnpitchedOrRest.encode(to: encoder)
             try container.encode(cue.duration, forKey: .duration)
         case let .grace(grace):
             try container.encode(Empty(), forKey: .grace)
             if grace.isChord { try container.encode(Empty(), forKey: .chord) }
-
-            // FIXME: (upstream) `grace.pitchUnpitchedOrRest.encode(to: encoder)` should work here
-            switch grace.pitchUnpitchedOrRest {
-            case let .pitch(pitch):
-                try container.encode(pitch, forKey: .pitch)
-            case let .unpitched(unpitched):
-                try container.encode(unpitched, forKey: .unpitched)
-            case let .rest(rest):
-                try container.encode(rest, forKey: .rest)
-            }
+            try grace.pitchUnpitchedOrRest.encode(to: encoder)
             try container.encodeIfPresent(grace.ties.start, forKey: .tie)
             try container.encodeIfPresent(grace.ties.stop, forKey: .tie)
         case let .normal(normal):
             if normal.isChord { try container.encode(Empty(), forKey: .chord) }
-
-            // FIXME: (upstream) `normal.pitchUnpitchedOrRest.encode(to: encoder)` should work here
-            switch normal.pitchUnpitchedOrRest {
-            case let .pitch(pitch):
-                try container.encode(pitch, forKey: .pitch)
-            case let .unpitched(unpitched):
-                try container.encode(unpitched, forKey: .unpitched)
-            case let .rest(rest):
-                try container.encode(rest, forKey: .rest)
-            }
+            try normal.pitchUnpitchedOrRest.encode(to: encoder)
             try container.encode(normal.duration, forKey: .duration)
             try container.encodeIfPresent(normal.ties.start, forKey: .tie)
             try container.encodeIfPresent(normal.ties.stop, forKey: .tie)

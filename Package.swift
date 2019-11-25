@@ -13,7 +13,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/bwetherfield/XMLCoder", .branch("value-coding-key-empty")),
+        .package(url: "https://github.com/bwetherfield/XMLCoder", .branch("mixed-choice-encoding")),
         .package(url: "https://github.com/jpsim/Yams.git", from: "2.0.0"),
     ],
     targets: [

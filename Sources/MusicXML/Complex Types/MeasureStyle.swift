@@ -93,10 +93,6 @@ extension MeasureStyle: Codable {
     enum CodingKeys: String, CodingKey {
         case number
         case color
-        case beatRepeat = "beat-repeat"
-        case measureRepeat = "measure-repeat"
-        case multipleRest = "multiple-rest"
-        case slash
     }
 
     public init(from decoder: Decoder) throws {
@@ -112,17 +108,6 @@ extension MeasureStyle: Codable {
         try container.encodeIfPresent(number, forKey: .number)
         try font.encode(to: encoder)
         try container.encodeIfPresent(color, forKey: .color)
-        
-        // FIXME: (upstream) `kind.encode(to: encoder)` should work here
-        switch kind {
-        case let .beatRepeat(value):
-            try container.encode(value, forKey: .beatRepeat)
-        case let .measureRepeat(value):
-            try container.encode(value, forKey: .measureRepeat)
-        case let .multipleRest(value):
-            try container.encode(value, forKey: .multipleRest)
-        case let .slash(value):
-            try container.encode(value, forKey: .slash)
-        }
+        try kind.encode(to: encoder)
     }
 }
