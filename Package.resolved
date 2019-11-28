@@ -5,8 +5,8 @@
         "package": "XMLCoder",
         "repositoryURL": "https://github.com/bwetherfield/XMLCoder",
         "state": {
-          "branch": "value-coding-key-empty",
-          "revision": "f35a28a5093dc7952116422f3bff05fcb08e8324",
+          "branch": "mixed-choice-encoding",
+          "revision": "fd6ec429b081555719fdc8f3d45f2a1f65902116",
           "version": null
         }
       },
