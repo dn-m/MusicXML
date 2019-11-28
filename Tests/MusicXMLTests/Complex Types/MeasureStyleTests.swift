@@ -20,7 +20,7 @@ class MeasureStyleTests: XCTestCase {
         let expected = MeasureStyle(kind: .multipleRest(MultipleRest(2)))
         XCTAssertEqual(decoded, expected)
     }
-    
+
     func testRoundTripMultipleRest() throws {
         try testRoundTrip(MeasureStyle(kind: .multipleRest(MultipleRest(2))))
     }

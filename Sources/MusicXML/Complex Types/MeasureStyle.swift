@@ -112,7 +112,7 @@ extension MeasureStyle: Codable {
         try container.encodeIfPresent(number, forKey: .number)
         try font.encode(to: encoder)
         try container.encodeIfPresent(color, forKey: .color)
-        
+
         // FIXME: (upstream) `kind.encode(to: encoder)` should work here
         switch kind {
         case let .beatRepeat(value):
