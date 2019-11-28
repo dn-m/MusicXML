@@ -152,78 +152,7 @@ extension Key: Codable {
             )
         } catch {
             // Attempt to decode non-traditional `Key`.
-            var alteredTones = [AlteredTone]()
-            let components: [KeyComponent] = try decoder.collectArray()
-            var previousStep: Step?
-            var previousAlter: Double?
-            for component in components {
-                switch component {
-                case let .keyStep(step):
-                    if let unwrappedStep = previousStep {
-                        if let alter = previousAlter {
-                            alteredTones.append(AlteredTone(step: unwrappedStep, alter: alter))
-                            previousStep = step
-                            previousAlter = nil
-                        } else {
-                            // The previous value was also a key-step
-                            throw DecodingError.typeMismatch(
-                                Key.self,
-                                DecodingError.Context(
-                                    codingPath: decoder.codingPath,
-                                    debugDescription: "Two key-step values in a row in non-traditional key"
-                                )
-                            )
-                        }
-                    } else {
-                        previousStep = step
-                    }
-                case let .keyAlter(alter):
-                    if previousStep != nil {
-                        previousAlter = alter
-                    } else {
-                        // The preceding value was not a key-step
-                        throw DecodingError.typeMismatch(
-                            Key.self,
-                            DecodingError.Context(
-                                codingPath: decoder.codingPath,
-                                debugDescription: "key-alter value not preceded by key-step value in non-traditional key"
-                            )
-                        )
-                    }
-                case let .keyAccidental(accidental):
-                    if let step = previousStep, let alter = previousAlter {
-                        alteredTones.append(AlteredTone(step: step, alter: alter, accidental: accidental))
-                        // Reset
-                        previousStep = nil
-                        previousAlter = nil
-                    } else {
-                        // This accidental was not preceded by a key-step and a key-alter
-                        throw DecodingError.typeMismatch(
-                            Key.self,
-                            DecodingError.Context(
-                                codingPath: decoder.codingPath,
-                                debugDescription: "key-accidental not preceded by key-step and key-alter in non-traditional key"
-                            )
-                        )
-                    }
-                }
-            }
-            if let step = previousStep, let alter = previousAlter {
-                alteredTones.append(AlteredTone(step: step, alter: alter))
-                previousStep = nil
-                previousAlter = nil
-            }
-            guard previousStep == nil, previousAlter == nil else {
-                // Should not have leftover previous step or previous alter
-                throw DecodingError.typeMismatch(
-                    Key.self,
-                    DecodingError.Context(
-                        codingPath: decoder.codingPath,
-                        debugDescription: "Whole number of altered tones not represented in non-traditional key"
-                    )
-                )
-            }
-            self.kind = .nonTraditional(alteredTones)
+            self.kind = .nonTraditional(try decoder.assemble(from: try decoder.collectArray()))
         }
     }
 
@@ -271,6 +200,82 @@ enum KeyComponent: Decodable {
     case keyStep(Step)
     case keyAlter(Double)
     case keyAccidental(AccidentalValue)
+}
+
+private extension Decoder {
+    func assemble(from components: [KeyComponent]) throws -> [Key.AlteredTone] {
+        var alteredTones = [Key.AlteredTone]()
+        var previousStep: Step?
+        var previousAlter: Double?
+        for component in components {
+            switch component {
+            case let .keyStep(step):
+                if let unwrappedStep = previousStep {
+                    if let alter = previousAlter {
+                        alteredTones.append(Key.AlteredTone(step: unwrappedStep, alter: alter))
+                        previousStep = step
+                        previousAlter = nil
+                    } else {
+                        // The previous value was also a key-step
+                        throw DecodingError.typeMismatch(
+                            Key.self,
+                            DecodingError.Context(
+                                codingPath: codingPath,
+                                debugDescription: "Two key-step values in a row in non-traditional key"
+                            )
+                        )
+                    }
+                } else {
+                    previousStep = step
+                }
+            case let .keyAlter(alter):
+                if previousStep != nil {
+                    previousAlter = alter
+                } else {
+                    // The preceding value was not a key-step
+                    throw DecodingError.typeMismatch(
+                        Key.self,
+                        DecodingError.Context(
+                            codingPath: codingPath,
+                            debugDescription: "key-alter value not preceded by key-step value in non-traditional key"
+                        )
+                    )
+                }
+            case let .keyAccidental(accidental):
+                if let step = previousStep, let alter = previousAlter {
+                    alteredTones.append(Key.AlteredTone(step: step, alter: alter, accidental: accidental))
+                    // Reset
+                    previousStep = nil
+                    previousAlter = nil
+                } else {
+                    // This accidental was not preceded by a key-step and a key-alter
+                    throw DecodingError.typeMismatch(
+                        Key.self,
+                        DecodingError.Context(
+                            codingPath: codingPath,
+                            debugDescription: "key-accidental not preceded by key-step and key-alter in non-traditional key"
+                        )
+                    )
+                }
+            }
+        }
+        if let step = previousStep, let alter = previousAlter {
+            alteredTones.append(Key.AlteredTone(step: step, alter: alter))
+            previousStep = nil
+            previousAlter = nil
+        }
+        guard previousStep == nil, previousAlter == nil else {
+            // Should not have leftover previous step or previous alter
+            throw DecodingError.typeMismatch(
+                Key.self,
+                DecodingError.Context(
+                    codingPath: codingPath,
+                    debugDescription: "Whole number of altered tones not represented in non-traditional key"
+                )
+            )
+        }
+        return alteredTones
+    }
 }
 
 extension KeyComponent.CodingKeys: XMLChoiceCodingKey {}

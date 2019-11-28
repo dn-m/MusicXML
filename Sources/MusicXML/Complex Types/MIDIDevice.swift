@@ -35,17 +35,6 @@ extension MIDIDevice: Codable {
     }
 }
 
-extension MIDIDevice: DynamicNodeDecoding {
-    public static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
-        switch key {
-        case CodingKeys.id, CodingKeys.port:
-            return .attribute
-        default:
-            return .element
-        }
-    }
-}
-
 extension MIDIDevice: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         switch key {
