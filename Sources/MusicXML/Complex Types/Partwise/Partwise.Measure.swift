@@ -111,7 +111,16 @@ extension Partwise.Measure: Codable {
     
     public func encode(to encoder: Encoder) throws {
         try attributes.encode(to: encoder)
-        // FIXME: Reengage `musicData` encoding
-        // try musicData.encode(to: encoder)
+        try musicData.forEach { try $0.encode(to: encoder) }
+    }
+}
+
+extension Partwise.Measure: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is MeasureAttributes.CodingKeys {
+            return .attribute
+        } else {
+            return .element
+        }
     }
 }
