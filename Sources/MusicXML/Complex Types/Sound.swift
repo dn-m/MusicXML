@@ -102,7 +102,7 @@ extension Sound.MIDI: Codable {
         case midiInstrument = "midi-instrument"
         case play
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.midiDevice = try container.decodeIfPresent(MIDIDevice.self, forKey: .midiDevice)
@@ -133,7 +133,7 @@ extension Sound: Codable {
         case sostenutoPedal = "sostenuto-pedal"
         case offset
     }
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.tempo = try container.decodeIfPresent(Double.self, forKey: .tempo)
@@ -153,14 +153,14 @@ extension Sound: Codable {
         self.damperPedal = try container.decodeIfPresent(YesNoNumber.self, forKey: .damperPedal)
         self.softPedal = try container.decodeIfPresent(YesNoNumber.self, forKey: .softPedal)
         self.sostenutoPedal = try container.decodeIfPresent(YesNoNumber.self, forKey: .sostenutoPedal)
-        
+
         let singleValueContainer = try decoder.singleValueContainer()
         let components = try singleValueContainer.decode([MIDIComponent].self)
         self.midi = MIDI.assemble(from: components)
-        
+
         self.offset = try container.decodeIfPresent(Offset.self, forKey: .offset)
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         fatalError("TODO")
     }
@@ -178,11 +178,11 @@ extension MIDIComponent: Decodable {
         case midiInstrument = "midi-instrument"
         case play
     }
-    
+
     internal init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        func decode <T> (_ key: CodingKeys) throws -> T where T: Codable {
+        func decode <T>(_ key: CodingKeys) throws -> T where T: Codable {
             return try container.decode(T.self, forKey: key)
         }
 
@@ -206,8 +206,8 @@ extension MIDIComponent: Decodable {
 
 extension Sound.MIDI {
     internal static func assemble(from components: [MIDIComponent]) -> [Sound.MIDI] {
-        var previousDevice: MIDIDevice? = nil
-        var previousInstrument: MIDIInstrument? = nil
+        var previousDevice: MIDIDevice?
+        var previousInstrument: MIDIInstrument?
         var midi = [Sound.MIDI]()
         components.forEach {
             switch $0 {
@@ -216,7 +216,7 @@ extension Sound.MIDI {
                     midi.append(.init(
                         midiDevice: previousDevice,
                         midiInstrument: previousInstrument
-                        )
+                    )
                     )
                 }
                 previousDevice = device
@@ -226,7 +226,7 @@ extension Sound.MIDI {
                     midi.append(.init(
                         midiDevice: previousDevice,
                         midiInstrument: previousInstrument
-                        )
+                    )
                     )
                 }
                 previousDevice = nil
@@ -236,7 +236,7 @@ extension Sound.MIDI {
                     midiDevice: previousDevice,
                     midiInstrument: previousInstrument,
                     play: play
-                    )
+                )
                 )
                 previousDevice = nil
                 previousInstrument = nil
