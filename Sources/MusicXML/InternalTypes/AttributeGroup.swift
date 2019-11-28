@@ -5,4 +5,5 @@
 //  Created by Benjamin Wetherfield on 11/18/19.
 //
 
-internal protocol AttributeGroup {}
+import XMLCoder
+internal protocol AttributeGroup: DynamicNodeEncoding {}
