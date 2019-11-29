@@ -256,10 +256,6 @@ extension Note.Kind: Codable {
         case chord
         case duration
         case tie
-        // Kind
-        case pitch
-        case rest
-        case unpitched
     }
 
     public init(from decoder: Decoder) throws {
@@ -281,19 +277,7 @@ extension Note.Kind: Codable {
         // The `Note` is a chord if it contains an empty `<chord/>` element.
         let isChord = container.contains(.chord)
 
-        // Decode pitch / unpitched / rest
-        // FIXME: (upstream) `let pitchUnpitchedOrRest = PitchUnpitchedOrRest(from: decoder)` should work here
-        let pitchUnpitchedOrRest: PitchUnpitchedOrRest
-        if container.contains(.pitch) {
-            let pitch = try container.decode(Pitch.self, forKey: .pitch)
-            pitchUnpitchedOrRest = .pitch(pitch)
-        } else if container.contains(.rest) {
-            let rest = try container.decode(Rest.self, forKey: .rest)
-            pitchUnpitchedOrRest = .rest(rest)
-        } else {
-            let unpitched = try container.decode(Unpitched.self, forKey: .unpitched)
-            pitchUnpitchedOrRest = .unpitched(unpitched)
-        }
+        let pitchUnpitchedOrRest = try PitchUnpitchedOrRest(from: decoder)
 
         if container.contains(.grace) {
             self = .grace(

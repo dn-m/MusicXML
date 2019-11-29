@@ -21,11 +21,11 @@ class SoundTests: XCTestCase {
         let decoded = Sound(midi: [
             Sound.MIDI(play: Play(
                 [.semiPitched(.veryLow)]
-            ))
+            )),
         ])
         try assertDecoded(xml, equals: decoded)
     }
-    
+
     func testSoundMidiInstrumentPlay() throws {
         let xml = """
         <sound>
@@ -39,11 +39,11 @@ class SoundTests: XCTestCase {
             Sound.MIDI(
                 midiInstrument: MIDIInstrument(id: "some midi"),
                 play: Play([.semiPitched(.veryLow)])
-            )
+            ),
         ])
         try assertDecoded(xml, equals: decoded)
     }
-    
+
     func testSoundMidiInstrumentPlayPlay() throws {
         let xml = """
         <sound>
@@ -63,11 +63,11 @@ class SoundTests: XCTestCase {
             ),
             Sound.MIDI(play: Play(
                 [.semiPitched(.veryLow)]
-            ))
+            )),
         ])
         try assertDecoded(xml, equals: decoded)
     }
-    
+
     func testSoundMIDI() throws {
         let xml = """
         <sound>
@@ -81,7 +81,7 @@ class SoundTests: XCTestCase {
         ))
         try assertDecoded(xml, equals: decoded)
     }
-    
+
     func testBasicPlay() throws {
         let xml = """
         <play>
@@ -91,7 +91,7 @@ class SoundTests: XCTestCase {
         let decoded = Play([.semiPitched(.veryLow)])
         try assertDecoded(xml, equals: decoded)
     }
-    
+
     func testBasicSemiPitched() throws {
         let xml = """
         <play>
