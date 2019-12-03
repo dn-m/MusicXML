@@ -54,7 +54,7 @@ extension Partwise: Codable {
         case parts = "part"
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

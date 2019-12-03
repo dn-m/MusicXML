@@ -46,7 +46,7 @@ extension AccordionRegistration: Codable {
         case low = "accordion-low"
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         self.printStyleAlign = try PrintStyleAlign(from: decoder)
@@ -56,7 +56,7 @@ extension AccordionRegistration: Codable {
         self.middle = try container.decodeIfPresent(AccordionMiddle.self, forKey: .middle)
     }
 
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         try printStyleAlign.encode(to: encoder)

@@ -109,7 +109,7 @@ extension Accidental: Codable {
         case value = ""
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
@@ -126,7 +126,7 @@ extension Accidental: Codable {
     }
 
     // sourcery:inline:Accidental.AutoEncodable
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

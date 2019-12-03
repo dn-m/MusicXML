@@ -30,7 +30,7 @@ extension Ornaments: Codable {
         case accidentalMarks = "accidental-mark"
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         do {

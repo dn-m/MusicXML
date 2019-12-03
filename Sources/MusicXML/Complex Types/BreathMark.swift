@@ -41,7 +41,7 @@ extension BreathMark: Codable {
         case placement
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attribute groups

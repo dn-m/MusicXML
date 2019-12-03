@@ -39,7 +39,7 @@ public struct Pedal {
 
 extension Pedal: Equatable {}
 extension Pedal: Codable {
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         self.printStyleAlign = try PrintStyleAlign(from: decoder)

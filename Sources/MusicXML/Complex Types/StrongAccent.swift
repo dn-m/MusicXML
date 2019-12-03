@@ -32,7 +32,7 @@ public struct StrongAccent {
 
 extension StrongAccent: Equatable {}
 extension StrongAccent: Codable {
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attribute groups

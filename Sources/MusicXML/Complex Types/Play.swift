@@ -39,7 +39,7 @@ extension Play.Kind: Codable {
         case otherPlay = "other-play"
     }
 
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -55,7 +55,7 @@ extension Play.Kind: Codable {
         }
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -88,7 +88,7 @@ extension Play.Kind.CodingKeys: XMLChoiceCodingKey {}
 
 extension Play: Equatable {}
 extension Play: Codable {
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()

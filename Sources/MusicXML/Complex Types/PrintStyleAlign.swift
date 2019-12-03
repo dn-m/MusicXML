@@ -30,7 +30,7 @@ extension PrintStyleAlign: Codable {
         case vAlign = "valign"
     }
 
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -39,7 +39,7 @@ extension PrintStyleAlign: Codable {
         try container.encodeIfPresent(vAlign, forKey: .vAlign)
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

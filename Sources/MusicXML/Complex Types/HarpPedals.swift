@@ -35,7 +35,7 @@ extension HarpPedals: Codable {
         case pedalTunings = "pedal-tuning"
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attribute groups

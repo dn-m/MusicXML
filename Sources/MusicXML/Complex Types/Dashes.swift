@@ -30,7 +30,7 @@ public struct Dashes {
 
 extension Dashes: Equatable {}
 extension Dashes: Codable {
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attribute groups

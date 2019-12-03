@@ -65,7 +65,7 @@ extension Slash: Codable {
 
     // MARK - Initializers
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attributes
@@ -84,7 +84,7 @@ extension Slash: Codable {
         }
     }
 
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         fatalError("TODO: Implement Slash.encode(to:)")

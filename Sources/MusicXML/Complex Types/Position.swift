@@ -89,7 +89,7 @@ extension Position: Codable {
         case relativeY = "relative-y"
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

@@ -29,7 +29,7 @@ extension LyricFont: Codable {
         case name
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         self.font = try Font(from: decoder)
@@ -38,7 +38,7 @@ extension LyricFont: Codable {
         self.name = try container.decodeIfPresent(String.self, forKey: .name)
     }
 
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         try font.encode(to: encoder)

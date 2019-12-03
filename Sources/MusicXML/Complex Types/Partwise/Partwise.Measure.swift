@@ -103,7 +103,7 @@ extension Partwise.Measure: Codable {
         case musicData
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         self.attributes = try MeasureAttributes(from: decoder)

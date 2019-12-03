@@ -44,7 +44,7 @@ extension Stem: Codable {
         case color
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -53,7 +53,7 @@ extension Stem: Codable {
         self.color = try container.decodeIfPresent(Color.self, forKey: .color)
     }
 
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

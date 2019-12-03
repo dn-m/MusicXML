@@ -47,7 +47,7 @@ extension PartName: Codable {
         case justify
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -58,7 +58,7 @@ extension PartName: Codable {
     }
 
     // sourcery:inline:PartName.AutoEncodable
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

@@ -137,7 +137,7 @@ extension Lyric: Codable {
         case level
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -188,7 +188,7 @@ extension Lyric: Codable {
         }
     }
 
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         fatalError()

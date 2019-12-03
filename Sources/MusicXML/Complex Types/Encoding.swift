@@ -41,7 +41,7 @@ extension Encoding.Kind: Codable {
         case supports
     }
 
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -59,7 +59,7 @@ extension Encoding.Kind: Codable {
         }
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -95,7 +95,7 @@ extension Encoding.Kind.CodingKeys: XMLChoiceCodingKey {}
 extension Encoding: Equatable {}
 
 extension Encoding: Codable {
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()

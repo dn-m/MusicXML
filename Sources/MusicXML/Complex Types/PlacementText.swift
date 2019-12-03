@@ -47,7 +47,7 @@ extension PlacementText: Codable {
         case value = ""
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attribute groups

@@ -70,7 +70,7 @@ extension FiguredBass: Codable {
         case parentheses
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
@@ -87,7 +87,7 @@ extension FiguredBass: Codable {
     }
 
     // sourcery:inline:FiguredBass.AutoEncodable
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

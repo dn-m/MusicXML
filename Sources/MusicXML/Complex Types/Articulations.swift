@@ -21,7 +21,7 @@ public struct Articulations {
 extension Articulations: Equatable {}
 
 extension Articulations: Codable {
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()

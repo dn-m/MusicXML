@@ -77,7 +77,7 @@ extension Notations.Notation: Codable {
         case other
     }
 
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -113,7 +113,7 @@ extension Notations.Notation: Codable {
         }
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -166,7 +166,7 @@ extension Notations.Notation.CodingKeys: XMLChoiceCodingKey {}
 
 extension Notations: Equatable {}
 extension Notations: Codable {
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode values

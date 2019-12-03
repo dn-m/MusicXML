@@ -50,7 +50,7 @@ extension Fret: Codable {
         case color
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
@@ -66,7 +66,7 @@ extension Fret: Codable {
         }
     }
 
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         try font.encode(to: encoder)

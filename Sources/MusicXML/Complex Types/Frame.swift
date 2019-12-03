@@ -78,7 +78,7 @@ extension Frame: Codable {
         case firstFret = "first-fret"
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decdode attribute groups

@@ -38,7 +38,7 @@ extension MetronomeNote: Codable {
         case metronomeTuplet = "metronome-tuplet"
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

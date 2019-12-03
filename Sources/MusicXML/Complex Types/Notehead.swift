@@ -37,7 +37,7 @@ extension Notehead: Codable {
         case color
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         self.font = try Font(from: decoder)
@@ -49,7 +49,7 @@ extension Notehead: Codable {
     }
 
     // sourcery:inline:Notehead.AutoEncodable
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

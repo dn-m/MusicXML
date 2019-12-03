@@ -103,7 +103,7 @@ extension Timewise.Measure: Codable {
         case parts = "part"
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         self.attributes = try MeasureAttributes(from: decoder)
@@ -111,7 +111,7 @@ extension Timewise.Measure: Codable {
         self.parts = try container.decode([Timewise.Part].self, forKey: .parts)
     }
 
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         fatalError()

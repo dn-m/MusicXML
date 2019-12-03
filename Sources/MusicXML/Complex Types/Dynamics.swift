@@ -55,7 +55,7 @@ extension Dynamics {
 
 extension Dynamics: Equatable {}
 extension Dynamics: Codable {
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode values

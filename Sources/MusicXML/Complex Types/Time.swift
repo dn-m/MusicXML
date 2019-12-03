@@ -187,7 +187,7 @@ extension Time.Measured: Codable {
         case interchangeable
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let signatureContainer = try decoder.container(keyedBy: Time.Signature.CodingKeys.self)
@@ -214,7 +214,7 @@ extension Time.Kind: Codable {
         case unmeasured
     }
 
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -226,7 +226,7 @@ extension Time.Kind: Codable {
         }
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -240,7 +240,7 @@ extension Time.Kind: Codable {
 
 extension Time: Equatable {}
 extension Time: Codable {
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attributes

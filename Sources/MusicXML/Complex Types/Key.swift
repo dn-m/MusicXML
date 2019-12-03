@@ -104,7 +104,7 @@ extension Key.Traditional: Codable {}
 
 extension Key.Kind: Equatable {}
 extension Key.Kind: Encodable {
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         switch self {
@@ -138,7 +138,7 @@ extension Key: Codable {
         case mode
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -166,7 +166,7 @@ extension Key: Codable {
         }
     }
 
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         try printStyle.encode(to: encoder)

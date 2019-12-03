@@ -38,7 +38,7 @@ extension WavyLine: Codable {
         case color
     }
 
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -50,7 +50,7 @@ extension WavyLine: Codable {
         try trillSound.encode(to: encoder)
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

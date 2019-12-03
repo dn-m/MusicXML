@@ -52,7 +52,7 @@ extension Timewise: Codable {
         case measures = "measure"
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

@@ -44,7 +44,7 @@ extension Fingering: Codable {
         case placement
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
@@ -59,7 +59,7 @@ extension Fingering: Codable {
     }
 
     // sourcery:inline:Fingering.AutoEncodable
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

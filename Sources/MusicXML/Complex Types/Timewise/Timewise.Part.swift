@@ -40,7 +40,7 @@ extension Timewise.Part: Codable {
         case id
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attributes

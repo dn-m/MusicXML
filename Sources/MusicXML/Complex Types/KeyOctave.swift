@@ -44,7 +44,7 @@ extension KeyOctave: Codable {
         case value = ""
     }
 
-    // MARK - Decodable
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -53,7 +53,7 @@ extension KeyOctave: Codable {
         self.cancel = try container.decodeIfPresent(Bool.self, forKey: .cancel) ?? false
     }
 
-    // MARK - Encodable
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
