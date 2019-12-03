@@ -41,6 +41,8 @@ extension BassStep {
 
 extension BassStep: Equatable {}
 extension BassStep: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case text

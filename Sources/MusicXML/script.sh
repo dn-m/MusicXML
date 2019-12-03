@@ -4,6 +4,11 @@ if [[ -z $(grep 'Instance Properties' "$1") ]] ; then
     // MARK: - Instance Properties\n' "$1"
 fi
 
+if [[ -z $(grep 'MARK: - Codable' "$1") ]] ; then
+    gsed -i -r '/extension.*: Codable/ a\
+    // MARK: - Codable\n' "$1"
+fi
+
 if [[ -z $(grep 'Initializers' "$1") ]] ; then
     gsed -i "/public struct/,/public init(/ {
     s_.*public init.*_\
