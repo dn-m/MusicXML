@@ -5,7 +5,7 @@ if [[ -z $(grep 'Instance Properties' "$1") ]] ; then
 fi
 
 if [[ -z $(grep 'Initializers' "$1") ]] ; then
-    gsed -i -r "/public struct/,/public init(/ {
+    gsed -i "/public struct/,/public init(/ {
     s_.*public init.*_\
     // MARK - Initializers\
 \n\
