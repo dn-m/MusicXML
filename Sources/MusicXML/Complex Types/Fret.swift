@@ -45,6 +45,8 @@ extension Fret: ExpressibleByIntegerLiteral {
 
 extension Fret: Equatable {}
 extension Fret: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case color

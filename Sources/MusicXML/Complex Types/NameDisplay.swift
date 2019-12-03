@@ -35,6 +35,8 @@ extension NameDisplay {
 extension NameDisplay.Text: Equatable {}
 
 extension NameDisplay.Text: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case displayText = "display-text"
         case accidentalText = "accidental-text"
@@ -79,6 +81,8 @@ extension NameDisplay.Text: Codable {
 
 extension NameDisplay: Equatable {}
 extension NameDisplay: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case printObject = "print-object"
     }

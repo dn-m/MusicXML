@@ -39,6 +39,8 @@ extension Stem {
 
 extension Stem: Equatable {}
 extension Stem: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case color

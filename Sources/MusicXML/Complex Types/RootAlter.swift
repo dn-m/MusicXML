@@ -44,6 +44,8 @@ public struct RootAlter {
 
 extension RootAlter: Equatable {}
 extension RootAlter: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case printObject = "print-object"

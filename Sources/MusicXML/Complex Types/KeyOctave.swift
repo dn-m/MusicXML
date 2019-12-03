@@ -38,6 +38,8 @@ extension KeyOctave {
 
 extension KeyOctave: Equatable {}
 extension KeyOctave: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case number
         case cancel

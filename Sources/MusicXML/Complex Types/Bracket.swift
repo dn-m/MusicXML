@@ -38,6 +38,8 @@ public struct Bracket {
 
 extension Bracket: Equatable {}
 extension Bracket: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case type
         case number

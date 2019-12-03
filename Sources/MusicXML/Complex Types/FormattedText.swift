@@ -63,6 +63,8 @@ public struct FormattedText {
 
 extension FormattedText: Equatable {}
 extension FormattedText: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case justify
         case hAlign = "halign"

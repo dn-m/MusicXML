@@ -32,6 +32,8 @@ public struct HammerOnPullOff {
 
 extension HammerOnPullOff: Equatable {}
 extension HammerOnPullOff: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case number

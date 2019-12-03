@@ -31,6 +31,8 @@ public struct Line {
 
 extension Line: Equatable {}
 extension Line: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case lineShape
         case lineType

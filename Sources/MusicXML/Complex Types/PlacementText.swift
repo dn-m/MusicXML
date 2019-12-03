@@ -40,6 +40,8 @@ public struct PlacementText {
 
 extension PlacementText: Equatable {}
 extension PlacementText: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case placement
         case position

@@ -22,6 +22,8 @@ public struct StringMute {
 
 extension StringMute: Equatable {}
 extension StringMute: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
     }

@@ -24,6 +24,8 @@ public struct Feature {
 
 extension Feature: Equatable {}
 extension Feature: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case value = ""

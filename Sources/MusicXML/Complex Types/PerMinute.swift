@@ -25,6 +25,8 @@ public struct PerMinute {
 
 extension PerMinute: Equatable {}
 extension PerMinute: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case value = ""
     }

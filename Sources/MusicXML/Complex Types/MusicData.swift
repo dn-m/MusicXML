@@ -30,6 +30,8 @@ public enum MusicData {
 extension MusicData: Equatable {}
 
 extension MusicData: Codable {
+    // MARK: - Codable
+
     // MARK: - Decodable
 
     enum CodingKeys: String, CodingKey {

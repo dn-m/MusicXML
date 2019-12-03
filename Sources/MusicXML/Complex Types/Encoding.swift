@@ -33,6 +33,8 @@ public struct Encoding {
 
 extension Encoding.Kind: Equatable {}
 extension Encoding.Kind: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case encoder
         case date = "encoding-date"
@@ -95,6 +97,8 @@ extension Encoding.Kind.CodingKeys: XMLChoiceCodingKey {}
 extension Encoding: Equatable {}
 
 extension Encoding: Codable {
+    // MARK: - Codable
+
     // MARK: Decodable
 
     public init(from decoder: Decoder) throws {

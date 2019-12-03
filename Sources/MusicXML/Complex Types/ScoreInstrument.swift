@@ -58,6 +58,8 @@ extension ScoreInstrument {
 extension ScoreInstrument.SoloEnsemble: Equatable {}
 
 extension ScoreInstrument.SoloEnsemble: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case solo
         case ensemble
@@ -97,6 +99,8 @@ extension ScoreInstrument.SoloEnsemble: Codable {
 
 extension ScoreInstrument: Equatable {}
 extension ScoreInstrument: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case id
         case name = "instrument-name"

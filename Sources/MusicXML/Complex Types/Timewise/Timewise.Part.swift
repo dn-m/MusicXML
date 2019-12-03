@@ -34,6 +34,8 @@ extension Timewise {
 extension Timewise.Part: Equatable {}
 
 extension Timewise.Part: Codable {
+    // MARK: - Codable
+
     // MARK: - Decodable
 
     enum CodingKeys: String, CodingKey {

@@ -62,6 +62,8 @@ public struct FiguredBass {
 
 extension FiguredBass: Equatable {}
 extension FiguredBass: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case figures = "figure"
         case duration

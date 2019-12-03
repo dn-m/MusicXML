@@ -23,6 +23,8 @@ public struct Unpitched {
 
 extension Unpitched: Equatable {}
 extension Unpitched: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case displayStep = "display-step"
         case displayOctave = "display-octave"

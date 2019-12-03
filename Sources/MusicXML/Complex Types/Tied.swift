@@ -41,6 +41,8 @@ public struct Tied {
 
 extension Tied: Equatable {}
 extension Tied: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case number

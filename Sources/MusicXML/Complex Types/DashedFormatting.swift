@@ -24,6 +24,8 @@ public struct DashedFormatting {
 
 extension DashedFormatting: Equatable {}
 extension DashedFormatting: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case dashLength = "dash-length"
         case spaceLength = "space-length"

@@ -48,6 +48,8 @@ public struct Tremolo {
 
 extension Tremolo: Equatable {}
 extension Tremolo: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case marks = ""
         case type

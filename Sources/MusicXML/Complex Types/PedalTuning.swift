@@ -22,6 +22,8 @@ public struct PedalTuning {
 
 extension PedalTuning: Equatable {}
 extension PedalTuning: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case step = "pedal-step"
         case alter = "pedal-alter"

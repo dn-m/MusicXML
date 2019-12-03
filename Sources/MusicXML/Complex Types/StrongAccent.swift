@@ -32,6 +32,8 @@ public struct StrongAccent {
 
 extension StrongAccent: Equatable {}
 extension StrongAccent: Codable {
+    // MARK: - Codable
+
     // MARK: Decodable
 
     public init(from decoder: Decoder) throws {

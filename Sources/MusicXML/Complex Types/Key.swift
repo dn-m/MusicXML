@@ -123,6 +123,8 @@ extension Key.Kind: Encodable {
 
 extension Key: Equatable {}
 extension Key: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case number
         case position

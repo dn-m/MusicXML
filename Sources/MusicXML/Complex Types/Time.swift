@@ -174,6 +174,8 @@ extension Time {
 
 extension Time.Signature: Equatable {}
 extension Time.Signature: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case beats
         case beatType = "beat-type"
@@ -182,6 +184,8 @@ extension Time.Signature: Codable {
 
 extension Time.Measured: Equatable {}
 extension Time.Measured: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case signature
         case interchangeable
@@ -202,6 +206,8 @@ extension Time.Measured: Codable {
 
 extension Time.Unmeasured: Equatable {}
 extension Time.Unmeasured: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case symbol
     }
@@ -209,6 +215,8 @@ extension Time.Unmeasured: Codable {
 
 extension Time.Kind: Equatable {}
 extension Time.Kind: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case measured
         case unmeasured
@@ -240,6 +248,8 @@ extension Time.Kind: Codable {
 
 extension Time: Equatable {}
 extension Time: Codable {
+    // MARK: - Codable
+
     // MARK: Decodable
 
     public init(from decoder: Decoder) throws {

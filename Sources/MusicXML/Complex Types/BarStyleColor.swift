@@ -38,6 +38,8 @@ extension BarStyleColor {
 
 extension BarStyleColor: Equatable {}
 extension BarStyleColor: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case value = ""
         case color

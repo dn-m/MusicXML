@@ -35,6 +35,8 @@ public struct DegreeValue {
 
 extension DegreeValue: Equatable {}
 extension DegreeValue: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case symbol

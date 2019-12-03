@@ -33,6 +33,8 @@ public struct PlacementPrintStyle {
 
 extension PlacementPrintStyle: Equatable {}
 extension PlacementPrintStyle: Codable {
+    // MARK: - Codable
+
     // MARK: Decodable
 
     public init(from decoder: Decoder) throws {

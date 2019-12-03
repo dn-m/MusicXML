@@ -31,6 +31,8 @@ public struct WavyLine {
 
 extension WavyLine: Equatable {}
 extension WavyLine: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case number

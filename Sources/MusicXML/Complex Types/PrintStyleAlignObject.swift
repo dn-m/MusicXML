@@ -23,6 +23,8 @@ public struct PrintStyleAlignObject {
 
 extension PrintStyleAlignObject: Equatable {}
 extension PrintStyleAlignObject: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case printObject = "print-object"
     }

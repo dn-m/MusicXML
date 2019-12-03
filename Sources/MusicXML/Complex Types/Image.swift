@@ -28,6 +28,8 @@ public struct Image {
 
 extension Image: Equatable {}
 extension Image: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case source
         case type

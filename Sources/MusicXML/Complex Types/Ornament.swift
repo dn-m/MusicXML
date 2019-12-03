@@ -24,6 +24,8 @@ public enum Ornament {
 
 extension Ornament: Equatable {}
 extension Ornament: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case delayedInvertedTurn = "delayed-inverted-turn"
         case delayedTurn = "delayed-turn"

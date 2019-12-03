@@ -42,6 +42,8 @@ public struct Degree {
 extension Degree: Equatable {}
 
 extension Degree: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case printObject = "print-object"
         case value = "degree-value"

@@ -39,6 +39,8 @@ public struct Pedal {
 
 extension Pedal: Equatable {}
 extension Pedal: Codable {
+    // MARK: - Codable
+
     // MARK: Decodable
 
     public init(from decoder: Decoder) throws {

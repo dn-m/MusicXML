@@ -22,6 +22,8 @@ public struct TupletDot {
 
 extension TupletDot: Equatable {}
 extension TupletDot: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case color
     }

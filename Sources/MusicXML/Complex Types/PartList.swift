@@ -37,6 +37,8 @@ extension PartList {
 
 extension PartList.Item: Equatable {}
 extension PartList.Item: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case group = "part-group"
         case part = "score-part"
@@ -83,6 +85,8 @@ extension PartList.Item.CodingKeys: XMLChoiceCodingKey {}
 
 extension PartList: Equatable {}
 extension PartList: Codable {
+    // MARK: - Codable
+
     // MARK: Decodable
 
     public init(from decoder: Decoder) throws {

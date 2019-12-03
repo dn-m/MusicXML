@@ -28,6 +28,8 @@ public struct SystemDividers {
 
 extension SystemDividers: Equatable {}
 extension SystemDividers: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case left = "left-divider"
         case right = "right-divider"

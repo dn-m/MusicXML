@@ -48,6 +48,8 @@ extension Partwise {
 extension Partwise: Equatable {}
 
 extension Partwise: Codable {
+    // MARK: - Codable
+
     // MARK: - Decodable
 
     enum CodingKeys: String, CodingKey {

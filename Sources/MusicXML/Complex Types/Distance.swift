@@ -22,6 +22,8 @@ public struct Distance {
 
 extension Distance: Equatable {}
 extension Distance: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case value = ""

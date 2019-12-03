@@ -30,6 +30,8 @@ public struct Arpeggiate {
 
 extension Arpeggiate: Equatable {}
 extension Arpeggiate: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case number
         case direction

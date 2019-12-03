@@ -116,6 +116,8 @@ public enum DirectionType {
 extension DirectionType: Equatable {}
 
 extension DirectionType: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case accordionRegistration = "accordion-registration"
         case bracket

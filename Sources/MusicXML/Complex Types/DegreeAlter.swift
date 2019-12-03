@@ -37,6 +37,8 @@ public struct DegreeAlter {
 
 extension DegreeAlter: Equatable {}
 extension DegreeAlter: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case plusMinus = "plus-minus"

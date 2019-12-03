@@ -136,6 +136,8 @@ extension HarmonyChord: Equatable {}
 
 extension HarmonyChord.RootOrFunction: Equatable {}
 extension HarmonyChord.RootOrFunction: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case root
         case function

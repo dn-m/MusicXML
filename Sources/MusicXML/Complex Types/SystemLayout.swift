@@ -40,6 +40,8 @@ public struct SystemLayout {
 
 extension SystemLayout: Equatable {}
 extension SystemLayout: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case margins = "system-margins"
         case distance = "system-distance"

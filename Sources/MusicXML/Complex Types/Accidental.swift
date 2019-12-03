@@ -98,6 +98,8 @@ extension Accidental {
 
 extension Accidental: Equatable {}
 extension Accidental: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case cautionary
         case editorial

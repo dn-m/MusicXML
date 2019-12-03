@@ -40,6 +40,8 @@ extension PageMargins.Kind: Codable {}
 
 extension PageMargins: Equatable {}
 extension PageMargins: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case type
         case left = "left-margin"

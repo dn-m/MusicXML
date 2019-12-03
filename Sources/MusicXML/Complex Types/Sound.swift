@@ -105,6 +105,8 @@ extension Sound {
 
 extension Sound.MIDI: Equatable {}
 extension Sound.MIDI: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case midiDevice = "midi-device"
         case midiInstrument = "midi-instrument"
@@ -123,6 +125,8 @@ extension Sound.MIDI: Codable {
 
 extension Sound: Equatable {}
 extension Sound: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case tempo
         case dynamics

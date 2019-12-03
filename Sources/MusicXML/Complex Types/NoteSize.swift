@@ -28,6 +28,8 @@ public struct NoteSize {
 
 extension NoteSize: Equatable {}
 extension NoteSize: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case value = ""

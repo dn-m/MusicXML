@@ -30,6 +30,8 @@ public struct Fermata {
 
 extension Fermata: Equatable {}
 extension Fermata: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case value = ""
         case type

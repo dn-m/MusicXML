@@ -24,6 +24,8 @@ public struct HoleClosed {
 
 extension HoleClosed: Equatable {}
 extension HoleClosed: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case location
         case value = ""

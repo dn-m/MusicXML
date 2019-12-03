@@ -16,6 +16,8 @@ public enum PitchUnpitchedOrRest {
 extension PitchUnpitchedOrRest: Equatable {}
 
 extension PitchUnpitchedOrRest: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case pitch
         case unpitched

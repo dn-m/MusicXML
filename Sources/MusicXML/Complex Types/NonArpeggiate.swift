@@ -32,6 +32,8 @@ public struct NonArpeggiate {
 
 extension NonArpeggiate: Equatable {}
 extension NonArpeggiate: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case number

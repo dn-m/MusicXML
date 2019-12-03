@@ -31,6 +31,8 @@ public struct MiscellaneousField {
 
 extension MiscellaneousField: Equatable {}
 extension MiscellaneousField: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case name
         case value = ""

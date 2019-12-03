@@ -25,6 +25,8 @@ public struct Root {
 
 extension Root: Equatable {}
 extension Root: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case step = "root-step"
         case alter = "root-alter"

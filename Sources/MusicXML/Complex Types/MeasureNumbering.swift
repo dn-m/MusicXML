@@ -26,6 +26,8 @@ public struct MeasureNumbering {
 
 extension MeasureNumbering: Equatable {}
 extension MeasureNumbering: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
     }

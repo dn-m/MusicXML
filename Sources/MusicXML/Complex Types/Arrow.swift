@@ -65,6 +65,8 @@ extension Arrow {
 }
 
 extension Arrow.Kind: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case circular
         case linear
@@ -112,6 +114,8 @@ extension Arrow.Kind.CodingKeys: XMLChoiceCodingKey {}
 extension Arrow.Kind: Equatable {}
 extension Arrow: Equatable {}
 extension Arrow: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case kind
         case placement

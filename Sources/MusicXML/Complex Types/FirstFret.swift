@@ -25,6 +25,8 @@ public struct FirstFret {
 
 extension FirstFret: Equatable {}
 extension FirstFret: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case text
         case location

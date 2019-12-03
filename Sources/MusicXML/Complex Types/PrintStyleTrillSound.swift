@@ -25,6 +25,8 @@ public struct PrintStyleTrillSound {
 
 extension PrintStyleTrillSound: Equatable {}
 extension PrintStyleTrillSound: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case placement
     }

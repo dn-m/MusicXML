@@ -58,6 +58,8 @@ public struct Direction {
 
 extension Direction: Equatable {}
 extension Direction: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case placement
         case directive

@@ -117,6 +117,8 @@ extension Lyric.Kind: Equatable {}
 
 extension Lyric: Equatable {}
 extension Lyric: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case kind
         case number

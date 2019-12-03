@@ -30,6 +30,8 @@ public struct Notehead {
 
 extension Notehead: Equatable {}
 extension Notehead: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case filled

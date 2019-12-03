@@ -249,6 +249,8 @@ extension Note {
 }
 
 extension Note.Kind: Codable {
+    // MARK: - Codable
+
     public enum CodingKeys: String, CodingKey {
         // Normal Note, Cue and Grace
         case grace
@@ -331,6 +333,8 @@ extension Note.Grace: Equatable {}
 
 extension Note: Equatable {}
 extension Note: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         // Attributes
         case printStyle = "print-style"

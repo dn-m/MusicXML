@@ -39,6 +39,8 @@ extension MusicXML {
 
 extension MusicXML.String: Equatable {}
 extension MusicXML.String: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case placement

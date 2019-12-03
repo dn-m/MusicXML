@@ -21,6 +21,8 @@ extension MeasureAttributes: Equatable {}
 extension MeasureAttributes: Hashable {}
 
 extension MeasureAttributes: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case number
         case text

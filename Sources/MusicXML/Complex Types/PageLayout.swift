@@ -27,6 +27,8 @@ public struct PageLayout {
 
 extension PageLayout: Equatable {}
 extension PageLayout: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case height = "page-height"
         case width = "page-width"

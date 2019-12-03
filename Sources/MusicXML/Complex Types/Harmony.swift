@@ -65,6 +65,8 @@ public struct Harmony {
 
 extension Harmony: Equatable {}
 extension Harmony: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case type
         case printObject = "print-object"

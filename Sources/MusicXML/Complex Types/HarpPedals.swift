@@ -31,6 +31,8 @@ public struct HarpPedals {
 
 extension HarpPedals: Equatable {}
 extension HarpPedals: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case pedalTunings = "pedal-tuning"
     }

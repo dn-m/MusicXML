@@ -117,6 +117,8 @@ extension ScorePart.MIDI: Codable {}
 
 extension ScorePart: Equatable {}
 extension ScorePart: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case id
         case identification

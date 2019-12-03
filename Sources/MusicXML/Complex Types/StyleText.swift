@@ -22,6 +22,8 @@ public struct StyleText {
 
 extension StyleText: Equatable {}
 extension StyleText: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
     }

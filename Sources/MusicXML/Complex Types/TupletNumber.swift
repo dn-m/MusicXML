@@ -24,6 +24,8 @@ public struct TupletNumber {
 
 extension TupletNumber: Equatable {}
 extension TupletNumber: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case color
         case value = ""

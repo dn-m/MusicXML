@@ -25,6 +25,8 @@ public struct PrintStyle {
 
 extension PrintStyle: Equatable {}
 extension PrintStyle: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case color
     }

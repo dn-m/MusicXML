@@ -51,6 +51,8 @@ public struct TrillSound {
 extension TrillSound: Equatable {}
 
 extension TrillSound: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case startNote = "start-note"
         case trillStep = "trill-step"

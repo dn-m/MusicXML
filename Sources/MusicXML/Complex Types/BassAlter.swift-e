@@ -27,6 +27,8 @@ public struct BassAlter {
 
 extension BassAlter: Equatable {}
 extension BassAlter: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case printObject = "print-object"

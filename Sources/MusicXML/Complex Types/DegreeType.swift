@@ -47,6 +47,8 @@ extension DegreeType {
 
 extension DegreeType: Equatable {}
 extension DegreeType: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case text

@@ -32,6 +32,8 @@ public struct Mordent {
 
 extension Mordent: Equatable {}
 extension Mordent: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case long
         case approach

@@ -38,6 +38,8 @@ public struct Header: Equatable {
 }
 
 extension Header: Codable {
+    // MARK: - Codable
+
     // MARK: - Decodable
 
     enum CodingKeys: String, CodingKey {

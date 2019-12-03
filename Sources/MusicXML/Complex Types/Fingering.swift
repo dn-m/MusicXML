@@ -37,6 +37,8 @@ public struct Fingering {
 
 extension Fingering: Equatable {}
 extension Fingering: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case substitution

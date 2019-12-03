@@ -47,6 +47,8 @@ extension MeasureStyle {
 
 extension MeasureStyle.Kind: Equatable {}
 extension MeasureStyle.Kind: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case beatRepeat = "beat-repeat"
         case measureRepeat = "measure-repeat"
@@ -98,6 +100,8 @@ extension MeasureStyle.Kind.CodingKeys: XMLChoiceCodingKey {}
 
 extension MeasureStyle: Equatable {}
 extension MeasureStyle: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case number
         case color

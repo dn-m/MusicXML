@@ -64,6 +64,8 @@ public struct AccidentalText {
 
 extension AccidentalText: Equatable {}
 extension AccidentalText: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case justify
         case hAlign = "halign"

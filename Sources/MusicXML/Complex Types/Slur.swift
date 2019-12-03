@@ -45,6 +45,8 @@ public struct Slur {
 
 extension Slur: Equatable {}
 extension Slur: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case number

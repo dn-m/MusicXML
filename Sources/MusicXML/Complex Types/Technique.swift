@@ -35,6 +35,8 @@ public enum Technique {
 
 extension Technique: Equatable {}
 extension Technique: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case arrow
         case bend

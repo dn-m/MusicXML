@@ -22,6 +22,8 @@ public struct StaffLayout {
 
 extension StaffLayout: Equatable {}
 extension StaffLayout: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case number = "staff-number"
         case staffDistance = "staff-distance"

@@ -26,6 +26,8 @@ public struct NoteheadText {
 
 extension NoteheadText.Kind: Equatable {}
 extension NoteheadText.Kind: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case displayText
         case accidentalText

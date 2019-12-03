@@ -28,6 +28,8 @@ public struct Inversion {
 
 extension Inversion: Equatable {}
 extension Inversion: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
     }

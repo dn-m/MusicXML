@@ -54,6 +54,8 @@ public struct Identification {
 
 extension Identification: Equatable {}
 extension Identification: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case creators = "creator"
         case rights

@@ -25,6 +25,8 @@ public struct Bass {
 extension Bass: Equatable {}
 
 extension Bass: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case step = "bass-step"
         case alter = "bass-alter"

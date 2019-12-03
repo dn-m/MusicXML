@@ -23,6 +23,8 @@ public struct MetronomeBeam {
 
 extension MetronomeBeam: Equatable {}
 extension MetronomeBeam: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case number
         case value = ""

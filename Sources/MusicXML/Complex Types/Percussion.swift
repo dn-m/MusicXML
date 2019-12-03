@@ -45,6 +45,8 @@ extension Percussion {
 
 extension Percussion.Kind: Equatable {}
 extension Percussion.Kind: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case beater
         case effect
@@ -136,6 +138,8 @@ extension Percussion.Kind.CodingKeys: XMLChoiceCodingKey {}
 
 extension Percussion: Equatable {}
 extension Percussion: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case enclosure
         case kind

@@ -82,6 +82,8 @@ public struct Position {
 
 extension Position: Equatable {}
 extension Position: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case defaultX = "default-x"
         case defaultY = "default-y"

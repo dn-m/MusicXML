@@ -40,6 +40,8 @@ public struct AccordionRegistration {
 
 extension AccordionRegistration: Equatable {}
 extension AccordionRegistration: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case high = "accordion-high"
         case middle = "accordion-middle"

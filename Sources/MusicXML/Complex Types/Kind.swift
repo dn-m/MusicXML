@@ -95,6 +95,8 @@ extension Kind {
 
 extension Kind: Equatable {}
 extension Kind: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case useSymbols = "use-symbols"
         case text

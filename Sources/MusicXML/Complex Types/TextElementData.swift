@@ -51,6 +51,8 @@ public struct TextElementData {
 
 extension TextElementData: Equatable {}
 extension TextElementData: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case color
         case textRotation

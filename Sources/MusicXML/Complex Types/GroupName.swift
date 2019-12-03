@@ -26,6 +26,8 @@ public struct GroupName {
 
 extension GroupName: Equatable {}
 extension GroupName: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case justify
         case value = ""

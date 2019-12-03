@@ -34,6 +34,8 @@ public struct PartSymbol {
 
 extension PartSymbol: Equatable {}
 extension PartSymbol: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case kind
         case topStaff

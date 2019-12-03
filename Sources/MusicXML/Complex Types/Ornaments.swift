@@ -26,6 +26,8 @@ public struct Ornaments {
 
 extension Ornaments: Equatable {}
 extension Ornaments: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case accidentalMarks = "accidental-mark"
     }

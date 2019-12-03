@@ -60,6 +60,8 @@ extension Notations {
 
 extension Notations.Notation: Equatable {}
 extension Notations.Notation: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case tied
         case slur
@@ -166,6 +168,8 @@ extension Notations.Notation.CodingKeys: XMLChoiceCodingKey {}
 
 extension Notations: Equatable {}
 extension Notations: Codable {
+    // MARK: - Codable
+
     // MARK: Decodable
 
     public init(from decoder: Decoder) throws {

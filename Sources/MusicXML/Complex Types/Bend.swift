@@ -51,6 +51,8 @@ extension Bend.PreBendOrRelease: Codable {}
 
 extension Bend: Equatable {}
 extension Bend: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case accelerate
         case beats

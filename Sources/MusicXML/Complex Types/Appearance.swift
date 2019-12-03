@@ -34,6 +34,8 @@ public struct Appearance {
 
 extension Appearance: Equatable {}
 extension Appearance: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case lineWidths = "line-width"
         case noteSizes = "note-size"

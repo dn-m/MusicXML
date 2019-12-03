@@ -43,6 +43,8 @@ public struct Wedge {
 
 extension Wedge: Equatable {}
 extension Wedge: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case number

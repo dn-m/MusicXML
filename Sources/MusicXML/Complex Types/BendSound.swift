@@ -37,6 +37,8 @@ public struct BendSound {
 
 extension BendSound: Equatable {}
 extension BendSound: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case accelerate
         case beats

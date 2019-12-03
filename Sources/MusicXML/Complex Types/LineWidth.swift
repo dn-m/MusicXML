@@ -23,6 +23,8 @@ public struct LineWidth {
 
 extension LineWidth: Equatable {}
 extension LineWidth: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case value = ""

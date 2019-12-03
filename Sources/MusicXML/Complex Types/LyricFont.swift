@@ -24,6 +24,8 @@ public struct LyricFont {
 
 extension LyricFont: Equatable {}
 extension LyricFont: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case number
         case name

@@ -20,6 +20,8 @@ public struct Technical {
 
 extension Technical: Equatable {}
 extension Technical: Codable {
+    // MARK: - Codable
+
     // MARK: Decodable
 
     public init(from decoder: Decoder) throws {

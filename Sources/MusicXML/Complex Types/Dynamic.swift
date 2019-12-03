@@ -39,6 +39,8 @@ public enum Dynamic {
 
 extension Dynamic: Equatable {}
 extension Dynamic: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case p
         case pp

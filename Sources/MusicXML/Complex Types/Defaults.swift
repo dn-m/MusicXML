@@ -47,6 +47,8 @@ public struct Defaults {
 extension Defaults: Equatable {}
 
 extension Defaults: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case scaling
         case pageLayout = "page-layout"

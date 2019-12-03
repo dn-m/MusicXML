@@ -36,6 +36,8 @@ public struct BreathMark {
 
 extension BreathMark: Equatable {}
 extension BreathMark: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case placement

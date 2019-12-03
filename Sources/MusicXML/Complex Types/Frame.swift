@@ -63,6 +63,8 @@ public struct Frame {
 
 extension Frame: Equatable {}
 extension Frame: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case position
         case color

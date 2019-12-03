@@ -23,6 +23,8 @@ public struct SystemMargins {
 
 extension SystemMargins: Equatable {}
 extension SystemMargins: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case left = "left-margin"
         case right = "right-margin"

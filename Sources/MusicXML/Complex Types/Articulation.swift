@@ -30,6 +30,8 @@ public enum Articulation {
 extension Articulation: Equatable {}
 
 extension Articulation: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case accent
         case breathMark = "breath-mark"

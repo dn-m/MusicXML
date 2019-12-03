@@ -44,6 +44,8 @@ public struct Font {
 
 extension Font: Equatable {}
 extension Font: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case family = "font-family"
         case style = "font-style"

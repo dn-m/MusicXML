@@ -32,6 +32,8 @@ public struct AccidentalMark {
 
 extension AccidentalMark: Equatable {}
 extension AccidentalMark: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case value = ""
         case position

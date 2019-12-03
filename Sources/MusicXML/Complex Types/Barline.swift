@@ -90,6 +90,8 @@ public struct Barline {
 
 extension Barline: Equatable {}
 extension Barline: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case location
         case barStyle = "bar-style"

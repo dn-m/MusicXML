@@ -32,6 +32,8 @@ public struct Play {
 
 extension Play.Kind: Equatable {}
 extension Play.Kind: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case ipa
         case mute
@@ -88,6 +90,8 @@ extension Play.Kind.CodingKeys: XMLChoiceCodingKey {}
 
 extension Play: Equatable {}
 extension Play: Codable {
+    // MARK: - Codable
+
     // MARK: Decodable
 
     public init(from decoder: Decoder) throws {

@@ -29,6 +29,8 @@ public struct PrincipleVoice {
 
 extension PrincipleVoice: Equatable {}
 extension PrincipleVoice: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case symbol

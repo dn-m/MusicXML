@@ -27,6 +27,8 @@ public struct HorizontalTurn {
 
 extension HorizontalTurn: Equatable {}
 extension HorizontalTurn: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case placement
         case slash

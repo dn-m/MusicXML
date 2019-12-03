@@ -26,6 +26,8 @@ public struct Rest {
 
 extension Rest: Equatable {}
 extension Rest: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case measure
         case displayStep = "display-step"

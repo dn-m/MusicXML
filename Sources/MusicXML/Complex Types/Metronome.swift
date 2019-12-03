@@ -124,6 +124,8 @@ extension Metronome.Regular: Equatable {}
 
 extension Metronome.Complicated: Equatable {}
 extension Metronome.Complicated: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case metronomeNote = "metronome-note"
         case metronomeRelation = "metronome-relation"
@@ -144,6 +146,8 @@ extension Metronome.Kind: Equatable {}
 
 extension Metronome: Equatable {}
 extension Metronome: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case position
         case printStyleAlign = "print-style-align"

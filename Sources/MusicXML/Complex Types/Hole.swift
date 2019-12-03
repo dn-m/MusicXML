@@ -36,6 +36,8 @@ public struct Hole {
 
 extension Hole: Equatable {}
 extension Hole: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case holeType
         case holeClosed

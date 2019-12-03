@@ -80,6 +80,8 @@ extension Credit.Words: Codable {}
 
 extension Credit.Kind: Equatable {}
 extension Credit.Kind: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case image
         case words

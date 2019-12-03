@@ -45,6 +45,8 @@ public struct Clef {
 
 extension Clef: Equatable {}
 extension Clef: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case number
         case additional

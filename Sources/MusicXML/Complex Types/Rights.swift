@@ -29,6 +29,8 @@ public struct Rights {
 extension Rights: Equatable {}
 
 extension Rights: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case value = ""
         case type

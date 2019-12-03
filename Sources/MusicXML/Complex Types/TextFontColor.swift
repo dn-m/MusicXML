@@ -33,6 +33,8 @@ public struct TextFontColor {
 
 extension TextFontColor: Equatable {}
 extension TextFontColor: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case color
         case textRotation

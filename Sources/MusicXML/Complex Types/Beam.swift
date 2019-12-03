@@ -33,6 +33,8 @@ public struct Beam {
 
 extension Beam: Equatable {}
 extension Beam: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case number
         case repeater

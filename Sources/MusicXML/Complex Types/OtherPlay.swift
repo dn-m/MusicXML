@@ -23,6 +23,8 @@ public struct OtherPlay {
 
 extension OtherPlay: Equatable {}
 extension OtherPlay: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case value = ""

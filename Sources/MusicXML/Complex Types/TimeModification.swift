@@ -43,6 +43,8 @@ public struct TimeModification {
 
 extension TimeModification: Equatable {}
 extension TimeModification: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case actualNotes = "actual-notes"
         case normalNotes = "normal-notes"

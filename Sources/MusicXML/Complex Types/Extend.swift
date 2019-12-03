@@ -24,6 +24,8 @@ public struct Extend {
 
 extension Extend: Equatable {}
 extension Extend: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
     }

@@ -55,6 +55,8 @@ extension Slash {
 
 extension Slash: Equatable {}
 extension Slash: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case useDots = "use-dots"

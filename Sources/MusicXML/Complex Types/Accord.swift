@@ -37,6 +37,8 @@ public struct Accord {
 
 extension Accord: Equatable {}
 extension Accord: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case string
         case tuningStep = "tuning-step"

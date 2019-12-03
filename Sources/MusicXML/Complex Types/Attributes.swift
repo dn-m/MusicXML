@@ -74,6 +74,8 @@ public struct Attributes {
 
 extension Attributes: Equatable {}
 extension Attributes: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case footnote
         case level

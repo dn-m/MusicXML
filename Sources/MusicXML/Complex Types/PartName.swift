@@ -41,6 +41,8 @@ public struct PartName {
 
 extension PartName: Equatable {}
 extension PartName: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case printObject = "print-object"

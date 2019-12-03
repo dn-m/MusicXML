@@ -70,6 +70,8 @@ extension Harmonic {
 }
 
 extension Harmonic: Codable {
+    // MARK: - Codable
+
     public enum CodingKeys: String, CodingKey {
         case naturalArtificial
         case baseSoundingTouchingPitch

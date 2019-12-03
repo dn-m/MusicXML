@@ -22,6 +22,8 @@ public struct Scordatura {
 
 extension Scordatura: Equatable {}
 extension Scordatura: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case accords = "accord"
     }

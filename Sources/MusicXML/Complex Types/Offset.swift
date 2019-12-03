@@ -32,6 +32,8 @@ extension Offset {
 
 extension Offset: Equatable {}
 extension Offset: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case value = ""
         case sound

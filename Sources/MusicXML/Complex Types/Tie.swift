@@ -30,6 +30,8 @@ extension Tie {
 
 extension Tie: Equatable {}
 extension Tie: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case type
         case timeOnly = "time-only"

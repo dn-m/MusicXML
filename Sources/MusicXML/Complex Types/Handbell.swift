@@ -25,6 +25,8 @@ public struct Handbell {
 
 extension Handbell: Equatable {}
 extension Handbell: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case placement
         case value = ""

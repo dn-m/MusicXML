@@ -25,6 +25,8 @@ public struct PrintStyleAlign {
 
 extension PrintStyleAlign: Equatable {}
 extension PrintStyleAlign: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case hAlign = "halign"
         case vAlign = "valign"

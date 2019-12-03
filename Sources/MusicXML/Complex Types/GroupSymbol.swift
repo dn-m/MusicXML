@@ -26,6 +26,8 @@ public struct GroupSymbol {
 
 extension GroupSymbol: Equatable {}
 extension GroupSymbol: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case value = ""
         case color

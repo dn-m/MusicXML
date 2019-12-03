@@ -31,6 +31,8 @@ public struct MetronomeNote {
 
 extension MetronomeNote: Equatable {}
 extension MetronomeNote: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case metronomeType = "metronome-type"
         case metronomeDotCount = "metronome-dot"
