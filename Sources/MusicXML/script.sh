@@ -7,7 +7,7 @@ fi
 if [[ -z $(grep 'Initializers' "$1") ]] ; then
     gsed -i "/public struct/,/public init(/ {
     s_.*public init.*_\
-    // MARK - Initializers\n\
+    // MARK: - Initializers\n\
 \n\
 &_
 }" "$1"
