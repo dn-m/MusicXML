@@ -29,7 +29,7 @@ public struct Direction {
     public let staff: UInt?
     public let sound: Sound?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(
         _ directionTypes: [DirectionType],

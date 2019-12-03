@@ -13,7 +13,7 @@ public struct Miscellaneous {
 
     public let fields: [MiscellaneousField]
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(fields: [MiscellaneousField]) {
         self.fields = fields

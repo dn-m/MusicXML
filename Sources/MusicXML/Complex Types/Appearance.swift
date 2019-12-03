@@ -17,7 +17,7 @@ public struct Appearance {
     public let distances: [Distance]
     public let otherAppearances: [OtherAppearance]
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(
         lineWidths: [LineWidth] = [],

@@ -18,7 +18,7 @@ public struct PlacementPrintStyle {
     public var position: Position
     public var printStyle: PrintStyle
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(
         position: Position = Position(),

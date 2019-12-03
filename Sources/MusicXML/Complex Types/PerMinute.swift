@@ -15,7 +15,7 @@ public struct PerMinute {
     public let value: String
     public let font: Font
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(value: String, font: Font = Font()) {
         self.value = value

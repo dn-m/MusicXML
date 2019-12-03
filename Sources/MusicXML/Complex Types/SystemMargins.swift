@@ -13,7 +13,7 @@ public struct SystemMargins {
     public let left: Tenths
     public let right: Tenths
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(left: Tenths, right: Tenths) {
         self.left = left

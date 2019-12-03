@@ -40,7 +40,7 @@ public struct Identification {
     /// own miscellaneous-field type.
     public var miscellaneous: Miscellaneous?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(creators: [Creator]? = nil, rights: [Rights]? = nil, encoding: Encoding? = nil, source: String? = nil, relation: [String]? = nil, miscellaneous: Miscellaneous? = nil) {
         self.creators = creators

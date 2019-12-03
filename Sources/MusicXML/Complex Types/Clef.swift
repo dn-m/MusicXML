@@ -28,7 +28,7 @@ public struct Clef {
     public let line: Int?
     public let clefOctaveChange: Int?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(number: Int? = nil, additional: Bool? = nil, size: SymbolSize? = nil, afterBarline: Bool? = nil, printStyle: PrintStyle = PrintStyle(), printObject: Bool? = nil, sign: ClefSign, line: Int? = nil, clefOctaveChange: Int? = nil) {
         self.number = number

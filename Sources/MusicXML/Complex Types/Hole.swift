@@ -23,7 +23,7 @@ public struct Hole {
     public let printStyle: PrintStyle
     public let placement: AboveBelow?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(holeType: String? = nil, holeClosed: HoleClosed, holeShape: String? = nil, printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil) {
         self.holeType = holeType

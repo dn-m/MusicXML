@@ -27,7 +27,7 @@ public struct Slash {
     /// type used to display repetition marks.
     public let item: Item?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(
         type: StartStop,
@@ -63,7 +63,7 @@ extension Slash: Codable {
         case slashDot = "slash-dot"
     }
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     // MARK: Decodable
 

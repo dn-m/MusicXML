@@ -12,7 +12,7 @@ public struct HeelToe {
     public let placement: AboveBelow?
     public let substitution: Bool?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(placement: AboveBelow? = nil, substitution: Bool? = nil) {
         self.placement = placement

@@ -14,7 +14,7 @@ public struct PrintStyleAlign {
     public let hAlign: LeftCenterRight?
     public let vAlign: VAlign?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(printStyle: PrintStyle = PrintStyle(), hAlign: LeftCenterRight? = nil, vAlign: VAlign? = nil) {
         self.printStyle = printStyle

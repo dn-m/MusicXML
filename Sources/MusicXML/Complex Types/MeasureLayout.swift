@@ -15,7 +15,7 @@ public struct MeasureLayout {
     /// the measure element.
     public let measureDistance: Tenths?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(measureDistance: Tenths? = nil) {
         self.measureDistance = measureDistance

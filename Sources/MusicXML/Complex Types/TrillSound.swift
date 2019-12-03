@@ -35,7 +35,7 @@ public struct TrillSound {
     let secondBeat: Int?
     let lastBeat: Int?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(startNote: StartNote? = nil, trillStep: TrillStep? = nil, twoNoteTurn: TwoNoteTurn? = nil, accelerate: Bool? = nil, beats: Int? = nil, secondBeat: Int? = nil, lastBeat: Int? = nil) {
         self.startNote = startNote

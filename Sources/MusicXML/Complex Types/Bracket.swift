@@ -21,7 +21,7 @@ public struct Bracket {
     public let position: Position
     public let color: Color?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(type: StartStopContinue, number: Int? = nil, lineEnd: LineEnd, endLength: Tenths? = nil, lineType: LineType? = nil, dashLength: Tenths? = nil, spaceLength: Tenths? = nil, position: Position = Position(), color: Color? = nil) {
         self.type = type

@@ -46,7 +46,7 @@ public struct StaffDetails {
     /// staff to the left and right margins.
     public let staffSize: Double?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(number: Int? = nil, showFrets: ShowFrets? = nil, printObject: Bool? = nil, printSpacing: Bool? = nil, staffType: StaffType? = nil, staffLines: Int? = nil, staffTuning: [StaffTuning], capo: Int? = nil, staffSize: Double? = nil) {
         self.number = number

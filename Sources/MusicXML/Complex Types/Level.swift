@@ -12,7 +12,7 @@ public struct Level {
     public let reference: Bool
     public let levelDisplay: LevelDisplay
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(reference: Bool, levelDisplay: LevelDisplay) {
         self.reference = reference

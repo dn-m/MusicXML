@@ -17,7 +17,7 @@ public struct NameDisplay {
     public let printObject: Bool?
     public let texts: [Text]
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(printObject: Bool? = nil, texts: [Text] = []) {
         self.printObject = printObject

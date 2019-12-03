@@ -15,7 +15,7 @@ public struct BassAlter {
     public let printStyle: PrintStyle
     public let location: LeftRight?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(_ value: Double, printObject: Bool? = nil, printStyle: PrintStyle = PrintStyle(), location: LeftRight? = nil) {
         self.value = value

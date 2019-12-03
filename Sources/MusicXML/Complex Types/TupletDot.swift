@@ -12,7 +12,7 @@ public struct TupletDot {
     public let font: Font
     public let color: Color?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(font: Font = Font(), color: Color? = nil) {
         self.font = font

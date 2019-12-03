@@ -36,7 +36,7 @@ public struct Harmony {
     public let editorial: Editorial
     public let staff: Int?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(
         type: HarmonyType? = nil,

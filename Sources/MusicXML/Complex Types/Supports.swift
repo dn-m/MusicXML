@@ -19,7 +19,7 @@ public struct Supports {
     public let type: Bool
     public let value: String?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(attribute: String? = nil, element: String, type: Bool, value: String? = nil) {
         self.attribute = attribute

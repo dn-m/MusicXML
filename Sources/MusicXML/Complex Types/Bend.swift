@@ -25,7 +25,7 @@ public struct Bend {
     public let prependOrRelease: PreBendOrRelease?
     public let withBar: PlacementText?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(printStyle: PrintStyle = PrintStyle(), accelerate: Bool? = nil, beats: Bool? = nil, firstBeat: Double? = nil, lastBeat: Double? = nil, bendAlter: Double? = nil, prependOrRelease: PreBendOrRelease? = nil, withBar: PlacementText? = nil) {
         self.printStyle = printStyle

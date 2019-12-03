@@ -11,7 +11,7 @@
 public struct Opus {
     // MARK: - Instance Properties
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init() {}
 }

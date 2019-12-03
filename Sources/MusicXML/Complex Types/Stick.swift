@@ -14,7 +14,7 @@ public struct Stick {
     public let stickType: StickType
     public let stickMaterial: StickMaterial
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(tip: TipDirection? = nil, stickType: StickType, stickMaterial: StickMaterial) {
         self.tip = tip

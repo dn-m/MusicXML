@@ -16,7 +16,7 @@ public struct LevelDisplay {
     public let bracket: Bool
     public let size: SymbolSize
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(parentheses: Bool, bracket: Bool, size: SymbolSize) {
         self.parentheses = parentheses

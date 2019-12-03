@@ -12,7 +12,7 @@ public struct StyleText {
     public let value: String
     public let printStyle: PrintStyle
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(_ value: String, printStyle: PrintStyle = PrintStyle()) {
         self.value = value

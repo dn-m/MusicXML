@@ -14,7 +14,7 @@ public struct Partwise {
     public let header: Header
     public var parts: [Part]
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(header: Header, parts: [Part]) {
         self.header = header

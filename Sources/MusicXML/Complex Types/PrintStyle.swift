@@ -14,7 +14,7 @@ public struct PrintStyle {
     public let font: Font
     public let color: Color?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(position: Position = Position(), font: Font = Font(), color: Color? = nil) {
         self.position = position

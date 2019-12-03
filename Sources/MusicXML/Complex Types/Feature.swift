@@ -14,7 +14,7 @@ public struct Feature {
     public let value: String
     public let type: String?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(_ value: String, type: String? = nil) {
         self.value = value

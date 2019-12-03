@@ -22,7 +22,7 @@ public struct Pedal {
     public let line: Bool?
     public let sign: Bool?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(
         type: StartStopChangeContinue,

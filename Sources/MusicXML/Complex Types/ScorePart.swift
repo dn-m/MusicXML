@@ -73,7 +73,7 @@ public struct ScorePart {
     /// change.
     public var midi: [MIDI]?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(id: String, identification: Identification? = nil, name: PartName, nameDisplay: NameDisplay? = nil, partAbbreviation: PartName? = nil, partAbbreviationDisplay: NameDisplay? = nil, group: [String]? = nil, scoreInstrument: [ScoreInstrument]? = nil, midi: [MIDI]? = nil) {
         self.id = id
@@ -103,7 +103,7 @@ extension ScorePart {
         /// affected by the change.
         public let midiInstrument: MIDIInstrument?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
         public init(midiDevice: MIDIDevice? = nil, midiInstrument: MIDIInstrument? = nil) {
             self.midiDevice = midiDevice

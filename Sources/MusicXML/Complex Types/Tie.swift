@@ -13,7 +13,7 @@ public struct Tie {
     public var type: StartStop
     public var timeOnly: TimeOnly?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(_ type: StartStop, timeOnly: TimeOnly? = nil) {
         self.type = type

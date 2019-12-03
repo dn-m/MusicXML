@@ -24,7 +24,7 @@ public struct Header: Equatable {
     public var credits: [Credit]?
     public var partList: PartList
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(work: Work? = nil, movementNumber: String? = nil, movementTitle: String? = nil, identification: Identification? = nil, defaults: Defaults? = nil, credits: [Credit]? = nil, partList: PartList) {
         self.work = work

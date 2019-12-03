@@ -14,7 +14,7 @@ public struct HoleClosed {
     /// element value is half.
     public let location: HoleClosedLocation?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(_ value: HoleClosedValue, location: HoleClosedLocation? = nil) {
         self.value = value

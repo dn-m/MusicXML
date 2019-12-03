@@ -19,7 +19,7 @@ public struct BreathMark {
     public let position: Position
     public let printStyle: PrintStyle
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(
         _ value: BreathMarkValue = .comma,

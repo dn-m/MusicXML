@@ -26,7 +26,7 @@ public struct MeasureStyle {
 
     public var kind: Kind
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(number: Int? = nil, font: Font = Font(), color: Color? = nil, kind: Kind) {
         self.number = number

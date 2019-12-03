@@ -18,7 +18,7 @@ public struct TextFontColor {
     public let letterSpacing: NumberOrNormal?
     public let dir: TextDirection?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(_ value: String, font: Font = Font(), color: Color? = nil, textDecoration: TextDecoration = TextDecoration(), textRotation: Double? = nil, letterSpacing: NumberOrNormal? = nil, dir: TextDirection? = nil) {
         self.value = value

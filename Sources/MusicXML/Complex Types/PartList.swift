@@ -17,7 +17,7 @@ public struct PartList {
     // MARK: - Instance Properties
 
     public let parts: [Item]
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(_ parts: [Item]) {
         self.parts = parts

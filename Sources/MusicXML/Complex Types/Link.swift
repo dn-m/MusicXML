@@ -53,7 +53,7 @@ public struct Link {
     //    in the context of the sibling element.
     public let position: String?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(name: String? = nil, element: String? = nil, position: String? = nil) {
         self.name = name

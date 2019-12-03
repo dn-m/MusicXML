@@ -16,7 +16,7 @@ public struct Editorial {
     public let footnote: FormattedText?
     public let level: Level?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(footnote: FormattedText? = nil, level: Level? = nil) {
         self.footnote = footnote

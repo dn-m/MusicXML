@@ -39,7 +39,7 @@ public struct FiguredBass {
     /// The level type is used to specify editorial information for different MusicXML elements.
     public let level: Level?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(
         _ figures: [Figure],

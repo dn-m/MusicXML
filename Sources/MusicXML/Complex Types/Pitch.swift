@@ -14,7 +14,7 @@ public struct Pitch {
     public let alter: Double?
     public let octave: Int
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(step: Step, alter: Double? = nil, octave: Int) {
         self.step = step

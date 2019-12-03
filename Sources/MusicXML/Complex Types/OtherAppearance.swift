@@ -14,7 +14,7 @@ public struct OtherAppearance {
     public let value: String
     public let type: String
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(_ value: String, type: String) {
         self.value = value

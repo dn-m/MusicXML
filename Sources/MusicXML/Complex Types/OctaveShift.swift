@@ -18,7 +18,7 @@ public struct OctaveShift {
     public let dashedFormatting: DashedFormatting
     public let printStyle: PrintStyle
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(type: UpDownStopContinue, number: Int? = nil, size: Int? = nil, dashedFormatting: DashedFormatting = DashedFormatting(), printStyle: PrintStyle = PrintStyle()) {
         self.type = type

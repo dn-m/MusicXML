@@ -11,7 +11,7 @@ public struct Technical {
 
     public var values: [Technique]
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(_ values: [Technique]) {
         self.values = values

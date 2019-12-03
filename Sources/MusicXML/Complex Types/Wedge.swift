@@ -27,7 +27,7 @@ public struct Wedge {
     public let position: Position
     public let color: Color?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(type: WedgeType, number: Int? = nil, spread: Tenths? = nil, niente: Bool? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting = DashedFormatting(), position: Position = Position(), color: Color? = nil) {
         self.type = type

@@ -13,7 +13,7 @@ public struct MeasureNumbering {
     public let value: MeasureNumberingValue
     public let printStyleAlign: PrintStyleAlign
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(
         _ value: MeasureNumberingValue,

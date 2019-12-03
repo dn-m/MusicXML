@@ -20,7 +20,7 @@ public struct Grouping {
     public let number: Int?
     public let memberOf: String?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(type: StartStopSingle, feature: [Feature], number: Int? = nil, memberOf: String? = nil) {
         self.type = type

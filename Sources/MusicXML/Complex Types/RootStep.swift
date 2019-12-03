@@ -14,7 +14,7 @@ public struct RootStep {
     public let text: String?
     public let printStyle: PrintStyle
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(
         _ value: Step,

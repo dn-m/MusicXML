@@ -12,7 +12,7 @@ public struct PedalTuning {
     public let step: Step
     public let alter: Int
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(step: Step, alter: Int) {
         self.step = step

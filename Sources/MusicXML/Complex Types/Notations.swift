@@ -24,7 +24,7 @@ public struct Notations {
     public var level: Level?
     public var values: [Notation]
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(
         _ values: [Notation],

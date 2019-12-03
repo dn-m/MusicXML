@@ -14,7 +14,7 @@ public struct StaffTuning {
     public let tuningAlter: Double?
     public let tuningOctave: Int
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(line: Int? = nil, tuningStep: Step, tuningAlter: Double? = nil, tuningOctave: Int) {
         self.line = line

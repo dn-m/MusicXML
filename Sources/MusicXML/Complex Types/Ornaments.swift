@@ -16,7 +16,7 @@ public struct Ornaments {
     public var values: [Ornament]
     public var accidentalMarks: [AccidentalMark]
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(_ values: [Ornament] = [], accidentalMarks: [AccidentalMark] = []) {
         self.values = values

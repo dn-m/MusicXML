@@ -18,7 +18,7 @@ public struct BassStep {
     public let text: String?
     public let printStyle: PrintStyle
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(_ value: Step, text: String? = nil, printStyle: PrintStyle = PrintStyle()) {
         self.value = value

@@ -23,7 +23,7 @@ public struct SystemLayout {
     public let topSystemDistance: Tenths?
     public let dividers: SystemDividers?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(
         margins: SystemMargins? = nil,

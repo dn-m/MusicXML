@@ -25,7 +25,7 @@ public struct BendSound {
     public let firstBeat: Int?
     public let lastBeat: Int?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(accelerate: Bool? = nil, beats: Int? = nil, firstBeat: Int? = nil, lastBeat: Int? = nil) {
         self.accelerate = accelerate

@@ -12,7 +12,7 @@ public struct StringMute {
     public let type: OnOff
     public let printStyleAlign: PrintStyleAlign
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(type: OnOff, printStyleAlign: PrintStyleAlign = PrintStyleAlign()) {
         self.type = type

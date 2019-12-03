@@ -21,7 +21,7 @@ public struct MIDIDevice {
     /// missing, the device assignment affects all score-instrument elements in the score-part.
     public var id: String?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(_ value: String? = nil, port: Int? = nil, id: String? = nil) {
         self.value = value

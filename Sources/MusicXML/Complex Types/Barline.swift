@@ -61,7 +61,7 @@ public struct Barline {
     public var ending: Ending?
     public var `repeat`: Repeat?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(
         location: RightLeftMiddle? = nil,

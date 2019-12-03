@@ -24,7 +24,7 @@ public struct Tied {
     public var orientation: OverUnder?
     public var color: Color?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(type: StartStopContinue, number: Int? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting = DashedFormatting(), position: Position = Position(), placement: AboveBelow? = nil, orientation: OverUnder? = nil, bezier: Bezier = Bezier(), color: Color? = nil) {
         self.type = type

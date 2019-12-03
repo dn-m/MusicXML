@@ -15,7 +15,7 @@ public struct Mordent {
     public let approach: AboveBelow?
     public let departure: AboveBelow?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(
         value: PrintStyleTrillSound = PrintStyleTrillSound(),

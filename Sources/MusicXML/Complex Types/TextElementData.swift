@@ -28,7 +28,7 @@ public struct TextElementData {
     public let letterSpacing: NumberOrNormal?
     public let direction: TextDirection?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(
         _ value: String,

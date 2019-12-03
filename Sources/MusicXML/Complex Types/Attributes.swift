@@ -41,7 +41,7 @@ public struct Attributes {
     public let transpose: [Transpose]?
     public let measureStyles: [MeasureStyle]?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(
         footnote: FormattedText? = nil,

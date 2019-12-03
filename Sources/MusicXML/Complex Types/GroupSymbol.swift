@@ -15,7 +15,7 @@ public struct GroupSymbol {
     public var position: Position
     public var color: Color?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(_ value: GroupSymbolValue, position: Position = Position(), color: Color? = nil) {
         self.value = value

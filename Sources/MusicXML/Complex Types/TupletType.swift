@@ -14,7 +14,7 @@ public struct TupletType {
     public let font: Font
     public let color: Color?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(_ value: NoteTypeValue, font: Font = Font(), color: Color? = nil) {
         self.value = value

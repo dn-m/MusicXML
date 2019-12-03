@@ -40,7 +40,7 @@ public struct Credit {
     public let link: [Link]?
     public let bookmarks: [Bookmark]?
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(page: Int? = nil, types: [String]? = nil, link: [Link]? = nil, bookmarks: [Bookmark]? = nil) {
         self.page = page
@@ -58,7 +58,7 @@ extension Credit {
         public let links: [Link]
         public let bookmark: [Bookmark]
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
         public init(words: FormattedText, links: [Link], bookmark: [Bookmark]) {
             self.words = words

@@ -18,7 +18,7 @@ public struct Percussion {
     public let enclosure: EnclosureShape?
     public let kind: Kind
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(printStyleAlign: PrintStyleAlign = PrintStyleAlign(), enclosure: EnclosureShape? = nil, kind: Kind) {
         self.printStyleAlign = printStyleAlign

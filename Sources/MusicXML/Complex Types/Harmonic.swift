@@ -29,7 +29,7 @@ public struct Harmonic {
 
     public var printStyle: PrintStyle
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(
         naturalArtificial: NaturalArtificial? = nil,

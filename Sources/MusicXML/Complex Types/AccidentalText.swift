@@ -29,7 +29,7 @@ public struct AccidentalText {
 
     public let value: AccidentalValue
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(
         _ value: AccidentalValue,

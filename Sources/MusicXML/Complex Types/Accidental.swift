@@ -28,7 +28,7 @@ public struct Accidental {
 
     public let printStyle: PrintStyle
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(
         _ value: AccidentalValue,

@@ -15,7 +15,7 @@ public struct Cancel {
     public let fifths: Int
     public let location: CancelLocation
 
-    // MARK - Initializers
+    // MARK: - Initializers
 
     public init(fifths: Int, location: CancelLocation) {
         self.fifths = fifths
