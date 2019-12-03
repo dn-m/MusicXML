@@ -89,7 +89,6 @@ extension Ending: Codable {
         self.value = try container.decode(String.self, forKey: .value)
     }
 
-    // sourcery:inline:Ending.AutoEncodable
     // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
@@ -103,7 +102,6 @@ extension Ending: Codable {
         try container.encodeIfPresent(textY, forKey: .textY)
         try printStyle.encode(to: encoder)
     }
-    // sourcery:end
 }
 
 import XMLCoder

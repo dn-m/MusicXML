@@ -43,7 +43,6 @@ extension BassAlter: Codable {
         self.location = try container.decodeIfPresent(LeftRight.self, forKey: .location)
     }
 
-    // sourcery:inline:BassAlter.AutoEncodable
     // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
@@ -53,7 +52,6 @@ extension BassAlter: Codable {
         try printStyle.encode(to: encoder)
         try container.encodeIfPresent(location, forKey: .location)
     }
-    // sourcery:end
 }
 
 extension BassAlter: ExpressibleByFloatLiteral {

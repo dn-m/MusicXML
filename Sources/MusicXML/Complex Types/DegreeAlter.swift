@@ -51,7 +51,6 @@ extension DegreeAlter: Codable {
         self.plusMinus = try container.decodeIfPresent(Bool.self, forKey: .plusMinus)
     }
 
-    // sourcery:inline:DegreeAlter.AutoEncodable
     // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
@@ -60,7 +59,6 @@ extension DegreeAlter: Codable {
         try container.encodeIfPresent(YesNo(plusMinus), forKey: .plusMinus)
         try printStyle.encode(to: encoder)
     }
-    // sourcery:end
 }
 
 extension DegreeAlter: ExpressibleByIntegerLiteral {

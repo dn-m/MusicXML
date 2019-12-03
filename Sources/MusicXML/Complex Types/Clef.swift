@@ -72,7 +72,6 @@ extension Clef: Codable {
         clefOctaveChange = try container.decodeIfPresent(Int.self, forKey: .clefOctaveChange)
     }
 
-    // sourcery:inline:Clef.AutoEncodable
     // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
@@ -87,7 +86,6 @@ extension Clef: Codable {
         try container.encodeIfPresent(line, forKey: .line)
         try container.encodeIfPresent(clefOctaveChange, forKey: .clefOctaveChange)
     }
-    // sourcery:end
 }
 
 extension Clef: DynamicNodeDecoding {

@@ -52,7 +52,6 @@ extension Wedge: Codable {
         case color
     }
 
-    // sourcery:inline:Wedge.AutoEncodable
     // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
@@ -66,7 +65,6 @@ extension Wedge: Codable {
         try position.encode(to: encoder)
         try container.encodeIfPresent(color, forKey: .color)
     }
-    // sourcery:end
 
     // MARK: Decodable
 

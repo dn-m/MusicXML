@@ -57,7 +57,6 @@ extension PartName: Codable {
         self.justify = try container.decodeIfPresent(Justify.self, forKey: .justify)
     }
 
-    // sourcery:inline:PartName.AutoEncodable
     // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
@@ -67,7 +66,6 @@ extension PartName: Codable {
         try container.encodeIfPresent(justify, forKey: .justify)
         try printStyle.encode(to: encoder)
     }
-    // sourcery:end
 }
 
 extension PartName: ExpressibleByStringLiteral {

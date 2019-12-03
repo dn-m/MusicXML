@@ -42,7 +42,6 @@ extension HorizontalTurn: Codable {
         slash = try container.decodeIfPresent(Bool.self, forKey: .slash)
     }
 
-    // sourcery:inline:HorizontalTurn.AutoEncodable
     // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
@@ -52,5 +51,4 @@ extension HorizontalTurn: Codable {
         try trillSound.encode(to: encoder)
         try container.encodeIfPresent(YesNo(slash), forKey: .slash)
     }
-    // sourcery:end
 }

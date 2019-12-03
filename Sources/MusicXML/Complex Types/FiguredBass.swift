@@ -86,7 +86,6 @@ extension FiguredBass: Codable {
         self.figures = try container.decode([Figure].self, forKey: .figures)
     }
 
-    // sourcery:inline:FiguredBass.AutoEncodable
     // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
@@ -99,5 +98,4 @@ extension FiguredBass: Codable {
         try container.encodeIfPresent(footnote, forKey: .footnote)
         try container.encodeIfPresent(level, forKey: .level)
     }
-    // sourcery:end
 }

@@ -31,7 +31,6 @@ extension OtherDirection: Codable {
         case value = ""
     }
 
-    // sourcery:inline:OtherDirection.AutoEncodable
     // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
@@ -40,7 +39,6 @@ extension OtherDirection: Codable {
         try container.encodeIfPresent(YesNo(printObject), forKey: .printObject)
         try printStyleAlign.encode(to: encoder)
     }
-    // sourcery:end
 
     // MARK: Decodable
 

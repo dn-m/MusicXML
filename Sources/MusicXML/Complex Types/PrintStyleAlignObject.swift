@@ -27,7 +27,6 @@ extension PrintStyleAlignObject: Codable {
         case printObject = "print-object"
     }
 
-    // sourcery:inline:PrintStyleAlignObject.AutoEncodable
     // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
@@ -35,7 +34,6 @@ extension PrintStyleAlignObject: Codable {
         try container.encodeIfPresent(YesNo(printObject), forKey: .printObject)
         try printStyleAlign.encode(to: encoder)
     }
-    // sourcery:end
 
     // MARK: Decodable
 

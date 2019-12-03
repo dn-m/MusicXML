@@ -60,7 +60,6 @@ extension RootAlter: Codable {
         self.location = try container.decodeIfPresent(LeftRight.self, forKey: .location)
     }
 
-    // sourcery:inline:RootAlter.AutoEncodable
     // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
@@ -70,7 +69,6 @@ extension RootAlter: Codable {
         try container.encodeIfPresent(location, forKey: .location)
         try printStyle.encode(to: encoder)
     }
-    // sourcery:end
 }
 
 extension RootAlter: ExpressibleByFloatLiteral {

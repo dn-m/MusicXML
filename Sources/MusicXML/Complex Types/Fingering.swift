@@ -58,7 +58,6 @@ extension Fingering: Codable {
         self.value = try container.decode(String.self, forKey: .value)
     }
 
-    // sourcery:inline:Fingering.AutoEncodable
     // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
@@ -69,7 +68,6 @@ extension Fingering: Codable {
         try container.encodeIfPresent(placement, forKey: .placement)
         try printStyle.encode(to: encoder)
     }
-    // sourcery:end
 }
 
 import XMLCoder

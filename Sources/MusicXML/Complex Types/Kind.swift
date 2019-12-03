@@ -121,7 +121,6 @@ extension Kind: Codable {
         self.value = try container.decode(KindValue.self, forKey: .value)
     }
 
-    // sourcery:inline:Kind.AutoEncodable
     // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
@@ -136,7 +135,6 @@ extension Kind: Codable {
         try container.encodeIfPresent(vAlign, forKey: .vAlign)
         try printStyle.encode(to: encoder)
     }
-    // sourcery:end
 }
 
 import XMLCoder

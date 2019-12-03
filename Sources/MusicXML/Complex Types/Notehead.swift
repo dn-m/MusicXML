@@ -48,7 +48,6 @@ extension Notehead: Codable {
         self.color = try container.decodeIfPresent(Color.self, forKey: .color)
     }
 
-    // sourcery:inline:Notehead.AutoEncodable
     // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
@@ -59,7 +58,6 @@ extension Notehead: Codable {
         try font.encode(to: encoder)
         try container.encodeIfPresent(color, forKey: .color)
     }
-    // sourcery:end
 }
 
 import XMLCoder

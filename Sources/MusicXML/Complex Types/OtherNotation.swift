@@ -41,7 +41,6 @@ extension OtherNotation: Codable {
         case value = ""
     }
 
-    // sourcery:inline:OtherNotation.AutoEncodable
     // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
@@ -53,7 +52,6 @@ extension OtherNotation: Codable {
         try printStyle.encode(to: encoder)
         try container.encodeIfPresent(placement, forKey: .placement)
     }
-    // sourcery:end
 
     // MARK: Decodable
 

@@ -75,7 +75,6 @@ extension Bend: Codable {
         withBar = try container.decodeIfPresent(PlacementText.self, forKey: .withBar)
     }
 
-    // sourcery:inline:Bend.AutoEncodable
     // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
@@ -89,5 +88,4 @@ extension Bend: Codable {
         try container.encodeIfPresent(prependOrRelease, forKey: .prependOrRelease)
         try container.encodeIfPresent(withBar, forKey: .withBar)
     }
-    // sourcery:end
 }

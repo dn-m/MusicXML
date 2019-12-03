@@ -125,7 +125,6 @@ extension Accidental: Codable {
         self.value = try container.decode(AccidentalValue.self, forKey: .value)
     }
 
-    // sourcery:inline:Accidental.AutoEncodable
     // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
@@ -138,7 +137,6 @@ extension Accidental: Codable {
         try container.encodeIfPresent(size, forKey: .size)
         try printStyle.encode(to: encoder)
     }
-    // sourcery:end
 }
 
 import XMLCoder
