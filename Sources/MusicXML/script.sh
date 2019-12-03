@@ -13,19 +13,19 @@ if [[ -z $(grep 'Initializers' "$1") ]] ; then
 }" "$1"
 fi
 
-if [[ -z $(grep '// MARK - Encodable' "$1") ]] ; then
+if [[ -z $(grep '// MARK: Encodable' "$1") ]] ; then
     gsed -i "/: Codable/,/encode(to encoder/ {
     s_.*encode(to encoder.*_\
-    // MARK - Encodable\n\
+    // MARK: Encodable\n\
 \n\
 &_
 }" "$1"
 fi
 
-if [[ -z $(grep '// MARK - Decodable' "$1") ]] ; then
+if [[ -z $(grep '// MARK: Decodable' "$1") ]] ; then
     gsed -i "/: Codable/,/init(from decoder/ {
     s_.*init(from decoder.*_\
-    // MARK - Decodable\n\
+    // MARK: Decodable\n\
 \n\
 &_
 }" "$1"
