@@ -12,12 +12,12 @@
 /// children, non-positional formatting attributes are carried over from the previous element by
 /// default.
 public struct Direction {
-    // MARK: - Attributes
+    // MARK: Attributes
 
     public let placement: AboveBelow?
     public let directive: Bool?
 
-    // MARK: - Elements
+    // MARK: Elements
 
     public let directionTypes: [DirectionType]
     public let offset: Offset?

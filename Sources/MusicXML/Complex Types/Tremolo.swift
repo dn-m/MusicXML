@@ -22,7 +22,7 @@ public struct Tremolo {
 
     public let marks: Int
 
-    // MARK: - One-off Attributes
+    // MARK: Attributes
 
     public let type: StartStopSingle?
     public let placement: AboveBelow?

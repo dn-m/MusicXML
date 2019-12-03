@@ -23,7 +23,7 @@ public struct Lyric {
 
     public let kind: Kind
 
-    // MARK: One-off Attributes
+    // MARK: Attributes
 
     /// The lyric number indicates multiple lines, though a name can be used as well (as in Finale's
     /// verse / chorus / section specification).

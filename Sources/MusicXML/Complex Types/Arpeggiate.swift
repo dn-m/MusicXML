@@ -7,7 +7,7 @@
 
 /// The arpeggiate type indicates that this note is part of an arpeggiated chord.
 public struct Arpeggiate {
-    // MARK: - Attributes
+    // MARK: Attributes
 
     public var number: Int?
     public var direction: UpDown?

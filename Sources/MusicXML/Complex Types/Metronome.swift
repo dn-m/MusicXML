@@ -19,7 +19,7 @@ public struct Metronome {
 
     public let kind: Kind
 
-    // MARK: - Attributes
+    // MARK: Attributes
 
     public let printStyleAlign: PrintStyleAlign
     public let justify: Justify?

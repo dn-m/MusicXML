@@ -13,12 +13,14 @@ public struct Fret {
     // MARK: Value
 
     public let value: Int
+    
+    // MARK: Attributes
 
-    // MARK: One-off Attributes
+    // MARK: Attributes
 
     public let color: Color?
 
-    // MARK: - Attribute Groups
+    // MARK: Attribute Groups
 
     public let font: Font
 

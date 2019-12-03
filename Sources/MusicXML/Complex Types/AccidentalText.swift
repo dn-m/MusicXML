@@ -8,7 +8,7 @@
 /// The accidental-text type represents an element with an accidental value and text-formatting
 /// attributes.
 public struct AccidentalText {
-    // MARK: - Attributes
+    // MARK: Attributes
 
     public let justify: LeftCenterRight?
     public let printStyle: PrintStyle
@@ -23,7 +23,7 @@ public struct AccidentalText {
     public let direction: TextDirection?
     public let enclosure: EnclosureShape?
 
-    // MARK: - Elements
+    // MARK: Elements
 
     public let value: AccidentalValue
 

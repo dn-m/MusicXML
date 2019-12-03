@@ -21,7 +21,7 @@ public struct TextElementData {
     public let font: Font
     public let textDecoration: TextDecoration
 
-    // MARK: One-off Attributes
+    // MARK: Attributes
 
     public let color: Color?
     public let textRotation: Double?

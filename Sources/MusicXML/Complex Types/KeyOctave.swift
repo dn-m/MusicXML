@@ -9,12 +9,12 @@ import XMLCoder
 
 /// The key-octave element specifies in which octave an element of a key signature appears.
 public struct KeyOctave {
-    // MARK: - Value
+    // MARK: Value
 
     /// The content specifies the octave value using the same values as the display-octave element.
     public let value: Int
 
-    // MARK: - Attributes
+    // MARK: Attributes
 
     /// The number attribute is a positive integer that refers to the key signature element in
     /// left-to-right order.

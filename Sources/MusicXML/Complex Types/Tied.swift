@@ -7,14 +7,21 @@
 
 /// The tied type represents the notated tie. The tie element represents the tie sound.
 public struct Tied {
+    // MARK: Attributes
+    
+    // MARK: Attribute Groups
+
+    public var dashedFormatting: DashedFormatting
+    public var position: Position
+    public var bezier: Bezier
+    
+    // MARK: Attributes
+
     public var type: StartStopContinue
     public var number: Int?
     public var lineType: LineType?
-    public var dashedFormatting: DashedFormatting
-    public var position: Position
     public var placement: AboveBelow?
     public var orientation: OverUnder?
-    public var bezier: Bezier
     public var color: Color?
 
     public init(type: StartStopContinue, number: Int? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting = DashedFormatting(), position: Position = Position(), placement: AboveBelow? = nil, orientation: OverUnder? = nil, bezier: Bezier = Bezier(), color: Color? = nil) {

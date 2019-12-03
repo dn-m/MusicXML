@@ -16,7 +16,7 @@ public struct Accidental {
 
     public let value: AccidentalValue
 
-    // MARK: - Attributes
+    // MARK: Attributes
 
     public let cautionary: Bool?
     public let editorial: Bool?

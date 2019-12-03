@@ -13,7 +13,7 @@ public struct Dashes {
 
     public let dashedFormatting: DashedFormatting
 
-    // MARK: One-off Attributes
+    // MARK: Attributes
 
     public let type: StartStopContinue
 

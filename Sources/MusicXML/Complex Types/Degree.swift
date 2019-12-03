@@ -14,16 +14,13 @@
 public struct Degree {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: DegreeValue
-
     // MARK: Attributes
 
     public let printObject: Bool?
 
     // MARK: Elements
 
+    public let value: DegreeValue
     public let alter: DegreeAlter
     public let type: DegreeType
 

@@ -11,14 +11,14 @@ import XMLCoder
 /// supported. If absent, the key signature applies to all staves in the part. Key signatures appear
 /// at the start of each system unless the print-object attribute has been set to "no".
 public struct Key {
-    // MARK: - Attributes
+    // MARK: Attributes
 
     /// The optional number attribute refers to staff numbers.
     public let number: Int?
     public let printStyle: PrintStyle
     public let printObject: Bool?
 
-    // MARK: - Elements
+    // MARK: Elements
 
     public let kind: Kind
     public let keyOctaves: [KeyOctave]

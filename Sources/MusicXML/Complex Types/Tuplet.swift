@@ -14,7 +14,7 @@
 /// than the time-modification element, and is needed to represent nested tuplets and other complex
 /// tuplets accurately.
 public struct Tuplet {
-    // MARK: - Attributes
+    // MARK: Attributes
 
     public var type: StartStop
     /// The number attribute is used to distinguish nested tuplets.
@@ -33,7 +33,7 @@ public struct Tuplet {
     public var position: Position?
     public var placement: AboveBelow?
 
-    // MARK: - Elements
+    // MARK: Elements
 
     public var actualNotes: TupletPortion?
     public var normalNotes: TupletPortion?

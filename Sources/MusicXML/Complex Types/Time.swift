@@ -14,7 +14,7 @@ import XMLCoder
 /// but not printed, as is the case for excerpts from the middle of a score. The value is "yes" if
 /// not present.
 public struct Time {
-    // MARK: - Attributes
+    // MARK: Attributes
 
     /// The optional number attribute refers to staff numbers within the part. If absent, the
     /// time signature applies to all staves in the part.
@@ -38,7 +38,7 @@ public struct Time {
     public let vAlign: VAlign?
     public let printObject: Bool?
 
-    // MARK: - Elements
+    // MARK: Elements
 
     public let kind: Kind
 

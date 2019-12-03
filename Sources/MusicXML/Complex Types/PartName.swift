@@ -15,7 +15,7 @@ public struct PartName {
 
     public var value: String
 
-    // MARK: - Attributes
+    // MARK: Attributes
 
     public var printObject: Bool?
     public var justify: Justify?

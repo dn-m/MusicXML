@@ -9,7 +9,7 @@
 public struct PlacementPrintStyle {
     // MARK: - Instance Properties
 
-    // MARK: One-off Attributes
+    // MARK: Attributes
 
     public var placement: AboveBelow?
 

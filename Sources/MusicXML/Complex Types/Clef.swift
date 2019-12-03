@@ -11,7 +11,7 @@ import XMLCoder
 /// appear at the start of each system unless the print-object attribute has been set to "no" or the
 /// additional attribute has been set to "yes".
 public struct Clef {
-    // MARK: - Attributes
+    // MARK: Attributes
 
     public let number: Int?
     public let additional: Bool?
@@ -20,7 +20,7 @@ public struct Clef {
     public let printStyle: PrintStyle
     public let printObject: Bool?
 
-    // MARK: - Elements
+    // MARK: Elements
 
     public let sign: ClefSign
     public let line: Int?

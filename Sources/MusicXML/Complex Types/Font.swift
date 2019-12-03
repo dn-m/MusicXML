@@ -18,7 +18,7 @@
 public struct Font {
     // MARK: - Instance Properties
 
-    // MARK: - Attributes
+    // MARK: Attributes
 
     // FIXME: Font.family should be `CommaSeparatedText`
     public let family: String?

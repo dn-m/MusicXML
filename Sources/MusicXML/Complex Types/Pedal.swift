@@ -16,7 +16,7 @@ public struct Pedal {
 
     public let printStyleAlign: PrintStyleAlign
 
-    // MARK: One-off Attributes
+    // MARK: Attributes
 
     public let type: StartStopChangeContinue
     public let line: Bool?

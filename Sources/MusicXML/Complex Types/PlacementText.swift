@@ -14,7 +14,7 @@ public struct PlacementText {
 
     public let value: String
 
-    // MARK: One-off Attributes
+    // MARK: Attributes
 
     public let placement: AboveBelow?
 

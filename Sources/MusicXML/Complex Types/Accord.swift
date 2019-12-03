@@ -14,7 +14,7 @@ public struct Accord {
 
     public let string: Int
 
-    // MARK: - Elements
+    // MARK: Elements
 
     public let tuningStep: Step
     public let tuningAlter: Double?

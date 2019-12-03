@@ -29,7 +29,7 @@ public struct Dynamics {
     public let printStyleAlign: PrintStyleAlign
     public let textDecoration: TextDecoration
 
-    // MARK: One-off Attributes
+    // MARK: Attributes
 
     public let placement: AboveBelow?
     public let enclosure: EnclosureShape?

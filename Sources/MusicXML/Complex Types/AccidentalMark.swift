@@ -8,11 +8,11 @@
 /// An accidental-mark can be used as a separate notation or as part of an ornament. When used in an
 /// ornament, position and placement are relative to the ornament, not relative to the note.
 public struct AccidentalMark {
-    // MARK: - Value
+    // MARK: Value
 
     public var value: AccidentalValue
 
-    // MARK: - Attributes
+    // MARK: Attributes
 
     public var placement: AboveBelow?
     public var position: Position

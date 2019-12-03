@@ -8,7 +8,7 @@
 import XMLCoder
 
 public struct Creator {
-    // MARK: - Value
+    // MARK: Value
 
     public var value: String
 

@@ -8,11 +8,11 @@
 import XMLCoder
 
 public struct Rights {
-    // MARK: - Value
+    // MARK: Value
 
     public var value: String
 
-    // MARK: - Attributes
+    // MARK: Attributes
 
     public var type: String?
 

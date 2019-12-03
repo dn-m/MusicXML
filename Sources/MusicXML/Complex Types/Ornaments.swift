@@ -9,7 +9,7 @@
 /// element's content is represented the same as an accidental element, but with a different name to
 /// reflect the different musical meaning.
 public struct Ornaments {
-    // MARK: - Elements
+    // MARK: Elements
 
     public var values: [Ornament]
     public var accidentalMarks: [AccidentalMark]

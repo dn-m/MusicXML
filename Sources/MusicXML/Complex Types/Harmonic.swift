@@ -12,12 +12,12 @@
 /// harmonic element refer to the use of the circular harmonic symbol, typically but not always used
 /// with natural harmonics.
 public struct Harmonic {
-    // MARK: - Elements
+    // MARK: Elements
 
     public var naturalArtificial: NaturalArtificial?
     public var baseSoundingTouchingPitch: BaseSoundingTouchingPitch?
 
-    // MARK: - Attributes
+    // MARK: Attributes
 
     public var printObject: Bool?
 

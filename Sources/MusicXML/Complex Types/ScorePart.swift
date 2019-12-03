@@ -13,11 +13,11 @@ import XMLCoder
 /// Initial midi-instrument assignments may be made here as well.
 // TODO: Add support for ScorePart print-style, print-object, and justify
 public struct ScorePart {
-    // MARK: - Attributes
+    // MARK: Attributes
 
     public var id: String
 
-    // MARK: - Elements
+    // MARK: Elements
 
     /// Identification contains basic metadata about the score. It includes the information in
     /// MuseData headers that may apply at a score-wide, movement-wide, or part-wide level. The

@@ -16,7 +16,7 @@ public struct HarpPedals {
 
     public let printStyleAlign: PrintStyleAlign
 
-    // MARK: - Elements
+    // MARK: Elements
 
     public let pedalTunings: [PedalTuning]
 

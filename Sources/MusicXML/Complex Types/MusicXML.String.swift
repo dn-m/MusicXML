@@ -15,7 +15,7 @@ extension MusicXML {
 
         public let value: Int
 
-        // MARK: One-off Attributes
+        // MARK: Attributes
 
         public let placement: AboveBelow?
 
