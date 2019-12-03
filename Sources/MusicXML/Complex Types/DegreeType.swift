@@ -10,7 +10,7 @@
 /// interpretation of the value of the degree-alter element. The text attribute specifies how the
 /// type of the degree should be displayed in a score.
 public struct DegreeType {
-    // MARK: - Instance Propertie
+    // MARK: - Instance Properties
 
     // MARK: Value
 

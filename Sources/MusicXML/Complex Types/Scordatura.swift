@@ -8,6 +8,8 @@
 /// Scordatura string tunings are represented by a series of accord elements, similar to the
 /// staff-tuning elements. Strings are numbered from high to low.
 public struct Scordatura {
+    // MARK: - Instance Properties
+
     public let accords: [Accord]
 
     public init(_ accords: [Accord]) {

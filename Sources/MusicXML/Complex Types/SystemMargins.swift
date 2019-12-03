@@ -8,6 +8,8 @@
 /// System margins are relative to the page margins. Positive values indent and negative values
 /// reduce the margin size.
 public struct SystemMargins {
+    // MARK: - Instance Properties
+
     public let left: Tenths
     public let right: Tenths
 

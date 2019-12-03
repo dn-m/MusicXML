@@ -9,6 +9,8 @@
 /// miscellaneous element. The miscellaneous type puts each separate part of metadata into its own
 /// miscellaneous-field type.
 public struct Miscellaneous {
+    // MARK: - Instance Properties
+
     public let fields: [MiscellaneousField]
 
     public init(fields: [MiscellaneousField]) {

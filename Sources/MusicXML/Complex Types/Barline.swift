@@ -27,6 +27,8 @@
 /// elements allow for fermatas on both sides of the barline (the lower one inverted). If no
 /// location is specified, the right barline is the default.
 public struct Barline {
+    // MARK: - Instance Properties
+
     /// Barlines have a location attribute to make it easier to process barlines independently of
     /// the other musical data in a score. It is often easier to set up measures separately from
     /// entering notes. The location attribute must match where the barline element occurs within

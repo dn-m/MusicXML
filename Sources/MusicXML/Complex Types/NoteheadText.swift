@@ -8,6 +8,8 @@
 import XMLCoder
 
 public struct NoteheadText {
+    // MARK: - Instance Properties
+
     public enum Kind {
         case displayText(FormattedText)
         case accidentalText(AccidentalText)

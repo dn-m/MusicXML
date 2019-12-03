@@ -8,6 +8,8 @@
 /// The empty-line type represents an empty element with line-shape, line-type, dashed-formatting,
 /// print-style and placement attributes.
 public struct Line {
+    // MARK: - Instance Properties
+
     public var lineShape: LineShape?
     public var lineType: LineType?
     public var dashedFormatting: DashedFormatting

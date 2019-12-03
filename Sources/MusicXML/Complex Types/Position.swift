@@ -58,6 +58,8 @@
 /// As elsewhere in the MusicXML format, tenths are the global tenths defined by the scaling
 /// element, not the local tenths of a staff resized by the staff-size element.
 public struct Position {
+    // MARK: - Instance Properties
+
     public let defaultX: Tenths?
     public let defaultY: Tenths?
     public let relativeX: Tenths?

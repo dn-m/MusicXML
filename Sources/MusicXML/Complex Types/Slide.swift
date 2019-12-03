@@ -10,13 +10,11 @@
 /// and portamento elements. A slide is continuous between two notes and defaults to a solid line.
 /// The optional text for a is printed alongside the line.
 public struct Slide {
-    // MARK: Elements
+    // MARK: - Instance Properties
     
     // MARK: Value
     
     public let value: String?
-
-    // MARK: Attributes
     
     // MARK: Attributes
 

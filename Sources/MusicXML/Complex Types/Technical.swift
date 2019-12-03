@@ -7,6 +7,8 @@
 
 /// Technical indications give performance information for individual instruments.
 public struct Technical {
+    // MARK: - Instance Properties
+
     public var values: [Technique]
 
     public init(_ values: [Technique]) {

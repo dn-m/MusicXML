@@ -7,6 +7,8 @@
 
 /// The style-text type represents a text element with a print-style attribute group.
 public struct StyleText {
+    // MARK: - Instance Properties
+
     public let value: String
     public let printStyle: PrintStyle
 

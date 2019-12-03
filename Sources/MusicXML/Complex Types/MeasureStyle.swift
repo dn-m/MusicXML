@@ -14,6 +14,8 @@ import XMLCoder
 /// partial measures. All but the multiple-rest element use a type attribute to indicate starting
 /// and stopping the use of the style.
 public struct MeasureStyle {
+    // MARK: - Instance Properties
+
     // MARK: Attributes
 
     public var number: Int?

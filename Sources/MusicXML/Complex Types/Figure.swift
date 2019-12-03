@@ -7,6 +7,8 @@
 
 /// The figure type represents a single figure within a figured-bass element.
 public struct Figure {
+    // MARK: - Instance Properties
+
     /// Values for prefix and suffix include plus and
     /// the accidental values sharp, flat, natural, double-sharp,
     /// flat-flat, and sharp-sharp.

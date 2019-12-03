@@ -7,6 +7,8 @@
 
 /// The lyric-font type specifies the default font for a particular name and number of lyric.
 public struct LyricFont {
+    // MARK: - Instance Properties
+
     public let font: Font
     public let number: Int?
     public let name: String?

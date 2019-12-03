@@ -12,6 +12,8 @@ import XMLCoder
 /// going forward in score order. When used as part of a note element, it applies to the current
 /// note only.
 public struct Play {
+    // MARK: - Instance Properties
+
     public enum Kind {
         case ipa(String)
         case mute(Mute)

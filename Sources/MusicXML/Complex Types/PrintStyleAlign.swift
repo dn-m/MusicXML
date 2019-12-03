@@ -8,6 +8,8 @@
 /// The empty-print-style-align type represents an empty element with print-style-align attribute
 /// group.
 public struct PrintStyleAlign {
+    // MARK: - Instance Properties
+
     public let printStyle: PrintStyle
     public let hAlign: LeftCenterRight?
     public let vAlign: VAlign?

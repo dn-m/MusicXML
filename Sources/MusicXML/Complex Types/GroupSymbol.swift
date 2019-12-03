@@ -9,6 +9,8 @@ import XMLCoder
 
 /// The group-symbol type indicates how the symbol for a group is indicated in the score.
 public struct GroupSymbol {
+    // MARK: - Instance Properties
+
     public var value: GroupSymbolValue
     public var position: Position
     public var color: Color?

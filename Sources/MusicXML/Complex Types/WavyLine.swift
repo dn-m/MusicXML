@@ -8,6 +8,8 @@
 /// Wavy lines are one way to indicate trills. When used with a measure element, they should always
 /// have type="continue" set.
 public struct WavyLine {
+    // MARK: - Instance Properties
+
     public let type: StartStopContinue
     public let number: Int?
     public let position: Position

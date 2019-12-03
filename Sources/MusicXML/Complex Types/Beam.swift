@@ -12,6 +12,8 @@
 /// and other elements. Beaming groups are distinguished by being in different voices and/or the
 /// presence or absence of grace and cue elements.
 public struct Beam {
+    // MARK: - Instance Properties
+
     public var value: BeamValue
     public var number: BeamLevel?
     public var repeater: Bool?

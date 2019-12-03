@@ -12,6 +12,8 @@
 /// the bend is to be done at the bridge with a whammy or vibrato bar. The content of the element
 /// indicates how this should be notated.
 public struct Bend {
+    // MARK: - Instance Properties
+
     public let printStyle: PrintStyle
     public let accelerate: Bool?
     /// The beats attribute specifies the beats used in a trill-sound or bend-sound. It is a decimal

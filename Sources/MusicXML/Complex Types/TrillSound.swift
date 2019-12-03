@@ -25,6 +25,8 @@
 ///     The default for last-beat is "24", not "75".
 ///
 public struct TrillSound {
+    // MARK: - Instance Properties
+
     let startNote: StartNote?
     let trillStep: TrillStep?
     let twoNoteTurn: TwoNoteTurn?

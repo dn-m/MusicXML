@@ -16,6 +16,8 @@
 /// bar-style) common barlines. The symbol formatting for a multi-staff part can be more fully
 /// specified using the part-symbol element.
 public struct PartGroup {
+    // MARK: - Instance Properties
+
     public var type: StartStop
     public var number: Int?
     public var name: GroupName?

@@ -7,6 +7,8 @@
 
 /// The pedal-tuning type specifies the tuning of a single harp pedal.
 public struct PedalTuning {
+    // MARK: - Instance Properties
+
     public let step: Step
     public let alter: Int
 

@@ -12,6 +12,8 @@ import XMLCoder
 /// and arrangement, but other types may be used. The type attribute is only needed when there are
 /// multiple encoder elements.
 public struct Encoding {
+    // MARK: - Instance Properties
+
     public enum Kind {
         case encoder(String)
         case date(String)

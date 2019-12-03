@@ -9,6 +9,8 @@
 /// attributes in the group-name type are deprecated in Version 2.0 in favor of the new
 /// group-name-display and group-abbreviation-display elements.
 public struct GroupName {
+    // MARK: - Instance Properties
+
     public let value: String
     public let printStyle: PrintStyle
     public let justify: Justify?

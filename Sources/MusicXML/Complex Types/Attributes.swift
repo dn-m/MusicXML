@@ -26,6 +26,8 @@
 /// attributes are changed mid-measure, it affects the music in score order, not in MusicXML
 /// document order.
 public struct Attributes {
+    // MARK: - Instance Properties
+
     public let footnote: FormattedText?
     public let level: Level?
     public let divisions: Int?

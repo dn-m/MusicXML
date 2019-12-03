@@ -14,6 +14,8 @@
 // "(work?, movement-number?, movement-title?,
 // identification?, defaults?, credit*, part-list)">
 public struct Header: Equatable {
+    // MARK: - Instance Properties
+
     public var work: Work?
     public var movementNumber: String?
     public var movementTitle: String?

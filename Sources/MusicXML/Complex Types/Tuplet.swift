@@ -14,6 +14,8 @@
 /// than the time-modification element, and is needed to represent nested tuplets and other complex
 /// tuplets accurately.
 public struct Tuplet {
+    // MARK: - Instance Properties
+
     // MARK: Attributes
 
     public var type: StartStop

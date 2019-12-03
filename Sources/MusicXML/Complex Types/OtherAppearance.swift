@@ -9,6 +9,8 @@
 /// version of the MusicXML format. This allows extended representation, though without application
 /// interoperability.
 public struct OtherAppearance {
+    // MARK: - Instance Properties
+
     public let value: String
     public let type: String
 

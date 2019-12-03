@@ -7,6 +7,8 @@
 
 /// The defaults type specifies score-wide defaults for scaling, layout, and appearance.
 public struct Defaults {
+    // MARK: - Instance Properties
+
     public let scaling: Scaling?
     public let pageLayout: PageLayout?
     public let systemLayout: SystemLayout?

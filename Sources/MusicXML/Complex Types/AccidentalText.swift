@@ -8,6 +8,8 @@
 /// The accidental-text type represents an element with an accidental value and text-formatting
 /// attributes.
 public struct AccidentalText {
+    // MARK: - Instance Properties
+
     // MARK: Attributes
 
     public let justify: LeftCenterRight?

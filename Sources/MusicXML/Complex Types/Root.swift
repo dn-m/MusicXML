@@ -10,6 +10,8 @@
 /// root-alter element similar to the step and alter elements, but renamed to distinguish the
 /// different musical meanings.
 public struct Root {
+    // MARK: - Instance Properties
+
     public let step: RootStep
     public let alter: RootAlter?
 

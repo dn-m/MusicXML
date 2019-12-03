@@ -11,6 +11,8 @@
 /// the hammer-on or pull-off should be notated. An empty element leaves this choice up to the
 /// application.
 public struct HammerOnPullOff {
+    // MARK: - Instance Properties
+
     public let value: String
     public let type: StartStop
     public let number: Int?

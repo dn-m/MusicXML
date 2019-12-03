@@ -8,6 +8,8 @@
 /// The unpitched type represents musical elements that are notated on the staff but lack definite
 /// pitch, such as unpitched percussion and speaking voice.
 public struct Unpitched {
+    // MARK: - Instance Properties
+
     public var displayStep: Step
     public var displayOctave: Int
 

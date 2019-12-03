@@ -11,6 +11,8 @@ import XMLCoder
 /// supported. If absent, the key signature applies to all staves in the part. Key signatures appear
 /// at the start of each system unless the print-object attribute has been set to "no".
 public struct Key {
+    // MARK: - Instance Properties
+
     // MARK: Attributes
 
     /// The optional number attribute refers to staff numbers.
@@ -59,6 +61,8 @@ extension Key {
 
 extension Key {
     public struct Traditional {
+    // MARK: - Instance Properties
+
         public let cancel: Cancel?
         public let fifths: Int
         public let mode: Mode?
@@ -74,6 +78,8 @@ extension Key {
     /// of altered tones. The key-step element indicates the pitch step to be altered, represented
     /// using the same names as in the step element.
     public struct AlteredTone {
+    // MARK: - Instance Properties
+
         public let step: Step
         public let alter: Double
         public let accidental: AccidentalValue?

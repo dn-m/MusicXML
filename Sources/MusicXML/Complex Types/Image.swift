@@ -7,6 +7,8 @@
 
 /// The image type is used to include graphical images in a score.
 public struct Image {
+    // MARK: - Instance Properties
+
     public let source: String
     public let type: String
     public let position: Position

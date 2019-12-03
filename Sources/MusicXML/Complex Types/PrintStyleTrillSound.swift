@@ -8,6 +8,8 @@
 /// The `PrintStyleTrillSound` type represents an empty element with print-style, placement, and
 /// trill-sound attributes.
 public struct PrintStyleTrillSound {
+    // MARK: - Instance Properties
+
     public let printStyle: PrintStyle
     public let placement: AboveBelow?
     public let trillSound: TrillSound

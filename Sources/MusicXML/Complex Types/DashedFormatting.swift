@@ -9,6 +9,8 @@
 /// the dash-length and space-length attributes are represented in tenths. These attributes are
 /// ignored if the corresponding line-type attribute is not dashed.
 public struct DashedFormatting {
+    // MARK: - Instance Properties
+
     public let dashLength: Tenths?
     public let spaceLength: Tenths?
 

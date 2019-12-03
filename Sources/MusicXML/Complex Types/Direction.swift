@@ -12,6 +12,8 @@
 /// children, non-positional formatting attributes are carried over from the previous element by
 /// default.
 public struct Direction {
+    // MARK: - Instance Properties
+
     // MARK: Attributes
 
     public let placement: AboveBelow?

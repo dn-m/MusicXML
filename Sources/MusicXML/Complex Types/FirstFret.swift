@@ -8,6 +8,8 @@
 /// The first-fret type indicates which fret is shown in the top space of the frame; it is fret 1 if
 /// the element is not present.
 public struct FirstFret {
+    // MARK: - Instance Properties
+
     public let value: Int
     public let text: String?
     public let location: LeftRight?

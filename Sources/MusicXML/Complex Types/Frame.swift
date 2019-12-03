@@ -8,6 +8,8 @@
 /// The frame type represents a frame or fretboard diagram used together with a chord symbol. The
 /// representation is based on the NIFF guitar grid with additional information.
 public struct Frame {
+    // MARK: - Instance Properties
+
     public let position: Position
     public let color: Color?
     public let hAlign: LeftCenterRight?

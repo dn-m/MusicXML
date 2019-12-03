@@ -8,6 +8,8 @@
 /// The text-font-color type represents text with optional font and color information. It is used
 /// for the elision element.
 public struct TextFontColor {
+    // MARK: - Instance Properties
+
     public let value: String
     public let font: Font
     public let color: Color?

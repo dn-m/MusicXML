@@ -10,6 +10,8 @@
 /// and portamento elements. A glissando sounds the half notes in between the slide and defaults to
 /// a wavy line. The optional text is printed alongside the line.
 public struct Glissando {
+    // MARK: - Instance Properties
+
     public let value: String
     public let type: StartStop
     public let number: Int?

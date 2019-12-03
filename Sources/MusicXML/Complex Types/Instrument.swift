@@ -9,6 +9,8 @@
 /// attribute is an IDREF back to the score-instrument ID. If multiple score-instruments are
 /// specified on a score-part, there should be an instrument element for each note in the part.
 public struct Instrument {
+    // MARK: - Instance Properties
+
     public let id: String
 
     public init(id: String) {

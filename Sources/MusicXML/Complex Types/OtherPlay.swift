@@ -8,6 +8,8 @@
 /// The other-play element represents other types of playback. The required type attribute indicates
 /// the type of playback to which the element content applies.
 public struct OtherPlay {
+    // MARK: - Instance Properties
+
     public let value: String
     public let type: String
 

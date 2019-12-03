@@ -10,6 +10,8 @@
 /// root-alter information. In that case, the print-object attribute of the root-alter element can
 /// be set to no.
 public struct RootAlter {
+    // MARK: - Instance Properties
+
     // MARK: - Instance Propertes
 
     // MARK: Value

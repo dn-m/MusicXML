@@ -36,6 +36,8 @@ import XMLCoder
 //    inversion?, bass?, degree*)">
 
 public struct HarmonyChord {
+    // MARK: - Instance Properties
+
     public let rootOrFunction: RootOrFunction
     public let kind: Kind
     public let inversion: Inversion?

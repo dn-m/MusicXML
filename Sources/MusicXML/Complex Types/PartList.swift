@@ -14,6 +14,8 @@ import XMLCoder
 /// brackets. Parts are ordered from top to bottom in a score based on the order in which they
 /// appear in the part-list.
 public struct PartList {
+    // MARK: - Instance Properties
+
     public let parts: [Item]
     public init(_ parts: [Item]) {
         self.parts = parts

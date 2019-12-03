@@ -17,6 +17,8 @@ extension Timewise {
     //    id IDREF #REQUIRED
     // >
     public struct Part {
+    // MARK: - Instance Properties
+
         public var id: String
         public var musicData: [MusicData]
 

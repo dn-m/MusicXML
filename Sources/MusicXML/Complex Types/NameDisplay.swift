@@ -12,6 +12,8 @@ import XMLCoder
 /// is printed at the start of each system. Enclosure for the display-text element is none by
 /// default. Language for the display-text element is Italian ("it") by default.
 public struct NameDisplay {
+    // MARK: - Instance Properties
+
     public let printObject: Bool?
     public let texts: [Text]
 

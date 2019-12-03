@@ -8,6 +8,8 @@
 /// The stick type represents pictograms where the material of the stick, mallet, or beater is
 /// included.
 public struct Stick {
+    // MARK: - Instance Properties
+
     public let tip: TipDirection?
     public let stickType: StickType
     public let stickMaterial: StickMaterial

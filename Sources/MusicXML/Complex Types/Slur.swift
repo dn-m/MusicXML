@@ -9,6 +9,8 @@
 /// one with a stop type. Slurs can add more elements using a continue type. This is typically used
 /// to specify the formatting of cross-system slurs, or to specify the shape of very complex slurs.
 public struct Slur {
+    // MARK: - Instance Properties
+
     // MARK: Attributes
     
     // MARK: Attributes

@@ -21,6 +21,8 @@
 // <!ENTITY % smufl
 //    "smufl %smufl-glyph-name; #IMPLIED">
 public struct SMuFL {
+    // MARK: - Instance Properties
+
     // TODO: Consider nesting Glyph in here.
     public let glyph: SMuFLGlyph
 

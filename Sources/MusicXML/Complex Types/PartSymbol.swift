@@ -11,6 +11,8 @@
 /// typically be 1 for the right hand, while the bottom-staff will typically be 2 for the left hand.
 /// Staff 3 for the pedals is usually outside the brace.
 public struct PartSymbol {
+    // MARK: - Instance Properties
+
     let value: GroupSymbolValue
     let kind: Kind
     let topStaff: Int

@@ -10,6 +10,8 @@
 /// principal-voice element is used for analysis and may be any text value. When used for analysis
 /// separate from any printed score markings, the symbol attribute should be set to "none".
 public struct PrincipleVoice {
+    // MARK: - Instance Properties
+
     public let value: String
     public let type: StartStop
     public let symbol: PrincipleVoiceSymbol

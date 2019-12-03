@@ -8,6 +8,8 @@
 /// The mordent type is used for both represents the mordent sign with the vertical line and the
 /// inverted-mordent sign without the line. The long attribute is "no" by default.
 public struct Mordent {
+    // MARK: - Instance Properties
+
     public let value: PrintStyleTrillSound
     public let long: Bool?
     public let approach: AboveBelow?

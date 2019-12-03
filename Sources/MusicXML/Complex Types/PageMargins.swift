@@ -8,6 +8,8 @@
 /// Page margins are specified either for both even and odd pages, or via separate odd and even page
 /// number values.
 public struct PageMargins {
+    // MARK: - Instance Properties
+
     public let type: Kind?
     public let left: Tenths
     public let right: Tenths

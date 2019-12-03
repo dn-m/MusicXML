@@ -7,6 +7,8 @@
 
 /// Staff layout includes the vertical distance from the bottom line of the previous staff in this system to the top line of the staff specified by the number attribute.
 public struct StaffLayout {
+    // MARK: - Instance Properties
+
     public let number: Int?
     public let staffDistance: Tenths?
 

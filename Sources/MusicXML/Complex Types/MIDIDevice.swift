@@ -11,6 +11,8 @@ import XMLCoder
 /// DeviceName meta event, there can be multiple midi-device elements per MusicXML part starting in
 /// MusicXML 3.0.
 public struct MIDIDevice {
+    // MARK: - Instance Properties
+
     public var value: String?
     /// The optional port attribute is a number from 1 to 16 that can be used with the unofficial
     /// MIDI port (or cable) meta event.

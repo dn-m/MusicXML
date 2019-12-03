@@ -7,6 +7,8 @@
 
 /// The bookmark type serves as a well-defined target for an incoming simple XLink.
 public struct Bookmark {
+    // MARK: - Instance Properties
+
     public let id: String
     public let name: String?
     public let element: String?

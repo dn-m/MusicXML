@@ -9,6 +9,8 @@
 /// of the MusicXML format. This allows extended representation, though without application
 /// interoperability.
 public struct OtherDirection {
+    // MARK: - Instance Properties
+
     public let value: String
     public let printObject: Bool?
     public let printStyleAlign: PrintStyleAlign

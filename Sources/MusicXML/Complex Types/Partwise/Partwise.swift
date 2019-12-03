@@ -7,6 +7,8 @@
 
 /// The `partwise` traversal of a MusicXML score.
 public struct Partwise {
+    // MARK: - Instance Properties
+
     // MARK: Elements
 
     public let header: Header

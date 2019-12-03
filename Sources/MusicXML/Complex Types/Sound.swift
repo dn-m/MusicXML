@@ -24,6 +24,8 @@
 /// reflects the intended musical position for the change in sound. It should not be used to
 /// compensate for latency issues in particular hardware configurations.
 public struct Sound {
+    // MARK: - Instance Properties
+
     public let tempo: Double?
     public let dynamics: Double?
     public let dacapo: Bool?
@@ -69,6 +71,8 @@ public struct Sound {
 
 extension Sound {
     public struct MIDI {
+    // MARK: - Instance Properties
+
         /// The midi-device type corresponds to the DeviceName meta event in Standard MIDI Files.
         /// Unlike the DeviceName meta event, there can be multiple midi-device elements per
         /// MusicXML part starting in MusicXML 3.0.

@@ -8,6 +8,8 @@
 /// The measure-numbering type describes how frequently measure numbers are displayed on this part.
 /// The number attribute from the measure element is used for printing.
 public struct MeasureNumbering {
+    // MARK: - Instance Properties
+
     public let value: MeasureNumberingValue
     public let printStyleAlign: PrintStyleAlign
 

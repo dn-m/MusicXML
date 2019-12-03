@@ -10,6 +10,8 @@
 /// separate specification of a music font for the beat-unit and a text font for the numeric value,
 /// in cases where a single metronome font is not used.
 public struct PerMinute {
+    // MARK: - Instance Properties
+
     public let value: String
     public let font: Font
 

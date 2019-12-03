@@ -8,6 +8,8 @@
 /// The hole type represents the symbols used for woodwind and brass fingerings as well as other
 /// notations.
 public struct Hole {
+    // MARK: - Instance Properties
+
     /// The content of the optional hole-type element indicates what the hole symbol represents in
     /// terms of instrument fingering or other techniques.
     public let holeType: String?

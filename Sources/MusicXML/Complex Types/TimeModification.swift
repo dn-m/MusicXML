@@ -11,6 +11,8 @@
 /// tuplets and other notations that use more detailed information need both the time-modification
 /// and tuplet elements to be represented accurately.
 public struct TimeModification {
+    // MARK: - Instance Properties
+
     /// The actual-notes element describes how many notes are played in the time usually occupied by
     /// the number in the normal-notes element.
     public var actualNotes: Int

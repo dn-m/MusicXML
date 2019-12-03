@@ -8,6 +8,8 @@
 import XMLCoder
 
 public struct Creator {
+    // MARK: - Instance Properties
+
     // MARK: Value
 
     public var value: String

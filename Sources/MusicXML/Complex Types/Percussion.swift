@@ -12,6 +12,8 @@ import XMLCoder
 /// and 223. Some values are added to these based on how usage has evolved in the 30 years since
 /// Stone's book was published.
 public struct Percussion {
+    // MARK: - Instance Properties
+
     public let printStyleAlign: PrintStyleAlign
     public let enclosure: EnclosureShape?
     public let kind: Kind

@@ -11,6 +11,8 @@
 /// in specifying the degree. If the symbol attribute is present, the value of the text attribute
 /// follows the symbol.
 public struct DegreeValue {
+    // MARK: - Instance Properties
+
     public let value: Int
     public let symbol: DegreeSymbolValue?
     public let text: String?

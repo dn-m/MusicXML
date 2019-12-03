@@ -8,6 +8,8 @@
 /// The metronome-beam type works like the beam type in defining metric relationships, but does not
 /// include all the attributes available in the beam type.
 public struct MetronomeBeam {
+    // MARK: - Instance Properties
+
     public let value: BeamValue
     public let number: BeamLevel?
 

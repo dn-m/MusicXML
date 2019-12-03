@@ -13,6 +13,8 @@
 /// system margin, respectively.  When used in the print element, the system-dividers element
 /// affects the dividers that would appear between the current system and the previous system.
 public struct SystemDividers {
+    // MARK: - Instance Properties
+
     public let left: PrintStyleAlignObject
     public let right: PrintStyleAlignObject
 

@@ -9,6 +9,8 @@
 /// scores into a collection.
 // TODO: Flesh out Opus
 public struct Opus {
+    // MARK: - Instance Properties
+
     public init() {}
 }
 

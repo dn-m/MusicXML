@@ -8,6 +8,8 @@
 /// The handbell element represents notation for various techniques used in handbell and handchime
 /// music.
 public struct Handbell {
+    // MARK: - Instance Properties
+
     public let value: HandbellValue
     public let printStyle: PrintStyle
     public let placement: AboveBelow?

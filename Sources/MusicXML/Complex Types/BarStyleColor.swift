@@ -7,6 +7,8 @@
 
 /// The bar-style-color type contains barline style and color information.
 public struct BarStyleColor {
+    // MARK: - Instance Properties
+
     public var value: BarStyle
     public var color: Color?
 

@@ -9,6 +9,8 @@
 /// represents the type of the feature and the element content represents its value. This type is
 /// flexible to allow for different analyses.
 public struct Feature {
+    // MARK: - Instance Properties
+
     public let value: String
     public let type: String?
 

@@ -7,6 +7,8 @@
 
 /// The group-barline type indicates if the group should have common barlines.
 public struct GroupBarline {
+    // MARK: - Instance Properties
+
     public var value: GroupBarlineValue
     public var color: Color?
 

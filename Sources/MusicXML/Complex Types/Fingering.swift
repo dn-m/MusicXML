@@ -10,6 +10,8 @@
 /// fingering element represents the fretting finger; the pluck element represents the plucking
 /// finger.
 public struct Fingering {
+    // MARK: - Instance Properties
+
     public let value: String
     public let substitution: Bool?
     public let alternate: Bool?

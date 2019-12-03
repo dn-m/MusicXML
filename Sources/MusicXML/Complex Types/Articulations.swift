@@ -7,6 +7,8 @@
 
 // FIXME: Consider just storing an `[Articulation]` rather than having a dedicated wrapping struct.
 public struct Articulations {
+    // MARK: - Instance Properties
+
     let values: [Articulation]
 
     public init(_ values: [Articulation]) {

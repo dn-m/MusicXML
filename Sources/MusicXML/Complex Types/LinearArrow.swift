@@ -6,6 +6,8 @@
 //
 
 public struct LinearArrow {
+    // MARK: - Instance Properties
+
     let direction: ArrowDirection
     let style: ArrowStyle?
 

@@ -8,6 +8,8 @@
 /// The print-style attribute group collects the most popular combination of printing attributes:
 /// position, font, and color.
 public struct PrintStyle {
+    // MARK: - Instance Properties
+
     public let position: Position
     public let font: Font
     public let color: Color?

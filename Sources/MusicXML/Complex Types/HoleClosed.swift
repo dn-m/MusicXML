@@ -7,6 +7,8 @@
 
 /// The hole-closed type represents whether the hole is closed, open, or half-open.
 public struct HoleClosed {
+    // MARK: - Instance Properties
+
     public let value: HoleClosedValue
     /// The optional location attribute indicates which portion of the hole is filled in when the
     /// element value is half.

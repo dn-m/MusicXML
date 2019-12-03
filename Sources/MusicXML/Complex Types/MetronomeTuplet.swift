@@ -8,6 +8,8 @@
 /// The metronome-tuplet type uses the same element structure as the time-modification element along
 /// with some attributes from the tuplet element.
 public struct MetronomeTuplet {
+    // MARK: - Instance Properties
+
     public let value: TimeModification
     public let type: StartStop
     public let bracket: Bool?

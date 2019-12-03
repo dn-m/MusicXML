@@ -7,6 +7,8 @@
 
 /// The string-mute type represents string mute on and mute off symbols.
 public struct StringMute {
+    // MARK: - Instance Properties
+
     public let type: OnOff
     public let printStyleAlign: PrintStyleAlign
 

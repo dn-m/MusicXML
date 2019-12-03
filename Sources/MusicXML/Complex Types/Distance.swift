@@ -7,6 +7,8 @@
 
 /// The distance element represents standard distances between notation elements in tenths.
 public struct Distance {
+    // MARK: - Instance Properties
+
     public let value: Tenths
     public let type: DistanceType
 

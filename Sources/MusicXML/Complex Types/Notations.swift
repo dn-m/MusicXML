@@ -12,6 +12,8 @@ import XMLCoder
 /// notations to represent details of performance technique, such as fingerings, without having them
 /// appear in the score.
 public struct Notations {
+    // MARK: - Instance Properties
+
     // MARK: Attributes
 
     public var printObject: Bool?

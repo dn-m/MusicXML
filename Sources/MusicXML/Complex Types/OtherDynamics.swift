@@ -6,6 +6,8 @@
 //
 
 public struct OtherDynamics {
+    // MARK: - Instance Properties
+
     public let smufl: SMuFL
 
     public init(smufl: SMuFL) {

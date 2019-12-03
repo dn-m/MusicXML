@@ -7,6 +7,8 @@
 
 /// The tuplet-number type indicates the number of notes for this portion of the tuplet.
 public struct TupletNumber {
+    // MARK: - Instance Properties
+
     public let value: Int
     public let font: Font
     public let color: Color?

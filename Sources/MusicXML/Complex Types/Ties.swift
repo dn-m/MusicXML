@@ -6,6 +6,8 @@
 //
 
 public struct Ties {
+    // MARK: - Instance Properties
+
     public let start: Tie?
     public let stop: Tie?
 

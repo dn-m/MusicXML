@@ -6,6 +6,8 @@
 //
 
 public struct Beater {
+    // MARK: - Instance Properties
+
     public let value: BeaterValue
     public let tip: TipDirection?
 

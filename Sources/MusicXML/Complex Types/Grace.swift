@@ -8,6 +8,8 @@
 /// The grace type indicates the presence of a grace note. The other grace note attributes come from
 /// MuseData sound suggestions.
 public struct Grace {
+    // MARK: - Instance Properties
+
     public let stealTimePrevious: Int?
     public let stealTimeFollowing: Int?
     public let makeTime: Divisions?

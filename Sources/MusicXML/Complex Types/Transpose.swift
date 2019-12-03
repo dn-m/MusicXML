@@ -8,6 +8,8 @@
 /// The transpose type represents what must be added to a written pitch to get a correct sounding
 /// pitch.
 public struct Transpose {
+    // MARK: - Instance Properties
+
     /// The optional number attribute refers to staff numbers, from top to bottom on the system. If
     /// absent, the transposition applies to all staves in the part. Per-staff transposition is most
     /// often used in parts that represent multiple instruments.

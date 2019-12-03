@@ -9,6 +9,8 @@ import XMLCoder
 
 /// The key-octave element specifies in which octave an element of a key signature appears.
 public struct KeyOctave {
+    // MARK: - Instance Properties
+
     // MARK: Value
 
     /// The content specifies the octave value using the same values as the display-octave element.

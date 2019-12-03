@@ -14,6 +14,8 @@ import XMLCoder
 /// but not printed, as is the case for excerpts from the middle of a score. The value is "yes" if
 /// not present.
 public struct Time {
+    // MARK: - Instance Properties
+
     // MARK: Attributes
 
     /// The optional number attribute refers to staff numbers within the part. If absent, the
@@ -109,6 +111,8 @@ extension Time {
 
 extension Time {
     public struct Signature {
+    // MARK: - Instance Properties
+
         let beats: Int
         let beatType: Int
 
@@ -135,6 +139,8 @@ extension Time {
     // > available compared to the time element's symbol attribute,
     // > which applies to the first of the dual time signatures.
     public struct Measured {
+    // MARK: - Instance Properties
+
         // FIXME: Handle multiple time signatures in Time.Measured
         var signature: Signature
         var interchangeable: Interchangeable?
@@ -151,6 +157,8 @@ extension Time {
     // > The time element's symbol attribute is not used when a
     // > senza-misura element is present.
     public struct Unmeasured {
+    // MARK: - Instance Properties
+
         let symbol: String?
 
         public init(symbol: String? = nil) {

@@ -10,6 +10,8 @@
 /// and standard distances between notation elements, plus an extension element for other aspects of
 /// appearance.
 public struct Appearance {
+    // MARK: - Instance Properties
+
     public let lineWidths: [LineWidth]
     public let noteSizes: [NoteSize]
     public let distances: [Distance]

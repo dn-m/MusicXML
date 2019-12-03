@@ -7,6 +7,8 @@
 
 /// The `timewise` traversal of a `MusicXML` score.
 public struct Timewise {
+    // MARK: - Instance Properties
+
     // MARK: Elements
 
     public let header: Header

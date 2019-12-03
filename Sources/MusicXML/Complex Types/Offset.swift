@@ -10,6 +10,8 @@
 /// If an element within a direction includes a default-x attribute, the offset value will be
 /// ignored when determining the appearance of that element.
 public struct Offset {
+    // MARK: - Instance Properties
+
     // MARK: Value
 
     public let value: Divisions

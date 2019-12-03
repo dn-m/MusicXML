@@ -8,6 +8,8 @@
 /// The tie element indicates that a tie begins or ends with this note. The tie element indicates
 /// sound; the tied element indicates notation.
 public struct Tie {
+    // MARK: - Instance Properties
+
     public var type: StartStop
     public var timeOnly: TimeOnly?
 

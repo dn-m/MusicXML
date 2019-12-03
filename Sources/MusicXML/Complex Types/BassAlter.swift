@@ -8,6 +8,8 @@
 /// The bass-alter type represents the chromatic alteration of the bass of the current chord within
 /// the harmony element.
 public struct BassAlter {
+    // MARK: - Instance Properties
+
     public let value: Double
     public let printObject: Bool?
     public let printStyle: PrintStyle

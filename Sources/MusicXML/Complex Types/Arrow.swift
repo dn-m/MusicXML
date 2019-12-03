@@ -9,6 +9,8 @@ import XMLCoder
 
 /// The arrow element represents an arrow used for a musical technical indication.
 public struct Arrow {
+    // MARK: - Instance Properties
+
     public let kind: Kind
     public let position: Position
     public let printStyle: PrintStyle

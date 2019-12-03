@@ -9,6 +9,8 @@
 /// extensions. The optional type and position attributes are added in Version 3.0 to provide better
 /// formatting control.
 public struct Extend {
+    // MARK: - Instance Properties
+
     public let type: StartStopContinue?
     public let printStyle: PrintStyle
 

@@ -9,6 +9,8 @@
 /// to not arpeggiate these notes. Since this does not involve playback, it is only used on the top
 /// or bottom notes, not on each note as for the arpeggiate type.
 public struct NonArpeggiate {
+    // MARK: - Instance Properties
+
     // MARK: Attributes
 
     public var type: TopBottom

@@ -9,6 +9,8 @@
 /// headers that may apply at a score-wide, movement-wide, or part-wide level. The creator, rights,
 /// source, and relation elements are based on Dublin Core.
 public struct Identification {
+    // MARK: - Instance Properties
+
     /// The creator element is borrowed from Dublin Core. It is used for the creators of the score.
     /// The type attribute is used to distinguish different creative contributions. Thus, there can
     /// be multiple creators within an identification. Standard type values are composer, lyricist,

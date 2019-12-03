@@ -18,6 +18,8 @@
 // >     first-beat = "25"
 // >     last-beat = "75"
 public struct BendSound {
+    // MARK: - Instance Properties
+
     public let accelerate: Bool?
     public let beats: Int?
     public let firstBeat: Int?

@@ -8,6 +8,8 @@
 /// The rest element indicates notated rests or silences. Rest elements are usually empty, but
 /// placement on the staff can be specified using display-step and display-octave elements.
 public struct Rest {
+    // MARK: - Instance Properties
+
     public let measure: Bool?
 
     public let displayStep: Step?

@@ -8,6 +8,8 @@
 /// The tuplet-type type indicates the graphical note type of the notes for this portion of the
 /// tuplet.
 public struct TupletType {
+    // MARK: - Instance Properties
+
     public let value: NoteTypeValue
     public let font: Font
     public let color: Color?

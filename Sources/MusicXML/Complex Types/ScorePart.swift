@@ -13,6 +13,8 @@ import XMLCoder
 /// Initial midi-instrument assignments may be made here as well.
 // TODO: Add support for ScorePart print-style, print-object, and justify
 public struct ScorePart {
+    // MARK: - Instance Properties
+
     // MARK: Attributes
 
     public var id: String
@@ -86,6 +88,8 @@ public struct ScorePart {
 
 extension ScorePart {
     public struct MIDI {
+    // MARK: - Instance Properties
+
         /// The midi-device type corresponds to the DeviceName meta event in Standard MIDI Files.
         /// Unlike the DeviceName meta event, there can be multiple midi-device elements per
         /// MusicXML part starting in MusicXML 3.0.

@@ -12,6 +12,8 @@
 /// harmonic element refer to the use of the circular harmonic symbol, typically but not always used
 /// with natural harmonics.
 public struct Harmonic {
+    // MARK: - Instance Properties
+
     // MARK: Elements
 
     public var naturalArtificial: NaturalArtificial?

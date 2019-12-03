@@ -11,6 +11,8 @@ import XMLCoder
 /// appear at the start of each system unless the print-object attribute has been set to "no" or the
 /// additional attribute has been set to "yes".
 public struct Clef {
+    // MARK: - Instance Properties
+
     // MARK: Attributes
 
     public let number: Int?

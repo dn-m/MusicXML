@@ -9,6 +9,8 @@
 /// durations. For the enclosed shapes, the default is to be hollow for half notes and longer, and
 /// filled otherwise. The filled attribute can be set to change this if needed.
 public struct Notehead {
+    // MARK: - Instance Properties
+
     public let value: NoteheadValue
     public let filled: Bool?
     public let parentheses: Bool?

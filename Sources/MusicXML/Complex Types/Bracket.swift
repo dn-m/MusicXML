@@ -6,6 +6,8 @@
 //
 
 public struct Bracket {
+    // MARK: - Instance Properties
+
     public let type: StartStopContinue
     public let number: Int?
     /// The line-end attribute specifies if there is a jog up or down (or both), an arrow, or

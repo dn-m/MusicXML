@@ -18,6 +18,8 @@
 /// recommended attributes for specifying horizontal position. The other attributes are specified in
 /// tenths, relative to any position settings associated with the slur or tied element.
 public struct Bezier {
+    // MARK: - Instance Properties
+
     public let bezierX: Tenths?
     public let bezierY: Tenths?
     public let bezierX2: Tenths?

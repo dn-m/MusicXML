@@ -10,6 +10,8 @@
 /// notations where more specific extension elements such as other-dynamics and other-technical are
 /// not appropriate.
 public struct OtherNotation {
+    // MARK: - Instance Properties
+
     public let value: String
     public let type: StartStopSingle
     public let number: Int?

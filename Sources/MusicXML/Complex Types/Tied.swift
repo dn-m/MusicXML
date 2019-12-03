@@ -7,7 +7,7 @@
 
 /// The tied type represents the notated tie. The tie element represents the tie sound.
 public struct Tied {
-    // MARK: Attributes
+    // MARK: - Instance Properties
     
     // MARK: Attribute Groups
 
