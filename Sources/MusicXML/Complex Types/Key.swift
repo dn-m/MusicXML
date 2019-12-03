@@ -61,7 +61,7 @@ extension Key {
 
 extension Key {
     public struct Traditional {
-    // MARK: - Instance Properties
+        // MARK: - Instance Properties
 
         public let cancel: Cancel?
         public let fifths: Int
@@ -78,7 +78,7 @@ extension Key {
     /// of altered tones. The key-step element indicates the pitch step to be altered, represented
     /// using the same names as in the step element.
     public struct AlteredTone {
-    // MARK: - Instance Properties
+        // MARK: - Instance Properties
 
         public let step: Step
         public let alter: Double

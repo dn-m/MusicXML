@@ -71,7 +71,7 @@ public struct Sound {
 
 extension Sound {
     public struct MIDI {
-    // MARK: - Instance Properties
+        // MARK: - Instance Properties
 
         /// The midi-device type corresponds to the DeviceName meta event in Standard MIDI Files.
         /// Unlike the DeviceName meta event, there can be multiple midi-device elements per

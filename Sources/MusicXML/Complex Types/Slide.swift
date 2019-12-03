@@ -11,17 +11,17 @@
 /// The optional text for a is printed alongside the line.
 public struct Slide {
     // MARK: - Instance Properties
-    
+
     // MARK: Value
-    
+
     public let value: String?
-    
+
     // MARK: Attributes
 
     public let type: StartStop
     public let number: Int?
     public let lineType: LineType?
-    
+
     // MARK: Attribute Groups
 
     public let dashedFormatting: DashedFormatting

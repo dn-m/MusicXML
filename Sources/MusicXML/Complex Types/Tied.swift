@@ -8,13 +8,13 @@
 /// The tied type represents the notated tie. The tie element represents the tie sound.
 public struct Tied {
     // MARK: - Instance Properties
-    
+
     // MARK: Attribute Groups
 
     public var dashedFormatting: DashedFormatting
     public var position: Position
     public var bezier: Bezier
-    
+
     // MARK: Attributes
 
     public var type: StartStopContinue

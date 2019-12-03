@@ -50,7 +50,7 @@ public struct Credit {
 
 extension Credit {
     public struct Words {
-    // MARK: - Instance Properties
+        // MARK: - Instance Properties
 
         public let words: FormattedText
         public let links: [Link]

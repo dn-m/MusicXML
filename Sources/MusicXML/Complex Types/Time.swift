@@ -111,7 +111,7 @@ extension Time {
 
 extension Time {
     public struct Signature {
-    // MARK: - Instance Properties
+        // MARK: - Instance Properties
 
         let beats: Int
         let beatType: Int
@@ -139,7 +139,7 @@ extension Time {
     // > available compared to the time element's symbol attribute,
     // > which applies to the first of the dual time signatures.
     public struct Measured {
-    // MARK: - Instance Properties
+        // MARK: - Instance Properties
 
         // FIXME: Handle multiple time signatures in Time.Measured
         var signature: Signature
@@ -157,7 +157,7 @@ extension Time {
     // > The time element's symbol attribute is not used when a
     // > senza-misura element is present.
     public struct Unmeasured {
-    // MARK: - Instance Properties
+        // MARK: - Instance Properties
 
         let symbol: String?
 

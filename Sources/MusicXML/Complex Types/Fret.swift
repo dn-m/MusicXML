@@ -13,7 +13,7 @@ public struct Fret {
     // MARK: Value
 
     public let value: Int
-    
+
     // MARK: Attributes
 
     // MARK: Attributes

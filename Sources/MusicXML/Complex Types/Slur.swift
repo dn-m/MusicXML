@@ -12,16 +12,16 @@ public struct Slur {
     // MARK: - Instance Properties
 
     // MARK: Attributes
-    
+
     // MARK: Attributes
-    
+
     public let color: Color?
     public let type: StartStopContinue
     public let number: Int?
     public let lineType: LineType?
     public let placement: AboveBelow?
     public let orientation: OverUnder?
-    
+
     // MARK: Attribute Groups
 
     public let bezier: Bezier
