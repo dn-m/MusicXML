@@ -22,7 +22,7 @@ extension Timewise {
         public var id: String
         public var musicData: [MusicData]
 
-    // MARK: - Initializers
+        // MARK: - Initializers
 
         public init(id: String, musicData: [MusicData]) {
             self.id = id
