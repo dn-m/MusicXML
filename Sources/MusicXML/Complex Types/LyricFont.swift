@@ -13,6 +13,8 @@ public struct LyricFont {
     public let number: Int?
     public let name: String?
 
+    // MARK - Initializers
+
     public init(_ font: Font = Font(), number: Int? = nil, name: String? = nil) {
         self.font = font
         self.number = number

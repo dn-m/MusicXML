@@ -15,6 +15,8 @@ public struct OtherDirection {
     public let printObject: Bool?
     public let printStyleAlign: PrintStyleAlign
 
+    // MARK - Initializers
+
     public init(_ value: String, printObject: Bool? = nil, printStyleAlign: PrintStyleAlign = PrintStyleAlign()) {
         self.value = value
         self.printObject = printObject

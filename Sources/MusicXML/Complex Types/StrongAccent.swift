@@ -15,6 +15,8 @@ public struct StrongAccent {
     public let position: Position
     public let printStyle: PrintStyle
 
+    // MARK - Initializers
+
     public init(
         type: UpDown? = nil,
         placement: AboveBelow? = nil,

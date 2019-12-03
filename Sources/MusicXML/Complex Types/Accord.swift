@@ -20,6 +20,8 @@ public struct Accord {
     public let tuningAlter: Double?
     public let tuningOctave: Int?
 
+    // MARK - Initializers
+
     public init(
         string: Int,
         tuningStep: Step,

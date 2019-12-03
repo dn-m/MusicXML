@@ -26,6 +26,8 @@ public struct SMuFL {
     // TODO: Consider nesting Glyph in here.
     public let glyph: SMuFLGlyph
 
+    // MARK - Initializers
+
     public init(glyph: SMuFLGlyph) {
         self.glyph = glyph
     }

@@ -19,6 +19,8 @@ public struct HammerOnPullOff {
     public let printStyle: PrintStyle
     public let placement: AboveBelow?
 
+    // MARK - Initializers
+
     public init(_ value: String, type: StartStop, number: Int? = nil, printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil) {
         self.value = value
         self.type = type

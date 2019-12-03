@@ -13,6 +13,8 @@ public struct EditorialVoice {
     public let level: Level?
     public let voice: Int?
 
+    // MARK - Initializers
+
     public init(footnote: FormattedText? = nil, level: Level? = nil, voice: Int? = nil) {
         self.footnote = footnote
         self.level = level

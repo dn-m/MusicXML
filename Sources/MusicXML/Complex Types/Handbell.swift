@@ -14,6 +14,8 @@ public struct Handbell {
     public let printStyle: PrintStyle
     public let placement: AboveBelow?
 
+    // MARK - Initializers
+
     public init(_ value: HandbellValue, printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil) {
         self.value = value
         self.printStyle = printStyle

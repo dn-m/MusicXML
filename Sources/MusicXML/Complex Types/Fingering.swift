@@ -18,6 +18,8 @@ public struct Fingering {
     public let placement: AboveBelow?
     public let printStyle: PrintStyle
 
+    // MARK - Initializers
+
     public init(
         _ value: String = "",
         substitution: Bool? = nil,

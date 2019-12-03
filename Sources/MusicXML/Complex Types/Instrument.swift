@@ -13,6 +13,8 @@ public struct Instrument {
 
     public let id: String
 
+    // MARK - Initializers
+
     public init(id: String) {
         self.id = id
     }

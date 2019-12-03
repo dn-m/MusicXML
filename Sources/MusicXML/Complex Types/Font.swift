@@ -27,6 +27,8 @@ public struct Font {
     public let size: FontSize?
     public let weight: FontWeight?
 
+    // MARK - Initializers
+
     public init(
         family: String? = nil,
         style: FontStyle? = nil,

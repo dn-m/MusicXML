@@ -13,6 +13,8 @@ public struct TupletNumber {
     public let font: Font
     public let color: Color?
 
+    // MARK - Initializers
+
     public init(_ value: Int, font: Font = Font(), color: Color? = nil) {
         self.value = value
         self.font = font

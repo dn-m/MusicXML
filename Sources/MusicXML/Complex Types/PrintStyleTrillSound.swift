@@ -14,6 +14,8 @@ public struct PrintStyleTrillSound {
     public let placement: AboveBelow?
     public let trillSound: TrillSound
 
+    // MARK - Initializers
+
     public init(printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil, trillSound: TrillSound = TrillSound()) {
         self.printStyle = printStyle
         self.placement = placement

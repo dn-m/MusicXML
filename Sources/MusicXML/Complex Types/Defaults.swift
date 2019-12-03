@@ -19,6 +19,8 @@ public struct Defaults {
     public let lyricFonts: [LyricFont]
     public let lyricLanguages: [LyricLanguage]
 
+    // MARK - Initializers
+
     public init(
         scaling: Scaling? = nil,
         pageLayout: PageLayout? = nil,

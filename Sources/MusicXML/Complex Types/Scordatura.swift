@@ -12,6 +12,8 @@ public struct Scordatura {
 
     public let accords: [Accord]
 
+    // MARK - Initializers
+
     public init(_ accords: [Accord]) {
         precondition(!accords.isEmpty)
         self.accords = accords

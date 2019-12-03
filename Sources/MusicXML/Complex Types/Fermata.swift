@@ -19,6 +19,8 @@ public struct Fermata {
     public var type: UprightInverted?
     public var printStyle: PrintStyle
 
+    // MARK - Initializers
+
     public init(_ value: FermataShape, type: UprightInverted? = nil, printStyle: PrintStyle = PrintStyle()) {
         self.value = value
         self.type = type

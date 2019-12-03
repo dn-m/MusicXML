@@ -26,6 +26,8 @@ public struct TimeModification {
     /// The normal-dot element is used to specify dotted normal tuplet types.
     public var normalDotCount: Int
 
+    // MARK - Initializers
+
     public init(
         actualNotes: Int,
         normalNotes: Int,

@@ -18,6 +18,8 @@ public struct Backup: Codable, Equatable {
     public var duration: Int
     public var editorial: Editorial?
 
+    // MARK - Initializers
+
     public init(duration: Int, editorial: Editorial? = nil) {
         self.duration = duration
         self.editorial = editorial

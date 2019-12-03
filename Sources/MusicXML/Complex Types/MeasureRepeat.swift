@@ -17,6 +17,8 @@ public struct MeasureRepeat {
     public let type: StartStop
     public let slashes: Int
 
+    // MARK - Initializers
+
     public init(type: StartStop, slashes: Int) {
         self.type = type
         self.slashes = slashes

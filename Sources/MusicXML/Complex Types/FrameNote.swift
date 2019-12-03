@@ -15,6 +15,8 @@ public struct FrameNote {
     public let fingering: Fingering?
     public let barre: Barre?
 
+    // MARK - Initializers
+
     public init(
         string: MusicXML.String,
         fret: Fret,

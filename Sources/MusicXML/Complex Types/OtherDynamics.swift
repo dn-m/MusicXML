@@ -10,6 +10,8 @@ public struct OtherDynamics {
 
     public let smufl: SMuFL
 
+    // MARK - Initializers
+
     public init(smufl: SMuFL) {
         self.smufl = smufl
     }

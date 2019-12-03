@@ -27,6 +27,8 @@ public struct Figure {
     /// extensions.
     public let extend: Extend?
 
+    // MARK - Initializers
+
     public init(prefix: StyleText? = nil, figureNumber: StyleText? = nil, suffix: StyleText? = nil, extend: Extend? = nil) {
         self.prefix = prefix
         self.figureNumber = figureNumber

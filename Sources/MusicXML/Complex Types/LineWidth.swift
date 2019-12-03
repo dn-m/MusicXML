@@ -13,6 +13,8 @@ public struct LineWidth {
     public let value: Tenths
     public let type: LineWidthType
 
+    // MARK - Initializers
+
     public init(_ value: Tenths, type: LineWidthType) {
         self.value = value
         self.type = type

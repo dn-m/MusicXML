@@ -13,6 +13,8 @@ public struct VirtualInstrument {
     public let library: String?
     public let name: String?
 
+    // MARK - Initializers
+
     public init(library: String? = nil, name: String? = nil) {
         self.library = library
         self.name = name

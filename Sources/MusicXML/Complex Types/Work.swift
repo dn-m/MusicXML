@@ -14,6 +14,8 @@ public struct Work {
     public let title: String?
     public let opus: Opus?
 
+    // MARK - Initializers
+
     public init(number: String? = nil, title: String? = nil, opus: Opus? = nil) {
         self.number = number
         self.title = title

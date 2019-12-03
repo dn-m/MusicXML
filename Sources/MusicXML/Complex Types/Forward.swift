@@ -25,6 +25,8 @@ public struct Forward {
     /// and directions. Staff values are numbers, with 1 referring to the top-most staff in a part.
     public let staff: Int?
 
+    // MARK - Initializers
+
     public init(duration: Int, editorialVoice: EditorialVoice? = nil, staff: Int? = nil) {
         self.duration = duration
         self.editorialVoice = editorialVoice

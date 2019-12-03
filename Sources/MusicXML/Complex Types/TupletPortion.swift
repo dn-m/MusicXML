@@ -16,6 +16,8 @@ public struct TupletPortion {
     public let tupletType: TupletType?
     public let tupletDots: [TupletDot]
 
+    // MARK - Initializers
+
     public init(tupletNumber: TupletNumber? = nil, tupletType: TupletType? = nil, tupletDots: [TupletDot]) {
         self.tupletNumber = tupletNumber
         self.tupletType = tupletType

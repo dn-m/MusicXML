@@ -17,6 +17,8 @@ public struct SMuFLGlyph {
 
     public let name: String
 
+    // MARK - Initializers
+
     public init(name: String) {
         self.name = name
     }

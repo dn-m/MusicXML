@@ -18,6 +18,8 @@ public struct DegreeValue {
     public let text: String?
     public let printStyle: PrintStyle
 
+    // MARK - Initializers
+
     public init(
         _ value: Int,
         symbol: DegreeSymbolValue? = nil,

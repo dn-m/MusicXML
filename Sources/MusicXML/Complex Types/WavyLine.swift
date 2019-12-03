@@ -17,6 +17,8 @@ public struct WavyLine {
     public let color: Color?
     public let trillSound: TrillSound
 
+    // MARK - Initializers
+
     public init(type: StartStopContinue, number: Int? = nil, position: Position = Position(), placement: AboveBelow? = nil, color: Color? = nil, trillSound: TrillSound = TrillSound()) {
         self.type = type
         self.number = number

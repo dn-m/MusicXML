@@ -14,6 +14,8 @@ public struct Bass {
     public let step: BassStep
     public let alter: BassAlter?
 
+    // MARK - Initializers
+
     public init(step: BassStep, alter: BassAlter? = nil) {
         self.step = step
         self.alter = alter

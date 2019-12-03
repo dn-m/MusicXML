@@ -14,6 +14,8 @@ public struct Extend {
     public let type: StartStopContinue?
     public let printStyle: PrintStyle
 
+    // MARK - Initializers
+
     public init(type: StartStopContinue? = nil, printStyle: PrintStyle = PrintStyle()) {
         self.type = type
         self.printStyle = printStyle

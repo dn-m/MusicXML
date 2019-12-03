@@ -18,6 +18,8 @@ public struct Inversion {
 
     public let printStyle: PrintStyle
 
+    // MARK - Initializers
+
     public init(_ value: Int, printStyle: PrintStyle = PrintStyle()) {
         self.value = value
         self.printStyle = printStyle

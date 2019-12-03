@@ -15,6 +15,8 @@ public struct MetronomeTuplet {
     public let bracket: Bool?
     public let showNumber: ShowTuplet?
 
+    // MARK - Initializers
+
     public init(_ value: TimeModification, type: StartStop, bracket: Bool? = nil, showNumber: ShowTuplet? = nil) {
         self.value = value
         self.type = type

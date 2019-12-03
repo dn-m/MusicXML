@@ -20,6 +20,8 @@ public struct HarpPedals {
 
     public let pedalTunings: [PedalTuning]
 
+    // MARK - Initializers
+
     public init(_ pedalTunings: [PedalTuning], printStyleAlign: PrintStyleAlign = PrintStyleAlign()) {
         precondition(!pedalTunings.isEmpty)
         self.printStyleAlign = printStyleAlign

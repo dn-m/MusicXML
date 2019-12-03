@@ -18,6 +18,8 @@ public struct NoteSize {
     public let value: Double
     public let type: NoteSizeType
 
+    // MARK - Initializers
+
     public init(_ value: Double, type: NoteSizeType) {
         self.value = value
         self.type = type

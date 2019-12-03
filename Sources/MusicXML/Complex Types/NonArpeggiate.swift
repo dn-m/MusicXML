@@ -19,6 +19,8 @@ public struct NonArpeggiate {
     public var placement: AboveBelow?
     public var color: Color?
 
+    // MARK - Initializers
+
     public init(type: TopBottom, number: Int? = nil, position: Position = Position(), placement: AboveBelow? = nil, color: Color? = nil) {
         self.type = type
         self.number = number

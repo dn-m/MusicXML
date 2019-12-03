@@ -17,6 +17,8 @@ public struct BeatRepeat {
     public let slashes: Int
     public let useDots: Bool
 
+    // MARK - Initializers
+
     public init(type: StartStop, slashes: Int, useDots: Bool) {
         self.type = type
         self.slashes = slashes

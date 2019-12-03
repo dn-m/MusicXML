@@ -12,6 +12,8 @@ public struct Distance {
     public let value: Tenths
     public let type: DistanceType
 
+    // MARK - Initializers
+
     public init(_ value: Tenths, type: DistanceType) {
         self.value = value
         self.type = type

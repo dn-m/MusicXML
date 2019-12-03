@@ -28,6 +28,8 @@ public struct Slur {
     public let dashedFormatting: DashedFormatting
     public let position: Position
 
+    // MARK - Initializers
+
     public init(type: StartStopContinue, number: Int? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting = DashedFormatting(), position: Position = Position(), placement: AboveBelow? = nil, orientation: OverUnder? = nil, bezier: Bezier = Bezier(), color: Color? = nil) {
         self.type = type
         self.number = number

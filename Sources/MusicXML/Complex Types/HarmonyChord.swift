@@ -44,6 +44,8 @@ public struct HarmonyChord {
     public let bass: Bass?
     public let degrees: [Degree]?
 
+    // MARK - Initializers
+
     public init(rootOrFunction: RootOrFunction, kind: Kind, inversion: Inversion? = nil, bass: Bass? = nil, degrees: [Degree]? = nil) {
         self.rootOrFunction = rootOrFunction
         self.kind = kind

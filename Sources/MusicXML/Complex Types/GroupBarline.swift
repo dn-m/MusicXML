@@ -12,6 +12,8 @@ public struct GroupBarline {
     public var value: GroupBarlineValue
     public var color: Color?
 
+    // MARK - Initializers
+
     public init(_ value: GroupBarlineValue, color: Color? = nil) {
         self.value = value
         self.color = color

@@ -40,6 +40,8 @@ public struct Tuplet {
     public var actualNotes: TupletPortion?
     public var normalNotes: TupletPortion?
 
+    // MARK - Initializers
+
     public init(type: StartStop, number: Int? = nil, bracket: Bool? = nil, showNumber: ShowTuplet? = nil, showType: ShowTuplet? = nil, lineShape: LineShape? = nil, position: Position? = nil, placement: AboveBelow? = nil, actualNotes: TupletPortion? = nil, normalNotes: TupletPortion? = nil) {
         self.type = type
         self.number = number

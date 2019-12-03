@@ -18,6 +18,8 @@ public struct SystemDividers {
     public let left: PrintStyleAlignObject
     public let right: PrintStyleAlignObject
 
+    // MARK - Initializers
+
     public init(left: PrintStyleAlignObject, right: PrintStyleAlignObject) {
         self.left = left
         self.right = right

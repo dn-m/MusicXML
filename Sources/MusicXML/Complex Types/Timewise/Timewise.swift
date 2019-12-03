@@ -16,6 +16,8 @@ public struct Timewise {
     /// The `Measure` values which comprise a `Timewise` traversal of a `MusicXML` score.
     public let measures: [Measure]
 
+    // MARK - Initializers
+
     public init(header: Header, measures: [Measure]) {
         self.header = header
         self.measures = measures

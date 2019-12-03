@@ -12,6 +12,8 @@ public struct BarStyleColor {
     public var value: BarStyle
     public var color: Color?
 
+    // MARK - Initializers
+
     public init(_ value: BarStyle, color: Color? = nil) {
         self.value = value
         self.color = color

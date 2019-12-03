@@ -15,6 +15,8 @@ public struct GroupName {
     public let printStyle: PrintStyle
     public let justify: Justify?
 
+    // MARK - Initializers
+
     public init(_ value: String, printStyle: PrintStyle = PrintStyle(), justify: Justify? = nil) {
         self.value = value
         self.printStyle = printStyle

@@ -33,6 +33,8 @@ public struct Transpose {
     /// literature).
     public let double: Bool?
 
+    // MARK - Initializers
+
     public init(number: Int? = nil, diatonic: Int? = nil, chromatic: Int, octaveChange: Int? = nil, double: Bool? = nil) {
         self.number = number
         self.diatonic = diatonic

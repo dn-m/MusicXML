@@ -16,6 +16,8 @@ public struct PageMargins {
     public let top: Tenths
     public let bottom: Tenths
 
+    // MARK - Initializers
+
     public init(type: Kind? = nil, left: Tenths, right: Tenths, top: Tenths, bottom: Tenths) {
         self.type = type
         self.left = left

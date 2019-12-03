@@ -15,6 +15,8 @@ public struct Repeat {
     public let times: Int?
     public let winged: Winged?
 
+    // MARK - Initializers
+
     public init(
         direction: BackwardForward,
         times: Int? = nil,

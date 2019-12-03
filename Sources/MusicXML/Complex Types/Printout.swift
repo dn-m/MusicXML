@@ -20,6 +20,8 @@ public struct Printout {
     public let printSpacing: Bool?
     public let printLyric: Bool?
 
+    // MARK - Initializers
+
     public init(
         printObject: Bool? = nil,
         printDot: Bool? = nil,

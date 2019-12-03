@@ -14,6 +14,8 @@ public struct FirstFret {
     public let text: String?
     public let location: LeftRight?
 
+    // MARK - Initializers
+
     public init(_ value: Int, text: String? = nil, location: LeftRight? = nil) {
         self.value = value
         self.text = text

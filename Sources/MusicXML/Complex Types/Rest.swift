@@ -15,6 +15,8 @@ public struct Rest {
     public let displayStep: Step?
     public let displayOctave: Int?
 
+    // MARK - Initializers
+
     public init(measure: Bool? = nil, displayStep: Step? = nil, displayOctave: Int? = nil) {
         self.measure = measure
         self.displayStep = displayStep

@@ -13,6 +13,8 @@ public struct OtherPlay {
     public let value: String
     public let type: String
 
+    // MARK - Initializers
+
     public init(_ value: String, type: String) {
         self.value = value
         self.type = type

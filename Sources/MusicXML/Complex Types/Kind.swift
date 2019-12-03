@@ -30,6 +30,8 @@ public struct Kind {
 
     public let printStyle: PrintStyle
 
+    // MARK - Initializers
+
     public init(
         _ value: KindValue,
         useSymbols: Bool? = nil,

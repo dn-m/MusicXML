@@ -17,6 +17,8 @@ public struct Line {
     public var printStyle: PrintStyle
     public var placement: AboveBelow?
 
+    // MARK - Initializers
+
     public init(lineShape: LineShape? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting = DashedFormatting(), position: Position = Position(), printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil) {
         self.lineShape = lineShape
         self.lineType = lineType

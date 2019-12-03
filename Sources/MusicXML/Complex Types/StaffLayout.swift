@@ -12,6 +12,8 @@ public struct StaffLayout {
     public let number: Int?
     public let staffDistance: Tenths?
 
+    // MARK - Initializers
+
     public init(number: Int? = nil, staffDistance: Tenths? = nil) {
         self.number = number
         self.staffDistance = staffDistance

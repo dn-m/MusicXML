@@ -13,6 +13,8 @@ public struct Unpitched {
     public var displayStep: Step
     public var displayOctave: Int
 
+    // MARK - Initializers
+
     public init(displayStep: Step, displayOctave: Int) {
         self.displayStep = displayStep
         self.displayOctave = displayOctave

@@ -13,6 +13,8 @@ public struct PrintStyleAlignObject {
     public let printObject: Bool?
     public let printStyleAlign: PrintStyleAlign
 
+    // MARK - Initializers
+
     public init(printObject: Bool? = nil, printStyleAlign: PrintStyleAlign = PrintStyleAlign()) {
         self.printObject = printObject
         self.printStyleAlign = printStyleAlign

@@ -14,6 +14,8 @@ public struct DashedFormatting {
     public let dashLength: Tenths?
     public let spaceLength: Tenths?
 
+    // MARK - Initializers
+
     public init(dashLength: Tenths? = nil, spaceLength: Tenths? = nil) {
         self.dashLength = dashLength
         self.spaceLength = spaceLength

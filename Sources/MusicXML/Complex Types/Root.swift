@@ -15,6 +15,8 @@ public struct Root {
     public let step: RootStep
     public let alter: RootAlter?
 
+    // MARK - Initializers
+
     public init(step: RootStep, alter: RootAlter? = nil) {
         self.step = step
         self.alter = alter

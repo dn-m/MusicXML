@@ -20,6 +20,8 @@ public struct Beam {
     public var fan: Fan?
     public var color: Color?
 
+    // MARK - Initializers
+
     public init(_ value: BeamValue, number: BeamLevel? = nil, repeater: Bool? = nil, fan: Fan? = nil, color: Color? = nil) {
         self.value = value
         self.number = number

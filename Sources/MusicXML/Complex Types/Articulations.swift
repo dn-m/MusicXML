@@ -11,6 +11,8 @@ public struct Articulations {
 
     let values: [Articulation]
 
+    // MARK - Initializers
+
     public init(_ values: [Articulation]) {
         self.values = values
     }

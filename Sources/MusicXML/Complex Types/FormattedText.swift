@@ -28,6 +28,8 @@ public struct FormattedText {
     public let direction: TextDirection?
     public let enclosure: EnclosureShape?
 
+    // MARK - Initializers
+
     public init(
         _ value: String,
         justify: LeftCenterRight? = nil,

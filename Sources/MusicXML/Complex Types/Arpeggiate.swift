@@ -17,6 +17,8 @@ public struct Arpeggiate {
     public var placement: AboveBelow?
     public var color: Color?
 
+    // MARK - Initializers
+
     public init(number: Int? = nil, direction: UpDown? = nil, position: Position = Position(), placement: AboveBelow? = nil, color: Color? = nil) {
         self.number = number
         self.direction = direction

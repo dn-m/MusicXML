@@ -13,6 +13,8 @@ public struct Interchangeable {
     public let symbol: TimeSymbol
     public let separator: TimeSeparator
 
+    // MARK - Initializers
+
     public init(symbol: TimeSymbol, separator: TimeSeparator) {
         self.symbol = symbol
         self.separator = separator

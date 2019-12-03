@@ -15,6 +15,8 @@ public struct Grace {
     public let makeTime: Divisions?
     public let slash: Bool?
 
+    // MARK - Initializers
+
     public init(stealTimePrevious: Int? = nil, stealTimeFollowing: Int? = nil, makeTime: Divisions? = nil, slash: Bool? = nil) {
         self.stealTimePrevious = stealTimePrevious
         self.stealTimeFollowing = stealTimeFollowing

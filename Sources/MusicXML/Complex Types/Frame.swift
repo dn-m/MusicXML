@@ -32,6 +32,8 @@ public struct Frame {
     /// fret value of 0, while a muted string will not be associated with a frame-note element.
     public let frameNotes: [FrameNote]
 
+    // MARK - Initializers
+
     public init(
         position: Position = Position(),
         color: Color? = nil,

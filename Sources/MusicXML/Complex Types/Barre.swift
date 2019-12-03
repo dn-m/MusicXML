@@ -14,6 +14,8 @@ public struct Barre {
     public let type: StartStop
     public let color: Color
 
+    // MARK - Initializers
+
     public init(type: StartStop, color: Color) {
         self.type = type
         self.color = color

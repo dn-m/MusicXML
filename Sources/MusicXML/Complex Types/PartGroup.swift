@@ -29,6 +29,8 @@ public struct PartGroup {
     public var time: Bool?
     public var editorial: Editorial?
 
+    // MARK - Initializers
+
     public init(type: StartStop, number: Int? = nil, name: GroupName? = nil, nameDisplay: NameDisplay? = nil, abbreviation: GroupName? = nil, abbreviationDisplay: NameDisplay? = nil, symbol: GroupSymbol? = nil, barline: GroupBarline? = nil, time: Bool? = nil, editorial: Editorial? = nil) {
         self.type = type
         self.number = number

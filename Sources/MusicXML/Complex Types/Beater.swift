@@ -11,6 +11,8 @@ public struct Beater {
     public let value: BeaterValue
     public let tip: TipDirection?
 
+    // MARK - Initializers
+
     public init(_ value: BeaterValue, tip: TipDirection? = nil) {
         self.value = value
         self.tip = tip

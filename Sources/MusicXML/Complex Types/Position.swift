@@ -65,6 +65,8 @@ public struct Position {
     public let relativeX: Tenths?
     public let relativeY: Tenths?
 
+    // MARK - Initializers
+
     public init(
         defaultX: Tenths? = nil,
         defaultY: Tenths? = nil,

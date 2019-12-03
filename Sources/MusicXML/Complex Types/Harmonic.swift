@@ -29,6 +29,8 @@ public struct Harmonic {
 
     public var printStyle: PrintStyle
 
+    // MARK - Initializers
+
     public init(
         naturalArtificial: NaturalArtificial? = nil,
         baseSoundingTouchingPitch: BaseSoundingTouchingPitch? = nil,

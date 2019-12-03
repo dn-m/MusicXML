@@ -11,6 +11,8 @@ public struct Ties {
     public let start: Tie?
     public let stop: Tie?
 
+    // MARK - Initializers
+
     public init(start: Tie? = nil, stop: Tie? = nil) {
         self.start = start
         self.stop = stop

@@ -28,6 +28,8 @@ public struct Accidental {
 
     public let printStyle: PrintStyle
 
+    // MARK - Initializers
+
     public init(
         _ value: AccidentalValue,
         cautionary: Bool? = nil,

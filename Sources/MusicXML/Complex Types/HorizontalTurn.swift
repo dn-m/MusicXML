@@ -15,6 +15,8 @@ public struct HorizontalTurn {
     public var trillSound: TrillSound
     public var slash: Bool?
 
+    // MARK - Initializers
+
     public init(printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil, trillSound: TrillSound = TrillSound(), slash: Bool? = nil) {
         self.printStyle = printStyle
         self.placement = placement

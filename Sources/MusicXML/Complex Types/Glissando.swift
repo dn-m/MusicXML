@@ -19,6 +19,8 @@ public struct Glissando {
     public let dashedFormatting: DashedFormatting
     public let printStyle: PrintStyle
 
+    // MARK - Initializers
+
     public init(_ value: String, type: StartStop, number: Int? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting = DashedFormatting(), printStyle: PrintStyle = PrintStyle()) {
         self.value = value
         self.type = type

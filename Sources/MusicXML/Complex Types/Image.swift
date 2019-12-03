@@ -15,6 +15,8 @@ public struct Image {
     public let hAlign: LeftCenterRight?
     public let vAlign: VAlignImage?
 
+    // MARK - Initializers
+
     public init(source: String, type: String, position: Position = Position(), hAlign: LeftCenterRight? = nil, vAlign: VAlignImage? = nil) {
         self.source = source
         self.type = type

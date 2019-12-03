@@ -20,6 +20,8 @@ public struct AccidentalMark {
     public var position: Position
     public var printStyle: PrintStyle
 
+    // MARK - Initializers
+
     public init(_ value: AccidentalValue, placement: AboveBelow? = nil, position: Position = Position(), printStyle: PrintStyle = PrintStyle()) {
         self.value = value
         self.placement = placement

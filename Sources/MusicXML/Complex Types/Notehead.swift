@@ -17,6 +17,8 @@ public struct Notehead {
     public let font: Font
     public let color: Color?
 
+    // MARK - Initializers
+
     public init(_ value: NoteheadValue, filled: Bool? = nil, parentheses: Bool? = nil, font: Font = Font(), color: Color? = nil) {
         self.value = value
         self.filled = filled

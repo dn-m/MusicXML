@@ -13,6 +13,8 @@ public struct MetronomeBeam {
     public let value: BeamValue
     public let number: BeamLevel?
 
+    // MARK - Initializers
+
     public init(_ value: BeamValue, number: BeamLevel? = nil) {
         self.value = value
         self.number = number
