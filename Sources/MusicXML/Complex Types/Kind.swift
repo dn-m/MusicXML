@@ -106,6 +106,8 @@ extension Kind: Codable {
         case value = ""
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.useSymbols = try container.decodeIfPresent(Bool.self, forKey: .useSymbols)
@@ -120,6 +122,8 @@ extension Kind: Codable {
     }
 
     // sourcery:inline:Kind.AutoEncodable
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)

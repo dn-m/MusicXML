@@ -29,12 +29,16 @@ extension PrintStyle: Codable {
         case color
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.position = try Position(from: decoder)
         self.font = try Font(from: decoder)
         self.color = try container.decodeIfPresent(Color.self, forKey: .color)
     }
+
+    // MARK - Encodable
 
     public func encode(to encoder: Encoder) throws {
         try position.encode(to: encoder)

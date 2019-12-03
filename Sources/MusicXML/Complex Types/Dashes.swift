@@ -30,6 +30,8 @@ public struct Dashes {
 
 extension Dashes: Equatable {}
 extension Dashes: Codable {
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
         self.dashedFormatting = try DashedFormatting(from: decoder)

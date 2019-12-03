@@ -41,6 +41,8 @@ extension BreathMark: Codable {
         case placement
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
         self.position = try Position(from: decoder)

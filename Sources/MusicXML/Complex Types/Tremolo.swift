@@ -55,6 +55,8 @@ extension Tremolo: Codable {
         case placement
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         // Decode value

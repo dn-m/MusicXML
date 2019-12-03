@@ -52,6 +52,8 @@ extension Slide: Codable {
         case lineType = "line-type"
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.value = try container.decodeIfPresent(String.self, forKey: .value)

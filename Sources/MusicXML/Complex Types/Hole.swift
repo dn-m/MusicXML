@@ -43,6 +43,8 @@ extension Hole: Codable {
         case placement
     }
 
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(holeType, forKey: .holeType)
@@ -51,6 +53,8 @@ extension Hole: Codable {
         try printStyle.encode(to: encoder)
         try container.encodeIfPresent(placement, forKey: .placement)
     }
+
+    // MARK - Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

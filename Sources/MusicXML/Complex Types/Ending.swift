@@ -72,6 +72,8 @@ extension Ending: Codable {
         case textY = "text-y"
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
         self.printStyle = try PrintStyle(from: decoder)
@@ -88,6 +90,8 @@ extension Ending: Codable {
     }
 
     // sourcery:inline:Ending.AutoEncodable
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)

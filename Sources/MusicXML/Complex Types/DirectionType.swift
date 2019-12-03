@@ -141,6 +141,8 @@ extension DirectionType: Codable {
         case words
     }
 
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -190,6 +192,8 @@ extension DirectionType: Codable {
             try container.encode(value, forKey: .words)
         }
     }
+
+    // MARK - Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

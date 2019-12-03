@@ -29,11 +29,15 @@ extension PerMinute: Codable {
         case value = ""
     }
 
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)
         try font.encode(to: encoder)
     }
+
+    // MARK - Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

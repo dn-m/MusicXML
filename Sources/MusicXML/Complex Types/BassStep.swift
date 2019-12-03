@@ -46,6 +46,8 @@ extension BassStep: Codable {
         case text
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.value = try container.decode(Step.self, forKey: .value)

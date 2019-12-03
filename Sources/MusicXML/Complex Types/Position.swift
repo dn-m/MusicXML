@@ -89,6 +89,8 @@ extension Position: Codable {
         case relativeY = "relative-y"
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         defaultX = try container.decodeIfPresent(Tenths.self, forKey: .defaultX)

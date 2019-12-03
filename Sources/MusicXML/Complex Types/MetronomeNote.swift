@@ -38,6 +38,8 @@ extension MetronomeNote: Codable {
         case metronomeTuplet = "metronome-tuplet"
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.metronomeType = try container.decode(NoteTypeValue.self, forKey: .metronomeType)

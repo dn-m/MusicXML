@@ -37,6 +37,8 @@ extension OctaveShift: Codable {
         case size
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.type = try container.decode(UpDownStopContinue.self, forKey: .type)

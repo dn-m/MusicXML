@@ -28,11 +28,15 @@ extension Extend: Codable {
         case type
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = try container.decodeIfPresent(StartStopContinue.self, forKey: .type)
         printStyle = try PrintStyle(from: decoder)
     }
+
+    // MARK - Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

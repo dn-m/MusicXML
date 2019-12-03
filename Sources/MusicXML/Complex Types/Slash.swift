@@ -65,6 +65,8 @@ extension Slash: Codable {
 
     // MARK - Initializers
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         // Decode attributes
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -81,6 +83,8 @@ extension Slash: Codable {
             self.item = nil
         }
     }
+
+    // MARK - Encodable
 
     public func encode(to encoder: Encoder) throws {
         fatalError("TODO: Implement Slash.encode(to:)")

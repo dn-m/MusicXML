@@ -76,6 +76,8 @@ extension Harmony: Codable {
         case staff
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.type = try container.decodeIfPresent(HarmonyType.self, forKey: .type)
@@ -93,6 +95,8 @@ extension Harmony: Codable {
         self.editorial = try Editorial(from: decoder)
         self.staff = try container.decodeIfPresent(Int.self, forKey: .staff)
     }
+
+    // MARK - Encodable
 
     public func encode(to encoder: Encoder) throws {
         fatalError("TODO")

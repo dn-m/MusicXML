@@ -50,6 +50,8 @@ extension TimeModification: Codable {
         case normalDotCount = "normal-dot"
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.actualNotes = try container.decode(Int.self, forKey: .actualNotes)
@@ -57,6 +59,8 @@ extension TimeModification: Codable {
         self.normalType = try container.decodeIfPresent(NoteTypeValue.self, forKey: .normalType)
         self.normalDotCount = try container.decode([Empty].self, forKey: .normalDotCount).count
     }
+
+    // MARK - Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

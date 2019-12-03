@@ -30,12 +30,16 @@ extension PrintStyleAlign: Codable {
         case vAlign = "valign"
     }
 
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try printStyle.encode(to: encoder)
         try container.encodeIfPresent(hAlign, forKey: .hAlign)
         try container.encodeIfPresent(vAlign, forKey: .vAlign)
     }
+
+    // MARK - Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

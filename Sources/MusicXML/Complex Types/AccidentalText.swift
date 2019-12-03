@@ -79,6 +79,8 @@ extension AccidentalText: Codable {
         case value = ""
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.justify = try container.decodeIfPresent(LeftCenterRight.self, forKey: .justify)
@@ -95,6 +97,8 @@ extension AccidentalText: Codable {
         self.enclosure = try container.decodeIfPresent(EnclosureShape.self, forKey: .enclosure)
         self.value = try container.decode(AccidentalValue.self, forKey: .value)
     }
+
+    // MARK - Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

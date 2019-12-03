@@ -52,6 +52,8 @@ extension DegreeType: Codable {
         case text
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.text = try container.decodeIfPresent(String.self, forKey: .text)

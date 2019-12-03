@@ -41,6 +41,8 @@ extension DegreeValue: Codable {
         case text
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.value = try container.decode(Int.self, forKey: .value)

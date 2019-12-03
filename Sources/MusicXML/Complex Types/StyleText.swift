@@ -26,6 +26,8 @@ extension StyleText: Codable {
         case value = ""
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         // Decode attribute group
         self.printStyle = try PrintStyle(from: decoder)
@@ -33,6 +35,8 @@ extension StyleText: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.value = try container.decode(String.self, forKey: .value)
     }
+
+    // MARK - Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

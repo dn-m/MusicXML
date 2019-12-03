@@ -30,11 +30,15 @@ extension MeasureNumbering: Codable {
         case value = ""
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         self.printStyleAlign = try PrintStyleAlign(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.value = try container.decode(MeasureNumberingValue.self, forKey: .value)
     }
+
+    // MARK - Encodable
 
     public func encode(to encoder: Encoder) throws {
         try printStyleAlign.encode(to: encoder)

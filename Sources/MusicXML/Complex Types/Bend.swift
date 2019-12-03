@@ -61,6 +61,8 @@ extension Bend: Codable {
         case withBar
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         printStyle = try PrintStyle(from: decoder)
@@ -74,6 +76,8 @@ extension Bend: Codable {
     }
 
     // sourcery:inline:Bend.AutoEncodable
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try printStyle.encode(to: encoder)

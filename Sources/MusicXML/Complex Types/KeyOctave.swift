@@ -44,12 +44,16 @@ extension KeyOctave: Codable {
         case value = ""
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.value = try container.decode(Int.self, forKey: .value)
         self.number = try container.decode(Int.self, forKey: .number)
         self.cancel = try container.decodeIfPresent(Bool.self, forKey: .cancel) ?? false
     }
+
+    // MARK - Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

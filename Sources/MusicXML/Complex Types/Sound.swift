@@ -111,6 +111,8 @@ extension Sound.MIDI: Codable {
         case play
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.midiDevice = try container.decodeIfPresent(MIDIDevice.self, forKey: .midiDevice)
@@ -142,6 +144,8 @@ extension Sound: Codable {
         case offset
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.tempo = try container.decodeIfPresent(Double.self, forKey: .tempo)
@@ -168,6 +172,8 @@ extension Sound: Codable {
 
         self.offset = try container.decodeIfPresent(Offset.self, forKey: .offset)
     }
+
+    // MARK - Encodable
 
     public func encode(to encoder: Encoder) throws {
         fatalError("TODO")

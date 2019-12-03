@@ -53,6 +53,8 @@ extension Wedge: Codable {
     }
 
     // sourcery:inline:Wedge.AutoEncodable
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
@@ -65,6 +67,8 @@ extension Wedge: Codable {
         try container.encodeIfPresent(color, forKey: .color)
     }
     // sourcery:end
+
+    // MARK - Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

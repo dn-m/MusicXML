@@ -39,6 +39,8 @@ extension NonArpeggiate: Codable {
         case color
     }
 
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
@@ -47,6 +49,8 @@ extension NonArpeggiate: Codable {
         try container.encodeIfPresent(placement, forKey: .placement)
         try container.encodeIfPresent(color, forKey: .color)
     }
+
+    // MARK - Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

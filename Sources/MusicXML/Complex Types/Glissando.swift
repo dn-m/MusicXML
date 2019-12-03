@@ -41,6 +41,8 @@ extension Glissando: Codable {
         case value = ""
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         value = try container.decode(String.self, forKey: .value)
@@ -50,6 +52,8 @@ extension Glissando: Codable {
         dashedFormatting = try DashedFormatting(from: decoder)
         printStyle = try PrintStyle(from: decoder)
     }
+
+    // MARK - Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

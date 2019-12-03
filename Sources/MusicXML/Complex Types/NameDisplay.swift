@@ -40,6 +40,8 @@ extension NameDisplay.Text: Codable {
         case accidentalText = "accidental-text"
     }
 
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -49,6 +51,8 @@ extension NameDisplay.Text: Codable {
             try container.encode(value, forKey: .displayText)
         }
     }
+
+    // MARK - Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -79,12 +83,16 @@ extension NameDisplay: Codable {
         case printObject = "print-object"
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
         let textsContainer = try decoder.singleValueContainer()
         self.texts = try textsContainer.decode([Text].self)
     }
+
+    // MARK - Encodable
 
     public func encode(to encoder: Encoder) throws {
         fatalError("TODO")

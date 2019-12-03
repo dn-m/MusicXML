@@ -31,6 +31,8 @@ extension NoteheadText.Kind: Codable {
         case accidentalText
     }
 
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -40,6 +42,8 @@ extension NoteheadText.Kind: Codable {
             try container.encode(value, forKey: .accidentalText)
         }
     }
+
+    // MARK - Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

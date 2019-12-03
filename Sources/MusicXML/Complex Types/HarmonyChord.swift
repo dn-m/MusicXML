@@ -141,6 +141,8 @@ extension HarmonyChord.RootOrFunction: Codable {
         case function
     }
 
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -150,6 +152,8 @@ extension HarmonyChord.RootOrFunction: Codable {
             try container.encode(value, forKey: .function)
         }
     }
+
+    // MARK - Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -194,6 +198,8 @@ extension HarmonyChordComponent: Decodable {
         case bass
         case degree
     }
+
+    // MARK - Decodable
 
     internal init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

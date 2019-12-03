@@ -109,6 +109,8 @@ extension Accidental: Codable {
         case value = ""
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
         self.printStyle = try PrintStyle(from: decoder)
@@ -124,6 +126,8 @@ extension Accidental: Codable {
     }
 
     // sourcery:inline:Accidental.AutoEncodable
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)

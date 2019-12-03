@@ -54,6 +54,8 @@ extension MeasureStyle.Kind: Codable {
         case slash
     }
 
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -67,6 +69,8 @@ extension MeasureStyle.Kind: Codable {
             try container.encode(value, forKey: .slash)
         }
     }
+
+    // MARK - Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -99,6 +103,8 @@ extension MeasureStyle: Codable {
         case color
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         number = try container.decodeIfPresent(Int.self, forKey: .number)
@@ -106,6 +112,8 @@ extension MeasureStyle: Codable {
         color = try container.decodeIfPresent(Color.self, forKey: .color)
         kind = try Kind(from: decoder)
     }
+
+    // MARK - Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

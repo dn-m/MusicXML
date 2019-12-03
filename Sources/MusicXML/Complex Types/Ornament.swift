@@ -39,6 +39,8 @@ extension Ornament: Codable {
         case wavyLine = "wavy-line"
     }
 
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -68,6 +70,8 @@ extension Ornament: Codable {
             try container.encode(value, forKey: .wavyLine)
         }
     }
+
+    // MARK - Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

@@ -86,6 +86,8 @@ extension Harmonic: Codable {
         case touching = "touching-pitch"
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         self.printStyle = try PrintStyle(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -108,6 +110,8 @@ extension Harmonic: Codable {
         self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
         self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
     }
+
+    // MARK - Encodable
 
     public func encode(to encoder: Encoder) throws {
         try printStyle.encode(to: encoder)

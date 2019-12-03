@@ -51,6 +51,8 @@ extension Font: Codable {
         case weight = "font-weight"
     }
 
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(family, forKey: .family)

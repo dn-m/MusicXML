@@ -54,6 +54,8 @@ extension Slur: Codable {
         case color
     }
 
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
@@ -66,6 +68,8 @@ extension Slur: Codable {
         try bezier.encode(to: encoder)
         try container.encodeIfPresent(color, forKey: .color)
     }
+
+    // MARK - Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

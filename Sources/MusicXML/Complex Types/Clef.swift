@@ -57,6 +57,8 @@ extension Clef: Codable {
         case clefOctaveChange = "clef-octave-change"
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         number = try container.decodeIfPresent(Int.self, forKey: .number)
@@ -71,6 +73,8 @@ extension Clef: Codable {
     }
 
     // sourcery:inline:Clef.AutoEncodable
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(number, forKey: .number)

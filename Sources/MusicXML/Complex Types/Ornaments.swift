@@ -30,6 +30,8 @@ extension Ornaments: Codable {
         case accidentalMarks = "accidental-mark"
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         do {
             self.values = try decoder.collectArray()

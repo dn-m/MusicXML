@@ -44,6 +44,8 @@ extension MusicXML.String: Codable {
         case placement
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
         self.printStyle = try PrintStyle(from: decoder)
@@ -57,6 +59,8 @@ extension MusicXML.String: Codable {
             self.value = 1
         }
     }
+
+    // MARK - Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

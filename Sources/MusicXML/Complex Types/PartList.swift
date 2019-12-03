@@ -42,6 +42,8 @@ extension PartList.Item: Codable {
         case part = "score-part"
     }
 
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -51,6 +53,8 @@ extension PartList.Item: Codable {
             try container.encode(value, forKey: .part)
         }
     }
+
+    // MARK - Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -79,6 +83,8 @@ extension PartList.Item.CodingKeys: XMLChoiceCodingKey {}
 
 extension PartList: Equatable {}
 extension PartList: Codable {
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let singleValue = try decoder.singleValueContainer()
         self.parts = try singleValue.decode([Item].self)

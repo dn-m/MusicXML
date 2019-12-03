@@ -35,6 +35,8 @@ extension HarpPedals: Codable {
         case pedalTunings = "pedal-tuning"
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
         self.printStyleAlign = try PrintStyleAlign(from: decoder)

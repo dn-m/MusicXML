@@ -49,6 +49,8 @@ extension Bracket: Codable {
         case color
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.type = try container.decode(StartStopContinue.self, forKey: .type)

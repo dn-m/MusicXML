@@ -40,6 +40,8 @@ extension Timewise.Part: Codable {
         case id
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         // Decode attributes
         let attr = try decoder.container(keyedBy: CodingKeys.self)

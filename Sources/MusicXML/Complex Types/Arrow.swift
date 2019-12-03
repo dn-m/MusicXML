@@ -70,6 +70,8 @@ extension Arrow.Kind: Codable {
         case linear
     }
 
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -79,6 +81,8 @@ extension Arrow.Kind: Codable {
             try container.encode(value, forKey: .linear)
         }
     }
+
+    // MARK - Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -113,6 +117,8 @@ extension Arrow: Codable {
         case placement
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         kind = try container.decode(Kind.self, forKey: .kind)
@@ -120,6 +126,8 @@ extension Arrow: Codable {
         self.printStyle = try PrintStyle(from: decoder)
         self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
     }
+
+    // MARK - Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

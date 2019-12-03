@@ -39,6 +39,8 @@ extension AccidentalMark: Codable {
         case printStyle
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         value = try container.decode(AccidentalValue.self, forKey: .value)
@@ -46,6 +48,8 @@ extension AccidentalMark: Codable {
         self.position = try Position(from: decoder)
         self.printStyle = try PrintStyle(from: decoder)
     }
+
+    // MARK - Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

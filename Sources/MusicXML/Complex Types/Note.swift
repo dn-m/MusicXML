@@ -258,6 +258,8 @@ extension Note.Kind: Codable {
         case tie
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         // Decode kind
@@ -296,6 +298,8 @@ extension Note.Kind: Codable {
             )
         }
     }
+
+    // MARK - Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -359,6 +363,8 @@ extension Note: Codable {
         case play
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
         self.printStyle = try PrintStyle(from: decoder)
@@ -397,6 +403,8 @@ extension Note: Codable {
         // Decode Kind
         self.kind = try Kind(from: decoder)
     }
+
+    // MARK - Encodable
 
     public func encode(to encoder: Encoder) throws {
         try printStyle.encode(to: encoder)

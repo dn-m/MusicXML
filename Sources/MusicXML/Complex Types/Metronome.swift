@@ -130,6 +130,8 @@ extension Metronome.Complicated: Codable {
         case otherMetronomeNote = "other-metronome-note"
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.metronomeNote = try container.decode([MetronomeNote].self, forKey: .metronomeNote)
@@ -154,9 +156,13 @@ extension Metronome: Codable {
         case metronomeNote = "metronome-note"
     }
 
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         fatalError("TODO")
     }
+
+    // MARK - Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

@@ -42,6 +42,8 @@ extension DegreeAlter: Codable {
         case plusMinus = "plus-minus"
     }
 
+    // MARK - Decodable
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.printStyle = try PrintStyle(from: decoder)
@@ -50,6 +52,8 @@ extension DegreeAlter: Codable {
     }
 
     // sourcery:inline:DegreeAlter.AutoEncodable
+    // MARK - Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)
