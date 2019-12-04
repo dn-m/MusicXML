@@ -15,10 +15,6 @@ import XMLCoder
 public struct Metronome {
     // MARK: - Instance Properties
 
-    // MARK: Kind
-
-    public let kind: Kind
-
     // MARK: Attributes
 
     public let justify: Justify?
@@ -29,6 +25,10 @@ public struct Metronome {
     // MARK: Attribute Groups
 
     public let printStyleAlign: PrintStyleAlign
+
+    // MARK: Kind
+
+    public let kind: Kind
 
     // MARK: - Initializers
 

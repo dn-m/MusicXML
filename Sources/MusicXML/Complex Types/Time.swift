@@ -39,13 +39,13 @@ public struct Time {
     public let vAlign: VAlign?
     public let printObject: Bool?
 
-    // MARK: Kind
-
-    public let kind: Kind
-
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
+
+    // MARK: Kind
+
+    public let kind: Kind
 
     // MARK: - Initializers
 

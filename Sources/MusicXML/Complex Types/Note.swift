@@ -14,10 +14,6 @@
 public struct Note {
     // MARK: - Instance Properties
 
-    // MARK: Kind
-
-    public let kind: Kind
-
     // MARK: Attributes
 
     public let printObject: Bool?
@@ -54,6 +50,10 @@ public struct Note {
     public let lyrics: [Lyric]
     public let play: Play?
     
+    // MARK: Kind
+
+    public let kind: Kind
+
     // MARK: - Initializers
 
     public init(

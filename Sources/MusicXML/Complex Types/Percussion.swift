@@ -18,13 +18,13 @@ public struct Percussion {
 
     public let enclosure: EnclosureShape?
 
-    // MARK: Kind
-
-    public let kind: Kind
-
     // MARK: Attribute Groups
 
     public let printStyleAlign: PrintStyleAlign
+
+    // MARK: Kind
+
+    public let kind: Kind
 
     // MARK: - Initializers
 

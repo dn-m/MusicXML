@@ -19,10 +19,6 @@ import XMLCoder
 public struct Lyric {
     // MARK: - Instance Properties
 
-    // MARK: Kind
-
-    public let kind: Kind
-
     // MARK: Attributes
 
     /// The lyric number indicates multiple lines, though a name can be used as well (as in Finale's
@@ -52,6 +48,10 @@ public struct Lyric {
     public let endParagraph: Bool
 
     public let level: Level?
+
+    // MARK: Kind
+
+    public let kind: Kind
 
     // MARK: - Initializers
 
