@@ -12,8 +12,13 @@
 /// Staff 3 for the pedals is usually outside the brace.
 public struct PartSymbol {
     // MARK: - Instance Properties
-
+    
+    // MARK: Value
+    
     public let value: GroupSymbolValue
+    
+    // MARK: Attributes
+
     public let kind: Kind
     public let topStaff: Int
     public let bottomStaff: Int
@@ -41,8 +46,8 @@ extension PartSymbol: Codable {
 
     enum CodingKeys: String, CodingKey {
         case kind
-        case topStaff
-        case bottomStaff
+        case topStaff = "top-staff"
+        case bottomStaff = "bottom-staff"
         case position
         case color
         case value = ""

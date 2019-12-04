@@ -23,8 +23,6 @@ public struct Play {
 
     public let values: [Kind]
 
-    // MARK: Attributes
-
     // MARK: - Initializers
 
     public init(_ values: [Kind]) {
