@@ -14,10 +14,6 @@
 public struct DegreeAlter {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: Int
-
     // MARK: Attributes
 
     public let plusMinus: Bool?
@@ -25,6 +21,10 @@ public struct DegreeAlter {
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
+
+    // MARK: Value
+
+    public let value: Int
 
     // MARK: - Initializers
 

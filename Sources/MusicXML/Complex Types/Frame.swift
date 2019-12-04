@@ -22,6 +22,10 @@ public struct Frame {
     /// is not present, the display of the unplayed string is application-defined.
     public let unplayed: String?
 
+    // MARK: Attribute Groups
+
+    public let position: Position
+
     // MARK: Elements
 
     /// The frame-strings element gives the overall size of the frame in vertical lines (strings).
@@ -34,10 +38,6 @@ public struct Frame {
     /// The frame-note type represents each note included in the frame. An open string will have a
     /// fret value of 0, while a muted string will not be associated with a frame-note element.
     public let frameNotes: [FrameNote]
-
-    // MARK: Attribute Groups
-
-    public let position: Position
 
     // MARK: - Initializers
 

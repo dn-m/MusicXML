@@ -11,10 +11,6 @@
 public struct PartName {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public var value: String
-
     // MARK: Attributes
 
     public var printObject: Bool?
@@ -23,6 +19,10 @@ public struct PartName {
     // MARK: - Attribute Groups
 
     public var printStyle: PrintStyle
+
+    // MARK: Value
+
+    public var value: String
 
     // MARK: - Initializers
 

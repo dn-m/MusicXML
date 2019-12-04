@@ -21,15 +21,15 @@ public struct Clef {
     public let afterBarline: Bool?
     public let printObject: Bool?
 
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
+
     // MARK: Elements
 
     public let sign: ClefSign
     public let line: Int?
     public let clefOctaveChange: Int?
-
-    // MARK: Attribute Groups
-
-    public let printStyle: PrintStyle
 
     // MARK: - Initializers
 

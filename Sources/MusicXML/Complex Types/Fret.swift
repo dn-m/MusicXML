@@ -10,10 +10,6 @@
 public struct Fret {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: Int
-
     // MARK: Attributes
 
     public let color: Color?
@@ -21,6 +17,10 @@ public struct Fret {
     // MARK: Attribute Groups
 
     public let font: Font
+
+    // MARK: Value
+
+    public let value: Int
 
     // MARK: - Initializers
 

@@ -11,10 +11,6 @@ extension MusicXML {
     public struct String {
         // MARK: - Instance Properties
 
-        // MARK: Value
-
-        public let value: Int
-
         // MARK: Attributes
 
         public let placement: AboveBelow?
@@ -22,6 +18,10 @@ extension MusicXML {
         // MARK: Attribute Groups
 
         public let printStyle: PrintStyle
+
+        // MARK: Value
+
+        public let value: Int
 
         // MARK: - Initializers
 

@@ -13,10 +13,6 @@
 public struct PartSymbol {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: GroupSymbolValue
-
     // MARK: Attributes
 
     public let topStaff: Int?
@@ -26,6 +22,10 @@ public struct PartSymbol {
     // MARK: Attribute Groups
 
     public let position: Position
+
+    // MARK: Value
+
+    public let value: GroupSymbolValue
 
     // MARK: - Initializers
 

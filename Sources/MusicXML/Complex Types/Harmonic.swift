@@ -14,11 +14,6 @@
 public struct Harmonic {
     // MARK: - Instance Properties
 
-    // MARK: Elements
-
-    public var naturalArtificial: NaturalArtificial?
-    public var baseSoundingTouchingPitch: BaseSoundingTouchingPitch?
-
     // MARK: Attributes
 
     public var printObject: Bool?
@@ -28,6 +23,11 @@ public struct Harmonic {
     // MARK: - Attribute Groups
 
     public var printStyle: PrintStyle
+
+    // MARK: Elements
+
+    public var naturalArtificial: NaturalArtificial?
+    public var baseSoundingTouchingPitch: BaseSoundingTouchingPitch?
 
     // MARK: - Initializers
 

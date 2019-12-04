@@ -14,10 +14,23 @@
 public struct Note {
     // MARK: - Instance Properties
 
-    // MARK: Kind
+    // MARK: Attributes
 
-    public let kind: Kind
+    public let printObject: Bool?
+    public let printDot: Bool?
+    public let printSpacing: Bool?
+    public let printLyric: Bool?
+    public let dynamics: Double?
+    public let endDynamics: Double?
+    public let attack: Divisions?
+    public let release: Divisions?
+    public let timeOnly: TimeOnly?
+    public let pizzicato: Bool?
 
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
+    
     // MARK: Elements
 
     public let instrument: Instrument?
@@ -36,23 +49,12 @@ public struct Note {
     public let notations: Notations?
     public let lyrics: [Lyric]
     public let play: Play?
+    
+    // MARK: Kind
 
-    // MARK: Attributes
+    public let kind: Kind
 
-    public let printObject: Bool?
-    public let printDot: Bool?
-    public let printSpacing: Bool?
-    public let printLyric: Bool?
-    public let dynamics: Double?
-    public let endDynamics: Double?
-    public let attack: Divisions?
-    public let release: Divisions?
-    public let timeOnly: TimeOnly?
-    public let pizzicato: Bool?
-
-    // MARK: Attribute Groups
-
-    public let printStyle: PrintStyle
+    // MARK: - Initializers
 
     public init(
         kind: Kind,
@@ -116,8 +118,6 @@ public struct Note {
 }
 
 extension Note {
-    // MARK: - Initializers
-
     // MARK: Normal
 
     /// Creates a pitched, normal `Note`.

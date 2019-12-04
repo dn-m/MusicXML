@@ -11,10 +11,6 @@ import XMLCoder
 public struct GroupSymbol {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public var value: GroupSymbolValue
-
     // MARK: Attributes
 
     public var color: Color?
@@ -22,6 +18,10 @@ public struct GroupSymbol {
     // MARK: Attribute Groups
 
     public var position: Position
+
+    // MARK: Value
+
+    public var value: GroupSymbolValue
 
     // MARK: - Initializers
 

@@ -12,10 +12,6 @@
 public struct DegreeType {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    let value: DegreeTypeValue
-
     // MARK: Attributes
 
     let text: String?
@@ -23,6 +19,10 @@ public struct DegreeType {
     // MARK: Attribute Groups
 
     let printStyle: PrintStyle
+
+    // MARK: Value
+
+    let value: DegreeTypeValue
 
     // MARK: - Initializers
 

@@ -10,13 +10,13 @@
 public struct Inversion {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: Int
-
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
+
+    // MARK: Value
+
+    public let value: Int
 
     // MARK: - Initializers
 

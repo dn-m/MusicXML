@@ -9,16 +9,14 @@
 public struct NoteType {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
+    public let size: SymbolSize?
+    
     // MARK: Value
 
     public let value: NoteTypeValue
 
-    // MARK: Attributes
-
-    public let size: SymbolSize?
-}
-
-extension NoteType {
     // MARK: Initializers
 
     public init(_ value: NoteTypeValue, size: SymbolSize? = nil) {

@@ -12,10 +12,6 @@
 public struct PrincipleVoice {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: String
-
     // MARK: Attributes
 
     public let type: StartStop
@@ -24,6 +20,10 @@ public struct PrincipleVoice {
     // MARK: Attribute Groups
 
     public let printStyleAlign: PrintStyleAlign
+
+    // MARK: Value
+
+    public let value: String
 
     // MARK: - Initializers
 

@@ -12,13 +12,13 @@
 public struct Cancel {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let fifths: Int
-
     // MARK: Attributes
 
     public let location: CancelLocation?
+
+    // MARK: Value
+
+    public let fifths: Int
 
     // MARK: - Initializers
 

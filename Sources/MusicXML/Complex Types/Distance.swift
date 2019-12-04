@@ -9,13 +9,13 @@
 public struct Distance {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: Tenths
-
     // MARK: Attributes
 
     public let type: DistanceType
+
+    // MARK: Value
+
+    public let value: Tenths
 
     // MARK: - Initializers
 

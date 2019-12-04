@@ -9,10 +9,6 @@
 public struct FormattedText {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: String
-
     // MARK: Attributes
 
     public let justify: LeftCenterRight?
@@ -30,6 +26,10 @@ public struct FormattedText {
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
+
+    // MARK: Value
+
+    public let value: String
 
     // MARK: - Initializers
 

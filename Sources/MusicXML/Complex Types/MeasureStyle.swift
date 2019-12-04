@@ -21,13 +21,13 @@ public struct MeasureStyle {
     public var number: Int?
     public var color: Color?
 
-    // MARK: Kind
-
-    public var kind: Kind
-
     // MARK: Attribute Groups
 
     public var font: Font
+
+    // MARK: Kind
+
+    public var kind: Kind
 
     // MARK: - Initializers
 

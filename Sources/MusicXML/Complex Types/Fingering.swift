@@ -12,10 +12,6 @@
 public struct Fingering {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: String
-
     // MARK: Attributes
 
     public let substitution: Bool?
@@ -25,6 +21,10 @@ public struct Fingering {
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
+
+    // MARK: Value
+
+    public let value: String
 
     // MARK: - Initializers
 

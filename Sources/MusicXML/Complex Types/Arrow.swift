@@ -11,10 +11,6 @@ import XMLCoder
 public struct Arrow {
     // MARK: - Instance Properties
 
-    // MARK: Kind
-
-    public let kind: Kind
-
     // MARK: Attributes
 
     public let placement: AboveBelow?
@@ -23,6 +19,10 @@ public struct Arrow {
 
     public let position: Position
     public let printStyle: PrintStyle
+
+    // MARK: Kind
+
+    public let kind: Kind
 
     // MARK: - Initializers
 

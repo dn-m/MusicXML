@@ -12,10 +12,6 @@
 public struct OtherNotation {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: String
-
     // MARK: Attributes
 
     public let type: StartStopSingle
@@ -26,6 +22,10 @@ public struct OtherNotation {
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
+
+    // MARK: Value
+
+    public let value: String
 
     // MARK: - Initializers
 

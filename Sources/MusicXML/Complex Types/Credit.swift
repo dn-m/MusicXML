@@ -62,6 +62,7 @@ extension Credit {
         public let links: [Link]
         public let bookmark: [Bookmark]
 
+    // MARK: - Initializers
         // MARK: - Initializers
 
         public init(words: FormattedText, links: [Link], bookmark: [Bookmark]) {

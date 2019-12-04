@@ -19,14 +19,14 @@ public struct Key {
     public let number: Int?
     public let printObject: Bool?
 
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
+
     // MARK: Elements
 
     public let kind: Kind
     public let keyOctaves: [KeyOctave]
-
-    // MARK: Attribute Groups
-
-    public let printStyle: PrintStyle
 
     // MARK: - Initializers
 

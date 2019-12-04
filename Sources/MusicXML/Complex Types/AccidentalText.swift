@@ -24,13 +24,13 @@ public struct AccidentalText {
     public let direction: TextDirection?
     public let enclosure: EnclosureShape?
 
-    // MARK: Value
-
-    public let value: AccidentalValue
-
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
+
+    // MARK: Value
+
+    public let value: AccidentalValue
 
     // MARK: - Initializers
 

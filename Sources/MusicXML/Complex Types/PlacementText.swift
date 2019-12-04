@@ -10,10 +10,6 @@
 public struct PlacementText {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: String
-
     // MARK: Attributes
 
     public let placement: AboveBelow?
@@ -22,6 +18,10 @@ public struct PlacementText {
 
     public let position: Position
     public let printStyle: PrintStyle
+
+    // MARK: Value
+
+    public let value: String
 
     // MARK: - Initializers
 

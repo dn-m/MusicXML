@@ -9,10 +9,6 @@
 public struct BreathMark {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: BreathMarkValue
-
     // MARK: Attributes
 
     public let placement: AboveBelow?
@@ -21,6 +17,10 @@ public struct BreathMark {
 
     public let position: Position
     public let printStyle: PrintStyle
+
+    // MARK: Value
+
+    public let value: BreathMarkValue
 
     // MARK: - Initializers
 

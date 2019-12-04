@@ -10,14 +10,14 @@
 public struct FirstFret {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: Int
-
     // MARK: Attributes
 
     public let text: String?
     public let location: LeftRight?
+
+    // MARK: Value
+
+    public let value: Int
 
     // MARK: - Initializers
 

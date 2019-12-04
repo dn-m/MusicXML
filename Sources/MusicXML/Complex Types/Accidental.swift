@@ -12,10 +12,6 @@
 public struct Accidental {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: AccidentalValue
-
     // MARK: Attributes
 
     public let cautionary: Bool?
@@ -27,6 +23,10 @@ public struct Accidental {
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
+
+    // MARK: Value
+
+    public let value: AccidentalValue
 
     // MARK: - Initializers
 

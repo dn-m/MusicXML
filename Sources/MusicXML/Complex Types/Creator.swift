@@ -10,13 +10,13 @@ import XMLCoder
 public struct Creator {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public var value: String
-
     // MARK: - Attributes
 
     public var type: String?
+
+    // MARK: Value
+
+    public var value: String
 
     // MARK: - Initializers
 
