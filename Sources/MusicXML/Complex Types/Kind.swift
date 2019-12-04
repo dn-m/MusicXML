@@ -12,10 +12,6 @@
 public struct Kind {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: KindValue
-
     // MARK: Attributes
 
     public let useSymbols: Bool?
@@ -29,6 +25,10 @@ public struct Kind {
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
+
+    // MARK: Value
+
+    public let value: KindValue
 
     // MARK: - Initializers
 

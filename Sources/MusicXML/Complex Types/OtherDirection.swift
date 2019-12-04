@@ -11,10 +11,6 @@
 public struct OtherDirection {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: String
-
     // MARK: Attributes
 
     public let printObject: Bool?
@@ -22,6 +18,10 @@ public struct OtherDirection {
     // MARK: Attribute Groups
 
     public let printStyleAlign: PrintStyleAlign
+
+    // MARK: Value
+
+    public let value: String
 
     // MARK: - Initializers
 

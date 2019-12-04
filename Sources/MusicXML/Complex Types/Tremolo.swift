@@ -18,10 +18,6 @@
 public struct Tremolo {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let marks: Int
-
     // MARK: Attributes
 
     public let type: StartStopSingle?
@@ -30,6 +26,10 @@ public struct Tremolo {
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
+
+    // MARK: Value
+
+    public let marks: Int
 
     // MARK: - Initializers
 

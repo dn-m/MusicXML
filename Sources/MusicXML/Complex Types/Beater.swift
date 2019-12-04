@@ -8,13 +8,13 @@
 public struct Beater {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: BeaterValue
-
     // MARK: Attributes
 
     public let tip: TipDirection?
+
+    // MARK: Value
+
+    public let value: BeaterValue
 
     // MARK: - Initializers
 

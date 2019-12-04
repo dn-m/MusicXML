@@ -1,8 +1,8 @@
 #!/bin/sh
-if [[ -n $(gsed -n '/MARK: Value\$/ p' "$1") ]] ; then
+if [[ -n $(gsed -n '/MARK: Value$/ p' "$1") ]] ; then
     gsed -i -r -n '
-    /MARK: Value\$/,/MARK/ {
-        /MARK: Value\$/ {
+    /MARK: Value$/,/MARK/ {
+        /MARK: Value$/ {
             x
             b
         }

@@ -10,10 +10,6 @@
 public struct BassAlter {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: Double
-
     // MARK: Attributes
 
     public let printObject: Bool?
@@ -22,6 +18,10 @@ public struct BassAlter {
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
+
+    // MARK: Value
+
+    public let value: Double
 
     // MARK: - Initializers
 

@@ -12,10 +12,6 @@
 public struct Glissando {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: String
-
     // MARK: Attributes
 
     public let type: StartStop
@@ -26,6 +22,10 @@ public struct Glissando {
 
     public let dashedFormatting: DashedFormatting
     public let printStyle: PrintStyle
+
+    // MARK: Value
+
+    public let value: String
 
     // MARK: - Initializers
 

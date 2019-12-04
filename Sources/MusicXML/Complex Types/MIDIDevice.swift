@@ -13,10 +13,6 @@ import XMLCoder
 public struct MIDIDevice {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public var value: String?
-
     // MARK: Attributes
 
     /// The optional port attribute is a number from 1 to 16 that can be used with the unofficial
@@ -25,6 +21,10 @@ public struct MIDIDevice {
     /// The optional id attribute refers to the score-instrument assigned to this device. If
     /// missing, the device assignment affects all score-instrument elements in the score-part.
     public var id: String?
+
+    // MARK: Value
+
+    public var value: String?
 
     // MARK: - Initializers
 

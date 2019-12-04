@@ -9,13 +9,13 @@
 public struct BarStyleColor {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public var value: BarStyle
-
     // MARK: Attributes
 
     public var color: Color?
+
+    // MARK: Value
+
+    public var value: BarStyle
 
     // MARK: - Initializers
 

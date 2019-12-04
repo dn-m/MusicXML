@@ -18,10 +18,6 @@
 public struct Ending {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: String // e.g., 1., 2.
-
     // MARK: Attributes
 
     /// The number attribute reflects the numeric values of what is under the ending line. Single
@@ -36,6 +32,10 @@ public struct Ending {
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
+
+    // MARK: Value
+
+    public let value: String // e.g., 1., 2.
 
     // MARK: - Initializers
 

@@ -18,14 +18,14 @@ public struct Notations {
 
     public var printObject: Bool?
 
-    // MARK: Value
-
-    public var values: [Notation]
-
     // MARK: Elements
 
     public var footnote: FormattedText?
     public var level: Level?
+
+    // MARK: Value
+
+    public var values: [Notation]
 
     // MARK: - Initializers
 

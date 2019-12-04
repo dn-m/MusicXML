@@ -10,15 +10,15 @@
 public struct MetronomeTuplet {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: TimeModification
-
     // MARK: Attributes
 
     public let type: StartStop
     public let bracket: Bool?
     public let showNumber: ShowTuplet?
+
+    // MARK: Value
+
+    public let value: TimeModification
 
     // MARK: - Initializers
 

@@ -10,10 +10,6 @@
 public struct TextFontColor {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: String
-
     // MARK: Attributes
 
     public let color: Color?
@@ -25,6 +21,10 @@ public struct TextFontColor {
 
     public let font: Font
     public let textDecoration: TextDecoration
+
+    // MARK: Value
+
+    public let value: String
 
     // MARK: - Initializers
 

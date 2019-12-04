@@ -12,10 +12,6 @@
 public struct TextElementData {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: String
-
     // MARK: Attributes
 
     public let color: Color?
@@ -27,6 +23,10 @@ public struct TextElementData {
 
     public let font: Font
     public let textDecoration: TextDecoration
+
+    // MARK: Value
+
+    public let value: String
 
     // MARK: - Initializers
 

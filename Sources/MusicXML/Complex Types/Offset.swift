@@ -12,16 +12,14 @@
 public struct Offset {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
+    public let sound: Bool?
+    
     // MARK: Value
 
     public let value: Divisions
 
-    // MARK: Attributes
-
-    public let sound: Bool?
-}
-
-extension Offset {
     // MARK: - Initializers
 
     public init(_ value: Divisions, sound: Bool? = nil) {

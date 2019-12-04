@@ -10,13 +10,13 @@
 public struct MetronomeBeam {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: BeamValue
-
     // MARK: Attributes
 
     public let number: BeamLevel?
+
+    // MARK: Value
+
+    public let value: BeamValue
 
     // MARK: - Initializers
 

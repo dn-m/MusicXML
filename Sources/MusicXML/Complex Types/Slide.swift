@@ -12,10 +12,6 @@
 public struct Slide {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: String?
-
     // MARK: Attributes
 
     public let type: StartStop
@@ -28,6 +24,10 @@ public struct Slide {
     public let printStyle: PrintStyle
     public let font: Font
     public let bendSound: BendSound
+
+    // MARK: Value
+
+    public let value: String?
 
     // MARK: - Initializers
 

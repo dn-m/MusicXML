@@ -10,10 +10,6 @@
 public struct RootStep {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public let value: Step
-
     // MARK: Attributes
 
     public let text: String?
@@ -21,6 +17,10 @@ public struct RootStep {
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
+
+    // MARK: Value
+
+    public let value: Step
 
     // MARK: - Initializers
 

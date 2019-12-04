@@ -10,10 +10,6 @@
 public struct Fermata {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public var value: FermataShape
-
     // MARK: Attributes
 
     public var type: UprightInverted?
@@ -21,6 +17,10 @@ public struct Fermata {
     // MARK: Attribute Groups
 
     public var printStyle: PrintStyle
+
+    // MARK: Value
+
+    public var value: FermataShape
 
     // MARK: - Initializers
 

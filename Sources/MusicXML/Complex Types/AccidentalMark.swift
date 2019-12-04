@@ -10,10 +10,6 @@
 public struct AccidentalMark {
     // MARK: - Instance Properties
 
-    // MARK: Value
-
-    public var value: AccidentalValue
-
     // MARK: Attributes
 
     public var placement: AboveBelow?
@@ -22,6 +18,10 @@ public struct AccidentalMark {
 
     public var position: Position
     public var printStyle: PrintStyle
+
+    // MARK: Value
+
+    public var value: AccidentalValue
 
     // MARK: - Initializers
 
