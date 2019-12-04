@@ -1,5 +1,5 @@
 #!/bin/sh
-gsed -r -n '
+gsed -i -r -n '
 /MARK: Elements/,/MARK/ {
     /MARK: Elements/ {
         x
