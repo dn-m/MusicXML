@@ -12,7 +12,12 @@
 public struct Glissando {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public let value: String
+
+    // MARK: Attributes
+
     public let type: StartStop
     public let number: Int?
     public let lineType: LineType?

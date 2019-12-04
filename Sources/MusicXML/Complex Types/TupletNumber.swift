@@ -9,7 +9,12 @@
 public struct TupletNumber {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public let value: Int
+
+    // MARK: Attributes
+
     public let color: Color?
 
     // MARK: Attribute Groups

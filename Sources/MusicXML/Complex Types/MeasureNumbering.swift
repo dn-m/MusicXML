@@ -10,6 +10,8 @@
 public struct MeasureNumbering {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public let value: MeasureNumberingValue
 
     // MARK: Attribute Groups

@@ -14,6 +14,8 @@
 public struct Beam {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public var value: BeamValue
     public var number: BeamLevel?
     public var repeater: Bool?

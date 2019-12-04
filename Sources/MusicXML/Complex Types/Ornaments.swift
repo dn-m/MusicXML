@@ -13,6 +13,8 @@ public struct Ornaments {
 
     // MARK: Elements
 
+    // MARK: Value
+
     public var values: [Ornament]
     public var accidentalMarks: [AccidentalMark]
 

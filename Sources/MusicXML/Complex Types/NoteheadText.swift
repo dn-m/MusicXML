@@ -15,7 +15,12 @@ public struct NoteheadText {
         case accidentalText(AccidentalText)
     }
 
+    // MARK: Value
+
     public let values: [Kind] // NonEmpty
+
+    // MARK: Attributes
+
 
     // MARK: - Initializers
 

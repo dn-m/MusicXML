@@ -11,7 +11,12 @@
 public struct Notehead {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public let value: NoteheadValue
+
+    // MARK: Attributes
+
     public let filled: Bool?
     public let parentheses: Bool?
     public let color: Color?

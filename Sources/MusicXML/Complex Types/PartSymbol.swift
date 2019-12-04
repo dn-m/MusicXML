@@ -13,12 +13,12 @@
 public struct PartSymbol {
     // MARK: - Instance Properties
 
-    let value: GroupSymbolValue
-    let kind: Kind
-    let topStaff: Int
-    let bottomStaff: Int
-    let position: Position
-    let color: Color
+    public let value: GroupSymbolValue
+    public let kind: Kind
+    public let topStaff: Int
+    public let bottomStaff: Int
+    public let position: Position
+    public let color: Color
 
     // MARK: - Initializers
 

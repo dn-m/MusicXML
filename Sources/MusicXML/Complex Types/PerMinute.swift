@@ -12,6 +12,8 @@
 public struct PerMinute {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public let value: String
 
     // MARK: Attribute Groups

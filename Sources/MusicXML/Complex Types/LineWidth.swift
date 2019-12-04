@@ -10,7 +10,12 @@
 public struct LineWidth {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public let value: Tenths
+
+    // MARK: Attributes
+
     public let type: LineWidthType
 
     // MARK: - Initializers

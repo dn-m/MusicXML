@@ -11,7 +11,12 @@
 public struct OtherDirection {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public let value: String
+
+    // MARK: Attributes
+
     public let printObject: Bool?
 
     // MARK: Attribute Groups

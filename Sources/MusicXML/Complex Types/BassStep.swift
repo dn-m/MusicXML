@@ -12,7 +12,12 @@
 public struct BassStep {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public let value: Step
+
+    // MARK: Attributes
+
     /// The text attribute indicates how the bass should appear in a score if not using the element
     /// contents.
     public let text: String?

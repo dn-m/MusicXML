@@ -10,7 +10,12 @@
 public struct TextFontColor {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public let value: String
+
+    // MARK: Attributes
+
     public let color: Color?
     public let textRotation: Double?
     public let letterSpacing: NumberOrNormal?

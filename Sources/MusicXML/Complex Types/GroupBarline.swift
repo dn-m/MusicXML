@@ -9,6 +9,8 @@
 public struct GroupBarline {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public var value: GroupBarlineValue
     public var color: Color?
 

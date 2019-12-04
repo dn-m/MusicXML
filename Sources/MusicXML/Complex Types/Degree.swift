@@ -20,7 +20,12 @@ public struct Degree {
 
     // MARK: Elements
 
+    // MARK: Value
+
     public let value: DegreeValue
+
+    // MARK: Attributes
+
     public let alter: DegreeAlter
     public let type: DegreeType
 

@@ -12,7 +12,12 @@
 public struct PrincipleVoice {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public let value: String
+
+    // MARK: Attributes
+
     public let type: StartStop
     public let symbol: PrincipleVoiceSymbol
 

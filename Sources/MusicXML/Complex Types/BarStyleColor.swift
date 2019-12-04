@@ -9,6 +9,8 @@
 public struct BarStyleColor {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public var value: BarStyle
     public var color: Color?
 

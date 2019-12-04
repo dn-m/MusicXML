@@ -9,7 +9,12 @@
 public struct NoteType {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public let value: NoteTypeValue
+
+    // MARK: Attributes
+
     public let size: SymbolSize?
 }
 

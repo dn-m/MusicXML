@@ -11,7 +11,12 @@
 public struct Feature {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public let value: String
+
+    // MARK: Attributes
+
     public let type: String?
 
     // MARK: - Initializers
