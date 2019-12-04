@@ -10,10 +10,13 @@
 public struct Mordent {
     // MARK: - Instance Properties
 
-    public let value: PrintStyleTrillSound
     public let long: Bool?
     public let approach: AboveBelow?
     public let departure: AboveBelow?
+
+    // MARK: Attribute Groups
+
+    public let value: PrintStyleTrillSound
 
     // MARK: - Initializers
 

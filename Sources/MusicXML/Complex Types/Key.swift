@@ -17,13 +17,18 @@ public struct Key {
 
     /// The optional number attribute refers to staff numbers.
     public let number: Int?
-    public let printStyle: PrintStyle
     public let printObject: Bool?
 
     // MARK: Elements
 
     public let kind: Kind
     public let keyOctaves: [KeyOctave]
+    
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
+    
+    // MARK: - Initializers
 
     public init(number: Int? = nil, printStyle: PrintStyle = PrintStyle(), printObject: Bool? = nil, kind: Kind, keyOctaves: [KeyOctave] = []) {
         self.number = number
@@ -35,8 +40,6 @@ public struct Key {
 }
 
 extension Key {
-    // MARK: - Initializers
-
     /// Creates a `Traditional` type `Key`.
     public init(fifths: Int, cancel: Cancel? = nil, mode: Mode? = nil, staff: Int? = nil) {
         self.number = staff

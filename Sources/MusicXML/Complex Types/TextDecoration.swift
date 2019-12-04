@@ -15,6 +15,9 @@ public struct TextDecoration {
     public let overline: Int?
     public let lineThrough: Int?
 
+    // MARK: Attribute Groups
+
+
     // MARK: - Initializers
 
     public init(underline: Int? = nil, overline: Int? = nil, lineThrough: Int? = nil) {

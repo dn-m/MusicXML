@@ -14,11 +14,12 @@ public struct Stem {
     // MARK: - Instance Properties
 
     public let value: StemValue
-    public let position: Position
     public let color: Color?
-}
+    
+    // MARK: Attribute Groups
 
-extension Stem {
+    public let position: Position
+
     // MARK: Initializers
 
     public init(_ value: StemValue, position: Position = Position(), color: Color? = nil) {

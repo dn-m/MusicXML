@@ -10,9 +10,12 @@
 public struct PrintStyle {
     // MARK: - Instance Properties
 
+    public let color: Color?
+
+    // MARK: Attribute Groups
+
     public let position: Position
     public let font: Font
-    public let color: Color?
 
     // MARK: - Initializers
 

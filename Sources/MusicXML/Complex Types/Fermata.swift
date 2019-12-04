@@ -17,6 +17,9 @@ public struct Fermata {
     // MARK: Attributes
 
     public var type: UprightInverted?
+
+    // MARK: Attribute Groups
+
     public var printStyle: PrintStyle
 
     // MARK: - Initializers

@@ -16,6 +16,9 @@ public struct DegreeValue {
     public let value: Int
     public let symbol: DegreeSymbolValue?
     public let text: String?
+
+    // MARK: Attribute Groups
+
     public let printStyle: PrintStyle
 
     // MARK: - Initializers

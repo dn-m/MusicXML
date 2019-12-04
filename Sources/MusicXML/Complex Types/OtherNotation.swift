@@ -16,8 +16,11 @@ public struct OtherNotation {
     public let type: StartStopSingle
     public let number: Int?
     public let printObject: Bool?
-    public let printStyle: PrintStyle
     public let placement: AboveBelow?
+
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
 
     // MARK: - Initializers
 

@@ -13,6 +13,9 @@ public struct PerMinute {
     // MARK: - Instance Properties
 
     public let value: String
+
+    // MARK: Attribute Groups
+
     public let font: Font
 
     // MARK: - Initializers

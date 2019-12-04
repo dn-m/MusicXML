@@ -16,6 +16,9 @@ public struct BassStep {
     /// The text attribute indicates how the bass should appear in a score if not using the element
     /// contents.
     public let text: String?
+
+    // MARK: Attribute Groups
+
     public let printStyle: PrintStyle
 
     // MARK: - Initializers

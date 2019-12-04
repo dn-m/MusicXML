@@ -16,8 +16,11 @@ public struct HammerOnPullOff {
     public let value: String
     public let type: StartStop
     public let number: Int?
-    public let printStyle: PrintStyle
     public let placement: AboveBelow?
+
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
 
     // MARK: - Initializers
 

@@ -27,6 +27,9 @@ public struct Bezier {
     public let bezierOffset: Int?
     public let bezierOffset2: Int?
 
+    // MARK: Attribute Groups
+
+
     // MARK: - Initializers
 
     public init(bezierX: Tenths? = nil, bezierY: Tenths? = nil, bezierX2: Tenths? = nil, bezierY2: Tenths? = nil, bezierOffset: Int? = nil, bezierOffset2: Int? = nil) {

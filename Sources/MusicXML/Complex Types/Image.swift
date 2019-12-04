@@ -11,9 +11,12 @@ public struct Image {
 
     public let source: String
     public let type: String
-    public let position: Position
     public let hAlign: LeftCenterRight?
     public let vAlign: VAlignImage?
+
+    // MARK: Attribute Groups
+
+    public let position: Position
 
     // MARK: - Initializers
 

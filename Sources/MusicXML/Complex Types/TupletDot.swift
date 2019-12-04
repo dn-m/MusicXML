@@ -9,8 +9,11 @@
 public struct TupletDot {
     // MARK: - Instance Properties
 
-    public let font: Font
     public let color: Color?
+
+    // MARK: Attribute Groups
+
+    public let font: Font
 
     // MARK: - Initializers
 

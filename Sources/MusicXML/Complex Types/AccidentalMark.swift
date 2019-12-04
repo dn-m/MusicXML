@@ -17,6 +17,9 @@ public struct AccidentalMark {
     // MARK: Attributes
 
     public var placement: AboveBelow?
+
+    // MARK: Attribute Groups
+
     public var position: Position
     public var printStyle: PrintStyle
 

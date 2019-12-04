@@ -15,6 +15,9 @@ public struct PrincipleVoice {
     public let value: String
     public let type: StartStop
     public let symbol: PrincipleVoiceSymbol
+
+    // MARK: Attribute Groups
+
     public let printStyleAlign: PrintStyleAlign
 
     // MARK: - Initializers

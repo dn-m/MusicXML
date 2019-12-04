@@ -40,11 +40,9 @@ public struct Barline {
 
     /// The segno attribute works the same way as the one in the sound element. It is used for
     /// playback when barline elements contain a segno element.
-    public var segno: PrintStyleAlign?
 
     /// The coda attribute works the same way as the one in the sound element. It is used for
     /// playback when a barline element contains a coda child element.
-    public var coda: PrintStyleAlign?
 
     /// The divisions attribute works the same way as the one in the sound element. It is used for
     /// playback when a barline element contains a divisions element.
@@ -60,6 +58,11 @@ public struct Barline {
     public var fermata: Fermata?
     public var ending: Ending?
     public var `repeat`: Repeat?
+
+    // MARK: Attribute Groups
+
+    public var segno: PrintStyleAlign?
+    public var coda: PrintStyleAlign?
 
     // MARK: - Initializers
 

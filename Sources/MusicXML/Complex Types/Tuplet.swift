@@ -32,13 +32,16 @@ public struct Tuplet {
     public var showType: ShowTuplet?
     /// The line-shape attribute distinguishes between straight and curved lines.
     public var lineShape: LineShape?
-    public var position: Position?
     public var placement: AboveBelow?
 
     // MARK: Elements
 
     public var actualNotes: TupletPortion?
     public var normalNotes: TupletPortion?
+
+    // MARK: Attribute Groups
+
+    public var position: Position?
 
     // MARK: - Initializers
 

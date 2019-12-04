@@ -21,11 +21,14 @@ public struct Metronome {
 
     // MARK: Attributes
 
-    public let printStyleAlign: PrintStyleAlign
     public let justify: Justify?
     /// The parentheses attribute indicates whether or not to put the metronome mark in parentheses;
     /// its value is no if not specified.
     public let parentheses: Bool?
+
+    // MARK: Attribute Groups
+
+    public let printStyleAlign: PrintStyleAlign
 
     // MARK: - Initializers
 

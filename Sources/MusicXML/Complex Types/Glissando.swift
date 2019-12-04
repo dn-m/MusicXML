@@ -16,6 +16,9 @@ public struct Glissando {
     public let type: StartStop
     public let number: Int?
     public let lineType: LineType?
+
+    // MARK: Attribute Groups
+
     public let dashedFormatting: DashedFormatting
     public let printStyle: PrintStyle
 

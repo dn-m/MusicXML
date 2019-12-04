@@ -10,10 +10,13 @@
 public struct HorizontalTurn {
     // MARK: - Instance Properties
 
-    public var printStyle: PrintStyle
     public var placement: AboveBelow?
-    public var trillSound: TrillSound
     public var slash: Bool?
+
+    // MARK: Attribute Groups
+
+    public var printStyle: PrintStyle
+    public var trillSound: TrillSound
 
     // MARK: - Initializers
 
