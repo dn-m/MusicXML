@@ -19,10 +19,9 @@ public struct PartSymbol {
     
     // MARK: Attributes
 
-    public let kind: Kind
-    public let topStaff: Int
-    public let bottomStaff: Int
-    public let color: Color
+    public let topStaff: Int?
+    public let bottomStaff: Int?
+    public let color: Color?
 
     // MARK: Attribute Groups
 
@@ -30,9 +29,8 @@ public struct PartSymbol {
 
     // MARK: - Initializers
 
-    public init(_ value: GroupSymbolValue, kind: Kind, topStaff: Int, bottomStaff: Int, position: Position, color: Color) {
+    public init(_ value: GroupSymbolValue, topStaff: Int, bottomStaff: Int, position: Position, color: Color) {
         self.value = value
-        self.kind = kind
         self.topStaff = topStaff
         self.bottomStaff = bottomStaff
         self.position = position
@@ -45,7 +43,6 @@ extension PartSymbol: Codable {
     // MARK: - Codable
 
     enum CodingKeys: String, CodingKey {
-        case kind
         case topStaff = "top-staff"
         case bottomStaff = "bottom-staff"
         case position
