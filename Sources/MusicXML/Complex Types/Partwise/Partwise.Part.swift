@@ -17,8 +17,6 @@ extension Partwise {
     public struct Part {
         // MARK: - Instance Properties
 
-        // MARK: - Properties
-
         // MARK: Attributes
 
         public var id: String

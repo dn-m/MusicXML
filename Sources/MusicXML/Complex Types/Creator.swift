@@ -14,7 +14,7 @@ public struct Creator {
 
     public var value: String
 
-    // MARK: - Attribtues
+    // MARK: - Attributes
 
     public var type: String?
 

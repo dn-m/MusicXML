@@ -22,12 +22,7 @@ public struct Encoding {
         case supports(Supports)
     }
 
-    // MARK: Value
-
     public let values: [Kind]
-
-    // MARK: Attributes
-
 
     // MARK: - Initializers
 

@@ -14,6 +14,8 @@
 /// print-lyric attributes are interpreted to also be set to no if they are not present.
 public struct Printout {
     // MARK: - Instance Properties
+    
+    // MARK: Attributes
 
     public let printObject: Bool?
     public let printDot: Bool?

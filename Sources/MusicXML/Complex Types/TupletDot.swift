@@ -8,6 +8,8 @@
 /// The tuplet-dot type is used to specify dotted normal tuplet types.
 public struct TupletDot {
     // MARK: - Instance Properties
+    
+    // MARK: Attributes
 
     public let color: Color?
 

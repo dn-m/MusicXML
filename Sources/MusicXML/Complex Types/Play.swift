@@ -21,8 +21,6 @@ public struct Play {
         case otherPlay(OtherPlay)
     }
 
-    // MARK: Value
-
     public let values: [Kind]
 
     // MARK: Attributes
