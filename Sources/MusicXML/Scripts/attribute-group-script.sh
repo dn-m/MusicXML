@@ -11,12 +11,13 @@ PrintStyleAlignObject|\
 PrintStyleTrillSound|\
 TextDecoration|\
 TrillSound"
-if [[ -z $(grep 'Attribute Groups' "$1") ]] ; then
-    gsed -n -r "
-/public let.*($groups).*/ {
+if [[ -z $(grep 'Attribute Groups' "$1") &&
+    $(gsed -r -n "/$groups/ p" "$1") ]] ; then
+    gsed -i -n -r "
+/public (let|var).*($groups).*/ {
     H
 }
-/public let.*($groups).*/ !{
+/public (let|var).*($groups).*/ !{
     /Initializers/ {
         x
         i\
