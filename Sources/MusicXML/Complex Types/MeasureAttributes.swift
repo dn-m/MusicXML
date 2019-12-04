@@ -23,7 +23,7 @@ extension MeasureAttributes: Hashable {}
 extension MeasureAttributes: Codable {
     // MARK: - Codable
 
-    private enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case number
         case text
         case implicit
