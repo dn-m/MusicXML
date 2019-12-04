@@ -13,7 +13,7 @@ import XMLCoder
 /// multiple encoder elements.
 public struct Encoding {
     // MARK: - Instance Properties
-    
+
     // MARK: Elements
 
     public let values: [Kind]

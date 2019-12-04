@@ -23,7 +23,7 @@ public struct Arrow {
 
     public let position: Position
     public let printStyle: PrintStyle
-    
+
     // MARK: - Initializers
 
     public init(kind: Kind, position: Position = Position(), printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil) {

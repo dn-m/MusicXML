@@ -15,7 +15,7 @@ public struct Play {
     // MARK: - Instance Properties
 
     // MARK: Elements
-    
+
     public let values: [Kind]
 
     // MARK: - Initializers

@@ -9,7 +9,7 @@ import XMLCoder
 
 public struct NoteheadText {
     // MARK: - Instance Properties
-    
+
     // MARK: Elements
 
     public let values: [Kind] // NonEmpty
