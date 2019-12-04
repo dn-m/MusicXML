@@ -13,7 +13,12 @@
 public struct DegreeValue {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public let value: Int
+
+    // MARK: Attributes
+
     public let symbol: DegreeSymbolValue?
     public let text: String?
 

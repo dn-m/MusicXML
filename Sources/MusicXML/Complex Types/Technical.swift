@@ -9,6 +9,8 @@
 public struct Technical {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public var values: [Technique]
 
     // MARK: - Initializers

@@ -13,9 +13,14 @@
 public struct Stem {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public let value: StemValue
+
+    // MARK: Attributes
+
     public let color: Color?
-    
+
     // MARK: Attribute Groups
 
     public let position: Position

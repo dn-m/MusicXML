@@ -17,6 +17,8 @@ public struct NoteheadText {
 
     public let values: [Kind] // NonEmpty
 
+    // MARK: Attributes
+
     // MARK: - Initializers
 
     public init(_ values: [Kind]) {

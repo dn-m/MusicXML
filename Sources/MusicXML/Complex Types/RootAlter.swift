@@ -12,8 +12,6 @@
 public struct RootAlter {
     // MARK: - Instance Properties
 
-    // MARK: - Instance Propertes
-
     // MARK: Value
 
     public let value: Double

@@ -10,7 +10,12 @@
 public struct RootStep {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public let value: Step
+
+    // MARK: Attributes
+
     public let text: String?
 
     // MARK: Attribute Groups

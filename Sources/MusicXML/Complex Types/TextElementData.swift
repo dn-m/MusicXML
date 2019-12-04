@@ -16,17 +16,17 @@ public struct TextElementData {
 
     public let value: String
 
-    // MARK: Attribute Groups
-
-    public let font: Font
-    public let textDecoration: TextDecoration
-
     // MARK: Attributes
 
     public let color: Color?
     public let textRotation: Double?
     public let letterSpacing: NumberOrNormal?
     public let direction: TextDirection?
+
+    // MARK: Attribute Groups
+
+    public let font: Font
+    public let textDecoration: TextDecoration
 
     // MARK: - Initializers
 

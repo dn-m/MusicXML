@@ -9,7 +9,12 @@
 public struct HoleClosed {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public let value: HoleClosedValue
+
+    // MARK: Attributes
+
     /// The optional location attribute indicates which portion of the hole is filled in when the
     /// element value is half.
     public let location: HoleClosedLocation?

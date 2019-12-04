@@ -23,11 +23,11 @@ public struct Key {
 
     public let kind: Kind
     public let keyOctaves: [KeyOctave]
-    
+
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
-    
+
     // MARK: - Initializers
 
     public init(number: Int? = nil, printStyle: PrintStyle = PrintStyle(), printObject: Bool? = nil, kind: Kind, keyOctaves: [KeyOctave] = []) {

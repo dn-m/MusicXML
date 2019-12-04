@@ -42,7 +42,7 @@ public struct Time {
     // MARK: Elements
 
     public let kind: Kind
-    
+
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle

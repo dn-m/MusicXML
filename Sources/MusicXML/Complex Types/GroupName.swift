@@ -11,7 +11,12 @@
 public struct GroupName {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public let value: String
+
+    // MARK: Attributes
+
     public let justify: Justify?
 
     // MARK: Attribute Groups

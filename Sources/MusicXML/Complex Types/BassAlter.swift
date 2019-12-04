@@ -10,7 +10,12 @@
 public struct BassAlter {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public let value: Double
+
+    // MARK: Attributes
+
     public let printObject: Bool?
     public let location: LeftRight?
 

@@ -13,7 +13,7 @@ public struct Arrow {
 
     public let kind: Kind
     public let placement: AboveBelow?
-    
+
     // MARK: Attribute Groups
 
     public let position: Position

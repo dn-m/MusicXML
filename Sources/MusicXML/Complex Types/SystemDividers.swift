@@ -15,7 +15,6 @@
 public struct SystemDividers {
     // MARK: - Instance Properties
 
-
     // MARK: Attribute Groups
 
     public let left: PrintStyleAlignObject

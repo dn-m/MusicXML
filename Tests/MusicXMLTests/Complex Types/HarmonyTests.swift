@@ -77,15 +77,15 @@ class HarmonyTests: XCTestCase {
                     inversion: 2,
                     bass: Bass(step: .d, alter: 1.0),
                     degrees: [
-                        Degree(6, alter: -1, type: .add),
+                        Degree(value: 6, alter: -1, type: .add),
                     ]
                 ),
                 HarmonyChord(
                     rootOrFunction: .root(Root(step: .c)),
                     kind: Kind(.neapolitan),
                     degrees: [
-                        Degree(3, alter: 0, type: .subtract),
-                        Degree(5, alter: -1, type: .alter),
+                        Degree(value: 3, alter: 0, type: .subtract),
+                        Degree(value: 5, alter: -1, type: .alter),
                     ]
                 ),
             ]
@@ -129,9 +129,9 @@ class HarmonyTests: XCTestCase {
                     kind: Kind(.minorSeventh),
                     bass: Bass(step: .g),
                     degrees: [
-                        Degree(13, alter: 1, type: .add),
-                        Degree(3, alter: 0, type: .subtract),
-                        Degree(5, alter: -1, type: .alter),
+                        Degree(value: 13, alter: 1, type: .add),
+                        Degree(value: 3, alter: 0, type: .subtract),
+                        Degree(value: 5, alter: -1, type: .alter),
                     ]
                 ),
             ]
@@ -148,7 +148,7 @@ class HarmonyTests: XCTestCase {
         </degree>
         """
         let decoded = try XMLDecoder().decode(Degree.self, from: xml.data(using: .utf8)!)
-        let expected: Degree = Degree(13, alter: -1, type: .add)
+        let expected: Degree = Degree(value: 13, alter: -1, type: .add)
         XCTAssertEqual(decoded, expected)
     }
 

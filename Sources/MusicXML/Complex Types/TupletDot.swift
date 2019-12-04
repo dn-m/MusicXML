@@ -9,6 +9,8 @@
 public struct TupletDot {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let color: Color?
 
     // MARK: Attribute Groups

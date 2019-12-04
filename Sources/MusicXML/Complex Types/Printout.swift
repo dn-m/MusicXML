@@ -15,6 +15,8 @@
 public struct Printout {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let printObject: Bool?
     public let printDot: Bool?
     public let printSpacing: Bool?

@@ -13,7 +13,12 @@ import XMLCoder
 public struct MIDIDevice {
     // MARK: - Instance Properties
 
+    // MARK: Value
+
     public var value: String?
+
+    // MARK: Attributes
+
     /// The optional port attribute is a number from 1 to 16 that can be used with the unofficial
     /// MIDI port (or cable) meta event.
     public var port: Int?
