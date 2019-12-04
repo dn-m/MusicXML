@@ -27,7 +27,7 @@ public struct Degree {
     // MARK: - Initializers
 
     public init(
-        _ value: DegreeValue,
+        value: DegreeValue,
         alter: DegreeAlter,
         type: DegreeType,
         printObject: Bool? = nil
