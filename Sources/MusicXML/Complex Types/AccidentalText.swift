@@ -24,7 +24,7 @@ public struct AccidentalText {
     public let direction: TextDirection?
     public let enclosure: EnclosureShape?
 
-    // MARK: Elements
+    // MARK: Value
 
     public let value: AccidentalValue
 
