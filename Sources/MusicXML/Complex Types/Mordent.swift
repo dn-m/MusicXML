@@ -41,7 +41,6 @@ extension Mordent: Codable {
         case long
         case approach
         case departure
-        case value = ""
     }
 
     // MARK: Encodable

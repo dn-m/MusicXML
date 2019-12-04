@@ -14,8 +14,12 @@
 public struct NoteSize {
     // MARK: - Instance Properties
 
+    // MARK: Value
     // FIXME: Use `NonNegativeDecimal` if that is wise.
     public let value: Double
+    
+    // MARK: Attributes
+    
     public let type: NoteSizeType
 
     // MARK: - Initializers
