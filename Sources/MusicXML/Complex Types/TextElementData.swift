@@ -22,7 +22,7 @@ public struct TextElementData {
     public let textRotation: Double?
     public let letterSpacing: NumberOrNormal?
     public let direction: TextDirection?
-    
+
     // MARK: Attribute Groups
 
     public let font: Font

@@ -16,7 +16,7 @@ public struct MIDIDevice {
     // MARK: Value
 
     public var value: String?
-    
+
     // MARK: Attributes
 
     /// The optional port attribute is a number from 1 to 16 that can be used with the unofficial

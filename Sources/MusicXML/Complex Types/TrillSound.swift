@@ -26,7 +26,7 @@
 ///
 public struct TrillSound {
     // MARK: - Instance Properties
-    
+
     // MARK: Attributes
 
     let startNote: StartNote?

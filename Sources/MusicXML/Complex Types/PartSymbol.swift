@@ -18,9 +18,9 @@ public struct PartSymbol {
     public let topStaff: Int
     public let bottomStaff: Int
     public let color: Color
-    
+
     // MARK: Attribute Groups
-    
+
     public let position: Position
 
     // MARK: - Initializers

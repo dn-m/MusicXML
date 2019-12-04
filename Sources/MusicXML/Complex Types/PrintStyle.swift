@@ -11,7 +11,7 @@ public struct PrintStyle {
     // MARK: - Instance Properties
 
     // MARK: Attributes
-    
+
     public let color: Color?
 
     // MARK: Attribute Groups

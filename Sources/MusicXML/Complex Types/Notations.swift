@@ -22,6 +22,7 @@ public struct Notations {
 
     public var footnote: FormattedText?
     public var level: Level?
+
     // MARK: Value
 
     public var values: [Notation]

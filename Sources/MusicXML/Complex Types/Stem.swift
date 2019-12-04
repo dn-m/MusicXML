@@ -20,7 +20,7 @@ public struct Stem {
     // MARK: Attributes
 
     public let color: Color?
-    
+
     // MARK: Attribute Groups
 
     public let position: Position

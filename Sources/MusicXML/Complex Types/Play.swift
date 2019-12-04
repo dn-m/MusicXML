@@ -25,7 +25,6 @@ public struct Play {
 
     // MARK: Attributes
 
-
     // MARK: - Initializers
 
     public init(_ values: [Kind]) {

@@ -14,9 +14,9 @@ public struct GroupSymbol {
     // MARK: Value
 
     public var value: GroupSymbolValue
-    
+
     // MARK: Attributes
-    
+
     public var color: Color?
 
     // MARK: Attribute Groups

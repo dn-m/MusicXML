@@ -23,7 +23,6 @@ public struct Font {
     // FIXME: Font.family should be `CommaSeparatedText`
     public let family: String?
 
-
     // MARK: Attribute Groups
 
     public let style: FontStyle?

@@ -19,7 +19,6 @@ public struct NoteheadText {
 
     // MARK: Attributes
 
-
     // MARK: - Initializers
 
     public init(_ values: [Kind]) {

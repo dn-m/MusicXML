@@ -11,7 +11,7 @@ public struct PrintStyleTrillSound {
     // MARK: - Instance Properties
 
     // MARK: Attributes
-    
+
     public let placement: AboveBelow?
 
     // MARK: Attribute Groups

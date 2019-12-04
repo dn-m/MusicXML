@@ -12,7 +12,7 @@ public struct Barre {
     // MARK: - Instance Properties
 
     // MARK: Attributes
-    
+
     public let type: StartStop
     public let color: Color
 

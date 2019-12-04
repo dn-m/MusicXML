@@ -9,7 +9,7 @@
 /// print-style-align attribute groups.
 public struct PrintStyleAlignObject {
     // MARK: - Instance Properties
-    
+
     // MARK: Attributes
 
     public let printObject: Bool?
