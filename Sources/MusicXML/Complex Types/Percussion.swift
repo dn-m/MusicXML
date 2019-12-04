@@ -18,7 +18,7 @@ public struct Percussion {
 
     public let enclosure: EnclosureShape?
 
-    // MARK: Elements
+    // MARK: Kind
 
     public let kind: Kind
 

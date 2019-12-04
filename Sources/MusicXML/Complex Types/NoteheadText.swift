@@ -10,19 +10,21 @@ import XMLCoder
 public struct NoteheadText {
     // MARK: - Instance Properties
 
-    public enum Kind {
-        case displayText(FormattedText)
-        case accidentalText(AccidentalText)
-    }
+    // MARK: Elements
 
     public let values: [Kind] // NonEmpty
-
-    // MARK: Attributes
 
     // MARK: - Initializers
 
     public init(_ values: [Kind]) {
         self.values = values
+    }
+}
+
+extension NoteheadText {
+    public enum Kind {
+        case displayText(FormattedText)
+        case accidentalText(AccidentalText)
     }
 }
 

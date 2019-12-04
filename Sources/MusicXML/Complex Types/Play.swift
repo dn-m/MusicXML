@@ -14,12 +14,7 @@ import XMLCoder
 public struct Play {
     // MARK: - Instance Properties
 
-    public enum Kind {
-        case ipa(String)
-        case mute(Mute)
-        case semiPitched(SemiPitched)
-        case otherPlay(OtherPlay)
-    }
+    // MARK: Elements
 
     public let values: [Kind]
 
@@ -27,6 +22,15 @@ public struct Play {
 
     public init(_ values: [Kind]) {
         self.values = values
+    }
+}
+
+extension Play {
+    public enum Kind {
+        case ipa(String)
+        case mute(Mute)
+        case semiPitched(SemiPitched)
+        case otherPlay(OtherPlay)
     }
 }
 

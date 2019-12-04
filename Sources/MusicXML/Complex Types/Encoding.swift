@@ -14,13 +14,7 @@ import XMLCoder
 public struct Encoding {
     // MARK: - Instance Properties
 
-    public enum Kind {
-        case encoder(String)
-        case date(String)
-        case description(String)
-        case software(String)
-        case supports(Supports)
-    }
+    // MARK: Elements
 
     public let values: [Kind]
 
@@ -28,6 +22,16 @@ public struct Encoding {
 
     public init(_ values: [Kind]) {
         self.values = values
+    }
+}
+
+extension Encoding {
+    public enum Kind {
+        case encoder(String)
+        case date(String)
+        case description(String)
+        case software(String)
+        case supports(Supports)
     }
 }
 
