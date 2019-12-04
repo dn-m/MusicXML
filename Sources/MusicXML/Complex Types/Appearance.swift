@@ -12,6 +12,8 @@
 public struct Appearance {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     public let lineWidths: [LineWidth]
     public let noteSizes: [NoteSize]
     public let distances: [Distance]
