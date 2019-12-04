@@ -37,6 +37,8 @@ import XMLCoder
 
 public struct HarmonyChord {
     // MARK: - Instance Properties
+    
+    // MARK: Elements
 
     public let rootOrFunction: RootOrFunction
     public let kind: Kind

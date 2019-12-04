@@ -21,7 +21,7 @@ public struct MeasureStyle {
     public var number: Int?
     public var color: Color?
 
-    // MARK: Elements
+    // MARK: Kind
 
     public var kind: Kind
 

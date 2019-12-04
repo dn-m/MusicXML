@@ -39,7 +39,7 @@ public struct Time {
     public let vAlign: VAlign?
     public let printObject: Bool?
 
-    // MARK: Elements
+    // MARK: Kind
 
     public let kind: Kind
 

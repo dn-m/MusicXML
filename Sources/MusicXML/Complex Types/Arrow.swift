@@ -23,6 +23,8 @@ public struct Arrow {
 
     public let position: Position
     public let printStyle: PrintStyle
+    
+    // MARK: - Initializers
 
     public init(kind: Kind, position: Position = Position(), printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil) {
         self.kind = kind
@@ -33,8 +35,6 @@ public struct Arrow {
 }
 
 extension Arrow {
-    // MARK: - Initializers
-
     /// Create a circular `Arrow`.
     public init(
         direction: CircularArrow,
