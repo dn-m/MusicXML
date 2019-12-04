@@ -23,15 +23,15 @@ public struct Bend {
     public let firstBeat: Double?
     public let lastBeat: Double?
 
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
+
     // MARK: Elements
 
     public let bendAlter: Double?
     public let prependOrRelease: PreBendOrRelease?
     public let withBar: PlacementText?
-
-    // MARK: Attribute Groups
-
-    public let printStyle: PrintStyle
 
     // MARK: - Initializers
 

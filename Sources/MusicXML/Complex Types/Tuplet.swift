@@ -34,14 +34,14 @@ public struct Tuplet {
     public var lineShape: LineShape?
     public var placement: AboveBelow?
 
+    // MARK: Attribute Groups
+
+    public var position: Position?
+
     // MARK: Elements
 
     public var actualNotes: TupletPortion?
     public var normalNotes: TupletPortion?
-
-    // MARK: Attribute Groups
-
-    public var position: Position?
 
     // MARK: - Initializers
 

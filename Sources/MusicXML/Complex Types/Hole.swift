@@ -10,6 +10,10 @@
 public struct Hole {
     // MARK: - Instance Properties
 
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
+
     // MARK: Elements
 
     /// The content of the optional hole-type element indicates what the hole symbol represents in
@@ -23,10 +27,6 @@ public struct Hole {
     /// circle.
     public let holeShape: String?
     public let placement: AboveBelow?
-
-    // MARK: Attribute Groups
-
-    public let printStyle: PrintStyle
 
     // MARK: - Initializers
 
