@@ -6,6 +6,10 @@ if [[ -n $(gsed -n '/MARK: Elements$/ p' "$1") ]] ; then
             x
             b
         }
+        /Initializers/ {
+            x;p;g;p
+            b
+        }
         /MARK/ !{
             H
             b
