@@ -1,20 +1,22 @@
 #!/bin/sh
-gsed -i -r -n '
-/MARK: Elements/,/MARK/ {
-    /MARK: Elements/ {
-        x
+if [[ -n $(gsed -n '/MARK: Elements/ p' "$1") ]] ; then
+    gsed -i -r -n '
+    /MARK: Elements/,/MARK/ {
+        /MARK: Elements/ {
+            x
+            b
+        }
+        /MARK/ !{
+            H
+            b
+        }
+        p
         b
     }
-    /MARK/ !{
-        H
+    /Initializers/ {
+        x;p;g;p
         b
     }
     p
-    b
-}
-/Initializers/ {
-    x;p;g;p
-    b
-}
-p
-' "$1"
+    ' "$1"
+fi
