@@ -26,9 +26,6 @@ public struct SMuFL {
     // TODO: Consider nesting Glyph in here.
     public let glyph: SMuFLGlyph
 
-    // MARK: Attribute Groups
-
-
     // MARK: - Initializers
 
     public init(glyph: SMuFLGlyph) {

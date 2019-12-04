@@ -17,9 +17,6 @@ public struct SMuFLGlyph {
 
     public let name: String
 
-    // MARK: Attribute Groups
-
-
     // MARK: - Initializers
 
     public init(name: String) {

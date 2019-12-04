@@ -65,9 +65,6 @@ public struct Position {
     public let relativeX: Tenths?
     public let relativeY: Tenths?
 
-    // MARK: Attribute Groups
-
-
     // MARK: - Initializers
 
     public init(

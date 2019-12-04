@@ -20,9 +20,6 @@ public struct Printout {
     public let printSpacing: Bool?
     public let printLyric: Bool?
 
-    // MARK: Attribute Groups
-
-
     // MARK: - Initializers
 
     public init(

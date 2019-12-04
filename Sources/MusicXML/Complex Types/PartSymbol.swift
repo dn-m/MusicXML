@@ -20,9 +20,6 @@ public struct PartSymbol {
     let position: Position
     let color: Color
 
-    // MARK: Attribute Groups
-
-
     // MARK: - Initializers
 
     public init(_ value: GroupSymbolValue, kind: Kind, topStaff: Int, bottomStaff: Int, position: Position, color: Color) {
