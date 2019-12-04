@@ -10,6 +10,8 @@
 public struct Mordent {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let long: Bool?
     public let approach: AboveBelow?
     public let departure: AboveBelow?

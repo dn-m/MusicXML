@@ -12,6 +12,8 @@
 public struct OctaveShift {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let type: UpDownStopContinue
     public let number: Int?
     public let size: Int?

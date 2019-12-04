@@ -11,6 +11,8 @@
 public struct Identification {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     /// The creator element is borrowed from Dublin Core. It is used for the creators of the score.
     /// The type attribute is used to distinguish different creative contributions. Thus, there can
     /// be multiple creators within an identification. Standard type values are composer, lyricist,

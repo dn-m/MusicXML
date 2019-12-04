@@ -9,6 +9,8 @@
 public struct StrongAccent {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     /// The type attribute indicates if the point of the accent is down or up.
     public let type: UpDown?
     public let placement: AboveBelow?

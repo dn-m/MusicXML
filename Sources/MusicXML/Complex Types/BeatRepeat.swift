@@ -13,9 +13,13 @@
 public struct BeatRepeat {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let type: StartStop
     public let slashes: Int
     public let useDots: Bool
+
+    // FIXME: Add elements
 
     // MARK: - Initializers
 

@@ -10,6 +10,8 @@
 public struct Work {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     public let number: String?
     public let title: String?
     public let opus: Opus?

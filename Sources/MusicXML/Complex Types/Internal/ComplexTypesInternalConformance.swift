@@ -9,6 +9,7 @@ extension BendSound: AttributeGroup {}
 extension Bezier: AttributeGroup {}
 extension DashedFormatting: AttributeGroup {}
 extension Font: AttributeGroup {}
+extension LevelDisplay: AttributeGroup {}
 extension PlacementPrintStyle: AttributeGroup {}
 extension Position: AttributeGroup {}
 extension Printout: AttributeGroup {}

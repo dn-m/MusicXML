@@ -12,6 +12,8 @@
 public struct PageLayout {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     public let height: Double?
     public let width: Double?
     public let margins: [PageMargins]

@@ -12,6 +12,8 @@
 public struct StaffDetails {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     /// The optional number attribute specifies the staff number from top to bottom on the system,
     /// as with clef.
     public let number: Int?
@@ -21,6 +23,8 @@ public struct StaffDetails {
 
     public let printObject: Bool?
     public let printSpacing: Bool?
+
+    // MARK: Elements
 
     /// The staff-type value can be ossia, cue, editorial, regular, or alternate. An alternate staff
     /// indicates one that shares the same musical data as the prior staff, but displayed

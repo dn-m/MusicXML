@@ -10,6 +10,8 @@
 public struct FrameNote {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     public let string: MusicXML.String
     public let fret: Fret
     public let fingering: Fingering?

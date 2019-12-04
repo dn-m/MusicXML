@@ -11,6 +11,8 @@
 public struct Repeat {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let direction: BackwardForward
     public let times: Int?
     public let winged: Winged?

@@ -13,12 +13,17 @@
 public struct Grouping {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let type: StartStopSingle
-    public let feature: [Feature] // NonEmpty
     /// The number attribute is used for distinguishing between overlapping and hierarchical
     /// groupings.
     public let number: Int?
     public let memberOf: String?
+
+    // MARK: Elements
+
+    public let feature: [Feature]
 
     // MARK: - Initializers
 

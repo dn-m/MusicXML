@@ -10,8 +10,12 @@
 public struct Interchangeable {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let symbol: TimeSymbol
     public let separator: TimeSeparator
+
+    // FIXME: Add Elements
 
     // MARK: - Initializers
 

@@ -13,8 +13,6 @@ public struct Slur {
 
     // MARK: Attributes
 
-    // MARK: Attributes
-
     public let color: Color?
     public let type: StartStopContinue
     public let number: Int?

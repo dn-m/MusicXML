@@ -10,6 +10,8 @@
 public struct Scordatura {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     public let accords: [Accord]
 
     // MARK: - Initializers

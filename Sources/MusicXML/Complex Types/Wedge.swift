@@ -10,6 +10,8 @@
 public struct Wedge {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     /// The type attribute is crescendo for the start of a wedge that is closed at the left side,
     /// and diminuendo for the start of a wedge that is closed on the right side.
     public let type: WedgeType

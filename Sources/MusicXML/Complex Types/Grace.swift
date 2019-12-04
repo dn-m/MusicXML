@@ -10,6 +10,8 @@
 public struct Grace {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let stealTimePrevious: Int?
     public let stealTimeFollowing: Int?
     public let makeTime: Divisions?

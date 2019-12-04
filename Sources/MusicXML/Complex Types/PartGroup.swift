@@ -18,8 +18,13 @@
 public struct PartGroup {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public var type: StartStop
     public var number: Int?
+
+    // MARK: Elements
+
     public var name: GroupName?
     public var nameDisplay: NameDisplay?
     public var abbreviation: GroupName?

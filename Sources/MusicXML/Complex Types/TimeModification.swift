@@ -13,6 +13,8 @@
 public struct TimeModification {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     /// The actual-notes element describes how many notes are played in the time usually occupied by
     /// the number in the normal-notes element.
     public var actualNotes: Int

@@ -18,6 +18,8 @@
 public struct SystemLayout {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     public let margins: SystemMargins?
     public let distance: Tenths?
     public let topSystemDistance: Tenths?

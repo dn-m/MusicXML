@@ -20,6 +20,8 @@
 public struct BendSound {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let accelerate: Bool?
     public let beats: Int?
     public let firstBeat: Int?

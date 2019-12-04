@@ -10,6 +10,8 @@
 public struct VirtualInstrument {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     public let library: String?
     public let name: String?
 

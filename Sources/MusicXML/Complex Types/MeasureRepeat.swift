@@ -14,6 +14,8 @@
 public struct MeasureRepeat {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let type: StartStop
     public let slashes: Int
 

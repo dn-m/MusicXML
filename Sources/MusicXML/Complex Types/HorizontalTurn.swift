@@ -10,6 +10,8 @@
 public struct HorizontalTurn {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public var placement: AboveBelow?
     public var slash: Bool?
 

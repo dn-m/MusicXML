@@ -10,6 +10,8 @@
 public struct Frame {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let color: Color?
     public let hAlign: LeftCenterRight?
     public let vAlign: VAlignImage?
@@ -19,6 +21,8 @@ public struct Frame {
     /// associated frame-note element. Typical values are x and the empty string. If the attribute
     /// is not present, the display of the unplayed string is application-defined.
     public let unplayed: String?
+
+    // MARK: Elements
 
     /// The frame-strings element gives the overall size of the frame in vertical lines (strings).
     public let frameStrings: Int

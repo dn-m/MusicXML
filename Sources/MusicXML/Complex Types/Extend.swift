@@ -11,6 +11,8 @@
 public struct Extend {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let type: StartStopContinue?
 
     // MARK: Attribute Groups

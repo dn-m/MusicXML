@@ -10,6 +10,8 @@
 public struct WavyLine {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let type: StartStopContinue
     public let number: Int?
     public let placement: AboveBelow?

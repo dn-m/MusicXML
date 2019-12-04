@@ -14,7 +14,12 @@ import XMLCoder
 public struct NameDisplay {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let printObject: Bool?
+
+    // MARK: Elements
+
     public let texts: [Text]
 
     // MARK: - Initializers

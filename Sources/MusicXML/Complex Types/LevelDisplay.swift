@@ -12,6 +12,8 @@
 public struct LevelDisplay {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let parentheses: Bool
     public let bracket: Bool
     public let size: SymbolSize

@@ -9,15 +9,14 @@
 public struct Defaults {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     public let scaling: Scaling?
     public let pageLayout: PageLayout?
     public let systemLayout: SystemLayout?
     public let staffLayout: StaffLayout?
     public let appearance: Appearance?
     public let lyricLanguages: [LyricLanguage]
-
-    // MARK: Attribute Groups
-
     public let musicFont: Font?
     public let wordFont: Font?
     public let lyricFonts: [LyricFont]

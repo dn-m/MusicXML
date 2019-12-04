@@ -12,6 +12,8 @@
 public struct Forward {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     /// Duration is a positive number specified in division units. This is the intended duration vs.
     /// notated duration (for instance, swing eighths vs. even eighths, or differences in dotted
     /// notes in Baroque-era music). Differences in duration specific to an interpretation or

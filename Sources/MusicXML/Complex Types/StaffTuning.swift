@@ -9,7 +9,12 @@
 public struct StaffTuning {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let line: Int?
+
+    // MARK: Elements
+
     public let tuningStep: Step
     public let tuningAlter: Double?
     public let tuningOctave: Int

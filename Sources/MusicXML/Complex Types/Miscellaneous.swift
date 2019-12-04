@@ -11,6 +11,8 @@
 public struct Miscellaneous {
     // MARK: - Instance Properties
 
+    // MARK: ELements
+
     public let fields: [MiscellaneousField]
 
     // MARK: - Initializers

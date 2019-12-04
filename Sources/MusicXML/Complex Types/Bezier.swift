@@ -20,6 +20,8 @@
 public struct Bezier {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let bezierX: Tenths?
     public let bezierY: Tenths?
     public let bezierX2: Tenths?

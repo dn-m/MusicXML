@@ -10,6 +10,8 @@
 public struct Unpitched {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     public var displayStep: Step
     public var displayOctave: Int
 

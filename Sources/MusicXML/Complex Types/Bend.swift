@@ -14,12 +14,17 @@
 public struct Bend {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let accelerate: Bool?
     /// The beats attribute specifies the beats used in a trill-sound or bend-sound. It is a decimal
     /// value with a minimum value of 2.
     public let beats: Bool?
     public let firstBeat: Double?
     public let lastBeat: Double?
+
+    // MARK: Elements
+
     public let bendAlter: Double?
     public let prependOrRelease: PreBendOrRelease?
     public let withBar: PlacementText?

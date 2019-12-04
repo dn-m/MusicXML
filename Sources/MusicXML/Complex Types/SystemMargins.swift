@@ -10,6 +10,8 @@
 public struct SystemMargins {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     public let left: Tenths
     public let right: Tenths
 

@@ -9,7 +9,12 @@
 public struct StaffLayout {
     // MARK: - Instance Properties
 
+    // MAKR: Attributes
+
     public let number: Int?
+
+    // MARK: Elements
+
     public let staffDistance: Tenths?
 
     // MARK: - Initializers

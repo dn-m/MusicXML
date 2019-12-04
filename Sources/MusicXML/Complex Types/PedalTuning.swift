@@ -9,6 +9,8 @@
 public struct PedalTuning {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     public let step: Step
     public let alter: Int
 

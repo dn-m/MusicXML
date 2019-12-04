@@ -10,6 +10,8 @@
 public struct Hole {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     /// The content of the optional hole-type element indicates what the hole symbol represents in
     /// terms of instrument fingering or other techniques.
     public let holeType: String?

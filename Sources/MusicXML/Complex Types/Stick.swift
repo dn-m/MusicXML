@@ -10,7 +10,12 @@
 public struct Stick {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let tip: TipDirection?
+
+    // MARK: Elements
+
     public let stickType: StickType
     public let stickMaterial: StickMaterial
 

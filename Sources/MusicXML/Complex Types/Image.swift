@@ -9,6 +9,8 @@
 public struct Image {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let source: String
     public let type: String
     public let hAlign: LeftCenterRight?
