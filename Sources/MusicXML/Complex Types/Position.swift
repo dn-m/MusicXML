@@ -60,6 +60,8 @@
 public struct Position {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let defaultX: Tenths?
     public let defaultY: Tenths?
     public let relativeX: Tenths?

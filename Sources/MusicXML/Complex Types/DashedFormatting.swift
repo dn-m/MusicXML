@@ -11,6 +11,8 @@
 public struct DashedFormatting {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let dashLength: Tenths?
     public let spaceLength: Tenths?
 

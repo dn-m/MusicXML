@@ -10,7 +10,11 @@
 public struct Rest {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let measure: Bool?
+
+    // MARK: Elements
 
     public let displayStep: Step?
     public let displayOctave: Int?

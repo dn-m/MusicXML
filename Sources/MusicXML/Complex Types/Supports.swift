@@ -14,6 +14,8 @@
 public struct Supports {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let attribute: String?
     public let element: String
     public let type: Bool

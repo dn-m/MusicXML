@@ -12,9 +12,9 @@ public struct GroupBarline {
     // MARK: Value
 
     public var value: GroupBarlineValue
-    
+
     // MARK: Attributes
-    
+
     public var color: Color?
 
     // MARK: - Initializers

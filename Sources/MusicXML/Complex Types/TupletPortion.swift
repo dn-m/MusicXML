@@ -12,6 +12,8 @@
 public struct TupletPortion {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     public let tupletNumber: TupletNumber?
     public let tupletType: TupletType?
     public let tupletDots: [TupletDot]

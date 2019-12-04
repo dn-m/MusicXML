@@ -12,6 +12,8 @@
 public struct Root {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     public let step: RootStep
     public let alter: RootAlter?
 

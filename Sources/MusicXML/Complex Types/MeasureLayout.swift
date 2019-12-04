@@ -9,6 +9,8 @@
 public struct MeasureLayout {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     /// The measure-distance element specifies the horizontal distance from the previous measure.
     /// This value is only used for systems where there is horizontal whitespace in the middle of a
     /// system, as in systems with codas. To specify the measure width, use the width attribute of

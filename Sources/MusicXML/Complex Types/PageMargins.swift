@@ -10,7 +10,12 @@
 public struct PageMargins {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let type: Kind?
+
+    // MARK: Elements
+
     public let left: Tenths
     public let right: Tenths
     public let top: Tenths

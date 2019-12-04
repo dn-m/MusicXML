@@ -9,8 +9,12 @@
 public struct HeelToe {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let placement: AboveBelow?
     public let substitution: Bool?
+
+    // FIXME: Add Attribute Groups
 
     // MARK: - Initializers
 

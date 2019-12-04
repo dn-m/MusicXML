@@ -26,6 +26,8 @@
 public struct Sound {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let tempo: Double?
     public let dynamics: Double?
     public let dacapo: Bool?
@@ -43,6 +45,9 @@ public struct Sound {
     public let damperPedal: YesNoNumber?
     public let softPedal: YesNoNumber?
     public let sostenutoPedal: YesNoNumber?
+
+    // MARK: Elements
+
     public let offset: Offset?
     public let midi: [MIDI]
 

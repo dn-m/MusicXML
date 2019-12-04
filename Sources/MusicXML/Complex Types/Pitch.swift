@@ -10,6 +10,8 @@
 public struct Pitch {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     public let step: Step
     public let alter: Double?
     public let octave: Int

@@ -35,6 +35,8 @@
 public struct Link {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let name: String?
 
     // > The element attribute specifies an

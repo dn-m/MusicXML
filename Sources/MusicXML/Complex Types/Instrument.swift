@@ -11,6 +11,8 @@
 public struct Instrument {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let id: String
 
     // MARK: - Initializers

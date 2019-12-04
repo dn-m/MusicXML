@@ -14,7 +14,12 @@ import XMLCoder
 public struct Percussion {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let enclosure: EnclosureShape?
+
+    // MARK: Elements
+
     public let kind: Kind
 
     // MARK: Attribute Groups

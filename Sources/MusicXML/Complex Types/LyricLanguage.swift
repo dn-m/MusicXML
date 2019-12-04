@@ -9,6 +9,8 @@
 public struct LyricLanguage: Codable, Equatable {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let number: Int?
     public let name: String?
     public let language: String?

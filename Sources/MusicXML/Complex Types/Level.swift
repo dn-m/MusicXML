@@ -9,7 +9,12 @@
 public struct Level {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let reference: Bool
+
+    // MARK: Attribute Groups
+
     public let levelDisplay: LevelDisplay
 
     // MARK: - Initializers

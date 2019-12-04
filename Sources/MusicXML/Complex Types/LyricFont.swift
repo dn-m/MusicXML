@@ -9,6 +9,8 @@
 public struct LyricFont {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let number: Int?
     public let name: String?
 

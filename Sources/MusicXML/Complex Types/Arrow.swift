@@ -11,7 +11,12 @@ import XMLCoder
 public struct Arrow {
     // MARK: - Instance Properties
 
+    // MARK: Kind
+
     public let kind: Kind
+
+    // MARK: Attributes
+
     public let placement: AboveBelow?
 
     // MARK: Attribute Groups

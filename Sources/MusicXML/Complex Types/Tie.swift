@@ -10,6 +10,8 @@
 public struct Tie {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public var type: StartStop
     public var timeOnly: TimeOnly?
 

@@ -9,6 +9,8 @@
 public struct Figure {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     /// Values for prefix and suffix include plus and
     /// the accidental values sharp, flat, natural, double-sharp,
     /// flat-flat, and sharp-sharp.

@@ -11,6 +11,8 @@
 public struct TextDecoration {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let underline: Int?
     public let overline: Int?
     public let lineThrough: Int?

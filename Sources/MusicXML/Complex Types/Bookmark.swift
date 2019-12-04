@@ -9,6 +9,8 @@
 public struct Bookmark {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let id: String
     public let name: String?
     public let element: String?

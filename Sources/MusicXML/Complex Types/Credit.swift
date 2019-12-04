@@ -21,11 +21,15 @@ import XMLCoder
 public struct Credit {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     /// The page attribute for the credit element specifies the page number where the credit should
     /// appear. This is an integer value that starts with 1 for the first page. Its value is 1 by
     /// default. Since credits occur before the music, these page numbers do not refer to the page
     /// numbering specified by the print element's page-number attribute.
     public let page: Int?
+
+    // MARK: Elements
 
     /// The credit-type element indicates the purpose behind a
     /// credit. Multiple types of data may be combined in a single

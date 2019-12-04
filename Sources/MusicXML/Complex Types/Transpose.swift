@@ -10,10 +10,14 @@
 public struct Transpose {
     // MARK: - Instance Properties
 
+    // MAKR: Attributes
+
     /// The optional number attribute refers to staff numbers, from top to bottom on the system. If
     /// absent, the transposition applies to all staves in the part. Per-staff transposition is most
     /// often used in parts that represent multiple instruments.
     public let number: Int?
+
+    // MARK: Elements
 
     /// The diatonic element specifies the number of pitch steps needed to go from written to
     /// sounding pitch. This allows for correct spelling of enharmonic transpositions.

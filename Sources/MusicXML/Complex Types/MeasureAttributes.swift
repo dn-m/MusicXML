@@ -9,6 +9,8 @@
 public struct MeasureAttributes {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     public let number: String
     public let text: String?
     public let implicit: Bool?

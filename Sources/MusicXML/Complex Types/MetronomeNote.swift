@@ -9,6 +9,8 @@
 public struct MetronomeNote {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     public let metronomeType: NoteTypeValue
     public let metronomeDotCount: Int
     public let metronomeBeams: [MetronomeBeam]

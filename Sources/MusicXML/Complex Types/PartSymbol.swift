@@ -12,11 +12,11 @@
 /// Staff 3 for the pedals is usually outside the brace.
 public struct PartSymbol {
     // MARK: - Instance Properties
-    
+
     // MARK: Value
-    
+
     public let value: GroupSymbolValue
-    
+
     // MARK: Attributes
 
     public let topStaff: Int?

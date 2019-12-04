@@ -16,6 +16,8 @@ import XMLCoder
 public struct PartList {
     // MARK: - Instance Properties
 
+    // MARK: Elements
+
     public let parts: [Item]
 
     // MARK: - Initializers
