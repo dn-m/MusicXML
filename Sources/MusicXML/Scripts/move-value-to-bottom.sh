@@ -1,9 +1,13 @@
 #!/bin/sh
-if [[ -n $(gsed -n '/MARK: Elements$/ p' "$1") ]] ; then
+if [[ -n $(gsed -n '/MARK: Value$/ p' "$1") ]] ; then
     gsed -i -r -n '
-    /MARK: Elements$/,/MARK/ {
-        /MARK: Elements$/ {
+    /MARK: Value$/,/MARK/ {
+        /MARK: Value$/ {
             x
+            b
+        }
+        /Initializers/ {
+            x;p;g;p
             b
         }
         /MARK/ !{
