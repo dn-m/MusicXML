@@ -18,12 +18,16 @@
 /// recommended attributes for specifying horizontal position. The other attributes are specified in
 /// tenths, relative to any position settings associated with the slur or tied element.
 public struct Bezier {
+    // MARK: - Instance Properties
+
     public let bezierX: Tenths?
     public let bezierY: Tenths?
     public let bezierX2: Tenths?
     public let bezierY2: Tenths?
     public let bezierOffset: Int?
     public let bezierOffset2: Int?
+
+    // MARK: - Initializers
 
     public init(bezierX: Tenths? = nil, bezierY: Tenths? = nil, bezierX2: Tenths? = nil, bezierY2: Tenths? = nil, bezierOffset: Int? = nil, bezierOffset2: Int? = nil) {
         self.bezierX = bezierX

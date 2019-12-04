@@ -17,8 +17,12 @@ extension Timewise {
     //    id IDREF #REQUIRED
     // >
     public struct Part {
+        // MARK: - Instance Properties
+
         public var id: String
         public var musicData: [MusicData]
+
+        // MARK: - Initializers
 
         public init(id: String, musicData: [MusicData]) {
             self.id = id
@@ -30,11 +34,15 @@ extension Timewise {
 extension Timewise.Part: Equatable {}
 
 extension Timewise.Part: Codable {
+    // MARK: - Codable
+
     // MARK: - Decodable
 
     enum CodingKeys: String, CodingKey {
         case id
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attributes

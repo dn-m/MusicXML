@@ -15,6 +15,8 @@ public struct StrongAccent {
     public let position: Position
     public let printStyle: PrintStyle
 
+    // MARK: - Initializers
+
     public init(
         type: UpDown? = nil,
         placement: AboveBelow? = nil,
@@ -30,6 +32,10 @@ public struct StrongAccent {
 
 extension StrongAccent: Equatable {}
 extension StrongAccent: Codable {
+    // MARK: - Codable
+
+    // MARK: Decodable
+
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
         self.position = try Position(from: decoder)

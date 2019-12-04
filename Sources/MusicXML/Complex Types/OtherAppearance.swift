@@ -9,8 +9,12 @@
 /// version of the MusicXML format. This allows extended representation, though without application
 /// interoperability.
 public struct OtherAppearance {
+    // MARK: - Instance Properties
+
     public let value: String
     public let type: String
+
+    // MARK: - Initializers
 
     public init(_ value: String, type: String) {
         self.value = value
@@ -20,6 +24,8 @@ public struct OtherAppearance {
 
 extension OtherAppearance: Equatable {}
 extension OtherAppearance: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case value = ""

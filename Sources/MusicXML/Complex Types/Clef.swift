@@ -11,7 +11,9 @@ import XMLCoder
 /// appear at the start of each system unless the print-object attribute has been set to "no" or the
 /// additional attribute has been set to "yes".
 public struct Clef {
-    // MARK: - Attributes
+    // MARK: - Instance Properties
+
+    // MARK: Attributes
 
     public let number: Int?
     public let additional: Bool?
@@ -20,11 +22,13 @@ public struct Clef {
     public let printStyle: PrintStyle
     public let printObject: Bool?
 
-    // MARK: - Elements
+    // MARK: Elements
 
     public let sign: ClefSign
     public let line: Int?
     public let clefOctaveChange: Int?
+
+    // MARK: - Initializers
 
     public init(number: Int? = nil, additional: Bool? = nil, size: SymbolSize? = nil, afterBarline: Bool? = nil, printStyle: PrintStyle = PrintStyle(), printObject: Bool? = nil, sign: ClefSign, line: Int? = nil, clefOctaveChange: Int? = nil) {
         self.number = number
@@ -41,6 +45,8 @@ public struct Clef {
 
 extension Clef: Equatable {}
 extension Clef: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case number
         case additional
@@ -52,6 +58,8 @@ extension Clef: Codable {
         case line
         case clefOctaveChange = "clef-octave-change"
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -66,7 +74,8 @@ extension Clef: Codable {
         clefOctaveChange = try container.decodeIfPresent(Int.self, forKey: .clefOctaveChange)
     }
 
-    // sourcery:inline:Clef.AutoEncodable
+    // MARK: Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(number, forKey: .number)
@@ -79,7 +88,6 @@ extension Clef: Codable {
         try container.encodeIfPresent(line, forKey: .line)
         try container.encodeIfPresent(clefOctaveChange, forKey: .clefOctaveChange)
     }
-    // sourcery:end
 }
 
 extension Clef: DynamicNodeDecoding {

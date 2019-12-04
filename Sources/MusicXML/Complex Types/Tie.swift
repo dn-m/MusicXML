@@ -8,8 +8,12 @@
 /// The tie element indicates that a tie begins or ends with this note. The tie element indicates
 /// sound; the tied element indicates notation.
 public struct Tie {
+    // MARK: - Instance Properties
+
     public var type: StartStop
     public var timeOnly: TimeOnly?
+
+    // MARK: - Initializers
 
     public init(_ type: StartStop, timeOnly: TimeOnly? = nil) {
         self.type = type
@@ -26,6 +30,8 @@ extension Tie {
 
 extension Tie: Equatable {}
 extension Tie: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case type
         case timeOnly = "time-only"

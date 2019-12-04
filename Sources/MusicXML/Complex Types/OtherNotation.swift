@@ -10,12 +10,16 @@
 /// notations where more specific extension elements such as other-dynamics and other-technical are
 /// not appropriate.
 public struct OtherNotation {
+    // MARK: - Instance Properties
+
     public let value: String
     public let type: StartStopSingle
     public let number: Int?
     public let printObject: Bool?
     public let printStyle: PrintStyle
     public let placement: AboveBelow?
+
+    // MARK: - Initializers
 
     public init(_ value: String, type: StartStopSingle, number: Int? = nil, printObject: Bool? = nil, printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil) {
         self.value = value
@@ -29,6 +33,8 @@ public struct OtherNotation {
 
 extension OtherNotation: Equatable {}
 extension OtherNotation: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case number
@@ -37,7 +43,8 @@ extension OtherNotation: Codable {
         case value = ""
     }
 
-    // sourcery:inline:OtherNotation.AutoEncodable
+    // MARK: Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)
@@ -47,7 +54,8 @@ extension OtherNotation: Codable {
         try printStyle.encode(to: encoder)
         try container.encodeIfPresent(placement, forKey: .placement)
     }
-    // sourcery:end
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

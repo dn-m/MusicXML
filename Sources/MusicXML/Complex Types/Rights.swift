@@ -8,11 +8,13 @@
 import XMLCoder
 
 public struct Rights {
-    // MARK: - Value
+    // MARK: - Instance Properties
+
+    // MARK: Value
 
     public var value: String
 
-    // MARK: - Attributes
+    // MARK: Attributes
 
     public var type: String?
 
@@ -27,6 +29,8 @@ public struct Rights {
 extension Rights: Equatable {}
 
 extension Rights: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case value = ""
         case type

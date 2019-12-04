@@ -8,6 +8,8 @@
 /// The transpose type represents what must be added to a written pitch to get a correct sounding
 /// pitch.
 public struct Transpose {
+    // MARK: - Instance Properties
+
     /// The optional number attribute refers to staff numbers, from top to bottom on the system. If
     /// absent, the transposition applies to all staves in the part. Per-staff transposition is most
     /// often used in parts that represent multiple instruments.
@@ -30,6 +32,8 @@ public struct Transpose {
     /// from what is currently written (as is the case for mixed cello / bass parts in orchestral
     /// literature).
     public let double: Bool?
+
+    // MARK: - Initializers
 
     public init(number: Int? = nil, diatonic: Int? = nil, chromatic: Int, octaveChange: Int? = nil, double: Bool? = nil) {
         self.number = number

@@ -7,9 +7,13 @@
 
 /// The lyric-font type specifies the default font for a particular name and number of lyric.
 public struct LyricFont {
+    // MARK: - Instance Properties
+
     public let font: Font
     public let number: Int?
     public let name: String?
+
+    // MARK: - Initializers
 
     public init(_ font: Font = Font(), number: Int? = nil, name: String? = nil) {
         self.font = font
@@ -20,10 +24,14 @@ public struct LyricFont {
 
 extension LyricFont: Equatable {}
 extension LyricFont: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case number
         case name
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         self.font = try Font(from: decoder)
@@ -31,6 +39,8 @@ extension LyricFont: Codable {
         self.number = try container.decodeIfPresent(Int.self, forKey: .number)
         self.name = try container.decodeIfPresent(String.self, forKey: .name)
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         try font.encode(to: encoder)

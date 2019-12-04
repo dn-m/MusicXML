@@ -103,11 +103,15 @@ extension Timewise.Measure: Codable {
         case parts = "part"
     }
 
+    // MARK: Decodable
+
     public init(from decoder: Decoder) throws {
         self.attributes = try MeasureAttributes(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.parts = try container.decode([Timewise.Part].self, forKey: .parts)
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         try attributes.encode(to: encoder)

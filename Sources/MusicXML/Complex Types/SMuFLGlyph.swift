@@ -13,7 +13,11 @@
 //
 // <!ENTITY % smufl-glyph-name "NMTOKEN">
 public struct SMuFLGlyph {
+    // MARK: - Instance Properties
+
     public let name: String
+
+    // MARK: - Initializers
 
     public init(name: String) {
         self.name = name

@@ -12,8 +12,12 @@
 /// music being repeated needs to be repeated within the MusicXML file. This element specifies the
 /// notation that indicates the repeat.
 public struct MeasureRepeat {
+    // MARK: - Instance Properties
+
     public let type: StartStop
     public let slashes: Int
+
+    // MARK: - Initializers
 
     public init(type: StartStop, slashes: Int) {
         self.type = type

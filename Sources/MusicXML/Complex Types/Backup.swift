@@ -11,10 +11,14 @@
 /// always be positive, and should not cross measure boundaries or mid-measure changes in the
 /// divisions value.
 public struct Backup: Codable, Equatable {
-    // MARK: - Elements
+    // MARK: - Instance Properties
+
+    // MARK: Elements
 
     public var duration: Int
     public var editorial: Editorial?
+
+    // MARK: - Initializers
 
     public init(duration: Int, editorial: Editorial? = nil) {
         self.duration = duration

@@ -30,6 +30,8 @@ public enum MusicData {
 extension MusicData: Equatable {}
 
 extension MusicData: Codable {
+    // MARK: - Codable
+
     // MARK: - Decodable
 
     enum CodingKeys: String, CodingKey {
@@ -47,6 +49,8 @@ extension MusicData: Codable {
         case link
         case bookmark
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -79,6 +83,8 @@ extension MusicData: Codable {
             try container.encode(value, forKey: .bookmark)
         }
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

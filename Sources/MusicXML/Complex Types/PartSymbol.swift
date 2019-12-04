@@ -11,12 +11,16 @@
 /// typically be 1 for the right hand, while the bottom-staff will typically be 2 for the left hand.
 /// Staff 3 for the pedals is usually outside the brace.
 public struct PartSymbol {
+    // MARK: - Instance Properties
+
     let value: GroupSymbolValue
     let kind: Kind
     let topStaff: Int
     let bottomStaff: Int
     let position: Position
     let color: Color
+
+    // MARK: - Initializers
 
     public init(_ value: GroupSymbolValue, kind: Kind, topStaff: Int, bottomStaff: Int, position: Position, color: Color) {
         self.value = value
@@ -30,6 +34,8 @@ public struct PartSymbol {
 
 extension PartSymbol: Equatable {}
 extension PartSymbol: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case kind
         case topStaff

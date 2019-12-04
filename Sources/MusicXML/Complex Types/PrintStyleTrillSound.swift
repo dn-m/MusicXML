@@ -8,9 +8,13 @@
 /// The `PrintStyleTrillSound` type represents an empty element with print-style, placement, and
 /// trill-sound attributes.
 public struct PrintStyleTrillSound {
+    // MARK: - Instance Properties
+
     public let printStyle: PrintStyle
     public let placement: AboveBelow?
     public let trillSound: TrillSound
+
+    // MARK: - Initializers
 
     public init(printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil, trillSound: TrillSound = TrillSound()) {
         self.printStyle = printStyle
@@ -21,9 +25,13 @@ public struct PrintStyleTrillSound {
 
 extension PrintStyleTrillSound: Equatable {}
 extension PrintStyleTrillSound: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case placement
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

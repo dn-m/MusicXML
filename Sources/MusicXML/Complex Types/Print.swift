@@ -107,6 +107,8 @@ public struct Print {
 extension Print: Equatable {}
 
 extension Print: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case pageLayout = "page-layout"
         case systemLayout = "system-layout"

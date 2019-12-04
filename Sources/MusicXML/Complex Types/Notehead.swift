@@ -9,11 +9,15 @@
 /// durations. For the enclosed shapes, the default is to be hollow for half notes and longer, and
 /// filled otherwise. The filled attribute can be set to change this if needed.
 public struct Notehead {
+    // MARK: - Instance Properties
+
     public let value: NoteheadValue
     public let filled: Bool?
     public let parentheses: Bool?
     public let font: Font
     public let color: Color?
+
+    // MARK: - Initializers
 
     public init(_ value: NoteheadValue, filled: Bool? = nil, parentheses: Bool? = nil, font: Font = Font(), color: Color? = nil) {
         self.value = value
@@ -26,12 +30,16 @@ public struct Notehead {
 
 extension Notehead: Equatable {}
 extension Notehead: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case filled
         case parentheses
         case color
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         self.font = try Font(from: decoder)
@@ -42,7 +50,8 @@ extension Notehead: Codable {
         self.color = try container.decodeIfPresent(Color.self, forKey: .color)
     }
 
-    // sourcery:inline:Notehead.AutoEncodable
+    // MARK: Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)
@@ -51,7 +60,6 @@ extension Notehead: Codable {
         try font.encode(to: encoder)
         try container.encodeIfPresent(color, forKey: .color)
     }
-    // sourcery:end
 }
 
 import XMLCoder

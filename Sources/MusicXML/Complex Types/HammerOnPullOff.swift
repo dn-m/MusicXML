@@ -11,11 +11,15 @@
 /// the hammer-on or pull-off should be notated. An empty element leaves this choice up to the
 /// application.
 public struct HammerOnPullOff {
+    // MARK: - Instance Properties
+
     public let value: String
     public let type: StartStop
     public let number: Int?
     public let printStyle: PrintStyle
     public let placement: AboveBelow?
+
+    // MARK: - Initializers
 
     public init(_ value: String, type: StartStop, number: Int? = nil, printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil) {
         self.value = value
@@ -28,12 +32,16 @@ public struct HammerOnPullOff {
 
 extension HammerOnPullOff: Equatable {}
 extension HammerOnPullOff: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case number
         case placement
         case value = ""
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -43,6 +51,8 @@ extension HammerOnPullOff: Codable {
         printStyle = try PrintStyle(from: decoder)
         placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

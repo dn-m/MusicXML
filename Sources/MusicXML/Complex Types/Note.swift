@@ -249,6 +249,8 @@ extension Note {
 }
 
 extension Note.Kind: Codable {
+    // MARK: - Codable
+
     public enum CodingKeys: String, CodingKey {
         // Normal Note, Cue and Grace
         case grace
@@ -257,6 +259,8 @@ extension Note.Kind: Codable {
         case duration
         case tie
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -297,6 +301,8 @@ extension Note.Kind: Codable {
         }
     }
 
+    // MARK: Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         switch self {
@@ -327,6 +333,8 @@ extension Note.Grace: Equatable {}
 
 extension Note: Equatable {}
 extension Note: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         // Attributes
         case printStyle = "print-style"
@@ -358,6 +366,8 @@ extension Note: Codable {
         case lyrics = "lyric"
         case play
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
@@ -397,6 +407,8 @@ extension Note: Codable {
         // Decode Kind
         self.kind = try Kind(from: decoder)
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         try printStyle.encode(to: encoder)

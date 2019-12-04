@@ -10,9 +10,13 @@
 /// If not specified, they are left to application defaults. It is used by the level and accidental
 /// elements.
 public struct LevelDisplay {
+    // MARK: - Instance Properties
+
     public let parentheses: Bool
     public let bracket: Bool
     public let size: SymbolSize
+
+    // MARK: - Initializers
 
     public init(parentheses: Bool, bracket: Bool, size: SymbolSize) {
         self.parentheses = parentheses

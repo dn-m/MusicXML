@@ -19,7 +19,7 @@ public struct Metronome {
 
     public let kind: Kind
 
-    // MARK: - Attributes
+    // MARK: Attributes
 
     public let printStyleAlign: PrintStyleAlign
     public let justify: Justify?
@@ -124,11 +124,15 @@ extension Metronome.Regular: Equatable {}
 
 extension Metronome.Complicated: Equatable {}
 extension Metronome.Complicated: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case metronomeNote = "metronome-note"
         case metronomeRelation = "metronome-relation"
         case otherMetronomeNote = "other-metronome-note"
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -142,6 +146,8 @@ extension Metronome.Kind: Equatable {}
 
 extension Metronome: Equatable {}
 extension Metronome: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case position
         case printStyleAlign = "print-style-align"
@@ -154,9 +160,13 @@ extension Metronome: Codable {
         case metronomeNote = "metronome-note"
     }
 
+    // MARK: Encodable
+
     public func encode(to encoder: Encoder) throws {
         fatalError("TODO")
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

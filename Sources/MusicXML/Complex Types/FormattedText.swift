@@ -28,6 +28,8 @@ public struct FormattedText {
     public let direction: TextDirection?
     public let enclosure: EnclosureShape?
 
+    // MARK: - Initializers
+
     public init(
         _ value: String,
         justify: LeftCenterRight? = nil,
@@ -61,6 +63,8 @@ public struct FormattedText {
 
 extension FormattedText: Equatable {}
 extension FormattedText: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case justify
         case hAlign = "halign"
@@ -75,6 +79,8 @@ extension FormattedText: Codable {
         case enclosure
         case value = ""
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

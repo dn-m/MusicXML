@@ -7,8 +7,12 @@
 
 /// The bar-style-color type contains barline style and color information.
 public struct BarStyleColor {
+    // MARK: - Instance Properties
+
     public var value: BarStyle
     public var color: Color?
+
+    // MARK: - Initializers
 
     public init(_ value: BarStyle, color: Color? = nil) {
         self.value = value
@@ -34,6 +38,8 @@ extension BarStyleColor {
 
 extension BarStyleColor: Equatable {}
 extension BarStyleColor: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case value = ""
         case color

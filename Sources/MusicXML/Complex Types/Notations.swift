@@ -12,15 +12,19 @@ import XMLCoder
 /// notations to represent details of performance technique, such as fingerings, without having them
 /// appear in the score.
 public struct Notations {
-    // MARK: - Attributes
+    // MARK: - Instance Properties
+
+    // MARK: Attributes
 
     public var printObject: Bool?
 
-    // MARK: - Elements
+    // MARK: Elements
 
     public var footnote: FormattedText?
     public var level: Level?
     public var values: [Notation]
+
+    // MARK: - Initializers
 
     public init(
         _ values: [Notation],
@@ -56,6 +60,8 @@ extension Notations {
 
 extension Notations.Notation: Equatable {}
 extension Notations.Notation: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case tied
         case slur
@@ -72,6 +78,8 @@ extension Notations.Notation: Codable {
         case accidentalMark = "accidental-mark"
         case other
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -106,6 +114,8 @@ extension Notations.Notation: Codable {
             try container.encode(value, forKey: .other)
         }
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -158,6 +168,10 @@ extension Notations.Notation.CodingKeys: XMLChoiceCodingKey {}
 
 extension Notations: Equatable {}
 extension Notations: Codable {
+    // MARK: - Codable
+
+    // MARK: Decodable
+
     public init(from decoder: Decoder) throws {
         // Decode values
         let valuesContainer = try decoder.singleValueContainer()

@@ -36,6 +36,8 @@ public struct Harmony {
     public let editorial: Editorial
     public let staff: Int?
 
+    // MARK: - Initializers
+
     public init(
         type: HarmonyType? = nil,
         printObject: Bool? = nil,
@@ -63,6 +65,8 @@ public struct Harmony {
 
 extension Harmony: Equatable {}
 extension Harmony: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case type
         case printObject = "print-object"
@@ -73,6 +77,8 @@ extension Harmony: Codable {
         case offset
         case staff
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -91,6 +97,8 @@ extension Harmony: Codable {
         self.editorial = try Editorial(from: decoder)
         self.staff = try container.decodeIfPresent(Int.self, forKey: .staff)
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         fatalError("TODO")

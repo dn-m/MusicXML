@@ -8,12 +8,16 @@
 /// Wavy lines are one way to indicate trills. When used with a measure element, they should always
 /// have type="continue" set.
 public struct WavyLine {
+    // MARK: - Instance Properties
+
     public let type: StartStopContinue
     public let number: Int?
     public let position: Position
     public let placement: AboveBelow?
     public let color: Color?
     public let trillSound: TrillSound
+
+    // MARK: - Initializers
 
     public init(type: StartStopContinue, number: Int? = nil, position: Position = Position(), placement: AboveBelow? = nil, color: Color? = nil, trillSound: TrillSound = TrillSound()) {
         self.type = type
@@ -27,12 +31,16 @@ public struct WavyLine {
 
 extension WavyLine: Equatable {}
 extension WavyLine: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case number
         case placement
         case color
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -43,6 +51,8 @@ extension WavyLine: Codable {
         try container.encodeIfPresent(color, forKey: .color)
         try trillSound.encode(to: encoder)
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

@@ -12,12 +12,14 @@
 /// harmonic element refer to the use of the circular harmonic symbol, typically but not always used
 /// with natural harmonics.
 public struct Harmonic {
-    // MARK: - Elements
+    // MARK: - Instance Properties
+
+    // MARK: Elements
 
     public var naturalArtificial: NaturalArtificial?
     public var baseSoundingTouchingPitch: BaseSoundingTouchingPitch?
 
-    // MARK: - Attributes
+    // MARK: Attributes
 
     public var printObject: Bool?
 
@@ -26,6 +28,8 @@ public struct Harmonic {
     // MARK: - Attribute Groups
 
     public var printStyle: PrintStyle
+
+    // MARK: - Initializers
 
     public init(
         naturalArtificial: NaturalArtificial? = nil,
@@ -66,6 +70,8 @@ extension Harmonic {
 }
 
 extension Harmonic: Codable {
+    // MARK: - Codable
+
     public enum CodingKeys: String, CodingKey {
         case naturalArtificial
         case baseSoundingTouchingPitch
@@ -81,6 +87,8 @@ extension Harmonic: Codable {
         case sounding = "sounding-pitch"
         case touching = "touching-pitch"
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         self.printStyle = try PrintStyle(from: decoder)
@@ -104,6 +112,8 @@ extension Harmonic: Codable {
         self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
         self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         try printStyle.encode(to: encoder)

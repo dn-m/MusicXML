@@ -8,6 +8,8 @@
 /// The wedge type represents crescendo and diminuendo wedge symbols. The line-type is solid by
 /// default.
 public struct Wedge {
+    // MARK: - Instance Properties
+
     /// The type attribute is crescendo for the start of a wedge that is closed at the left side,
     /// and diminuendo for the start of a wedge that is closed on the right side.
     public let type: WedgeType
@@ -25,6 +27,8 @@ public struct Wedge {
     public let position: Position
     public let color: Color?
 
+    // MARK: - Initializers
+
     public init(type: WedgeType, number: Int? = nil, spread: Tenths? = nil, niente: Bool? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting = DashedFormatting(), position: Position = Position(), color: Color? = nil) {
         self.type = type
         self.number = number
@@ -39,6 +43,8 @@ public struct Wedge {
 
 extension Wedge: Equatable {}
 extension Wedge: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case number
@@ -48,7 +54,8 @@ extension Wedge: Codable {
         case color
     }
 
-    // sourcery:inline:Wedge.AutoEncodable
+    // MARK: Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type, forKey: .type)
@@ -60,7 +67,8 @@ extension Wedge: Codable {
         try position.encode(to: encoder)
         try container.encodeIfPresent(color, forKey: .color)
     }
-    // sourcery:end
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

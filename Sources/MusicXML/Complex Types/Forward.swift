@@ -10,6 +10,8 @@
 /// staves. Duration values should always be positive, and should not cross measure boundaries or
 /// mid-measure changes in the divisions value.
 public struct Forward {
+    // MARK: - Instance Properties
+
     /// Duration is a positive number specified in division units. This is the intended duration vs.
     /// notated duration (for instance, swing eighths vs. even eighths, or differences in dotted
     /// notes in Baroque-era music). Differences in duration specific to an interpretation or
@@ -22,6 +24,8 @@ public struct Forward {
     /// Staff assignment is only needed for music notated on multiple staves. Used by both notes
     /// and directions. Staff values are numbers, with 1 referring to the top-most staff in a part.
     public let staff: Int?
+
+    // MARK: - Initializers
 
     public init(duration: Int, editorialVoice: EditorialVoice? = nil, staff: Int? = nil) {
         self.duration = duration

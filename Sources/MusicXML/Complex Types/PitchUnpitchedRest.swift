@@ -16,11 +16,15 @@ public enum PitchUnpitchedOrRest {
 extension PitchUnpitchedOrRest: Equatable {}
 
 extension PitchUnpitchedOrRest: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case pitch
         case unpitched
         case rest
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -33,6 +37,8 @@ extension PitchUnpitchedOrRest: Codable {
             try container.encode(value, forKey: .rest)
         }
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

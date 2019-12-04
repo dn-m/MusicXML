@@ -11,6 +11,8 @@ import XMLCoder
 /// DeviceName meta event, there can be multiple midi-device elements per MusicXML part starting in
 /// MusicXML 3.0.
 public struct MIDIDevice {
+    // MARK: - Instance Properties
+
     public var value: String?
     /// The optional port attribute is a number from 1 to 16 that can be used with the unofficial
     /// MIDI port (or cable) meta event.
@@ -18,6 +20,8 @@ public struct MIDIDevice {
     /// The optional id attribute refers to the score-instrument assigned to this device. If
     /// missing, the device assignment affects all score-instrument elements in the score-part.
     public var id: String?
+
+    // MARK: - Initializers
 
     public init(_ value: String? = nil, port: Int? = nil, id: String? = nil) {
         self.value = value
@@ -28,6 +32,8 @@ public struct MIDIDevice {
 
 extension MIDIDevice: Equatable {}
 extension MIDIDevice: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case id
         case port

@@ -8,10 +8,14 @@
 /// The horizontal-turn type represents turn elements that are horizontal rather than vertical.
 /// These are empty elements with print-style, placement, trill-sound, and slash attributes.
 public struct HorizontalTurn {
+    // MARK: - Instance Properties
+
     public var printStyle: PrintStyle
     public var placement: AboveBelow?
     public var trillSound: TrillSound
     public var slash: Bool?
+
+    // MARK: - Initializers
 
     public init(printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil, trillSound: TrillSound = TrillSound(), slash: Bool? = nil) {
         self.printStyle = printStyle
@@ -23,10 +27,14 @@ public struct HorizontalTurn {
 
 extension HorizontalTurn: Equatable {}
 extension HorizontalTurn: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case placement
         case slash
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -36,7 +44,8 @@ extension HorizontalTurn: Codable {
         slash = try container.decodeIfPresent(Bool.self, forKey: .slash)
     }
 
-    // sourcery:inline:HorizontalTurn.AutoEncodable
+    // MARK: Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try printStyle.encode(to: encoder)
@@ -44,5 +53,4 @@ extension HorizontalTurn: Codable {
         try trillSound.encode(to: encoder)
         try container.encodeIfPresent(YesNo(slash), forKey: .slash)
     }
-    // sourcery:end
 }

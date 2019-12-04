@@ -19,6 +19,8 @@ import XMLCoder
 /// be combined in a single credit, so multiple elements may be used. Standard values include page
 /// number, title, subtitle, composer, arranger, lyricist, and rights.
 public struct Credit {
+    // MARK: - Instance Properties
+
     /// The page attribute for the credit element specifies the page number where the credit should
     /// appear. This is an integer value that starts with 1 for the first page. Its value is 1 by
     /// default. Since credits occur before the music, these page numbers do not refer to the page
@@ -38,6 +40,8 @@ public struct Credit {
     public let link: [Link]?
     public let bookmarks: [Bookmark]?
 
+    // MARK: - Initializers
+
     public init(page: Int? = nil, types: [String]? = nil, link: [Link]? = nil, bookmarks: [Bookmark]? = nil) {
         self.page = page
         self.types = types
@@ -48,9 +52,13 @@ public struct Credit {
 
 extension Credit {
     public struct Words {
+        // MARK: - Instance Properties
+
         public let words: FormattedText
         public let links: [Link]
         public let bookmark: [Bookmark]
+
+        // MARK: - Initializers
 
         public init(words: FormattedText, links: [Link], bookmark: [Bookmark]) {
             self.words = words
@@ -72,10 +80,14 @@ extension Credit.Words: Codable {}
 
 extension Credit.Kind: Equatable {}
 extension Credit.Kind: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case image
         case words
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -86,6 +98,8 @@ extension Credit.Kind: Codable {
             try container.encode(value, forKey: .words)
         }
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

@@ -7,10 +7,14 @@
 
 /// The `partwise` traversal of a MusicXML score.
 public struct Partwise {
+    // MARK: - Instance Properties
+
     // MARK: Elements
 
     public let header: Header
     public var parts: [Part]
+
+    // MARK: - Initializers
 
     public init(header: Header, parts: [Part]) {
         self.header = header
@@ -44,11 +48,15 @@ extension Partwise {
 extension Partwise: Equatable {}
 
 extension Partwise: Codable {
+    // MARK: - Codable
+
     // MARK: - Decodable
 
     enum CodingKeys: String, CodingKey {
         case parts = "part"
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

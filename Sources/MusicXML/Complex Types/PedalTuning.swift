@@ -7,8 +7,12 @@
 
 /// The pedal-tuning type specifies the tuning of a single harp pedal.
 public struct PedalTuning {
+    // MARK: - Instance Properties
+
     public let step: Step
     public let alter: Int
+
+    // MARK: - Initializers
 
     public init(step: Step, alter: Int) {
         self.step = step
@@ -18,6 +22,8 @@ public struct PedalTuning {
 
 extension PedalTuning: Equatable {}
 extension PedalTuning: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case step = "pedal-step"
         case alter = "pedal-alter"

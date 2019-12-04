@@ -12,12 +12,14 @@
 /// children, non-positional formatting attributes are carried over from the previous element by
 /// default.
 public struct Direction {
-    // MARK: - Attributes
+    // MARK: - Instance Properties
+
+    // MARK: Attributes
 
     public let placement: AboveBelow?
     public let directive: Bool?
 
-    // MARK: - Elements
+    // MARK: Elements
 
     public let directionTypes: [DirectionType]
     public let offset: Offset?
@@ -26,6 +28,8 @@ public struct Direction {
     public let voice: String?
     public let staff: UInt?
     public let sound: Sound?
+
+    // MARK: - Initializers
 
     public init(
         _ directionTypes: [DirectionType],
@@ -54,6 +58,8 @@ public struct Direction {
 
 extension Direction: Equatable {}
 extension Direction: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case placement
         case directive

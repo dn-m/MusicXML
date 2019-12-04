@@ -29,7 +29,7 @@ public struct Dynamics {
     public let printStyleAlign: PrintStyleAlign
     public let textDecoration: TextDecoration
 
-    // MARK: One-off Attributes
+    // MARK: Attributes
 
     public let placement: AboveBelow?
     public let enclosure: EnclosureShape?
@@ -55,6 +55,10 @@ extension Dynamics {
 
 extension Dynamics: Equatable {}
 extension Dynamics: Codable {
+    // MARK: - Codable
+
+    // MARK: Decodable
+
     public init(from decoder: Decoder) throws {
         // Decode values
         self.values = try decoder.collectArray()

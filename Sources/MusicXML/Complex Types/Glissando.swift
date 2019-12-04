@@ -10,12 +10,16 @@
 /// and portamento elements. A glissando sounds the half notes in between the slide and defaults to
 /// a wavy line. The optional text is printed alongside the line.
 public struct Glissando {
+    // MARK: - Instance Properties
+
     public let value: String
     public let type: StartStop
     public let number: Int?
     public let lineType: LineType?
     public let dashedFormatting: DashedFormatting
     public let printStyle: PrintStyle
+
+    // MARK: - Initializers
 
     public init(_ value: String, type: StartStop, number: Int? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting = DashedFormatting(), printStyle: PrintStyle = PrintStyle()) {
         self.value = value
@@ -29,6 +33,8 @@ public struct Glissando {
 
 extension Glissando: Equatable {}
 extension Glissando: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case number
@@ -36,6 +42,8 @@ extension Glissando: Codable {
         case dashedFormatting
         case value = ""
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -46,6 +54,8 @@ extension Glissando: Codable {
         dashedFormatting = try DashedFormatting(from: decoder)
         printStyle = try PrintStyle(from: decoder)
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

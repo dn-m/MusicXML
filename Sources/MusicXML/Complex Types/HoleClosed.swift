@@ -7,10 +7,14 @@
 
 /// The hole-closed type represents whether the hole is closed, open, or half-open.
 public struct HoleClosed {
+    // MARK: - Instance Properties
+
     public let value: HoleClosedValue
     /// The optional location attribute indicates which portion of the hole is filled in when the
     /// element value is half.
     public let location: HoleClosedLocation?
+
+    // MARK: - Initializers
 
     public init(_ value: HoleClosedValue, location: HoleClosedLocation? = nil) {
         self.value = value
@@ -20,6 +24,8 @@ public struct HoleClosed {
 
 extension HoleClosed: Equatable {}
 extension HoleClosed: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case location
         case value = ""

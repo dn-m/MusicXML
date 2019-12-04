@@ -13,8 +13,12 @@
 /// system margin, respectively.  When used in the print element, the system-dividers element
 /// affects the dividers that would appear between the current system and the previous system.
 public struct SystemDividers {
+    // MARK: - Instance Properties
+
     public let left: PrintStyleAlignObject
     public let right: PrintStyleAlignObject
+
+    // MARK: - Initializers
 
     public init(left: PrintStyleAlignObject, right: PrintStyleAlignObject) {
         self.left = left
@@ -24,6 +28,8 @@ public struct SystemDividers {
 
 extension SystemDividers: Equatable {}
 extension SystemDividers: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case left = "left-divider"
         case right = "right-divider"

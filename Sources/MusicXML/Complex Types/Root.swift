@@ -10,8 +10,12 @@
 /// root-alter element similar to the step and alter elements, but renamed to distinguish the
 /// different musical meanings.
 public struct Root {
+    // MARK: - Instance Properties
+
     public let step: RootStep
     public let alter: RootAlter?
+
+    // MARK: - Initializers
 
     public init(step: RootStep, alter: RootAlter? = nil) {
         self.step = step
@@ -21,6 +25,8 @@ public struct Root {
 
 extension Root: Equatable {}
 extension Root: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case step = "root-step"
         case alter = "root-alter"

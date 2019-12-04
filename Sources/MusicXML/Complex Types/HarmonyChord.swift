@@ -36,11 +36,15 @@ import XMLCoder
 //    inversion?, bass?, degree*)">
 
 public struct HarmonyChord {
+    // MARK: - Instance Properties
+
     public let rootOrFunction: RootOrFunction
     public let kind: Kind
     public let inversion: Inversion?
     public let bass: Bass?
     public let degrees: [Degree]?
+
+    // MARK: - Initializers
 
     public init(rootOrFunction: RootOrFunction, kind: Kind, inversion: Inversion? = nil, bass: Bass? = nil, degrees: [Degree]? = nil) {
         self.rootOrFunction = rootOrFunction
@@ -132,10 +136,14 @@ extension HarmonyChord: Equatable {}
 
 extension HarmonyChord.RootOrFunction: Equatable {}
 extension HarmonyChord.RootOrFunction: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case root
         case function
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -146,6 +154,8 @@ extension HarmonyChord.RootOrFunction: Codable {
             try container.encode(value, forKey: .function)
         }
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -190,6 +200,8 @@ extension HarmonyChordComponent: Decodable {
         case bass
         case degree
     }
+
+    // MARK: Decodable
 
     internal init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

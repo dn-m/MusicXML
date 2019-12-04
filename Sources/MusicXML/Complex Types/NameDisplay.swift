@@ -12,8 +12,12 @@ import XMLCoder
 /// is printed at the start of each system. Enclosure for the display-text element is none by
 /// default. Language for the display-text element is Italian ("it") by default.
 public struct NameDisplay {
+    // MARK: - Instance Properties
+
     public let printObject: Bool?
     public let texts: [Text]
+
+    // MARK: - Initializers
 
     public init(printObject: Bool? = nil, texts: [Text] = []) {
         self.printObject = printObject
@@ -31,10 +35,14 @@ extension NameDisplay {
 extension NameDisplay.Text: Equatable {}
 
 extension NameDisplay.Text: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case displayText = "display-text"
         case accidentalText = "accidental-text"
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -45,6 +53,8 @@ extension NameDisplay.Text: Codable {
             try container.encode(value, forKey: .displayText)
         }
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -71,9 +81,13 @@ extension NameDisplay.Text: Codable {
 
 extension NameDisplay: Equatable {}
 extension NameDisplay: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case printObject = "print-object"
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -81,6 +95,8 @@ extension NameDisplay: Codable {
         let textsContainer = try decoder.singleValueContainer()
         self.texts = try textsContainer.decode([Text].self)
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         fatalError("TODO")

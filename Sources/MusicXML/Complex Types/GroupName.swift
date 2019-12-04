@@ -9,9 +9,13 @@
 /// attributes in the group-name type are deprecated in Version 2.0 in favor of the new
 /// group-name-display and group-abbreviation-display elements.
 public struct GroupName {
+    // MARK: - Instance Properties
+
     public let value: String
     public let printStyle: PrintStyle
     public let justify: Justify?
+
+    // MARK: - Initializers
 
     public init(_ value: String, printStyle: PrintStyle = PrintStyle(), justify: Justify? = nil) {
         self.value = value
@@ -22,10 +26,14 @@ public struct GroupName {
 
 extension GroupName: Equatable {}
 extension GroupName: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case justify
         case value = ""
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -33,6 +41,8 @@ extension GroupName: Codable {
         printStyle = try PrintStyle(from: decoder)
         justify = try container.decodeIfPresent(Justify.self, forKey: .justify)
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

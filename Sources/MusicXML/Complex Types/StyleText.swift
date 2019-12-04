@@ -7,8 +7,12 @@
 
 /// The style-text type represents a text element with a print-style attribute group.
 public struct StyleText {
+    // MARK: - Instance Properties
+
     public let value: String
     public let printStyle: PrintStyle
+
+    // MARK: - Initializers
 
     public init(_ value: String, printStyle: PrintStyle = PrintStyle()) {
         self.value = value
@@ -18,9 +22,13 @@ public struct StyleText {
 
 extension StyleText: Equatable {}
 extension StyleText: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attribute group
@@ -29,6 +37,8 @@ extension StyleText: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.value = try container.decode(String.self, forKey: .value)
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

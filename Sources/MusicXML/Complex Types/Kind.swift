@@ -30,6 +30,8 @@ public struct Kind {
 
     public let printStyle: PrintStyle
 
+    // MARK: - Initializers
+
     public init(
         _ value: KindValue,
         useSymbols: Bool? = nil,
@@ -93,6 +95,8 @@ extension Kind {
 
 extension Kind: Equatable {}
 extension Kind: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case useSymbols = "use-symbols"
         case text
@@ -103,6 +107,8 @@ extension Kind: Codable {
         case vAlign = "valign"
         case value = ""
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -117,7 +123,8 @@ extension Kind: Codable {
         self.value = try container.decode(KindValue.self, forKey: .value)
     }
 
-    // sourcery:inline:Kind.AutoEncodable
+    // MARK: Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)
@@ -130,7 +137,6 @@ extension Kind: Codable {
         try container.encodeIfPresent(vAlign, forKey: .vAlign)
         try printStyle.encode(to: encoder)
     }
-    // sourcery:end
 }
 
 import XMLCoder

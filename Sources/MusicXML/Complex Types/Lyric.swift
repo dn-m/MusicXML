@@ -23,7 +23,7 @@ public struct Lyric {
 
     public let kind: Kind
 
-    // MARK: One-off Attributes
+    // MARK: Attributes
 
     /// The lyric number indicates multiple lines, though a name can be used as well (as in Finale's
     /// verse / chorus / section specification).
@@ -117,6 +117,8 @@ extension Lyric.Kind: Equatable {}
 
 extension Lyric: Equatable {}
 extension Lyric: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case kind
         case number
@@ -136,6 +138,8 @@ extension Lyric: Codable {
         case elision
         case level
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -185,6 +189,8 @@ extension Lyric: Codable {
             self.kind = .nonVerbal(nonVerbal)
         }
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         fatalError()

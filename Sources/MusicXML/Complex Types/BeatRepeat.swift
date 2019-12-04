@@ -11,9 +11,13 @@
 /// needs to be repeated within the MusicXML file. This element specifies the notation that
 /// indicates the repeat.
 public struct BeatRepeat {
+    // MARK: - Instance Properties
+
     public let type: StartStop
     public let slashes: Int
     public let useDots: Bool
+
+    // MARK: - Initializers
 
     public init(type: StartStop, slashes: Int, useDots: Bool) {
         self.type = type

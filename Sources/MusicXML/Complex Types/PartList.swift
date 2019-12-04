@@ -14,7 +14,12 @@ import XMLCoder
 /// brackets. Parts are ordered from top to bottom in a score based on the order in which they
 /// appear in the part-list.
 public struct PartList {
+    // MARK: - Instance Properties
+
     public let parts: [Item]
+
+    // MARK: - Initializers
+
     public init(_ parts: [Item]) {
         self.parts = parts
     }
@@ -33,10 +38,14 @@ extension PartList {
 
 extension PartList.Item: Equatable {}
 extension PartList.Item: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case group = "part-group"
         case part = "score-part"
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -47,6 +56,8 @@ extension PartList.Item: Codable {
             try container.encode(value, forKey: .part)
         }
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -75,6 +86,10 @@ extension PartList.Item.CodingKeys: XMLChoiceCodingKey {}
 
 extension PartList: Equatable {}
 extension PartList: Codable {
+    // MARK: - Codable
+
+    // MARK: Decodable
+
     public init(from decoder: Decoder) throws {
         let singleValue = try decoder.singleValueContainer()
         self.parts = try singleValue.decode([Item].self)

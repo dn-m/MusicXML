@@ -8,7 +8,9 @@
 /// The accidental-text type represents an element with an accidental value and text-formatting
 /// attributes.
 public struct AccidentalText {
-    // MARK: - Attributes
+    // MARK: - Instance Properties
+
+    // MARK: Attributes
 
     public let justify: LeftCenterRight?
     public let printStyle: PrintStyle
@@ -23,9 +25,11 @@ public struct AccidentalText {
     public let direction: TextDirection?
     public let enclosure: EnclosureShape?
 
-    // MARK: - Elements
+    // MARK: Elements
 
     public let value: AccidentalValue
+
+    // MARK: - Initializers
 
     public init(
         _ value: AccidentalValue,
@@ -60,6 +64,8 @@ public struct AccidentalText {
 
 extension AccidentalText: Equatable {}
 extension AccidentalText: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case justify
         case hAlign = "halign"
@@ -74,6 +80,8 @@ extension AccidentalText: Codable {
         case enclosure
         case value = ""
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -91,6 +99,8 @@ extension AccidentalText: Codable {
         self.enclosure = try container.decodeIfPresent(EnclosureShape.self, forKey: .enclosure)
         self.value = try container.decode(AccidentalValue.self, forKey: .value)
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

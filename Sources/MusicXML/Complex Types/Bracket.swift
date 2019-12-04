@@ -6,6 +6,8 @@
 //
 
 public struct Bracket {
+    // MARK: - Instance Properties
+
     public let type: StartStopContinue
     public let number: Int?
     /// The line-end attribute specifies if there is a jog up or down (or both), an arrow, or
@@ -18,6 +20,8 @@ public struct Bracket {
     public let spaceLength: Tenths?
     public let position: Position
     public let color: Color?
+
+    // MARK: - Initializers
 
     public init(type: StartStopContinue, number: Int? = nil, lineEnd: LineEnd, endLength: Tenths? = nil, lineType: LineType? = nil, dashLength: Tenths? = nil, spaceLength: Tenths? = nil, position: Position = Position(), color: Color? = nil) {
         self.type = type
@@ -34,6 +38,8 @@ public struct Bracket {
 
 extension Bracket: Equatable {}
 extension Bracket: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case type
         case number
@@ -44,6 +50,8 @@ extension Bracket: Codable {
         case spaceLength = "space-length"
         case color
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

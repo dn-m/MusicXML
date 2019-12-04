@@ -6,8 +6,12 @@
 //
 
 public struct Beater {
+    // MARK: - Instance Properties
+
     public let value: BeaterValue
     public let tip: TipDirection?
+
+    // MARK: - Initializers
 
     public init(_ value: BeaterValue, tip: TipDirection? = nil) {
         self.value = value
@@ -17,6 +21,8 @@ public struct Beater {
 
 extension Beater: Equatable {}
 extension Beater: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case tip
         case value = ""

@@ -7,6 +7,8 @@
 
 /// The note-type type indicates the graphic note type. Values range from 256th to long.
 public struct NoteType {
+    // MARK: - Instance Properties
+
     public let value: NoteTypeValue
     public let size: SymbolSize?
 }
@@ -41,6 +43,8 @@ extension NoteType {
 
 extension NoteType: Equatable {}
 extension NoteType: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case size
         case value = ""

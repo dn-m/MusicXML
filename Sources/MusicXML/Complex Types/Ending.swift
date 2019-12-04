@@ -62,6 +62,8 @@ public struct Ending {
 
 extension Ending: Equatable {}
 extension Ending: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case value = ""
         case number
@@ -71,6 +73,8 @@ extension Ending: Codable {
         case textX = "text-x"
         case textY = "text-y"
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
@@ -87,7 +91,8 @@ extension Ending: Codable {
         self.value = try container.decode(String.self, forKey: .value)
     }
 
-    // sourcery:inline:Ending.AutoEncodable
+    // MARK: Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)
@@ -99,7 +104,6 @@ extension Ending: Codable {
         try container.encodeIfPresent(textY, forKey: .textY)
         try printStyle.encode(to: encoder)
     }
-    // sourcery:end
 }
 
 import XMLCoder

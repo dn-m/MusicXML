@@ -10,11 +10,13 @@
 /// If an element within a direction includes a default-x attribute, the offset value will be
 /// ignored when determining the appearance of that element.
 public struct Offset {
-    // MARK: - Value
+    // MARK: - Instance Properties
+
+    // MARK: Value
 
     public let value: Divisions
 
-    // MARK: - Attributes
+    // MARK: Attributes
 
     public let sound: Bool?
 }
@@ -30,6 +32,8 @@ extension Offset {
 
 extension Offset: Equatable {}
 extension Offset: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case value = ""
         case sound

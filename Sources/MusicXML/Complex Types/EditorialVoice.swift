@@ -7,9 +7,13 @@
 
 // <!ENTITY % editorial-voice "(footnote?, level?, voice?)">
 public struct EditorialVoice {
+    // MARK: - Instance Properties
+
     public let footnote: FormattedText?
     public let level: Level?
     public let voice: Int?
+
+    // MARK: - Initializers
 
     public init(footnote: FormattedText? = nil, level: Level? = nil, voice: Int? = nil) {
         self.footnote = footnote

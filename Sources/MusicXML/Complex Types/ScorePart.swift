@@ -13,11 +13,13 @@ import XMLCoder
 /// Initial midi-instrument assignments may be made here as well.
 // TODO: Add support for ScorePart print-style, print-object, and justify
 public struct ScorePart {
-    // MARK: - Attributes
+    // MARK: - Instance Properties
+
+    // MARK: Attributes
 
     public var id: String
 
-    // MARK: - Elements
+    // MARK: Elements
 
     /// Identification contains basic metadata about the score. It includes the information in
     /// MuseData headers that may apply at a score-wide, movement-wide, or part-wide level. The
@@ -71,6 +73,8 @@ public struct ScorePart {
     /// change.
     public var midi: [MIDI]?
 
+    // MARK: - Initializers
+
     public init(id: String, identification: Identification? = nil, name: PartName, nameDisplay: NameDisplay? = nil, partAbbreviation: PartName? = nil, partAbbreviationDisplay: NameDisplay? = nil, group: [String]? = nil, scoreInstrument: [ScoreInstrument]? = nil, midi: [MIDI]? = nil) {
         self.id = id
         self.identification = identification
@@ -86,6 +90,8 @@ public struct ScorePart {
 
 extension ScorePart {
     public struct MIDI {
+        // MARK: - Instance Properties
+
         /// The midi-device type corresponds to the DeviceName meta event in Standard MIDI Files.
         /// Unlike the DeviceName meta event, there can be multiple midi-device elements per
         /// MusicXML part starting in MusicXML 3.0.
@@ -96,6 +102,8 @@ extension ScorePart {
         /// the sound element within a part. The id attribute refers to the score-instrument
         /// affected by the change.
         public let midiInstrument: MIDIInstrument?
+
+        // MARK: - Initializers
 
         public init(midiDevice: MIDIDevice? = nil, midiInstrument: MIDIInstrument? = nil) {
             self.midiDevice = midiDevice
@@ -109,6 +117,8 @@ extension ScorePart.MIDI: Codable {}
 
 extension ScorePart: Equatable {}
 extension ScorePart: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case id
         case identification
@@ -121,6 +131,8 @@ extension ScorePart: Codable {
         case midiDevice = "midi-device"
         case midiInstrument = "midi-instrument"
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -139,6 +151,8 @@ extension ScorePart: Codable {
             }
         }
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

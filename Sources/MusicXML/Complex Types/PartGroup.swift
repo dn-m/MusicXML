@@ -16,6 +16,8 @@
 /// bar-style) common barlines. The symbol formatting for a multi-staff part can be more fully
 /// specified using the part-symbol element.
 public struct PartGroup {
+    // MARK: - Instance Properties
+
     public var type: StartStop
     public var number: Int?
     public var name: GroupName?
@@ -26,6 +28,8 @@ public struct PartGroup {
     public var barline: GroupBarline?
     public var time: Bool?
     public var editorial: Editorial?
+
+    // MARK: - Initializers
 
     public init(type: StartStop, number: Int? = nil, name: GroupName? = nil, nameDisplay: NameDisplay? = nil, abbreviation: GroupName? = nil, abbreviationDisplay: NameDisplay? = nil, symbol: GroupSymbol? = nil, barline: GroupBarline? = nil, time: Bool? = nil, editorial: Editorial? = nil) {
         self.type = type
@@ -43,6 +47,8 @@ public struct PartGroup {
 
 extension PartGroup: Equatable {}
 extension PartGroup: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case number

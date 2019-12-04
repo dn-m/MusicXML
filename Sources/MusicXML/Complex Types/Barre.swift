@@ -9,8 +9,12 @@
 /// "start" for the lowest pitched string (e.g., the string with the highest MusicXML number) and is
 /// "stop" for the highest pitched string.
 public struct Barre {
+    // MARK: - Instance Properties
+
     public let type: StartStop
     public let color: Color
+
+    // MARK: - Initializers
 
     public init(type: StartStop, color: Color) {
         self.type = type

@@ -9,8 +9,12 @@
 /// generally not used in functional harmony, as inversion is generally not used in pop chord
 /// symbols. As with root, it is divided into step and alter elements, similar to pitches.
 public struct Bass {
+    // MARK: - Instance Properties
+
     public let step: BassStep
     public let alter: BassAlter?
+
+    // MARK: - Initializers
 
     public init(step: BassStep, alter: BassAlter? = nil) {
         self.step = step
@@ -21,6 +25,8 @@ public struct Bass {
 extension Bass: Equatable {}
 
 extension Bass: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case step = "bass-step"
         case alter = "bass-alter"

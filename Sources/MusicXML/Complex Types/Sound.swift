@@ -24,6 +24,8 @@
 /// reflects the intended musical position for the change in sound. It should not be used to
 /// compensate for latency issues in particular hardware configurations.
 public struct Sound {
+    // MARK: - Instance Properties
+
     public let tempo: Double?
     public let dynamics: Double?
     public let dacapo: Bool?
@@ -43,6 +45,8 @@ public struct Sound {
     public let sostenutoPedal: YesNoNumber?
     public let offset: Offset?
     public let midi: [MIDI]
+
+    // MARK: - Initializers
 
     public init(tempo: Double? = nil, dynamics: Double? = nil, dacapo: Bool? = nil, segno: String? = nil, dalsegno: String? = nil, coda: String? = nil, tocoda: String? = nil, divisions: Divisions? = nil, forwardRepeat: Bool? = nil, fine: String? = nil, timeOnly: TimeOnly? = nil, pizzicato: Bool? = nil, pan: Double? = nil, elevation: Double? = nil, damperPedal: YesNoNumber? = nil, softPedal: YesNoNumber? = nil, sostenutoPedal: YesNoNumber? = nil, offset: Offset? = nil, midi: [MIDI] = []) {
         self.tempo = tempo
@@ -69,6 +73,8 @@ public struct Sound {
 
 extension Sound {
     public struct MIDI {
+        // MARK: - Instance Properties
+
         /// The midi-device type corresponds to the DeviceName meta event in Standard MIDI Files.
         /// Unlike the DeviceName meta event, there can be multiple midi-device elements per
         /// MusicXML part starting in MusicXML 3.0.
@@ -87,6 +93,8 @@ extension Sound {
         /// note element, it applies to the current note only.
         public let play: Play?
 
+        // MARK: - Initializers
+
         public init(midiDevice: MIDIDevice? = nil, midiInstrument: MIDIInstrument? = nil, play: Play? = nil) {
             self.midiDevice = midiDevice
             self.midiInstrument = midiInstrument
@@ -97,11 +105,15 @@ extension Sound {
 
 extension Sound.MIDI: Equatable {}
 extension Sound.MIDI: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case midiDevice = "midi-device"
         case midiInstrument = "midi-instrument"
         case play
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -113,6 +125,8 @@ extension Sound.MIDI: Codable {
 
 extension Sound: Equatable {}
 extension Sound: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case tempo
         case dynamics
@@ -133,6 +147,8 @@ extension Sound: Codable {
         case sostenutoPedal = "sostenuto-pedal"
         case offset
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -160,6 +176,8 @@ extension Sound: Codable {
 
         self.offset = try container.decodeIfPresent(Offset.self, forKey: .offset)
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         fatalError("TODO")

@@ -31,12 +31,16 @@ public struct MetronomeNote {
 
 extension MetronomeNote: Equatable {}
 extension MetronomeNote: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case metronomeType = "metronome-type"
         case metronomeDotCount = "metronome-dot"
         case metronomeBeams = "metronome-beam"
         case metronomeTuplet = "metronome-tuplet"
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

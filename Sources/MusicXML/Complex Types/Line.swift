@@ -8,12 +8,16 @@
 /// The empty-line type represents an empty element with line-shape, line-type, dashed-formatting,
 /// print-style and placement attributes.
 public struct Line {
+    // MARK: - Instance Properties
+
     public var lineShape: LineShape?
     public var lineType: LineType?
     public var dashedFormatting: DashedFormatting
     public var position: Position
     public var printStyle: PrintStyle
     public var placement: AboveBelow?
+
+    // MARK: - Initializers
 
     public init(lineShape: LineShape? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting = DashedFormatting(), position: Position = Position(), printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil) {
         self.lineShape = lineShape
@@ -27,11 +31,15 @@ public struct Line {
 
 extension Line: Equatable {}
 extension Line: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case lineShape
         case lineType
         case placement
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -42,6 +50,8 @@ extension Line: Codable {
         try printStyle.encode(to: encoder)
         try container.encodeIfPresent(placement, forKey: .placement)
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

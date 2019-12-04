@@ -16,11 +16,13 @@ public struct Pedal {
 
     public let printStyleAlign: PrintStyleAlign
 
-    // MARK: One-off Attributes
+    // MARK: Attributes
 
     public let type: StartStopChangeContinue
     public let line: Bool?
     public let sign: Bool?
+
+    // MARK: - Initializers
 
     public init(
         type: StartStopChangeContinue,
@@ -37,6 +39,10 @@ public struct Pedal {
 
 extension Pedal: Equatable {}
 extension Pedal: Codable {
+    // MARK: - Codable
+
+    // MARK: Decodable
+
     public init(from decoder: Decoder) throws {
         self.printStyleAlign = try PrintStyleAlign(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)

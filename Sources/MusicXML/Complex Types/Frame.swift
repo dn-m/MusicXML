@@ -8,6 +8,8 @@
 /// The frame type represents a frame or fretboard diagram used together with a chord symbol. The
 /// representation is based on the NIFF guitar grid with additional information.
 public struct Frame {
+    // MARK: - Instance Properties
+
     public let position: Position
     public let color: Color?
     public let hAlign: LeftCenterRight?
@@ -29,6 +31,8 @@ public struct Frame {
     /// The frame-note type represents each note included in the frame. An open string will have a
     /// fret value of 0, while a muted string will not be associated with a frame-note element.
     public let frameNotes: [FrameNote]
+
+    // MARK: - Initializers
 
     public init(
         position: Position = Position(),
@@ -59,6 +63,8 @@ public struct Frame {
 
 extension Frame: Equatable {}
 extension Frame: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case position
         case color
@@ -73,6 +79,8 @@ extension Frame: Codable {
         case frameNotes = "frame-note"
         case firstFret = "first-fret"
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decdode attribute groups

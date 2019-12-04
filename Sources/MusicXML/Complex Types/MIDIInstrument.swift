@@ -73,6 +73,8 @@ public struct MIDIInstrument {
 
 extension MIDIInstrument: Equatable {}
 extension MIDIInstrument: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case id
         case channel = "midi-channel"

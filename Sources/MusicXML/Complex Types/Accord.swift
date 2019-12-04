@@ -14,11 +14,13 @@ public struct Accord {
 
     public let string: Int
 
-    // MARK: - Elements
+    // MARK: Elements
 
     public let tuningStep: Step
     public let tuningAlter: Double?
     public let tuningOctave: Int?
+
+    // MARK: - Initializers
 
     public init(
         string: Int,
@@ -35,6 +37,8 @@ public struct Accord {
 
 extension Accord: Equatable {}
 extension Accord: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case string
         case tuningStep = "tuning-step"

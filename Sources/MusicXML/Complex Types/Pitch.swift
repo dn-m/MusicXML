@@ -8,9 +8,13 @@
 /// Pitch is represented as a combination of the step of the diatonic scale, the chromatic
 /// alteration, and the octave.
 public struct Pitch {
+    // MARK: - Instance Properties
+
     public let step: Step
     public let alter: Double?
     public let octave: Int
+
+    // MARK: - Initializers
 
     public init(step: Step, alter: Double? = nil, octave: Int) {
         self.step = step

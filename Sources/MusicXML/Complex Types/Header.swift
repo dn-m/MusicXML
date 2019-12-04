@@ -14,6 +14,8 @@
 // "(work?, movement-number?, movement-title?,
 // identification?, defaults?, credit*, part-list)">
 public struct Header: Equatable {
+    // MARK: - Instance Properties
+
     public var work: Work?
     public var movementNumber: String?
     public var movementTitle: String?
@@ -21,6 +23,8 @@ public struct Header: Equatable {
     public var defaults: Defaults?
     public var credits: [Credit]?
     public var partList: PartList
+
+    // MARK: - Initializers
 
     public init(work: Work? = nil, movementNumber: String? = nil, movementTitle: String? = nil, identification: Identification? = nil, defaults: Defaults? = nil, credits: [Credit]? = nil, partList: PartList) {
         self.work = work
@@ -34,6 +38,8 @@ public struct Header: Equatable {
 }
 
 extension Header: Codable {
+    // MARK: - Codable
+
     // MARK: - Decodable
 
     enum CodingKeys: String, CodingKey {

@@ -10,6 +10,8 @@
 /// where empty parts are omitted. It is yes by default. If print-spacing is yes while print-object
 /// is no, the score is printed in cutaway format where vertical space is left for the empty part.
 public struct StaffDetails {
+    // MARK: - Instance Properties
+
     /// The optional number attribute specifies the staff number from top to bottom on the system,
     /// as with clef.
     public let number: Int?
@@ -43,6 +45,8 @@ public struct StaffDetails {
     /// unless specified here. Staff size affects staff height only, not the relationship of the
     /// staff to the left and right margins.
     public let staffSize: Double?
+
+    // MARK: - Initializers
 
     public init(number: Int? = nil, showFrets: ShowFrets? = nil, printObject: Bool? = nil, printSpacing: Bool? = nil, staffType: StaffType? = nil, staffLines: Int? = nil, staffTuning: [StaffTuning], capo: Int? = nil, staffSize: Double? = nil) {
         self.number = number

@@ -8,15 +8,19 @@
 /// An accidental-mark can be used as a separate notation or as part of an ornament. When used in an
 /// ornament, position and placement are relative to the ornament, not relative to the note.
 public struct AccidentalMark {
-    // MARK: - Value
+    // MARK: - Instance Properties
+
+    // MARK: Value
 
     public var value: AccidentalValue
 
-    // MARK: - Attributes
+    // MARK: Attributes
 
     public var placement: AboveBelow?
     public var position: Position
     public var printStyle: PrintStyle
+
+    // MARK: - Initializers
 
     public init(_ value: AccidentalValue, placement: AboveBelow? = nil, position: Position = Position(), printStyle: PrintStyle = PrintStyle()) {
         self.value = value
@@ -28,12 +32,16 @@ public struct AccidentalMark {
 
 extension AccidentalMark: Equatable {}
 extension AccidentalMark: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case value = ""
         case position
         case placement
         case printStyle
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -42,6 +50,8 @@ extension AccidentalMark: Codable {
         self.position = try Position(from: decoder)
         self.printStyle = try PrintStyle(from: decoder)
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

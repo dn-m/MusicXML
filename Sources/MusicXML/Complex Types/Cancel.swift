@@ -10,8 +10,12 @@
 /// then. The cancel value matches the fifths value of the cancelled key signature (e.g., a cancel
 /// of -2 will provide an explicit cancellation for changing from B flat major to F major).
 public struct Cancel {
+    // MARK: - Instance Properties
+
     public let fifths: Int
     public let location: CancelLocation
+
+    // MARK: - Initializers
 
     public init(fifths: Int, location: CancelLocation) {
         self.fifths = fifths

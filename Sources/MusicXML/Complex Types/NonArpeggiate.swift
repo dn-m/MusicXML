@@ -9,13 +9,17 @@
 /// to not arpeggiate these notes. Since this does not involve playback, it is only used on the top
 /// or bottom notes, not on each note as for the arpeggiate type.
 public struct NonArpeggiate {
-    // MARK: - Attributes
+    // MARK: - Instance Properties
+
+    // MARK: Attributes
 
     public var type: TopBottom
     public var number: Int?
     public var position: Position
     public var placement: AboveBelow?
     public var color: Color?
+
+    // MARK: - Initializers
 
     public init(type: TopBottom, number: Int? = nil, position: Position = Position(), placement: AboveBelow? = nil, color: Color? = nil) {
         self.type = type
@@ -28,12 +32,16 @@ public struct NonArpeggiate {
 
 extension NonArpeggiate: Equatable {}
 extension NonArpeggiate: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case number
         case placement
         case color
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -43,6 +51,8 @@ extension NonArpeggiate: Codable {
         try container.encodeIfPresent(placement, forKey: .placement)
         try container.encodeIfPresent(color, forKey: .color)
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

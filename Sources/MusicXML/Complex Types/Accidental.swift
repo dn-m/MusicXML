@@ -16,7 +16,7 @@ public struct Accidental {
 
     public let value: AccidentalValue
 
-    // MARK: - Attributes
+    // MARK: Attributes
 
     public let cautionary: Bool?
     public let editorial: Bool?
@@ -27,6 +27,8 @@ public struct Accidental {
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
+
+    // MARK: - Initializers
 
     public init(
         _ value: AccidentalValue,
@@ -96,6 +98,8 @@ extension Accidental {
 
 extension Accidental: Equatable {}
 extension Accidental: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case cautionary
         case editorial
@@ -106,6 +110,8 @@ extension Accidental: Codable {
         case printStyle
         case value = ""
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
@@ -121,7 +127,8 @@ extension Accidental: Codable {
         self.value = try container.decode(AccidentalValue.self, forKey: .value)
     }
 
-    // sourcery:inline:Accidental.AutoEncodable
+    // MARK: Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)
@@ -132,7 +139,6 @@ extension Accidental: Codable {
         try container.encodeIfPresent(size, forKey: .size)
         try printStyle.encode(to: encoder)
     }
-    // sourcery:end
 }
 
 import XMLCoder

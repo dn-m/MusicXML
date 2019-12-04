@@ -9,6 +9,8 @@ import XMLCoder
 
 /// The arrow element represents an arrow used for a musical technical indication.
 public struct Arrow {
+    // MARK: - Instance Properties
+
     public let kind: Kind
     public let position: Position
     public let printStyle: PrintStyle
@@ -63,10 +65,14 @@ extension Arrow {
 }
 
 extension Arrow.Kind: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case circular
         case linear
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -77,6 +83,8 @@ extension Arrow.Kind: Codable {
             try container.encode(value, forKey: .linear)
         }
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -106,10 +114,14 @@ extension Arrow.Kind.CodingKeys: XMLChoiceCodingKey {}
 extension Arrow.Kind: Equatable {}
 extension Arrow: Equatable {}
 extension Arrow: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case kind
         case placement
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -118,6 +130,8 @@ extension Arrow: Codable {
         self.printStyle = try PrintStyle(from: decoder)
         self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

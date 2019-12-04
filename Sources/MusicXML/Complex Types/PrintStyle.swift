@@ -8,9 +8,13 @@
 /// The print-style attribute group collects the most popular combination of printing attributes:
 /// position, font, and color.
 public struct PrintStyle {
+    // MARK: - Instance Properties
+
     public let position: Position
     public let font: Font
     public let color: Color?
+
+    // MARK: - Initializers
 
     public init(position: Position = Position(), font: Font = Font(), color: Color? = nil) {
         self.position = position
@@ -21,9 +25,13 @@ public struct PrintStyle {
 
 extension PrintStyle: Equatable {}
 extension PrintStyle: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case color
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -31,6 +39,8 @@ extension PrintStyle: Codable {
         self.font = try Font(from: decoder)
         self.color = try container.decodeIfPresent(Color.self, forKey: .color)
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         try position.encode(to: encoder)

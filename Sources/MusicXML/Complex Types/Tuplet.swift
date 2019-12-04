@@ -14,7 +14,9 @@
 /// than the time-modification element, and is needed to represent nested tuplets and other complex
 /// tuplets accurately.
 public struct Tuplet {
-    // MARK: - Attributes
+    // MARK: - Instance Properties
+
+    // MARK: Attributes
 
     public var type: StartStop
     /// The number attribute is used to distinguish nested tuplets.
@@ -33,10 +35,12 @@ public struct Tuplet {
     public var position: Position?
     public var placement: AboveBelow?
 
-    // MARK: - Elements
+    // MARK: Elements
 
     public var actualNotes: TupletPortion?
     public var normalNotes: TupletPortion?
+
+    // MARK: - Initializers
 
     public init(type: StartStop, number: Int? = nil, bracket: Bool? = nil, showNumber: ShowTuplet? = nil, showType: ShowTuplet? = nil, lineShape: LineShape? = nil, position: Position? = nil, placement: AboveBelow? = nil, actualNotes: TupletPortion? = nil, normalNotes: TupletPortion? = nil) {
         self.type = type
@@ -54,6 +58,8 @@ public struct Tuplet {
 
 extension Tuplet: Equatable {}
 extension Tuplet: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case number

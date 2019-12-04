@@ -25,6 +25,8 @@
 ///     The default for last-beat is "24", not "75".
 ///
 public struct TrillSound {
+    // MARK: - Instance Properties
+
     let startNote: StartNote?
     let trillStep: TrillStep?
     let twoNoteTurn: TwoNoteTurn?
@@ -32,6 +34,8 @@ public struct TrillSound {
     let beats: Int?
     let secondBeat: Int?
     let lastBeat: Int?
+
+    // MARK: - Initializers
 
     public init(startNote: StartNote? = nil, trillStep: TrillStep? = nil, twoNoteTurn: TwoNoteTurn? = nil, accelerate: Bool? = nil, beats: Int? = nil, secondBeat: Int? = nil, lastBeat: Int? = nil) {
         self.startNote = startNote
@@ -47,6 +51,8 @@ public struct TrillSound {
 extension TrillSound: Equatable {}
 
 extension TrillSound: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case startNote = "start-note"
         case trillStep = "trill-step"

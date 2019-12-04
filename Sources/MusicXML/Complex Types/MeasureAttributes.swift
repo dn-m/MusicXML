@@ -7,6 +7,8 @@
 
 /// The attributes which are shared between the `Timewise` and `Partwise` forms of `Measure`.
 public struct MeasureAttributes {
+    // MARK: - Instance Properties
+
     public let number: String
     public let text: String?
     public let implicit: Bool?
@@ -19,6 +21,8 @@ extension MeasureAttributes: Equatable {}
 extension MeasureAttributes: Hashable {}
 
 extension MeasureAttributes: Codable {
+    // MARK: - Codable
+
     internal enum CodingKeys: String, CodingKey {
         case number
         case text

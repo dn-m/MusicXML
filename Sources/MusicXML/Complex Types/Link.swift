@@ -33,6 +33,8 @@
 /// with a MusicXML opus. If a relative link is used within a document that is part of a compressed
 /// MusicXML file, the link is relative to the root folder of the zip file.
 public struct Link {
+    // MARK: - Instance Properties
+
     public let name: String?
 
     // > The element attribute specifies an
@@ -50,6 +52,8 @@ public struct Link {
     //    This is equivalent to an XPath test of [.//beam[2]] done
     //    in the context of the sibling element.
     public let position: String?
+
+    // MARK: - Initializers
 
     public init(name: String? = nil, element: String? = nil, position: String? = nil) {
         self.name = name

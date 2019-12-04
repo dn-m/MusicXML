@@ -22,7 +22,7 @@ public struct Tremolo {
 
     public let marks: Int
 
-    // MARK: - One-off Attributes
+    // MARK: Attributes
 
     public let type: StartStopSingle?
     public let placement: AboveBelow?
@@ -48,12 +48,16 @@ public struct Tremolo {
 
 extension Tremolo: Equatable {}
 extension Tremolo: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case marks = ""
         case type
         case printStyle
         case placement
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

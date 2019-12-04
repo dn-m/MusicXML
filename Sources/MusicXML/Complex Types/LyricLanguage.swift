@@ -7,9 +7,13 @@
 
 /// The lyric-language type specifies the default language for a particular name and number of lyric.
 public struct LyricLanguage: Codable, Equatable {
+    // MARK: - Instance Properties
+
     public let number: Int?
     public let name: String?
     public let language: String?
+
+    // MARK: - Initializers
 
     public init(number: Int? = nil, name: String? = nil, language: String? = nil) {
         self.number = number

@@ -18,7 +18,7 @@
 public struct Font {
     // MARK: - Instance Properties
 
-    // MARK: - Attributes
+    // MARK: Attributes
 
     // FIXME: Font.family should be `CommaSeparatedText`
     public let family: String?
@@ -26,6 +26,8 @@ public struct Font {
     public let style: FontStyle?
     public let size: FontSize?
     public let weight: FontWeight?
+
+    // MARK: - Initializers
 
     public init(
         family: String? = nil,
@@ -42,12 +44,16 @@ public struct Font {
 
 extension Font: Equatable {}
 extension Font: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case family = "font-family"
         case style = "font-style"
         case size = "font-size"
         case weight = "font-weight"
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

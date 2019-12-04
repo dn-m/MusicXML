@@ -8,8 +8,12 @@
 /// The unpitched type represents musical elements that are notated on the staff but lack definite
 /// pitch, such as unpitched percussion and speaking voice.
 public struct Unpitched {
+    // MARK: - Instance Properties
+
     public var displayStep: Step
     public var displayOctave: Int
+
+    // MARK: - Initializers
 
     public init(displayStep: Step, displayOctave: Int) {
         self.displayStep = displayStep
@@ -19,6 +23,8 @@ public struct Unpitched {
 
 extension Unpitched: Equatable {}
 extension Unpitched: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case displayStep = "display-step"
         case displayOctave = "display-octave"

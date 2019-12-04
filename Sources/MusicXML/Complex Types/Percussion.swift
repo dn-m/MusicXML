@@ -12,9 +12,13 @@ import XMLCoder
 /// and 223. Some values are added to these based on how usage has evolved in the 30 years since
 /// Stone's book was published.
 public struct Percussion {
+    // MARK: - Instance Properties
+
     public let printStyleAlign: PrintStyleAlign
     public let enclosure: EnclosureShape?
     public let kind: Kind
+
+    // MARK: - Initializers
 
     public init(printStyleAlign: PrintStyleAlign = PrintStyleAlign(), enclosure: EnclosureShape? = nil, kind: Kind) {
         self.printStyleAlign = printStyleAlign
@@ -41,6 +45,8 @@ extension Percussion {
 
 extension Percussion.Kind: Equatable {}
 extension Percussion.Kind: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case beater
         case effect
@@ -54,6 +60,8 @@ extension Percussion.Kind: Codable {
         case timpani
         case wood
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -82,6 +90,8 @@ extension Percussion.Kind: Codable {
             try container.encode(value, forKey: .wood)
         }
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -128,10 +138,14 @@ extension Percussion.Kind.CodingKeys: XMLChoiceCodingKey {}
 
 extension Percussion: Equatable {}
 extension Percussion: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case enclosure
         case kind
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -139,6 +153,8 @@ extension Percussion: Codable {
         try container.encodeIfPresent(enclosure, forKey: .enclosure)
         try container.encode(kind, forKey: .kind)
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

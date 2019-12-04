@@ -7,8 +7,12 @@
 
 /// Staff layout includes the vertical distance from the bottom line of the previous staff in this system to the top line of the staff specified by the number attribute.
 public struct StaffLayout {
+    // MARK: - Instance Properties
+
     public let number: Int?
     public let staffDistance: Tenths?
+
+    // MARK: - Initializers
 
     public init(number: Int? = nil, staffDistance: Tenths? = nil) {
         self.number = number
@@ -18,6 +22,8 @@ public struct StaffLayout {
 
 extension StaffLayout: Equatable {}
 extension StaffLayout: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case number = "staff-number"
         case staffDistance = "staff-distance"

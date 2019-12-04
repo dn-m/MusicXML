@@ -21,12 +21,14 @@ public struct TextElementData {
     public let font: Font
     public let textDecoration: TextDecoration
 
-    // MARK: One-off Attributes
+    // MARK: Attributes
 
     public let color: Color?
     public let textRotation: Double?
     public let letterSpacing: NumberOrNormal?
     public let direction: TextDirection?
+
+    // MARK: - Initializers
 
     public init(
         _ value: String,
@@ -49,6 +51,8 @@ public struct TextElementData {
 
 extension TextElementData: Equatable {}
 extension TextElementData: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case color
         case textRotation
@@ -56,6 +60,8 @@ extension TextElementData: Codable {
         case direction
         case value = ""
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -67,6 +73,8 @@ extension TextElementData: Codable {
         try container.encodeIfPresent(letterSpacing, forKey: .letterSpacing)
         try container.encodeIfPresent(direction, forKey: .direction)
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

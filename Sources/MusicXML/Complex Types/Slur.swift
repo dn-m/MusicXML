@@ -9,15 +9,26 @@
 /// one with a stop type. Slurs can add more elements using a continue type. This is typically used
 /// to specify the formatting of cross-system slurs, or to specify the shape of very complex slurs.
 public struct Slur {
+    // MARK: - Instance Properties
+
+    // MARK: Attributes
+
+    // MARK: Attributes
+
+    public let color: Color?
     public let type: StartStopContinue
     public let number: Int?
     public let lineType: LineType?
-    public let dashedFormatting: DashedFormatting
-    public let position: Position
     public let placement: AboveBelow?
     public let orientation: OverUnder?
+
+    // MARK: Attribute Groups
+
     public let bezier: Bezier
-    public let color: Color?
+    public let dashedFormatting: DashedFormatting
+    public let position: Position
+
+    // MARK: - Initializers
 
     public init(type: StartStopContinue, number: Int? = nil, lineType: LineType? = nil, dashedFormatting: DashedFormatting = DashedFormatting(), position: Position = Position(), placement: AboveBelow? = nil, orientation: OverUnder? = nil, bezier: Bezier = Bezier(), color: Color? = nil) {
         self.type = type
@@ -34,6 +45,8 @@ public struct Slur {
 
 extension Slur: Equatable {}
 extension Slur: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case number
@@ -42,6 +55,8 @@ extension Slur: Codable {
         case orientation
         case color
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -55,6 +70,8 @@ extension Slur: Codable {
         try bezier.encode(to: encoder)
         try container.encodeIfPresent(color, forKey: .color)
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

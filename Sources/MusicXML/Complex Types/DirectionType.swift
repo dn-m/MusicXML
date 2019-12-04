@@ -116,6 +116,8 @@ public enum DirectionType {
 extension DirectionType: Equatable {}
 
 extension DirectionType: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case accordionRegistration = "accordion-registration"
         case bracket
@@ -140,6 +142,8 @@ extension DirectionType: Codable {
         case wedge
         case words
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -190,6 +194,8 @@ extension DirectionType: Codable {
             try container.encode(value, forKey: .words)
         }
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

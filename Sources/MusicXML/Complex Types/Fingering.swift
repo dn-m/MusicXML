@@ -10,11 +10,15 @@
 /// fingering element represents the fretting finger; the pluck element represents the plucking
 /// finger.
 public struct Fingering {
+    // MARK: - Instance Properties
+
     public let value: String
     public let substitution: Bool?
     public let alternate: Bool?
     public let placement: AboveBelow?
     public let printStyle: PrintStyle
+
+    // MARK: - Initializers
 
     public init(
         _ value: String = "",
@@ -33,12 +37,16 @@ public struct Fingering {
 
 extension Fingering: Equatable {}
 extension Fingering: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case substitution
         case alternate
         case placement
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
@@ -52,7 +60,8 @@ extension Fingering: Codable {
         self.value = try container.decode(String.self, forKey: .value)
     }
 
-    // sourcery:inline:Fingering.AutoEncodable
+    // MARK: Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(value, forKey: .value)
@@ -61,7 +70,6 @@ extension Fingering: Codable {
         try container.encodeIfPresent(placement, forKey: .placement)
         try printStyle.encode(to: encoder)
     }
-    // sourcery:end
 }
 
 import XMLCoder

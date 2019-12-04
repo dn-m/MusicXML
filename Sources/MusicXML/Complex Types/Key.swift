@@ -11,14 +11,16 @@ import XMLCoder
 /// supported. If absent, the key signature applies to all staves in the part. Key signatures appear
 /// at the start of each system unless the print-object attribute has been set to "no".
 public struct Key {
-    // MARK: - Attributes
+    // MARK: - Instance Properties
+
+    // MARK: Attributes
 
     /// The optional number attribute refers to staff numbers.
     public let number: Int?
     public let printStyle: PrintStyle
     public let printObject: Bool?
 
-    // MARK: - Elements
+    // MARK: Elements
 
     public let kind: Kind
     public let keyOctaves: [KeyOctave]
@@ -59,6 +61,8 @@ extension Key {
 
 extension Key {
     public struct Traditional {
+        // MARK: - Instance Properties
+
         public let cancel: Cancel?
         public let fifths: Int
         public let mode: Mode?
@@ -74,6 +78,8 @@ extension Key {
     /// of altered tones. The key-step element indicates the pitch step to be altered, represented
     /// using the same names as in the step element.
     public struct AlteredTone {
+        // MARK: - Instance Properties
+
         public let step: Step
         public let alter: Double
         public let accidental: AccidentalValue?
@@ -98,6 +104,8 @@ extension Key.Traditional: Codable {}
 
 extension Key.Kind: Equatable {}
 extension Key.Kind: Encodable {
+    // MARK: Encodable
+
     public func encode(to encoder: Encoder) throws {
         switch self {
         case let .traditional(key):
@@ -115,6 +123,8 @@ extension Key.Kind: Encodable {
 
 extension Key: Equatable {}
 extension Key: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case number
         case position
@@ -129,6 +139,8 @@ extension Key: Codable {
         case fifths
         case mode
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -155,6 +167,8 @@ extension Key: Codable {
             self.kind = .nonTraditional(try decoder.assemble(from: try decoder.collectArray()))
         }
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         try printStyle.encode(to: encoder)

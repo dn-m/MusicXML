@@ -8,8 +8,12 @@
 /// The line-width type indicates the width of a line type in tenths. The text content is also
 /// expressed in tenths.
 public struct LineWidth {
+    // MARK: - Instance Properties
+
     public let value: Tenths
     public let type: LineWidthType
+
+    // MARK: - Initializers
 
     public init(_ value: Tenths, type: LineWidthType) {
         self.value = value
@@ -19,6 +23,8 @@ public struct LineWidth {
 
 extension LineWidth: Equatable {}
 extension LineWidth: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case value = ""

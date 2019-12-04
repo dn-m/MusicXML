@@ -16,10 +16,14 @@
 /// the system layout data is more reliable than the sum of the measure widths, and adjust the
 /// measure widths accordingly.
 public struct SystemLayout {
+    // MARK: - Instance Properties
+
     public let margins: SystemMargins?
     public let distance: Tenths?
     public let topSystemDistance: Tenths?
     public let dividers: SystemDividers?
+
+    // MARK: - Initializers
 
     public init(
         margins: SystemMargins? = nil,
@@ -36,6 +40,8 @@ public struct SystemLayout {
 
 extension SystemLayout: Equatable {}
 extension SystemLayout: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case margins = "system-margins"
         case distance = "system-distance"

@@ -8,6 +8,8 @@
 /// The hole type represents the symbols used for woodwind and brass fingerings as well as other
 /// notations.
 public struct Hole {
+    // MARK: - Instance Properties
+
     /// The content of the optional hole-type element indicates what the hole symbol represents in
     /// terms of instrument fingering or other techniques.
     public let holeType: String?
@@ -21,6 +23,8 @@ public struct Hole {
     public let printStyle: PrintStyle
     public let placement: AboveBelow?
 
+    // MARK: - Initializers
+
     public init(holeType: String? = nil, holeClosed: HoleClosed, holeShape: String? = nil, printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil) {
         self.holeType = holeType
         self.holeClosed = holeClosed
@@ -32,12 +36,16 @@ public struct Hole {
 
 extension Hole: Equatable {}
 extension Hole: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case holeType
         case holeClosed
         case holeShape
         case placement
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -47,6 +55,8 @@ extension Hole: Codable {
         try printStyle.encode(to: encoder)
         try container.encodeIfPresent(placement, forKey: .placement)
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

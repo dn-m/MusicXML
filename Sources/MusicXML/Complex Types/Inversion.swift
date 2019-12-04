@@ -18,6 +18,8 @@ public struct Inversion {
 
     public let printStyle: PrintStyle
 
+    // MARK: - Initializers
+
     public init(_ value: Int, printStyle: PrintStyle = PrintStyle()) {
         self.value = value
         self.printStyle = printStyle
@@ -26,9 +28,13 @@ public struct Inversion {
 
 extension Inversion: Equatable {}
 extension Inversion: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

@@ -39,6 +39,8 @@ public struct FiguredBass {
     /// The level type is used to specify editorial information for different MusicXML elements.
     public let level: Level?
 
+    // MARK: - Initializers
+
     public init(
         _ figures: [Figure],
         printStyle: PrintStyle = PrintStyle(),
@@ -60,6 +62,8 @@ public struct FiguredBass {
 
 extension FiguredBass: Equatable {}
 extension FiguredBass: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case figures = "figure"
         case duration
@@ -67,6 +71,8 @@ extension FiguredBass: Codable {
         case level
         case parentheses
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
@@ -82,7 +88,8 @@ extension FiguredBass: Codable {
         self.figures = try container.decode([Figure].self, forKey: .figures)
     }
 
-    // sourcery:inline:FiguredBass.AutoEncodable
+    // MARK: Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try printStyle.encode(to: encoder)
@@ -93,5 +100,4 @@ extension FiguredBass: Codable {
         try container.encodeIfPresent(footnote, forKey: .footnote)
         try container.encodeIfPresent(level, forKey: .level)
     }
-    // sourcery:end
 }

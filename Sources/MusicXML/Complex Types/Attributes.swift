@@ -26,6 +26,8 @@
 /// attributes are changed mid-measure, it affects the music in score order, not in MusicXML
 /// document order.
 public struct Attributes {
+    // MARK: - Instance Properties
+
     public let footnote: FormattedText?
     public let level: Level?
     public let divisions: Int?
@@ -38,6 +40,8 @@ public struct Attributes {
     public let staffDetails: [StaffDetails]?
     public let transpose: [Transpose]?
     public let measureStyles: [MeasureStyle]?
+
+    // MARK: - Initializers
 
     public init(
         footnote: FormattedText? = nil,
@@ -70,6 +74,8 @@ public struct Attributes {
 
 extension Attributes: Equatable {}
 extension Attributes: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case footnote
         case level

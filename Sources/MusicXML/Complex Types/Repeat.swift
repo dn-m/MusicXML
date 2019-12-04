@@ -9,9 +9,13 @@
 /// the end of the repeat has a backward direction. Backward repeats that are not part of an ending
 /// can use the times attribute to indicate the number of times the repeated section is played.
 public struct Repeat {
+    // MARK: - Instance Properties
+
     public let direction: BackwardForward
     public let times: Int?
     public let winged: Winged?
+
+    // MARK: - Initializers
 
     public init(
         direction: BackwardForward,

@@ -13,7 +13,7 @@ public struct Dashes {
 
     public let dashedFormatting: DashedFormatting
 
-    // MARK: One-off Attributes
+    // MARK: Attributes
 
     public let type: StartStopContinue
 
@@ -30,6 +30,10 @@ public struct Dashes {
 
 extension Dashes: Equatable {}
 extension Dashes: Codable {
+    // MARK: - Codable
+
+    // MARK: Decodable
+
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
         self.dashedFormatting = try DashedFormatting(from: decoder)

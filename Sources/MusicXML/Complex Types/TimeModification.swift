@@ -11,6 +11,8 @@
 /// tuplets and other notations that use more detailed information need both the time-modification
 /// and tuplet elements to be represented accurately.
 public struct TimeModification {
+    // MARK: - Instance Properties
+
     /// The actual-notes element describes how many notes are played in the time usually occupied by
     /// the number in the normal-notes element.
     public var actualNotes: Int
@@ -23,6 +25,8 @@ public struct TimeModification {
     public var normalType: NoteTypeValue?
     /// The normal-dot element is used to specify dotted normal tuplet types.
     public var normalDotCount: Int
+
+    // MARK: - Initializers
 
     public init(
         actualNotes: Int,
@@ -39,12 +43,16 @@ public struct TimeModification {
 
 extension TimeModification: Equatable {}
 extension TimeModification: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case actualNotes = "actual-notes"
         case normalNotes = "normal-notes"
         case normalType = "normal-type"
         case normalDotCount = "normal-dot"
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -53,6 +61,8 @@ extension TimeModification: Codable {
         self.normalType = try container.decodeIfPresent(NoteTypeValue.self, forKey: .normalType)
         self.normalDotCount = try container.decode([Empty].self, forKey: .normalDotCount).count
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

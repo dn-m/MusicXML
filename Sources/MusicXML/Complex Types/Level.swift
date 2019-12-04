@@ -7,8 +7,12 @@
 
 /// The level type is used to specify editorial information for different MusicXML elements.
 public struct Level {
+    // MARK: - Instance Properties
+
     public let reference: Bool
     public let levelDisplay: LevelDisplay
+
+    // MARK: - Initializers
 
     public init(reference: Bool, levelDisplay: LevelDisplay) {
         self.reference = reference

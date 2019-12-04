@@ -8,8 +8,12 @@
 /// The empty-print-style-align-object type represents an empty element with print-object and
 /// print-style-align attribute groups.
 public struct PrintStyleAlignObject {
+    // MARK: - Instance Properties
+
     public let printObject: Bool?
     public let printStyleAlign: PrintStyleAlign
+
+    // MARK: - Initializers
 
     public init(printObject: Bool? = nil, printStyleAlign: PrintStyleAlign = PrintStyleAlign()) {
         self.printObject = printObject
@@ -19,17 +23,21 @@ public struct PrintStyleAlignObject {
 
 extension PrintStyleAlignObject: Equatable {}
 extension PrintStyleAlignObject: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case printObject = "print-object"
     }
 
-    // sourcery:inline:PrintStyleAlignObject.AutoEncodable
+    // MARK: Encodable
+
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(YesNo(printObject), forKey: .printObject)
         try printStyleAlign.encode(to: encoder)
     }
-    // sourcery:end
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

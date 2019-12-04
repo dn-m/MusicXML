@@ -35,6 +35,8 @@ public enum Technique {
 
 extension Technique: Equatable {}
 extension Technique: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case arrow
         case bend
@@ -60,6 +62,8 @@ extension Technique: Codable {
         case tripleTongue = "triple-tongue"
         case upBow = "up-bow"
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -112,6 +116,8 @@ extension Technique: Codable {
             try container.encode(value, forKey: .upBow)
         }
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

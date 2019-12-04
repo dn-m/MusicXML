@@ -10,11 +10,15 @@
 /// information. In that case, the print-object attribute of the bass-alter element can be set to
 /// no.
 public struct BassStep {
+    // MARK: - Instance Properties
+
     public let value: Step
     /// The text attribute indicates how the bass should appear in a score if not using the element
     /// contents.
     public let text: String?
     public let printStyle: PrintStyle
+
+    // MARK: - Initializers
 
     public init(_ value: Step, text: String? = nil, printStyle: PrintStyle = PrintStyle()) {
         self.value = value
@@ -37,10 +41,14 @@ extension BassStep {
 
 extension BassStep: Equatable {}
 extension BassStep: Codable {
+    // MARK: - Codable
+
     private enum CodingKeys: String, CodingKey {
         case value = ""
         case text
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

@@ -27,6 +27,8 @@ public struct Slash {
     /// type used to display repetition marks.
     public let item: Item?
 
+    // MARK: - Initializers
+
     public init(
         type: StartStop,
         useDots: Bool? = nil,
@@ -53,6 +55,8 @@ extension Slash {
 
 extension Slash: Equatable {}
 extension Slash: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case type
         case useDots = "use-dots"
@@ -60,6 +64,10 @@ extension Slash: Codable {
         case slashType = "slash-type"
         case slashDot = "slash-dot"
     }
+
+    // MARK: - Initializers
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attributes
@@ -77,6 +85,8 @@ extension Slash: Codable {
             self.item = nil
         }
     }
+
+    // MARK: Encodable
 
     public func encode(to encoder: Encoder) throws {
         fatalError("TODO: Implement Slash.encode(to:)")

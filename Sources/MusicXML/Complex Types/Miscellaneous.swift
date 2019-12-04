@@ -9,7 +9,11 @@
 /// miscellaneous element. The miscellaneous type puts each separate part of metadata into its own
 /// miscellaneous-field type.
 public struct Miscellaneous {
+    // MARK: - Instance Properties
+
     public let fields: [MiscellaneousField]
+
+    // MARK: - Initializers
 
     public init(fields: [MiscellaneousField]) {
         self.fields = fields
@@ -18,6 +22,8 @@ public struct Miscellaneous {
 
 extension Miscellaneous: Equatable {}
 extension Miscellaneous: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case fields = "miscellaneous-field"
     }

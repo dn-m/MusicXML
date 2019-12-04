@@ -14,7 +14,7 @@ public struct PlacementText {
 
     public let value: String
 
-    // MARK: One-off Attributes
+    // MARK: Attributes
 
     public let placement: AboveBelow?
 
@@ -40,12 +40,16 @@ public struct PlacementText {
 
 extension PlacementText: Equatable {}
 extension PlacementText: Codable {
+    // MARK: - Codable
+
     enum CodingKeys: String, CodingKey {
         case placement
         case position
         case printStyle
         case value = ""
     }
+
+    // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
         // Decode attribute groups
