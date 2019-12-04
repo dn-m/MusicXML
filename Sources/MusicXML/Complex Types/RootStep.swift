@@ -12,6 +12,9 @@ public struct RootStep {
 
     public let value: Step
     public let text: String?
+
+    // MARK: Attribute Groups
+
     public let printStyle: PrintStyle
 
     // MARK: - Initializers

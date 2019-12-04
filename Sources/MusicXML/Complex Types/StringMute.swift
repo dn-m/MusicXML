@@ -10,6 +10,9 @@ public struct StringMute {
     // MARK: - Instance Properties
 
     public let type: OnOff
+
+    // MARK: Attribute Groups
+
     public let printStyleAlign: PrintStyleAlign
 
     // MARK: - Initializers

@@ -12,9 +12,12 @@ public struct WavyLine {
 
     public let type: StartStopContinue
     public let number: Int?
-    public let position: Position
     public let placement: AboveBelow?
     public let color: Color?
+
+    // MARK: Attribute Groups
+
+    public let position: Position
     public let trillSound: TrillSound
 
     // MARK: - Initializers

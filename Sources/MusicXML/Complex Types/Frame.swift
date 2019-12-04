@@ -10,7 +10,6 @@
 public struct Frame {
     // MARK: - Instance Properties
 
-    public let position: Position
     public let color: Color?
     public let hAlign: LeftCenterRight?
     public let vAlign: VAlignImage?
@@ -31,6 +30,10 @@ public struct Frame {
     /// The frame-note type represents each note included in the frame. An open string will have a
     /// fret value of 0, while a muted string will not be associated with a frame-note element.
     public let frameNotes: [FrameNote]
+
+    // MARK: Attribute Groups
+
+    public let position: Position
 
     // MARK: - Initializers
 

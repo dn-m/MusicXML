@@ -15,9 +15,12 @@ public struct NonArpeggiate {
 
     public var type: TopBottom
     public var number: Int?
-    public var position: Position
     public var placement: AboveBelow?
     public var color: Color?
+
+    // MARK: Attribute Groups
+
+    public var position: Position
 
     // MARK: - Initializers
 

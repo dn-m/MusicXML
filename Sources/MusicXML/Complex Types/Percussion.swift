@@ -14,9 +14,12 @@ import XMLCoder
 public struct Percussion {
     // MARK: - Instance Properties
 
-    public let printStyleAlign: PrintStyleAlign
     public let enclosure: EnclosureShape?
     public let kind: Kind
+
+    // MARK: Attribute Groups
+
+    public let printStyleAlign: PrintStyleAlign
 
     // MARK: - Initializers
 

@@ -11,8 +11,11 @@ public struct Handbell {
     // MARK: - Instance Properties
 
     public let value: HandbellValue
-    public let printStyle: PrintStyle
     public let placement: AboveBelow?
+
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
 
     // MARK: - Initializers
 

@@ -12,8 +12,11 @@ public struct GroupSymbol {
     // MARK: - Instance Properties
 
     public var value: GroupSymbolValue
-    public var position: Position
     public var color: Color?
+
+    // MARK: Attribute Groups
+
+    public var position: Position
 
     // MARK: - Initializers
 

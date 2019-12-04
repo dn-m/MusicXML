@@ -35,7 +35,6 @@ public struct Time {
     /// beat-type arranged horizontally.
     public let separator: TimeSeparator?
 
-    public let printStyle: PrintStyle
     public let hAlign: LeftCenterRight?
     public let vAlign: VAlign?
     public let printObject: Bool?
@@ -43,6 +42,12 @@ public struct Time {
     // MARK: Elements
 
     public let kind: Kind
+    
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
+
+    // MARK: - Initializers
 
     public init(number: Int? = nil, symbol: TimeSymbol? = nil, separator: TimeSeparator? = nil, printStyle: PrintStyle = PrintStyle(), hAlign: LeftCenterRight? = nil, vAlign: VAlign? = nil, printObject: Bool? = nil, kind: Kind) {
         self.number = number
@@ -57,8 +62,6 @@ public struct Time {
 }
 
 extension Time {
-    // MARK: - Initializers
-
     /// Creates a `Measured` type `Time`.
     ///
     /// **Example Usage:**

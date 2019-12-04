@@ -10,8 +10,11 @@ public struct TupletNumber {
     // MARK: - Instance Properties
 
     public let value: Int
-    public let font: Font
     public let color: Color?
+
+    // MARK: Attribute Groups
+
+    public let font: Font
 
     // MARK: - Initializers
 

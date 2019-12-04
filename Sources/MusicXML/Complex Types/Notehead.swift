@@ -14,8 +14,11 @@ public struct Notehead {
     public let value: NoteheadValue
     public let filled: Bool?
     public let parentheses: Bool?
-    public let font: Font
     public let color: Color?
+
+    // MARK: Attribute Groups
+
+    public let font: Font
 
     // MARK: - Initializers
 

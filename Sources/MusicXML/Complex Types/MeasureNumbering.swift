@@ -11,6 +11,9 @@ public struct MeasureNumbering {
     // MARK: - Instance Properties
 
     public let value: MeasureNumberingValue
+
+    // MARK: Attribute Groups
+
     public let printStyleAlign: PrintStyleAlign
 
     // MARK: - Initializers

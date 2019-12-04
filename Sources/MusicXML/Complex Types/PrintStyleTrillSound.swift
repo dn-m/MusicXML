@@ -10,8 +10,11 @@
 public struct PrintStyleTrillSound {
     // MARK: - Instance Properties
 
-    public let printStyle: PrintStyle
     public let placement: AboveBelow?
+
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
     public let trillSound: TrillSound
 
     // MARK: - Initializers

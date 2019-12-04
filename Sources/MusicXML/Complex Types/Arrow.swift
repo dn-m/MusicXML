@@ -12,24 +12,18 @@ public struct Arrow {
     // MARK: - Instance Properties
 
     public let kind: Kind
+    public let placement: AboveBelow?
+    
+    // MARK: Attribute Groups
+
     public let position: Position
     public let printStyle: PrintStyle
-    public let placement: AboveBelow?
 
     public init(kind: Kind, position: Position = Position(), printStyle: PrintStyle = PrintStyle(), placement: AboveBelow? = nil) {
         self.kind = kind
         self.position = position
         self.printStyle = printStyle
         self.placement = placement
-    }
-}
-
-extension Arrow {
-    // MARK: - Nested Types
-
-    public enum Kind {
-        case circular(CircularArrow)
-        case linear(LinearArrow)
     }
 }
 
@@ -61,6 +55,15 @@ extension Arrow {
         self.position = position
         self.printStyle = printStyle
         self.placement = placement
+    }
+}
+
+extension Arrow {
+    // MARK: - Nested Types
+
+    public enum Kind {
+        case circular(CircularArrow)
+        case linear(LinearArrow)
     }
 }
 

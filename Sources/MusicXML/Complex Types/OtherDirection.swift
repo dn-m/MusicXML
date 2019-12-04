@@ -13,6 +13,9 @@ public struct OtherDirection {
 
     public let value: String
     public let printObject: Bool?
+
+    // MARK: Attribute Groups
+
     public let printStyleAlign: PrintStyleAlign
 
     // MARK: - Initializers

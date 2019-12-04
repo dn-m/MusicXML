@@ -15,6 +15,9 @@ public struct OctaveShift {
     public let type: UpDownStopContinue
     public let number: Int?
     public let size: Int?
+
+    // MARK: Attribute Groups
+
     public let dashedFormatting: DashedFormatting
     public let printStyle: PrintStyle
 

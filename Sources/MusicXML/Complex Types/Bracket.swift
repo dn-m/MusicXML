@@ -18,8 +18,11 @@ public struct Bracket {
     public let lineType: LineType?
     public let dashLength: Tenths?
     public let spaceLength: Tenths?
-    public let position: Position
     public let color: Color?
+
+    // MARK: Attribute Groups
+
+    public let position: Position
 
     // MARK: - Initializers
 

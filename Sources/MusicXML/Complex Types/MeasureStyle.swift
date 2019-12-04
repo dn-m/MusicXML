@@ -19,12 +19,15 @@ public struct MeasureStyle {
     // MARK: Attributes
 
     public var number: Int?
-    public var font: Font
     public var color: Color?
 
     // MARK: Elements
 
     public var kind: Kind
+
+    // MARK: Attribute Groups
+
+    public var font: Font
 
     // MARK: - Initializers
 

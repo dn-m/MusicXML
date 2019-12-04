@@ -23,9 +23,12 @@ public struct Wedge {
     /// type is crescendo, or the type is stop for a wedge that began with a diminuendo type.
     public let niente: Bool?
     public let lineType: LineType?
+    public let color: Color?
+
+    // MARK: Attribute Groups
+
     public let dashedFormatting: DashedFormatting
     public let position: Position
-    public let color: Color?
 
     // MARK: - Initializers
 

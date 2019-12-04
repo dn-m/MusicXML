@@ -10,6 +10,9 @@ public struct StyleText {
     // MARK: - Instance Properties
 
     public let value: String
+
+    // MARK: Attribute Groups
+
     public let printStyle: PrintStyle
 
     // MARK: - Initializers

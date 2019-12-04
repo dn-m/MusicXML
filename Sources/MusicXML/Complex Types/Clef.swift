@@ -19,7 +19,6 @@ public struct Clef {
     public let additional: Bool?
     public let size: SymbolSize?
     public let afterBarline: Bool?
-    public let printStyle: PrintStyle
     public let printObject: Bool?
 
     // MARK: Elements
@@ -27,6 +26,10 @@ public struct Clef {
     public let sign: ClefSign
     public let line: Int?
     public let clefOctaveChange: Int?
+
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
 
     // MARK: - Initializers
 

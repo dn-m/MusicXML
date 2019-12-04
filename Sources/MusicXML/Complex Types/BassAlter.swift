@@ -12,8 +12,11 @@ public struct BassAlter {
 
     public let value: Double
     public let printObject: Bool?
-    public let printStyle: PrintStyle
     public let location: LeftRight?
+
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
 
     // MARK: - Initializers
 

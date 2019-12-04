@@ -24,7 +24,7 @@ public struct Dynamics {
 
     public let values: [Dynamic]
 
-    // MARK: Attributes Groups
+    // MARK: Attribute Groups
 
     public let printStyleAlign: PrintStyleAlign
     public let textDecoration: TextDecoration

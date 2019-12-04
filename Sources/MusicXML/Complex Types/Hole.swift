@@ -20,8 +20,11 @@ public struct Hole {
     /// The optional hole-shape element indicates the shape of the hole symbol; the default is a
     /// circle.
     public let holeShape: String?
-    public let printStyle: PrintStyle
     public let placement: AboveBelow?
+
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
 
     // MARK: - Initializers
 

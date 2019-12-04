@@ -11,12 +11,15 @@ public struct TextFontColor {
     // MARK: - Instance Properties
 
     public let value: String
-    public let font: Font
     public let color: Color?
-    public let textDecoration: TextDecoration
     public let textRotation: Double?
     public let letterSpacing: NumberOrNormal?
     public let dir: TextDirection?
+
+    // MARK: Attribute Groups
+
+    public let font: Font
+    public let textDecoration: TextDecoration
 
     // MARK: - Initializers
 

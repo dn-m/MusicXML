@@ -16,6 +16,9 @@ public struct BreathMark {
     // MARK: Attributes
 
     public let placement: AboveBelow?
+
+    // MARK: Attribute Groups
+
     public let position: Position
     public let printStyle: PrintStyle
 

@@ -14,7 +14,6 @@
 public struct Bend {
     // MARK: - Instance Properties
 
-    public let printStyle: PrintStyle
     public let accelerate: Bool?
     /// The beats attribute specifies the beats used in a trill-sound or bend-sound. It is a decimal
     /// value with a minimum value of 2.
@@ -24,6 +23,10 @@ public struct Bend {
     public let bendAlter: Double?
     public let prependOrRelease: PreBendOrRelease?
     public let withBar: PlacementText?
+
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
 
     // MARK: - Initializers
 

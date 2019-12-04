@@ -16,6 +16,9 @@ public struct Fingering {
     public let substitution: Bool?
     public let alternate: Bool?
     public let placement: AboveBelow?
+
+    // MARK: Attribute Groups
+
     public let printStyle: PrintStyle
 
     // MARK: - Initializers

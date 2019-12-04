@@ -13,7 +13,6 @@ public struct AccidentalText {
     // MARK: Attributes
 
     public let justify: LeftCenterRight?
-    public let printStyle: PrintStyle
     public let hAlign: LeftCenterRight?
     public let vAlign: VAlign?
     public let underline: Int?
@@ -28,6 +27,10 @@ public struct AccidentalText {
     // MARK: Elements
 
     public let value: AccidentalValue
+
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
 
     // MARK: - Initializers
 

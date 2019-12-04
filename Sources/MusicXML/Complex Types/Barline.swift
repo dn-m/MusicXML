@@ -38,11 +38,11 @@ public struct Barline {
     /// bookmark, and link elements.
     public var location: RightLeftMiddle?
 
-    /// The segno attribute works the same way as the one in the sound element. It is used for
+    /// The segno element works the same way as the one in the sound element. It is used for
     /// playback when barline elements contain a segno element.
     public var segno: PrintStyleAlign?
 
-    /// The coda attribute works the same way as the one in the sound element. It is used for
+    /// The coda element works the same way as the one in the sound element. It is used for
     /// playback when a barline element contains a coda child element.
     public var coda: PrintStyleAlign?
 

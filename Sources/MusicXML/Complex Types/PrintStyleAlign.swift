@@ -10,9 +10,12 @@
 public struct PrintStyleAlign {
     // MARK: - Instance Properties
 
-    public let printStyle: PrintStyle
     public let hAlign: LeftCenterRight?
     public let vAlign: VAlign?
+
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
 
     // MARK: - Initializers
 

@@ -11,8 +11,11 @@ public struct TupletType {
     // MARK: - Instance Properties
 
     public let value: NoteTypeValue
-    public let font: Font
     public let color: Color?
+
+    // MARK: Attribute Groups
+
+    public let font: Font
 
     // MARK: - Initializers
 

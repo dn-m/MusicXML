@@ -16,7 +16,6 @@ public struct FormattedText {
     // MARK: Attributes
 
     public let justify: LeftCenterRight?
-    public let printStyle: PrintStyle
     public let hAlign: LeftCenterRight?
     public let vAlign: VAlign?
     public let underline: Int?
@@ -27,6 +26,10 @@ public struct FormattedText {
     public let lineHeight: NumberOrNormal?
     public let direction: TextDirection?
     public let enclosure: EnclosureShape?
+
+    // MARK: Attribute Groups
+
+    public let printStyle: PrintStyle
 
     // MARK: - Initializers
 

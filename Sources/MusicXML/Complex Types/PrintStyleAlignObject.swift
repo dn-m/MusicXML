@@ -11,6 +11,9 @@ public struct PrintStyleAlignObject {
     // MARK: - Instance Properties
 
     public let printObject: Bool?
+
+    // MARK: Attribute Groups
+
     public let printStyleAlign: PrintStyleAlign
 
     // MARK: - Initializers

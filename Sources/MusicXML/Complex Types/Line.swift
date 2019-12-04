@@ -12,10 +12,13 @@ public struct Line {
 
     public var lineShape: LineShape?
     public var lineType: LineType?
+    public var placement: AboveBelow?
+
+    // MARK: Attribute Groups
+
     public var dashedFormatting: DashedFormatting
     public var position: Position
     public var printStyle: PrintStyle
-    public var placement: AboveBelow?
 
     // MARK: - Initializers
 
