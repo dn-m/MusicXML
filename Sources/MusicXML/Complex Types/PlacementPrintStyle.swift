@@ -34,6 +34,10 @@ public struct PlacementPrintStyle {
 extension PlacementPrintStyle: Equatable {}
 extension PlacementPrintStyle: Codable {
     // MARK: - Codable
+    
+    internal enum CodingKeys: String, CodingKey {
+        case placement
+    }
 
     // MARK: Decodable
 
@@ -46,3 +50,5 @@ extension PlacementPrintStyle: Codable {
         self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
     }
 }
+
+extension PlacementPrintStyle.CodingKeys: XMLAttributeGroupCodingKey {}

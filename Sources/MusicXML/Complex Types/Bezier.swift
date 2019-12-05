@@ -42,4 +42,29 @@ public struct Bezier {
 }
 
 extension Bezier: Equatable {}
-extension Bezier: Codable {}
+extension Bezier: Codable {
+    // MARK: - Codable
+    
+    internal enum CodingKeys: String, CodingKey {
+        case bezierX = "bezier-x"
+        case bezierY = "bezier-y"
+        case bezierX2 = "bezier-x2"
+        case bezierY2 = "bezier-y2"
+        case bezierOffset = "bezier-offset"
+        case bezierOffset2 = "bezier-offset2"
+    }
+    
+    // MARK: Decodable
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.bezierX = try container.decodeIfPresent(Tenths.self, forKey: .bezierX)
+        self.bezierY = try container.decodeIfPresent(Tenths.self, forKey: .bezierY)
+        self.bezierX2 = try container.decodeIfPresent(Tenths.self, forKey: .bezierX2)
+        self.bezierY2 = try container.decodeIfPresent(Tenths.self, forKey: .bezierY2)
+        self.bezierOffset = try container.decodeIfPresent(Int.self, forKey: .bezierOffset)
+        self.bezierOffset2 = try container.decodeIfPresent(Int.self, forKey: .bezierOffset2)
+    }
+}
+
+extension Bezier.CodingKeys: XMLAttributeGroupCodingKey {}

@@ -32,7 +32,7 @@ extension PrintStyleAlign: Equatable {}
 extension PrintStyleAlign: Codable {
     // MARK: - Codable
 
-    private enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case hAlign = "halign"
         case vAlign = "valign"
     }
@@ -55,3 +55,5 @@ extension PrintStyleAlign: Codable {
         self.printStyle = try PrintStyle(from: decoder)
     }
 }
+
+extension PrintStyleAlign.CodingKeys: XMLAttributeGroupCodingKey {}

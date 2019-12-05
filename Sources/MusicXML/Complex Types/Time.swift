@@ -293,6 +293,9 @@ extension Time: Codable {
 
 extension Time: DynamicNodeDecoding {
     public static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
         switch key {
         case CodingKeys.symbol, CodingKeys.number:
             return .attribute

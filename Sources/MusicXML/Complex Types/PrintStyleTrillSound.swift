@@ -32,7 +32,7 @@ extension PrintStyleTrillSound: Equatable {}
 extension PrintStyleTrillSound: Codable {
     // MARK: - Codable
 
-    private enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case placement
     }
 
@@ -45,3 +45,5 @@ extension PrintStyleTrillSound: Codable {
         self.trillSound = try TrillSound(from: decoder)
     }
 }
+
+extension PrintStyleTrillSound.CodingKeys: XMLAttributeGroupCodingKey {}

@@ -86,7 +86,7 @@ extension Position: Equatable {}
 extension Position: Codable {
     // MARK: - Codable
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case defaultX = "default-x"
         case defaultY = "default-y"
         case relativeX = "relative-x"
@@ -103,3 +103,5 @@ extension Position: Codable {
         relativeY = try container.decodeIfPresent(Tenths.self, forKey: .relativeY)
     }
 }
+
+extension Position.CodingKeys: XMLAttributeGroupCodingKey {}

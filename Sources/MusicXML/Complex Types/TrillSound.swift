@@ -55,7 +55,7 @@ extension TrillSound: Equatable {}
 extension TrillSound: Codable {
     // MARK: - Codable
 
-    private enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case startNote = "start-note"
         case trillStep = "trill-step"
         case twoNoteTurn = "two-note-turn"
@@ -64,4 +64,19 @@ extension TrillSound: Codable {
         case secondBeat = "second-beat"
         case lastBeat = "last-beat"
     }
+    
+    // MARK: Decodable
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.startNote = try container.decodeIfPresent(StartNote.self, forKey: .startNote)
+        self.trillStep = try container.decodeIfPresent(TrillStep.self, forKey: .trillStep)
+        self.twoNoteTurn = try container.decodeIfPresent(TwoNoteTurn.self, forKey: .twoNoteTurn)
+        self.accelerate = try container.decodeIfPresent(Bool.self, forKey: .accelerate)
+        self.beats = try container.decodeIfPresent(Int.self, forKey: .beats)
+        self.secondBeat = try container.decodeIfPresent(Int.self, forKey: .secondBeat)
+        self.lastBeat = try container.decodeIfPresent(Int.self, forKey: .lastBeat)
+    }
 }
+
+extension TrillSound.CodingKeys: XMLAttributeGroupCodingKey {}

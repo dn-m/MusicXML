@@ -14,9 +14,9 @@ public struct LevelDisplay {
 
     // MARK: Attributes
 
-    public let parentheses: Bool
-    public let bracket: Bool
-    public let size: SymbolSize
+    public let parentheses: Bool?
+    public let bracket: Bool?
+    public let size: SymbolSize?
 
     // MARK: - Initializers
 
@@ -28,4 +28,23 @@ public struct LevelDisplay {
 }
 
 extension LevelDisplay: Equatable {}
-extension LevelDisplay: Codable {}
+extension LevelDisplay: Codable {
+    // MARK: - Codable
+    
+    internal enum CodingKeys: String, CodingKey {
+        case parentheses
+        case bracket
+        case size = "symbol-size"
+    }
+    
+    // MARK: Decodable
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.parentheses = try container.decodeIfPresent(Bool.self, forKey: .parentheses)
+        self.bracket = try container.decodeIfPresent(Bool.self, forKey: .bracket)
+        self.size = try container.decodeIfPresent(SymbolSize.self, forKey: .size)
+    }
+}
+
+extension LevelDisplay.CodingKeys: XMLAttributeGroupCodingKey {}

@@ -32,7 +32,7 @@ extension PrintStyle: Equatable {}
 extension PrintStyle: Codable {
     // MARK: - Codable
 
-    private enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case color
     }
 
@@ -54,3 +54,5 @@ extension PrintStyle: Codable {
         try container.encodeIfPresent(color, forKey: .color)
     }
 }
+
+extension PrintStyle.CodingKeys: XMLAttributeGroupCodingKey {}
