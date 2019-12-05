@@ -8,27 +8,23 @@ extension {{ type.name }}: DynamicNodeEncoding {
         if key is XMLAttributeGroupCodingKey {
             return .attribute
         }
-{% set attributeCount %}
-{% for attribute in type.storedVariables|annotated:"attribute" %}
-{% if forloop.last %}{{ forloop.counter }}{% endif %}
-{% endfor %}
-{% endset %}
-{% if attributeCount == 0 %}
-    return .element
-{% else %}
-        {% for attribute in type.storedVariables|annotated:"attribute" %}
-        {% if forloop.first %}
+    {% for attribute in type.storedVariables|annotated:"attribute" %}
+    {% if forloop.first %}
         switch key {
-        {% endif %}
+    {% set spacing %}    {% endset %}
+    {% endif %}
         case CodingKeys.{{ attribute.name }}:
             return .attribute
-        {% if forloop.last %}
+    {% if forloop.last %}
         default:
-            return .element
+    {% endif %}
+    {% endfor %}
+        return .element
+    {% for attribute in type.storedVariables|annotated:"attribute" %}
+    {% if forloop.last %}
         }
-        {% endif %}
-        {% endfor %}
-{% endif %}
+    {% endif %}
+    {% endfor %}
     }
 }
 // sourcery:end
