@@ -17,7 +17,7 @@ public struct Time {
     // MARK: - Instance Properties
 
     // MARK: Attributes
-    // sourcery:begin:attribute
+
     /// The optional number attribute refers to staff numbers within the part. If absent, the
     /// time signature applies to all staves in the part.
     public let number: Int?
@@ -38,7 +38,7 @@ public struct Time {
     public let hAlign: LeftCenterRight?
     public let vAlign: VAlign?
     public let printObject: Bool?
-    // sourcery:end
+
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
@@ -311,7 +311,6 @@ extension Time: DynamicNodeDecoding {
     }
 }
 
-// sourcery:inline:Time.DynamicNodeEncoding
 extension Time: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -335,4 +334,3 @@ extension Time: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end
