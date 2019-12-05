@@ -1,5 +1,5 @@
 #!/bin/sh
-gsed -r '/MARK: Attributes/,/MARK/ {
+gsed -i -r '/MARK: Attributes/,/MARK/ {
 /MARK: Attributes/ { a\
     // sourcery:begin:attribute
     b
