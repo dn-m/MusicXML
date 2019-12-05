@@ -5,35 +5,30 @@ Templates/DynamicNodeEncoding.stencil --output Output/ #}
 // sourcery:inline:{{ type.name }}.DynamicNodeEncoding
 extension {{ type.name }}: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        switch key {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+{% set attributeCount %}
+{% for attribute in type.storedVariables|annotated:"attribute" %}
+{% if forloop.last %}{{ forloop.counter }}{% endif %}
+{% endfor %}
+{% endset %}
+{% if attributeCount == 0 %}
+    return .element
+{% else %}
         {% for attribute in type.storedVariables|annotated:"attribute" %}
-        case .{{ attribute.name }}:
+        {% if forloop.first %}
+        switch key {
+        {% endif %}
+        case CodingKeys.{{ attribute.name }}:
             return .attribute
-        {% endfor %}
-        {% for attribute in type.storedVariables %}
-            {% if attribute.type.based.AttributeGroup %}
-        case _ as {{ attribute.type.name }}.CodingKeys:
-
-(key is BendSound.CodingKeys ||
-key is Bezier.CodingKeys ||
-key is DashedFormatting.CodingKeys ||
-key is Font.CodingKeys ||
-key is LevelDisplay.CodingKeys ||
-key is PlacementPrintStyle.CodingKeys ||
-key is Position.CodingKeys ||
-key is Printout.CodingKeys ||
-key is PrintStyle.CodingKeys ||
-key is PrintStyleAlign.CodingKeys ||
-key is PrintStyleAlignObject.CodingKeys ||
-key is PrintStyleTrillSound.CodingKeys ||
-key is TextDecoration.CodingKeys ||
-key is TrillSound.CodingKeys)
-            return .attribute
-            {% endif %}
-        {% endfor %}
+        {% if forloop.last %}
         default:
             return .element
         }
+        {% endif %}
+        {% endfor %}
+{% endif %}
     }
 }
 // sourcery:end

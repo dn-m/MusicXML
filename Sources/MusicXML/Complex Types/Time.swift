@@ -17,7 +17,7 @@ public struct Time {
     // MARK: - Instance Properties
 
     // MARK: Attributes
-
+    // sourcery:begin:attribute
     /// The optional number attribute refers to staff numbers within the part. If absent, the
     /// time signature applies to all staves in the part.
     public let number: Int?
@@ -38,7 +38,7 @@ public struct Time {
     public let hAlign: LeftCenterRight?
     public let vAlign: VAlign?
     public let printObject: Bool?
-
+    // sourcery:end
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
@@ -252,6 +252,15 @@ extension Time.Kind: Codable {
 extension Time: Equatable {}
 extension Time: Codable {
     // MARK: - Codable
+    
+    private enum CodingKeys: String, CodingKey {
+        case number
+        case symbol
+        case separator
+        case hAlign = "halign"
+        case vAlign = "valign"
+        case printObject = "print-object"
+    }
 
     // MARK: Decodable
 
@@ -293,9 +302,6 @@ extension Time: Codable {
 
 extension Time: DynamicNodeDecoding {
     public static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.symbol, CodingKeys.number:
             return .attribute
@@ -304,3 +310,29 @@ extension Time: DynamicNodeDecoding {
         }
     }
 }
+
+// sourcery:inline:Time.DynamicNodeEncoding
+extension Time: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.number:
+            return .attribute
+        case CodingKeys.symbol:
+            return .attribute
+        case CodingKeys.separator:
+            return .attribute
+        case CodingKeys.hAlign:
+            return .attribute
+        case CodingKeys.vAlign:
+            return .attribute
+        case CodingKeys.printObject:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}
+// sourcery:end
