@@ -33,9 +33,6 @@ extension Grace: Codable {}
 import XMLCoder
 extension Grace: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.stealTimePrevious, CodingKeys.stealTimeFollowing, CodingKeys.makeTime, CodingKeys.slash:
             return .attribute

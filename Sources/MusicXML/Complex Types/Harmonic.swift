@@ -152,9 +152,6 @@ extension Harmonic: Equatable {}
 import XMLCoder
 extension Harmonic: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.printObject, CodingKeys.placement:
             return .attribute

@@ -72,9 +72,6 @@ extension Bezier.CodingKeys: XMLAttributeGroupCodingKey {}
 import XMLCoder
 extension Bezier: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.bezierX, CodingKeys.bezierY, CodingKeys.bezierX2, CodingKeys.bezierY2, CodingKeys.bezierOffset, CodingKeys.bezierOffset2:
             return .attribute

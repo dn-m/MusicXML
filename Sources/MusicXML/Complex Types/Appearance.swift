@@ -49,9 +49,6 @@ extension Appearance: Codable {
 import XMLCoder
 extension Appearance: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         return .element
     }
 }

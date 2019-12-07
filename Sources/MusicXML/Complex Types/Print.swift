@@ -128,9 +128,6 @@ extension Print: Codable {
 import XMLCoder
 extension Print: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.staffSpacing, CodingKeys.newSystem, CodingKeys.newPage, CodingKeys.blankPage, CodingKeys.pageNumber:
             return .attribute

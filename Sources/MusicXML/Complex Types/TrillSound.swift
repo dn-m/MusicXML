@@ -84,9 +84,6 @@ extension TrillSound.CodingKeys: XMLAttributeGroupCodingKey {}
 import XMLCoder
 extension TrillSound: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.startNote, CodingKeys.trillStep, CodingKeys.twoNoteTurn, CodingKeys.accelerate, CodingKeys.beats, CodingKeys.secondBeat, CodingKeys.lastBeat:
             return .attribute

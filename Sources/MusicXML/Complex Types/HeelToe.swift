@@ -30,9 +30,6 @@ extension HeelToe: Codable {}
 import XMLCoder
 extension HeelToe: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.placement, CodingKeys.substitution:
             return .attribute

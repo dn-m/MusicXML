@@ -32,9 +32,6 @@ extension Bookmark: Codable {}
 import XMLCoder
 extension Bookmark: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.id, CodingKeys.name, CodingKeys.element, CodingKeys.position:
             return .attribute

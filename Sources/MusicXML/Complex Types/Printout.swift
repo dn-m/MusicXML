@@ -54,9 +54,6 @@ extension Printout.CodingKeys: XMLAttributeGroupCodingKey {}
 import XMLCoder
 extension Printout: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.printObject, CodingKeys.printDot, CodingKeys.printSpacing, CodingKeys.printLyric:
             return .attribute

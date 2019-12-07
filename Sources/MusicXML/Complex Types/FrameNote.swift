@@ -38,9 +38,6 @@ extension FrameNote: Codable {}
 import XMLCoder
 extension FrameNote: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         return .element
     }
 }

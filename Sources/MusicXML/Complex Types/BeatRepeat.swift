@@ -36,9 +36,6 @@ extension BeatRepeat: Codable {}
 import XMLCoder
 extension BeatRepeat: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.type, CodingKeys.slashes, CodingKeys.useDots:
             return .attribute

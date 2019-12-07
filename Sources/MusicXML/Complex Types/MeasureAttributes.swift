@@ -38,9 +38,6 @@ extension MeasureAttributes: Codable {
 import XMLCoder
 extension MeasureAttributes: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.number, CodingKeys.text, CodingKeys.implicit, CodingKeys.nonControlling, CodingKeys.width, CodingKeys.optionalUniqueID:
             return .attribute

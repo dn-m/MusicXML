@@ -37,9 +37,6 @@ extension Supports: Codable {}
 import XMLCoder
 extension Supports: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.attribute, CodingKeys.element, CodingKeys.type, CodingKeys.value:
             return .attribute

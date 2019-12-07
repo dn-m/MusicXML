@@ -36,9 +36,6 @@ extension Repeat: Codable {}
 import XMLCoder
 extension Repeat: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.direction, CodingKeys.times, CodingKeys.winged:
             return .attribute

@@ -71,9 +71,6 @@ extension StaffDetails: Codable {}
 import XMLCoder
 extension StaffDetails: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.number, CodingKeys.showFrets, CodingKeys.printObject, CodingKeys.printSpacing:
             return .attribute

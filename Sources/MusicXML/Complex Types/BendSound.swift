@@ -54,9 +54,6 @@ extension BendSound.CodingKeys: XMLAttributeGroupCodingKey {}
 import XMLCoder
 extension BendSound: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.accelerate, CodingKeys.beats, CodingKeys.firstBeat, CodingKeys.lastBeat:
             return .attribute

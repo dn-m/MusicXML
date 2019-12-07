@@ -23,9 +23,6 @@ extension OtherDynamics: Codable {}
 import XMLCoder
 extension OtherDynamics: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         return .element
     }
 }

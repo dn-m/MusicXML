@@ -34,9 +34,6 @@ extension Articulations: Codable {
 import XMLCoder
 extension Articulations: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         return .element
     }
 }

@@ -79,9 +79,6 @@ extension Partwise: Codable {
 import XMLCoder
 extension Partwise: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         return .element
     }
 }

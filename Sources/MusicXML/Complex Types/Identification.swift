@@ -71,9 +71,6 @@ extension Identification: Codable {
 import XMLCoder
 extension Identification: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         return .element
     }
 }

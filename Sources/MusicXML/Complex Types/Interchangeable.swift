@@ -31,9 +31,6 @@ extension Interchangeable: Codable {}
 import XMLCoder
 extension Interchangeable: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.symbol, CodingKeys.separator:
             return .attribute

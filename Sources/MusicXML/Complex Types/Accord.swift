@@ -50,9 +50,6 @@ extension Accord: Codable {
 import XMLCoder
 extension Accord: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.string:
             return .attribute

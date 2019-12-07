@@ -42,9 +42,6 @@ extension Rest: Codable {
 import XMLCoder
 extension Rest: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.measure:
             return .attribute

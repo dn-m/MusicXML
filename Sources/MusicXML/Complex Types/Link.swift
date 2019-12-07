@@ -70,9 +70,6 @@ extension Link: Codable {}
 import XMLCoder
 extension Link: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.name, CodingKeys.element, CodingKeys.position:
             return .attribute

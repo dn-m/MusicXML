@@ -197,9 +197,6 @@ extension Notations: ExpressibleByArrayLiteral {
 
 extension Notations: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.printObject:
             return .attribute

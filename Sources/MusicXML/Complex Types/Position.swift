@@ -109,9 +109,6 @@ extension Position.CodingKeys: XMLAttributeGroupCodingKey {}
 import XMLCoder
 extension Position: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.defaultX, CodingKeys.defaultY, CodingKeys.relativeX, CodingKeys.relativeY:
             return .attribute

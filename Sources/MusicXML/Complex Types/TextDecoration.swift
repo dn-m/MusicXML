@@ -51,9 +51,6 @@ extension TextDecoration.CodingKeys: XMLAttributeGroupCodingKey {}
 import XMLCoder
 extension TextDecoration: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
-        if key is XMLAttributeGroupCodingKey {
-            return .attribute
-        }
         switch key {
         case CodingKeys.underline, CodingKeys.overline, CodingKeys.lineThrough:
             return .attribute
