@@ -29,15 +29,15 @@ public struct TextDecoration {
 extension TextDecoration: Equatable {}
 extension TextDecoration: Codable {
     // MARK: - Codable
-    
+
     internal enum CodingKeys: String, CodingKey {
         case underline
         case overline
         case lineThrough = "line-through"
     }
-    
+
     // MARK: Decodable
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.underline = try container.decodeIfPresent(Int.self, forKey: .underline)

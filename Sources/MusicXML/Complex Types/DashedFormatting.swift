@@ -32,9 +32,9 @@ extension DashedFormatting: Codable {
         case dashLength = "dash-length"
         case spaceLength = "space-length"
     }
-    
+
     // MARK: Decodable
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.dashLength = try container.decodeIfPresent(Tenths.self, forKey: .dashLength)

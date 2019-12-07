@@ -15,7 +15,7 @@ public struct Offset {
     // MARK: Attributes
 
     public let sound: Bool?
-    
+
     // MARK: Value
 
     public let value: Divisions

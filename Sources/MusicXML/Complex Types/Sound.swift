@@ -98,7 +98,8 @@ extension Sound {
         /// note element, it applies to the current note only.
         public let play: Play?
 
-    // MARK: - Initializers
+        // MARK: - Initializers
+
         // MARK: - Initializers
 
         public init(midiDevice: MIDIDevice? = nil, midiInstrument: MIDIInstrument? = nil, play: Play? = nil) {

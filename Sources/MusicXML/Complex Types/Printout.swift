@@ -40,7 +40,7 @@ public struct Printout {
 extension Printout: Equatable {}
 extension Printout: Codable {
     // MARK: - Codable
-    
+
     internal enum CodingKeys: String, CodingKey {
         case printObject = "print-object"
         case printDot = "print-dot"

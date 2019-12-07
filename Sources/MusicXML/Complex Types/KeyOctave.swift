@@ -19,7 +19,7 @@ public struct KeyOctave {
     /// If the cancel attribute is set to yes, then this number refers to an element specified by
     /// the cancel element. It is no by default.
     public let cancel: Bool
-    
+
     // MARK: Value
 
     /// The content specifies the octave value using the same values as the display-octave element.

@@ -64,9 +64,9 @@ extension TrillSound: Codable {
         case secondBeat = "second-beat"
         case lastBeat = "last-beat"
     }
-    
+
     // MARK: Decodable
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.startNote = try container.decodeIfPresent(StartNote.self, forKey: .startNote)

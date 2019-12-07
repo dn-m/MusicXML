@@ -103,7 +103,8 @@ extension ScorePart {
         /// affected by the change.
         public let midiInstrument: MIDIInstrument?
 
-    // MARK: - Initializers
+        // MARK: - Initializers
+
         // MARK: - Initializers
 
         public init(midiDevice: MIDIDevice? = nil, midiInstrument: MIDIInstrument? = nil) {

@@ -252,7 +252,7 @@ extension Time.Kind: Codable {
 extension Time: Equatable {}
 extension Time: Codable {
     // MARK: - Codable
-    
+
     private enum CodingKeys: String, CodingKey {
         case number
         case symbol

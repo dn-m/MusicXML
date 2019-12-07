@@ -66,6 +66,7 @@ extension Slash: Codable {
     }
 
     // MARK: - Initializers
+
     // MARK: - Initializers
 
     // MARK: Decodable

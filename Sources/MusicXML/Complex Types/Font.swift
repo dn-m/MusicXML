@@ -64,9 +64,9 @@ extension Font: Codable {
         try container.encodeIfPresent(size, forKey: .size)
         try container.encodeIfPresent(weight, forKey: .weight)
     }
-    
+
     // MARK: Decodable
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.family = try container.decodeIfPresent(String.self, forKey: .family)

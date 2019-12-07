@@ -34,7 +34,7 @@ public struct PlacementPrintStyle {
 extension PlacementPrintStyle: Equatable {}
 extension PlacementPrintStyle: Codable {
     // MARK: - Codable
-    
+
     internal enum CodingKeys: String, CodingKey {
         case placement
     }

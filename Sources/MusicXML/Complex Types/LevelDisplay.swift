@@ -30,15 +30,15 @@ public struct LevelDisplay {
 extension LevelDisplay: Equatable {}
 extension LevelDisplay: Codable {
     // MARK: - Codable
-    
+
     internal enum CodingKeys: String, CodingKey {
         case parentheses
         case bracket
         case size = "symbol-size"
     }
-    
+
     // MARK: Decodable
-    
+
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.parentheses = try container.decodeIfPresent(Bool.self, forKey: .parentheses)
