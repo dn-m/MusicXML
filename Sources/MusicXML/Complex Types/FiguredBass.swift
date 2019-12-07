@@ -17,7 +17,7 @@ public struct FiguredBass {
     public let printStyle: PrintStyle
     public let printout: Printout
 
-    // MARK: Attributes
+    // MARK: Elements
 
     // > The value of parentheses is "no" if not present.
     public let parentheses: Bool?
@@ -108,11 +108,6 @@ extension FiguredBass: DynamicNodeEncoding {
         if key is XMLAttributeGroupCodingKey {
             return .attribute
         }
-        switch key {
-        case CodingKeys.parentheses, CodingKeys.figures, CodingKeys.duration, CodingKeys.footnote, CodingKeys.level:
-            return .attribute
-        default:
-            return .element
-        }
+        return .element
     }
 }

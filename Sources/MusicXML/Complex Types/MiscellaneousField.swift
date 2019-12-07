@@ -52,10 +52,10 @@ extension MiscellaneousField: DynamicNodeDecoding {
 extension MiscellaneousField: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         switch key {
-        case CodingKeys.name, CodingKeys.value:
+        case CodingKeys.value:
             return .element
         default:
-            return .element
+            return .attribute
         }
     }
 }
