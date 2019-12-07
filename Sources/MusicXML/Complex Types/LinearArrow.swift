@@ -23,7 +23,6 @@ extension LinearArrow: Equatable {}
 extension LinearArrow: Codable {}
 
 import XMLCoder
-// sourcery:inline:LinearArrow.DynamicNodeEncoding
 extension LinearArrow: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -32,4 +31,3 @@ extension LinearArrow: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

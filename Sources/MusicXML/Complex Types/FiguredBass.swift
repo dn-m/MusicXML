@@ -103,7 +103,6 @@ extension FiguredBass: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:FiguredBass.DynamicNodeEncoding
 extension FiguredBass: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -125,4 +124,3 @@ extension FiguredBass: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

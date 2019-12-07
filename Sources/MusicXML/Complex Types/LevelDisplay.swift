@@ -50,7 +50,6 @@ extension LevelDisplay: Codable {
 extension LevelDisplay.CodingKeys: XMLAttributeGroupCodingKey {}
 
 import XMLCoder
-// sourcery:inline:LevelDisplay.DynamicNodeEncoding
 extension LevelDisplay: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -68,4 +67,3 @@ extension LevelDisplay: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

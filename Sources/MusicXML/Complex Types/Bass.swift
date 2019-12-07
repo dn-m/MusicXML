@@ -34,7 +34,6 @@ extension Bass: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Bass.DynamicNodeEncoding
 extension Bass: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -43,4 +42,3 @@ extension Bass: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

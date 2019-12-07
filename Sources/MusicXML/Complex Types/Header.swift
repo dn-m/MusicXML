@@ -54,5 +54,3 @@ extension Header: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Header: Equatable.DynamicNodeEncoding
-// sourcery:end

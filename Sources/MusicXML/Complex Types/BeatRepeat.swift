@@ -34,7 +34,6 @@ extension BeatRepeat: Equatable {}
 extension BeatRepeat: Codable {}
 
 import XMLCoder
-// sourcery:inline:BeatRepeat.DynamicNodeEncoding
 extension BeatRepeat: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -52,4 +51,3 @@ extension BeatRepeat: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

@@ -33,7 +33,6 @@ extension StaffTuning: Equatable {}
 extension StaffTuning: Codable {}
 
 import XMLCoder
-// sourcery:inline:StaffTuning.DynamicNodeEncoding
 extension StaffTuning: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -47,4 +46,3 @@ extension StaffTuning: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

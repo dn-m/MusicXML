@@ -101,7 +101,6 @@ extension Bend: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Bend.DynamicNodeEncoding
 extension Bend: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -121,4 +120,3 @@ extension Bend: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

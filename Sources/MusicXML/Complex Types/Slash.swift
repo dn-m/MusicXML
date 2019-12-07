@@ -96,7 +96,6 @@ extension Slash: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Slash.DynamicNodeEncoding
 extension Slash: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -114,4 +113,3 @@ extension Slash: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

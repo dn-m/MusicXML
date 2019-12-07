@@ -40,7 +40,6 @@ extension Forward: Equatable {}
 extension Forward: Codable {}
 
 import XMLCoder
-// sourcery:inline:Forward.DynamicNodeEncoding
 extension Forward: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -49,4 +48,3 @@ extension Forward: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

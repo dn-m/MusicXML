@@ -54,7 +54,6 @@ extension MetronomeNote: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:MetronomeNote.DynamicNodeEncoding
 extension MetronomeNote: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -63,4 +62,3 @@ extension MetronomeNote: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

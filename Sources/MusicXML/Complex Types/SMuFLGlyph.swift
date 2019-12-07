@@ -28,7 +28,6 @@ extension SMuFLGlyph: Equatable {}
 extension SMuFLGlyph: Codable {}
 
 import XMLCoder
-// sourcery:inline:SMuFLGlyph.DynamicNodeEncoding
 extension SMuFLGlyph: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -37,4 +36,3 @@ extension SMuFLGlyph: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

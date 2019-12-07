@@ -29,7 +29,6 @@ extension Work: Equatable {}
 extension Work: Codable {}
 
 import XMLCoder
-// sourcery:inline:Work.DynamicNodeEncoding
 extension Work: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -38,4 +37,3 @@ extension Work: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

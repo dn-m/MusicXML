@@ -52,7 +52,6 @@ extension Figure: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Figure.DynamicNodeEncoding
 extension Figure: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -61,4 +60,3 @@ extension Figure: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

@@ -32,7 +32,6 @@ extension Stick: Equatable {}
 extension Stick: Codable {}
 
 import XMLCoder
-// sourcery:inline:Stick.DynamicNodeEncoding
 extension Stick: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -46,4 +45,3 @@ extension Stick: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

@@ -41,7 +41,6 @@ extension Tie: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Tie.DynamicNodeEncoding
 extension Tie: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -57,4 +56,3 @@ extension Tie: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

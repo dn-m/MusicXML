@@ -172,7 +172,6 @@ extension Percussion: Codable {
     }
 }
 
-// sourcery:inline:Percussion.DynamicNodeEncoding
 extension Percussion: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -186,4 +185,3 @@ extension Percussion: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

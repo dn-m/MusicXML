@@ -32,7 +32,6 @@ extension Miscellaneous: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Miscellaneous.DynamicNodeEncoding
 extension Miscellaneous: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -41,4 +40,3 @@ extension Miscellaneous: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

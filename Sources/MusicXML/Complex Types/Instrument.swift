@@ -26,7 +26,6 @@ extension Instrument: Equatable {}
 extension Instrument: Codable {}
 
 import XMLCoder
-// sourcery:inline:Instrument.DynamicNodeEncoding
 extension Instrument: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -40,4 +39,3 @@ extension Instrument: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

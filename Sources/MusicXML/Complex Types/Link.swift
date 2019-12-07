@@ -68,7 +68,6 @@ extension Link: Equatable {}
 extension Link: Codable {}
 
 import XMLCoder
-// sourcery:inline:Link.DynamicNodeEncoding
 extension Link: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -86,4 +85,3 @@ extension Link: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

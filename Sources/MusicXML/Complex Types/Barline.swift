@@ -108,7 +108,6 @@ extension Barline: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Barline.DynamicNodeEncoding
 extension Barline: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -117,4 +116,3 @@ extension Barline: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

@@ -76,7 +76,6 @@ extension TimeModification: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:TimeModification.DynamicNodeEncoding
 extension TimeModification: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -85,4 +84,3 @@ extension TimeModification: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

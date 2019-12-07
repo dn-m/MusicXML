@@ -109,7 +109,6 @@ extension Frame: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Frame.DynamicNodeEncoding
 extension Frame: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -133,4 +132,3 @@ extension Frame: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

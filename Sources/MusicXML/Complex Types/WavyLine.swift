@@ -71,7 +71,6 @@ extension WavyLine: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:WavyLine.DynamicNodeEncoding
 extension WavyLine: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -91,4 +90,3 @@ extension WavyLine: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

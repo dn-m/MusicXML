@@ -111,7 +111,6 @@ extension Encoding: Codable {
     }
 }
 
-// sourcery:inline:Encoding.DynamicNodeEncoding
 extension Encoding: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -120,4 +119,3 @@ extension Encoding: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

@@ -36,7 +36,6 @@ extension Root: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Root.DynamicNodeEncoding
 extension Root: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -45,4 +44,3 @@ extension Root: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

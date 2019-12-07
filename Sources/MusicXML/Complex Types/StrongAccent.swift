@@ -53,7 +53,6 @@ extension StrongAccent: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:StrongAccent.DynamicNodeEncoding
 extension StrongAccent: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -69,4 +68,3 @@ extension StrongAccent: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

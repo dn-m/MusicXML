@@ -78,7 +78,6 @@ extension Tuplet: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Tuplet.DynamicNodeEncoding
 extension Tuplet: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -104,4 +103,3 @@ extension Tuplet: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

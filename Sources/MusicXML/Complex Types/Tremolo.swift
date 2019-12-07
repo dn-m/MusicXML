@@ -72,7 +72,6 @@ extension Tremolo: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Tremolo.DynamicNodeEncoding
 extension Tremolo: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -88,4 +87,3 @@ extension Tremolo: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

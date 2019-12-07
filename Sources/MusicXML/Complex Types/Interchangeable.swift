@@ -29,7 +29,6 @@ extension Interchangeable: Equatable {}
 extension Interchangeable: Codable {}
 
 import XMLCoder
-// sourcery:inline:Interchangeable.DynamicNodeEncoding
 extension Interchangeable: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -45,4 +44,3 @@ extension Interchangeable: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

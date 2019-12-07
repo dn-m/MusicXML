@@ -285,7 +285,6 @@ extension Sound: DynamicNodeDecoding {
     }
 }
 
-// sourcery:inline:Sound.DynamicNodeEncoding
 extension Sound: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -331,4 +330,3 @@ extension Sound: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

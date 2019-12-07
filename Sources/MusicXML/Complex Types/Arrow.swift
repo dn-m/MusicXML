@@ -150,7 +150,6 @@ extension Arrow: Codable {
     }
 }
 
-// sourcery:inline:Arrow.DynamicNodeEncoding
 extension Arrow: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -164,4 +163,3 @@ extension Arrow: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

@@ -27,5 +27,3 @@ public struct Backup: Codable, Equatable {
 }
 
 import XMLCoder
-// sourcery:inline:Backup: Codable, Equatable.DynamicNodeEncoding
-// sourcery:end

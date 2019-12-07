@@ -195,7 +195,6 @@ extension Notations: ExpressibleByArrayLiteral {
     }
 }
 
-// sourcery:inline:Notations.DynamicNodeEncoding
 extension Notations: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -209,4 +208,3 @@ extension Notations: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

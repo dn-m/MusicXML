@@ -73,7 +73,6 @@ extension Bracket: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Bracket.DynamicNodeEncoding
 extension Bracket: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -101,4 +100,3 @@ extension Bracket: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

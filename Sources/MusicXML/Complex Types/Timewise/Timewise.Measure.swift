@@ -119,5 +119,3 @@ extension Timewise.Measure: Codable {
     }
 }
 
-// sourcery:inline:    Measure: Equatable.DynamicNodeEncoding
-// sourcery:end

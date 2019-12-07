@@ -25,5 +25,3 @@ public struct LyricLanguage: Codable, Equatable {
 }
 
 import XMLCoder
-// sourcery:inline:LyricLanguage: Codable, Equatable.DynamicNodeEncoding
-// sourcery:end

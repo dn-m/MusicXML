@@ -131,7 +131,6 @@ extension MeasureStyle: Codable {
     }
 }
 
-// sourcery:inline:MeasureStyle.DynamicNodeEncoding
 extension MeasureStyle: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -147,4 +146,3 @@ extension MeasureStyle: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

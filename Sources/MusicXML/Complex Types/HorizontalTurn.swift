@@ -61,7 +61,6 @@ extension HorizontalTurn: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:HorizontalTurn.DynamicNodeEncoding
 extension HorizontalTurn: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -77,4 +76,3 @@ extension HorizontalTurn: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

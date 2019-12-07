@@ -51,7 +51,6 @@ extension TupletDot: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:TupletDot.DynamicNodeEncoding
 extension TupletDot: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -65,4 +64,3 @@ extension TupletDot: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

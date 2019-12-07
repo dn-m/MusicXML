@@ -70,7 +70,6 @@ extension AccordionRegistration: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:AccordionRegistration.DynamicNodeEncoding
 extension AccordionRegistration: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -79,4 +78,3 @@ extension AccordionRegistration: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

@@ -48,7 +48,6 @@ extension Accord: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Accord.DynamicNodeEncoding
 extension Accord: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -62,4 +61,3 @@ extension Accord: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

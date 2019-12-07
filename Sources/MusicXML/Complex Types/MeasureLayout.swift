@@ -28,7 +28,6 @@ extension MeasureLayout: Equatable {}
 extension MeasureLayout: Codable {}
 
 import XMLCoder
-// sourcery:inline:MeasureLayout.DynamicNodeEncoding
 extension MeasureLayout: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -42,4 +41,3 @@ extension MeasureLayout: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

@@ -69,7 +69,6 @@ extension PartGroup: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:PartGroup.DynamicNodeEncoding
 extension PartGroup: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -85,4 +84,3 @@ extension PartGroup: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

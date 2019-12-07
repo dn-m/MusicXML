@@ -41,7 +41,6 @@ extension Scaling: Equatable {}
 extension Scaling: Codable {}
 
 import XMLCoder
-// sourcery:inline:Scaling.DynamicNodeEncoding
 extension Scaling: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -50,4 +49,3 @@ extension Scaling: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

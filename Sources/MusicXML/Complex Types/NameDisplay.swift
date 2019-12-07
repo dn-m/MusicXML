@@ -110,7 +110,6 @@ extension NameDisplay: Codable {
 
 extension NameDisplay.Text.CodingKeys: XMLChoiceCodingKey {}
 
-// sourcery:inline:NameDisplay.DynamicNodeEncoding
 extension NameDisplay: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -124,4 +123,3 @@ extension NameDisplay: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

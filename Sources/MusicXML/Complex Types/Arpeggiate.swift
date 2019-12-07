@@ -66,7 +66,6 @@ extension Arpeggiate: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Arpeggiate.DynamicNodeEncoding
 extension Arpeggiate: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -86,4 +85,3 @@ extension Arpeggiate: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

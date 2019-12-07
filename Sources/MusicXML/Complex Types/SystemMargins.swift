@@ -34,7 +34,6 @@ extension SystemMargins: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:SystemMargins.DynamicNodeEncoding
 extension SystemMargins: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -43,4 +42,3 @@ extension SystemMargins: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

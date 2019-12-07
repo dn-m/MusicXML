@@ -49,7 +49,6 @@ extension PrintStyleTrillSound: Codable {
 extension PrintStyleTrillSound.CodingKeys: XMLAttributeGroupCodingKey {}
 
 import XMLCoder
-// sourcery:inline:PrintStyleTrillSound.DynamicNodeEncoding
 extension PrintStyleTrillSound: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -63,4 +62,3 @@ extension PrintStyleTrillSound: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

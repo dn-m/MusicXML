@@ -39,7 +39,6 @@ extension Grouping: Equatable {}
 extension Grouping: Codable {}
 
 import XMLCoder
-// sourcery:inline:Grouping.DynamicNodeEncoding
 extension Grouping: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -57,4 +56,3 @@ extension Grouping: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

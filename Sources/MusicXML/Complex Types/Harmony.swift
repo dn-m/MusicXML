@@ -106,7 +106,6 @@ extension Harmony: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Harmony.DynamicNodeEncoding
 extension Harmony: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -126,4 +125,3 @@ extension Harmony: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

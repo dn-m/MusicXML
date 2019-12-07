@@ -52,7 +52,6 @@ extension Printout: Codable {
 extension Printout.CodingKeys: XMLAttributeGroupCodingKey {}
 
 import XMLCoder
-// sourcery:inline:Printout.DynamicNodeEncoding
 extension Printout: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -72,4 +71,3 @@ extension Printout: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

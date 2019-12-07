@@ -197,7 +197,6 @@ extension Lyric: Codable {
     }
 }
 
-// sourcery:inline:Lyric.DynamicNodeEncoding
 extension Lyric: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -221,4 +220,3 @@ extension Lyric: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

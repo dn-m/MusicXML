@@ -86,7 +86,6 @@ extension Slur: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Slur.DynamicNodeEncoding
 extension Slur: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -110,4 +109,3 @@ extension Slur: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

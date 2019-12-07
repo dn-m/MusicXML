@@ -32,7 +32,6 @@ extension Scordatura: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Scordatura.DynamicNodeEncoding
 extension Scordatura: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -41,4 +40,3 @@ extension Scordatura: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

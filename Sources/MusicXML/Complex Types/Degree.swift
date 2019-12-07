@@ -53,7 +53,6 @@ extension Degree: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Degree.DynamicNodeEncoding
 extension Degree: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -67,4 +66,3 @@ extension Degree: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

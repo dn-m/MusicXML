@@ -53,7 +53,6 @@ extension SystemLayout: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:SystemLayout.DynamicNodeEncoding
 extension SystemLayout: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -62,4 +61,3 @@ extension SystemLayout: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

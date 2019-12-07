@@ -35,7 +35,6 @@ extension Supports: Equatable {}
 extension Supports: Codable {}
 
 import XMLCoder
-// sourcery:inline:Supports.DynamicNodeEncoding
 extension Supports: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -55,4 +54,3 @@ extension Supports: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

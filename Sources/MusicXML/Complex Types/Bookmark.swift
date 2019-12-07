@@ -30,7 +30,6 @@ extension Bookmark: Equatable {}
 extension Bookmark: Codable {}
 
 import XMLCoder
-// sourcery:inline:Bookmark.DynamicNodeEncoding
 extension Bookmark: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -50,4 +49,3 @@ extension Bookmark: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

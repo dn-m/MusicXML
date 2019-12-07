@@ -104,7 +104,6 @@ extension Play: Codable {
     }
 }
 
-// sourcery:inline:Play.DynamicNodeEncoding
 extension Play: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -113,4 +112,3 @@ extension Play: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

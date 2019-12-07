@@ -89,7 +89,6 @@ extension Wedge: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Wedge.DynamicNodeEncoding
 extension Wedge: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -113,4 +112,3 @@ extension Wedge: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

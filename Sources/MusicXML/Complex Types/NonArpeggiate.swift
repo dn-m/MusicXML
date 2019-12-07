@@ -68,7 +68,6 @@ extension NonArpeggiate: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:NonArpeggiate.DynamicNodeEncoding
 extension NonArpeggiate: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -88,4 +87,3 @@ extension NonArpeggiate: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

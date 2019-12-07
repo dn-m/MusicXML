@@ -54,5 +54,3 @@ extension Timewise.Part: Codable {
     }
 }
 
-// sourcery:inline:    Part.DynamicNodeEncoding
-// sourcery:end

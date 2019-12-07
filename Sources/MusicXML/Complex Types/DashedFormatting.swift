@@ -45,7 +45,6 @@ extension DashedFormatting: Codable {
 extension DashedFormatting.CodingKeys: XMLAttributeGroupCodingKey {}
 
 import XMLCoder
-// sourcery:inline:DashedFormatting.DynamicNodeEncoding
 extension DashedFormatting: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -61,4 +60,3 @@ extension DashedFormatting: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

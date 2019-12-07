@@ -36,7 +36,6 @@ extension MeasureAttributes: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:MeasureAttributes.DynamicNodeEncoding
 extension MeasureAttributes: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -60,4 +59,3 @@ extension MeasureAttributes: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

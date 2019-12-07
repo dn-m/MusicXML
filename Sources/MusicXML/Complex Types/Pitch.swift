@@ -29,7 +29,6 @@ extension Pitch: Equatable {}
 extension Pitch: Codable {}
 
 import XMLCoder
-// sourcery:inline:Pitch.DynamicNodeEncoding
 extension Pitch: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -38,4 +37,3 @@ extension Pitch: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

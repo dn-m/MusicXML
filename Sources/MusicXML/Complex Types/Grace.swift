@@ -31,7 +31,6 @@ extension Grace: Equatable {}
 extension Grace: Codable {}
 
 import XMLCoder
-// sourcery:inline:Grace.DynamicNodeEncoding
 extension Grace: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -51,4 +50,3 @@ extension Grace: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

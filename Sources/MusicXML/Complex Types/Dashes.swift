@@ -44,7 +44,6 @@ extension Dashes: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Dashes.DynamicNodeEncoding
 extension Dashes: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -58,4 +57,3 @@ extension Dashes: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

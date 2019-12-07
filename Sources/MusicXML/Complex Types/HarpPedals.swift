@@ -50,7 +50,6 @@ extension HarpPedals: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:HarpPedals.DynamicNodeEncoding
 extension HarpPedals: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -59,4 +58,3 @@ extension HarpPedals: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

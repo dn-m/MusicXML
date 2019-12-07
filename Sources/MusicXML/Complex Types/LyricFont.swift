@@ -56,7 +56,6 @@ extension LyricFont: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:LyricFont.DynamicNodeEncoding
 extension LyricFont: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -72,4 +71,3 @@ extension LyricFont: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

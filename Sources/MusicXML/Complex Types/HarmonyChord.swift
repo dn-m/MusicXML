@@ -238,7 +238,6 @@ extension HarmonyChordComponent: Decodable {
 
 extension HarmonyChordComponent.CodingKeys: XMLChoiceCodingKey {}
 
-// sourcery:inline:HarmonyChord.DynamicNodeEncoding
 extension HarmonyChord: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -247,4 +246,3 @@ extension HarmonyChord: DynamicNodeEncoding {
         return .element
     }
 }
-// sourcery:end

@@ -57,7 +57,6 @@ extension OctaveShift: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:OctaveShift.DynamicNodeEncoding
 extension OctaveShift: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -75,4 +74,3 @@ extension OctaveShift: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

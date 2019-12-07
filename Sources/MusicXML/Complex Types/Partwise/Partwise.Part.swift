@@ -47,5 +47,3 @@ extension Partwise.Part: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:    Part.DynamicNodeEncoding
-// sourcery:end

@@ -53,7 +53,6 @@ extension Pedal: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Pedal.DynamicNodeEncoding
 extension Pedal: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -71,4 +70,3 @@ extension Pedal: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end

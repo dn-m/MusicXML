@@ -74,7 +74,6 @@ extension Direction: Codable {
 }
 
 import XMLCoder
-// sourcery:inline:Direction.DynamicNodeEncoding
 extension Direction: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         if key is XMLAttributeGroupCodingKey {
@@ -90,4 +89,3 @@ extension Direction: DynamicNodeEncoding {
         }
     }
 }
-// sourcery:end
