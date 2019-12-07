@@ -2,4 +2,4 @@ sources:
     - "Sources/MusicXML/Complex\ Types"
 templates:
     - "Sources/MusicXML/Templates"
-output: "Sourcery-Output"
+output: "sourcery-output"
