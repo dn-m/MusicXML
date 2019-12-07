@@ -25,5 +25,3 @@ public struct Backup: Codable, Equatable {
         self.editorial = editorial
     }
 }
-
-import XMLCoder

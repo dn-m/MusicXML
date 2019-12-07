@@ -52,5 +52,3 @@ extension Header: Codable {
         case partList = "part-list"
     }
 }
-
-import XMLCoder
