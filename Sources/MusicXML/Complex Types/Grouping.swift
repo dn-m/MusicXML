@@ -37,3 +37,24 @@ public struct Grouping {
 
 extension Grouping: Equatable {}
 extension Grouping: Codable {}
+
+import XMLCoder
+// sourcery:inline:Grouping.DynamicNodeEncoding
+extension Grouping: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.type:
+            return .attribute
+        case CodingKeys.number:
+            return .attribute
+        case CodingKeys.memberOf:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

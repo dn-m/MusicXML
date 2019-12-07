@@ -284,3 +284,51 @@ extension Sound: DynamicNodeDecoding {
         }
     }
 }
+
+// sourcery:inline:Sound.DynamicNodeEncoding
+extension Sound: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.tempo:
+            return .attribute
+        case CodingKeys.dynamics:
+            return .attribute
+        case CodingKeys.dacapo:
+            return .attribute
+        case CodingKeys.segno:
+            return .attribute
+        case CodingKeys.dalsegno:
+            return .attribute
+        case CodingKeys.coda:
+            return .attribute
+        case CodingKeys.tocoda:
+            return .attribute
+        case CodingKeys.divisions:
+            return .attribute
+        case CodingKeys.forwardRepeat:
+            return .attribute
+        case CodingKeys.fine:
+            return .attribute
+        case CodingKeys.timeOnly:
+            return .attribute
+        case CodingKeys.pizzicato:
+            return .attribute
+        case CodingKeys.pan:
+            return .attribute
+        case CodingKeys.elevation:
+            return .attribute
+        case CodingKeys.damperPedal:
+            return .attribute
+        case CodingKeys.softPedal:
+            return .attribute
+        case CodingKeys.sostenutoPedal:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

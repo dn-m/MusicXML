@@ -52,3 +52,7 @@ extension Header: Codable {
         case partList = "part-list"
     }
 }
+
+import XMLCoder
+// sourcery:inline:Header: Equatable.DynamicNodeEncoding
+// sourcery:end

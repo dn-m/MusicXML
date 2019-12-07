@@ -80,3 +80,32 @@ extension TrillSound: Codable {
 }
 
 extension TrillSound.CodingKeys: XMLAttributeGroupCodingKey {}
+
+import XMLCoder
+// sourcery:inline:TrillSound.DynamicNodeEncoding
+extension TrillSound: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.startNote:
+            return .attribute
+        case CodingKeys.trillStep:
+            return .attribute
+        case CodingKeys.twoNoteTurn:
+            return .attribute
+        case CodingKeys.accelerate:
+            return .attribute
+        case CodingKeys.beats:
+            return .attribute
+        case CodingKeys.secondBeat:
+            return .attribute
+        case CodingKeys.lastBeat:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

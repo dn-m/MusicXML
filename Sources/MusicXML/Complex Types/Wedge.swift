@@ -87,3 +87,30 @@ extension Wedge: Codable {
         color = try container.decodeIfPresent(Color.self, forKey: .color)
     }
 }
+
+import XMLCoder
+// sourcery:inline:Wedge.DynamicNodeEncoding
+extension Wedge: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.type:
+            return .attribute
+        case CodingKeys.number:
+            return .attribute
+        case CodingKeys.spread:
+            return .attribute
+        case CodingKeys.niente:
+            return .attribute
+        case CodingKeys.lineType:
+            return .attribute
+        case CodingKeys.color:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

@@ -33,3 +33,26 @@ public struct Supports {
 
 extension Supports: Equatable {}
 extension Supports: Codable {}
+
+import XMLCoder
+// sourcery:inline:Supports.DynamicNodeEncoding
+extension Supports: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.attribute:
+            return .attribute
+        case CodingKeys.element:
+            return .attribute
+        case CodingKeys.type:
+            return .attribute
+        case CodingKeys.value:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

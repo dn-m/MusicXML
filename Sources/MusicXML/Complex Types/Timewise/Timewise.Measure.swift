@@ -118,3 +118,6 @@ extension Timewise.Measure: Codable {
         try parts.encode(to: encoder)
     }
 }
+
+// sourcery:inline:    Measure: Equatable.DynamicNodeEncoding
+// sourcery:end

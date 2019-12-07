@@ -124,3 +124,28 @@ extension Print: Codable {
         case pageNumber = "page-number"
     }
 }
+
+import XMLCoder
+// sourcery:inline:Print.DynamicNodeEncoding
+extension Print: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.staffSpacing:
+            return .attribute
+        case CodingKeys.newSystem:
+            return .attribute
+        case CodingKeys.newPage:
+            return .attribute
+        case CodingKeys.blankPage:
+            return .attribute
+        case CodingKeys.pageNumber:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

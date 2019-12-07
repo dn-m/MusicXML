@@ -72,3 +72,22 @@ extension Direction: Codable {
         case sound
     }
 }
+
+import XMLCoder
+// sourcery:inline:Direction.DynamicNodeEncoding
+extension Direction: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.placement:
+            return .attribute
+        case CodingKeys.directive:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

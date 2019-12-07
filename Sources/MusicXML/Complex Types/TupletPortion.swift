@@ -29,3 +29,15 @@ public struct TupletPortion {
 
 extension TupletPortion: Equatable {}
 extension TupletPortion: Codable {}
+
+import XMLCoder
+// sourcery:inline:TupletPortion.DynamicNodeEncoding
+extension TupletPortion: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

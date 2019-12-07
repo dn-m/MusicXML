@@ -29,3 +29,22 @@ public struct MeasureRepeat {
 
 extension MeasureRepeat: Equatable {}
 extension MeasureRepeat: Codable {}
+
+import XMLCoder
+// sourcery:inline:MeasureRepeat.DynamicNodeEncoding
+extension MeasureRepeat: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.type:
+            return .attribute
+        case CodingKeys.slashes:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

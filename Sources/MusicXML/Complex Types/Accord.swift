@@ -46,3 +46,20 @@ extension Accord: Codable {
         case tuningOctave = "tuning-octave"
     }
 }
+
+import XMLCoder
+// sourcery:inline:Accord.DynamicNodeEncoding
+extension Accord: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.string:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

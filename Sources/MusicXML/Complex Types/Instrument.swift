@@ -24,3 +24,20 @@ public struct Instrument {
 
 extension Instrument: Equatable {}
 extension Instrument: Codable {}
+
+import XMLCoder
+// sourcery:inline:Instrument.DynamicNodeEncoding
+extension Instrument: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.id:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

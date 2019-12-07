@@ -148,3 +148,22 @@ extension Harmonic.BaseSoundingTouchingPitch: Equatable {}
 extension Harmonic.BaseSoundingTouchingPitch: Codable {}
 
 extension Harmonic: Equatable {}
+
+import XMLCoder
+// sourcery:inline:Harmonic.DynamicNodeEncoding
+extension Harmonic: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.printObject:
+            return .attribute
+        case CodingKeys.placement:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

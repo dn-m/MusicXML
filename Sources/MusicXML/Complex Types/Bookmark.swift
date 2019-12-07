@@ -28,3 +28,26 @@ public struct Bookmark {
 
 extension Bookmark: Equatable {}
 extension Bookmark: Codable {}
+
+import XMLCoder
+// sourcery:inline:Bookmark.DynamicNodeEncoding
+extension Bookmark: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.id:
+            return .attribute
+        case CodingKeys.name:
+            return .attribute
+        case CodingKeys.element:
+            return .attribute
+        case CodingKeys.position:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

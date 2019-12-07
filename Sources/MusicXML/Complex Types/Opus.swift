@@ -18,3 +18,15 @@ public struct Opus {
 
 extension Opus: Equatable {}
 extension Opus: Codable {}
+
+import XMLCoder
+// sourcery:inline:Opus.DynamicNodeEncoding
+extension Opus: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

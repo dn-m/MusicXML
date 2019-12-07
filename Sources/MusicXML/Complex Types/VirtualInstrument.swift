@@ -25,3 +25,15 @@ public struct VirtualInstrument {
 
 extension VirtualInstrument: Equatable {}
 extension VirtualInstrument: Codable {}
+
+import XMLCoder
+// sourcery:inline:VirtualInstrument.DynamicNodeEncoding
+extension VirtualInstrument: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

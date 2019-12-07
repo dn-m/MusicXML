@@ -34,3 +34,15 @@ public struct FrameNote {
 
 extension FrameNote: Equatable {}
 extension FrameNote: Codable {}
+
+import XMLCoder
+// sourcery:inline:FrameNote.DynamicNodeEncoding
+extension FrameNote: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

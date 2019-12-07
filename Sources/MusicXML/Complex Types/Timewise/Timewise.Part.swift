@@ -53,3 +53,6 @@ extension Timewise.Part: Codable {
         self.musicData = try musicDataContainer.decode([MusicData].self)
     }
 }
+
+// sourcery:inline:    Part.DynamicNodeEncoding
+// sourcery:end

@@ -39,3 +39,22 @@ extension Tie: Codable {
         case timeOnly = "time-only"
     }
 }
+
+import XMLCoder
+// sourcery:inline:Tie.DynamicNodeEncoding
+extension Tie: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.type:
+            return .attribute
+        case CodingKeys.timeOnly:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

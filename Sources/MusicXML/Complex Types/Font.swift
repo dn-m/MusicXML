@@ -77,3 +77,20 @@ extension Font: Codable {
 }
 
 extension Font.CodingKeys: XMLAttributeGroupCodingKey {}
+
+import XMLCoder
+// sourcery:inline:Font.DynamicNodeEncoding
+extension Font: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.family:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

@@ -27,3 +27,15 @@ public struct Pitch {
 
 extension Pitch: Equatable {}
 extension Pitch: Codable {}
+
+import XMLCoder
+// sourcery:inline:Pitch.DynamicNodeEncoding
+extension Pitch: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

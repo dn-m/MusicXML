@@ -53,3 +53,20 @@ extension Cancel: Codable {
         try container.encode(fifths, forKey: .fifths)
     }
 }
+
+import XMLCoder
+// sourcery:inline:Cancel.DynamicNodeEncoding
+extension Cancel: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.location:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

@@ -51,3 +51,15 @@ extension SystemLayout: Codable {
         case dividers = "system-dividers"
     }
 }
+
+import XMLCoder
+// sourcery:inline:SystemLayout.DynamicNodeEncoding
+extension SystemLayout: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

@@ -51,3 +51,20 @@ extension Extend: Codable {
         try printStyle.encode(to: encoder)
     }
 }
+
+import XMLCoder
+// sourcery:inline:Extend.DynamicNodeEncoding
+extension Extend: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.type:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

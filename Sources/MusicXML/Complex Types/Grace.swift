@@ -29,3 +29,26 @@ public struct Grace {
 
 extension Grace: Equatable {}
 extension Grace: Codable {}
+
+import XMLCoder
+// sourcery:inline:Grace.DynamicNodeEncoding
+extension Grace: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.stealTimePrevious:
+            return .attribute
+        case CodingKeys.stealTimeFollowing:
+            return .attribute
+        case CodingKeys.makeTime:
+            return .attribute
+        case CodingKeys.slash:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

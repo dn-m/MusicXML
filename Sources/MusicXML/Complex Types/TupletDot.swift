@@ -49,3 +49,20 @@ extension TupletDot: Codable {
         color = try container.decodeIfPresent(Color.self, forKey: .color)
     }
 }
+
+import XMLCoder
+// sourcery:inline:TupletDot.DynamicNodeEncoding
+extension TupletDot: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.color:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

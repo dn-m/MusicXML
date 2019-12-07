@@ -34,3 +34,30 @@ extension MeasureAttributes: Codable {
         case optionalUniqueID = "optional-unique-id"
     }
 }
+
+import XMLCoder
+// sourcery:inline:MeasureAttributes.DynamicNodeEncoding
+extension MeasureAttributes: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.number:
+            return .attribute
+        case CodingKeys.text:
+            return .attribute
+        case CodingKeys.implicit:
+            return .attribute
+        case CodingKeys.nonControlling:
+            return .attribute
+        case CodingKeys.width:
+            return .attribute
+        case CodingKeys.optionalUniqueID:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

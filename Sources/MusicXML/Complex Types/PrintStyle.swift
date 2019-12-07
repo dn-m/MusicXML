@@ -56,3 +56,20 @@ extension PrintStyle: Codable {
 }
 
 extension PrintStyle.CodingKeys: XMLAttributeGroupCodingKey {}
+
+import XMLCoder
+// sourcery:inline:PrintStyle.DynamicNodeEncoding
+extension PrintStyle: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.color:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

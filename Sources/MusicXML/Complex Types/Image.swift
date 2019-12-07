@@ -64,3 +64,26 @@ extension Image: Codable {
         vAlign = try container.decodeIfPresent(VAlignImage.self, forKey: .vAlign)
     }
 }
+
+import XMLCoder
+// sourcery:inline:Image.DynamicNodeEncoding
+extension Image: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.source:
+            return .attribute
+        case CodingKeys.type:
+            return .attribute
+        case CodingKeys.hAlign:
+            return .attribute
+        case CodingKeys.vAlign:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

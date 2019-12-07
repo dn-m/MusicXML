@@ -101,3 +101,28 @@ extension FiguredBass: Codable {
         try container.encodeIfPresent(level, forKey: .level)
     }
 }
+
+import XMLCoder
+// sourcery:inline:FiguredBass.DynamicNodeEncoding
+extension FiguredBass: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.parentheses:
+            return .attribute
+        case CodingKeys.figures:
+            return .attribute
+        case CodingKeys.duration:
+            return .attribute
+        case CodingKeys.footnote:
+            return .attribute
+        case CodingKeys.level:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

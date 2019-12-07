@@ -38,3 +38,20 @@ extension Rest: Codable {
         case displayOctave = "display-octave"
     }
 }
+
+import XMLCoder
+// sourcery:inline:Rest.DynamicNodeEncoding
+extension Rest: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.measure:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

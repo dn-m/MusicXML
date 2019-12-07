@@ -45,3 +45,7 @@ extension Partwise.Part: Codable {
         case measures = "measure"
     }
 }
+
+import XMLCoder
+// sourcery:inline:    Part.DynamicNodeEncoding
+// sourcery:end

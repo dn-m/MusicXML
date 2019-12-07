@@ -444,3 +444,38 @@ extension Note: Codable {
         try kind.encode(to: encoder)
     }
 }
+
+import XMLCoder
+// sourcery:inline:Note.DynamicNodeEncoding
+extension Note: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.printObject:
+            return .attribute
+        case CodingKeys.printDot:
+            return .attribute
+        case CodingKeys.printSpacing:
+            return .attribute
+        case CodingKeys.printLyric:
+            return .attribute
+        case CodingKeys.dynamics:
+            return .attribute
+        case CodingKeys.endDynamics:
+            return .attribute
+        case CodingKeys.attack:
+            return .attribute
+        case CodingKeys.release:
+            return .attribute
+        case CodingKeys.timeOnly:
+            return .attribute
+        case CodingKeys.pizzicato:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

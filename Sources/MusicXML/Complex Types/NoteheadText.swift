@@ -78,3 +78,14 @@ extension NoteheadText.Kind.CodingKeys: XMLChoiceCodingKey {}
 
 extension NoteheadText: Equatable {}
 extension NoteheadText: Codable {}
+
+// sourcery:inline:NoteheadText.DynamicNodeEncoding
+extension NoteheadText: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

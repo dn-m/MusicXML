@@ -130,3 +130,21 @@ extension MeasureStyle: Codable {
         try kind.encode(to: encoder)
     }
 }
+
+// sourcery:inline:MeasureStyle.DynamicNodeEncoding
+extension MeasureStyle: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.number:
+            return .attribute
+        case CodingKeys.color:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

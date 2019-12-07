@@ -30,3 +30,15 @@ extension Scordatura: Codable {
         case accords = "accord"
     }
 }
+
+import XMLCoder
+// sourcery:inline:Scordatura.DynamicNodeEncoding
+extension Scordatura: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

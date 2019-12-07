@@ -26,3 +26,20 @@ public struct MeasureLayout {
 
 extension MeasureLayout: Equatable {}
 extension MeasureLayout: Codable {}
+
+import XMLCoder
+// sourcery:inline:MeasureLayout.DynamicNodeEncoding
+extension MeasureLayout: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.measureDistance:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

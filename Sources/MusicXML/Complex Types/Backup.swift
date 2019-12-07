@@ -25,3 +25,7 @@ public struct Backup: Codable, Equatable {
         self.editorial = editorial
     }
 }
+
+import XMLCoder
+// sourcery:inline:Backup: Codable, Equatable.DynamicNodeEncoding
+// sourcery:end

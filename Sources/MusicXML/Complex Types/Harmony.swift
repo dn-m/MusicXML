@@ -104,3 +104,26 @@ extension Harmony: Codable {
         fatalError("TODO")
     }
 }
+
+import XMLCoder
+// sourcery:inline:Harmony.DynamicNodeEncoding
+extension Harmony: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.type:
+            return .attribute
+        case CodingKeys.placement:
+            return .attribute
+        case CodingKeys.printObject:
+            return .attribute
+        case CodingKeys.printFrame:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

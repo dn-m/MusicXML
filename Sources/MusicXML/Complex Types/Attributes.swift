@@ -91,3 +91,15 @@ extension Attributes: Codable {
         case measureStyles = "measure-style"
     }
 }
+
+import XMLCoder
+// sourcery:inline:Attributes.DynamicNodeEncoding
+extension Attributes: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

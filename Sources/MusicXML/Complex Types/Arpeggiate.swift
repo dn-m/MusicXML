@@ -64,3 +64,26 @@ extension Arpeggiate: Codable {
         color = try container.decodeIfPresent(Color.self, forKey: .color)
     }
 }
+
+import XMLCoder
+// sourcery:inline:Arpeggiate.DynamicNodeEncoding
+extension Arpeggiate: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.number:
+            return .attribute
+        case CodingKeys.direction:
+            return .attribute
+        case CodingKeys.placement:
+            return .attribute
+        case CodingKeys.color:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

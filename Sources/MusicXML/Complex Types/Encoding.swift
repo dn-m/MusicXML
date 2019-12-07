@@ -110,3 +110,14 @@ extension Encoding: Codable {
         self.values = try container.decode([Kind].self)
     }
 }
+
+// sourcery:inline:Encoding.DynamicNodeEncoding
+extension Encoding: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

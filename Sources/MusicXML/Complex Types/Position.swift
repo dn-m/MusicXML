@@ -105,3 +105,26 @@ extension Position: Codable {
 }
 
 extension Position.CodingKeys: XMLAttributeGroupCodingKey {}
+
+import XMLCoder
+// sourcery:inline:Position.DynamicNodeEncoding
+extension Position: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.defaultX:
+            return .attribute
+        case CodingKeys.defaultY:
+            return .attribute
+        case CodingKeys.relativeX:
+            return .attribute
+        case CodingKeys.relativeY:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

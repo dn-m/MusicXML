@@ -106,3 +106,15 @@ extension Barline: Codable {
         case divisions
     }
 }
+
+import XMLCoder
+// sourcery:inline:Barline.DynamicNodeEncoding
+extension Barline: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

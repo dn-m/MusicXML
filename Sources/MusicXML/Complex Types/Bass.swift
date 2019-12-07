@@ -32,3 +32,15 @@ extension Bass: Codable {
         case alter = "bass-alter"
     }
 }
+
+import XMLCoder
+// sourcery:inline:Bass.DynamicNodeEncoding
+extension Bass: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

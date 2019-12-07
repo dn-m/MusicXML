@@ -68,3 +68,30 @@ extension Bezier: Codable {
 }
 
 extension Bezier.CodingKeys: XMLAttributeGroupCodingKey {}
+
+import XMLCoder
+// sourcery:inline:Bezier.DynamicNodeEncoding
+extension Bezier: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.bezierX:
+            return .attribute
+        case CodingKeys.bezierY:
+            return .attribute
+        case CodingKeys.bezierX2:
+            return .attribute
+        case CodingKeys.bezierY2:
+            return .attribute
+        case CodingKeys.bezierOffset:
+            return .attribute
+        case CodingKeys.bezierOffset2:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

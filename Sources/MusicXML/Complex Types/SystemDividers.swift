@@ -37,3 +37,15 @@ extension SystemDividers: Codable {
         case right = "right-divider"
     }
 }
+
+import XMLCoder
+// sourcery:inline:SystemDividers.DynamicNodeEncoding
+extension SystemDividers: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

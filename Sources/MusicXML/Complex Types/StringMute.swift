@@ -47,3 +47,15 @@ extension StringMute: Codable {
         printStyleAlign = try PrintStyleAlign(from: decoder)
     }
 }
+
+import XMLCoder
+// sourcery:inline:StringMute.DynamicNodeEncoding
+extension StringMute: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

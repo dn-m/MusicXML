@@ -45,3 +45,15 @@ extension Ornaments: Codable {
         }
     }
 }
+
+import XMLCoder
+// sourcery:inline:Ornaments.DynamicNodeEncoding
+extension Ornaments: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

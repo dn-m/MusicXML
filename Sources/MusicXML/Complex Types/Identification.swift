@@ -67,3 +67,15 @@ extension Identification: Codable {
         case miscellaneous
     }
 }
+
+import XMLCoder
+// sourcery:inline:Identification.DynamicNodeEncoding
+extension Identification: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

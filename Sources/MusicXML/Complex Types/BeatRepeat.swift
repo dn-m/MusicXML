@@ -32,3 +32,24 @@ public struct BeatRepeat {
 
 extension BeatRepeat: Equatable {}
 extension BeatRepeat: Codable {}
+
+import XMLCoder
+// sourcery:inline:BeatRepeat.DynamicNodeEncoding
+extension BeatRepeat: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.type:
+            return .attribute
+        case CodingKeys.slashes:
+            return .attribute
+        case CodingKeys.useDots:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

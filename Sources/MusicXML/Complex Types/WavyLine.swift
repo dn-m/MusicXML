@@ -69,3 +69,26 @@ extension WavyLine: Codable {
         trillSound = try TrillSound(from: decoder)
     }
 }
+
+import XMLCoder
+// sourcery:inline:WavyLine.DynamicNodeEncoding
+extension WavyLine: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.type:
+            return .attribute
+        case CodingKeys.number:
+            return .attribute
+        case CodingKeys.placement:
+            return .attribute
+        case CodingKeys.color:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

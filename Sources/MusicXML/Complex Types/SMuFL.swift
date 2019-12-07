@@ -35,3 +35,15 @@ public struct SMuFL {
 
 extension SMuFL: Equatable {}
 extension SMuFL: Codable {}
+
+import XMLCoder
+// sourcery:inline:SMuFL.DynamicNodeEncoding
+extension SMuFL: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

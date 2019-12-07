@@ -26,3 +26,22 @@ public struct HeelToe {
 
 extension HeelToe: Equatable {}
 extension HeelToe: Codable {}
+
+import XMLCoder
+// sourcery:inline:HeelToe.DynamicNodeEncoding
+extension HeelToe: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.placement:
+            return .attribute
+        case CodingKeys.substitution:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

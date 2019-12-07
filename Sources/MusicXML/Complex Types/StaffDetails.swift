@@ -67,3 +67,26 @@ public struct StaffDetails {
 
 extension StaffDetails: Equatable {}
 extension StaffDetails: Codable {}
+
+import XMLCoder
+// sourcery:inline:StaffDetails.DynamicNodeEncoding
+extension StaffDetails: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.number:
+            return .attribute
+        case CodingKeys.showFrets:
+            return .attribute
+        case CodingKeys.printObject:
+            return .attribute
+        case CodingKeys.printSpacing:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

@@ -74,3 +74,15 @@ extension TimeModification: Codable {
         try container.encode([Empty](repeating: Empty(), count: normalDotCount), forKey: .normalDotCount)
     }
 }
+
+import XMLCoder
+// sourcery:inline:TimeModification.DynamicNodeEncoding
+extension TimeModification: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

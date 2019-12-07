@@ -171,3 +171,19 @@ extension Percussion: Codable {
         kind = try container.decode(Kind.self, forKey: .kind)
     }
 }
+
+// sourcery:inline:Percussion.DynamicNodeEncoding
+extension Percussion: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.enclosure:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

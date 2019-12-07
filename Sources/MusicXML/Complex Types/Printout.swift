@@ -50,3 +50,26 @@ extension Printout: Codable {
 }
 
 extension Printout.CodingKeys: XMLAttributeGroupCodingKey {}
+
+import XMLCoder
+// sourcery:inline:Printout.DynamicNodeEncoding
+extension Printout: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.printObject:
+            return .attribute
+        case CodingKeys.printDot:
+            return .attribute
+        case CodingKeys.printSpacing:
+            return .attribute
+        case CodingKeys.printLyric:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

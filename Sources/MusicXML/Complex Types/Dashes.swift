@@ -42,3 +42,20 @@ extension Dashes: Codable {
         self.type = try container.decode(StartStopContinue.self, forKey: .type)
     }
 }
+
+import XMLCoder
+// sourcery:inline:Dashes.DynamicNodeEncoding
+extension Dashes: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.type:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

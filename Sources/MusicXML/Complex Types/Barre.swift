@@ -26,3 +26,22 @@ public struct Barre {
 
 extension Barre: Equatable {}
 extension Barre: Codable {}
+
+import XMLCoder
+// sourcery:inline:Barre.DynamicNodeEncoding
+extension Barre: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.type:
+            return .attribute
+        case CodingKeys.color:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

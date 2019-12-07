@@ -31,3 +31,20 @@ public struct StaffTuning {
 
 extension StaffTuning: Equatable {}
 extension StaffTuning: Codable {}
+
+import XMLCoder
+// sourcery:inline:StaffTuning.DynamicNodeEncoding
+extension StaffTuning: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.line:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

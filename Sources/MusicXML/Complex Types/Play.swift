@@ -103,3 +103,14 @@ extension Play: Codable {
         self.values = try container.decode([Kind].self)
     }
 }
+
+// sourcery:inline:Play.DynamicNodeEncoding
+extension Play: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

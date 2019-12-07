@@ -50,3 +50,15 @@ public struct Transpose {
 
 extension Transpose: Equatable {}
 extension Transpose: Codable {}
+
+import XMLCoder
+// sourcery:inline:Transpose.DynamicNodeEncoding
+extension Transpose: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

@@ -30,3 +30,15 @@ extension Miscellaneous: Codable {
         case fields = "miscellaneous-field"
     }
 }
+
+import XMLCoder
+// sourcery:inline:Miscellaneous.DynamicNodeEncoding
+extension Miscellaneous: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

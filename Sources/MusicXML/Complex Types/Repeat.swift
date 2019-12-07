@@ -32,3 +32,24 @@ public struct Repeat {
 
 extension Repeat: Equatable {}
 extension Repeat: Codable {}
+
+import XMLCoder
+// sourcery:inline:Repeat.DynamicNodeEncoding
+extension Repeat: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.direction:
+            return .attribute
+        case CodingKeys.times:
+            return .attribute
+        case CodingKeys.winged:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

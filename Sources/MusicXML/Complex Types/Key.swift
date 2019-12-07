@@ -296,3 +296,21 @@ private extension Decoder {
 }
 
 extension KeyComponent.CodingKeys: XMLChoiceCodingKey {}
+
+// sourcery:inline:Key.DynamicNodeEncoding
+extension Key: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.number:
+            return .attribute
+        case CodingKeys.printObject:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

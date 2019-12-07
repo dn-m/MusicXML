@@ -51,3 +51,22 @@ extension StrongAccent: Codable {
         self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
     }
 }
+
+import XMLCoder
+// sourcery:inline:StrongAccent.DynamicNodeEncoding
+extension StrongAccent: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.type:
+            return .attribute
+        case CodingKeys.placement:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

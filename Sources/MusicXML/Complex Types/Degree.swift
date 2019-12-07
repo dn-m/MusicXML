@@ -51,3 +51,20 @@ extension Degree: Codable {
         case alter = "degree-alter"
     }
 }
+
+import XMLCoder
+// sourcery:inline:Degree.DynamicNodeEncoding
+extension Degree: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.printObject:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

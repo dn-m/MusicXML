@@ -107,3 +107,30 @@ extension Frame: Codable {
         self.frameNotes = try container.decode([FrameNote].self, forKey: .frameNotes)
     }
 }
+
+import XMLCoder
+// sourcery:inline:Frame.DynamicNodeEncoding
+extension Frame: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.color:
+            return .attribute
+        case CodingKeys.hAlign:
+            return .attribute
+        case CodingKeys.vAlign:
+            return .attribute
+        case CodingKeys.height:
+            return .attribute
+        case CodingKeys.width:
+            return .attribute
+        case CodingKeys.unplayed:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

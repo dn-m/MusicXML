@@ -57,3 +57,22 @@ extension PrintStyleAlign: Codable {
 }
 
 extension PrintStyleAlign.CodingKeys: XMLAttributeGroupCodingKey {}
+
+import XMLCoder
+// sourcery:inline:PrintStyleAlign.DynamicNodeEncoding
+extension PrintStyleAlign: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.hAlign:
+            return .attribute
+        case CodingKeys.vAlign:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end

@@ -34,3 +34,15 @@ extension Root: Codable {
         case alter = "root-alter"
     }
 }
+
+import XMLCoder
+// sourcery:inline:Root.DynamicNodeEncoding
+extension Root: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}
+// sourcery:end

@@ -94,3 +94,24 @@ extension Slash: Codable {
         fatalError("TODO: Implement Slash.encode(to:)")
     }
 }
+
+import XMLCoder
+// sourcery:inline:Slash.DynamicNodeEncoding
+extension Slash: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.type:
+            return .attribute
+        case CodingKeys.useDots:
+            return .attribute
+        case CodingKeys.useStems:
+            return .attribute
+        default:
+        return .element
+        }
+    }
+}
+// sourcery:end
