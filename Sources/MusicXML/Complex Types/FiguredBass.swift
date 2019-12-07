@@ -120,7 +120,7 @@ extension FiguredBass: DynamicNodeEncoding {
         case CodingKeys.level:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

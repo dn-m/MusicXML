@@ -85,7 +85,7 @@ extension Direction: DynamicNodeEncoding {
         case CodingKeys.directive:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

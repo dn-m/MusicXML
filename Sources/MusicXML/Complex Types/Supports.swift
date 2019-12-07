@@ -50,7 +50,7 @@ extension Supports: DynamicNodeEncoding {
         case CodingKeys.value:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

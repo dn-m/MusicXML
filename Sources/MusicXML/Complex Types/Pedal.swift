@@ -66,7 +66,7 @@ extension Pedal: DynamicNodeEncoding {
         case CodingKeys.sign:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

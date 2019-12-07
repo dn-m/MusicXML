@@ -86,7 +86,7 @@ extension WavyLine: DynamicNodeEncoding {
         case CodingKeys.color:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

@@ -143,7 +143,7 @@ extension Print: DynamicNodeEncoding {
         case CodingKeys.pageNumber:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

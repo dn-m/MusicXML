@@ -236,7 +236,7 @@ extension Metronome: DynamicNodeEncoding {
         case CodingKeys.parentheses:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

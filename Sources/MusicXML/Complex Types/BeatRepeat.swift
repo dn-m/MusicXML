@@ -47,7 +47,7 @@ extension BeatRepeat: DynamicNodeEncoding {
         case CodingKeys.useDots:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

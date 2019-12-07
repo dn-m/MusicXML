@@ -128,7 +128,7 @@ extension Frame: DynamicNodeEncoding {
         case CodingKeys.unplayed:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

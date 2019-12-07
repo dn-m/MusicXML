@@ -42,7 +42,7 @@ extension MeasureRepeat: DynamicNodeEncoding {
         case CodingKeys.slashes:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

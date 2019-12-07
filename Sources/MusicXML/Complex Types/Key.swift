@@ -308,7 +308,7 @@ extension Key: DynamicNodeEncoding {
         case CodingKeys.printObject:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

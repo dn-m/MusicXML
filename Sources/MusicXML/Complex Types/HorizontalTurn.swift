@@ -72,7 +72,7 @@ extension HorizontalTurn: DynamicNodeEncoding {
         case CodingKeys.slash:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

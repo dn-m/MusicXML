@@ -80,7 +80,7 @@ extension PartGroup: DynamicNodeEncoding {
         case CodingKeys.number:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

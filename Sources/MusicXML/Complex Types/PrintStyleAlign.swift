@@ -70,7 +70,7 @@ extension PrintStyleAlign: DynamicNodeEncoding {
         case CodingKeys.vAlign:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

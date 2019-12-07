@@ -49,7 +49,7 @@ extension Rest: DynamicNodeEncoding {
         case CodingKeys.measure:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

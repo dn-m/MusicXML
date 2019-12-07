@@ -41,7 +41,7 @@ extension Stick: DynamicNodeEncoding {
         case CodingKeys.tip:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

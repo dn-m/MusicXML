@@ -55,7 +55,7 @@ extension MeasureAttributes: DynamicNodeEncoding {
         case CodingKeys.optionalUniqueID:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

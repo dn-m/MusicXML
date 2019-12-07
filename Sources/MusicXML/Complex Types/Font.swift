@@ -88,7 +88,7 @@ extension Font: DynamicNodeEncoding {
         case CodingKeys.family:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

@@ -121,7 +121,7 @@ extension Harmony: DynamicNodeEncoding {
         case CodingKeys.printFrame:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

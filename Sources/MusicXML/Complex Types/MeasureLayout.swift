@@ -37,7 +37,7 @@ extension MeasureLayout: DynamicNodeEncoding {
         case CodingKeys.measureDistance:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

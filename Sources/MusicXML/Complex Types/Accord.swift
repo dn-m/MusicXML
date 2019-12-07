@@ -57,7 +57,7 @@ extension Accord: DynamicNodeEncoding {
         case CodingKeys.string:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

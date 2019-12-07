@@ -84,7 +84,7 @@ extension StaffDetails: DynamicNodeEncoding {
         case CodingKeys.printSpacing:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

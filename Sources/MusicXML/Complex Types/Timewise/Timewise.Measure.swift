@@ -118,4 +118,3 @@ extension Timewise.Measure: Codable {
         try parts.encode(to: encoder)
     }
 }
-

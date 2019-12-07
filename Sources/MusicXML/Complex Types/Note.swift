@@ -473,7 +473,7 @@ extension Note: DynamicNodeEncoding {
         case CodingKeys.pizzicato:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

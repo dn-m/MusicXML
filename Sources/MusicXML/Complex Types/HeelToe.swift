@@ -39,7 +39,7 @@ extension HeelToe: DynamicNodeEncoding {
         case CodingKeys.substitution:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

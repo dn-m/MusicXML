@@ -62,7 +62,7 @@ extension Degree: DynamicNodeEncoding {
         case CodingKeys.printObject:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

@@ -47,7 +47,7 @@ extension Repeat: DynamicNodeEncoding {
         case CodingKeys.winged:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

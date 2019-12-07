@@ -66,7 +66,7 @@ extension PageMargins: DynamicNodeEncoding {
         case CodingKeys.type:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

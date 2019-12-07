@@ -83,7 +83,7 @@ extension NonArpeggiate: DynamicNodeEncoding {
         case CodingKeys.color:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

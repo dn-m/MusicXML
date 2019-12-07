@@ -52,7 +52,7 @@ extension Tie: DynamicNodeEncoding {
         case CodingKeys.timeOnly:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

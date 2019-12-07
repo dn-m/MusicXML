@@ -81,7 +81,7 @@ extension Link: DynamicNodeEncoding {
         case CodingKeys.position:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

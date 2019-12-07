@@ -62,7 +62,7 @@ extension TextDecoration: DynamicNodeEncoding {
         case CodingKeys.lineThrough:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

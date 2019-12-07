@@ -56,7 +56,7 @@ extension DashedFormatting: DynamicNodeEncoding {
         case CodingKeys.spaceLength:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

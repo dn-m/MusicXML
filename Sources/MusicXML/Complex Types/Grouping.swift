@@ -52,7 +52,7 @@ extension Grouping: DynamicNodeEncoding {
         case CodingKeys.memberOf:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

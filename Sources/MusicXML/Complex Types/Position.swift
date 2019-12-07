@@ -122,7 +122,7 @@ extension Position: DynamicNodeEncoding {
         case CodingKeys.relativeY:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

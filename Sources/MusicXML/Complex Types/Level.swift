@@ -38,7 +38,7 @@ extension Level: DynamicNodeEncoding {
         case CodingKeys.reference:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

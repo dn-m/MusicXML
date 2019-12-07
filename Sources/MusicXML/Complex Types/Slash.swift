@@ -109,7 +109,7 @@ extension Slash: DynamicNodeEncoding {
         case CodingKeys.useStems:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

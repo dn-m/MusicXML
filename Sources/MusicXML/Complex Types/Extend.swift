@@ -62,7 +62,7 @@ extension Extend: DynamicNodeEncoding {
         case CodingKeys.type:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

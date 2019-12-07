@@ -35,7 +35,7 @@ extension Instrument: DynamicNodeEncoding {
         case CodingKeys.id:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

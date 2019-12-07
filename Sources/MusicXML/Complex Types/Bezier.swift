@@ -89,7 +89,7 @@ extension Bezier: DynamicNodeEncoding {
         case CodingKeys.bezierOffset2:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

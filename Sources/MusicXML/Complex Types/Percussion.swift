@@ -181,7 +181,7 @@ extension Percussion: DynamicNodeEncoding {
         case CodingKeys.enclosure:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

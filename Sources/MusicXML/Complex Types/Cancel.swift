@@ -64,7 +64,7 @@ extension Cancel: DynamicNodeEncoding {
         case CodingKeys.location:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

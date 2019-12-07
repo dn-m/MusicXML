@@ -40,7 +40,7 @@ extension Interchangeable: DynamicNodeEncoding {
         case CodingKeys.separator:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

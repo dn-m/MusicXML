@@ -326,7 +326,7 @@ extension Sound: DynamicNodeEncoding {
         case CodingKeys.sostenutoPedal:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

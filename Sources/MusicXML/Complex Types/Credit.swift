@@ -144,7 +144,7 @@ extension Credit: DynamicNodeEncoding {
         case CodingKeys.page:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

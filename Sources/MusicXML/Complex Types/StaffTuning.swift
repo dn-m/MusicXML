@@ -42,7 +42,7 @@ extension StaffTuning: DynamicNodeEncoding {
         case CodingKeys.line:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

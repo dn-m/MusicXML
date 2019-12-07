@@ -63,7 +63,7 @@ extension PlacementPrintStyle: DynamicNodeEncoding {
         case CodingKeys.placement:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

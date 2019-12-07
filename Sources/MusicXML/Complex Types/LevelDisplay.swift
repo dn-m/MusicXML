@@ -63,7 +63,7 @@ extension LevelDisplay: DynamicNodeEncoding {
         case CodingKeys.size:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

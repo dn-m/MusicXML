@@ -67,7 +67,7 @@ extension LyricFont: DynamicNodeEncoding {
         case CodingKeys.name:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

@@ -70,7 +70,7 @@ extension OctaveShift: DynamicNodeEncoding {
         case CodingKeys.size:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

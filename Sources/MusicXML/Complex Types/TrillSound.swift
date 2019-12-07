@@ -103,7 +103,7 @@ extension TrillSound: DynamicNodeEncoding {
         case CodingKeys.lastBeat:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

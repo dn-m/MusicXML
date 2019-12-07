@@ -67,7 +67,7 @@ extension Printout: DynamicNodeEncoding {
         case CodingKeys.printLyric:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }

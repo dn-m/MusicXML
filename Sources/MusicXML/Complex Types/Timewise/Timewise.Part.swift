@@ -53,4 +53,3 @@ extension Timewise.Part: Codable {
         self.musicData = try musicDataContainer.decode([MusicData].self)
     }
 }
-

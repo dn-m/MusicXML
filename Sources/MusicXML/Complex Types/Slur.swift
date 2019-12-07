@@ -105,7 +105,7 @@ extension Slur: DynamicNodeEncoding {
         case CodingKeys.orientation:
             return .attribute
         default:
-        return .element
+            return .element
         }
     }
 }
