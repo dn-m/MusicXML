@@ -107,13 +107,7 @@ extension Bend: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.accelerate:
-            return .attribute
-        case CodingKeys.beats:
-            return .attribute
-        case CodingKeys.firstBeat:
-            return .attribute
-        case CodingKeys.lastBeat:
+        case CodingKeys.accelerate, CodingKeys.beats, CodingKeys.firstBeat, CodingKeys.lastBeat:
             return .attribute
         default:
             return .element

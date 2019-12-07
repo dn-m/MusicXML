@@ -72,13 +72,7 @@ extension Arpeggiate: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.number:
-            return .attribute
-        case CodingKeys.direction:
-            return .attribute
-        case CodingKeys.placement:
-            return .attribute
-        case CodingKeys.color:
+        case CodingKeys.number, CodingKeys.direction, CodingKeys.placement, CodingKeys.color:
             return .attribute
         default:
             return .element

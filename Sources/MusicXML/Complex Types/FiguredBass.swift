@@ -109,15 +109,7 @@ extension FiguredBass: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.parentheses:
-            return .attribute
-        case CodingKeys.figures:
-            return .attribute
-        case CodingKeys.duration:
-            return .attribute
-        case CodingKeys.footnote:
-            return .attribute
-        case CodingKeys.level:
+        case CodingKeys.parentheses, CodingKeys.figures, CodingKeys.duration, CodingKeys.footnote, CodingKeys.level:
             return .attribute
         default:
             return .element

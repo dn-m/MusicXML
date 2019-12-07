@@ -63,11 +63,7 @@ extension OctaveShift: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.type:
-            return .attribute
-        case CodingKeys.number:
-            return .attribute
-        case CodingKeys.size:
+        case CodingKeys.type, CodingKeys.number, CodingKeys.size:
             return .attribute
         default:
             return .element

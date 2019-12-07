@@ -34,9 +34,7 @@ extension HeelToe: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.placement:
-            return .attribute
-        case CodingKeys.substitution:
+        case CodingKeys.placement, CodingKeys.substitution:
             return .attribute
         default:
             return .element

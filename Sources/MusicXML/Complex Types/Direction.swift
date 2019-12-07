@@ -80,9 +80,7 @@ extension Direction: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.placement:
-            return .attribute
-        case CodingKeys.directive:
+        case CodingKeys.placement, CodingKeys.directive:
             return .attribute
         default:
             return .element

@@ -65,9 +65,7 @@ extension PrintStyleAlign: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.hAlign:
-            return .attribute
-        case CodingKeys.vAlign:
+        case CodingKeys.hAlign, CodingKeys.vAlign:
             return .attribute
         default:
             return .element

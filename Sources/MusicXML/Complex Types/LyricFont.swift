@@ -62,9 +62,7 @@ extension LyricFont: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.number:
-            return .attribute
-        case CodingKeys.name:
+        case CodingKeys.number, CodingKeys.name:
             return .attribute
         default:
             return .element

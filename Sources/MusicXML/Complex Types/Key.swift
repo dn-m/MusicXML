@@ -303,9 +303,7 @@ extension Key: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.number:
-            return .attribute
-        case CodingKeys.printObject:
+        case CodingKeys.number, CodingKeys.printObject:
             return .attribute
         default:
             return .element

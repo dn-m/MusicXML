@@ -203,17 +203,7 @@ extension Lyric: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.number:
-            return .attribute
-        case CodingKeys.name:
-            return .attribute
-        case CodingKeys.justify:
-            return .attribute
-        case CodingKeys.color:
-            return .attribute
-        case CodingKeys.placement:
-            return .attribute
-        case CodingKeys.printObject:
+        case CodingKeys.number, CodingKeys.name, CodingKeys.justify, CodingKeys.color, CodingKeys.placement, CodingKeys.printObject:
             return .attribute
         default:
             return .element

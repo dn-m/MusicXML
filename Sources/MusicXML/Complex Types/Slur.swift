@@ -92,17 +92,7 @@ extension Slur: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.color:
-            return .attribute
-        case CodingKeys.type:
-            return .attribute
-        case CodingKeys.number:
-            return .attribute
-        case CodingKeys.lineType:
-            return .attribute
-        case CodingKeys.placement:
-            return .attribute
-        case CodingKeys.orientation:
+        case CodingKeys.color, CodingKeys.type, CodingKeys.number, CodingKeys.lineType, CodingKeys.placement, CodingKeys.orientation:
             return .attribute
         default:
             return .element

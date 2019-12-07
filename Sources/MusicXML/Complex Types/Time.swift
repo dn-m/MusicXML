@@ -317,17 +317,7 @@ extension Time: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.number:
-            return .attribute
-        case CodingKeys.symbol:
-            return .attribute
-        case CodingKeys.separator:
-            return .attribute
-        case CodingKeys.hAlign:
-            return .attribute
-        case CodingKeys.vAlign:
-            return .attribute
-        case CodingKeys.printObject:
+        case CodingKeys.number, CodingKeys.symbol, CodingKeys.separator, CodingKeys.hAlign, CodingKeys.vAlign, CodingKeys.printObject:
             return .attribute
         default:
             return .element

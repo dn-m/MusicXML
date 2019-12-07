@@ -81,9 +81,7 @@ extension Dynamics: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.placement:
-            return .attribute
-        case CodingKeys.enclosure:
+        case CodingKeys.placement, CodingKeys.enclosure:
             return .attribute
         default:
             return .element

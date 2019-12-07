@@ -1,7 +1,18 @@
 #!/bin/sh
 
-gsed -r -n '/DynamicNodeEncoding/,/^\}/ {
+gsed -i -r '/DynamicNodeEncoding/,/^\}/ {
+:collapse
 /case/ {
-p
+    N
+    /.*attribute/ {
+    N
+    /case/ {
+    N
+    /.*attribute/ {
+    s/(.*)(:.*case )(.*)/\1, \3/
+    t collapse
+}
+}
+}
 }
 }' "$1"

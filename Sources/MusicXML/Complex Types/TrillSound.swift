@@ -88,19 +88,7 @@ extension TrillSound: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.startNote:
-            return .attribute
-        case CodingKeys.trillStep:
-            return .attribute
-        case CodingKeys.twoNoteTurn:
-            return .attribute
-        case CodingKeys.accelerate:
-            return .attribute
-        case CodingKeys.beats:
-            return .attribute
-        case CodingKeys.secondBeat:
-            return .attribute
-        case CodingKeys.lastBeat:
+        case CodingKeys.startNote, CodingKeys.trillStep, CodingKeys.twoNoteTurn, CodingKeys.accelerate, CodingKeys.beats, CodingKeys.secondBeat, CodingKeys.lastBeat:
             return .attribute
         default:
             return .element

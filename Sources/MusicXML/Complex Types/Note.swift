@@ -452,25 +452,9 @@ extension Note: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.printObject:
+        case CodingKeys.printObject, CodingKeys.printDot:
             return .attribute
-        case CodingKeys.printDot:
-            return .attribute
-        case CodingKeys.printSpacing:
-            return .attribute
-        case CodingKeys.printLyric:
-            return .attribute
-        case CodingKeys.dynamics:
-            return .attribute
-        case CodingKeys.endDynamics:
-            return .attribute
-        case CodingKeys.attack:
-            return .attribute
-        case CodingKeys.release:
-            return .attribute
-        case CodingKeys.timeOnly:
-            return .attribute
-        case CodingKeys.pizzicato:
+        case CodingKeys.printSpacing, CodingKeys.printLyric, CodingKeys.dynamics, CodingKeys.endDynamics, CodingKeys.attack, CodingKeys.release, CodingKeys.timeOnly, CodingKeys.pizzicato:
             return .attribute
         default:
             return .element

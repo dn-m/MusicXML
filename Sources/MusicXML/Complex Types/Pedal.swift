@@ -59,11 +59,7 @@ extension Pedal: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.type:
-            return .attribute
-        case CodingKeys.line:
-            return .attribute
-        case CodingKeys.sign:
+        case CodingKeys.type, CodingKeys.line, CodingKeys.sign:
             return .attribute
         default:
             return .element

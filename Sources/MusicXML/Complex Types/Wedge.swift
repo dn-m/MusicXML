@@ -95,17 +95,7 @@ extension Wedge: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.type:
-            return .attribute
-        case CodingKeys.number:
-            return .attribute
-        case CodingKeys.spread:
-            return .attribute
-        case CodingKeys.niente:
-            return .attribute
-        case CodingKeys.lineType:
-            return .attribute
-        case CodingKeys.color:
+        case CodingKeys.type, CodingKeys.number, CodingKeys.spread, CodingKeys.niente, CodingKeys.lineType, CodingKeys.color:
             return .attribute
         default:
             return .element

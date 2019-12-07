@@ -35,9 +35,7 @@ extension Interchangeable: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.symbol:
-            return .attribute
-        case CodingKeys.separator:
+        case CodingKeys.symbol, CodingKeys.separator:
             return .attribute
         default:
             return .element

@@ -72,13 +72,7 @@ extension Image: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.source:
-            return .attribute
-        case CodingKeys.type:
-            return .attribute
-        case CodingKeys.hAlign:
-            return .attribute
-        case CodingKeys.vAlign:
+        case CodingKeys.source, CodingKeys.type, CodingKeys.hAlign, CodingKeys.vAlign:
             return .attribute
         default:
             return .element

@@ -41,13 +41,7 @@ extension Supports: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.attribute:
-            return .attribute
-        case CodingKeys.element:
-            return .attribute
-        case CodingKeys.type:
-            return .attribute
-        case CodingKeys.value:
+        case CodingKeys.attribute, CodingKeys.element, CodingKeys.type, CodingKeys.value:
             return .attribute
         default:
             return .element

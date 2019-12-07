@@ -34,9 +34,7 @@ extension Barre: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.type:
-            return .attribute
-        case CodingKeys.color:
+        case CodingKeys.type, CodingKeys.color:
             return .attribute
         default:
             return .element

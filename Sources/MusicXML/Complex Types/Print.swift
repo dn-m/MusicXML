@@ -132,15 +132,7 @@ extension Print: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.staffSpacing:
-            return .attribute
-        case CodingKeys.newSystem:
-            return .attribute
-        case CodingKeys.newPage:
-            return .attribute
-        case CodingKeys.blankPage:
-            return .attribute
-        case CodingKeys.pageNumber:
+        case CodingKeys.staffSpacing, CodingKeys.newSystem, CodingKeys.newPage, CodingKeys.blankPage, CodingKeys.pageNumber:
             return .attribute
         default:
             return .element

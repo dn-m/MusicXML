@@ -56,11 +56,7 @@ extension LevelDisplay: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.parentheses:
-            return .attribute
-        case CodingKeys.bracket:
-            return .attribute
-        case CodingKeys.size:
+        case CodingKeys.parentheses, CodingKeys.bracket, CodingKeys.size:
             return .attribute
         default:
             return .element

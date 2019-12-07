@@ -115,17 +115,7 @@ extension Frame: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.color:
-            return .attribute
-        case CodingKeys.hAlign:
-            return .attribute
-        case CodingKeys.vAlign:
-            return .attribute
-        case CodingKeys.height:
-            return .attribute
-        case CodingKeys.width:
-            return .attribute
-        case CodingKeys.unplayed:
+        case CodingKeys.color, CodingKeys.hAlign, CodingKeys.vAlign, CodingKeys.height, CodingKeys.width, CodingKeys.unplayed:
             return .attribute
         default:
             return .element

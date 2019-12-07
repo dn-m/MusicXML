@@ -156,9 +156,7 @@ extension Harmonic: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.printObject:
-            return .attribute
-        case CodingKeys.placement:
+        case CodingKeys.printObject, CodingKeys.placement:
             return .attribute
         default:
             return .element

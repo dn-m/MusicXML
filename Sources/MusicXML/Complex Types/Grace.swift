@@ -37,13 +37,7 @@ extension Grace: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.stealTimePrevious:
-            return .attribute
-        case CodingKeys.stealTimeFollowing:
-            return .attribute
-        case CodingKeys.makeTime:
-            return .attribute
-        case CodingKeys.slash:
+        case CodingKeys.stealTimePrevious, CodingKeys.stealTimeFollowing, CodingKeys.makeTime, CodingKeys.slash:
             return .attribute
         default:
             return .element

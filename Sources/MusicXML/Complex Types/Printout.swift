@@ -58,13 +58,7 @@ extension Printout: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.printObject:
-            return .attribute
-        case CodingKeys.printDot:
-            return .attribute
-        case CodingKeys.printSpacing:
-            return .attribute
-        case CodingKeys.printLyric:
+        case CodingKeys.printObject, CodingKeys.printDot, CodingKeys.printSpacing, CodingKeys.printLyric:
             return .attribute
         default:
             return .element

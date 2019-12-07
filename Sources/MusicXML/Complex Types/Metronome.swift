@@ -231,9 +231,7 @@ extension Metronome: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.justify:
-            return .attribute
-        case CodingKeys.parentheses:
+        case CodingKeys.justify, CodingKeys.parentheses:
             return .attribute
         default:
             return .element

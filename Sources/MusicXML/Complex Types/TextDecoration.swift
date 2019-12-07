@@ -55,11 +55,7 @@ extension TextDecoration: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.underline:
-            return .attribute
-        case CodingKeys.overline:
-            return .attribute
-        case CodingKeys.lineThrough:
+        case CodingKeys.underline, CodingKeys.overline, CodingKeys.lineThrough:
             return .attribute
         default:
             return .element

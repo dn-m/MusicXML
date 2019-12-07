@@ -113,13 +113,7 @@ extension Position: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.defaultX:
-            return .attribute
-        case CodingKeys.defaultY:
-            return .attribute
-        case CodingKeys.relativeX:
-            return .attribute
-        case CodingKeys.relativeY:
+        case CodingKeys.defaultX, CodingKeys.defaultY, CodingKeys.relativeX, CodingKeys.relativeY:
             return .attribute
         default:
             return .element

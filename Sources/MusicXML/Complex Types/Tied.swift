@@ -90,17 +90,7 @@ extension Tied: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.type:
-            return .attribute
-        case CodingKeys.number:
-            return .attribute
-        case CodingKeys.lineType:
-            return .attribute
-        case CodingKeys.placement:
-            return .attribute
-        case CodingKeys.orientation:
-            return .attribute
-        case CodingKeys.color:
+        case CodingKeys.type, CodingKeys.number, CodingKeys.lineType, CodingKeys.placement, CodingKeys.orientation, CodingKeys.color:
             return .attribute
         default:
             return .element

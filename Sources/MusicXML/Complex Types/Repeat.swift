@@ -40,11 +40,7 @@ extension Repeat: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.direction:
-            return .attribute
-        case CodingKeys.times:
-            return .attribute
-        case CodingKeys.winged:
+        case CodingKeys.direction, CodingKeys.times, CodingKeys.winged:
             return .attribute
         default:
             return .element

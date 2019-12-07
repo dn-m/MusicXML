@@ -137,9 +137,7 @@ extension MeasureStyle: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.number:
-            return .attribute
-        case CodingKeys.color:
+        case CodingKeys.number, CodingKeys.color:
             return .attribute
         default:
             return .element

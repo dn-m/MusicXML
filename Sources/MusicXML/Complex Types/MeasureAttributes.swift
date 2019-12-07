@@ -42,17 +42,7 @@ extension MeasureAttributes: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.number:
-            return .attribute
-        case CodingKeys.text:
-            return .attribute
-        case CodingKeys.implicit:
-            return .attribute
-        case CodingKeys.nonControlling:
-            return .attribute
-        case CodingKeys.width:
-            return .attribute
-        case CodingKeys.optionalUniqueID:
+        case CodingKeys.number, CodingKeys.text, CodingKeys.implicit, CodingKeys.nonControlling, CodingKeys.width, CodingKeys.optionalUniqueID:
             return .attribute
         default:
             return .element

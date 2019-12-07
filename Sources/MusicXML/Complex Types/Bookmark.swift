@@ -36,13 +36,7 @@ extension Bookmark: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.id:
-            return .attribute
-        case CodingKeys.name:
-            return .attribute
-        case CodingKeys.element:
-            return .attribute
-        case CodingKeys.position:
+        case CodingKeys.id, CodingKeys.name, CodingKeys.element, CodingKeys.position:
             return .attribute
         default:
             return .element

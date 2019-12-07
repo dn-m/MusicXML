@@ -40,11 +40,7 @@ extension BeatRepeat: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.type:
-            return .attribute
-        case CodingKeys.slashes:
-            return .attribute
-        case CodingKeys.useDots:
+        case CodingKeys.type, CodingKeys.slashes, CodingKeys.useDots:
             return .attribute
         default:
             return .element

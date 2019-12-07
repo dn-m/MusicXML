@@ -75,9 +75,7 @@ extension PartGroup: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.type:
-            return .attribute
-        case CodingKeys.number:
+        case CodingKeys.type, CodingKeys.number:
             return .attribute
         default:
             return .element

@@ -79,21 +79,9 @@ extension Bracket: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.type:
+        case CodingKeys.type, CodingKeys.number:
             return .attribute
-        case CodingKeys.number:
-            return .attribute
-        case CodingKeys.lineEnd:
-            return .attribute
-        case CodingKeys.endLength:
-            return .attribute
-        case CodingKeys.lineType:
-            return .attribute
-        case CodingKeys.dashLength:
-            return .attribute
-        case CodingKeys.spaceLength:
-            return .attribute
-        case CodingKeys.color:
+        case CodingKeys.lineEnd, CodingKeys.endLength, CodingKeys.lineType, CodingKeys.dashLength, CodingKeys.spaceLength, CodingKeys.color:
             return .attribute
         default:
             return .element

@@ -76,17 +76,7 @@ extension Bezier: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.bezierX:
-            return .attribute
-        case CodingKeys.bezierY:
-            return .attribute
-        case CodingKeys.bezierX2:
-            return .attribute
-        case CodingKeys.bezierY2:
-            return .attribute
-        case CodingKeys.bezierOffset:
-            return .attribute
-        case CodingKeys.bezierOffset2:
+        case CodingKeys.bezierX, CodingKeys.bezierY, CodingKeys.bezierX2, CodingKeys.bezierY2, CodingKeys.bezierOffset, CodingKeys.bezierOffset2:
             return .attribute
         default:
             return .element

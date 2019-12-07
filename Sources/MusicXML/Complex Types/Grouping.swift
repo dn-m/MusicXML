@@ -45,11 +45,7 @@ extension Grouping: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.type:
-            return .attribute
-        case CodingKeys.number:
-            return .attribute
-        case CodingKeys.memberOf:
+        case CodingKeys.type, CodingKeys.number, CodingKeys.memberOf:
             return .attribute
         default:
             return .element

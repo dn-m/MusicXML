@@ -102,11 +102,7 @@ extension Slash: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.type:
-            return .attribute
-        case CodingKeys.useDots:
-            return .attribute
-        case CodingKeys.useStems:
+        case CodingKeys.type, CodingKeys.useDots, CodingKeys.useStems:
             return .attribute
         default:
             return .element

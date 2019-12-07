@@ -47,9 +47,7 @@ extension Tie: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.type:
-            return .attribute
-        case CodingKeys.timeOnly:
+        case CodingKeys.type, CodingKeys.timeOnly:
             return .attribute
         default:
             return .element

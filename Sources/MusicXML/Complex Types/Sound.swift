@@ -291,39 +291,15 @@ extension Sound: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.tempo:
+        case CodingKeys.tempo, CodingKeys.dynamics:
             return .attribute
-        case CodingKeys.dynamics:
+        case CodingKeys.dacapo, CodingKeys.segno, CodingKeys.dalsegno:
             return .attribute
-        case CodingKeys.dacapo:
+        case CodingKeys.coda, CodingKeys.tocoda, CodingKeys.divisions:
             return .attribute
-        case CodingKeys.segno:
+        case CodingKeys.forwardRepeat, CodingKeys.fine, CodingKeys.timeOnly:
             return .attribute
-        case CodingKeys.dalsegno:
-            return .attribute
-        case CodingKeys.coda:
-            return .attribute
-        case CodingKeys.tocoda:
-            return .attribute
-        case CodingKeys.divisions:
-            return .attribute
-        case CodingKeys.forwardRepeat:
-            return .attribute
-        case CodingKeys.fine:
-            return .attribute
-        case CodingKeys.timeOnly:
-            return .attribute
-        case CodingKeys.pizzicato:
-            return .attribute
-        case CodingKeys.pan:
-            return .attribute
-        case CodingKeys.elevation:
-            return .attribute
-        case CodingKeys.damperPedal:
-            return .attribute
-        case CodingKeys.softPedal:
-            return .attribute
-        case CodingKeys.sostenutoPedal:
+        case CodingKeys.pizzicato, CodingKeys.pan, CodingKeys.elevation, CodingKeys.damperPedal, CodingKeys.softPedal, CodingKeys.sostenutoPedal:
             return .attribute
         default:
             return .element

@@ -84,19 +84,7 @@ extension Tuplet: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.type:
-            return .attribute
-        case CodingKeys.number:
-            return .attribute
-        case CodingKeys.bracket:
-            return .attribute
-        case CodingKeys.showNumber:
-            return .attribute
-        case CodingKeys.showType:
-            return .attribute
-        case CodingKeys.lineShape:
-            return .attribute
-        case CodingKeys.placement:
+        case CodingKeys.type, CodingKeys.number, CodingKeys.bracket, CodingKeys.showNumber, CodingKeys.showType, CodingKeys.lineShape, CodingKeys.placement:
             return .attribute
         default:
             return .element

@@ -67,9 +67,7 @@ extension HorizontalTurn: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.placement:
-            return .attribute
-        case CodingKeys.slash:
+        case CodingKeys.placement, CodingKeys.slash:
             return .attribute
         default:
             return .element

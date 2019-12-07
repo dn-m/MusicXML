@@ -75,13 +75,7 @@ extension StaffDetails: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.number:
-            return .attribute
-        case CodingKeys.showFrets:
-            return .attribute
-        case CodingKeys.printObject:
-            return .attribute
-        case CodingKeys.printSpacing:
+        case CodingKeys.number, CodingKeys.showFrets, CodingKeys.printObject, CodingKeys.printSpacing:
             return .attribute
         default:
             return .element

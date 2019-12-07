@@ -112,13 +112,7 @@ extension Harmony: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.type:
-            return .attribute
-        case CodingKeys.placement:
-            return .attribute
-        case CodingKeys.printObject:
-            return .attribute
-        case CodingKeys.printFrame:
+        case CodingKeys.type, CodingKeys.placement, CodingKeys.printObject, CodingKeys.printFrame:
             return .attribute
         default:
             return .element

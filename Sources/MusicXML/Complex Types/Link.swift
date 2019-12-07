@@ -74,11 +74,7 @@ extension Link: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.name:
-            return .attribute
-        case CodingKeys.element:
-            return .attribute
-        case CodingKeys.position:
+        case CodingKeys.name, CodingKeys.element, CodingKeys.position:
             return .attribute
         default:
             return .element

@@ -78,9 +78,7 @@ extension Tremolo: DynamicNodeEncoding {
             return .attribute
         }
         switch key {
-        case CodingKeys.type:
-            return .attribute
-        case CodingKeys.placement:
+        case CodingKeys.type, CodingKeys.placement:
             return .attribute
         default:
             return .element
