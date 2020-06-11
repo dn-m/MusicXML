@@ -3,11 +3,11 @@
     "pins": [
       {
         "package": "XMLCoder",
-        "repositoryURL": "https://github.com/bwetherfield/XMLCoder",
+        "repositoryURL": "https://github.com/MaxDesiatov/XMLCoder",
         "state": {
-          "branch": "mixed-choice-decoding",
-          "revision": "28a027fd4eb6bd22479b0ee2276a18d7beae5b12",
-          "version": null
+          "branch": null,
+          "revision": "ac411bd6ab342780be0dfe6f679410f791d751d9",
+          "version": "0.11.1"
         }
       },
       {
