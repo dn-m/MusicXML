@@ -12,7 +12,7 @@ public struct NoteType {
     // MARK: Attributes
 
     public let size: SymbolSize?
-    
+
     // MARK: Value
 
     public let value: NoteTypeValue

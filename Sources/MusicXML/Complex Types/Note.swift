@@ -30,7 +30,7 @@ public struct Note {
     // MARK: Attribute Groups
 
     public let printStyle: PrintStyle
-    
+
     // MARK: Elements
 
     public let instrument: Instrument?
@@ -49,7 +49,7 @@ public struct Note {
     public let notations: Notations?
     public let lyrics: [Lyric]
     public let play: Play?
-    
+
     // MARK: Kind
 
     public let kind: Kind
