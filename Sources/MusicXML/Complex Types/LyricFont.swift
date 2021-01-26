@@ -54,3 +54,18 @@ extension LyricFont: Codable {
         try container.encodeIfPresent(name, forKey: .name)
     }
 }
+
+import XMLCoder
+extension LyricFont: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.number, CodingKeys.name:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

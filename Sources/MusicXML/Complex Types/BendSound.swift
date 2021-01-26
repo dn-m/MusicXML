@@ -41,10 +41,24 @@ extension BendSound: Equatable {}
 extension BendSound: Codable {
     // MARK: - Codable
 
-    private enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case accelerate
         case beats
         case firstBeat = "first-beat"
         case lastBeat = "last-beat"
+    }
+}
+
+extension BendSound.CodingKeys: XMLAttributeGroupCodingKey {}
+
+import XMLCoder
+extension BendSound: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.accelerate, CodingKeys.beats, CodingKeys.firstBeat, CodingKeys.lastBeat:
+            return .attribute
+        default:
+            return .element
+        }
     }
 }

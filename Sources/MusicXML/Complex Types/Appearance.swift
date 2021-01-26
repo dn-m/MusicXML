@@ -45,3 +45,10 @@ extension Appearance: Codable {
         case otherAppearances = "other-appearance"
     }
 }
+
+import XMLCoder
+extension Appearance: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

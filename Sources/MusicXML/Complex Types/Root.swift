@@ -34,3 +34,10 @@ extension Root: Codable {
         case alter = "root-alter"
     }
 }
+
+import XMLCoder
+extension Root: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

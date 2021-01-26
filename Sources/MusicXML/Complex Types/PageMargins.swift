@@ -55,3 +55,15 @@ extension PageMargins: Codable {
         case bottom = "bottom-margin"
     }
 }
+
+import XMLCoder
+extension PageMargins: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.type:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

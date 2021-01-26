@@ -66,3 +66,18 @@ extension NonArpeggiate: Codable {
         color = try container.decodeIfPresent(Color.self, forKey: .color)
     }
 }
+
+import XMLCoder
+extension NonArpeggiate: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.type, CodingKeys.number, CodingKeys.placement, CodingKeys.color:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

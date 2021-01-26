@@ -253,6 +253,15 @@ extension Time: Equatable {}
 extension Time: Codable {
     // MARK: - Codable
 
+    private enum CodingKeys: String, CodingKey {
+        case number
+        case symbol
+        case separator
+        case hAlign = "halign"
+        case vAlign = "valign"
+        case printObject = "print-object"
+    }
+
     // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
@@ -295,6 +304,20 @@ extension Time: DynamicNodeDecoding {
     public static func nodeDecoding(for key: CodingKey) -> XMLDecoder.NodeDecoding {
         switch key {
         case CodingKeys.symbol, CodingKeys.number:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}
+
+extension Time: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.number, CodingKeys.symbol, CodingKeys.separator, CodingKeys.hAlign, CodingKeys.vAlign, CodingKeys.printObject:
             return .attribute
         default:
             return .element

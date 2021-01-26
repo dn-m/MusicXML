@@ -48,7 +48,7 @@ extension Font: Equatable {}
 extension Font: Codable {
     // MARK: - Codable
 
-    private enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case family = "font-family"
         case style = "font-style"
         case size = "font-size"
@@ -63,5 +63,32 @@ extension Font: Codable {
         try container.encodeIfPresent(style, forKey: .style)
         try container.encodeIfPresent(size, forKey: .size)
         try container.encodeIfPresent(weight, forKey: .weight)
+    }
+
+    // MARK: Decodable
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.family = try container.decodeIfPresent(String.self, forKey: .family)
+        self.style = try container.decodeIfPresent(FontStyle.self, forKey: .style)
+        self.size = try container.decodeIfPresent(FontSize.self, forKey: .size)
+        self.weight = try container.decodeIfPresent(FontWeight.self, forKey: .weight)
+    }
+}
+
+extension Font.CodingKeys: XMLAttributeGroupCodingKey {}
+
+import XMLCoder
+extension Font: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.family:
+            return .attribute
+        default:
+            return .element
+        }
     }
 }

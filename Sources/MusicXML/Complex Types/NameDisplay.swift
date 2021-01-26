@@ -109,3 +109,14 @@ extension NameDisplay: Codable {
 }
 
 extension NameDisplay.Text.CodingKeys: XMLChoiceCodingKey {}
+
+extension NameDisplay: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.printObject:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

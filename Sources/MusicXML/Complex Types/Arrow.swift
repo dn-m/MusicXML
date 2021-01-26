@@ -149,3 +149,17 @@ extension Arrow: Codable {
         try container.encodeIfPresent(placement, forKey: .placement)
     }
 }
+
+extension Arrow: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.placement:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

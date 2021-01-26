@@ -30,3 +30,10 @@ extension Miscellaneous: Codable {
         case fields = "miscellaneous-field"
     }
 }
+
+import XMLCoder
+extension Miscellaneous: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

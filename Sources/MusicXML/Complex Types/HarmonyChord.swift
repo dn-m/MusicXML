@@ -237,3 +237,9 @@ extension HarmonyChordComponent: Decodable {
 }
 
 extension HarmonyChordComponent.CodingKeys: XMLChoiceCodingKey {}
+
+extension HarmonyChord: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

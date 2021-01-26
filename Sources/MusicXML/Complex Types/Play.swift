@@ -103,3 +103,9 @@ extension Play: Codable {
         self.values = try container.decode([Kind].self)
     }
 }
+
+extension Play: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

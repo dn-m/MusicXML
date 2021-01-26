@@ -50,3 +50,10 @@ public struct Transpose {
 
 extension Transpose: Equatable {}
 extension Transpose: Codable {}
+
+import XMLCoder
+extension Transpose: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

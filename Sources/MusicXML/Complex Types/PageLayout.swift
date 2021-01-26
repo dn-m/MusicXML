@@ -37,3 +37,10 @@ extension PageLayout: Codable {
         case margins = "page-margins"
     }
 }
+
+import XMLCoder
+extension PageLayout: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

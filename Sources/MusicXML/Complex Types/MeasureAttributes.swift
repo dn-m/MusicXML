@@ -34,3 +34,15 @@ extension MeasureAttributes: Codable {
         case optionalUniqueID = "optional-unique-id"
     }
 }
+
+import XMLCoder
+extension MeasureAttributes: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.number, CodingKeys.text, CodingKeys.implicit, CodingKeys.nonControlling, CodingKeys.width, CodingKeys.optionalUniqueID:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

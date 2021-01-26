@@ -29,6 +29,8 @@
 public struct Barline {
     // MARK: - Instance Properties
 
+    // MARK: Attributes
+
     /// Barlines have a location attribute to make it easier to process barlines independently of
     /// the other musical data in a score. It is often easier to set up measures separately from
     /// entering notes. The location attribute must match where the barline element occurs within
@@ -49,6 +51,8 @@ public struct Barline {
     /// The divisions attribute works the same way as the one in the sound element. It is used for
     /// playback when a barline element contains a divisions element.
     public var divisions: Int?
+
+    // MARK: Elements
 
     /// The bar-style type represents barline style information. Choices are regular, dotted,
     /// dashed, heavy, light-light, light-heavy, heavy-light, heavy-heavy, tick (a short stroke
@@ -104,5 +108,17 @@ extension Barline: Codable {
         case ending
         case `repeat`
         case divisions
+    }
+}
+
+import XMLCoder
+extension Barline: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.location, CodingKeys.segno, CodingKeys.coda, CodingKeys.divisions:
+            return .attribute
+        default:
+            return .element
+        }
     }
 }

@@ -34,3 +34,10 @@ extension StaffLayout: Codable {
         case staffDistance = "staff-distance"
     }
 }
+
+import XMLCoder
+extension StaffLayout: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

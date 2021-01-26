@@ -1,0 +1,5 @@
+sources:
+    - "Sources/MusicXML/Complex\ Types"
+templates:
+    - "Sources/MusicXML/Templates"
+output: "sourcery-output"

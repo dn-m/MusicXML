@@ -124,3 +124,15 @@ extension Print: Codable {
         case pageNumber = "page-number"
     }
 }
+
+import XMLCoder
+extension Print: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.staffSpacing, CodingKeys.newSystem, CodingKeys.newPage, CodingKeys.blankPage, CodingKeys.pageNumber:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

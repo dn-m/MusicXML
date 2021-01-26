@@ -67,3 +67,10 @@ extension Identification: Codable {
         case miscellaneous
     }
 }
+
+import XMLCoder
+extension Identification: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

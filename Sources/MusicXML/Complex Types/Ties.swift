@@ -39,3 +39,10 @@ public struct Ties {
 }
 
 extension Ties: Equatable {}
+
+import XMLCoder
+extension Ties: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

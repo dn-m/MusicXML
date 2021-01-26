@@ -70,3 +70,18 @@ extension Tremolo: Codable {
         self.printStyle = try PrintStyle(from: decoder)
     }
 }
+
+import XMLCoder
+extension Tremolo: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.type, CodingKeys.placement:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

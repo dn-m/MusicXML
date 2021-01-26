@@ -45,3 +45,5 @@ extension Partwise.Part: Codable {
         case measures = "measure"
     }
 }
+
+import XMLCoder

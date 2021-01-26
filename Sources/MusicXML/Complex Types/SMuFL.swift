@@ -35,3 +35,10 @@ public struct SMuFL {
 
 extension SMuFL: Equatable {}
 extension SMuFL: Codable {}
+
+import XMLCoder
+extension SMuFL: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

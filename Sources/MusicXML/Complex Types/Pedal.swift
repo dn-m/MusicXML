@@ -51,3 +51,18 @@ extension Pedal: Codable {
         self.sign = try container.decodeIfPresent(Bool.self, forKey: .sign)
     }
 }
+
+import XMLCoder
+extension Pedal: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.type, CodingKeys.line, CodingKeys.sign:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

@@ -30,7 +30,7 @@ extension PrintStyleAlignObject: Equatable {}
 extension PrintStyleAlignObject: Codable {
     // MARK: - Codable
 
-    private enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case printObject = "print-object"
     }
 
@@ -48,5 +48,22 @@ extension PrintStyleAlignObject: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.printObject = try container.decodeIfPresent(Bool.self, forKey: .printObject)
         self.printStyleAlign = try PrintStyleAlign(from: decoder)
+    }
+}
+
+extension PrintStyleAlignObject.CodingKeys: XMLAttributeGroupCodingKey {}
+
+import XMLCoder
+extension PrintStyleAlignObject: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.printObject:
+            return .attribute
+        default:
+            return .element
+        }
     }
 }

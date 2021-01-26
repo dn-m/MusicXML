@@ -37,3 +37,15 @@ public struct Grouping {
 
 extension Grouping: Equatable {}
 extension Grouping: Codable {}
+
+import XMLCoder
+extension Grouping: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.type, CodingKeys.number, CodingKeys.memberOf:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

@@ -99,3 +99,18 @@ extension Bend: Codable {
         try container.encodeIfPresent(withBar, forKey: .withBar)
     }
 }
+
+import XMLCoder
+extension Bend: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.accelerate, CodingKeys.beats, CodingKeys.firstBeat, CodingKeys.lastBeat:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

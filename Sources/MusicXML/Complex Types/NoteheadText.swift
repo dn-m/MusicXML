@@ -78,3 +78,9 @@ extension NoteheadText.Kind.CodingKeys: XMLChoiceCodingKey {}
 
 extension NoteheadText: Equatable {}
 extension NoteheadText: Codable {}
+
+extension NoteheadText: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

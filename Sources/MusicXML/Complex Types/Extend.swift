@@ -51,3 +51,18 @@ extension Extend: Codable {
         try printStyle.encode(to: encoder)
     }
 }
+
+import XMLCoder
+extension Extend: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.type:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

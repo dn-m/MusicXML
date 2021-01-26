@@ -26,3 +26,10 @@ public struct Editorial {
 
 extension Editorial: Equatable {}
 extension Editorial: Codable {}
+
+import XMLCoder
+extension Editorial: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

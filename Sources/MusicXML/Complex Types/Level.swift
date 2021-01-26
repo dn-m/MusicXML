@@ -27,3 +27,18 @@ public struct Level {
 
 extension Level: Equatable {}
 extension Level: Codable {}
+
+import XMLCoder
+extension Level: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.reference:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

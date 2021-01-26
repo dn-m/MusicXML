@@ -35,6 +35,10 @@ extension PlacementPrintStyle: Equatable {}
 extension PlacementPrintStyle: Codable {
     // MARK: - Codable
 
+    internal enum CodingKeys: String, CodingKey {
+        case placement
+    }
+
     // MARK: Decodable
 
     public init(from decoder: Decoder) throws {
@@ -44,5 +48,22 @@ extension PlacementPrintStyle: Codable {
         // Decode one-off attribute
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
+    }
+}
+
+extension PlacementPrintStyle.CodingKeys: XMLAttributeGroupCodingKey {}
+
+import XMLCoder
+extension PlacementPrintStyle: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.placement:
+            return .attribute
+        default:
+            return .element
+        }
     }
 }

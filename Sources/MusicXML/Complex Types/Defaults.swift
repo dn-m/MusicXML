@@ -63,3 +63,10 @@ extension Defaults: Codable {
         case lyricLanguages = "lyric-language"
     }
 }
+
+import XMLCoder
+extension Defaults: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

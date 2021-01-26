@@ -38,3 +38,10 @@ public struct Forward {
 
 extension Forward: Equatable {}
 extension Forward: Codable {}
+
+import XMLCoder
+extension Forward: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

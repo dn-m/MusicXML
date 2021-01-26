@@ -53,3 +53,15 @@ extension Cancel: Codable {
         try container.encode(fifths, forKey: .fifths)
     }
 }
+
+import XMLCoder
+extension Cancel: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.location:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

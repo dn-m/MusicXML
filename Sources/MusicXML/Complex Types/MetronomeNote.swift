@@ -52,3 +52,10 @@ extension MetronomeNote: Codable {
         self.metronomeTuplet = try container.decodeIfPresent(MetronomeTuplet.self, forKey: .metronomeTuplet)
     }
 }
+
+import XMLCoder
+extension MetronomeNote: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

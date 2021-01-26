@@ -24,3 +24,10 @@ public struct EditorialVoice {
 
 extension EditorialVoice: Equatable {}
 extension EditorialVoice: Codable {}
+
+import XMLCoder
+extension EditorialVoice: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

@@ -59,3 +59,18 @@ extension HorizontalTurn: Codable {
         try container.encodeIfPresent(YesNo(slash), forKey: .slash)
     }
 }
+
+import XMLCoder
+extension HorizontalTurn: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.placement, CodingKeys.slash:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

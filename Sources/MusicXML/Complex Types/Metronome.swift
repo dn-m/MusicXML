@@ -224,3 +224,17 @@ extension MetronomeRegularComponent: Decodable {
 }
 
 extension MetronomeRegularComponent.CodingKeys: XMLChoiceCodingKey {}
+
+extension Metronome: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.justify, CodingKeys.parentheses:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

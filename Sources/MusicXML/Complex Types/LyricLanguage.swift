@@ -23,3 +23,5 @@ public struct LyricLanguage: Codable, Equatable {
         self.language = language
     }
 }
+
+import XMLCoder

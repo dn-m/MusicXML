@@ -1,0 +1,32 @@
+{# A template to generate basic coding keys #}
+{# Example: $sourcery --sources Complex\ Types/Accidental.swift --templates
+Templates/DynamicNodeEncoding.stencil --output Output/ #}
+{% for type in types.structs %}
+// sourcery:inline:{{ type.name }}.DynamicNodeEncoding
+extension {{ type.name }}: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+    {% for attribute in type.storedVariables|annotated:"attribute" %}
+    {% if forloop.first %}
+        switch key {
+    {% set spacing %}    {% endset %}
+    {% endif %}
+        case CodingKeys.{{ attribute.name }}:
+            return .attribute
+    {% if forloop.last %}
+        default:
+    {% endif %}
+    {% endfor %}
+        return .element
+    {% for attribute in type.storedVariables|annotated:"attribute" %}
+    {% if forloop.last %}
+        }
+    {% endif %}
+    {% endfor %}
+    }
+}
+// sourcery:end
+
+{% endfor %}

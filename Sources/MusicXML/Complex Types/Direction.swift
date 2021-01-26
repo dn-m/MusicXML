@@ -72,3 +72,15 @@ extension Direction: Codable {
         case sound
     }
 }
+
+import XMLCoder
+extension Direction: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.placement, CodingKeys.directive:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

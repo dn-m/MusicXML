@@ -86,7 +86,7 @@ extension Position: Equatable {}
 extension Position: Codable {
     // MARK: - Codable
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case defaultX = "default-x"
         case defaultY = "default-y"
         case relativeX = "relative-x"
@@ -101,5 +101,19 @@ extension Position: Codable {
         defaultY = try container.decodeIfPresent(Tenths.self, forKey: .defaultY)
         relativeX = try container.decodeIfPresent(Tenths.self, forKey: .relativeX)
         relativeY = try container.decodeIfPresent(Tenths.self, forKey: .relativeY)
+    }
+}
+
+extension Position.CodingKeys: XMLAttributeGroupCodingKey {}
+
+import XMLCoder
+extension Position: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.defaultX, CodingKeys.defaultY, CodingKeys.relativeX, CodingKeys.relativeY:
+            return .attribute
+        default:
+            return .element
+        }
     }
 }

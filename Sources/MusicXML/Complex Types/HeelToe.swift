@@ -26,3 +26,15 @@ public struct HeelToe {
 
 extension HeelToe: Equatable {}
 extension HeelToe: Codable {}
+
+import XMLCoder
+extension HeelToe: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.placement, CodingKeys.substitution:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

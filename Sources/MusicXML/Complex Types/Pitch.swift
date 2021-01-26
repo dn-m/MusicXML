@@ -27,3 +27,10 @@ public struct Pitch {
 
 extension Pitch: Equatable {}
 extension Pitch: Codable {}
+
+import XMLCoder
+extension Pitch: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

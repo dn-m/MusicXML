@@ -130,3 +130,17 @@ extension MeasureStyle: Codable {
         try kind.encode(to: encoder)
     }
 }
+
+extension MeasureStyle: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.number, CodingKeys.color:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

@@ -94,3 +94,15 @@ extension Slash: Codable {
         fatalError("TODO: Implement Slash.encode(to:)")
     }
 }
+
+import XMLCoder
+extension Slash: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.type, CodingKeys.useDots, CodingKeys.useStems:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

@@ -71,3 +71,20 @@ extension Bracket: Codable {
         self.color = try container.decodeIfPresent(Color.self, forKey: .color)
     }
 }
+
+import XMLCoder
+extension Bracket: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.type, CodingKeys.number:
+            return .attribute
+        case CodingKeys.lineEnd, CodingKeys.endLength, CodingKeys.lineType, CodingKeys.dashLength, CodingKeys.spaceLength, CodingKeys.color:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

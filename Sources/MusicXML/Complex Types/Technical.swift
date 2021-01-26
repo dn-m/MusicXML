@@ -37,3 +37,10 @@ extension Technical: Codable {
         try values.encode(to: encoder)
     }
 }
+
+import XMLCoder
+extension Technical: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

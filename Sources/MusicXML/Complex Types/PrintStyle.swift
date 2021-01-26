@@ -32,7 +32,7 @@ extension PrintStyle: Equatable {}
 extension PrintStyle: Codable {
     // MARK: - Codable
 
-    private enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case color
     }
 
@@ -52,5 +52,22 @@ extension PrintStyle: Codable {
         try font.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(color, forKey: .color)
+    }
+}
+
+extension PrintStyle.CodingKeys: XMLAttributeGroupCodingKey {}
+
+import XMLCoder
+extension PrintStyle: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.color:
+            return .attribute
+        default:
+            return .element
+        }
     }
 }

@@ -75,3 +75,10 @@ extension Partwise: Codable {
         }
     }
 }
+
+import XMLCoder
+extension Partwise: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

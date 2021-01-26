@@ -55,3 +55,18 @@ extension OctaveShift: Codable {
         self.printStyle = try PrintStyle(from: decoder)
     }
 }
+
+import XMLCoder
+extension OctaveShift: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.type, CodingKeys.number, CodingKeys.size:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

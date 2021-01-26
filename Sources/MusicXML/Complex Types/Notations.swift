@@ -194,3 +194,14 @@ extension Notations: ExpressibleByArrayLiteral {
         self.init(elements)
     }
 }
+
+extension Notations: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.printObject:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

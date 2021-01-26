@@ -32,3 +32,10 @@ extension SystemMargins: Codable {
         case right = "right-margin"
     }
 }
+
+import XMLCoder
+extension SystemMargins: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

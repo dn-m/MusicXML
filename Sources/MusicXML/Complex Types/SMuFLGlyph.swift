@@ -26,3 +26,10 @@ public struct SMuFLGlyph {
 
 extension SMuFLGlyph: Equatable {}
 extension SMuFLGlyph: Codable {}
+
+import XMLCoder
+extension SMuFLGlyph: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

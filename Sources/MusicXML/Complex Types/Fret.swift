@@ -77,7 +77,6 @@ extension Fret: Codable {
 }
 
 import XMLCoder
-
 extension Fret: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         switch key {

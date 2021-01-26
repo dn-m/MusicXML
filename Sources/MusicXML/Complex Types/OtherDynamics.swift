@@ -19,3 +19,10 @@ public struct OtherDynamics {
 
 extension OtherDynamics: Equatable {}
 extension OtherDynamics: Codable {}
+
+import XMLCoder
+extension OtherDynamics: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

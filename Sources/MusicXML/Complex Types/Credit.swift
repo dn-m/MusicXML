@@ -134,3 +134,14 @@ extension Credit.Kind.CodingKeys: XMLChoiceCodingKey {}
 
 extension Credit: Equatable {}
 extension Credit: Codable {}
+
+extension Credit: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.page:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

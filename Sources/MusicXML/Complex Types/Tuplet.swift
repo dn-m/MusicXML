@@ -76,3 +76,18 @@ extension Tuplet: Codable {
         case normalNotes = "normal-notes"
     }
 }
+
+import XMLCoder
+extension Tuplet: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.type, CodingKeys.number, CodingKeys.bracket, CodingKeys.showNumber, CodingKeys.showType, CodingKeys.lineShape, CodingKeys.placement:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

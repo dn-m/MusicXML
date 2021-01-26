@@ -28,3 +28,15 @@ public struct Bookmark {
 
 extension Bookmark: Equatable {}
 extension Bookmark: Codable {}
+
+import XMLCoder
+extension Bookmark: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.id, CodingKeys.name, CodingKeys.element, CodingKeys.position:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

@@ -46,3 +46,15 @@ extension Accord: Codable {
         case tuningOctave = "tuning-octave"
     }
 }
+
+import XMLCoder
+extension Accord: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.string:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

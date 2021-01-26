@@ -51,3 +51,15 @@ extension Degree: Codable {
         case alter = "degree-alter"
     }
 }
+
+import XMLCoder
+extension Degree: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.printObject:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

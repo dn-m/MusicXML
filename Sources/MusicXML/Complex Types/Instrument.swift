@@ -24,3 +24,15 @@ public struct Instrument {
 
 extension Instrument: Equatable {}
 extension Instrument: Codable {}
+
+import XMLCoder
+extension Instrument: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.id:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

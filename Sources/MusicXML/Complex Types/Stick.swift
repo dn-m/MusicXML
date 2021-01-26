@@ -30,3 +30,15 @@ public struct Stick {
 
 extension Stick: Equatable {}
 extension Stick: Codable {}
+
+import XMLCoder
+extension Stick: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.tip:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

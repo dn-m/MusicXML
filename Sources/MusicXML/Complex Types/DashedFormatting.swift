@@ -28,8 +28,30 @@ extension DashedFormatting: Equatable {}
 extension DashedFormatting: Codable {
     // MARK: - Codable
 
-    private enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case dashLength = "dash-length"
         case spaceLength = "space-length"
+    }
+
+    // MARK: Decodable
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.dashLength = try container.decodeIfPresent(Tenths.self, forKey: .dashLength)
+        self.spaceLength = try container.decodeIfPresent(Tenths.self, forKey: .spaceLength)
+    }
+}
+
+extension DashedFormatting.CodingKeys: XMLAttributeGroupCodingKey {}
+
+import XMLCoder
+extension DashedFormatting: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.dashLength, CodingKeys.spaceLength:
+            return .attribute
+        default:
+            return .element
+        }
     }
 }

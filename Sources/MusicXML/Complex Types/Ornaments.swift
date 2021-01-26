@@ -45,3 +45,10 @@ extension Ornaments: Codable {
         }
     }
 }
+
+import XMLCoder
+extension Ornaments: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

@@ -50,3 +50,10 @@ extension Figure: Codable {
         case extend
     }
 }
+
+import XMLCoder
+extension Figure: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

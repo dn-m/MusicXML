@@ -48,3 +48,13 @@ extension HarpPedals: Codable {
         self.pedalTunings = try container.decode([PedalTuning].self, forKey: .pedalTunings)
     }
 }
+
+import XMLCoder
+extension HarpPedals: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}

@@ -38,3 +38,15 @@ extension Rest: Codable {
         case displayOctave = "display-octave"
     }
 }
+
+import XMLCoder
+extension Rest: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.measure:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

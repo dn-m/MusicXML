@@ -74,3 +74,10 @@ extension TimeModification: Codable {
         try container.encode([Empty](repeating: Empty(), count: normalDotCount), forKey: .normalDotCount)
     }
 }
+
+import XMLCoder
+extension TimeModification: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

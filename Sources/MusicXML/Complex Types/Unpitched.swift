@@ -32,3 +32,10 @@ extension Unpitched: Codable {
         case displayOctave = "display-octave"
     }
 }
+
+import XMLCoder
+extension Unpitched: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

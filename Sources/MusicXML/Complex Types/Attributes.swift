@@ -91,3 +91,10 @@ extension Attributes: Codable {
         case measureStyles = "measure-style"
     }
 }
+
+import XMLCoder
+extension Attributes: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

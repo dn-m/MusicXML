@@ -27,3 +27,15 @@ public struct Interchangeable {
 
 extension Interchangeable: Equatable {}
 extension Interchangeable: Codable {}
+
+import XMLCoder
+extension Interchangeable: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.symbol, CodingKeys.separator:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

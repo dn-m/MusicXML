@@ -66,3 +66,15 @@ public struct Link {
 
 extension Link: Equatable {}
 extension Link: Codable {}
+
+import XMLCoder
+extension Link: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.name, CodingKeys.element, CodingKeys.position:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

@@ -32,3 +32,10 @@ extension Bass: Codable {
         case alter = "bass-alter"
     }
 }
+
+import XMLCoder
+extension Bass: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

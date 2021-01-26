@@ -73,3 +73,18 @@ extension Dynamics: Codable {
         self.enclosure = try attributesContainer.decodeIfPresent(EnclosureShape.self, forKey: .enclosure)
     }
 }
+
+import XMLCoder
+extension Dynamics: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.placement, CodingKeys.enclosure:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

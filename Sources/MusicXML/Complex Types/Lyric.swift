@@ -196,3 +196,17 @@ extension Lyric: Codable {
         fatalError()
     }
 }
+
+extension Lyric: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.number, CodingKeys.name, CodingKeys.justify, CodingKeys.color, CodingKeys.placement, CodingKeys.printObject:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

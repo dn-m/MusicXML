@@ -72,3 +72,13 @@ extension Hole: Codable {
         placement = try container.decodeIfPresent(AboveBelow.self, forKey: .placement)
     }
 }
+
+import XMLCoder
+extension Hole: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
+    }
+}

@@ -38,4 +38,27 @@ public struct Printout {
 }
 
 extension Printout: Equatable {}
-extension Printout: Codable {}
+extension Printout: Codable {
+    // MARK: - Codable
+
+    internal enum CodingKeys: String, CodingKey {
+        case printObject = "print-object"
+        case printDot = "print-dot"
+        case printSpacing = "print-spacing"
+        case printLyric = "print-lyric"
+    }
+}
+
+extension Printout.CodingKeys: XMLAttributeGroupCodingKey {}
+
+import XMLCoder
+extension Printout: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.printObject, CodingKeys.printDot, CodingKeys.printSpacing, CodingKeys.printLyric:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

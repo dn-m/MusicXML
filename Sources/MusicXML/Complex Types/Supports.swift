@@ -33,3 +33,15 @@ public struct Supports {
 
 extension Supports: Equatable {}
 extension Supports: Codable {}
+
+import XMLCoder
+extension Supports: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.attribute, CodingKeys.element, CodingKeys.type, CodingKeys.value:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

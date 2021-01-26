@@ -17,7 +17,7 @@ public struct FiguredBass {
     public let printStyle: PrintStyle
     public let printout: Printout
 
-    // MARK: Attributes
+    // MARK: Elements
 
     // > The value of parentheses is "no" if not present.
     public let parentheses: Bool?
@@ -99,5 +99,15 @@ extension FiguredBass: Codable {
         try container.encodeIfPresent(duration, forKey: .duration)
         try container.encodeIfPresent(footnote, forKey: .footnote)
         try container.encodeIfPresent(level, forKey: .level)
+    }
+}
+
+import XMLCoder
+extension FiguredBass: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        return .element
     }
 }

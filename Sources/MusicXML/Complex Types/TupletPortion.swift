@@ -29,3 +29,10 @@ public struct TupletPortion {
 
 extension TupletPortion: Equatable {}
 extension TupletPortion: Codable {}
+
+import XMLCoder
+extension TupletPortion: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

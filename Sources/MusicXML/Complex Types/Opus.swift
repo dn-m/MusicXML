@@ -18,3 +18,10 @@ public struct Opus {
 
 extension Opus: Equatable {}
 extension Opus: Codable {}
+
+import XMLCoder
+extension Opus: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

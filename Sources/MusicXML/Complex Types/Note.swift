@@ -444,3 +444,20 @@ extension Note: Codable {
         try kind.encode(to: encoder)
     }
 }
+
+import XMLCoder
+extension Note: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.printObject, CodingKeys.printDot:
+            return .attribute
+        case CodingKeys.printSpacing, CodingKeys.printLyric, CodingKeys.dynamics, CodingKeys.endDynamics, CodingKeys.attack, CodingKeys.release, CodingKeys.timeOnly, CodingKeys.pizzicato:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

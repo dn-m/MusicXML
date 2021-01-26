@@ -25,3 +25,10 @@ public struct VirtualInstrument {
 
 extension VirtualInstrument: Equatable {}
 extension VirtualInstrument: Codable {}
+
+import XMLCoder
+extension VirtualInstrument: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

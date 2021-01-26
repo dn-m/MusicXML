@@ -27,3 +27,10 @@ public struct Work {
 
 extension Work: Equatable {}
 extension Work: Codable {}
+
+import XMLCoder
+extension Work: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

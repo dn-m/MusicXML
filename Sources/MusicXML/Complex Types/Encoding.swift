@@ -110,3 +110,9 @@ extension Encoding: Codable {
         self.values = try container.decode([Kind].self)
     }
 }
+
+extension Encoding: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

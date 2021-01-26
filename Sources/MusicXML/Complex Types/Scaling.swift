@@ -39,3 +39,10 @@ public struct Scaling {
 
 extension Scaling: Equatable {}
 extension Scaling: Codable {}
+
+import XMLCoder
+extension Scaling: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

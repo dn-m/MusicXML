@@ -31,3 +31,10 @@ extension PedalTuning: Codable {
         case alter = "pedal-alter"
     }
 }
+
+import XMLCoder
+extension PedalTuning: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

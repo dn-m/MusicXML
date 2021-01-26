@@ -105,3 +105,9 @@ extension PartList: ExpressibleByArrayLiteral {
         self.init(elements)
     }
 }
+
+extension PartList: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

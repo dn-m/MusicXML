@@ -30,3 +30,10 @@ extension Articulations: Codable {
         self.values = try container.decode([Articulation].self)
     }
 }
+
+import XMLCoder
+extension Articulations: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        return .element
+    }
+}

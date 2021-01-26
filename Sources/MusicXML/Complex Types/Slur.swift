@@ -84,3 +84,18 @@ extension Slur: Codable {
         color = try container.decodeIfPresent(Color.self, forKey: .color)
     }
 }
+
+import XMLCoder
+extension Slur: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        if key is XMLAttributeGroupCodingKey {
+            return .attribute
+        }
+        switch key {
+        case CodingKeys.color, CodingKeys.type, CodingKeys.number, CodingKeys.lineType, CodingKeys.placement, CodingKeys.orientation:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

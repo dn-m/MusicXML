@@ -32,3 +32,15 @@ public struct Repeat {
 
 extension Repeat: Equatable {}
 extension Repeat: Codable {}
+
+import XMLCoder
+extension Repeat: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.direction, CodingKeys.times, CodingKeys.winged:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

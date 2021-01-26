@@ -29,3 +29,15 @@ public struct MeasureRepeat {
 
 extension MeasureRepeat: Equatable {}
 extension MeasureRepeat: Codable {}
+
+import XMLCoder
+extension MeasureRepeat: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.type, CodingKeys.slashes:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}

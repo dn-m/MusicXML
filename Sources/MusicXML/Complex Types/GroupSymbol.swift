@@ -60,7 +60,6 @@ extension GroupSymbol: Codable {
     }
 }
 
-import XMLCoder
 extension GroupSymbol: DynamicNodeEncoding {
     public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
         switch key {

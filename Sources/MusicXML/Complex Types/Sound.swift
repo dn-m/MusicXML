@@ -284,3 +284,22 @@ extension Sound: DynamicNodeDecoding {
         }
     }
 }
+
+extension Sound: DynamicNodeEncoding {
+    public static func nodeEncoding(for key: CodingKey) -> XMLEncoder.NodeEncoding {
+        switch key {
+        case CodingKeys.tempo, CodingKeys.dynamics:
+            return .attribute
+        case CodingKeys.dacapo, CodingKeys.segno, CodingKeys.dalsegno:
+            return .attribute
+        case CodingKeys.coda, CodingKeys.tocoda, CodingKeys.divisions:
+            return .attribute
+        case CodingKeys.forwardRepeat, CodingKeys.fine, CodingKeys.timeOnly:
+            return .attribute
+        case CodingKeys.pizzicato, CodingKeys.pan, CodingKeys.elevation, CodingKeys.damperPedal, CodingKeys.softPedal, CodingKeys.sostenutoPedal:
+            return .attribute
+        default:
+            return .element
+        }
+    }
+}
