@@ -70,14 +70,13 @@ class HelloWorld: XCTestCase {
         )
         // Create the part
         let part = Partwise.Part(id: "P1", measures: [measure])
-        // Create the score header
-        let header = Header(
+        // Create the traversal
+        let traversal = Partwise(
             partList: [
                 .part(ScorePart(id: "P1", name: "Music")),
-            ]
+            ],
+            parts: [part]
         )
-        // Create the traversal
-        let traversal = Partwise(header: header, parts: [part])
         // Create the score
         let score: Score = .partwise(traversal)
 
